@@ -2,10 +2,10 @@
   <img src="assets/AnswerIndex_Logo.png" alt="AnswerIndex Logo" width="140" height="140" />
 </p>
 
-<h1 align="center">AnswerIndex</h1>
+<h1 align="center">Answer Index</h1>
 
 <p align="center">
-  <strong>Make your content indexable as authoritative answers across Search & AI Engines.</strong>
+  <strong>Make your Content Indexable as Authoritative Answers across Search & AI Engines.</strong>
 </p>
 
 <p align="center">
