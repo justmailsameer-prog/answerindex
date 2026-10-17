@@ -1,4 +1,29 @@
 {
+  "name": "answerindex",
+  "version": "1.0.0",
+  "description": "The open-source Answer Engine Optimization (AEO), GEO & SEO evaluation suite.",
+  "main": "test-aeo-models.mjs",
+  "bin": {
+    "answerindex": "./bin/answerindex.mjs"
+  },
+  "type": "module",
+  "scripts": {
+    "seo": "bash run-seo.sh",
+    "aeo": "bash run-aeo.sh",
+    "benchmark": "bash run-benchmark.sh"
+  },
+  "keywords": [
+    "aeo",
+    "geo",
+    "seo",
+    "ai-search",
+    "perplexity",
+    "chatgpt-search",
+    "gemini",
+    "answer-engine-optimization"
+  ],
+  "author": "Sameer Sharma",
+  "license": "MIT",
   "dependencies": {
     "aeo-platform": "^1.16.1"
   }

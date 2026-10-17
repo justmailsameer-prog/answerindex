@@ -1,86 +1,75 @@
-# Growth Toolkit 🚀
-> The local-first, open-source CLI suite for **SEO (Search Engine Optimization)**, **AEO (Answer Engine Optimization)**, and **GEO (Generative Engine Optimization)**.
+# AnswerIndex
 
-Diagnose and optimize any website for both legacy search engines (Google, Bing) and AI answer engines (**ChatGPT, Perplexity, Claude, Gemini, Groq**).
+> **Make your content indexable as authoritative answers across Search & AI Engines.**
 
----
+AnswerIndex is a unified evaluation and optimization suite for **AEO (Answer Engine Optimization)**, **GEO (Generative Engine Optimization)**, and **Technical SEO**.
 
-## 🌟 Why Growth Toolkit?
-
-Traditional SEO tools only check meta tags and backlinks. Modern discovery happens across **Generative AI Answer Engines** where models either cite your website or hallucinate competitors.
-
-**Growth Toolkit bridges that gap with three unified engines:**
-1. **Technical SEO Engine:** Crawls, audits on-page tags, validates Schema.org JSON-LD structured data, checks canonical paths, and inspects sitemaps.
-2. **AEO Brand Visibility Platform:** Runs simulated conversational benchmark queries across ChatGPT, Claude, and Gemini to score brand citation rates.
-3. **Multi-Model Benchmark Suite:** Queries multiple LLM endpoints in parallel to catch model hallucinations and test real-time entity recognition.
+While traditional SEO focuses on getting crawled by search engines, **AnswerIndex** focuses on getting **cited as the definitive answer** by ChatGPT Search, Perplexity, Gemini, Claude, and Google AI Overviews.
 
 ---
 
-## ⚡ Quick Start
+## Features
+
+- 🧠 **Multi-Model AI Citation Benchmark:** Query top LLMs simultaneously (Nvidia Nemotron, Google Gemma, Liquid LFM, StepFun) to measure mention rate, entity accuracy, and citation authority.
+- ⚡ **AEO Engine Audit:** Analyze your domain against Answer Engine standards with automated scoring and ethical transparency benchmarks.
+- 🛠️ **Deep Technical & Semantic SEO:** Comprehensive modular audit suite for JSON-LD schemas, sitemaps, semantic content clusters, and Core Web Vitals.
+- 💻 **Universal Automation:** Portable CLI and modular Bash runners for CI/CD pipelines or local terminal workflows.
+
+---
+
+## Quick Start
 
 ### 1. Installation
-Clone the repository and install the lightweight Node.js dependencies:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/growth-toolkit.git
-cd growth-toolkit
+git clone https://github.com/justmailsameer-prog/answerindex.git
+cd answerindex
 npm install
 ```
 
-Ensure you have Python 3.9+ installed with basic dependencies:
-```bash
-pip install requests beautifulsoup4 lxml
-```
+### 2. Configure Environment
 
-### 2. Configure Environment Keys
-Copy the template and paste your preferred AI keys:
+Copy the example configuration and add your free or paid API keys:
+
 ```bash
 cp .env.example .env
 ```
-*(Supports OpenRouter, Groq, Google Gemini, OpenAI, and Anthropic keys).*
 
----
+### 3. Usage
 
-## 🛠️ Usage
-
-### 1. Run Comprehensive SEO Audit
 ```bash
-# Full audit of any domain
-./run-seo.sh audit https://yourwebsite.com
+# Run multi-model AEO citation benchmark
+npm run benchmark
 
-# Check environment & dependencies
-./run-seo.sh doctor
+# Run AEO domain assessment
+npm run aeo
 
-# Check only structured data / Schema.org
-./run-seo.sh schema https://yourwebsite.com
+# Run SEO deep audit
+npm run seo
 ```
 
-### 2. Run AEO Brand Visibility Check
-Measure whether ChatGPT, Claude, or Gemini recommend your brand:
+Or run via the CLI directly:
+
 ```bash
-# Initialize for a domain
-./run-aeo.sh init --brand="YourBrand" --domain="yourdomain.com"
-
-# Run citations scan
-./run-aeo.sh run --force
-
-# Generate report
-./run-aeo.sh report
-```
-
-### 3. Multi-Model Perception Benchmark
-Query open models in parallel to test how LLMs describe your product:
-```bash
-./run-benchmark.sh
+node bin/answerindex.mjs benchmark
+node bin/answerindex.mjs aeo
 ```
 
 ---
 
-## 🔒 Security
-- All sensitive API keys are strictly kept in `.env` (ignored by `.gitignore`).
-- Zero telemetry or cloud dependencies required — runs 100% locally on your machine.
+## Architecture & Components
+
+| Component | Role | Description |
+|-----------|------|-------------|
+| `bin/answerindex.mjs` | Unified CLI | Command-line entry point |
+| `test-aeo-models.mjs` | Citation Benchmark | Multi-model evaluation across OpenRouter models |
+| `seo-toolkit/` | Technical & Schema SEO | 24+ specialized SEO & GEO skill modules |
+| `run-*.sh` | Script Runners | Portable runners for cross-platform automation |
 
 ---
 
-## 📄 License
-MIT License. Free for developers, startups, and agencies.
+## License & Attribution
+
+AnswerIndex is open-source software licensed under the [MIT License](LICENSE).
+
+Portions of the SEO skill definitions are derived from `claude-seo` by Agrici Daniel (MIT License) and `aeo-platform`. Full notices and license texts are preserved in the respective subdirectories and `LICENSE`.
