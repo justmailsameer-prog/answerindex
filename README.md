@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/logo.png" alt="AnswerIndex Logo" width="120" height="120" onerror="this.style.display='none'" />
+  <img src="assets/AnswerIndex_Logo.png" alt="AnswerIndex Logo" width="140" height="140" />
 </p>
 
 <h1 align="center">AnswerIndex</h1>
@@ -20,6 +20,12 @@
   <img src="https://img.shields.io/badge/AEO-Answer%20Engine%20Optimization-06B6D4.svg" alt="AEO" />
   <img src="https://img.shields.io/badge/GEO-Generative%20Engine%20Optimization-8B5CF6.svg" alt="GEO" />
   <img src="https://img.shields.io/badge/SEO-Schema%20%26%20Technical-10B981.svg" alt="SEO" />
+</p>
+
+---
+
+<p align="center">
+  <img src="assets/answerindex-preview.png" alt="AnswerIndex Preview" width="100%" />
 </p>
 
 ---
