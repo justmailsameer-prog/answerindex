@@ -1,6 +1,28 @@
-# AnswerIndex
+<p align="center">
+  <img src="assets/logo.png" alt="AnswerIndex Logo" width="120" height="120" onerror="this.style.display='none'" />
+</p>
 
-> **Make your content indexable as authoritative answers across Search & AI Engines.**
+<h1 align="center">AnswerIndex</h1>
+
+<p align="center">
+  <strong>Make your content indexable as authoritative answers across Search & AI Engines.</strong>
+</p>
+
+<p align="center">
+  <a href="#features">Features</a> •
+  <a href="#quick-start">Quick Start</a> •
+  <a href="#architecture--components">Architecture</a> •
+  <a href="#license--attribution">License</a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT" />
+  <img src="https://img.shields.io/badge/AEO-Answer%20Engine%20Optimization-06B6D4.svg" alt="AEO" />
+  <img src="https://img.shields.io/badge/GEO-Generative%20Engine%20Optimization-8B5CF6.svg" alt="GEO" />
+  <img src="https://img.shields.io/badge/SEO-Schema%20%26%20Technical-10B981.svg" alt="SEO" />
+</p>
+
+---
 
 AnswerIndex is a unified evaluation and optimization suite for **AEO (Answer Engine Optimization)**, **GEO (Generative Engine Optimization)**, and **Technical SEO**.
 

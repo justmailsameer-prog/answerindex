@@ -1,7 +1,7 @@
 {
   "name": "answerindex",
   "version": "1.0.0",
-  "description": "The open-source Answer Engine Optimization (AEO), GEO & SEO evaluation suite.",
+  "description": "Make your content indexable as authoritative answers across Search & AI Engines (AEO, GEO & SEO).",
   "main": "test-aeo-models.mjs",
   "bin": {
     "answerindex": "./bin/answerindex.mjs"
@@ -16,11 +16,19 @@
     "aeo",
     "geo",
     "seo",
+    "answer-engine-optimization",
+    "generative-engine-optimization",
     "ai-search",
     "perplexity",
     "chatgpt-search",
     "gemini",
-    "answer-engine-optimization"
+    "claude",
+    "llm-optimization",
+    "search-engine-optimization",
+    "schema-markup",
+    "json-ld",
+    "ai-citations",
+    "benchmark"
   ],
   "author": "Sameer Sharma",
   "license": "MIT",
