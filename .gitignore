@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Environment variables & Secret API Keys (CRITICAL)
+.env
+.env.*
+.env*.local
+
+# Cache and temporary logs
+*.log
+.aeo-tracker.json
+aeo-responses/
+__pycache__/
+*.pyc
+
+# OS files
+.DS_Store
+Thumbs.db
