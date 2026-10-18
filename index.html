@@ -340,7 +340,7 @@
     }
     .section-header {
       text-align: center;
-      max-width: 700px;
+      max-width: 820px;
       margin: 0 auto 4rem;
     }
     .section-tag {
@@ -352,14 +352,22 @@
       margin-bottom: 0.75rem;
     }
     .section-title {
-      font-size: clamp(2rem, 3.5vw, 2.75rem);
+      font-size: clamp(1.85rem, 3.2vw, 2.6rem);
       font-weight: 800;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.025em;
       margin-bottom: 1rem;
+      white-space: nowrap;
+      text-wrap: balance;
+    }
+    @media (max-width: 768px) {
+      .section-title {
+        white-space: normal;
+      }
     }
     .section-desc {
       color: var(--text-muted);
       font-size: 1.05rem;
+      text-wrap: balance;
     }
 
     .features-grid {
