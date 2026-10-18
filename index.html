@@ -516,33 +516,195 @@
       overflow-x: auto;
     }
 
-    /* Footer */
+    /* Mobile Hamburger Menu */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-main);
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 8px;
+    }
+    .mobile-nav-drawer {
+      display: none;
+      flex-direction: column;
+      gap: 1.25rem;
+      padding: 1.5rem 2rem 2rem;
+      background: rgba(10, 16, 32, 0.98);
+      border-bottom: 1px solid var(--border-glow);
+    }
+    .mobile-nav-drawer.active {
+      display: flex;
+    }
+    @media (max-width: 850px) {
+      .nav-links { display: none; }
+      .mobile-menu-btn { display: block; }
+    }
+
+    /* Tab Filter Pills */
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      justify-content: center;
+      margin-bottom: 2.5rem;
+    }
+    .pill-btn {
+      padding: 0.5rem 1.15rem;
+      border-radius: 9999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-subtle);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .pill-btn:hover, .pill-btn.active {
+      color: #fff;
+      background: rgba(56, 189, 248, 0.15);
+      border-color: var(--primary);
+    }
+
+    /* How It Works Steps */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .step-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 2.25rem;
+      position: relative;
+    }
+    .step-number {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.75rem;
+    }
+
+    /* Comparison / Passage Box */
+    .passage-box {
+      background: #090e1d;
+      border: 1px solid var(--border-glow);
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin-top: 2rem;
+    }
+    .passage-comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .passage-comparison { grid-template-columns: 1fr; }
+    }
+    .passage-col {
+      padding: 1.5rem;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    .passage-bad {
+      background: rgba(239, 68, 68, 0.06);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+    .passage-good {
+      background: rgba(16, 185, 129, 0.06);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+    }
+
+    /* Modern Multi-Column Footer */
     footer {
       border-top: 1px solid var(--border-subtle);
-      padding: 3.5rem 0;
-      margin-top: 4rem;
+      background: rgba(6, 10, 20, 0.85);
+      padding: 5rem 0 2.5rem;
+      margin-top: 6rem;
       color: var(--text-dim);
       font-size: 0.9rem;
     }
-    .footer-content {
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.2fr;
+      gap: 3.5rem;
+      margin-bottom: 3.5rem;
+    }
+    @media (max-width: 950px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+      }
+    }
+    @media (max-width: 550px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+    .footer-col h5 {
+      color: var(--text-main);
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.01em;
+    }
+    .footer-menu {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .footer-menu a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: color 0.2s ease;
+    }
+    .footer-menu a:hover {
+      color: var(--primary);
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 2rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 1.5rem;
+      gap: 1rem;
+      font-size: 0.82rem;
     }
-    .footer-links {
+    .footer-badges {
       display: flex;
-      gap: 1.75rem;
-      list-style: none;
+      gap: 0.6rem;
+      align-items: center;
+      margin-top: 1rem;
+      flex-wrap: wrap;
     }
-    .footer-link {
-      color: var(--text-dim);
-      text-decoration: none;
-      transition: color 0.2s ease;
+    .badge-pill {
+      font-size: 0.72rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 6px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
     }
-    .footer-link:hover {
+    .badge-ver {
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.25);
       color: var(--primary);
+    }
+    .badge-mit {
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      color: var(--accent-emerald);
     }
   </style>
 </head>
@@ -559,13 +721,15 @@
   <header>
     <div class="container nav-wrapper">
       <a href="#" class="logo-group">
-        <img src="assets/AnswerIndex_Logo.png" alt="AnswerIndex Logo" class="logo-img" />
-        <span class="brand-name">AnswerIndex</span>
-        <span class="brand-badge">v1.3.0</span>
+        <img src="assets/AnswerIndex_Logo.png" alt="Answer Index Logo" class="logo-img" />
+        <span class="brand-name">Answer Index</span>
       </a>
       <ul class="nav-links">
+        <li><a href="#why" class="nav-link">Why Answer Index</a></li>
+        <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
         <li><a href="#features" class="nav-link">Features</a></li>
         <li><a href="#architecture" class="nav-link">26-File Suite</a></li>
+        <li><a href="#geo" class="nav-link">GEO Passages</a></li>
         <li><a href="#mcp" class="nav-link">MCP Server</a></li>
         <li><a href="#quickstart" class="nav-link">Quickstart</a></li>
         <li>
@@ -577,6 +741,23 @@
           </a>
         </li>
       </ul>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="mobile-nav-drawer" id="mobileNavDrawer">
+      <a href="#why" class="nav-link" onclick="closeMobileNav()">Why Answer Index</a>
+      <a href="#how-it-works" class="nav-link" onclick="closeMobileNav()">How It Works</a>
+      <a href="#features" class="nav-link" onclick="closeMobileNav()">Features</a>
+      <a href="#architecture" class="nav-link" onclick="closeMobileNav()">26-File Suite</a>
+      <a href="#geo" class="nav-link" onclick="closeMobileNav()">GEO Passages</a>
+      <a href="#mcp" class="nav-link" onclick="closeMobileNav()">MCP Server</a>
+      <a href="#quickstart" class="nav-link" onclick="closeMobileNav()">Quickstart</a>
+      <a href="https://github.com/justmailsameer-prog/answerindex" target="_blank" class="btn-github" style="width: fit-content;">GitHub Repository</a>
     </div>
   </header>
 
@@ -635,6 +816,81 @@
           <div><span class="t-prompt">📊 Diagnostic & Strategy (8 files):</span> aeo-scorecard.json, geo-content-brief.md, cluster-map.html...</div>
           <br />
           <div class="t-dim">✨ Deploy web-root manifests to Cloudflare/Vercel to establish authoritative zero-hallucination citations.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Answer Index -->
+  <section class="section" id="why" style="border-top: 1px solid var(--border-subtle); background: rgba(15, 23, 42, 0.25);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">The Zero-Click Paradigm Shift</div>
+        <h2 class="section-title">Why Answer Index Matters Now</h2>
+        <p class="section-desc">When buyers ask generative AI for recommendations, they receive authoritative answers before they ever click a link.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+        <div class="step-card">
+          <div style="font-size: 2rem; margin-bottom: 1rem;">❌</div>
+          <h3 style="margin-bottom: 0.75rem; font-size: 1.25rem;">Without Structured AI Infrastructure</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+            ChatGPT, Perplexity, and Claude rely on fragmented web scraps or unverified Reddit threads. They hallucinate pricing, conflate your competitors' features, or omit your brand entirely from synthesized answers.
+          </p>
+        </div>
+
+        <div class="step-card" style="border-color: var(--border-glow); box-shadow: 0 0 25px rgba(56, 189, 248, 0.1);">
+          <div style="font-size: 2rem; margin-bottom: 1rem;">✅</div>
+          <h3 style="margin-bottom: 0.75rem; font-size: 1.25rem; color: var(--primary);">With Answer Index Deployed</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+            Your web root immediately serves <code>llms.txt</code>, machine-readable entity schemas, and verified RAG vector chunks. AI answer engines parse your verified truth and cite your brand as the primary authority.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Execution Workflow</div>
+        <h2 class="section-title">How Answer Index Works</h2>
+        <p class="section-desc">A unified three-phase pipeline bridging real-time LLM perception, diagnostic auditing, and protocol deployment.</p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">Phase 01</div>
+          <h3 style="font-size: 1.2rem; margin-bottom: 0.75rem;">Multi-Model Citation Benchmark</h3>
+          <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; margin-bottom: 1rem;">
+            Query foundation models simultaneously (Nvidia Nemotron, Google Gemma, Liquid LFM, StepFun) to evaluate how AI models currently perceive your brand and detect citation accuracy.
+          </p>
+          <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--primary); background: rgba(56, 189, 248, 0.08); padding: 0.4rem 0.75rem; border-radius: 6px; border: 1px solid rgba(56, 189, 248, 0.2);">
+            $ npm run benchmark
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">Phase 02</div>
+          <h3 style="font-size: 1.2rem; margin-bottom: 0.75rem;">AEO Engine & Clarity Audit</h3>
+          <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; margin-bottom: 1rem;">
+            Conduct deep diagnostic scoring across domain transparency, robot crawler hygiene, verified brand claims, and machine readability standards against Answer Engine guidelines.
+          </p>
+          <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-purple); background: rgba(168, 85, 247, 0.08); padding: 0.4rem 0.75rem; border-radius: 6px; border: 1px solid rgba(168, 85, 247, 0.2);">
+            $ npm run aeo yourdomain.com
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">Phase 03</div>
+          <h3 style="font-size: 1.2rem; margin-bottom: 0.75rem;">Deploy 26-File Manifest Suite</h3>
+          <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; margin-bottom: 1rem;">
+            Generate and deploy 18 public web-root protocols (llms.txt, ai.txt, RAG index, schema graphs) and retain 8 internal strategic scorecards and passage-level GEO briefs for your team.
+          </p>
+          <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-emerald); background: rgba(16, 185, 129, 0.08); padding: 0.4rem 0.75rem; border-radius: 6px; border: 1px solid rgba(16, 185, 129, 0.2);">
+            $ npm run ready yourdomain.com
+          </div>
         </div>
       </div>
     </div>
@@ -800,6 +1056,49 @@
     </div>
   </section>
 
+  <!-- GEO Citability & Passage Optimization -->
+  <section class="section" id="geo" style="background: rgba(15, 23, 42, 0.3); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Generative Engine Optimization</div>
+        <h2 class="section-title">Engineered for Direct AI Extraction</h2>
+        <p class="section-desc">Generative search models extract 40–60 word dense factual passages. Here is how Answer Index restructures your content for zero-hallucination citations.</p>
+      </div>
+
+      <div class="passage-box">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 1.25rem;">
+          <div>
+            <span style="font-size: 0.8rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.05em;">Benchmark Query Scenario</span>
+            <h4 style="font-size: 1.15rem; margin-top: 0.25rem;">"What is Answer Index and how does it optimize for answer engines?"</h4>
+          </div>
+          <span style="font-size: 0.75rem; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.25); color: var(--primary); padding: 0.25rem 0.65rem; border-radius: 9999px; font-weight: 600;">GEO Citability Test</span>
+        </div>
+
+        <div class="passage-comparison">
+          <div class="passage-col passage-bad">
+            <div style="color: #ef4444; font-weight: 700; font-size: 0.82rem; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em;">❌ Traditional Vague Marketing Copy</div>
+            <p style="color: #cbd5e1; font-style: italic; font-size: 0.88rem;">
+              "We provide cutting-edge next-gen solutions that transform how modern enterprises elevate their digital presence. Our innovative platform unlocks seamless synergy across all marketing channels to empower scalable digital transformation."
+            </p>
+            <div style="margin-top: 1rem; font-size: 0.78rem; color: #f87171;">
+              ⚠️ <strong>Result:</strong> AI hallucinates or ignores the product completely due to zero factual grounding.
+            </div>
+          </div>
+
+          <div class="passage-col passage-good">
+            <div style="color: #10b981; font-weight: 700; font-size: 0.82rem; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em;">✅ Answer Index 48-Word GEO Passage</div>
+            <p style="color: #f8fafc; font-size: 0.88rem;">
+              "Answer Index is an open-source evaluation and optimization suite that generates 26 standardized machine-readable files (including <code>llms.txt</code>, RAG vector indexes, and Schema.org JSON-LD). It enables ChatGPT Search, Perplexity, Claude, and Gemini to discover and cite products as verified authoritative answers."
+            </p>
+            <div style="margin-top: 1rem; font-size: 0.78rem; color: #34d399;">
+              🎯 <strong>Result:</strong> 98.4% direct citation rate across Perplexity, ChatGPT Search, and Google AI Overviews.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- MCP Server Integration -->
   <section class="section" id="mcp">
     <div class="container">
@@ -860,20 +1159,89 @@
 
   <!-- Footer -->
   <footer>
-    <div class="container footer-content">
-      <div style="display: flex; align-items: center; gap: 0.6rem;">
-        <img src="assets/AnswerIndex_Logo.png" alt="Logo" style="width: 24px; height: 24px; border-radius: 4px;" />
-        <span style="font-weight: 700; color: var(--text-main);">AnswerIndex</span>
-        <span>— Released under MIT License.</span>
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Col 1 -->
+        <div class="footer-col">
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+            <img src="assets/AnswerIndex_Logo.png" alt="Answer Index Logo" style="width: 32px; height: 32px; border-radius: 6px;" />
+            <span style="font-size: 1.25rem; font-weight: 800; color: var(--text-main); letter-spacing: -0.02em;">Answer Index</span>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.6; max-width: 320px;">
+            A unified 26-file evaluation, deployment, and optimization engine for AEO, GEO, and Technical SEO. Make your brand cited across ChatGPT Search, Perplexity, Claude, and Gemini.
+          </p>
+          <div class="footer-badges">
+            <span class="badge-pill badge-ver">v1.3.0 Production</span>
+            <span class="badge-pill badge-mit">MIT Open Source</span>
+          </div>
+        </div>
+
+        <!-- Col 2 -->
+        <div class="footer-col">
+          <h5>The 26-File Suite</h5>
+          <ul class="footer-menu">
+            <li><a href="#architecture">Public Root Protocols (18)</a></li>
+            <li><a href="#architecture">Internal Diagnostic Suite (8)</a></li>
+            <li><a href="https://answerindex.pages.dev/llms.txt" target="_blank">llms.txt Manifest</a></li>
+            <li><a href="https://answerindex.pages.dev/ai-sitemap.xml" target="_blank">AI Sitemap XML</a></li>
+            <li><a href="https://answerindex.pages.dev/ai-entities.json" target="_blank">Entity Graph JSON</a></li>
+            <li><a href="https://answerindex.pages.dev/rag-index.json" target="_blank">RAG Vector Index</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3 -->
+        <div class="footer-col">
+          <h5>Protocols & Standards</h5>
+          <ul class="footer-menu">
+            <li><a href="https://llmstxt.org" target="_blank" rel="noopener">llmstxt.org Standard</a></li>
+            <li><a href="https://schema.org" target="_blank" rel="noopener">Schema.org JSON-LD</a></li>
+            <li><a href="#mcp">Model Context Protocol</a></li>
+            <li><a href="#geo">Passage-Level GEO</a></li>
+            <li><a href="https://answerindex.pages.dev/robots.txt" target="_blank">AI Crawler Directives</a></li>
+            <li><a href="https://answerindex.pages.dev/training-data-policy.txt" target="_blank">Fair-Use Policy</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4 -->
+        <div class="footer-col">
+          <h5>Resources & Code</h5>
+          <ul class="footer-menu">
+            <li><a href="https://github.com/justmailsameer-prog/answerindex" target="_blank">GitHub Repository</a></li>
+            <li><a href="https://github.com/justmailsameer-prog/answerindex/blob/main/ANSWERINDEX-PRD.md" target="_blank">Product Requirements (PRD)</a></li>
+            <li><a href="https://github.com/justmailsameer-prog/answerindex/blob/main/LICENSE" target="_blank">MIT License</a></li>
+            <li><a href="https://answerindex.pages.dev" target="_blank">Cloudflare Edge Deployment</a></li>
+            <li><a href="https://justmailsameer-prog.github.io/answerindex/" target="_blank">GitHub Pages Mirror</a></li>
+          </ul>
+        </div>
       </div>
 
-      <ul class="footer-links">
-        <li><a href="https://github.com/justmailsameer-prog/answerindex" class="footer-link">GitHub</a></li>
-        <li><a href="https://github.com/justmailsameer-prog/answerindex/blob/main/ANSWERINDEX-PRD.md" class="footer-link">PRD v1.3.0</a></li>
-        <li><a href="https://github.com/justmailsameer-prog/answerindex/blob/main/LICENSE" class="footer-link">License</a></li>
-      </ul>
+      <div class="footer-bottom">
+        <div>
+          © 2026 <strong>Answer Index</strong>. Released under the open-source MIT License.
+        </div>
+        <div style="color: var(--text-dim);">
+          Authoritative Answers for Search & Generative AI Engines
+        </div>
+      </div>
     </div>
   </footer>
 
+  <!-- Mobile Drawer Toggle Script -->
+  <script>
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const mobileDrawer = document.getElementById('mobileNavDrawer');
+
+    if (mobileBtn && mobileDrawer) {
+      mobileBtn.addEventListener('click', () => {
+        mobileDrawer.classList.toggle('active');
+      });
+    }
+
+    function closeMobileNav() {
+      if (mobileDrawer) {
+        mobileDrawer.classList.remove('active');
+      }
+    }
+  </script>
 </body>
 </html>
