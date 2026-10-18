@@ -37,6 +37,14 @@ While traditional SEO focuses on getting crawled by search engines, **AnswerInde
 
 ---
 
+## Why AnswerIndex?
+
+When someone asks ChatGPT, Perplexity, Claude, or Gemini for a recommendation, comparison, or solution, they often receive an authoritative answer **before they ever visit a website**. If your content isn't structured for generative extraction, these models guess—and they often guess wrong or omit you entirely.
+
+AnswerIndex bridges that gap by benchmarking how AI models actively perceive and cite your brand, auditing your site against answer-engine standards, and providing structured schemas and semantic patterns so AI assistants cite your product with complete accuracy and authority.
+
+---
+
 ## How It Works
 
 Start by cloning the repository, installing dependencies with `npm install`, and adding your free OpenRouter API keys to `.env`. 
@@ -49,9 +57,12 @@ Start by cloning the repository, installing dependencies with `npm install`, and
 
 ## Features
 
+- 📦 **AI Readiness Kit Generator (`ready`):** Generate a full suite of root-level files (`llms.txt`, `llms-full.txt`, `ai.txt`, modern `robots.txt` AI crawler rules, `ai-entities.json`, `ai-intent.json`, `ai-schema.json`, and `ai-sitemap.xml`) in one command.
+- 🤖 **AI Crawler & Retrieval Control:** Explicit directives and permission rules for major AI search engines (ChatGPT/GPTBot, ClaudeBot, PerplexityBot, Google-Extended, Applebot).
 - 🧠 **Multi-Model AI Citation Benchmark:** Query top LLMs simultaneously (Nvidia Nemotron, Google Gemma, Liquid LFM, StepFun) to measure mention rate, entity accuracy, and citation authority.
 - ⚡ **AEO Engine Audit:** Analyze your domain against Answer Engine standards with automated scoring and ethical transparency benchmarks.
 - 🛠️ **Deep Technical & Semantic SEO:** Comprehensive modular audit suite for JSON-LD schemas, sitemaps, semantic content clusters, and Core Web Vitals.
+- 🔌 **Model Context Protocol (MCP) Server:** Native MCP support to connect AnswerIndex directly into Cursor, Claude Code, Windsurf, or VS Code.
 - 💻 **Universal Automation:** Portable CLI and modular Bash runners for CI/CD pipelines or local terminal workflows.
 
 ---
@@ -77,6 +88,9 @@ cp .env.example .env
 ### 3. Usage
 
 ```bash
+# Generate AI Readiness deployment files for your website
+npm run ready yourbrand.com "Your Brand Name"
+
 # Run multi-model AEO citation benchmark
 npm run benchmark
 
@@ -85,13 +99,18 @@ npm run aeo
 
 # Run SEO deep audit
 npm run seo
+
+# Start AnswerIndex MCP server for AI IDEs (Cursor, Claude Code, Windsurf)
+npm run mcp
 ```
 
 Or run via the CLI directly:
 
 ```bash
+node bin/answerindex.mjs ready yourbrand.com
 node bin/answerindex.mjs benchmark
 node bin/answerindex.mjs aeo
+node bin/answerindex.mjs mcp
 ```
 
 ---
@@ -100,15 +119,15 @@ node bin/answerindex.mjs aeo
 
 | Component | Role | Description |
 |-----------|------|-------------|
-| `bin/answerindex.mjs` | Unified CLI | Command-line entry point |
+| `bin/answerindex.mjs` | Unified CLI | Command-line entry point (`ready`, `benchmark`, `aeo`, `seo`, `mcp`) |
+| `lib/readiness-generator.mjs` | AI Readiness Engine | Generates `llms.txt`, `ai.txt`, `robots.txt`, schemas, entity & intent graphs |
+| `lib/mcp-server.mjs` | MCP Server | Standard Model Context Protocol server for Cursor & Claude Code |
 | `test-aeo-models.mjs` | Citation Benchmark | Multi-model evaluation across OpenRouter models |
 | `seo-toolkit/` | Technical & Schema SEO | 24+ specialized SEO & GEO skill modules |
 | `run-*.sh` | Script Runners | Portable runners for cross-platform automation |
 
 ---
 
-## License & Attribution
+## License
 
-AnswerIndex is open-source software licensed under the [MIT License](LICENSE).
-
-Portions of the SEO skill definitions are derived from `claude-seo` by Agrici Daniel (MIT License) and `aeo-platform`. Full notices and license texts are preserved in the respective subdirectories and `LICENSE`.
+[MIT License](LICENSE)

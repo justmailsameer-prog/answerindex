@@ -19,16 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-### Third-Party Licenses & Attributions
-
-AnswerIndex incorporates and orchestrates components licensed under the MIT License:
-
-- **seo-toolkit (claude-seo)**
-  Copyright (c) Agrici Daniel (https://github.com/AgriciDaniel/claude-seo), MIT.
-  Copyright (c) 2026 seo-audit contributors, MIT.
-
-- **aeo-platform**
-  Copyright (c) aeo-platform contributors, MIT.
