@@ -57,53 +57,55 @@ Start by cloning the repository, installing dependencies with `npm install`, and
 
 ## Features
 
-- 📦 **Complete 26-File AI Readiness & AEO Suite:** Generate the complete suite of 26 files (18 web-root files + 8 proprietary AnswerIndex AEO/GEO/Schema optimization artifacts) in a single command.
-- 🤖 **AI Crawler & Retrieval Control:** Explicit directives and permission rules for major AI search engines (ChatGPT/GPTBot, ClaudeBot, PerplexityBot, Google-Extended, Applebot).
-- 🧠 **Multi-Model AI Citation Benchmark:** Query top LLMs simultaneously (Nvidia Nemotron, Google Gemma, Liquid LFM, StepFun) to measure mention rate, entity accuracy, and citation authority.
-- ⚡ **AEO Engine Audit & Scorecards:** Analyze your domain against Answer Engine standards with automated scoring, clarity checks, and ethical transparency benchmarks.
-- 🎯 **Passage-Level GEO Content Briefs:** Formatted 40–60 word citation blocks specifically structured for Perplexity, ChatGPT Search, and Google AI Overviews.
-- 🗺️ **Semantic Cluster Mapping:** Interactive visual topic cluster map (`cluster-map.html`) to establish internal authority pathways.
-- 🛠️ **Deep Technical & Semantic SEO:** Comprehensive modular audit suite for JSON-LD schemas, sitemaps, semantic content clusters, and Core Web Vitals.
-- 🔌 **Model Context Protocol (MCP) Server:** Native MCP support to connect AnswerIndex directly into Cursor, Claude Code, Windsurf, or VS Code.
-- 💻 **Universal Automation:** Portable CLI and modular Bash runners for CI/CD pipelines or local terminal workflows.
+AnswerIndex delivers a unified, production-grade engine spanning root indexation, answer extraction, citation benchmarking, and technical SEO:
+
+- 📦 **Automated 26-File Optimization Suite:** Generate a complete architecture of 26 production-ready files in a single pass—spanning machine-readable web-root manifests, structured entity graphs, RAG vector indexes, and diagnostic scorecards.
+- 🤖 **Comprehensive AI Crawler & Agent Directives:** Explicit governance rules and permissions tailored for modern AI search engines and agents (ChatGPT/GPTBot, ClaudeBot, PerplexityBot, Google-Extended, Applebot, Cohere).
+- 🧠 **Multi-Model Citation & Perception Benchmark:** Simultaneously test your brand against top foundation models (Nvidia Nemotron, Google Gemma, Liquid LFM, StepFun) to measure citation frequency, factual accuracy, and hallucination risk.
+- ⚡ **AEO Engine Audit & Scorecards:** Evaluate domain clarity, transparency standards, and machine-readability using automated AEO diagnostic scoring.
+- 🎯 **Passage-Level GEO Citability Briefs:** Structure content into high-citability 40–60 word answer passages optimized for zero-click extraction by ChatGPT Search, Perplexity, and Google AI Overviews.
+- 🗺️ **Semantic Cluster & Authority Mapping:** Interactive visual topic cluster map (`cluster-map.html`) to establish entity authority and internal linking hierarchy.
+- 🛠️ **Deep Technical & Schema SEO:** Advanced modular suite for Schema.org JSON-LD graph generation, XML sitemaps, Core Web Vitals, and crawl hygiene.
+- 🔌 **Native Model Context Protocol (MCP) Server:** Connect AnswerIndex directly into AI coding environments like Cursor, Claude Code, Windsurf, or VS Code over stdio.
+- 💻 **Universal Automation:** Portable CLI and modular script runners for seamless integration into CI/CD pipelines or local terminal workflows.
 
 ---
 
-## The Complete AnswerIndex Suite (26 Production Files)
+## The 26-File AnswerIndex Architecture
 
 When you run `npm run ready yourdomain.com "Your Brand"`, AnswerIndex generates a complete, tailored suite of **26 production files** into `./ai-readiness-dist/yourdomain.com/`:
 
-### Part 1: The 18 AI Readiness Web-Root Files
-These deploy directly to your website's public web root (`public/` or server root):
+### 1. Web-Root Identity, Content & Knowledge Manifests (Deploy to Web Root)
+These files deploy directly to your website's public web root (`public/` or server root) to ensure search engines and AI assistants discover, understand, and cite your canonical content:
 
-| Category | File | Purpose |
+| Category | File | Description & Role |
 |---|---|---|
-| **1. Identity & Permissions** | `robots.txt` | Controls bot access with explicit allowances for ChatGPT, Claude, Perplexity & Applebot. |
-| | `ai.txt` | Standard transparency manifest, contact information, and AI citation permissions. |
-| **2. Content Files** | `llms.txt` | Clean, markdown-formatted site overview and canonical links ([llmstxt.org](https://llmstxt.org) standard). |
-| | `llms-full.txt` | Complete un-truncated documentation text corpus for large context window retrieval. |
-| **3. Map & Navigation** | `sitemap.md` | Human- & LLM-readable markdown sitemap for clean architectural reasoning. |
+| **Identity & Access** | `robots.txt` | Governs crawler access with explicit permissions for ChatGPT, Claude, Perplexity, Google AI, and Applebot. |
+| | `ai.txt` | Standard machine-readable transparency declaration, contact info, and citation permissions. |
+| **Content Extraction** | `llms.txt` | Concise, markdown-formatted site overview and canonical paths per the [llmstxt.org](https://llmstxt.org) standard. |
+| | `llms-full.txt` | Complete un-truncated documentation text corpus designed for large LLM context injection. |
+| **Site Navigation** | `sitemap.md` | Human- & LLM-readable markdown sitemap for clean architectural reasoning and link exploration. |
 | | `ai-sitemap.xml` | Priority XML sitemap built explicitly for AI indexing crawlers. |
-| **4. Intelligence Files** | `ai-entities.json` | Machine-readable entity graph, core taxonomy, and verified brand claims. |
-| | `ai-intent.json` | Maps natural language user queries directly to canonical destination URLs. |
+| **Semantic Intelligence** | `ai-entities.json` | Machine-readable entity graph, core taxonomy, and verified brand claims. |
+| | `ai-intent.json` | Maps natural language user questions directly to authoritative destination URLs. |
 | | `ai-schema.json` | Consolidated Schema.org JSON-LD graph (`WebSite`, `Organization`). |
-| **5. Research Files (RAG)** | `rag-index.json` | Vector retrieval index with importance-weighted knowledge chunks. |
+| **RAG & Vector Retrieval** | `rag-index.json` | Vector search index with importance-weighted knowledge chunks for retrieval pipelines. |
 | | `rag-index.jsonl` | Line-delimited JSON format for batch embedding and vector database ingestion. |
-| **6. Policy & Integrations** | `training-data-policy.txt` | Transparent fair-use policy for citations vs model training. |
+| **Policies & Integration** | `training-data-policy.txt` | Transparent fair-use guidelines for citation versus model training. |
 | | `ai-disclosure.txt` | Formal AI integration and AEO compliance disclosure statement. |
-| | `.well-known/ai-plugin.json` | Standard plugin manifest registering your site as an official AI endpoint. |
-| **7. Operations & Guidance** | `manifest.json` | Full inventory index and compliance scorecard for all 26 generated files. |
-| | `structured-data-guide.md` | Implementation guide for embedding high-citation JSON-LD schemas in your HTML. |
-| | `deployment-checklist.md` | Step-by-step pre- and post-deployment checklist for engineering teams. |
-| | `README.md` | Deployment instructions for your web root. |
+| | `.well-known/ai-plugin.json` | Standard plugin manifest registering your site as an official AI resource endpoint. |
+| **Deployment & Ops** | `manifest.json` | Master inventory and compliance scorecard for your deployed files. |
+| | `structured-data-guide.md` | Practical guide for embedding high-citation JSON-LD schemas in your HTML templates. |
+| | `deployment-checklist.md` | Pre- and post-deployment checklist for engineering and web teams. |
+| | `README.md` | Quick deployment instructions for your web server. |
 
-### Part 2: AnswerIndex Proprietary AEO, GEO & Schema Artifacts (8 Files)
-Optimization, benchmarking, and structured-data files for your marketing and SEO teams:
+### 2. AEO Diagnostics, GEO Briefs & Schema Suite (Auditing & Content Strategy)
+Optimization, benchmarking, and structured-data assets generated for your content, SEO, and engineering teams:
 
-| Artifact | Type | Purpose |
+| Artifact | Type | Description & Role |
 |---|---|---|
 | `aeo-audit-scorecard.json` | Diagnostic | Automated scoring across machine readability, entity clarity, and citation readiness. |
-| `ai-citation-benchmark.json` | Benchmark Config | Configuration and metrics for multi-model LLM perception evaluation via OpenRouter. |
+| `ai-citation-benchmark.json` | Benchmark Config | Live evaluation metrics across top foundation models via OpenRouter. |
 | `geo-content-brief.md` | Content Strategy | Passage-level citability rules (40–60 word blocks) for ChatGPT Search and Perplexity. |
 | `cluster-map.html` | Visual Architecture | Interactive HTML semantic topic cluster map showing hubs and spoke authority flows. |
 | `technical-seo-audit.json` | Technical Audit | Crawl evaluation covering SSL, canonicals, robots directives, and responsiveness. |
@@ -115,7 +117,7 @@ Optimization, benchmarking, and structured-data files for your marketing and SEO
 
 ## MCP Server Integration (Cursor, Claude Code, Windsurf)
 
-AnswerIndex includes a built-in **Model Context Protocol (MCP)** server so you can generate AI readiness files and inspect AI crawler specifications directly inside your coding agents.
+AnswerIndex includes a built-in **Model Context Protocol (MCP)** server so you can generate the complete file suite and inspect AI crawler specifications directly inside your coding agents.
 
 ### Cursor Setup
 Add to `.cursor/mcp.json`:
@@ -143,7 +145,7 @@ Add to `.mcp.json` in your workspace:
 }
 ```
 Available tools in MCP:
-- `generate_ai_readiness_kit`: Generate all 18 readiness files for any domain.
+- `generate_ai_readiness_kit`: Generate the full 26-file AnswerIndex suite for any domain.
 - `list_ai_crawlers`: Review major AI bots, permissions, and indexing purposes.
 - `get_llms_txt_spec`: Retrieve the official specification for `llms.txt` and `ai.txt`.
 
