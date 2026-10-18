@@ -217,6 +217,15 @@ node bin/answerindex.mjs mcp
 
 ---
 
-## License
+## Disclaimer, Terms & License
 
-[MIT License](LICENSE)
+### Disclaimer & Terms of Use
+
+- **Automated Platform Activity & Policies:** All AI platforms (OpenAI, Anthropic, Perplexity, Google, etc.) maintain specific policies regarding automated activity, scraping, crawler directives, and API usage. It is your sole responsibility to review and comply with all applicable third-party terms of service and acceptable use policies before using this tool or deploying its generated manifests with your domain or accounts.
+- **No Warranties or Guarantees:** This program is provided "as-is", without any warranties or guarantees of any kind, whether express or implied. The accuracy, reliability, and effectiveness of the program, AI citation benchmarks, and generated schemas cannot be guaranteed. Use it at your own risk.
+- **Disclaimer of Liability:** The creators and contributors of this program shall not be held responsible or liable for any damages, penalties, or consequences arising from the direct or indirect use, interaction, or actions performed with this program. This includes but is not limited to any legal issues, loss of data, search engine de-indexing, crawler blocks, or other operational damages incurred.
+- **Use at Your Own Risk:** It is important to exercise caution and ensure that your usage, interactions, and actions with this program comply with all applicable local and international laws, regulations, and the terms of the services you interact with.
+
+### License & Copyright
+
+Copyright (c) 2026 Sameer Sharma. Licensed under the MIT License — see [LICENSE](LICENSE).

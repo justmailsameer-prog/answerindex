@@ -763,7 +763,29 @@
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 1rem;
+      font-size: 0.85rem;
+    }
+    .footer-disclaimer {
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 0.78rem;
+      line-height: 1.65;
+      color: #64748b;
+    }
+    .footer-disclaimer h6 {
+      color: var(--text-muted);
       font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.75rem;
+    }
+    .footer-disclaimer p {
+      margin-bottom: 0.75rem;
+    }
+    .footer-disclaimer strong {
+      color: #94a3b8;
     }
     .footer-badges {
       display: flex;
@@ -1317,11 +1339,28 @@
 
       <div class="footer-bottom">
         <div>
-          © 2026 <strong>Answer Index</strong>. Released under the open-source MIT License.
+          Copyright (c) 2026 Sameer Sharma. Licensed under the MIT License — see <a href="https://github.com/justmailsameer-prog/answerindex/blob/main/LICENSE" target="_blank" style="color: var(--primary); text-decoration: underline;">[LICENSE]</a>.
         </div>
         <div style="color: var(--text-dim);">
           Authoritative Answers for Search & Generative AI Engines
         </div>
+      </div>
+
+      <!-- Disclaimer, Terms & License -->
+      <div class="footer-disclaimer">
+        <h6>Disclaimer, Terms & License</h6>
+        <p>
+          <strong>Automated Platform Activity & Policies:</strong> All AI platforms (OpenAI, Anthropic, Perplexity, Google, etc.) maintain specific policies regarding automated activity, scraping, crawler directives, and API usage. It is your sole responsibility to review and comply with all applicable third-party terms of service and acceptable use policies before using this tool or deploying its generated manifests with your account or domain.
+        </p>
+        <p>
+          <strong>No Warranties or Guarantees:</strong> This program is provided "as-is", without any warranties or guarantees of any kind, whether express or implied. The accuracy, reliability, and effectiveness of the program cannot be guaranteed. Use it at your own risk.
+        </p>
+        <p>
+          <strong>Disclaimer of Liability:</strong> The creators and contributors of this program shall not be held responsible or liable for any damages or consequences arising from the direct or indirect use, interaction, or actions performed with this program. This includes but is not limited to any legal issues, loss of data, search engine de-indexing, crawler blocks, or other operational damages incurred.
+        </p>
+        <p>
+          <strong>Use at Your Own Risk:</strong> It is important to exercise caution and ensure that your usage, interactions, and actions with this program comply with applicable laws, regulations, and the terms of the services you interact with.
+        </p>
       </div>
     </div>
   </footer>
