@@ -17,7 +17,9 @@ const modelsToTest = [
   { name: 'Xingchen AGI (Free)', key: env.OR_STEP_3_5_KEY, model: 'xingchen-agi/xing4.0-29b-a4b:free' }
 ];
 
-const prompt = 'What is Blabr (blabr.xyz)? What does it do?';
+const domain = process.argv[2] || process.env.AEO_TARGET_DOMAIN || 'example.com';
+const brand = process.argv[3] || process.env.AEO_TARGET_BRAND || 'ExampleBrand';
+const prompt = 'What is ' + brand + ' (' + domain + ')? What does it do?';
 
 async function runBenchmark() {
   console.log('====================================================');
@@ -33,8 +35,8 @@ async function runBenchmark() {
         headers: {
           'Authorization': `Bearer ${m.key}`,
           'Content-Type': 'application/json',
-          'HTTP-Referer': 'https://blabr.xyz',
-          'X-Title': 'Blabr AEO Checker'
+          'HTTP-Referer': 'https://' + domain,
+          'X-Title': brand + ' AEO Checker'
         },
         body: JSON.stringify({
           model: m.model,
@@ -55,3 +57,5 @@ async function runBenchmark() {
 }
 
 runBenchmark();
+
+

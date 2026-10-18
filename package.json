@@ -10,9 +10,9 @@
   "scripts": {
     "ready": "node bin/answerindex.mjs ready",
     "mcp": "node bin/answerindex.mjs mcp",
-    "seo": "bash run-seo.sh",
-    "aeo": "bash run-aeo.sh",
-    "benchmark": "bash run-benchmark.sh"
+    "benchmark": "node --env-file=.env test-aeo-models.mjs",
+    "aeo": "node --env-file=.env ./node_modules/aeo-platform/bin/aeo-tracker.js",
+    "seo": "python ./seo-toolkit/seo.py"
   },
   "keywords": [
     "aeo",
