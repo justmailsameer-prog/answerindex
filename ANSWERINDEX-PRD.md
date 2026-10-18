@@ -116,17 +116,18 @@ Native MCP integration for AI coding assistants (Cursor, Claude Code, Windsurf, 
 
 ### 5.1 Main Portal (`index.html` — https://answerindex.pages.dev)
 - **Design Philosophy:** Premium dark aesthetic (`#080d1a`), ambient animated gradient blur orbs, and glassmorphic cards.
-- **Header:** Brand title (`Answer Index`), high-contrast white GitHub link button, and responsive glass dropdown menu.
+- **Header:** Brand title (`Answer Index`), high-contrast white GitHub link button, and responsive glass dropdown menu with direct navigation to all sections including Anti-Hallucination.
 - **Hero Section:** 2-column desktop split blending high-resolution asset showcase (`assets/answerindex-preview.png`) with headline, badge, and primary/secondary CTAs.
 - **Interactive Technical Preview:** macOS/Linux live CLI terminal box detailing 26-file generation.
 - **Core Sections:**
   - *Why Answer Index:* The zero-click search reality comparing unstructured risk vs Answer Index readiness.
-  - *How It Works:* 3-phase pipeline (Benchmark ➔ AEO Audit ➔ 26-File Manifest Deployment).
-  - *Features Matrix:* 6 core capabilities.
+  - *The 5-Phase Execution Pipeline:* Dedicated interactive workflow cards (Phase 1: Ingestion & Entity Modeling ➔ Phase 2: Structural Schema & Technical SEO ➔ Phase 3: AEO 40–55 Word Snippets ➔ Phase 4: GEO & RAG Chunking ➔ Phase 5: Delivery & Verification).
+  - *Features Matrix:* 6 core capabilities engineered for the post-search era.
   - *26-File Architecture Viewer:* Side-by-side public web-root protocols vs internal strategy suite.
   - *GEO Passage Showcase:* Side-by-side comparison of traditional marketing copy vs optimized 48-word factual GEO block.
+  - *AI Hallucination Correction Engine (`#anti-hallucination`):* Dedicated section featuring the 4-part triage protocol (Temporal Lag, Semantic Drift, Fabrication, Third-Party) and the canonical AEO Contrast Grounding Formula.
   - *MCP Integration:* Ready-to-copy JSON configuration for Cursor and Claude Code.
-- **Footer:** 4-column resource directory, version badges (`v1.4.0 Production`, `MIT Open Source`), and an interactive **Disclaimer, Terms & License** modal dialog.
+- **Footer:** 4-column resource directory, version badges (`v1.5.0 Production`, `MIT Open Source`), direct links to `EXECUTION-ENGINE-SPEC.md` and `ANTI-HALLUCINATION-SPEC.md`, and an interactive **Disclaimer, Terms & License** modal dialog.
 
 ### 5.2 Direct Feedback System (`feedback.html` — https://answerindex.pages.dev/feedback.html)
 - **Direct to Creator:** Enables developers and users to send feedback, feature ideas, and crawler issues directly to Sameer Sharma (`justmailsameer@gmail.com`).
