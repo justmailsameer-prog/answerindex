@@ -57,19 +57,24 @@ Start by cloning the repository, installing dependencies with `npm install`, and
 
 ## Features
 
-- 📦 **Complete AI Readiness Kit (18 Files):** Generate the complete suite of 18 root-level and deployment files across 7 essential categories in a single command.
+- 📦 **Complete 26-File AI Readiness & AEO Suite:** Generate the complete suite of 26 files (18 web-root files + 8 proprietary AnswerIndex AEO/GEO/Schema optimization artifacts) in a single command.
 - 🤖 **AI Crawler & Retrieval Control:** Explicit directives and permission rules for major AI search engines (ChatGPT/GPTBot, ClaudeBot, PerplexityBot, Google-Extended, Applebot).
 - 🧠 **Multi-Model AI Citation Benchmark:** Query top LLMs simultaneously (Nvidia Nemotron, Google Gemma, Liquid LFM, StepFun) to measure mention rate, entity accuracy, and citation authority.
-- ⚡ **AEO Engine Audit:** Analyze your domain against Answer Engine standards with automated scoring and ethical transparency benchmarks.
+- ⚡ **AEO Engine Audit & Scorecards:** Analyze your domain against Answer Engine standards with automated scoring, clarity checks, and ethical transparency benchmarks.
+- 🎯 **Passage-Level GEO Content Briefs:** Formatted 40–60 word citation blocks specifically structured for Perplexity, ChatGPT Search, and Google AI Overviews.
+- 🗺️ **Semantic Cluster Mapping:** Interactive visual topic cluster map (`cluster-map.html`) to establish internal authority pathways.
 - 🛠️ **Deep Technical & Semantic SEO:** Comprehensive modular audit suite for JSON-LD schemas, sitemaps, semantic content clusters, and Core Web Vitals.
 - 🔌 **Model Context Protocol (MCP) Server:** Native MCP support to connect AnswerIndex directly into Cursor, Claude Code, Windsurf, or VS Code.
 - 💻 **Universal Automation:** Portable CLI and modular Bash runners for CI/CD pipelines or local terminal workflows.
 
 ---
 
-## The AI Readiness Kit (18 Production Files)
+## The Complete AnswerIndex Suite (26 Production Files)
 
-When you run `npm run ready yourdomain.com "Your Brand"`, AnswerIndex generates a complete, tailored suite of files into `./ai-readiness-dist/yourdomain.com/` ready to drop into your web root:
+When you run `npm run ready yourdomain.com "Your Brand"`, AnswerIndex generates a complete, tailored suite of **26 production files** into `./ai-readiness-dist/yourdomain.com/`:
+
+### Part 1: The 18 AI Readiness Web-Root Files
+These deploy directly to your website's public web root (`public/` or server root):
 
 | Category | File | Purpose |
 |---|---|---|
@@ -87,10 +92,24 @@ When you run `npm run ready yourdomain.com "Your Brand"`, AnswerIndex generates 
 | **6. Policy & Integrations** | `training-data-policy.txt` | Transparent fair-use policy for citations vs model training. |
 | | `ai-disclosure.txt` | Formal AI integration and AEO compliance disclosure statement. |
 | | `.well-known/ai-plugin.json` | Standard plugin manifest registering your site as an official AI endpoint. |
-| **7. Operations & Guidance** | `manifest.json` | Full inventory index and compliance scorecard for your AI readiness files. |
+| **7. Operations & Guidance** | `manifest.json` | Full inventory index and compliance scorecard for all 26 generated files. |
 | | `structured-data-guide.md` | Implementation guide for embedding high-citation JSON-LD schemas in your HTML. |
 | | `deployment-checklist.md` | Step-by-step pre- and post-deployment checklist for engineering teams. |
 | | `README.md` | Deployment instructions for your web root. |
+
+### Part 2: AnswerIndex Proprietary AEO, GEO & Schema Artifacts (8 Files)
+Optimization, benchmarking, and structured-data files for your marketing and SEO teams:
+
+| Artifact | Type | Purpose |
+|---|---|---|
+| `aeo-audit-scorecard.json` | Diagnostic | Automated scoring across machine readability, entity clarity, and citation readiness. |
+| `ai-citation-benchmark.json` | Benchmark Config | Configuration and metrics for multi-model LLM perception evaluation via OpenRouter. |
+| `geo-content-brief.md` | Content Strategy | Passage-level citability rules (40–60 word blocks) for ChatGPT Search and Perplexity. |
+| `cluster-map.html` | Visual Architecture | Interactive HTML semantic topic cluster map showing hubs and spoke authority flows. |
+| `technical-seo-audit.json` | Technical Audit | Crawl evaluation covering SSL, canonicals, robots directives, and responsiveness. |
+| `jsonld-schema-templates.json` | Schema Suite | Production-ready Schema.org templates (`WebApplication`, `Organization`, `FAQPage`). |
+| `schema-validation-report.md` | Compliance | Rich-result compliance report evaluating structured data against Google and AI search standards. |
+| `ai-answer-passages.md` | Direct Answers | Pre-packaged high-citation Q&A passages designed for zero-click AI snippet extraction. |
 
 ---
 
