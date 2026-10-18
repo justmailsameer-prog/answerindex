@@ -57,7 +57,7 @@ Start by cloning the repository, installing dependencies with `npm install`, and
 
 ## Features
 
-- 📦 **AI Readiness Kit Generator (`ready`):** Generate a full suite of root-level files (`llms.txt`, `llms-full.txt`, `ai.txt`, modern `robots.txt` AI crawler rules, `ai-entities.json`, `ai-intent.json`, `ai-schema.json`, and `ai-sitemap.xml`) in one command.
+- 📦 **Complete AI Readiness Kit (18 Files):** Generate the complete suite of 18 root-level and deployment files (`robots.txt`, `ai.txt`, `llms.txt`, `llms-full.txt`, `sitemap.md`, `ai-sitemap.xml`, `ai-entities.json`, `ai-intent.json`, `ai-schema.json`, `rag-index.json`, `rag-index.jsonl`, `training-data-policy.txt`, `ai-disclosure.txt`, `.well-known/ai-plugin.json`, `manifest.json`, `structured-data-guide.md`, `deployment-checklist.md`, and `README.md`) across 7 categories in a single command.
 - 🤖 **AI Crawler & Retrieval Control:** Explicit directives and permission rules for major AI search engines (ChatGPT/GPTBot, ClaudeBot, PerplexityBot, Google-Extended, Applebot).
 - 🧠 **Multi-Model AI Citation Benchmark:** Query top LLMs simultaneously (Nvidia Nemotron, Google Gemma, Liquid LFM, StepFun) to measure mention rate, entity accuracy, and citation authority.
 - ⚡ **AEO Engine Audit:** Analyze your domain against Answer Engine standards with automated scoring and ethical transparency benchmarks.
