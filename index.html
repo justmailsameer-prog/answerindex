@@ -219,6 +219,36 @@
       background: rgba(56, 189, 248, 0.1);
     }
 
+    /* High-Contrast White GitHub Button */
+    .btn-github {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.55rem 1.15rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: #030712;
+      background: #ffffff;
+      border: 1px solid #ffffff;
+      box-shadow: 0 4px 14px rgba(255, 255, 255, 0.25);
+      transition: all 0.2s ease;
+    }
+    .btn-github svg {
+      fill: #030712;
+      transition: transform 0.2s ease;
+    }
+    .btn-github:hover {
+      background: #f1f5f9;
+      border-color: #f1f5f9;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
+    }
+    .btn-github:hover svg {
+      transform: scale(1.1);
+    }
+
     /* Hero Section - 2-Column Desktop Grid with Banner on Top/Left */
     .hero {
       padding: 5rem 0 4rem;
