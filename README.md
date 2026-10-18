@@ -57,13 +57,76 @@ Start by cloning the repository, installing dependencies with `npm install`, and
 
 ## Features
 
-- 📦 **Complete AI Readiness Kit (18 Files):** Generate the complete suite of 18 root-level and deployment files (`robots.txt`, `ai.txt`, `llms.txt`, `llms-full.txt`, `sitemap.md`, `ai-sitemap.xml`, `ai-entities.json`, `ai-intent.json`, `ai-schema.json`, `rag-index.json`, `rag-index.jsonl`, `training-data-policy.txt`, `ai-disclosure.txt`, `.well-known/ai-plugin.json`, `manifest.json`, `structured-data-guide.md`, `deployment-checklist.md`, and `README.md`) across 7 categories in a single command.
+- 📦 **Complete AI Readiness Kit (18 Files):** Generate the complete suite of 18 root-level and deployment files across 7 essential categories in a single command.
 - 🤖 **AI Crawler & Retrieval Control:** Explicit directives and permission rules for major AI search engines (ChatGPT/GPTBot, ClaudeBot, PerplexityBot, Google-Extended, Applebot).
 - 🧠 **Multi-Model AI Citation Benchmark:** Query top LLMs simultaneously (Nvidia Nemotron, Google Gemma, Liquid LFM, StepFun) to measure mention rate, entity accuracy, and citation authority.
 - ⚡ **AEO Engine Audit:** Analyze your domain against Answer Engine standards with automated scoring and ethical transparency benchmarks.
 - 🛠️ **Deep Technical & Semantic SEO:** Comprehensive modular audit suite for JSON-LD schemas, sitemaps, semantic content clusters, and Core Web Vitals.
 - 🔌 **Model Context Protocol (MCP) Server:** Native MCP support to connect AnswerIndex directly into Cursor, Claude Code, Windsurf, or VS Code.
 - 💻 **Universal Automation:** Portable CLI and modular Bash runners for CI/CD pipelines or local terminal workflows.
+
+---
+
+## The AI Readiness Kit (18 Production Files)
+
+When you run `npm run ready yourdomain.com "Your Brand"`, AnswerIndex generates a complete, tailored suite of files into `./ai-readiness-dist/yourdomain.com/` ready to drop into your web root:
+
+| Category | File | Purpose |
+|---|---|---|
+| **1. Identity & Permissions** | `robots.txt` | Controls bot access with explicit allowances for ChatGPT, Claude, Perplexity & Applebot. |
+| | `ai.txt` | Standard transparency manifest, contact information, and AI citation permissions. |
+| **2. Content Files** | `llms.txt` | Clean, markdown-formatted site overview and canonical links ([llmstxt.org](https://llmstxt.org) standard). |
+| | `llms-full.txt` | Complete un-truncated documentation text corpus for large context window retrieval. |
+| **3. Map & Navigation** | `sitemap.md` | Human- & LLM-readable markdown sitemap for clean architectural reasoning. |
+| | `ai-sitemap.xml` | Priority XML sitemap built explicitly for AI indexing crawlers. |
+| **4. Intelligence Files** | `ai-entities.json` | Machine-readable entity graph, core taxonomy, and verified brand claims. |
+| | `ai-intent.json` | Maps natural language user queries directly to canonical destination URLs. |
+| | `ai-schema.json` | Consolidated Schema.org JSON-LD graph (`WebSite`, `Organization`). |
+| **5. Research Files (RAG)** | `rag-index.json` | Vector retrieval index with importance-weighted knowledge chunks. |
+| | `rag-index.jsonl` | Line-delimited JSON format for batch embedding and vector database ingestion. |
+| **6. Policy & Integrations** | `training-data-policy.txt` | Transparent fair-use policy for citations vs model training. |
+| | `ai-disclosure.txt` | Formal AI integration and AEO compliance disclosure statement. |
+| | `.well-known/ai-plugin.json` | Standard plugin manifest registering your site as an official AI endpoint. |
+| **7. Operations & Guidance** | `manifest.json` | Full inventory index and compliance scorecard for your AI readiness files. |
+| | `structured-data-guide.md` | Implementation guide for embedding high-citation JSON-LD schemas in your HTML. |
+| | `deployment-checklist.md` | Step-by-step pre- and post-deployment checklist for engineering teams. |
+| | `README.md` | Deployment instructions for your web root. |
+
+---
+
+## MCP Server Integration (Cursor, Claude Code, Windsurf)
+
+AnswerIndex includes a built-in **Model Context Protocol (MCP)** server so you can generate AI readiness files and inspect AI crawler specifications directly inside your coding agents.
+
+### Cursor Setup
+Add to `.cursor/mcp.json`:
+```json
+{
+  "mcpServers": {
+    "answerindex": {
+      "command": "node",
+      "args": ["d:/AI Product/answerindex/lib/mcp-server.mjs"]
+    }
+  }
+}
+```
+
+### Claude Code Setup
+Add to `.mcp.json` in your workspace:
+```json
+{
+  "mcpServers": {
+    "answerindex": {
+      "command": "node",
+      "args": ["./lib/mcp-server.mjs"]
+    }
+  }
+}
+```
+Available tools in MCP:
+- `generate_ai_readiness_kit`: Generate all 18 readiness files for any domain.
+- `list_ai_crawlers`: Review major AI bots, permissions, and indexing purposes.
+- `get_llms_txt_spec`: Retrieve the official specification for `llms.txt` and `ai.txt`.
 
 ---
 
