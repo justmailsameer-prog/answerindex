@@ -212,14 +212,18 @@
       box-shadow: 0 0 10px var(--primary);
     }
     .hero-title {
-      font-size: clamp(2.5rem, 5.5vw, 4.25rem);
+      font-size: clamp(2.25rem, 5vw, 3.85rem);
       font-weight: 800;
-      line-height: 1.12;
-      letter-spacing: -0.035em;
+      line-height: 1.18;
+      letter-spacing: -0.03em;
       margin-bottom: 1.5rem;
-      max-width: 950px;
+      max-width: 1050px;
       margin-left: auto;
       margin-right: auto;
+      text-wrap: balance;
+    }
+    .hero-title-line {
+      display: block;
     }
     .gradient-text {
       background: var(--primary-gradient);
@@ -555,8 +559,8 @@
         Answer Engine & Generative Search Optimization Suite
       </div>
       <h1 class="hero-title">
-        Make your content indexable as <br />
-        <span class="gradient-text">authoritative answers</span> across AI.
+        <span class="hero-title-line">Make your content indexable as</span>
+        <span class="hero-title-line"><span class="gradient-text">authoritative answers</span> across AI engines.</span>
       </h1>
       <p class="hero-subtitle">
         While traditional SEO solves for web crawlers, <strong>AnswerIndex</strong> ensures ChatGPT Search, Perplexity, Claude, Gemini, and Google AI Overviews cite you as the primary source of truth.
