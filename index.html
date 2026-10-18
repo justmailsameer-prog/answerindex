@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AnswerIndex — Authoritative Answers for Search & AI Engines</title>
+  <meta name="description" content="A unified 26-file evaluation, deployment, and optimization engine for AEO, GEO, and Technical SEO. Make your brand cited across ChatGPT Search, Perplexity, Claude, and Gemini." />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="AnswerIndex — Make your content indexable as authoritative answers" />
+  <meta property="og:description" content="Unified AEO, GEO & Technical SEO suite. Root kit generation, multi-model LLM benchmarking, and native MCP support." />
+  <meta property="og:image" content="assets/answerindex-preview.jpg" />
+  <meta property="og:type" content="website" />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-dark: #080d1a;
+      --bg-card: rgba(15, 23, 42, 0.7);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-glow: rgba(56, 189, 248, 0.25);
+      --primary: #38bdf8;
+      --primary-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+      --accent-cyan: #06b6d4;
+      --accent-purple: #a855f7;
+      --accent-emerald: #10b981;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --glow-blue: rgba(56, 189, 248, 0.15);
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      overflow-x: hidden;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Ambient Background Elements */
+    .bg-blobs {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(140px);
+      opacity: 0.35;
+    }
+    .blob-1 {
+      top: -10%;
+      left: 20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, #38bdf8, transparent 70%);
+      animation: float 20s infinite alternate ease-in-out;
+    }
+    .blob-2 {
+      top: 40%;
+      right: -5%;
+      width: 650px;
+      height: 650px;
+      background: radial-gradient(circle, #8b5cf6, transparent 70%);
+      animation: float 25s infinite alternate-reverse ease-in-out;
+    }
+    .blob-3 {
+      bottom: -10%;
+      left: -10%;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, #06b6d4, transparent 70%);
+      animation: float 22s infinite alternate ease-in-out;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) scale(1); }
+      100% { transform: translateY(80px) scale(1.08); }
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Navigation */
+    header {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border-subtle);
+      backdrop-filter: blur(20px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8, 13, 26, 0.75);
+    }
+    .nav-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo-group {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+    .logo-img {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+    }
+    .brand-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .brand-badge {
+      font-size: 0.7rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 20px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: var(--primary);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+    .nav-link:hover {
+      color: var(--text-main);
+    }
+    .btn-github {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.55rem 1.15rem;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      transition: all 0.2s ease;
+    }
+    .btn-github:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-1px);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 6.5rem 0 4rem;
+      text-align: center;
+    }
+    .pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.4rem 1rem;
+      border-radius: 9999px;
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+    }
+    .pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--primary);
+      box-shadow: 0 0 10px var(--primary);
+    }
+    .hero-title {
+      font-size: clamp(2.5rem, 5.5vw, 4.25rem);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.035em;
+      margin-bottom: 1.5rem;
+      max-width: 950px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .gradient-text {
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-subtitle {
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      color: var(--text-muted);
+      max-width: 750px;
+      margin: 0 auto 2.5rem;
+      font-weight: 400;
+    }
+    .hero-ctas {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.25rem;
+      margin-bottom: 3.5rem;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.85rem 1.75rem;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #030712;
+      background: #38bdf8;
+      text-decoration: none;
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
+      transition: all 0.2s ease;
+    }
+    .btn-primary:hover {
+      background: #7dd3fc;
+      transform: translateY(-2px);
+      box-shadow: 0 0 35px rgba(56, 189, 248, 0.6);
+    }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.85rem 1.75rem;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    /* Terminal Preview Box */
+    .terminal-window {
+      max-width: 860px;
+      margin: 0 auto;
+      border-radius: 14px;
+      background: #090e1d;
+      border: 1px solid var(--border-glow);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(56, 189, 248, 0.12);
+      overflow: hidden;
+      text-align: left;
+    }
+    .terminal-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1.25rem;
+      background: #0f172a;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .terminal-dots {
+      display: flex;
+      gap: 6px;
+    }
+    .t-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .dot-red { background: #ef4444; }
+    .dot-yellow { background: #f59e0b; }
+    .dot-green { background: #10b981; }
+    .terminal-title {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+    .terminal-body {
+      padding: 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      line-height: 1.75;
+      color: #e2e8f0;
+      overflow-x: auto;
+    }
+    .t-prompt { color: #38bdf8; }
+    .t-cmd { color: #f8fafc; font-weight: 600; }
+    .t-success { color: #10b981; }
+    .t-dim { color: #64748b; }
+    .t-accent { color: #c084fc; }
+
+    /* Features Grid */
+    .section {
+      padding: 6rem 0;
+    }
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 4rem;
+    }
+    .section-tag {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-size: clamp(2rem, 3.5vw, 2.75rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 1.75rem;
+    }
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 2.25rem;
+      backdrop-filter: blur(12px);
+      transition: all 0.25s ease;
+      position: relative;
+    }
+    .feature-card:hover {
+      border-color: var(--border-glow);
+      transform: translateY(-4px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 25px var(--glow-blue);
+    }
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+    }
+    .feature-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    .feature-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Architecture 26 Files Section */
+    .arch-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    @media (max-width: 850px) {
+      .arch-container { grid-template-columns: 1fr; }
+    }
+    .arch-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 2.25rem;
+    }
+    .arch-box h4 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .file-badge {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--primary);
+    }
+    .file-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .file-item {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 0.65rem 0.85rem;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 8px;
+      font-size: 0.88rem;
+    }
+    .file-name {
+      font-family: var(--font-mono);
+      color: #38bdf8;
+      font-weight: 500;
+    }
+    .file-role {
+      color: var(--text-dim);
+      font-size: 0.8rem;
+      text-align: right;
+    }
+
+    /* MCP Section */
+    .mcp-showcase {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.5) 100%);
+      border: 1px solid var(--border-glow);
+      border-radius: 20px;
+      padding: 3.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    @media (max-width: 900px) {
+      .mcp-showcase { grid-template-columns: 1fr; padding: 2rem; }
+    }
+    .mcp-code {
+      background: #090e1d;
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      line-height: 1.6;
+      color: #cbd5e1;
+      overflow-x: auto;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 3.5rem 0;
+      margin-top: 4rem;
+      color: var(--text-dim);
+      font-size: 0.9rem;
+    }
+    .footer-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.75rem;
+      list-style: none;
+    }
+    .footer-link {
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .footer-link:hover {
+      color: var(--primary);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Backdrop -->
+  <div class="bg-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="container nav-wrapper">
+      <a href="#" class="logo-group">
+        <img src="assets/AnswerIndex_Logo.png" alt="AnswerIndex Logo" class="logo-img" />
+        <span class="brand-name">AnswerIndex</span>
+        <span class="brand-badge">v1.3.0</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#features" class="nav-link">Features</a></li>
+        <li><a href="#architecture" class="nav-link">26-File Suite</a></li>
+        <li><a href="#mcp" class="nav-link">MCP Server</a></li>
+        <li><a href="#quickstart" class="nav-link">Quickstart</a></li>
+        <li>
+          <a href="https://github.com/justmailsameer-prog/answerindex" target="_blank" class="btn-github">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+            </svg>
+            GitHub
+          </a>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="pill-badge">
+        <span class="pill-dot"></span>
+        Answer Engine & Generative Search Optimization Suite
+      </div>
+      <h1 class="hero-title">
+        Make your content indexable as <br />
+        <span class="gradient-text">authoritative answers</span> across AI.
+      </h1>
+      <p class="hero-subtitle">
+        While traditional SEO solves for web crawlers, <strong>AnswerIndex</strong> ensures ChatGPT Search, Perplexity, Claude, Gemini, and Google AI Overviews cite you as the primary source of truth.
+      </p>
+
+      <div class="hero-ctas">
+        <a href="#quickstart" class="btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+          Get Started Free
+        </a>
+        <a href="https://github.com/justmailsameer-prog/answerindex" target="_blank" class="btn-secondary">
+          View Documentation
+        </a>
+      </div>
+
+      <!-- Live Terminal Preview -->
+      <div class="terminal-window">
+        <div class="terminal-bar">
+          <div class="terminal-dots">
+            <span class="t-dot dot-red"></span>
+            <span class="t-dot dot-yellow"></span>
+            <span class="t-dot dot-green"></span>
+          </div>
+          <span class="terminal-title">answerindex-cli ~ zsh</span>
+          <span></span>
+        </div>
+        <div class="terminal-body">
+          <div><span class="t-prompt">$</span> <span class="t-cmd">node bin/answerindex.mjs ready yourdomain.com "Your Brand"</span></div>
+          <div class="t-dim">=== AnswerIndex CLI (v1.3.0) ===</div>
+          <div class="t-dim">Making content indexable as authoritative answers across Search & AI Engines.</div>
+          <br />
+          <div><span class="t-success">✅ AnswerIndex Suite successfully generated!</span></div>
+          <div><span class="t-accent">📂 Output:</span> ./ai-readiness-dist/yourdomain.com/</div>
+          <div class="t-dim">---------------------------------------------------------------</div>
+          <div><span class="t-prompt">📦 Web-Root Manifests (18 files):</span> robots.txt, ai.txt, llms.txt, rag-index.json, ai-schema.json...</div>
+          <div><span class="t-prompt">📊 Diagnostic & Strategy (8 files):</span> aeo-scorecard.json, geo-content-brief.md, cluster-map.html...</div>
+          <br />
+          <div class="t-dim">✨ Deploy web-root manifests to Cloudflare/Vercel to establish authoritative zero-hallucination citations.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Grid -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Core Engine Capabilities</div>
+        <h2 class="section-title">Engineered for the Post-Search Era</h2>
+        <p class="section-desc">Everything needed to monitor, benchmark, and deploy machine-readable infrastructure for answer retrieval engines.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="card-icon">📦</div>
+          <h3>26-File Architecture</h3>
+          <p>Generate a complete unified suite spanning public crawler manifests (llms.txt, ai.txt, robots.txt, RAG vector indexes) and internal strategic scorecards.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="card-icon">🧠</div>
+          <h3>Multi-Model Benchmark</h3>
+          <p>Query top foundation models (Nvidia Nemotron, Google Gemma, Liquid LFM, StepFun) to audit entity accuracy, citation rates, and hallucination risks.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="card-icon">🎯</div>
+          <h3>Passage-Level GEO Briefs</h3>
+          <p>Format high-citability 40–60 word answer passages tailored specifically for Perplexity, ChatGPT Search, and Google AI Overview direct snippet extraction.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="card-icon">🤖</div>
+          <h3>AI Crawler Directives</h3>
+          <p>Explicit access governance rules for modern AI search engines: GPTBot, ChatGPT-User, ClaudeBot, PerplexityBot, Google-Extended, and Applebot.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="card-icon">🔌</div>
+          <h3>Model Context Protocol</h3>
+          <p>Native MCP server out of the box. Connect AnswerIndex directly into Cursor, Claude Code, Windsurf, or VS Code over standard JSON-RPC stdio.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="card-icon">🛠️</div>
+          <h3>Technical & Schema Suite</h3>
+          <p>Generate validated Schema.org JSON-LD graphs (WebApplication, FAQPage, Organization) and evaluate crawl hygiene and semantic authority flows.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 26 Files Architecture Showcase -->
+  <section class="section" id="architecture" style="background: rgba(15, 23, 42, 0.4); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Full Architecture Overview</div>
+        <h2 class="section-title">The Complete 26-File Output</h2>
+        <p class="section-desc">AnswerIndex cleanly separates public machine-readable crawler protocols from internal engineering strategy.</p>
+      </div>
+
+      <div class="arch-container">
+        <!-- Box 1 -->
+        <div class="arch-box">
+          <h4>
+            <span>Public Web-Root Protocols</span>
+            <span class="file-badge">18 Files</span>
+          </h4>
+          <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1.5rem;">Deployed directly to your public web server root for AI crawler extraction:</p>
+          <ul class="file-list">
+            <li class="file-item">
+              <span class="file-name">robots.txt</span>
+              <span class="file-role">AI crawler access governance</span>
+            </li>
+            <li class="file-item">
+              <span class="file-name">ai.txt</span>
+              <span class="file-role">AI transparency & manifest links</span>
+            </li>
+            <li class="file-item">
+              <span class="file-name">llms.txt</span>
+              <span class="file-role">LLM-optimized summary (llmstxt.org)</span>
+            </li>
+            <li class="file-item">
+              <span class="file-name">llms-full.txt</span>
+              <span class="file-role">Full un-truncated context corpus</span>
+            </li>
+            <li class="file-item">
+              <span class="file-name">sitemap-main.xml</span>
+              <span class="file-role">Clean canonical web sitemap</span>
+            </li>
+            <li class="file-item">
+              <span class="file-name">ai-sitemap.xml</span>
+              <span class="file-role">Priority XML map for AI bots</span>
+            </li>
+            <li class="file-item">
+              <span class="file-name">ai-entities.json</span>
+              <span class="file-role">Entity graph & verified brand claims</span>
+            </li>
+            <li class="file-item">
+              <span class="file-name">ai-intent.json</span>
+              <span class="file-role">Query intent to destination routing</span>
+            </li>
+            <li class="file-item">
+              <span class="file-name">ai-schema.json</span>
+              <span class="file-role">Consolidated Schema.org JSON-LD</span>
+            </li>
+            <li class="file-item">
+              <span class="file-name">rag-index.json / .jsonl</span>
+              <span class="file-role">Vector retrieval & embedding chunks</span>
+            </li>
+            <li class="file-item">
+              <span class="file-name">.well-known/ai-plugin.json</span>
+              <span class="file-role">Standard AI plugin descriptor</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Box 2 -->
+        <div class="arch-box">
+          <h4>
+            <span>Internal Diagnostic & Strategy</span>
+            <span class="file-badge">8 Artifacts</span>
+          </h4>
+          <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1.5rem;">Retained internally for marketing, developer, and SEO strategy:</p>
+          <ul class="file-list">
+            <li class="file-item">
+              <span class="file-name">aeo-audit-scorecard.json</span>
+              <span class="file-role">Machine readability & clarity score</span>
+            </li>
+            <li class="file-item">
+              <span class="file-name">ai-citation-benchmark.json</span>
+              <span class="file-role">Foundation model evaluation tracking</span>
+            </li>
+            <li class="file-item">
+              <span class="file-name">geo-content-brief.md</span>
+              <span class="file-role">40-60 word passage citability rules</span>
+            </li>
+            <li class="file-item">
+              <span class="file-name">cluster-map.html</span>
+              <span class="file-role">Interactive topic cluster diagram</span>
+            </li>
+            <li class="file-item">
+              <span class="file-name">technical-seo-audit.json</span>
+              <span class="file-role">Crawl, canonical & header audit</span>
+            </li>
+            <li class="file-item">
+              <span class="file-name">jsonld-schema-templates.json</span>
+              <span class="file-role">Ready-to-embed Schema markup</span>
+            </li>
+            <li class="file-item">
+              <span class="file-name">schema-validation-report.md</span>
+              <span class="file-role">Rich result compliance check</span>
+            </li>
+            <li class="file-item">
+              <span class="file-name">ai-answer-passages.md</span>
+              <span class="file-role">Zero-click Q&A snippets for AI</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MCP Server Integration -->
+  <section class="section" id="mcp">
+    <div class="container">
+      <div class="mcp-showcase">
+        <div>
+          <div class="section-tag">Model Context Protocol</div>
+          <h2 style="font-size: 2.25rem; font-weight: 800; margin-bottom: 1rem;">Native AI Assistant Integration</h2>
+          <p style="color: var(--text-muted); margin-bottom: 2rem;">
+            AnswerIndex comes with an integrated MCP server. Inspect AI crawler specifications or trigger full file suite generation directly inside <strong>Cursor</strong>, <strong>Claude Code</strong>, <strong>Windsurf</strong>, or <strong>VS Code</strong>.
+          </p>
+          <a href="https://github.com/justmailsameer-prog/answerindex#mcp-server-integration-cursor-claude-code-windsurf" target="_blank" class="btn-primary" style="display: inline-flex;">
+            Configure MCP Server →
+          </a>
+        </div>
+
+        <div class="mcp-code">
+          <div style="color: #64748b; margin-bottom: 0.5rem;">// Add to .cursor/mcp.json or .mcp.json</div>
+          <div>{</div>
+          <div>&nbsp;&nbsp;<span style="color: #38bdf8;">"mcpServers"</span>: {</div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #a855f7;">"answerindex"</span>: {</div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #38bdf8;">"command"</span>: <span style="color: #10b981;">"node"</span>,</div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #38bdf8;">"args"</span>: [<span style="color: #10b981;">"./lib/mcp-server.mjs"</span>]</div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;}</div>
+          <div>&nbsp;&nbsp;}</div>
+          <div>}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quickstart -->
+  <section class="section" id="quickstart">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Instant Deployment</div>
+        <h2 class="section-title">Get Started in 60 Seconds</h2>
+        <p class="section-desc">Open-source software licensed under MIT. Clone and run locally or connect to your deployment pipelines.</p>
+      </div>
+
+      <div class="terminal-window" style="max-width: 780px;">
+        <div class="terminal-bar">
+          <span class="terminal-title">bash</span>
+        </div>
+        <div class="terminal-body">
+          <div class="t-dim"># 1. Clone repository & install dependencies</div>
+          <div><span class="t-prompt">$</span> <span class="t-cmd">git clone https://github.com/justmailsameer-prog/answerindex.git</span></div>
+          <div><span class="t-prompt">$</span> <span class="t-cmd">cd answerindex && npm install</span></div>
+          <br />
+          <div class="t-dim"># 2. Generate the full 26-file suite for your domain</div>
+          <div><span class="t-prompt">$</span> <span class="t-cmd">npm run ready yourbrand.com "Your Brand Name"</span></div>
+          <br />
+          <div class="t-dim"># 3. Run multi-model foundation citation benchmark</div>
+          <div><span class="t-prompt">$</span> <span class="t-cmd">npm run benchmark</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-content">
+      <div style="display: flex; align-items: center; gap: 0.6rem;">
+        <img src="assets/AnswerIndex_Logo.png" alt="Logo" style="width: 24px; height: 24px; border-radius: 4px;" />
+        <span style="font-weight: 700; color: var(--text-main);">AnswerIndex</span>
+        <span>— Released under MIT License.</span>
+      </div>
+
+      <ul class="footer-links">
+        <li><a href="https://github.com/justmailsameer-prog/answerindex" class="footer-link">GitHub</a></li>
+        <li><a href="https://github.com/justmailsameer-prog/answerindex/blob/main/ANSWERINDEX-PRD.md" class="footer-link">PRD v1.3.0</a></li>
+        <li><a href="https://github.com/justmailsameer-prog/answerindex/blob/main/LICENSE" class="footer-link">License</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>
