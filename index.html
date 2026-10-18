@@ -150,47 +150,122 @@
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
-    .nav-links {
+    /* Desktop & Mobile Navigation */
+    .nav-actions {
       display: flex;
       align-items: center;
-      gap: 2rem;
-      list-style: none;
+      gap: 1.25rem;
     }
-    .nav-link {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 0.92rem;
-      font-weight: 500;
-      transition: color 0.2s ease;
+    .menu-dropdown-wrapper {
+      position: relative;
     }
-    .nav-link:hover {
-      color: var(--text-main);
-    }
-    .btn-github {
+    .btn-dropdown-toggle {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
       padding: 0.55rem 1.15rem;
       border-radius: 8px;
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       font-weight: 600;
-      text-decoration: none;
       color: var(--text-main);
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid var(--border-subtle);
+      cursor: pointer;
       transition: all 0.2s ease;
+      font-family: var(--font-sans);
     }
-    .btn-github:hover {
+    .btn-dropdown-toggle:hover {
       background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.2);
-      transform: translateY(-1px);
+      border-color: var(--border-glow);
+    }
+    .nav-dropdown-menu {
+      position: absolute;
+      top: calc(100% + 0.65rem);
+      right: 0;
+      width: 250px;
+      background: rgba(9, 14, 29, 0.98);
+      border: 1px solid var(--border-glow);
+      border-radius: 12px;
+      padding: 0.65rem;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(56, 189, 248, 0.15);
+      backdrop-filter: blur(20px);
+      display: none;
+      flex-direction: column;
+      gap: 0.25rem;
+      z-index: 200;
+      animation: fadeInDown 0.2s ease;
+    }
+    .nav-dropdown-menu.show {
+      display: flex;
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.65rem 0.85rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      border-radius: 6px;
+      transition: all 0.15s ease;
+    }
+    .dropdown-item:hover {
+      color: var(--text-main);
+      background: rgba(56, 189, 248, 0.1);
     }
 
-    /* Hero Section */
+    /* Hero Section - 2-Column Desktop Grid with Banner on Top/Left */
     .hero {
-      padding: 6.5rem 0 4rem;
-      text-align: center;
+      padding: 5rem 0 4rem;
+      text-align: left;
     }
+    .hero-split {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+    @media (max-width: 990px) {
+      .hero-split {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        text-align: center;
+      }
+    }
+    .hero-banner-col {
+      order: 1;
+    }
+    .hero-text-col {
+      order: 2;
+    }
+    @media (max-width: 990px) {
+      .hero-banner-col { order: 1; }
+      .hero-text-col { order: 2; }
+    }
+    .banner-showcase {
+      width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border-glow);
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7), 0 0 50px rgba(56, 189, 248, 0.22);
+      background: #090e1d;
+      position: relative;
+    }
+    .banner-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .banner-showcase:hover .banner-img {
+      transform: scale(1.02);
+    }
+
     .pill-badge {
       display: inline-flex;
       align-items: center;
@@ -202,7 +277,7 @@
       color: var(--primary);
       font-size: 0.85rem;
       font-weight: 600;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
     .pill-dot {
       width: 7px;
@@ -212,18 +287,12 @@
       box-shadow: 0 0 10px var(--primary);
     }
     .hero-title {
-      font-size: clamp(2.25rem, 5vw, 3.85rem);
+      font-size: clamp(2rem, 3.8vw, 3.25rem);
       font-weight: 800;
-      line-height: 1.18;
+      line-height: 1.16;
       letter-spacing: -0.03em;
-      margin-bottom: 1.5rem;
-      max-width: 1050px;
-      margin-left: auto;
-      margin-right: auto;
+      margin-bottom: 1.25rem;
       text-wrap: balance;
-    }
-    .hero-title-line {
-      display: block;
     }
     .gradient-text {
       background: var(--primary-gradient);
@@ -231,28 +300,32 @@
       -webkit-text-fill-color: transparent;
     }
     .hero-subtitle {
-      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      font-size: 1.05rem;
       color: var(--text-muted);
-      max-width: 750px;
-      margin: 0 auto 2.5rem;
+      margin-bottom: 2rem;
       font-weight: 400;
+      line-height: 1.6;
     }
     .hero-ctas {
       display: flex;
-      justify-content: center;
       align-items: center;
       gap: 1.25rem;
-      margin-bottom: 3.5rem;
+      margin-bottom: 2rem;
       flex-wrap: wrap;
+    }
+    @media (max-width: 990px) {
+      .hero-ctas {
+        justify-content: center;
+      }
     }
     .btn-primary {
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
-      padding: 0.85rem 1.75rem;
+      padding: 0.8rem 1.6rem;
       border-radius: 10px;
       font-weight: 700;
-      font-size: 1rem;
+      font-size: 0.95rem;
       color: #030712;
       background: #38bdf8;
       text-decoration: none;
@@ -268,10 +341,10 @@
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
-      padding: 0.85rem 1.75rem;
+      padding: 0.8rem 1.6rem;
       border-radius: 10px;
       font-weight: 600;
-      font-size: 1rem;
+      font-size: 0.95rem;
       color: var(--text-main);
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--border-subtle);
@@ -284,29 +357,10 @@
       transform: translateY(-2px);
     }
 
-    /* Hero Banner Preview */
-    .banner-showcase {
-      max-width: 960px;
-      margin: 0 auto 3rem;
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid var(--border-glow);
-      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7), 0 0 50px rgba(56, 189, 248, 0.2);
-      background: #090e1d;
-      position: relative;
-    }
-    .banner-img {
-      width: 100%;
-      height: auto;
-      display: block;
-      transition: transform 0.4s ease;
-    }
-    .banner-showcase:hover .banner-img {
-      transform: scale(1.015);
-    }
-
     /* Terminal Preview Box */
     .terminal-window {
+      max-width: 100%;
+      margin-top: 3.5rem;
       max-width: 860px;
       margin: 0 auto;
       border-radius: 14px;
@@ -718,79 +772,95 @@
   </div>
 
   <!-- Header -->
+  <!-- Header -->
   <header>
     <div class="container nav-wrapper">
       <a href="#" class="logo-group">
         <img src="assets/AnswerIndex_Logo.png" alt="Answer Index Logo" class="logo-img" />
         <span class="brand-name">Answer Index</span>
       </a>
-      <ul class="nav-links">
-        <li><a href="#why" class="nav-link">Why Answer Index</a></li>
-        <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
-        <li><a href="#features" class="nav-link">Features</a></li>
-        <li><a href="#architecture" class="nav-link">26-File Suite</a></li>
-        <li><a href="#geo" class="nav-link">GEO Passages</a></li>
-        <li><a href="#mcp" class="nav-link">MCP Server</a></li>
-        <li><a href="#quickstart" class="nav-link">Quickstart</a></li>
-        <li>
-          <a href="https://github.com/justmailsameer-prog/answerindex" target="_blank" class="btn-github">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+
+      <div class="nav-actions">
+        <a href="https://github.com/justmailsameer-prog/answerindex" target="_blank" class="btn-github">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+          </svg>
+          GitHub
+        </a>
+
+        <!-- Dropdown Menu for both Desktop & Mobile -->
+        <div class="menu-dropdown-wrapper">
+          <button class="btn-dropdown-toggle" id="menuDropdownBtn" aria-label="Toggle navigation menu">
+            <span>Menu</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
             </svg>
-            GitHub
-          </a>
-        </li>
-      </ul>
-      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="3" y1="12" x2="21" y2="12"></line>
-          <line x1="3" y1="6" x2="21" y2="6"></line>
-          <line x1="3" y1="18" x2="21" y2="18"></line>
-        </svg>
-      </button>
-    </div>
-    <div class="mobile-nav-drawer" id="mobileNavDrawer">
-      <a href="#why" class="nav-link" onclick="closeMobileNav()">Why Answer Index</a>
-      <a href="#how-it-works" class="nav-link" onclick="closeMobileNav()">How It Works</a>
-      <a href="#features" class="nav-link" onclick="closeMobileNav()">Features</a>
-      <a href="#architecture" class="nav-link" onclick="closeMobileNav()">26-File Suite</a>
-      <a href="#geo" class="nav-link" onclick="closeMobileNav()">GEO Passages</a>
-      <a href="#mcp" class="nav-link" onclick="closeMobileNav()">MCP Server</a>
-      <a href="#quickstart" class="nav-link" onclick="closeMobileNav()">Quickstart</a>
-      <a href="https://github.com/justmailsameer-prog/answerindex" target="_blank" class="btn-github" style="width: fit-content;">GitHub Repository</a>
+          </button>
+          <div class="nav-dropdown-menu" id="navDropdownMenu">
+            <a href="#why" class="dropdown-item" onclick="closeDropdown()">
+              <span>💡</span> Why Answer Index
+            </a>
+            <a href="#how-it-works" class="dropdown-item" onclick="closeDropdown()">
+              <span>⚙️</span> How It Works
+            </a>
+            <a href="#features" class="dropdown-item" onclick="closeDropdown()">
+              <span>⚡</span> Features Matrix
+            </a>
+            <a href="#architecture" class="dropdown-item" onclick="closeDropdown()">
+              <span>📦</span> 26-File Architecture
+            </a>
+            <a href="#geo" class="dropdown-item" onclick="closeDropdown()">
+              <span>🎯</span> Passage-Level GEO
+            </a>
+            <a href="#mcp" class="dropdown-item" onclick="closeDropdown()">
+              <span>🔌</span> MCP Server
+            </a>
+            <a href="#quickstart" class="dropdown-item" onclick="closeDropdown()">
+              <span>🚀</span> Instant Quickstart
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 
   <!-- Hero -->
   <section class="hero">
     <div class="container">
-      <div class="pill-badge">
-        <span class="pill-dot"></span>
-        Answer Engine & Generative Search Optimization Suite
-      </div>
-      <h1 class="hero-title">
-        <span class="hero-title-line">Make your content indexable as</span>
-        <span class="hero-title-line"><span class="gradient-text">authoritative answers</span> across AI engines.</span>
-      </h1>
-      <p class="hero-subtitle">
-        While traditional SEO solves for web crawlers, <strong>AnswerIndex</strong> ensures ChatGPT Search, Perplexity, Claude, Gemini, and Google AI Overviews cite you as the primary source of truth.
-      </p>
+      <div class="hero-split">
+        <!-- Left Column: Asset Banner Showcase -->
+        <div class="hero-banner-col">
+          <div class="banner-showcase">
+            <img src="assets/answerindex-preview.png" alt="Answer Index Engine Preview Banner" class="banner-img" />
+          </div>
+        </div>
 
-      <div class="hero-ctas">
-        <a href="#quickstart" class="btn-primary">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="5 3 19 12 5 21 5 3"></polygon>
-          </svg>
-          Get Started Free
-        </a>
-        <a href="https://github.com/justmailsameer-prog/answerindex" target="_blank" class="btn-secondary">
-          View Documentation
-        </a>
-      </div>
+        <!-- Right Column: Hero Heading & Value Proposition -->
+        <div class="hero-text-col">
+          <div class="pill-badge">
+            <span class="pill-dot"></span>
+            Answer Engine & Generative Search Optimization Suite
+          </div>
+          <h1 class="hero-title">
+            Make your content indexable as
+            <span class="gradient-text">authoritative answers</span> across AI engines.
+          </h1>
+          <p class="hero-subtitle">
+            While traditional SEO solves for web crawlers, <strong>Answer Index</strong> ensures ChatGPT Search, Perplexity, Claude, Gemini, and Google AI Overviews cite you as the primary source of truth.
+          </p>
 
-      <!-- Hero Banner Preview -->
-      <div class="banner-showcase">
-        <img src="assets/answerindex-preview.png" alt="AnswerIndex Engine Preview Banner" class="banner-img" />
+          <div class="hero-ctas">
+            <a href="#quickstart" class="btn-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+              Get Started Free
+            </a>
+            <a href="https://github.com/justmailsameer-prog/answerindex" target="_blank" class="btn-secondary">
+              View Documentation
+            </a>
+          </div>
+        </div>
       </div>
 
       <!-- Live Terminal Preview -->
@@ -1226,20 +1296,27 @@
     </div>
   </footer>
 
-  <!-- Mobile Drawer Toggle Script -->
+  <!-- Dropdown Menu Script -->
   <script>
-    const mobileBtn = document.getElementById('mobileMenuBtn');
-    const mobileDrawer = document.getElementById('mobileNavDrawer');
+    const dropdownBtn = document.getElementById('menuDropdownBtn');
+    const dropdownMenu = document.getElementById('navDropdownMenu');
 
-    if (mobileBtn && mobileDrawer) {
-      mobileBtn.addEventListener('click', () => {
-        mobileDrawer.classList.toggle('active');
+    if (dropdownBtn && dropdownMenu) {
+      dropdownBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdownMenu.classList.toggle('show');
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!dropdownMenu.contains(e.target) && !dropdownBtn.contains(e.target)) {
+          dropdownMenu.classList.remove('show');
+        }
       });
     }
 
-    function closeMobileNav() {
-      if (mobileDrawer) {
-        mobileDrawer.classList.remove('active');
+    function closeDropdown() {
+      if (dropdownMenu) {
+        dropdownMenu.classList.remove('show');
       }
     }
   </script>
