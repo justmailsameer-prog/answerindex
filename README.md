@@ -50,13 +50,22 @@ AnswerIndex bridges that gap by benchmarking how AI models actively perceive and
 
 ---
 
-## How It Works
+## How It Works: The 5-Phase Sequential Execution Pipeline
 
-Start by cloning the repository, installing dependencies with `npm install`, and adding your free OpenRouter API keys to `.env`. 
+AnswerIndex operates via an authoritative 5-phase deliverable pipeline designed to transform raw brand content into the primary cited source across Search and AI engines:
 
-1. **Benchmark AI Citations:** Run `npm run benchmark` to query top foundation models simultaneously (Nvidia Nemotron, Google Gemma, Liquid LFM, StepFun) and evaluate how AI perceives your brand, detects hallucinations, and measures citation frequency.
-2. **Audit AEO & Clarity:** Run `npm run aeo` to conduct a comprehensive structural and transparency audit against Answer Engine standards, verifying your machine-readable clearings (`llms.txt`, robots directives, and ethical indexing policies).
-3. **Deploy Structural SEO & GEO:** Run `npm run seo` to execute deep-dive technical audits, generate validated JSON-LD schemas (`WebApplication`, `FAQPage`, `HowTo`), and optimize semantic clusters—ensuring your product is prioritized by ChatGPT Search, Perplexity, Claude, and Google AI Overviews.
+```
+Phase 1: Ingestion & Entity Graph ➔ Phase 2: Structural Schema & Technical SEO ➔ Phase 3: AEO Architecture ➔ Phase 4: GEO & RAG Chunking ➔ Phase 5: Verification & Checklist
+```
+
+1. **Phase 1: Content Extraction & Entity Modeling (Foundation):** Cleanse content corpus, extract primary Named Entities (Organizations, Products, Topics, Use Cases), and map relationships (`isA`, `solves`, `alternativeTo`) to Wikidata/Schema ontology alongside search intent categorization.
+2. **Phase 2: Structural Schema & Technical SEO:** Generate valid, connected JSON-LD schemas (`TechArticle`, `FAQPage`, `SoftwareApplication`, `Organization` with `sameAs`), crawl directives, canonical definitions, and meta cards.
+3. **Phase 3: Answer Engine Optimization (AEO Architecture):** Format 40–55 word direct-answer zero-click snippets for snippet parity, match exact user queries to `<h2>`/`<h3>` headings, and construct scrapeable high-density markdown tables and numbered steps.
+4. **Phase 4: Generative Engine Optimization (GEO & LLM Retrieval):** Chunk content into modular 250–400 token semantic blocks with high factual density, eliminate conversational fluff/marketing adjectives, and anchor claims with quotable benchmarks.
+5. **Phase 5: Verification & Delivery Checklist:** Output clean markdown with zero-click snippets, entity relationships, AEO core answers, valid `<script type="application/ld+json">`, and vector-ready chunks.
+
+For the full operational specification, see [EXECUTION-ENGINE-SPEC.md](file:///d:/AI%20Product/answerindex/EXECUTION-ENGINE-SPEC.md).  
+To remediate false citations, outdated figures, or competitor conflation across AI models, see the [ANTI-HALLUCINATION-SPEC.md](file:///d:/AI%20Product/answerindex/ANTI-HALLUCINATION-SPEC.md).
 
 ---
 
@@ -228,4 +237,4 @@ node bin/answerindex.mjs mcp
 
 ### License & Copyright
 
-Copyright (c) 2026 Sameer Sharma. Licensed under the MIT License — see [LICENSE](LICENSE).
+Copyright (c) 2026 Sameer Sharma. Licensed under the MIT License — see (LICENSE).

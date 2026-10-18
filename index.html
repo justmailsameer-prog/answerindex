@@ -918,6 +918,9 @@
             <a href="#geo" class="dropdown-item" onclick="closeDropdown()">
               <span>🎯</span> Passage-Level GEO
             </a>
+            <a href="#anti-hallucination" class="dropdown-item" onclick="closeDropdown()">
+              <span>🛡️</span> Anti-Hallucination
+            </a>
             <a href="#mcp" class="dropdown-item" onclick="closeDropdown()">
               <span>🔌</span> MCP Server
             </a>
@@ -1034,41 +1037,63 @@
     <div class="container">
       <div class="section-header">
         <div class="section-tag">Execution Workflow</div>
-        <h2 class="section-title">How Answer Index Works</h2>
-        <p class="section-desc">A unified three-phase pipeline bridging real-time LLM perception, diagnostic auditing, and protocol deployment.</p>
+        <h2 class="section-title">The 5-Phase Execution Pipeline</h2>
+        <p class="section-desc">A rigorous sequential standard transforming source brand content into the primary authoritative answer cited by Search & AI Engines.</p>
       </div>
 
-      <div class="steps-grid">
+      <div class="steps-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
         <div class="step-card">
-          <div class="step-number">Phase 01</div>
-          <h3 style="font-size: 1.2rem; margin-bottom: 0.75rem;">Multi-Model Citation Benchmark</h3>
-          <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; margin-bottom: 1rem;">
-            Query foundation models simultaneously (Nvidia Nemotron, Google Gemma, Liquid LFM, StepFun) to evaluate how AI models currently perceive your brand and detect citation accuracy.
+          <div class="step-number" style="color: #38bdf8;">Phase 01 • Foundation</div>
+          <h3 style="font-size: 1.15rem; margin-bottom: 0.75rem;">Content Extraction & Entity Modeling</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1rem;">
+            Cleanses corpus, extracts Named Entities (Organizations, Products, Topics, Use Cases), and maps semantic relationships (<code>isA</code>, <code>solves</code>, <code>partOf</code>) directly to Wikidata/Schema ontology alongside search intent classification.
           </p>
-          <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--primary); background: rgba(56, 189, 248, 0.08); padding: 0.4rem 0.75rem; border-radius: 6px; border: 1px solid rgba(56, 189, 248, 0.2);">
-            $ npm run benchmark
+          <div style="font-family: var(--font-mono); font-size: 0.78rem; color: #38bdf8; background: rgba(56, 189, 248, 0.08); padding: 0.4rem 0.75rem; border-radius: 6px; border: 1px solid rgba(56, 189, 248, 0.2);">
+            NER + Entity Graph + Intent
           </div>
         </div>
 
         <div class="step-card">
-          <div class="step-number">Phase 02</div>
-          <h3 style="font-size: 1.2rem; margin-bottom: 0.75rem;">AEO Engine & Clarity Audit</h3>
-          <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; margin-bottom: 1rem;">
-            Conduct deep diagnostic scoring across domain transparency, robot crawler hygiene, verified brand claims, and machine readability standards against Answer Engine guidelines.
+          <div class="step-number" style="color: #818cf8;">Phase 02 • Technical</div>
+          <h3 style="font-size: 1.15rem; margin-bottom: 0.75rem;">Structural Schema & Technical SEO</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1rem;">
+            Produces validated, rich JSON-LD blocks (<code>TechArticle</code>, <code>FAQPage</code>, <code>SoftwareApplication</code>, <code>Organization</code> with connected <code>sameAs</code> links), high-CTR metadata (&lt;60/155 chars), canonical structures, and AI crawler directives.
           </p>
-          <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-purple); background: rgba(168, 85, 247, 0.08); padding: 0.4rem 0.75rem; border-radius: 6px; border: 1px solid rgba(168, 85, 247, 0.2);">
-            $ npm run aeo yourdomain.com
+          <div style="font-family: var(--font-mono); font-size: 0.78rem; color: #818cf8; background: rgba(129, 140, 248, 0.08); padding: 0.4rem 0.75rem; border-radius: 6px; border: 1px solid rgba(129, 140, 248, 0.2);">
+            Valid JSON-LD + Crawl Rules
           </div>
         </div>
 
         <div class="step-card">
-          <div class="step-number">Phase 03</div>
-          <h3 style="font-size: 1.2rem; margin-bottom: 0.75rem;">Deploy 26-File Manifest Suite</h3>
-          <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; margin-bottom: 1rem;">
-            Generate and deploy 18 public web-root protocols (llms.txt, ai.txt, RAG index, schema graphs) and retain 8 internal strategic scorecards and passage-level GEO briefs for your team.
+          <div class="step-number" style="color: #a855f7;">Phase 03 • AEO</div>
+          <h3 style="font-size: 1.15rem; margin-bottom: 0.75rem;">Answer Engine Optimization</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1rem;">
+            Constructs 40–55 word direct-answer snippets placed at immediate section tops for zero-click extraction, enforces question-to-answer parity across exact <code>&lt;h2&gt;</code>/<code>&lt;h3&gt;</code> headings, and creates dense scrapeable tables.
           </p>
-          <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-emerald); background: rgba(16, 185, 129, 0.08); padding: 0.4rem 0.75rem; border-radius: 6px; border: 1px solid rgba(16, 185, 129, 0.2);">
-            $ npm run ready yourdomain.com
+          <div style="font-family: var(--font-mono); font-size: 0.78rem; color: #a855f7; background: rgba(168, 85, 247, 0.08); padding: 0.4rem 0.75rem; border-radius: 6px; border: 1px solid rgba(168, 85, 247, 0.2);">
+            40-55 Word Direct Answers
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number" style="color: #ec4899;">Phase 04 • GEO</div>
+          <h3 style="font-size: 1.15rem; margin-bottom: 0.75rem;">Generative Engine Optimization</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1rem;">
+            Structures content into 250–400 token semantic chunks for vector retrieval (RAG), anchors claims with verified benchmarks and methodologies, and strips out marketing filler to eliminate AI hallucination risk.
+          </p>
+          <div style="font-family: var(--font-mono); font-size: 0.78rem; color: #ec4899; background: rgba(236, 72, 153, 0.08); padding: 0.4rem 0.75rem; border-radius: 6px; border: 1px solid rgba(236, 72, 153, 0.2);">
+            250-400 Tok Chunks + Quotability
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number" style="color: #10b981;">Phase 05 • Verification</div>
+          <h3 style="font-size: 1.15rem; margin-bottom: 0.75rem;">Delivery & Verification Checklist</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1rem;">
+            Packages copy-paste deliverables: Zero-click direct answer snippet, Entity Graph relationship table, AEO core content with data tables, validated JSON-LD schema script, and embed-ready vector chunks.
+          </p>
+          <div style="font-family: var(--font-mono); font-size: 0.78rem; color: #10b981; background: rgba(16, 185, 129, 0.08); padding: 0.4rem 0.75rem; border-radius: 6px; border: 1px solid rgba(16, 185, 129, 0.2);">
+            Production-Ready Package
           </div>
         </div>
       </div>
@@ -1278,6 +1303,71 @@
     </div>
   </section>
 
+  <!-- Anti-Hallucination & Knowledge Alignment Engine -->
+  <section class="section" id="anti-hallucination" style="border-top: 1px solid var(--border-subtle); background: rgba(10, 16, 31, 0.6);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag" style="color: #ef4444; border-color: rgba(239, 68, 68, 0.3); background: rgba(239, 68, 68, 0.08);">Knowledge Grounding Protocol</div>
+        <h2 class="section-title">AI Hallucination Correction & Remediation</h2>
+        <p class="section-desc">When AI models hallucinate pricing, conflate competitors, or reference outdated leadership, AnswerIndex deploys deterministic grounding payloads to force canonical accuracy.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-bottom: 2.5rem;">
+        <div class="step-card" style="border-left: 3px solid #f59e0b;">
+          <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">⏱️</div>
+          <h4 style="font-size: 1.05rem; margin-bottom: 0.5rem; color: #f59e0b;">1. Temporal Lag Triage</h4>
+          <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.55;">
+            Detects when LLMs cite deprecated tiers, legacy executive rosters, or sunset products. Resolves via high-priority canonical timestamps and direct contrast overrides.
+          </p>
+        </div>
+
+        <div class="step-card" style="border-left: 3px solid #ec4899;">
+          <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🔀</div>
+          <h4 style="font-size: 1.05rem; margin-bottom: 0.5rem; color: #ec4899;">2. Semantic Drift Isolation</h4>
+          <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.55;">
+            Identifies competitor conflation and category blending. Enforces explicit <code>disambiguatingDescription</code> and Wikidata ontological anchors.
+          </p>
+        </div>
+
+        <div class="step-card" style="border-left: 3px solid #ef4444;">
+          <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🛑</div>
+          <h4 style="font-size: 1.05rem; margin-bottom: 0.5rem; color: #ef4444;">3. Fabrication Defense</h4>
+          <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.55;">
+            Counteracts answers produced into knowledge vacuums. Injects authoritative 45–60 word contrast snippets ("Contrary to outdated reports...") at section tops.
+          </p>
+        </div>
+
+        <div class="step-card" style="border-left: 3px solid #8b5cf6;">
+          <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🛡️</div>
+          <h4 style="font-size: 1.05rem; margin-bottom: 0.5rem; color: #8b5cf6;">4. Third-Party Cleansing</h4>
+          <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.55;">
+            Audits crawler access (GPTBot, ClaudeBot, PerplexityBot) and issues override signals against erroneous review sites and scraper aggregators.
+          </p>
+        </div>
+      </div>
+
+      <!-- Actionable Contrast Box -->
+      <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-glow); border-radius: 14px; padding: 1.75rem 2rem;">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+          <div style="font-weight: 700; font-size: 0.92rem; color: #f8fafc; display: flex; align-items: center; gap: 0.5rem;">
+            <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #10b981; box-shadow: 0 0 8px #10b981;"></span>
+            Deterministic AEO Contrast Grounding Formula
+          </div>
+          <span style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--primary); background: rgba(56, 189, 248, 0.1); padding: 0.25rem 0.65rem; border-radius: 6px;">
+            ANTI-HALLUCINATION-SPEC.md
+          </span>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; margin: 0;">
+          <code style="color: #38bdf8;">"[Brand] is [Exact definition]. Contrary to outdated reports, [Brand] does not [Incorrect claim]; rather, it [Canonical verified truth]."</code>
+          <br>
+          <span style="display: inline-block; margin-top: 0.5rem; color: #94a3b8; font-size: 0.85rem;">
+            Coupled with an immutable JSON-LD <code>@id</code> and <code>/llms.txt</code> truth block, this structure eliminates RAG ambiguity and guarantees citation accuracy.
+          </span>
+        </p>
+      </div>
+    </div>
+  </section>
+
   <!-- MCP Server Integration -->
   <section class="section" id="mcp">
     <div class="container">
@@ -1350,7 +1440,7 @@
             A unified 26-file evaluation, deployment, and optimization engine for AEO, GEO, and Technical SEO. Make your brand cited across ChatGPT Search, Perplexity, Claude, and Gemini.
           </p>
           <div class="footer-badges">
-            <span class="badge-pill badge-ver">v1.3.0 Production</span>
+            <span class="badge-pill badge-ver">v1.5.0 Production</span>
             <span class="badge-pill badge-mit">MIT Open Source</span>
           </div>
         </div>
@@ -1372,12 +1462,12 @@
         <div class="footer-col">
           <h5>Protocols & Standards</h5>
           <ul class="footer-menu">
+            <li><a href="#how-it-works">5-Phase Pipeline</a></li>
+            <li><a href="#anti-hallucination">Anti-Hallucination Engine</a></li>
             <li><a href="https://llmstxt.org" target="_blank" rel="noopener">llmstxt.org Standard</a></li>
             <li><a href="https://schema.org" target="_blank" rel="noopener">Schema.org JSON-LD</a></li>
             <li><a href="#mcp">Model Context Protocol</a></li>
             <li><a href="#geo">Passage-Level GEO</a></li>
-            <li><a href="https://answerindex.pages.dev/robots.txt" target="_blank">AI Crawler Directives</a></li>
-            <li><a href="https://answerindex.pages.dev/training-data-policy.txt" target="_blank">Fair-Use Policy</a></li>
           </ul>
         </div>
 
@@ -1387,10 +1477,10 @@
           <ul class="footer-menu">
             <li><a href="https://github.com/justmailsameer-prog/answerindex" target="_blank">GitHub Repository</a></li>
             <li><a href="https://github.com/justmailsameer-prog/answerindex/blob/main/ANSWERINDEX-PRD.md" target="_blank">Product Requirements (PRD)</a></li>
+            <li><a href="https://github.com/justmailsameer-prog/answerindex/blob/main/EXECUTION-ENGINE-SPEC.md" target="_blank">5-Phase Engine Spec</a></li>
+            <li><a href="https://github.com/justmailsameer-prog/answerindex/blob/main/ANTI-HALLUCINATION-SPEC.md" target="_blank">Anti-Hallucination Spec</a></li>
             <li><a href="feedback.html" style="color: var(--primary); font-weight: 600;">Share Feedback & Ideas →</a></li>
-            <li><a href="https://github.com/justmailsameer-prog/answerindex/blob/main/LICENSE" target="_blank">MIT License</a></li>
             <li><a href="#disclaimer" onclick="openDisclaimerModal(event)">Disclaimer, Terms & License</a></li>
-            <li><a href="https://answerindex.pages.dev" target="_blank">Cloudflare Edge Deployment</a></li>
           </ul>
         </div>
       </div>

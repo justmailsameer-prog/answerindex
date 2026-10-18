@@ -1,6 +1,6 @@
 # Answer Index — Product Requirements Document (PRD)
 
-**Document Version:** 1.4.0  
+**Document Version:** 1.5.0  
 **Status:** Approved & Implemented  
 **Product Name:** Answer Index  
 **Live Production Portal:** https://answerindex.pages.dev  
@@ -19,14 +19,24 @@ Traditional Search Engine Optimization (SEO) focuses exclusively on getting craw
 
 ---
 
-## 2. Core Pillars
+## 2. Core Pillars & 5-Phase Execution Standard
 
-1. **Automated Machine-Readable Indexation:** Automated generation of standard public web-root protocols (`robots.txt`, `ai.txt`, `llms.txt`, `llms-full.txt`, schemas, and RAG vector indexes).
-2. **Answer Engine Optimization (AEO):** Diagnostic scoring of machine readability, brand clarity, and transparent data policies to prevent model hallucination.
-3. **Generative Engine Optimization (GEO):** Multi-model citation benchmarking, entity graph verification, and passage-level citability engineering (40–60 word dense factual answer blocks).
-4. **Technical & Semantic SEO:** Comprehensive crawling, Schema.org JSON-LD graph generation, interactive semantic cluster mapping, and Core Web Vitals audit.
-5. **Developer & IDE Native Integration (MCP):** Standards-based Model Context Protocol (MCP) server integration for Cursor, Claude Code, Windsurf, and VS Code.
-6. **Modern Web Portal & Direct Creator Feedback:** High-aesthetic, responsive dark-mode portal and feedback channel enabling community collaboration and feature iteration.
+Answer Index is governed by a strict 5-phase sequential deliverable pipeline for transforming raw brand content into cited, authoritative knowledge across generative systems:
+
+1. **Phase 1: Content Extraction & Entity Modeling (Foundation):** Text segmentation, boilerplate removal, Named Entity Recognition (NER), Wikidata/Schema ontology mapping (`isA`, `solves`, `alternativeTo`), and 4-tier intent classification.
+2. **Phase 2: Structural Schema & Technical SEO:** Production of connected, verified JSON-LD graphs (`TechArticle`, `FAQPage`, `SoftwareApplication`, `Organization` with `sameAs`), canonicals, OpenGraph cards, and AI bot indexing directives.
+3. **Phase 3: Answer Engine Optimization (AEO Architecture):** Zero-click 40–55 word direct-answer snippets placed top-of-section, exact-match question headings (`<h2>`/`<h3>`), and scrapeable markdown comparison tables / sequential steps.
+4. **Phase 4: Generative Engine Optimization (GEO & LLM Retrieval):** 250–400 token semantic chunking for vector databases (RAG), evidence-anchored claims, and complete elimination of marketing filler to minimize hallucination risk.
+5. **Phase 5: Verification & Delivery Checklist:** Markdown deliverable packaging containing zero-click snippets, entity relationships, AEO answers, valid JSON-LD `<script>` blocks, and vector-ready chunks.
+
+### 2.1 AI Hallucination Correction & Knowledge Alignment Standard
+To counteract hallucinated pricing, legacy leadership, and competitor conflation in LLMs, AnswerIndex enforces a deterministic grounding protocol:
+- **Discrepancy Triage:** Classification into *Temporal Lag*, *Semantic Drift / Conflation*, *Pure Fabrication*, or *Third-Party Poisoning*.
+- **Direct-Answer Grounding Snippet (AEO Defense):** 45–60 word contrast statement (`"[Brand] is [Definition]. Contrary to outdated reports, [Brand] does not [Incorrect claim]; rather, it [Canonical truth]."`).
+- **Machine-Readable Truth Ingestion:** Append canonical facts to `/llms.txt` and embed high-precision JSON-LD with immutable `@id`, `disambiguatingDescription`, `knowsAbout`, and `sameAs` authorities.
+- **Remediation Plan:** Actionable first-party cleanup, `robots.txt` AI crawler audit, and third-party entity recalibration.
+
+Complementing this pipeline is AnswerIndex's automated 26-file deployment model, MCP developer integration, and real-time model benchmarking.
 
 ---
 
@@ -88,11 +98,17 @@ Native MCP integration for AI coding assistants (Cursor, Claude Code, Windsurf, 
 - **Tool 1: `generate_ai_readiness_kit`**: Programmatically generate the full 26-file suite for any domain and brand.
 - **Tool 2: `list_ai_crawlers`**: Return recognized crawler bots (`GPTBot`, `ClaudeBot`, `PerplexityBot`, `Google-Extended`, `Applebot`), company origins, and recommended permissions.
 - **Tool 3: `get_llms_txt_spec`**: Return the official specifications for `llms.txt` and `ai.txt`.
+- **Tool 4: `get_execution_engine_spec`**: Expose the 5-phase sequential deliverable standard (Ingestion/NER ➔ Schema ➔ AEO Snippets ➔ GEO Chunks ➔ Verification).
+- **Tool 5: `get_anti_hallucination_spec`**: Expose the deterministic hallucination triage and grounding protocol for AI engines.
 
 ### 4.3 Script Runners
 - `run-benchmark.sh`: Multi-model citation tester.
 - `run-aeo.sh`: AEO platform runner.
 - `run-seo.sh`: Technical SEO audit runner.
+
+### 4.4 Engine Specifications & Knowledge Architecture
+- **[EXECUTION-ENGINE-SPEC.md](file:///d:/AI%20Product/answerindex/EXECUTION-ENGINE-SPEC.md)**: Defines the step-by-step deliverable pipeline for converting any brand corpus into prioritized, cited answers across AI and search surfaces.
+- **[ANTI-HALLUCINATION-SPEC.md](file:///d:/AI%20Product/answerindex/ANTI-HALLUCINATION-SPEC.md)**: Defines the deterministic triage categories (*Temporal Lag*, *Semantic Drift*, *Pure Fabrication*, *Third-Party Poisoning*), 45–60 word contrast statements, machine-readable grounding payloads (`/llms.txt` + JSON-LD), and AI crawler audit workflows.
 
 ---
 

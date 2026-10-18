@@ -17,3 +17,4 @@ fi
 
 cd "$SCRIPT_DIR"
 node --env-file=.env "$BENCHMARK_JS" "$@"
+
