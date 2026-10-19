@@ -10,9 +10,10 @@
   "scripts": {
     "ready": "node bin/answerindex.mjs ready",
     "mcp": "node bin/answerindex.mjs mcp",
-    "benchmark": "node --env-file=.env test-aeo-models.mjs",
-    "aeo": "node --env-file=.env ./node_modules/aeo-platform/bin/aeo-tracker.js",
-    "seo": "python ./seo-toolkit/seo.py"
+    "benchmark": "node test-aeo-models.mjs",
+    "aeo": "node ./node_modules/aeo-platform/bin/aeo-tracker.js",
+    "seo": "node bin/answerindex.mjs seo",
+    "seo:py": "python ./seo-toolkit/seo.py"
   },
   "keywords": [
     "aeo",

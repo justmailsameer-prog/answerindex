@@ -27,8 +27,24 @@ switch (command) {
     break;
   }
   case 'seo': {
-    console.log(`Launching SEO Skill Toolkit at: ${path.join(rootDir, 'seo-toolkit')}`);
-    console.log(`Follow instructions in seo-toolkit/README.md or run specific sub-skills.`);
+    console.log(`[SEO Toolkit] Checking Python environment...`);
+    const checkProc = spawn('python', ['-c', 'import bs4, requests; print("deps_ok")'], { stdio: 'pipe' });
+    let stdoutData = '';
+    checkProc.stdout.on('data', d => { stdoutData += d.toString(); });
+    checkProc.on('exit', code => {
+      if (code !== 0 || !stdoutData.includes('deps_ok')) {
+        console.warn(`\n⚠️  Missing required Python dependencies (such as beautifulsoup4 or requests).`);
+        console.log(`To install the required dependencies, run:\n`);
+        console.log(`  python -m pip install -r seo-toolkit/requirements.txt\n`);
+        console.log(`Then re-run: npm run seo (or python ./seo-toolkit/seo.py <command>)\n`);
+        process.exit(1);
+      } else {
+        const seoArgs = args.length > 0 ? args : ['doctor'];
+        console.log(`Running: python ./seo-toolkit/seo.py ${seoArgs.join(' ')}\n`);
+        const proc = spawn('python', [path.join(rootDir, 'seo-toolkit', 'seo.py'), ...seoArgs], { stdio: 'inherit' });
+        proc.on('exit', exitCode => process.exit(exitCode || 0));
+      }
+    });
     break;
   }
   case 'ready': {
@@ -53,7 +69,11 @@ switch (command) {
     break;
   }
   case 'mcp': {
-    console.log(`Starting AnswerIndex MCP Server (stdio)...`);
+    process.stderr.write(`\n=== AnswerIndex Model Context Protocol (MCP) Server ===\n`);
+    process.stderr.write(`Status: Listening over stdio (JSON-RPC 2.0)...\n`);
+    process.stderr.write(`Note: This process runs continuously in the background for AI coding clients (Cursor, Claude Code, Windsurf).\n`);
+    process.stderr.write(`To configure it in your editor, add to your MCP settings:\n`);
+    process.stderr.write(`{\n  "mcpServers": {\n    "answerindex": {\n      "command": "node",\n      "args": ["${path.join(rootDir, 'lib', 'mcp-server.mjs').replace(/\\/g, '/')}"]\n    }\n  }\n}\n\n`);
     const proc = spawn('node', [path.join(rootDir, 'lib', 'mcp-server.mjs')], { stdio: 'inherit' });
     proc.on('exit', code => process.exit(code || 0));
     break;

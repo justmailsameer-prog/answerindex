@@ -5,6 +5,7 @@ package-lock.json
 # Environment variables & Secret API Keys (CRITICAL)
 .env
 .env.*
+!.env.example
 .env*.local
 
 # Cache and temporary logs

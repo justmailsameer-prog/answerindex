@@ -177,39 +177,77 @@ npm install
 
 ### 2. Configure Environment
 
-Copy the example configuration and add your free or paid API keys:
+Copy `.env.example` to `.env` and add a single [OpenRouter API key](https://openrouter.ai/keys) to run benchmarks:
 
+**macOS / Linux:**
 ```bash
 cp .env.example .env
 ```
 
-### 3. Usage
+**Windows (PowerShell):**
+```powershell
+Copy-Item .env.example .env
+```
+
+Edit `.env`:
+```dotenv
+OPENROUTER_API_KEY=sk-or-v1-your_openrouter_api_key_here
+```
+
+### 3. Usage (Generic for Any Brand / Website)
 
 ```bash
-# Generate AI Readiness deployment files for your website
+# 1. Generate the complete 26-file AI Readiness suite for your website
 npm run ready yourbrand.com "Your Brand Name"
 
-# Run multi-model AEO citation benchmark
-npm run benchmark
+# 2. Run multi-model foundation citation benchmark across AI engines
+npm run benchmark -- yourbrand.com "Your Brand Name"
 
-# Run AEO domain assessment
-npm run aeo
+# 3. Run automated AEO domain assessment
+npm run aeo yourbrand.com
 
-# Run SEO deep audit
+# 4. Run deep technical & schema SEO audit
 npm run seo
 
-# Start AnswerIndex MCP server for AI IDEs (Cursor, Claude Code, Windsurf)
+# 5. Start Model Context Protocol (MCP) server for AI coding assistants
 npm run mcp
 ```
 
-Or run via the CLI directly:
+Or run via the unified CLI directly:
 
 ```bash
-node bin/answerindex.mjs ready yourbrand.com
-node bin/answerindex.mjs benchmark
-node bin/answerindex.mjs aeo
+node bin/answerindex.mjs ready yourbrand.com "Your Brand Name"
+node bin/answerindex.mjs benchmark yourbrand.com "Your Brand Name"
+node bin/answerindex.mjs aeo yourbrand.com
+node bin/answerindex.mjs seo
 node bin/answerindex.mjs mcp
 ```
+
+---
+
+## Troubleshooting & FAQ
+
+#### 1. "no .env.example file available"
+Ensure you are using the latest version of the repository. `.env.example` is tracked in git. Copy it using `cp .env.example .env` (or `Copy-Item .env.example .env` in PowerShell).
+
+#### 2. Benchmark defaults or missing arguments
+Always pass your domain and brand name using the `--` separator with npm:
+```bash
+npm run benchmark -- yourbrand.com "Your Brand Name"
+```
+Or use the CLI directly:
+```bash
+node bin/answerindex.mjs benchmark yourbrand.com "Your Brand Name"
+```
+
+#### 3. Missing Python dependencies (`ModuleNotFoundError: No module named 'bs4'`)
+The deep SEO toolkit requires Python 3.10+. Install the required packages with:
+```bash
+python -m pip install -r seo-toolkit/requirements.txt
+```
+
+#### 4. `npm run mcp` hangs or stays open
+This is expected behavior! The AnswerIndex MCP server uses standard input/output (`stdio`) JSON-RPC 2.0 to communicate with AI coding assistants (Cursor, Claude Code, Windsurf). It is not meant to be run as an interactive human terminal command. Instead, add it to your client's MCP configuration as described in the [Model Context Protocol (MCP) Integration](#model-context-protocol-mcp-integration) section.
 
 ---
 

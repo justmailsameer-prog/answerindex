@@ -1,6 +1,6 @@
 # Answer Index — Product Requirements Document (PRD)
 
-**Document Version:** 1.6.0  
+**Document Version:** 1.7.0  
 **Status:** Approved & Live in Production  
 **Product Name:** Answer Index  
 **Live Production Portal:** https://answerindex.pages.dev  
@@ -87,11 +87,11 @@ Non-public strategic deliverables retained internally for marketing, developer, 
 ## 4. Execution Interfaces & Developer Tools
 
 ### 4.1 CLI Commands (`bin/answerindex.mjs`)
-- `answerindex ready <domain> [brand]`: Generate the complete 26-file Answer Index optimization suite into `./ai-readiness-dist/<domain>/`.
-- `answerindex benchmark`: Run real-time multi-model LLM citation & entity recognition queries across OpenRouter models (Nvidia Nemotron, Google Gemma, Liquid LFM, StepFun).
+- `answerindex ready <domain> [brand]`: Generate the complete 26-file Answer Index optimization suite for any brand into `./ai-readiness-dist/<domain>/`.
+- `answerindex benchmark <domain> [brand]`: Run real-time multi-model LLM citation & entity recognition queries across OpenRouter foundation models for any website/brand, supporting unified `OPENROUTER_API_KEY` configuration.
 - `answerindex aeo <domain>`: Execute domain-level AEO assessment via `aeo-platform`.
-- `answerindex seo`: Launch modular technical SEO deep-dive tools via `seo-toolkit/`.
-- `answerindex mcp`: Start the native Model Context Protocol stdio server.
+- `answerindex seo`: Launch modular technical SEO deep-dive tools with automated Python dependency pre-flight verification (`beautifulsoup4`, `requests`).
+- `answerindex mcp`: Start the native Model Context Protocol stdio server with clear diagnostic status logging for AI coding environments.
 
 ### 4.2 Model Context Protocol (MCP) Server (`lib/mcp-server.mjs`)
 Native MCP integration for AI coding assistants (Cursor, Claude Code, Windsurf, VS Code):
