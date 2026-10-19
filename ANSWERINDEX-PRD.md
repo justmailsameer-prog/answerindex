@@ -1,7 +1,7 @@
 # Answer Index — Product Requirements Document (PRD)
 
-**Document Version:** 1.5.0  
-**Status:** Approved & Implemented  
+**Document Version:** 1.6.0  
+**Status:** Approved & Live in Production  
 **Product Name:** Answer Index  
 **Live Production Portal:** https://answerindex.pages.dev  
 **Feedback & Ideas Channel:** https://answerindex.pages.dev/feedback.html  
@@ -115,8 +115,16 @@ Native MCP integration for AI coding assistants (Cursor, Claude Code, Windsurf, 
 ## 5. Web Portal & Creator Feedback Ecosystem
 
 ### 5.1 Main Portal (`index.html` — https://answerindex.pages.dev)
-- **Design Philosophy:** Premium dark aesthetic (`#080d1a`), ambient animated gradient blur orbs, and glassmorphic cards.
-- **Header:** Brand title (`Answer Index`), high-contrast white GitHub link button, and responsive glass dropdown menu with direct navigation to all sections including Anti-Hallucination.
+- **Design Philosophy:** Premium dark aesthetic (`#080d1a`), ambient animated gradient blur orbs, and glassmorphic cards with compact, responsive section spacing (`1.5rem 0` desktop, `1.15rem 0` mobile).
+- **Unified Navigation & Animated Hamburger Menu:**
+  - Full-fidelity animated 3-bar hamburger icon (`.hamburger-icon` / `.hamburger-bar`) across mobile and desktop.
+  - Smooth 45° rotation into a close (`✕`) state upon opening.
+  - Direct links to *Overview*, *5-Phase Engine*, *Features*, *Architecture*, *GEO Showcase*, *Anti-Hallucination*, *MCP Server*, and *Feedback*.
+  - Sticky glass header with brand logo, high-contrast white GitHub repository button, and quick Feedback CTA.
+- **Social Sharing & Open Graph Rich Previews:**
+  - Native `🔗 Share with Friends` button embedded in both the main dropdown menu and the footer.
+  - Triggered via Web Share API (`navigator.share`) on supported mobile/desktop browsers with automatic clipboard fallback and custom floating toast notification.
+  - Absolute Open Graph (`og:image`) and Twitter Card (`twitter:image`) metadata configured with dedicated high-resolution logo preview (`https://answerindex.pages.dev/assets/AnswerIndex_Logo.png`, 512x512).
 - **Hero Section:** 2-column desktop split blending high-resolution asset showcase (`assets/answerindex-preview.png`) with headline, badge, and primary/secondary CTAs.
 - **Interactive Technical Preview:** macOS/Linux live CLI terminal box detailing 26-file generation.
 - **Core Sections:**
@@ -127,13 +135,25 @@ Native MCP integration for AI coding assistants (Cursor, Claude Code, Windsurf, 
   - *GEO Passage Showcase:* Side-by-side comparison of traditional marketing copy vs optimized 48-word factual GEO block.
   - *AI Hallucination Correction Engine (`#anti-hallucination`):* Dedicated section featuring the 4-part triage protocol (Temporal Lag, Semantic Drift, Fabrication, Third-Party) and the canonical AEO Contrast Grounding Formula.
   - *MCP Integration:* Ready-to-copy JSON configuration for Cursor and Claude Code.
-- **Footer:** 4-column resource directory, version badges (`v1.5.0 Production`, `MIT Open Source`), direct links to `EXECUTION-ENGINE-SPEC.md` and `ANTI-HALLUCINATION-SPEC.md`, and an interactive **Disclaimer, Terms & License** modal dialog.
+- **Footer & Legal Navigation:**
+  - 4-column organized resource directory (*Engine & Capabilities*, *Knowledge & Specs*, *Resources & Legal*, *About*).
+  - Cleaned navigation structure: single, canonical **Disclaimer, Terms & License** modal trigger link under *Resources & Legal* (duplicate removed from bottom copyright row).
+  - Interactive modal dialog for Disclaimers, Terms, and MIT License with backdrop dismiss and keyboard ESC support.
+  - Version badges (`v1.6.0 Production`, `MIT Open Source`).
 
 ### 5.2 Direct Feedback System (`feedback.html` — https://answerindex.pages.dev/feedback.html)
 - **Direct to Creator:** Enables developers and users to send feedback, feature ideas, and crawler issues directly to Sameer Sharma (`justmailsameer@gmail.com`).
 - **Interactive Topic Filters:** 💡 Feature Idea, 🤖 Crawler Directive, 🔌 MCP Integration, 🐞 Bug / Issue, 💬 General Love.
 - **FormSubmit Background Dispatch:** Automatic background submission with form-activation protection.
 - **User Confirmation:** Dedicated interactive modal popup (*"Thank You! Your feedback has been delivered directly to Sameer..."*) with automatic form reset.
+- **Consistent UX:** Matches main portal styling, animated hamburger menu, shared styling tokens, and social sharing capabilities.
+
+---
+
+## 5.3 Deployment & Infrastructure Pipeline
+- **Host Platform:** Cloudflare Pages direct upload project (`answerindex.pages.dev`).
+- **Deployment Method:** `npx wrangler pages deploy . --project-name=answerindex --branch=main`.
+- **Cache Invalidation:** Configured with zero-age revalidation (`Cache-Control: public, max-age=0, must-revalidate`) ensuring instant updates upon deployment across edge locations.
 
 ---
 
