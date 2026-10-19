@@ -1,7 +1,7 @@
 # Answer Index — Product Requirements Document (PRD)
 
-**Document Version:** 1.7.0  
-**Status:** Approved & Live in Production  
+**Document Version:** 1.8.0  
+**Status:** v1.0 Foundation Milestone Frozen — Production v1.8.0  
 **Product Name:** Answer Index  
 **Live Production Portal:** https://answerindex.pages.dev  
 **Feedback & Ideas Channel:** https://answerindex.pages.dev/feedback.html  
@@ -168,3 +168,16 @@ Native MCP integration for AI coding assistants (Cursor, Claude Code, Windsurf, 
 - **No Warranties or Guarantees:** Software provided "as-is", without warranties of any kind regarding accuracy or search ranking outcomes.
 - **Disclaimer of Liability:** Creators and contributors are not liable for operational damages, crawler bans, or loss of data resulting from direct or indirect use.
 - **Public vs Private File Boundary:** No proprietary source code, operational checklists, or sensitive API keys are ever published to public web roots.
+
+---
+
+## 7. Version History & Milestones
+
+| Version | Date | Milestone & Deliverables |
+|---|---|---|
+| **v1.0 – v1.5** | Q1 2026 | Initial 5-Phase AEO/GEO engine, 26-file deployment model, MCP server, and CLI tools. |
+| **v1.6.0** | Oct 2026 | Mobile responsive drawer, social sharing API, live Cloudflare Pages portal. |
+| **v1.7.0** | Oct 2026 | Dedicated direct feedback portal (`feedback.html`), OpenRouter single-model benchmarking refactor. |
+| **v1.8.0** | Oct 2026 | **Build Freeze (v1 Foundation Finalized):** Production readiness verified, static assets synchronized to `dist/`, PRD synchronized. |
+| **v2.0 (Next)** | Planned | **Autonomous Continuous Loop:** Daily AEO job scheduler (1 new answer piece + 1 page improvement/day), live telemetry / GSC integration, Git Pull Request publishing pipeline, and native AI Agent skills library. |
+
