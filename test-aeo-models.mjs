@@ -24,15 +24,14 @@ if (fs.existsSync('.env')) {
   console.log(`[Notice] No .env file found. To configure API keys, copy .env.example to .env:\n  cp .env.example .env (or Copy-Item .env.example .env on Windows)\n`);
 }
 
-// Single master key fallback
-const defaultKey = env.OPENROUTER_API_KEY || '';
+// Primary OpenRouter model
+const apiKey = env.OPENROUTER_API_KEY || env.OR_NEMOTRON_3_KEY || '';
 
-const modelsToTest = [
-  { name: 'Nvidia Nemotron 3.5 Lightning (Free)', key: env.OR_NEMOTRON_3_KEY || defaultKey, model: 'nvidia/nemotron-3.5-lightning:free' },
-  { name: 'Google Gemma 4 (Free)', key: env.OR_GEMMA_3_27B_KEY || defaultKey, model: 'google/gemma-4-31b-it:free' },
-  { name: 'Liquid LFM 2.5 (Free)', key: env.OR_LLAMA_3_2_KEY || defaultKey, model: 'liquid/lfm-2.5-2.6b:free' },
-  { name: 'Xingchen AGI (Free)', key: env.OR_STEP_3_5_KEY || defaultKey, model: 'xingchen-agi/xing4.0-29b-a4b:free' }
-];
+const modelToTest = {
+  name: 'OpenRouter (Nvidia Nemotron 3.5 Lightning)',
+  key: apiKey,
+  model: env.OPENROUTER_MODEL || 'nvidia/nemotron-3.5-lightning:free'
+};
 
 // Strip node flags or options from argv if present
 const cleanArgs = process.argv.slice(2).filter(arg => !arg.startsWith('--env-file') && !arg.startsWith('-'));
@@ -56,49 +55,45 @@ const prompt = 'What is ' + targetBrand + ' (' + domain + ')? What does it do?';
 
 async function runBenchmark() {
   console.log('====================================================');
-  console.log('  MULTI-MODEL CITATION & ENTITY RECOGNITION TEST   ');
+  console.log('   OPENROUTER CITATION & ENTITY RECOGNITION TEST    ');
   console.log('====================================================\n');
   console.log(`Target Domain : ${domain}`);
   console.log(`Target Brand  : ${targetBrand}`);
   console.log(`Test Prompt   : "${prompt}"\n`);
   console.log('----------------------------------------------------');
 
-  let testedCount = 0;
-  for (const m of modelsToTest) {
-    if (!m.key) continue;
-    testedCount++;
-    console.log(`Testing Model: ${m.name} (${m.model})...`);
-    try {
-      const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${m.key}`,
-          'Content-Type': 'application/json',
-          'HTTP-Referer': 'https://' + domain,
-          'X-Title': targetBrand + ' AEO Checker'
-        },
-        body: JSON.stringify({
-          model: m.model,
-          messages: [{ role: 'user', content: prompt }]
-        })
-      });
-      const data = await res.json();
-      if (data.choices && data.choices[0]) {
-        console.log(`[Result]: ${data.choices[0].message.content.slice(0, 250).replace(/\n/g, ' ')}...`);
-      } else {
-        console.log(`[Provider Response]:`, data.error ? data.error.message : data);
-      }
-    } catch (e) {
-      console.log(`[Error]:`, e.message);
-    }
-    console.log('----------------------------------------------------');
+  if (!modelToTest.key) {
+    console.log('\n⚠️  No OpenRouter API key found. Add your OPENROUTER_API_KEY to your .env file:');
+    console.log('  OPENROUTER_API_KEY=your_key_here');
+    console.log('Get a key at: https://openrouter.ai/keys\n');
+    return;
   }
 
-  if (testedCount === 0) {
-    console.log('\n⚠️  No API keys found. Add your OPENROUTER_API_KEY to your .env file:');
-    console.log('  OPENROUTER_API_KEY=your_key_here');
-    console.log('Get a free/developer key at: https://openrouter.ai/keys\n');
+  console.log(`Testing Model: ${modelToTest.name} (${modelToTest.model})...`);
+  try {
+    const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${modelToTest.key}`,
+        'Content-Type': 'application/json',
+        'HTTP-Referer': 'https://' + domain,
+        'X-Title': targetBrand + ' AEO Checker'
+      },
+      body: JSON.stringify({
+        model: modelToTest.model,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+    const data = await res.json();
+    if (data.choices && data.choices[0]) {
+      console.log(`\n[Result]:\n${data.choices[0].message.content}\n`);
+    } else {
+      console.log(`[Provider Response]:`, data.error ? data.error.message : data);
+    }
+  } catch (e) {
+    console.log(`[Error]:`, e.message);
   }
+  console.log('----------------------------------------------------');
 }
 
 runBenchmark();

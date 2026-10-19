@@ -88,7 +88,7 @@ Non-public strategic deliverables retained internally for marketing, developer, 
 
 ### 4.1 CLI Commands (`bin/answerindex.mjs`)
 - `answerindex ready <domain> [brand]`: Generate the complete 26-file Answer Index optimization suite for any brand into `./ai-readiness-dist/<domain>/`.
-- `answerindex benchmark <domain> [brand]`: Run real-time multi-model LLM citation & entity recognition queries across OpenRouter foundation models for any website/brand, supporting unified `OPENROUTER_API_KEY` configuration.
+- `answerindex benchmark <domain> [brand]`: Run real-time LLM citation & entity recognition queries across OpenRouter foundation models for any website/brand, supporting unified `OPENROUTER_API_KEY` configuration.
 - `answerindex aeo <domain>`: Execute domain-level AEO assessment via `aeo-platform`.
 - `answerindex seo`: Launch modular technical SEO deep-dive tools with automated Python dependency pre-flight verification (`beautifulsoup4`, `requests`).
 - `answerindex mcp`: Start the native Model Context Protocol stdio server with clear diagnostic status logging for AI coding environments.

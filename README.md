@@ -75,7 +75,7 @@ AnswerIndex delivers a unified, production-grade engine spanning root indexation
 
 - 📦 **Automated 26-File Optimization Suite:** Generate a complete architecture of 26 production-ready files in a single pass—spanning machine-readable web-root manifests, structured entity graphs, RAG vector indexes, and diagnostic scorecards.
 - 🤖 **Comprehensive AI Crawler & Agent Directives:** Explicit governance rules and permissions tailored for modern AI search engines and agents (ChatGPT/GPTBot, ClaudeBot, PerplexityBot, Google-Extended, Applebot, Cohere).
-- 🧠 **Multi-Model Citation & Perception Benchmark:** Simultaneously test your brand against top foundation models (Nvidia Nemotron, Google Gemma, Liquid LFM, StepFun) to measure citation frequency, factual accuracy, and hallucination risk.
+- 🧠 **OpenRouter Citation & Perception Benchmark:** Test your brand against leading foundation models via OpenRouter (e.g., Nvidia Nemotron 3.5 Lightning) to measure citation presence, factual accuracy, and hallucination risk.
 - ⚡ **AEO Engine Audit & Scorecards:** Evaluate domain clarity, transparency standards, and machine-readability using automated AEO diagnostic scoring.
 - 🎯 **Passage-Level GEO Citability Briefs:** Structure content into high-citability 40–60 word answer passages optimized for zero-click extraction by ChatGPT Search, Perplexity, and Google AI Overviews.
 - 🗺️ **Semantic Cluster & Authority Mapping:** Interactive visual topic cluster map (`cluster-map.html`) to establish entity authority and internal linking hierarchy.
@@ -258,7 +258,7 @@ This is expected behavior! The AnswerIndex MCP server uses standard input/output
 | `bin/answerindex.mjs` | Unified CLI | Command-line entry point (`ready`, `benchmark`, `aeo`, `seo`, `mcp`) |
 | `lib/readiness-generator.mjs` | AI Readiness Engine | Generates `llms.txt`, `ai.txt`, `robots.txt`, schemas, entity & intent graphs |
 | `lib/mcp-server.mjs` | MCP Server | Standard Model Context Protocol server for Cursor & Claude Code |
-| `test-aeo-models.mjs` | Citation Benchmark | Multi-model evaluation across OpenRouter models |
+| `test-aeo-models.mjs` | Citation Benchmark | OpenRouter model citation and entity recognition benchmark |
 | `seo-toolkit/` | Technical & Schema SEO | 24+ specialized SEO & GEO skill modules |
 | `run-*.sh` | Script Runners | Portable runners for cross-platform automation |
 
