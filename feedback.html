@@ -9,11 +9,18 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/AnswerIndex_Logo.png" />
 
-  <!-- Open Graph -->
+  <!-- Open Graph / Social Sharing (Absolute URL ensures logo displays when shared) -->
   <meta property="og:title" content="Share Your Feedback — Answer Index" />
   <meta property="og:description" content="Have an idea for a new AEO metric, AI crawler directive, or MCP capability? Send your thoughts directly to the creator." />
-  <meta property="og:image" content="assets/AnswerIndex_Logo.png" />
+  <meta property="og:image" content="https://answerindex.pages.dev/assets/AnswerIndex_Logo.png" />
+  <meta property="og:image:width" content="512" />
+  <meta property="og:image:height" content="512" />
+  <meta property="og:url" content="https://answerindex.pages.dev/feedback.html" />
   <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Share Your Feedback — Answer Index" />
+  <meta name="twitter:description" content="Share suggestions and feedback directly with the creator of Answer Index." />
+  <meta name="twitter:image" content="https://answerindex.pages.dev/assets/AnswerIndex_Logo.png" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -131,7 +138,8 @@
     .nav-right {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 0.85rem;
+      flex-shrink: 0;
     }
     .btn-home {
       display: inline-flex;
@@ -146,6 +154,8 @@
       border: 1px solid var(--border-subtle);
       background: rgba(255, 255, 255, 0.03);
       transition: all 0.2s ease;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
     .btn-home:hover {
       color: #fff;
@@ -165,16 +175,56 @@
       border: 1px solid #ffffff;
       box-shadow: 0 4px 14px rgba(255, 255, 255, 0.2);
       transition: all 0.2s ease;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
     .btn-github:hover {
       background: #f1f5f9;
       transform: translateY(-1px);
     }
+    @media (max-width: 640px) {
+      header {
+        padding: 0.85rem 0;
+      }
+      .brand-name {
+        font-size: 1.05rem;
+      }
+      .logo-img {
+        width: 32px;
+        height: 32px;
+      }
+      .nav-right {
+        gap: 0.5rem;
+      }
+      .btn-home {
+        padding: 0.45rem 0.75rem;
+        font-size: 0.82rem;
+      }
+      .btn-github {
+        padding: 0.45rem 0.75rem;
+        font-size: 0.82rem;
+      }
+      .btn-github svg {
+        width: 15px;
+        height: 15px;
+      }
+    }
+    @media (max-width: 420px) {
+      .btn-home span,
+      .btn-home {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.78rem;
+      }
+      .btn-github {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.78rem;
+      }
+    }
 
     /* Main Feedback Container */
     main {
       flex: 1;
-      padding: 4rem 0 5rem;
+      padding: 1.25rem 0 1.5rem;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -182,7 +232,7 @@
     .feedback-hero {
       text-align: center;
       max-width: 620px;
-      margin: 0 auto 2.5rem;
+      margin: 0 auto 1.25rem;
     }
     .pill-badge {
       display: inline-flex;
