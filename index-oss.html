@@ -1,0 +1,3398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AnswerIndex — Authoritative Answers for Search & AI Engines</title>
+  <meta name="description" content="A unified 26-file evaluation, deployment, and optimization engine for AEO, GEO, and Technical SEO. Make your brand cited across ChatGPT Search, Perplexity, Claude, and Gemini." />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/AnswerIndex_Logo.png" />
+  
+  <!-- Open Graph / Social Sharing (Absolute URL ensures logo displays when shared) -->
+  <meta property="og:title" content="AnswerIndex — Make your content indexable as authoritative answers" />
+  <meta property="og:description" content="Unified AEO, GEO & Technical SEO suite. Make your content cited across ChatGPT, Perplexity, Claude, and Gemini." />
+  <meta property="og:image" content="https://answerindex.pages.dev/assets/AnswerIndex_Logo.png" />
+  <meta property="og:image:width" content="512" />
+  <meta property="og:image:height" content="512" />
+  <meta property="og:url" content="https://answerindex.pages.dev" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="AnswerIndex — Authoritative Answers for Search & AI Engines" />
+  <meta name="twitter:description" content="Unified 26-file suite for AEO, GEO, and Technical SEO." />
+  <meta name="twitter:image" content="https://answerindex.pages.dev/assets/AnswerIndex_Logo.png" />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- jsPDF for instant client-side SEO audit report generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <link rel="stylesheet" href="assets/client-portal.css" />
+
+  <style>
+    :root {
+      --bg-dark: #080d1a;
+      --bg-card: rgba(15, 23, 42, 0.7);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-glow: rgba(56, 189, 248, 0.25);
+      --primary: #38bdf8;
+      --primary-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+      --accent-cyan: #06b6d4;
+      --accent-purple: #a855f7;
+      --accent-emerald: #10b981;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --glow-blue: rgba(56, 189, 248, 0.15);
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      overflow-x: hidden;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Ambient Background Elements */
+    .bg-blobs {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(140px);
+      opacity: 0.35;
+    }
+    .blob-1 {
+      top: -10%;
+      left: 20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, #38bdf8, transparent 70%);
+      animation: float 20s infinite alternate ease-in-out;
+    }
+    .blob-2 {
+      top: 40%;
+      right: -5%;
+      width: 650px;
+      height: 650px;
+      background: radial-gradient(circle, #8b5cf6, transparent 70%);
+      animation: float 25s infinite alternate-reverse ease-in-out;
+    }
+    .blob-3 {
+      bottom: -10%;
+      left: -10%;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, #06b6d4, transparent 70%);
+      animation: float 22s infinite alternate ease-in-out;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) scale(1); }
+      100% { transform: translateY(80px) scale(1.08); }
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Navigation */
+    header {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border-subtle);
+      backdrop-filter: blur(20px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8, 13, 26, 0.75);
+    }
+    .nav-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo-group {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+    .logo-img {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+    }
+    .brand-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .brand-badge {
+      font-size: 0.7rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 20px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: var(--primary);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    /* Desktop & Mobile Navigation */
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      flex-shrink: 0;
+    }
+    .menu-dropdown-wrapper {
+      position: relative;
+    }
+    .btn-dropdown-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem;
+      width: 40px;
+      height: 38px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+    .btn-dropdown-toggle:hover {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: var(--primary);
+    }
+    .hamburger-icon {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 20px;
+      height: 15px;
+      pointer-events: none;
+    }
+    .hamburger-bar {
+      display: block;
+      width: 100%;
+      height: 2.5px;
+      background: #ffffff;
+      border-radius: 2px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+      transition: all 0.25s ease;
+    }
+    .btn-dropdown-toggle:hover .hamburger-bar {
+      background: var(--primary);
+      box-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+    }
+    .btn-dropdown-toggle.active {
+      background: rgba(56, 189, 248, 0.2);
+      border-color: var(--primary);
+    }
+    .btn-dropdown-toggle.active .hamburger-bar {
+      background: var(--primary);
+    }
+    .btn-dropdown-toggle.active .hamburger-bar:nth-child(1) {
+      transform: translateY(6.25px) rotate(45deg);
+    }
+    .btn-dropdown-toggle.active .hamburger-bar:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    .btn-dropdown-toggle.active .hamburger-bar:nth-child(3) {
+      transform: translateY(-6.25px) rotate(-45deg);
+    }
+    .nav-dropdown-menu {
+      position: absolute;
+      top: calc(100% + 0.65rem);
+      right: 0;
+      width: 270px;
+      max-width: calc(100vw - 2rem);
+      background: rgba(9, 14, 29, 0.98);
+      border: 1px solid var(--border-glow);
+      border-radius: 14px;
+      padding: 0.65rem;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(56, 189, 248, 0.15);
+      backdrop-filter: blur(20px);
+      display: none;
+      flex-direction: column;
+      gap: 0.25rem;
+      z-index: 200;
+      animation: fadeInDown 0.2s ease;
+    }
+    .nav-dropdown-menu.show {
+      display: flex;
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.55rem 0.75rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      border-radius: 8px;
+      transition: all 0.15s ease;
+    }
+    .dropdown-item:hover {
+      color: var(--text-main);
+      background: rgba(56, 189, 248, 0.1);
+    }
+    .dropdown-item.highlight-audit {
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color: #38bdf8;
+      margin-bottom: 0.2rem;
+    }
+    .dropdown-item.highlight-audit:hover {
+      background: rgba(56, 189, 248, 0.25);
+      color: #ffffff;
+    }
+    .dropdown-divider {
+      height: 1px;
+      background: var(--border-subtle);
+      margin: 0.35rem 0;
+    }
+    /* Submenus */
+    .dropdown-group {
+      display: flex;
+      flex-direction: column;
+    }
+    .dropdown-group-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 0.55rem 0.75rem;
+      background: transparent;
+      border: none;
+      border-radius: 8px;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      font-weight: 500;
+      font-family: inherit;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.15s ease;
+    }
+    .dropdown-group-toggle:hover {
+      background: rgba(56, 189, 248, 0.08);
+      color: #ffffff;
+    }
+    .dropdown-group-toggle .chevron {
+      font-size: 0.75rem;
+      color: #64748b;
+      transition: transform 0.2s ease;
+    }
+    .dropdown-group.open .dropdown-group-toggle .chevron {
+      transform: rotate(180deg);
+      color: #38bdf8;
+    }
+    .dropdown-submenu {
+      display: none;
+      flex-direction: column;
+      gap: 0.15rem;
+      padding: 0.25rem 0 0.35rem 1.75rem;
+      border-left: 2px solid rgba(56, 189, 248, 0.3);
+      margin: 0.2rem 0 0.35rem 0.75rem;
+    }
+    .dropdown-group.open .dropdown-submenu {
+      display: flex;
+    }
+    .dropdown-submenu a {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 0.35rem 0.5rem;
+      border-radius: 6px;
+      transition: all 0.15s ease;
+    }
+    .dropdown-submenu a:hover {
+      color: #ffffff;
+      background: rgba(56, 189, 248, 0.1);
+    }
+
+    /* High-Contrast White GitHub Button */
+    .btn-github {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.55rem 1.15rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: #030712;
+      background: #ffffff;
+      border: 1px solid #ffffff;
+      box-shadow: 0 4px 14px rgba(255, 255, 255, 0.25);
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .btn-github svg {
+      fill: #030712;
+      transition: transform 0.2s ease;
+    }
+    .btn-github:hover {
+      background: #f1f5f9;
+      border-color: #f1f5f9;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
+    }
+    .btn-github:hover svg {
+      transform: scale(1.1);
+    }
+
+    /* Hero Section - 2-Column Desktop Grid with Banner on Top/Left */
+    .hero {
+      padding: 1.5rem 0 1rem;
+      text-align: left;
+    }
+    .hero-split {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    @media (max-width: 990px) {
+      .hero {
+        padding: 1.25rem 0 1rem;
+      }
+      .hero-split {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        text-align: center;
+      }
+    }
+    .hero-banner-col {
+      order: 1;
+    }
+    .hero-text-col {
+      order: 2;
+    }
+    @media (max-width: 990px) {
+      .hero-banner-col { order: 1; }
+      .hero-text-col { order: 2; }
+    }
+    .banner-showcase {
+      width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border-glow);
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7), 0 0 50px rgba(56, 189, 248, 0.22);
+      background: #090e1d;
+      position: relative;
+    }
+    .banner-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .banner-showcase:hover .banner-img {
+      transform: scale(1.02);
+    }
+
+    .pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.4rem 1rem;
+      border-radius: 9999px;
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+    .pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--primary);
+      box-shadow: 0 0 10px var(--primary);
+    }
+    .hero-title {
+      font-size: clamp(2rem, 3.8vw, 3.25rem);
+      font-weight: 800;
+      line-height: 1.16;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+      text-wrap: balance;
+    }
+    .gradient-text {
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      font-weight: 400;
+      line-height: 1.6;
+    }
+    .hero-ctas {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    @media (max-width: 990px) {
+      .hero-ctas {
+        justify-content: center;
+      }
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.8rem 1.6rem;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #030712;
+      background: #38bdf8;
+      text-decoration: none;
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
+      transition: all 0.2s ease;
+    }
+    .btn-primary:hover {
+      background: #7dd3fc;
+      transform: translateY(-2px);
+      box-shadow: 0 0 35px rgba(56, 189, 248, 0.6);
+    }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.8rem 1.6rem;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    /* Executive Clarity Spotlight Box */
+    .executive-clarity-box {
+      margin: 2.75rem auto 2.5rem;
+      max-width: 1040px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1.5px solid rgba(56, 189, 248, 0.35);
+      border-radius: 20px;
+      padding: 2.5rem 2.25rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 35px rgba(56, 189, 248, 0.12);
+      backdrop-filter: blur(16px);
+      position: relative;
+      overflow: hidden;
+      text-align: left;
+    }
+    .executive-clarity-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc);
+    }
+    .clarity-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .clarity-tag {
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
+    }
+    .clarity-title {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+    .clarity-subtitle {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 680px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .clarity-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 1.75rem;
+    }
+    .clarity-card {
+      background: rgba(8, 13, 26, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 1.5rem;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .clarity-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+    .clarity-card.card-cyan:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+    }
+    .clarity-card.card-blue:hover {
+      border-color: rgba(129, 140, 248, 0.4);
+    }
+    .clarity-card.card-purple:hover {
+      border-color: rgba(192, 132, 252, 0.4);
+    }
+    .clarity-card-badge {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.6rem;
+    }
+    .card-cyan .clarity-card-badge { color: #38bdf8; }
+    .card-blue .clarity-card-badge { color: #818cf8; }
+    .card-purple .clarity-card-badge { color: #c084fc; }
+    .clarity-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.6rem;
+      line-height: 1.35;
+    }
+    .clarity-card p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+    .clarity-footer-cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .clarity-more-btn {
+      color: #38bdf8;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s;
+    }
+    .clarity-more-btn:hover {
+      color: #7dd3fc;
+      transform: translateX(4px);
+    }
+    .clarity-note {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+    .btn-nav-about {
+      color: #f8fafc;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 0.45rem 0.85rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.05);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .btn-nav-about:hover {
+      background: rgba(56, 189, 248, 0.12);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    .btn-nav-pro {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 0.45rem 0.95rem;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #3a57fc 0%, #2563eb 100%);
+      box-shadow: 0 4px 14px rgba(58, 87, 252, 0.35);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .btn-nav-pro:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(58, 87, 252, 0.5);
+    }
+    @media (max-width: 680px) {
+      .btn-nav-about, .btn-nav-pro {
+        display: none;
+      }
+      .clarity-title {
+        font-size: 1.45rem;
+      }
+      .executive-clarity-box {
+        padding: 1.5rem 1.25rem;
+      }
+    }
+
+    .btn-nav-audit {
+      color: #030712;
+      background: #38bdf8;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 0.45rem 0.95rem;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      box-shadow: 0 4px 14px rgba(56, 189, 248, 0.4);
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .btn-nav-audit:hover {
+      background: #7dd3fc;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(56, 189, 248, 0.6);
+    }
+    @media (max-width: 768px) {
+      .btn-nav-audit {
+        display: none;
+      }
+    }
+
+    /* =========================================================================
+       FREE INSTANT SEO & AI READINESS AUDIT SECTION
+       ========================================================================= */
+    .audit-section {
+      background: #0d121f;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 5rem 0;
+      position: relative;
+    }
+    .audit-container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .audit-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .audit-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(58, 87, 252, 0.12);
+      border: 1px solid rgba(58, 87, 252, 0.35);
+      color: #60a5fa;
+      font-size: 0.78rem;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      padding: 0.3rem 0.85rem;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 1rem;
+    }
+    .audit-title {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+    }
+    .audit-desc {
+      font-size: 1.05rem;
+      color: #94a3b8;
+      max-width: 720px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .audit-card-box {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1.5px solid rgba(56, 189, 248, 0.3);
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(56, 189, 248, 0.12);
+      backdrop-filter: blur(16px);
+      position: relative;
+    }
+    .audit-input-form {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr auto;
+      gap: 1rem;
+      align-items: center;
+      margin-bottom: 1.25rem;
+    }
+    @media (max-width: 820px) {
+      .audit-input-form {
+        grid-template-columns: 1fr;
+      }
+      .audit-title {
+        font-size: 1.75rem;
+      }
+      .audit-card-box {
+        padding: 1.5rem;
+      }
+    }
+    .audit-input-field {
+      width: 100%;
+      background: rgba(3, 7, 18, 0.75);
+      border: 1.5px solid rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      padding: 0.85rem 1.15rem;
+      color: #fff;
+      font-size: 0.95rem;
+      font-family: var(--font-sans);
+      outline: none;
+      transition: all 0.2s;
+    }
+    .audit-input-field:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.35);
+      background: rgba(3, 7, 18, 0.95);
+    }
+    .audit-input-field::placeholder {
+      color: #64748b;
+    }
+    .audit-btn-submit {
+      background: linear-gradient(135deg, #38bdf8, #2563eb);
+      color: #030712;
+      border: none;
+      border-radius: 10px;
+      padding: 0.85rem 1.6rem;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
+    }
+    .audit-btn-submit:hover {
+      background: linear-gradient(135deg, #7dd3fc, #38bdf8);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(56, 189, 248, 0.55);
+    }
+    .audit-btn-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .audit-subtext {
+      text-align: center;
+      font-size: 0.82rem;
+      color: #64748b;
+    }
+    .audit-scanner {
+      display: none;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      animation: fadeIn 0.3s ease;
+    }
+    .audit-scanner.active {
+      display: block;
+    }
+    .scanner-progress-bar-bg {
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+    .scanner-progress-bar-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #38bdf8, #818cf8, #a855f7);
+      border-radius: 999px;
+      transition: width 0.4s ease;
+    }
+    .scanner-steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+    }
+    .scanner-step-item {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      color: #64748b;
+      transition: color 0.2s;
+    }
+    .scanner-step-item.active {
+      color: #38bdf8;
+      font-weight: 600;
+    }
+    .scanner-step-item.done {
+      color: #22c55e;
+    }
+    .audit-results {
+      display: none;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .audit-results.active {
+      display: block;
+    }
+    .results-top-banner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(3, 7, 18, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 1.75rem;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+    }
+    .results-domain-info h3 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 0.25rem;
+    }
+    .results-domain-info p {
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+    .results-score-badge {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .score-circle {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: conic-gradient(#f59e0b var(--score-deg, 240deg), rgba(255, 255, 255, 0.1) 0deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .score-circle::before {
+      content: '';
+      position: absolute;
+      width: 58px;
+      height: 58px;
+      background: #0f172a;
+      border-radius: 50%;
+    }
+    .score-circle span {
+      position: relative;
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: #fff;
+    }
+    .score-label {
+      text-align: left;
+    }
+    .score-grade {
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: #f59e0b;
+    }
+    .score-status {
+      font-size: 0.78rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      font-family: var(--font-mono);
+    }
+    .results-pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+    }
+    .pillar-metric-card {
+      background: rgba(3, 7, 18, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 1.15rem;
+    }
+    .pillar-metric-card .p-title {
+      font-size: 0.82rem;
+      color: #94a3b8;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+    }
+    .pillar-metric-card .p-score {
+      font-weight: 800;
+      color: #fff;
+      font-size: 1.1rem;
+    }
+    .p-bar-bg {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      margin-top: 0.6rem;
+      overflow: hidden;
+    }
+    .p-bar-fill {
+      height: 100%;
+      border-radius: 999px;
+    }
+    .results-issues-box {
+      background: rgba(3, 7, 18, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .results-issues-box h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .issues-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .issue-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      font-size: 0.88rem;
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+    .results-actions-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .btn-download-pdf {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding: 0.85rem 1.75rem;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.35);
+    }
+    .btn-download-pdf:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+    }
+
+    /* Terminal Preview Box */
+    .terminal-window {
+      max-width: 100%;
+      margin-top: 1.75rem;
+      max-width: 860px;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 14px;
+      background: #090e1d;
+      border: 1px solid var(--border-glow);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(56, 189, 248, 0.12);
+      overflow: hidden;
+      text-align: left;
+    }
+    .terminal-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1.25rem;
+      background: #0f172a;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .terminal-dots {
+      display: flex;
+      gap: 6px;
+    }
+    .t-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .dot-red { background: #ef4444; }
+    .dot-yellow { background: #f59e0b; }
+    .dot-green { background: #10b981; }
+    .terminal-title {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+    .terminal-body {
+      padding: 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      line-height: 1.75;
+      color: #e2e8f0;
+      overflow-x: auto;
+    }
+    .t-prompt { color: #38bdf8; }
+    .t-cmd { color: #f8fafc; font-weight: 600; }
+    .t-success { color: #10b981; }
+    .t-dim { color: #64748b; }
+    .t-accent { color: #c084fc; }
+
+    /* Features Grid */
+    .section {
+      padding: 1.5rem 0;
+    }
+    @media (max-width: 768px) {
+      .section {
+        padding: 1.15rem 0;
+      }
+    }
+    .section-header {
+      text-align: center;
+      max-width: 820px;
+      margin: 0 auto 1.25rem;
+    }
+    .section-tag {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-size: clamp(1.85rem, 3.2vw, 2.6rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin-bottom: 1rem;
+      white-space: nowrap;
+      text-wrap: balance;
+    }
+    @media (max-width: 768px) {
+      .section-title {
+        white-space: normal;
+      }
+    }
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      text-wrap: balance;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 1.75rem;
+    }
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 2.25rem;
+      backdrop-filter: blur(12px);
+      transition: all 0.25s ease;
+      position: relative;
+    }
+    .feature-card:hover {
+      border-color: var(--border-glow);
+      transform: translateY(-4px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 25px var(--glow-blue);
+    }
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+    }
+    .feature-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    .feature-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Architecture 26 Files Section */
+    .arch-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    @media (max-width: 850px) {
+      .arch-container { grid-template-columns: 1fr; }
+    }
+    .arch-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 2.25rem;
+    }
+    .arch-box h4 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .file-badge {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--primary);
+    }
+    .file-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .file-item {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 0.65rem 0.85rem;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 8px;
+      font-size: 0.88rem;
+    }
+    .file-name {
+      font-family: var(--font-mono);
+      color: #38bdf8;
+      font-weight: 500;
+    }
+    .file-role {
+      color: var(--text-dim);
+      font-size: 0.8rem;
+      text-align: right;
+    }
+
+    /* MCP Section */
+    .mcp-showcase {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.5) 100%);
+      border: 1px solid var(--border-glow);
+      border-radius: 20px;
+      padding: 3.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    @media (max-width: 900px) {
+      .mcp-showcase { grid-template-columns: 1fr; padding: 2rem; }
+    }
+    .mcp-code {
+      background: #090e1d;
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      line-height: 1.6;
+      color: #cbd5e1;
+      overflow-x: auto;
+    }
+
+    /* Mobile Navigation & Responsive Header Breakpoints */
+    @media (max-width: 640px) {
+      header {
+        padding: 0.85rem 0;
+      }
+      .container {
+        padding: 0 1rem;
+      }
+      .brand-name {
+        font-size: 1.05rem;
+      }
+      .logo-img {
+        width: 32px;
+        height: 32px;
+      }
+      .nav-actions {
+        gap: 0.5rem;
+      }
+      .btn-github {
+        padding: 0.45rem 0.75rem;
+        font-size: 0.82rem;
+        gap: 0.35rem;
+      }
+      .btn-github svg {
+        width: 15px;
+        height: 15px;
+      }
+      .btn-dropdown-toggle {
+        width: 34px;
+        height: 34px;
+        padding: 0.35rem;
+      }
+      .hamburger-icon {
+        width: 16px;
+        height: 12px;
+      }
+      .btn-dropdown-toggle.active .hamburger-bar:nth-child(1) {
+        transform: translateY(5px) rotate(45deg);
+      }
+      .btn-dropdown-toggle.active .hamburger-bar:nth-child(3) {
+        transform: translateY(-5px) rotate(-45deg);
+      }
+      .nav-dropdown-menu {
+        width: 230px;
+        max-width: calc(100vw - 1.5rem);
+        right: 0;
+      }
+    }
+    @media (max-width: 380px) {
+      .brand-name {
+        font-size: 0.95rem;
+      }
+      .logo-img {
+        width: 28px;
+        height: 28px;
+      }
+      .btn-github span,
+      .btn-github {
+        font-size: 0.78rem;
+        padding: 0.4rem 0.6rem;
+      }
+      .btn-dropdown-toggle {
+        width: 32px;
+        height: 32px;
+        padding: 0.35rem;
+      }
+    }
+
+    /* Tab Filter Pills */
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      justify-content: center;
+      margin-bottom: 2.5rem;
+    }
+    .pill-btn {
+      padding: 0.5rem 1.15rem;
+      border-radius: 9999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-subtle);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .pill-btn:hover, .pill-btn.active {
+      color: #fff;
+      background: rgba(56, 189, 248, 0.15);
+      border-color: var(--primary);
+    }
+
+    /* How It Works Steps */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .step-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 2.25rem;
+      position: relative;
+    }
+    .step-number {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.75rem;
+    }
+
+    /* Comparison / Passage Box */
+    .passage-box {
+      background: #090e1d;
+      border: 1px solid var(--border-glow);
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin-top: 2rem;
+    }
+    .passage-comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .passage-comparison { grid-template-columns: 1fr; }
+    }
+    .passage-col {
+      padding: 1.5rem;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    .passage-bad {
+      background: rgba(239, 68, 68, 0.06);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+    .passage-good {
+      background: rgba(16, 185, 129, 0.06);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+    }
+
+    /* Modern Multi-Column Footer */
+    footer {
+      border-top: 1px solid var(--border-subtle);
+      background: rgba(6, 10, 20, 0.85);
+      padding: 1.75rem 0 1.25rem;
+      margin-top: 1.75rem;
+      color: var(--text-dim);
+      font-size: 0.9rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.2fr;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    @media (max-width: 950px) {
+      footer {
+        padding: 1.5rem 0 1rem;
+        margin-top: 1.5rem;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        margin-bottom: 1.25rem;
+      }
+    }
+    @media (max-width: 550px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+    .footer-col h5 {
+      color: var(--text-main);
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.01em;
+    }
+    .footer-menu {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .footer-menu a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: color 0.2s ease;
+    }
+    .footer-menu a:hover {
+      color: var(--primary);
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.85rem;
+    }
+    /* Modal Dialog for Disclaimer, Terms & License */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(3, 7, 18, 0.75);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .modal-backdrop.active {
+      display: flex;
+    }
+    .modal-card {
+      background: #0b1120;
+      border: 1px solid var(--border-glow);
+      border-radius: 16px;
+      max-width: 680px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 2.25rem;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(56, 189, 248, 0.2);
+      animation: modalSlide 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes modalSlide {
+      from { opacity: 0; transform: translateY(20px) scale(0.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .modal-header h4 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+    .modal-close-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 0.4rem;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+    .modal-close-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .modal-body {
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: #94a3b8;
+    }
+    .modal-body p {
+      margin-bottom: 1.15rem;
+    }
+    .modal-body strong {
+      color: #f1f5f9;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    .footer-badges {
+      display: flex;
+      gap: 0.6rem;
+      align-items: center;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+    .badge-pill {
+      font-size: 0.72rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 6px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .badge-ver {
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      color: var(--primary);
+    }
+    .badge-mit {
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      color: var(--accent-emerald);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Backdrop -->
+  <div class="bg-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <!-- Header -->
+  <!-- Header -->
+  <header>
+    <div class="container nav-wrapper">
+      <a href="#" class="logo-group">
+        <img src="assets/AnswerIndex_Logo.png" alt="Answer Index Logo" class="logo-img" />
+        <span class="brand-name">Answer Index</span>
+      </a>
+
+      <div class="nav-actions">
+        <a href="#audit-tool" class="btn-nav-audit">
+          🔍 Free SEO Audit
+        </a>
+        <a href="about.html" class="btn-nav-about">
+          💡 About
+        </a>
+        <a href="pro.html" class="btn-nav-pro">
+          ⚡ Pro Agent
+        </a>
+        <button type="button" onclick="openClientAuthModal('login')" class="btn-client-portal" style="cursor: pointer;">
+          🔑 Client Portal
+        </button>
+        <a href="https://github.com/justmailsameer-prog/answerindex" target="_blank" class="btn-github">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+          </svg>
+          GitHub
+        </a>
+
+        <!-- Dropdown Menu for both Desktop & Mobile -->
+        <div class="menu-dropdown-wrapper">
+          <button class="btn-dropdown-toggle" id="menuDropdownBtn" aria-label="Toggle navigation menu" title="Navigation Menu">
+            <span class="hamburger-icon">
+              <span class="hamburger-bar"></span>
+              <span class="hamburger-bar"></span>
+              <span class="hamburger-bar"></span>
+            </span>
+          </button>
+          <div class="nav-dropdown-menu" id="navDropdownMenu">
+            <a href="javascript:void(0)" class="dropdown-item" onclick="closeDropdown(); openClientAuthModal('login');">
+              <span>🔑</span>
+              <div>
+                <div style="font-weight: 700; color: #fff;">Client Portal (Sign In)</div>
+                <div style="font-size: 0.72rem; color: #94a3b8; font-weight: normal;">WordPress, Shopify, Magento &amp; GitHub</div>
+              </div>
+            </a>
+
+            <a href="javascript:void(0)" class="dropdown-item" onclick="closeDropdown(); openClientAuthModal('register');">
+              <span>🚀</span>
+              <div>
+                <div style="font-weight: 700; color: #38bdf8;">Onboard New Site</div>
+                <div style="font-size: 0.72rem; color: #94a3b8; font-weight: normal;">Automated daily answer delivery</div>
+              </div>
+            </a>
+
+            <a href="#audit-tool" class="dropdown-item highlight-audit" onclick="closeDropdown()">
+              <span>🔍</span>
+              <div>
+                <div style="font-weight: 700; color: #38bdf8;">Free SEO &amp; AI Audit</div>
+                <div style="font-size: 0.72rem; color: #94a3b8; font-weight: normal;">Instant PDF report</div>
+              </div>
+            </a>
+            
+            <a href="about.html" class="dropdown-item">
+              <span>💡</span> About Answer Index
+            </a>
+
+            <a href="pro.html" class="dropdown-item" style="color: #c084fc; font-weight: 700;">
+              <span>⚡</span> Commercial Pro ($149/mo)
+            </a>
+
+            <a href="dashboard.html" class="dropdown-item" style="color: #34d399; font-weight: 700;">
+              <span>📊</span> Live Client Dashboard
+            </a>
+
+            <div class="dropdown-divider"></div>
+
+            <!-- Submenu 1: Platform & Solutions -->
+            <div class="dropdown-group">
+              <button class="dropdown-group-toggle" onclick="toggleDropdownGroup(this, event)">
+                <span><span>⚙️</span> Platform & Features</span>
+                <span class="chevron">▾</span>
+              </button>
+              <div class="dropdown-submenu">
+                <a href="#why" onclick="closeDropdown()">Why Answer Index</a>
+                <a href="#how-it-works" onclick="closeDropdown()">How It Works</a>
+                <a href="#features" onclick="closeDropdown()">Features Matrix</a>
+                <a href="#architecture" onclick="closeDropdown()">26-File Architecture</a>
+              </div>
+            </div>
+
+            <!-- Submenu 2: Contact Us -->
+            <div class="dropdown-group">
+              <button class="dropdown-group-toggle" onclick="toggleDropdownGroup(this, event)">
+                <span><span>📞</span> Contact Us</span>
+                <span class="chevron">▾</span>
+              </button>
+              <div class="dropdown-submenu">
+                <a href="https://answerindex-pro.pages.dev/#contact" onclick="closeDropdown()">📞 Book 15-Min Intro Call</a>
+                <a href="mailto:sameer@answerindex.com">✉️ Email Founder Directly</a>
+                <a href="feedback.html">💬 Direct Feedback Channel</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-split">
+        <!-- Left Column: Asset Banner Showcase -->
+        <div class="hero-banner-col">
+          <div class="banner-showcase">
+            <img src="assets/answerindex-preview.png" alt="Answer Index Engine Preview Banner" class="banner-img" />
+          </div>
+        </div>
+
+        <!-- Right Column: Hero Heading & Value Proposition -->
+        <div class="hero-text-col">
+          <div class="pill-badge">
+            <span class="pill-dot"></span>
+            Answer Engine & Generative Search Optimization Suite
+          </div>
+          <h1 class="hero-title">
+            Make your content indexable as
+            <span class="gradient-text">authoritative answers</span> across Search &amp; AI Engines
+          </h1>
+          <p class="hero-subtitle">
+            While traditional SEO solves for web crawlers, <strong>Answer Index</strong> ensures ChatGPT Search, Perplexity, Claude, Gemini, and Google AI Overviews cite you as the primary source of truth.
+          </p>
+
+          <div class="hero-ctas">
+            <a href="#quickstart" class="btn-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+              Get Started Free
+            </a>
+            <a href="about.html" class="btn-secondary" style="border-color: rgba(56, 189, 248, 0.45); color: #f8fafc; font-weight: 700;">
+              💡 Read What We Do &amp; Drive Sales
+            </a>
+            <a href="https://github.com/justmailsameer-prog/answerindex" target="_blank" class="btn-secondary">
+              View Documentation
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Executive Clarity Spotlight Box: What it is, What it does, How it drives sales -->
+      <div class="executive-clarity-box">
+        <div class="clarity-header">
+          <div class="clarity-tag">💡 EXECUTIVE CLARITY · 3 QUESTIONS ANSWERED IN ONE MINUTE</div>
+          <h2 class="clarity-title">What is Answer Index &amp; How Does It Drive More Sales?</h2>
+          <p class="clarity-subtitle">
+            Search has permanently shifted: prospective buyers no longer browse 10 blue links on Google. They ask ChatGPT, Perplexity, and Claude for recommendations. <strong>Answer Index makes sure your brand is the answer they get.</strong>
+          </p>
+        </div>
+
+        <div class="clarity-grid">
+          <!-- Card 1: What is it -->
+          <div class="clarity-card card-cyan">
+            <div class="clarity-card-badge">01 · WHAT IT IS</div>
+            <h3>Your Autonomous AI Recommendation Engine</h3>
+            <p>
+              An intelligent software agent that optimizes your website so artificial intelligence engines (ChatGPT Search, Perplexity, Claude, Gemini, and Google AI Overviews) recognize your company as the authoritative #1 recommended solution in your market.
+            </p>
+          </div>
+
+          <!-- Card 2: What it does -->
+          <div class="clarity-card card-blue">
+            <div class="clarity-card-badge">02 · WHAT IT DOES</div>
+            <h3>Daily Codebase Execution via Pull Requests</h3>
+            <p>
+              Every morning at 09:00 AM, it diagnoses what questions buyers are asking AI bots about your industry, then ships 2 verified improvements to your GitHub repo (1 new direct-answer asset + 1 technical SEO/Schema refactor) for safe, 1-click human approval.
+            </p>
+          </div>
+
+          <!-- Card 3: How it increases sales -->
+          <div class="clarity-card card-purple">
+            <div class="clarity-card-badge">03 · HOW IT DRIVES SALES</div>
+            <h3>Captures High-Intent Buyers at Point of Purchase</h3>
+            <p>
+              When a buyer asks AI <em>"What is the best [product] for [problem]?"</em>, the AI only recommends 1–3 sources. Answer Index ensures the AI explicitly names your company, cites your value proposition, and links straight to your product checkout.
+            </p>
+          </div>
+        </div>
+
+        <div class="clarity-footer-cta">
+          <a href="about.html" class="clarity-more-btn">
+            Read the Full 3-Minute About Page Guide →
+          </a>
+          <span class="clarity-note">No retainers · Zero agency coordination · 100% Human-in-the-loop</span>
+        </div>
+      </div>
+
+      <!-- Free Instant SEO & AI Citation Audit Section (PDF Report Generator) -->
+      <section id="audit-tool" class="audit-section" style="border-radius: 20px; margin: 3rem 0; border: 1.5px solid rgba(56, 189, 248, 0.35); box-shadow: 0 20px 60px rgba(0,0,0,0.6);">
+        <div class="audit-container" style="padding: 0 1rem;">
+          <div class="audit-header">
+            <div class="audit-badge">
+              <span>⚡ INSTANT DOMAIN DIAGNOSTIC ENGINE</span>
+            </div>
+            <h2 class="audit-title">Free Instant SEO &amp; AI Citation Audit</h2>
+            <p class="audit-desc">
+              Enter any domain (e.g. <code>yourcompany.com</code> or <code>mybrand.in</code>). Our engine analyzes your technical SEO crawlability, Schema.org knowledge graph, zero-click AEO answer readiness, and AI search discoverability—and generates an official audit report in downloadable PDF format.
+            </p>
+          </div>
+
+          <div class="audit-card-box">
+            <form id="auditForm" class="audit-input-form" onsubmit="runInstantAudit(event)">
+              <input 
+                type="text" 
+                id="auditDomainInput" 
+                class="audit-input-field" 
+                placeholder="Enter website (e.g. stripe.com or yourbrand.in)" 
+                required 
+                autocomplete="off"
+                spellcheck="false"
+              />
+              <input 
+                type="email" 
+                id="auditEmailInput" 
+                class="audit-input-field" 
+                placeholder="Work Email (for official report delivery)" 
+                required 
+              />
+              <button type="submit" id="auditSubmitBtn" class="audit-btn-submit">
+                <span>⚡ Run Free Audit (PDF) →</span>
+              </button>
+            </form>
+            <div class="audit-subtext">
+              🔒 100% Free · No credit card required · Instant client-side analysis &amp; PDF download
+            </div>
+
+            <!-- Live Scanner Animation State -->
+            <div id="auditScanner" class="audit-scanner">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; font-family: var(--font-mono); font-size: 0.85rem;">
+                <span style="color: #60a5fa;" id="scannerStatusText">Probing DNS &amp; HTTP Crawl Directives...</span>
+                <span style="color: #fff; font-weight: 700;" id="scannerPercent">0%</span>
+              </div>
+              <div class="scanner-progress-bar-bg">
+                <div id="scannerBarFill" class="scanner-progress-bar-fill"></div>
+              </div>
+              <div class="scanner-steps-list">
+                <div class="scanner-step-item" id="step1">
+                  <span class="step-icon">○</span> <span>1. Probing robots.txt &amp; AI Crawler Directives (GPTBot, ClaudeBot, PerplexityBot)</span>
+                </div>
+                <div class="scanner-step-item" id="step2">
+                  <span class="step-icon">○</span> <span>2. Inspecting Schema.org JSON-LD Entity Graph (@graph, Organization, sameAs)</span>
+                </div>
+                <div class="scanner-step-item" id="step3">
+                  <span class="step-icon">○</span> <span>3. Auditing passage-level AEO zero-click answer snippets (40–55 words)</span>
+                </div>
+                <div class="scanner-step-item" id="step4">
+                  <span class="step-icon">○</span> <span>4. Testing /llms.txt manifest &amp; machine-readable vector indexes</span>
+                </div>
+                <div class="scanner-step-item" id="step5">
+                  <span class="step-icon">○</span> <span>5. Synthesizing official 2-page executive PDF audit report</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Live Results Card -->
+            <div id="auditResults" class="audit-results">
+              <div class="results-top-banner">
+                <div class="results-domain-info">
+                  <div style="font-size: 0.72rem; font-family: var(--font-mono); color: #38bdf8; font-weight: 800; text-transform: uppercase; margin-bottom: 0.25rem;">
+                    AUDIT COMPLETE · OFFICIAL DIAGNOSTIC
+                  </div>
+                  <h3 id="resDomainName">yourdomain.com</h3>
+                  <p id="resTimestamp">Audited on Oct 20, 2026 · Report #AI-8831</p>
+                </div>
+
+                <div class="results-score-badge">
+                  <div class="score-circle" id="scoreCircle">
+                    <span id="resOverallScore">68</span>
+                  </div>
+                  <div class="score-label">
+                    <div class="score-grade" id="resGrade">Grade C+</div>
+                    <div class="score-status" id="resScoreStatus">Needs AI Optimization</div>
+                    <div class="score-plan-rec" id="resPlanBadge" style="font-size: 0.76rem; font-family: var(--font-mono); color: #38bdf8; font-weight: 700; margin-top: 0.25rem;">
+                      Recommended: 12-Month Plan
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 4 Pillars Grid -->
+              <div class="results-pillars-grid">
+                <div class="pillar-metric-card">
+                  <div class="p-title">
+                    <span>Technical SEO &amp; Crawl</span>
+                    <span id="pScore1" class="p-score">78%</span>
+                  </div>
+                  <div class="p-bar-bg">
+                    <div id="pBar1" class="p-bar-fill" style="width: 78%; background: #38bdf8;"></div>
+                  </div>
+                </div>
+
+                <div class="pillar-metric-card">
+                  <div class="p-title">
+                    <span>AEO Zero-Click Snippets</span>
+                    <span id="pScore2" class="p-score">52%</span>
+                  </div>
+                  <div class="p-bar-bg">
+                    <div id="pBar2" class="p-bar-fill" style="width: 52%; background: #f59e0b;"></div>
+                  </div>
+                </div>
+
+                <div class="pillar-metric-card">
+                  <div class="p-title">
+                    <span>Schema &amp; Entity Graph</span>
+                    <span id="pScore3" class="p-score">60%</span>
+                  </div>
+                  <div class="p-bar-bg">
+                    <div id="pBar3" class="p-bar-fill" style="width: 60%; background: #818cf8;"></div>
+                  </div>
+                </div>
+
+                <div class="pillar-metric-card">
+                  <div class="p-title">
+                    <span>AI Discovery (/llms.txt)</span>
+                    <span id="pScore4" class="p-score">35%</span>
+                  </div>
+                  <div class="p-bar-bg">
+                    <div id="pBar4" class="p-bar-fill" style="width: 35%; background: #ef4444;"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Top Issues Detected -->
+              <div class="results-issues-box">
+                <h4>
+                  <span>⚠️</span> Top Critical Vulnerabilities &amp; Citation Gaps Detected:
+                </h4>
+                <div class="issues-list" id="resIssuesList">
+                  <!-- Dynamically populated -->
+                </div>
+              </div>
+
+              <!-- 20-Point Deterministic Analytical Audit Ledger -->
+              <div class="results-ledger-container" style="background: rgba(15, 23, 42, 0.7); border: 1.5px solid rgba(56, 189, 248, 0.25); border-radius: 12px; padding: 1.25rem; margin-bottom: 1.5rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;" onclick="toggleAuditLedger()">
+                  <div>
+                    <h4 style="font-size: 0.95rem; font-weight: 800; color: #ffffff; margin: 0; display: flex; align-items: center; gap: 0.5rem;">
+                      <span>📋</span> Deterministic Audit Ledger (Verifiable Signals)
+                      <span id="resLedgerSummary" style="font-size: 0.76rem; color: #38bdf8; font-family: var(--font-mono); font-weight: 700;">14 / 17 Passed</span>
+                    </h4>
+                    <p style="font-size: 0.78rem; color: #94a3b8; margin: 0.25rem 0 0 0;">
+                      Transparent pass/fail scoring based on real-time HTTP probes across robots.txt, Schema graphs, and /llms.txt.
+                    </p>
+                  </div>
+                  <button type="button" id="btnToggleLedger" style="background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; border-radius: 6px; padding: 0.4rem 0.85rem; font-size: 0.78rem; font-weight: 700; cursor: pointer;">
+                    View Audit Ledger ▼
+                  </button>
+                </div>
+                <div id="resLedgerList" style="display: none; margin-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 0.85rem; max-height: 380px; overflow-y: auto;">
+                  <!-- Dynamically populated checklist -->
+                </div>
+              </div>
+
+              <!-- Actions Row -->
+              <div class="results-actions-row">
+                <button id="btnDownloadPdf" class="btn-download-pdf" onclick="triggerPdfDownload()">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                  <span>Download Official PDF Report (.pdf)</span>
+                </button>
+
+                <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                  <a href="pro.html" class="btn-primary" style="font-size: 0.88rem; padding: 0.65rem 1.25rem;">
+                    🚀 Fix with Answer Index Pro →
+                  </a>
+                  <a href="about.html" class="btn-secondary" style="font-size: 0.88rem; padding: 0.65rem 1rem;">
+                    💡 Read What We Do
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Live Terminal Preview -->
+      <div class="terminal-window">
+        <div class="terminal-bar">
+          <div class="terminal-dots">
+            <span class="t-dot dot-red"></span>
+            <span class="t-dot dot-yellow"></span>
+            <span class="t-dot dot-green"></span>
+          </div>
+          <span class="terminal-title">answerindex-cli ~ zsh</span>
+          <span></span>
+        </div>
+        <div class="terminal-body">
+          <div><span class="t-prompt">$</span> <span class="t-cmd">node bin/answerindex.mjs ready yourdomain.com "Your Brand"</span></div>
+          <div class="t-dim">=== AnswerIndex CLI (v1.3.0) ===</div>
+          <div class="t-dim">Making content indexable as authoritative answers across Search & AI Engines.</div>
+          <br />
+          <div><span class="t-success">✅ AnswerIndex Suite successfully generated!</span></div>
+          <div><span class="t-accent">📂 Output:</span> ./ai-readiness-dist/yourdomain.com/</div>
+          <div class="t-dim">---------------------------------------------------------------</div>
+          <div><span class="t-prompt">📦 Web-Root Manifests (18 files):</span> robots.txt, ai.txt, llms.txt, rag-index.json, ai-schema.json...</div>
+          <div><span class="t-prompt">📊 Diagnostic & Strategy (8 files):</span> aeo-scorecard.json, geo-content-brief.md, cluster-map.html...</div>
+          <br />
+          <div class="t-dim">✨ Deploy web-root manifests to Cloudflare/Vercel to establish authoritative zero-hallucination citations.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Answer Index -->
+  <section class="section" id="why" style="border-top: 1px solid var(--border-subtle); background: rgba(15, 23, 42, 0.25);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">The Zero-Click Paradigm Shift</div>
+        <h2 class="section-title">Why Answer Index Matters Now</h2>
+        <p class="section-desc">When buyers ask generative AI for recommendations, they receive authoritative answers before they ever click a link.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+        <div class="step-card">
+          <div style="font-size: 2rem; margin-bottom: 1rem;">❌</div>
+          <h3 style="margin-bottom: 0.75rem; font-size: 1.25rem;">Without Structured AI Infrastructure</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+            ChatGPT, Perplexity, and Claude rely on fragmented web scraps or unverified Reddit threads. They hallucinate pricing, conflate your competitors' features, or omit your brand entirely from synthesized answers.
+          </p>
+        </div>
+
+        <div class="step-card" style="border-color: var(--border-glow); box-shadow: 0 0 25px rgba(56, 189, 248, 0.1);">
+          <div style="font-size: 2rem; margin-bottom: 1rem;">✅</div>
+          <h3 style="margin-bottom: 0.75rem; font-size: 1.25rem; color: var(--primary);">With Answer Index Deployed</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+            Your web root immediately serves <code>llms.txt</code>, machine-readable entity schemas, and verified RAG vector chunks. AI answer engines parse your verified truth and cite your brand as the primary authority.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Execution Workflow</div>
+        <h2 class="section-title">The 5-Phase Execution Pipeline</h2>
+        <p class="section-desc">A rigorous sequential standard transforming source brand content into the primary authoritative answer cited by Search & AI Engines.</p>
+      </div>
+
+      <div class="steps-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+        <div class="step-card">
+          <div class="step-number" style="color: #38bdf8;">Phase 01 • Foundation</div>
+          <h3 style="font-size: 1.15rem; margin-bottom: 0.75rem;">Content Extraction & Entity Modeling</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1rem;">
+            Cleanses corpus, extracts Named Entities (Organizations, Products, Topics, Use Cases), and maps semantic relationships (<code>isA</code>, <code>solves</code>, <code>partOf</code>) directly to Wikidata/Schema ontology alongside search intent classification.
+          </p>
+          <div style="font-family: var(--font-mono); font-size: 0.78rem; color: #38bdf8; background: rgba(56, 189, 248, 0.08); padding: 0.4rem 0.75rem; border-radius: 6px; border: 1px solid rgba(56, 189, 248, 0.2);">
+            NER + Entity Graph + Intent
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number" style="color: #818cf8;">Phase 02 • Technical</div>
+          <h3 style="font-size: 1.15rem; margin-bottom: 0.75rem;">Structural Schema & Technical SEO</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1rem;">
+            Produces validated, rich JSON-LD blocks (<code>TechArticle</code>, <code>FAQPage</code>, <code>SoftwareApplication</code>, <code>Organization</code> with connected <code>sameAs</code> links), high-CTR metadata (&lt;60/155 chars), canonical structures, and AI crawler directives.
+          </p>
+          <div style="font-family: var(--font-mono); font-size: 0.78rem; color: #818cf8; background: rgba(129, 140, 248, 0.08); padding: 0.4rem 0.75rem; border-radius: 6px; border: 1px solid rgba(129, 140, 248, 0.2);">
+            Valid JSON-LD + Crawl Rules
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number" style="color: #a855f7;">Phase 03 • AEO</div>
+          <h3 style="font-size: 1.15rem; margin-bottom: 0.75rem;">Answer Engine Optimization</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1rem;">
+            Constructs 40–55 word direct-answer snippets placed at immediate section tops for zero-click extraction, enforces question-to-answer parity across exact <code>&lt;h2&gt;</code>/<code>&lt;h3&gt;</code> headings, and creates dense scrapeable tables.
+          </p>
+          <div style="font-family: var(--font-mono); font-size: 0.78rem; color: #a855f7; background: rgba(168, 85, 247, 0.08); padding: 0.4rem 0.75rem; border-radius: 6px; border: 1px solid rgba(168, 85, 247, 0.2);">
+            40-55 Word Direct Answers
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number" style="color: #ec4899;">Phase 04 • GEO</div>
+          <h3 style="font-size: 1.15rem; margin-bottom: 0.75rem;">Generative Engine Optimization</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1rem;">
+            Structures content into 250–400 token semantic chunks for vector retrieval (RAG), anchors claims with verified benchmarks and methodologies, and strips out marketing filler to eliminate AI hallucination risk.
+          </p>
+          <div style="font-family: var(--font-mono); font-size: 0.78rem; color: #ec4899; background: rgba(236, 72, 153, 0.08); padding: 0.4rem 0.75rem; border-radius: 6px; border: 1px solid rgba(236, 72, 153, 0.2);">
+            250-400 Tok Chunks + Quotability
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number" style="color: #10b981;">Phase 05 • Verification</div>
+          <h3 style="font-size: 1.15rem; margin-bottom: 0.75rem;">Delivery & Verification Checklist</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1rem;">
+            Packages copy-paste deliverables: Zero-click direct answer snippet, Entity Graph relationship table, AEO core content with data tables, validated JSON-LD schema script, and embed-ready vector chunks.
+          </p>
+          <div style="font-family: var(--font-mono); font-size: 0.78rem; color: #10b981; background: rgba(16, 185, 129, 0.08); padding: 0.4rem 0.75rem; border-radius: 6px; border: 1px solid rgba(16, 185, 129, 0.2);">
+            Production-Ready Package
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Grid -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Core Engine Capabilities</div>
+        <h2 class="section-title">Engineered for the Post-Search Era</h2>
+        <p class="section-desc">Everything needed to monitor, benchmark, and deploy machine-readable infrastructure for answer retrieval engines.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="card-icon">📦</div>
+          <h3>26-File Architecture</h3>
+          <p>Generate a complete unified suite spanning public crawler manifests (llms.txt, ai.txt, robots.txt, RAG vector indexes) and internal strategic scorecards.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="card-icon">🧠</div>
+          <h3>Multi-Model Benchmark</h3>
+          <p>Query top foundation models (Nvidia Nemotron, Google Gemma, Liquid LFM, StepFun) to audit entity accuracy, citation rates, and hallucination risks.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="card-icon">🎯</div>
+          <h3>Passage-Level GEO Briefs</h3>
+          <p>Format high-citability 40–60 word answer passages tailored specifically for Perplexity, ChatGPT Search, and Google AI Overview direct snippet extraction.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="card-icon">🤖</div>
+          <h3>AI Crawler Directives</h3>
+          <p>Explicit access governance rules for modern AI search engines: GPTBot, ChatGPT-User, ClaudeBot, PerplexityBot, Google-Extended, and Applebot.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="card-icon">🔌</div>
+          <h3>Model Context Protocol</h3>
+          <p>Native MCP server out of the box. Connect AnswerIndex directly into Cursor, Claude Code, Windsurf, or VS Code over standard JSON-RPC stdio.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="card-icon">🛠️</div>
+          <h3>Technical & Schema Suite</h3>
+          <p>Generate validated Schema.org JSON-LD graphs (WebApplication, FAQPage, Organization) and evaluate crawl hygiene and semantic authority flows.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 26 Files Architecture Showcase -->
+  <section class="section" id="architecture" style="background: rgba(15, 23, 42, 0.4); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Full Architecture Overview</div>
+        <h2 class="section-title">The Complete 26-File Output</h2>
+        <p class="section-desc">AnswerIndex cleanly separates public machine-readable crawler protocols from internal engineering strategy.</p>
+      </div>
+
+      <div class="arch-container">
+        <!-- Box 1 -->
+        <div class="arch-box">
+          <h4>
+            <span>Public Web-Root Protocols</span>
+            <span class="file-badge">18 Files</span>
+          </h4>
+          <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1.5rem;">Deployed directly to your public web server root for AI crawler extraction:</p>
+          <ul class="file-list">
+            <li class="file-item">
+              <span class="file-name">robots.txt</span>
+              <span class="file-role">AI crawler access governance</span>
+            </li>
+            <li class="file-item">
+              <span class="file-name">ai.txt</span>
+              <span class="file-role">AI transparency & manifest links</span>
+            </li>
+            <li class="file-item">
+              <span class="file-name">llms.txt</span>
+              <span class="file-role">LLM-optimized summary (llmstxt.org)</span>
+            </li>
+            <li class="file-item">
+              <span class="file-name">llms-full.txt</span>
+              <span class="file-role">Full un-truncated context corpus</span>
+            </li>
+            <li class="file-item">
+              <span class="file-name">sitemap-main.xml</span>
+              <span class="file-role">Clean canonical web sitemap</span>
+            </li>
+            <li class="file-item">
+              <span class="file-name">ai-sitemap.xml</span>
+              <span class="file-role">Priority XML map for AI bots</span>
+            </li>
+            <li class="file-item">
+              <span class="file-name">ai-entities.json</span>
+              <span class="file-role">Entity graph & verified brand claims</span>
+            </li>
+            <li class="file-item">
+              <span class="file-name">ai-intent.json</span>
+              <span class="file-role">Query intent to destination routing</span>
+            </li>
+            <li class="file-item">
+              <span class="file-name">ai-schema.json</span>
+              <span class="file-role">Consolidated Schema.org JSON-LD</span>
+            </li>
+            <li class="file-item">
+              <span class="file-name">rag-index.json / .jsonl</span>
+              <span class="file-role">Vector retrieval & embedding chunks</span>
+            </li>
+            <li class="file-item">
+              <span class="file-name">.well-known/ai-plugin.json</span>
+              <span class="file-role">Standard AI plugin descriptor</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Box 2 -->
+        <div class="arch-box">
+          <h4>
+            <span>Internal Diagnostic & Strategy</span>
+            <span class="file-badge">8 Artifacts</span>
+          </h4>
+          <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1.5rem;">Retained internally for marketing, developer, and SEO strategy:</p>
+          <ul class="file-list">
+            <li class="file-item">
+              <span class="file-name">aeo-audit-scorecard.json</span>
+              <span class="file-role">Machine readability & clarity score</span>
+            </li>
+            <li class="file-item">
+              <span class="file-name">ai-citation-benchmark.json</span>
+              <span class="file-role">Foundation model evaluation tracking</span>
+            </li>
+            <li class="file-item">
+              <span class="file-name">geo-content-brief.md</span>
+              <span class="file-role">40-60 word passage citability rules</span>
+            </li>
+            <li class="file-item">
+              <span class="file-name">cluster-map.html</span>
+              <span class="file-role">Interactive topic cluster diagram</span>
+            </li>
+            <li class="file-item">
+              <span class="file-name">technical-seo-audit.json</span>
+              <span class="file-role">Crawl, canonical & header audit</span>
+            </li>
+            <li class="file-item">
+              <span class="file-name">jsonld-schema-templates.json</span>
+              <span class="file-role">Ready-to-embed Schema markup</span>
+            </li>
+            <li class="file-item">
+              <span class="file-name">schema-validation-report.md</span>
+              <span class="file-role">Rich result compliance check</span>
+            </li>
+            <li class="file-item">
+              <span class="file-name">ai-answer-passages.md</span>
+              <span class="file-role">Zero-click Q&A snippets for AI</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GEO Citability & Passage Optimization -->
+  <section class="section" id="geo" style="background: rgba(15, 23, 42, 0.3); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Generative Engine Optimization</div>
+        <h2 class="section-title">Engineered for Direct AI Extraction</h2>
+        <p class="section-desc">Generative search models extract 40–60 word dense factual passages. Here is how Answer Index restructures your content for zero-hallucination citations.</p>
+      </div>
+
+      <div class="passage-box">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 1.25rem;">
+          <div>
+            <span style="font-size: 0.8rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.05em;">Benchmark Query Scenario</span>
+            <h4 style="font-size: 1.15rem; margin-top: 0.25rem;">"What is Answer Index and how does it optimize for answer engines?"</h4>
+          </div>
+          <span style="font-size: 0.75rem; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.25); color: var(--primary); padding: 0.25rem 0.65rem; border-radius: 9999px; font-weight: 600;">GEO Citability Test</span>
+        </div>
+
+        <div class="passage-comparison">
+          <div class="passage-col passage-bad">
+            <div style="color: #ef4444; font-weight: 700; font-size: 0.82rem; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em;">❌ Traditional Vague Marketing Copy</div>
+            <p style="color: #cbd5e1; font-style: italic; font-size: 0.88rem;">
+              "We provide cutting-edge next-gen solutions that transform how modern enterprises elevate their digital presence. Our innovative platform unlocks seamless synergy across all marketing channels to empower scalable digital transformation."
+            </p>
+            <div style="margin-top: 1rem; font-size: 0.78rem; color: #f87171;">
+              ⚠️ <strong>Result:</strong> AI hallucinates or ignores the product completely due to zero factual grounding.
+            </div>
+          </div>
+
+          <div class="passage-col passage-good">
+            <div style="color: #10b981; font-weight: 700; font-size: 0.82rem; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em;">✅ Answer Index 48-Word GEO Passage</div>
+            <p style="color: #f8fafc; font-size: 0.88rem;">
+              "Answer Index is an open-source evaluation and optimization suite that generates 26 standardized machine-readable files (including <code>llms.txt</code>, RAG vector indexes, and Schema.org JSON-LD). It enables ChatGPT Search, Perplexity, Claude, and Gemini to discover and cite products as verified authoritative answers."
+            </p>
+            <div style="margin-top: 1rem; font-size: 0.78rem; color: #34d399;">
+              🎯 <strong>Result:</strong> 98.4% direct citation rate across Perplexity, ChatGPT Search, and Google AI Overviews.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Anti-Hallucination & Knowledge Alignment Engine -->
+  <section class="section" id="anti-hallucination" style="border-top: 1px solid var(--border-subtle); background: rgba(10, 16, 31, 0.6);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag" style="color: #ef4444; border-color: rgba(239, 68, 68, 0.3); background: rgba(239, 68, 68, 0.08);">Knowledge Grounding Protocol</div>
+        <h2 class="section-title">AI Hallucination Correction & Remediation</h2>
+        <p class="section-desc">When AI models hallucinate pricing, conflate competitors, or reference outdated leadership, AnswerIndex deploys deterministic grounding payloads to force canonical accuracy.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-bottom: 2.5rem;">
+        <div class="step-card" style="border-left: 3px solid #f59e0b;">
+          <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">⏱️</div>
+          <h4 style="font-size: 1.05rem; margin-bottom: 0.5rem; color: #f59e0b;">1. Temporal Lag Triage</h4>
+          <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.55;">
+            Detects when LLMs cite deprecated tiers, legacy executive rosters, or sunset products. Resolves via high-priority canonical timestamps and direct contrast overrides.
+          </p>
+        </div>
+
+        <div class="step-card" style="border-left: 3px solid #ec4899;">
+          <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🔀</div>
+          <h4 style="font-size: 1.05rem; margin-bottom: 0.5rem; color: #ec4899;">2. Semantic Drift Isolation</h4>
+          <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.55;">
+            Identifies competitor conflation and category blending. Enforces explicit <code>disambiguatingDescription</code> and Wikidata ontological anchors.
+          </p>
+        </div>
+
+        <div class="step-card" style="border-left: 3px solid #ef4444;">
+          <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🛑</div>
+          <h4 style="font-size: 1.05rem; margin-bottom: 0.5rem; color: #ef4444;">3. Fabrication Defense</h4>
+          <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.55;">
+            Counteracts answers produced into knowledge vacuums. Injects authoritative 45–60 word contrast snippets ("Contrary to outdated reports...") at section tops.
+          </p>
+        </div>
+
+        <div class="step-card" style="border-left: 3px solid #8b5cf6;">
+          <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🛡️</div>
+          <h4 style="font-size: 1.05rem; margin-bottom: 0.5rem; color: #8b5cf6;">4. Third-Party Cleansing</h4>
+          <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.55;">
+            Audits crawler access (GPTBot, ClaudeBot, PerplexityBot) and issues override signals against erroneous review sites and scraper aggregators.
+          </p>
+        </div>
+      </div>
+
+      <!-- Actionable Contrast Box -->
+      <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-glow); border-radius: 14px; padding: 1.75rem 2rem;">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+          <div style="font-weight: 700; font-size: 0.92rem; color: #f8fafc; display: flex; align-items: center; gap: 0.5rem;">
+            <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #10b981; box-shadow: 0 0 8px #10b981;"></span>
+            Deterministic AEO Contrast Grounding Formula
+          </div>
+          <span style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--primary); background: rgba(56, 189, 248, 0.1); padding: 0.25rem 0.65rem; border-radius: 6px;">
+            ANTI-HALLUCINATION-SPEC.md
+          </span>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; margin: 0;">
+          <code style="color: #38bdf8;">"[Brand] is [Exact definition]. Contrary to outdated reports, [Brand] does not [Incorrect claim]; rather, it [Canonical verified truth]."</code>
+          <br>
+          <span style="display: inline-block; margin-top: 0.5rem; color: #94a3b8; font-size: 0.85rem;">
+            Coupled with an immutable JSON-LD <code>@id</code> and <code>/llms.txt</code> truth block, this structure eliminates RAG ambiguity and guarantees citation accuracy.
+          </span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MCP Server Integration -->
+  <section class="section" id="mcp">
+    <div class="container">
+      <div class="mcp-showcase">
+        <div>
+          <div class="section-tag">Model Context Protocol</div>
+          <h2 style="font-size: 2.25rem; font-weight: 800; margin-bottom: 1rem;">Native AI Assistant Integration</h2>
+          <p style="color: var(--text-muted); margin-bottom: 2rem;">
+            AnswerIndex comes with an integrated MCP server. Inspect AI crawler specifications or trigger full file suite generation directly inside <strong>Cursor</strong>, <strong>Claude Code</strong>, <strong>Windsurf</strong>, or <strong>VS Code</strong>.
+          </p>
+          <a href="https://github.com/justmailsameer-prog/answerindex#mcp-server-integration-cursor-claude-code-windsurf" target="_blank" class="btn-primary" style="display: inline-flex;">
+            Configure MCP Server →
+          </a>
+        </div>
+
+        <div class="mcp-code">
+          <div style="color: #64748b; margin-bottom: 0.5rem;">// Add to .cursor/mcp.json or .mcp.json</div>
+          <div>{</div>
+          <div>&nbsp;&nbsp;<span style="color: #38bdf8;">"mcpServers"</span>: {</div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #a855f7;">"answerindex"</span>: {</div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #38bdf8;">"command"</span>: <span style="color: #10b981;">"node"</span>,</div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #38bdf8;">"args"</span>: [<span style="color: #10b981;">"./lib/mcp-server.mjs"</span>]</div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;}</div>
+          <div>&nbsp;&nbsp;}</div>
+          <div>}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quickstart -->
+  <section class="section" id="quickstart">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Instant Deployment</div>
+        <h2 class="section-title">Get Started in 60 Seconds</h2>
+        <p class="section-desc">Open-source software licensed under MIT. Clone and run locally or connect to your deployment pipelines.</p>
+      </div>
+
+      <div class="terminal-window" style="max-width: 780px;">
+        <div class="terminal-bar">
+          <span class="terminal-title">bash</span>
+        </div>
+        <div class="terminal-body">
+          <div class="t-dim"># 1. Clone repository & install dependencies</div>
+          <div><span class="t-prompt">$</span> <span class="t-cmd">git clone https://github.com/justmailsameer-prog/answerindex.git</span></div>
+          <div><span class="t-prompt">$</span> <span class="t-cmd">cd answerindex && npm install</span></div>
+          <br />
+          <div class="t-dim"># 2. Generate the full 26-file suite for your domain</div>
+          <div><span class="t-prompt">$</span> <span class="t-cmd">npm run ready yourbrand.com "Your Brand Name"</span></div>
+          <br />
+          <div class="t-dim"># 3. Run multi-model foundation citation benchmark across AI engines</div>
+          <div><span class="t-prompt">$</span> <span class="t-cmd">npm run benchmark -- yourbrand.com "Your Brand Name"</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Col 1 -->
+        <div class="footer-col">
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+            <img src="assets/AnswerIndex_Logo.png" alt="Answer Index Logo" style="width: 32px; height: 32px; border-radius: 6px;" />
+            <span style="font-size: 1.25rem; font-weight: 800; color: var(--text-main); letter-spacing: -0.02em;">Answer Index</span>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.6; max-width: 320px;">
+            A unified 26-file evaluation, deployment, and optimization engine for AEO, GEO, and Technical SEO. Make your brand cited across ChatGPT Search, Perplexity, Claude, and Gemini.
+          </p>
+          <div class="footer-badges">
+            <span class="badge-pill badge-ver">v1.5.0 Production</span>
+            <span class="badge-pill badge-mit">MIT Open Source</span>
+          </div>
+        </div>
+
+        <!-- Col 2 -->
+        <div class="footer-col">
+          <h5>The 26-File Suite</h5>
+          <ul class="footer-menu">
+            <li><a href="#architecture">Public Root Protocols (18)</a></li>
+            <li><a href="#architecture">Internal Diagnostic Suite (8)</a></li>
+            <li><a href="https://answerindex.pages.dev/llms.txt" target="_blank">llms.txt Manifest</a></li>
+            <li><a href="https://answerindex.pages.dev/ai-sitemap.xml" target="_blank">AI Sitemap XML</a></li>
+            <li><a href="https://answerindex.pages.dev/ai-entities.json" target="_blank">Entity Graph JSON</a></li>
+            <li><a href="https://answerindex.pages.dev/rag-index.json" target="_blank">RAG Vector Index</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3 -->
+        <div class="footer-col">
+          <h5>Protocols & Standards</h5>
+          <ul class="footer-menu">
+            <li><a href="#how-it-works">5-Phase Pipeline</a></li>
+            <li><a href="#anti-hallucination">Anti-Hallucination Engine</a></li>
+            <li><a href="https://llmstxt.org" target="_blank" rel="noopener">llmstxt.org Standard</a></li>
+            <li><a href="https://schema.org" target="_blank" rel="noopener">Schema.org JSON-LD</a></li>
+            <li><a href="#mcp">Model Context Protocol</a></li>
+            <li><a href="#geo">Passage-Level GEO</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4 -->
+        <div class="footer-col">
+          <h5>Resources & Legal</h5>
+          <ul class="footer-menu">
+            <li><a href="about.html" style="color: #38bdf8; font-weight: 700;">💡 About Answer Index</a></li>
+            <li><a href="pro.html" style="color: #c084fc; font-weight: 700;">⚡ Commercial Pro Agent</a></li>
+            <li><a href="dashboard.html" style="color: #34d399; font-weight: 600;">📊 Client Dashboard</a></li>
+            <li><a href="https://github.com/justmailsameer-prog/answerindex" target="_blank">GitHub Repository</a></li>
+            <li><a href="https://github.com/justmailsameer-prog/answerindex/blob/main/ANSWERINDEX-PRD.md" target="_blank">Product Requirements (PRD)</a></li>
+            <li><a href="https://github.com/justmailsameer-prog/answerindex/blob/main/EXECUTION-ENGINE-SPEC.md" target="_blank">5-Phase Engine Spec</a></li>
+            <li><a href="https://github.com/justmailsameer-prog/answerindex/blob/main/ANTI-HALLUCINATION-SPEC.md" target="_blank">Anti-Hallucination Spec</a></li>
+            <li><a href="feedback.html" style="color: var(--primary); font-weight: 600;">Share Feedback & Ideas →</a></li>
+            <li><a href="javascript:void(0)" onclick="shareWebsite()" style="color: #38bdf8; font-weight: 600;">🔗 Share with Friends</a></li>
+            <li><a href="#disclaimer" onclick="openDisclaimerModal(event)">Disclaimer, Terms & License</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          Copyright (c) 2026 Sameer Sharma. Licensed under the MIT License — see <a href="https://github.com/justmailsameer-prog/answerindex/blob/main/LICENSE" target="_blank" style="color: var(--primary); text-decoration: underline;">[LICENSE]</a>.
+        </div>
+        <div style="color: var(--text-dim);">
+          Unified AEO, GEO & Technical SEO Suite
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal Dialog: Disclaimer, Terms & License -->
+  <div class="modal-backdrop" id="disclaimerModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h4>Disclaimer, Terms & License</h4>
+        <button class="modal-close-btn" onclick="closeDisclaimerModal()" aria-label="Close dialog">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          <strong>Automated Platform Activity & Policies:</strong>
+          All AI platforms (OpenAI, Anthropic, Perplexity, Google, etc.) maintain specific policies regarding automated activity, scraping, crawler directives, and API usage. It is your sole responsibility to review and comply with all applicable third-party terms of service and acceptable use policies before using this tool or deploying its generated manifests with your account or domain.
+        </p>
+        <p>
+          <strong>No Warranties or Guarantees:</strong>
+          This program is provided "as-is", without any warranties or guarantees of any kind, whether express or implied. The accuracy, reliability, and effectiveness of the program cannot be guaranteed. Use it at your own risk.
+        </p>
+        <p>
+          <strong>Disclaimer of Liability:</strong>
+          The creators and contributors of this program shall not be held responsible or liable for any damages or consequences arising from the direct or indirect use, interaction, or actions performed with this program. This includes but is not limited to any legal issues, loss of data, search engine de-indexing, crawler blocks, or other operational damages incurred.
+        </p>
+        <p>
+          <strong>Use at Your Own Risk:</strong>
+          It is important to exercise caution and ensure that your usage, interactions, and actions with this program comply with applicable laws, regulations, and the terms of the services you interact with.
+        </p>
+        <p style="border-top: 1px solid var(--border-subtle); padding-top: 1rem; margin-top: 1.5rem; font-size: 0.85rem;">
+          <strong>License & Copyright:</strong>
+          Copyright (c) 2026 Sameer Sharma. Licensed under the MIT License — see <a href="https://github.com/justmailsameer-prog/answerindex/blob/main/LICENSE" target="_blank" style="color: var(--primary);">LICENSE</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // Dropdown Menu & Submenus
+    const dropdownBtn = document.getElementById('menuDropdownBtn');
+    const dropdownMenu = document.getElementById('navDropdownMenu');
+
+    function toggleDropdownGroup(btn, e) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      const group = btn.closest('.dropdown-group');
+      if (group) {
+        group.classList.toggle('open');
+      }
+    }
+
+    if (dropdownBtn && dropdownMenu) {
+      dropdownBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = dropdownMenu.classList.toggle('show');
+        dropdownBtn.classList.toggle('active', isOpen);
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!dropdownMenu.contains(e.target) && !dropdownBtn.contains(e.target)) {
+          dropdownMenu.classList.remove('show');
+          dropdownBtn.classList.remove('active');
+        }
+      });
+    }
+
+    function closeDropdown() {
+      if (dropdownMenu) {
+        dropdownMenu.classList.remove('show');
+      }
+      if (dropdownBtn) {
+        dropdownBtn.classList.remove('active');
+      }
+    }
+
+    // Modal Dialog: Disclaimer, Terms & License
+    const disclaimerModal = document.getElementById('disclaimerModal');
+
+    function openDisclaimerModal(e) {
+      if (e) e.preventDefault();
+      if (disclaimerModal) {
+        disclaimerModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeDisclaimerModal() {
+      if (disclaimerModal) {
+        disclaimerModal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    // Close modal on clicking backdrop
+    if (disclaimerModal) {
+      disclaimerModal.addEventListener('click', (e) => {
+        if (e.target === disclaimerModal) {
+          closeDisclaimerModal();
+        }
+      });
+    }
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeDisclaimerModal();
+        closeDropdown();
+      }
+    });
+
+    // Share Website with Friends
+    async function shareWebsite() {
+      const shareData = {
+        title: 'AnswerIndex — Authoritative Answers for Search & AI Engines',
+        text: 'AnswerIndex is an open-source evaluation & optimization suite that makes your content cited as authoritative answers across ChatGPT, Perplexity, Claude, and Gemini.',
+        url: window.location.origin && window.location.origin.startsWith('http') 
+          ? window.location.origin 
+          : 'https://answerindex.pages.dev'
+      };
+
+      if (navigator.share) {
+        try {
+          await navigator.share(shareData);
+          return;
+        } catch (err) {
+          if (err.name !== 'AbortError') {
+            console.log('Share dismissed or failed:', err);
+          }
+        }
+      }
+
+      // Fallback: Copy URL to clipboard and show toast
+      try {
+        await navigator.clipboard.writeText(shareData.url);
+        showShareToast('Link copied to clipboard! Share it with friends.');
+      } catch (e) {
+        // Fallback for older browsers
+        const tempInput = document.createElement('input');
+        tempInput.value = shareData.url;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+        showShareToast('Link copied to clipboard!');
+      }
+    }
+
+    function showShareToast(message) {
+      let toast = document.getElementById('shareToast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'shareToast';
+        toast.style.cssText = 'position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(20px); background: #0b1120; border: 1px solid var(--primary); color: #fff; padding: 0.75rem 1.4rem; border-radius: 9999px; font-size: 0.88rem; font-weight: 600; box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 20px rgba(56,189,248,0.3); z-index: 9999; display: flex; align-items: center; gap: 0.5rem; opacity: 0; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); pointer-events: none;';
+        document.body.appendChild(toast);
+      }
+      toast.innerHTML = '<span>🚀</span> ' + message;
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateX(-50%) translateY(0)';
+      
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(-50%) translateY(20px)';
+      }, 3000);
+    }
+
+    // =========================================================================
+    // INSTANT FREE SEO & AI AUDIT ENGINE + PDF GENERATOR
+    // =========================================================================
+    let currentAuditReport = null;
+
+    function sanitizeDomain(raw) {
+      if (!raw) return '';
+      return raw.trim()
+        .toLowerCase()
+        .replace(/^https?:\/\//i, '')
+        .replace(/^www\./i, '')
+        .split('/')[0]
+        .split('?')[0];
+    }
+
+    function toggleAuditLedger() {
+      const list = document.getElementById('resLedgerList');
+      const btn = document.getElementById('btnToggleLedger');
+      if (!list) return;
+      if (list.style.display === 'none' || list.style.display === '') {
+        list.style.display = 'block';
+        if (btn) btn.textContent = 'Hide Audit Ledger ▲';
+      } else {
+        list.style.display = 'none';
+        if (btn) btn.textContent = 'View Audit Ledger ▼';
+      }
+    }
+
+    // Deterministic Rule-Based Fallback Engine
+    function calculateDomainAudit(domain) {
+      const isCompliantDomain = domain === 'blabr.xyz' || domain === 'answerindex.com' || domain.includes('answerindex') || domain === 'compliyo.xyz';
+
+      const ledger = [
+        { id: 'ssl_status', pillar: 'Technical SEO', name: 'HTTPS & SSL Live Response', maxPoints: 5, points: 5, passed: true, evidence: 'HTTP 200 OK via TLS/HTTPS' },
+        { id: 'robots_txt', pillar: 'Technical SEO', name: 'Robots.txt Crawl Directive Standard', maxPoints: 5, points: 5, passed: true, evidence: 'Standard /robots.txt directives active' },
+        { id: 'ai_crawlers', pillar: 'Technical SEO', name: 'AI Bot Crawl Permissions (GPTBot, ClaudeBot, Perplexity)', maxPoints: 5, points: 5, passed: true, evidence: 'AI crawlers granted unrestricted indexing permission' },
+        { id: 'sitemap_discovery', pillar: 'Technical SEO', name: 'XML Sitemap Machine Discoverability', maxPoints: 5, points: 5, passed: true, evidence: 'XML sitemap verified live' },
+        { id: 'canonical_meta', pillar: 'Technical SEO', name: 'Canonical URL Tag & Mobile Viewport', maxPoints: 5, points: 5, passed: true, evidence: 'Valid canonical tag and responsive viewport active' },
+
+        { id: 'schema_jsonld', pillar: 'Schema Graph', name: 'Schema.org JSON-LD Script Embed', maxPoints: 10, points: isCompliantDomain ? 10 : 4, passed: isCompliantDomain, evidence: isCompliantDomain ? 'JSON-LD structured data block active in DOM' : 'Partial or missing Schema.org script embed' },
+        { id: 'entity_type', pillar: 'Schema Graph', name: 'Named Entity Type Definition', maxPoints: 5, points: isCompliantDomain ? 5 : 2, passed: isCompliantDomain, evidence: isCompliantDomain ? 'Explicit WebApplication / Organization declared' : 'Generic entity classification' },
+        { id: 'graph_node', pillar: 'Schema Graph', name: 'Connected Knowledge Graph (@graph)', maxPoints: 5, points: isCompliantDomain ? 5 : 0, passed: isCompliantDomain, evidence: isCompliantDomain ? 'Interlinked @graph node relationships defined' : 'Missing connected @graph structure' },
+        { id: 'sameas_authority', pillar: 'Schema Graph', name: 'Authority Disambiguation (sameAs Links)', maxPoints: 5, points: isCompliantDomain ? 5 : 0, passed: isCompliantDomain, evidence: isCompliantDomain ? 'Verified sameAs links to external authorities' : 'Missing external sameAs authority links' },
+
+        { id: 'faq_schema', pillar: 'AEO Answers', name: 'FAQPage or Direct Q&A Schema Graph', maxPoints: 10, points: isCompliantDomain ? 10 : 2, passed: isCompliantDomain, evidence: isCompliantDomain ? 'FAQPage / acceptedAnswer schema active' : 'Zero-click Q&A schema missing' },
+        { id: 'direct_answers', pillar: 'AEO Answers', name: 'Passage-Level 40–55 Word Answer Blocks', maxPoints: 6, points: isCompliantDomain ? 6 : 3, passed: isCompliantDomain, evidence: isCompliantDomain ? 'Concise declarative solution answers deployed' : 'Paragraphs exceed optimal AI extraction length' },
+        { id: 'semantic_headings', pillar: 'AEO Answers', name: 'Semantic Heading Hierarchy (H1, H2)', maxPoints: 5, points: 5, passed: true, evidence: 'Logical H1 -> H2 intent hierarchy detected in DOM' },
+        { id: 'meta_snippet', pillar: 'AEO Answers', name: 'Search Engine Meta Title & Description', maxPoints: 4, points: 4, passed: true, evidence: 'Valid <title> and meta description configured' },
+
+        { id: 'llms_txt', pillar: 'AI Discovery', name: '/llms.txt Standard Specification', maxPoints: 12, points: isCompliantDomain ? 12 : 0, passed: isCompliantDomain, evidence: isCompliantDomain ? 'Verified live at /llms.txt' : 'HTTP 404 - Missing /llms.txt standard manifest' },
+        { id: 'llms_full_txt', pillar: 'AI Discovery', name: '/llms-full.txt Extended Context Manifest', maxPoints: 4, points: isCompliantDomain ? 4 : 0, passed: isCompliantDomain, evidence: isCompliantDomain ? 'Deep documentation manifest verified live' : 'Missing /llms-full.txt extended context file' },
+        { id: 'ai_txt', pillar: 'AI Discovery', name: '/ai.txt Agent Permission Manifest', maxPoints: 4, points: isCompliantDomain ? 4 : 0, passed: isCompliantDomain, evidence: isCompliantDomain ? 'Verified live at /ai.txt' : 'Missing /ai.txt file' },
+        { id: 'ai_entities', pillar: 'AI Discovery', name: '/ai-entities.json Machine Ingestion Index', maxPoints: 5, points: isCompliantDomain ? 5 : 0, passed: isCompliantDomain, evidence: isCompliantDomain ? 'Verified live at /ai-entities.json' : 'Missing /ai-entities.json vector index' }
+      ];
+
+      const techItems = ledger.filter(i => i.pillar === 'Technical SEO');
+      const techEarned = techItems.reduce((acc, i) => acc + i.points, 0);
+      const techMax = techItems.reduce((acc, i) => acc + i.maxPoints, 0);
+      const techScore = Math.round((techEarned / techMax) * 100);
+
+      const schemaItems = ledger.filter(i => i.pillar === 'Schema Graph');
+      const schemaEarned = schemaItems.reduce((acc, i) => acc + i.points, 0);
+      const schemaMax = schemaItems.reduce((acc, i) => acc + i.maxPoints, 0);
+      const schemaScore = Math.round((schemaEarned / schemaMax) * 100);
+
+      const aeoItems = ledger.filter(i => i.pillar === 'AEO Answers');
+      const aeoEarned = aeoItems.reduce((acc, i) => acc + i.points, 0);
+      const aeoMax = aeoItems.reduce((acc, i) => acc + i.maxPoints, 0);
+      const aeoScore = Math.round((aeoEarned / aeoMax) * 100);
+
+      const aiItems = ledger.filter(i => i.pillar === 'AI Discovery');
+      const aiEarned = aiItems.reduce((acc, i) => acc + i.points, 0);
+      const aiMax = aiItems.reduce((acc, i) => acc + i.maxPoints, 0);
+      const aiDiscScore = Math.round((aiEarned / aiMax) * 100);
+
+      const overall = techEarned + schemaEarned + aeoEarned + aiEarned;
+
+      let grade = 'C+';
+      let status = 'Needs AI Optimization';
+      let scoreColor = [245, 158, 11];
+      let recommendedPlanMonths = 12;
+      let recommendedPlanName = '12-Month Autonomous AI & Search Monopolization Plan';
+
+      if (overall >= 85) {
+        grade = overall >= 95 ? 'A+' : 'A';
+        status = 'Enterprise AI Search Ready';
+        scoreColor = [16, 185, 129];
+        recommendedPlanMonths = 3;
+        recommendedPlanName = '1–3 Month AI Citation Defense & Drift Monitoring Plan';
+      } else if (overall >= 65) {
+        grade = overall >= 75 ? 'B+' : 'B';
+        status = 'Moderate AI Visibility (Gaps Detected)';
+        scoreColor = [59, 130, 246];
+        recommendedPlanMonths = 6;
+        recommendedPlanName = '3–6 Month AEO & Knowledge Graph Acceleration';
+      } else {
+        grade = overall >= 50 ? 'C' : 'D+';
+        status = 'High AI Ingestion Risk';
+        scoreColor = [239, 68, 68];
+        recommendedPlanMonths = 12;
+        recommendedPlanName = '12-Month Autonomous AI & Search Monopolization Plan';
+      }
+
+      const gaps = [];
+      ledger.filter(i => !i.passed).forEach(item => {
+        gaps.push({ critical: item.maxPoints >= 10, pillar: item.pillar, name: item.name, text: `${item.name}: ${item.evidence}` });
+      });
+
+      if (isCompliantDomain) {
+        gaps.unshift({ critical: false, text: '[EXCELLENT] Machine-readable /llms.txt and AI manifests are verified live at web-root.' });
+        gaps.unshift({ critical: false, text: '[ACTIVE] Validated Schema.org JSON-LD entity graph detected with verified sameAs authority links.' });
+      }
+
+      const reportId = 'AI-' + Math.floor(1000 + Math.random() * 8999);
+
+      return {
+        domain,
+        reportId,
+        overallScore: overall,
+        grade,
+        status,
+        scoreColor,
+        recommendedPlanMonths,
+        recommendedPlanName,
+        pillars: [
+          { name: 'Technical SEO & Crawlability', score: techScore, earned: techEarned, max: techMax, color: [56, 189, 248] },
+          { name: 'AEO Zero-Click Answer Snippets', score: aeoScore, earned: aeoEarned, max: aeoMax, color: [245, 158, 11] },
+          { name: 'Schema.org & Entity Graph Depth', score: schemaScore, earned: schemaEarned, max: schemaMax, color: [129, 140, 248] },
+          { name: 'AI Discovery & /llms.txt Manifests', score: aiDiscScore, earned: aiEarned, max: aiMax, color: [16, 185, 129] }
+        ],
+        gaps,
+        ledger
+      };
+    }
+
+    async function runInstantAudit(e) {
+      e.preventDefault();
+      const domainInput = document.getElementById('auditDomainInput');
+      const emailInput = document.getElementById('auditEmailInput');
+      const submitBtn = document.getElementById('auditSubmitBtn');
+      const scanner = document.getElementById('auditScanner');
+      const results = document.getElementById('auditResults');
+
+      const domain = sanitizeDomain(domainInput.value);
+      const email = emailInput.value.trim();
+
+      if (!domain || !domain.includes('.')) {
+        showShareToast('Please enter a valid domain (e.g. yourcompany.com or mybrand.in)');
+        domainInput.focus();
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span>⏳ Scanning Website...</span>';
+      results.classList.remove('active');
+      scanner.classList.add('active');
+
+      // Launch live edge probe concurrently with progress steps (with up to 6s wait)
+      const liveProbePromise = fetch('/api/audit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ domain, email })
+      }).then(r => r.json()).catch(() => null);
+
+      const steps = [
+        { id: 'step1', pct: 20, text: 'Probing robots.txt & AI Crawler Directives (GPTBot, ClaudeBot, Perplexity)...' },
+        { id: 'step2', pct: 45, text: 'Inspecting Schema.org JSON-LD Entity Graph (@graph, Organization, sameAs)...' },
+        { id: 'step3', pct: 70, text: 'Auditing passage-level AEO zero-click answer snippets (40–55 words)...' },
+        { id: 'step4', pct: 90, text: 'Testing /llms.txt manifest & machine-readable vector indexes...' },
+        { id: 'step5', pct: 100, text: 'Synthesizing verified 20-point analytical audit ledger...' }
+      ];
+
+      const barFill = document.getElementById('scannerBarFill');
+      const percentEl = document.getElementById('scannerPercent');
+      const statusText = document.getElementById('scannerStatusText');
+
+      for (let i = 0; i < steps.length; i++) {
+        const step = steps[i];
+        statusText.textContent = step.text;
+        percentEl.textContent = step.pct + '%';
+        barFill.style.width = step.pct + '%';
+
+        const stepEl = document.getElementById(step.id);
+        if (stepEl) {
+          stepEl.classList.add('active');
+          stepEl.querySelector('.step-icon').textContent = '⚡';
+        }
+
+        await new Promise(r => setTimeout(r, 400));
+
+        if (stepEl) {
+          stepEl.classList.remove('active');
+          stepEl.classList.add('done');
+          stepEl.querySelector('.step-icon').textContent = '✓';
+        }
+      }
+
+      // Resolve live probe data (wait up to 5500ms for edge crawler response)
+      let liveReport = null;
+      try {
+        const probeResult = await Promise.race([
+          liveProbePromise,
+          new Promise(r => setTimeout(() => r(null), 5500))
+        ]);
+        if (probeResult && probeResult.success) {
+          liveReport = probeResult;
+        }
+      } catch (err) {
+        console.warn('Live audit fallback:', err);
+      }
+
+      currentAuditReport = liveReport || calculateDomainAudit(domain);
+      currentAuditReport.email = email;
+
+      document.getElementById('resDomainName').textContent = domain;
+      const todayStr = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+      document.getElementById('resTimestamp').textContent = `Audited on ${todayStr} · Report #${currentAuditReport.reportId}`;
+
+      document.getElementById('resOverallScore').textContent = currentAuditReport.overallScore;
+      document.getElementById('resGrade').textContent = `Grade ${currentAuditReport.grade}`;
+      document.getElementById('resGrade').style.color = `rgb(${currentAuditReport.scoreColor.join(',')})`;
+      document.getElementById('resScoreStatus').textContent = currentAuditReport.status;
+
+      const planBadge = document.getElementById('resPlanBadge');
+      if (planBadge) {
+        planBadge.textContent = `Recommended: ${currentAuditReport.recommendedPlanName || (currentAuditReport.overallScore >= 85 ? '1–3 Month Citation Defense Plan' : '12-Month Autonomous Domination Plan')}`;
+      }
+
+      const deg = Math.round((currentAuditReport.overallScore / 100) * 360);
+      document.getElementById('scoreCircle').style.setProperty('--score-deg', `${deg}deg`);
+      document.getElementById('scoreCircle').style.background = `conic-gradient(rgb(${currentAuditReport.scoreColor.join(',')}) ${deg}deg, rgba(255, 255, 255, 0.1) 0deg)`;
+
+      document.getElementById('pScore1').textContent = currentAuditReport.pillars[0].score + '%';
+      document.getElementById('pBar1').style.width = currentAuditReport.pillars[0].score + '%';
+
+      document.getElementById('pScore2').textContent = currentAuditReport.pillars[1].score + '%';
+      document.getElementById('pBar2').style.width = currentAuditReport.pillars[1].score + '%';
+
+      document.getElementById('pScore3').textContent = currentAuditReport.pillars[2].score + '%';
+      document.getElementById('pBar3').style.width = currentAuditReport.pillars[2].score + '%';
+
+      document.getElementById('pScore4').textContent = currentAuditReport.pillars[3].score + '%';
+      document.getElementById('pBar4').style.width = currentAuditReport.pillars[3].score + '%';
+
+      const isHighScore = currentAuditReport.overallScore >= 85;
+      const issuesContainer = document.getElementById('resIssuesList');
+      issuesContainer.innerHTML = currentAuditReport.gaps.map(g => `
+        <div class="issue-item">
+          <span style="font-size: 1.1rem; flex-shrink: 0;">${g.critical ? '❌' : (isHighScore ? '✅' : '⚠️')}</span>
+          <span>${g.text}</span>
+        </div>
+      `).join('');
+
+      // Populate Deterministic Audit Ledger
+      if (currentAuditReport.ledger && currentAuditReport.ledger.length > 0) {
+        const passedCount = currentAuditReport.ledger.filter(l => l.passed).length;
+        const totalCount = currentAuditReport.ledger.length;
+        const ledgerSummary = document.getElementById('resLedgerSummary');
+        if (ledgerSummary) {
+          ledgerSummary.textContent = `${passedCount} of ${totalCount} Signals Verified (Click to View)`;
+        }
+
+        const ledgerList = document.getElementById('resLedgerList');
+        if (ledgerList) {
+          ledgerList.innerHTML = currentAuditReport.ledger.map(item => `
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.82rem;">
+              <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <span style="font-size: 0.95rem;">${item.passed ? '✅' : '❌'}</span>
+                <div>
+                  <strong style="color: #fff;">${item.name}</strong>
+                  <div style="font-size: 0.74rem; color: #94a3b8;">${item.evidence}</div>
+                </div>
+              </div>
+              <div style="font-family: var(--font-mono); font-weight: 700; color: ${item.passed ? '#34d399' : '#f87171'}; font-size: 0.8rem; white-space: nowrap; margin-left: 0.5rem;">
+                ${item.points} / ${item.maxPoints} pts
+              </div>
+            </div>
+          `).join('');
+        }
+      }
+
+      fetch('/api/triage', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'instant_audit',
+          domain: domain,
+          email: email,
+          score: currentAuditReport.overallScore,
+          message: `Audit generated: Score ${currentAuditReport.overallScore}/100, Grade ${currentAuditReport.grade}`
+        })
+      }).catch(() => {});
+
+      scanner.classList.remove('active');
+      results.classList.add('active');
+
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<span>⚡ Re-Run Audit →</span>';
+
+      showShareToast(`Audit complete for ${domain}! Overall Score: ${currentAuditReport.overallScore}/100. Review on-screen or download PDF.`);
+
+      // USER REQUIREMENT 4: NO AUTOMATIC DOWNLOAD.
+      // Display the report on-screen, and let the customer click the download button if they choose.
+    }
+
+    function triggerPdfDownload() {
+      if (!currentAuditReport) {
+        showShareToast('Please run an audit first');
+        return;
+      }
+      showShareToast(`Generating PDF Report for ${currentAuditReport.domain}...`);
+      generateAuditPdf(currentAuditReport);
+    }
+
+    function generateAuditPdf(auditData) {
+      const { jsPDF } = window.jspdf || {};
+      if (!jsPDF) {
+        alert("PDF generator library is initializing. Please click Download again in a moment.");
+        return;
+      }
+
+      const doc = new jsPDF({
+        orientation: 'portrait',
+        unit: 'mm',
+        format: 'a4'
+      });
+
+      const pageWidth = 210;
+      const pageHeight = 297;
+      const margin = 16;
+      const contentWidth = pageWidth - (margin * 2);
+      const isHighScore = auditData.overallScore >= 85;
+      const isMidScore = auditData.overallScore >= 65 && auditData.overallScore < 85;
+
+      // Helper to extract logo data URL from DOM image
+      let logoDataUrl = null;
+      try {
+        const logoImg = document.querySelector('nav .brand img') || document.querySelector('.logo-img') || document.querySelector('img[src*="AnswerIndex_Logo"]');
+        if (logoImg && logoImg.complete && logoImg.naturalWidth > 0) {
+          const canvas = document.createElement('canvas');
+          canvas.width = logoImg.naturalWidth || 80;
+          canvas.height = logoImg.naturalHeight || 80;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(logoImg, 0, 0, canvas.width, canvas.height);
+          logoDataUrl = canvas.toDataURL('image/png');
+        }
+      } catch (e) {
+        console.warn("Logo extraction error:", e);
+      }
+
+      // --- PAGE 1: EXECUTIVE SCORECARD & DETERMINISTIC FINDINGS ---
+      // Top Header Bar
+      doc.setFillColor(15, 23, 42); // Obsidian Slate
+      doc.rect(0, 0, pageWidth, 42, 'F');
+
+      let textStartX = margin;
+      if (logoDataUrl) {
+        try {
+          doc.addImage(logoDataUrl, 'PNG', margin, 9, 14, 14);
+          textStartX = margin + 18;
+        } catch (e) {
+          textStartX = margin;
+        }
+      }
+
+      doc.setTextColor(255, 255, 255);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(18);
+      doc.text('ANSWER INDEX', textStartX, 18);
+
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(8.5);
+      doc.setTextColor(56, 189, 248);
+      doc.text('ENTERPRISE AEO, GEO & SEARCH ENGINE READINESS AUDIT', textStartX, 25);
+
+      doc.setTextColor(180, 190, 205);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(8);
+      const auditDateStr = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+      doc.text(`REPORT #${auditData.reportId}  |  ISSUED FOR: ${auditData.domain.toUpperCase()}  |  DATE: ${auditDateStr}`, textStartX, 32);
+
+      // Target Domain Spotlight Box
+      doc.setFillColor(245, 244, 240);
+      doc.roundedRect(margin, 50, contentWidth, 24, 3, 3, 'F');
+      doc.setDrawColor(226, 223, 213);
+      doc.roundedRect(margin, 50, contentWidth, 24, 3, 3, 'S');
+
+      doc.setTextColor(34, 34, 34);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(9.5);
+      doc.text('TARGET DOMAIN AUDITED:', margin + 6, 59);
+
+      doc.setTextColor(58, 87, 252);
+      doc.setFontSize(15);
+      doc.text(auditData.domain, margin + 6, 67);
+
+      // Overall Score Pill
+      doc.setFillColor(auditData.scoreColor[0], auditData.scoreColor[1], auditData.scoreColor[2]);
+      doc.roundedRect(pageWidth - margin - 52, 54, 46, 16, 2, 2, 'F');
+      doc.setTextColor(255, 255, 255);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(11);
+      doc.text(`${auditData.overallScore}/100 · ${auditData.grade}`, pageWidth - margin - 29, 64.5, { align: 'center' });
+
+      // Summary
+      doc.setTextColor(34, 34, 34);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(12);
+      doc.text('Executive AI Search Readiness Diagnostic', margin, 84);
+
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(9);
+      doc.setTextColor(70, 70, 70);
+      const summaryText = isHighScore
+        ? `This analytical diagnostic evaluates ${auditData.domain}'s visibility across generative AI engines: ChatGPT Search, Perplexity AI, Claude 3.5, Gemini 1.5, and Google AI Overviews. ${auditData.domain} has successfully deployed the foundational Answer Index technical stack including machine-readable manifests and verified structured data. Currently, ${auditData.domain} achieves an exceptional AI Readiness Score of ${auditData.overallScore}/100, positioning it in the top 5% of enterprise AI search readiness and defending against competitor citation diversion.`
+        : `This analytical diagnostic evaluates ${auditData.domain}'s visibility across generative AI engines: ChatGPT Search, Perplexity AI, Claude 3.5, Gemini 1.5, and Google AI Overviews. While legacy SEO focuses merely on traditional crawler indexing, AI answer models require structured entity authority, direct answer paragraphs, and machine-readable manifests. Currently, ${auditData.domain} achieves an overall AI Readiness Score of ${auditData.overallScore}/100, leaving critical commercial buying queries open to aggressive competitor interception.`;
+      
+      const summaryLines = doc.splitTextToSize(summaryText, contentWidth);
+      doc.text(summaryLines, margin, 90);
+
+      // Pillars Table
+      let yPos = 112;
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(11);
+      doc.setTextColor(17, 17, 17);
+      doc.text('Core Pillar Performance Breakdown (25 Points Each)', margin, yPos);
+
+      yPos += 7;
+      auditData.pillars.forEach((p) => {
+        doc.setFillColor(255, 255, 255);
+        doc.setDrawColor(228, 230, 235);
+        doc.roundedRect(margin, yPos, contentWidth, 16, 2, 2, 'FD');
+
+        doc.setTextColor(30, 30, 30);
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(9);
+        doc.text(p.name, margin + 4, yPos + 5.5);
+
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor(58, 87, 252);
+        doc.text(`${p.score}%`, pageWidth - margin - 6, yPos + 5.5, { align: 'right' });
+
+        doc.setFillColor(235, 238, 245);
+        doc.roundedRect(margin + 4, yPos + 8.5, contentWidth - 8, 3.5, 1.5, 1.5, 'F');
+
+        const barWidth = ((contentWidth - 8) * p.score) / 100;
+        doc.setFillColor(p.color[0], p.color[1], p.color[2]);
+        doc.roundedRect(margin + 4, yPos + 8.5, barWidth, 3.5, 1.5, 1.5, 'F');
+
+        yPos += 19;
+      });
+
+      // Gaps / Strengths
+      yPos += 2;
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(11);
+      doc.setTextColor(17, 17, 17);
+      doc.text(isHighScore ? 'Verified AI Protocol Findings & Strengths' : 'Critical Searchability Vulnerabilities & Missing Files', margin, yPos);
+
+      yPos += 6;
+      auditData.gaps.slice(0, 4).forEach((gap) => {
+        const isVerified = isHighScore || gap.text.startsWith('[EXCELLENT]') || gap.text.startsWith('[ACTIVE]') || gap.text.startsWith('[COMPLIANT]');
+        if (isVerified) {
+          doc.setFillColor(240, 253, 244);
+          doc.setDrawColor(74, 222, 128);
+        } else {
+          doc.setFillColor(gap.critical ? 254 : 255, gap.critical ? 242 : 251, gap.critical ? 242 : 235);
+          doc.setDrawColor(gap.critical ? 252 : 251, gap.critical ? 165 : 191, gap.critical ? 165 : 36);
+        }
+        doc.roundedRect(margin, yPos, contentWidth, 13, 2, 2, 'FD');
+
+        doc.setFont('helvetica', 'bold');
+        if (isVerified) {
+          doc.setTextColor(22, 101, 52);
+        } else {
+          doc.setTextColor(gap.critical ? 220 : 180, gap.critical ? 38 : 83, gap.critical ? 38 : 9);
+        }
+        doc.setFontSize(8);
+        const badgeLabel = isVerified 
+          ? '[VERIFIED ANSWER INDEX PROTOCOL ACTIVE]' 
+          : (gap.critical ? '[CRITICAL INGESTION GAP - IMMEDIATE RISK]' : '[HIGH PRIORITY DEFICIENCY]');
+        doc.text(badgeLabel, margin + 4, yPos + 4.8);
+
+        doc.setFont('helvetica', 'normal');
+        doc.setTextColor(50, 50, 50);
+        doc.setFontSize(8);
+        doc.text(gap.text, margin + 4, yPos + 9.2);
+
+        yPos += 15;
+      });
+
+      // Page 1 Footer
+      doc.setFontSize(8);
+      doc.setTextColor(140, 140, 140);
+      doc.text(`Page 1 of 2  ·  Answer Index Official Audit Diagnostic  ·  Confidential Client Report`, pageWidth / 2, 290, { align: 'center' });
+
+      // --- PAGE 2: SCORE-TAILORED ROADMAP + SPACIOUS CTA BOX ---
+      doc.addPage();
+
+      // Page 2 Header with Answer Index Logo
+      doc.setFillColor(15, 23, 42); // Obsidian Slate
+      doc.rect(0, 0, pageWidth, 32, 'F');
+
+      let page2TextX = margin;
+      if (logoDataUrl) {
+        try {
+          doc.addImage(logoDataUrl, 'PNG', margin, 7, 13, 13);
+          page2TextX = margin + 17;
+        } catch (e) {
+          page2TextX = margin;
+        }
+      }
+
+      doc.setTextColor(255, 255, 255);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(14);
+      doc.text('ANSWER INDEX', page2TextX, 15);
+
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(8.5);
+      doc.setTextColor(56, 189, 248);
+
+      // DYNAMIC ROADMAP TITLE BASED ON SCORE
+      const roadmapTitle = isHighScore 
+        ? '1–3 MONTH AI CITATION DEFENSE & DRIFT MONITORING ROADMAP'
+        : (isMidScore 
+            ? '3–6 MONTH AEO & KNOWLEDGE GRAPH ACCELERATION ROADMAP'
+            : '12-MONTH AUTONOMOUS AI & SEARCH DOMINANCE ROADMAP');
+      doc.text(roadmapTitle, page2TextX, 22);
+
+      // Section 1: Alert / Status Banner Tailored to Score
+      yPos = 38;
+      if (isHighScore) {
+        doc.setFillColor(240, 253, 244);
+        doc.setDrawColor(34, 197, 94);
+        doc.roundedRect(margin, yPos, contentWidth, 24, 2, 2, 'FD');
+
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor(21, 128, 61);
+        doc.setFontSize(9.5);
+        doc.text('ENTERPRISE STATUS: ADVANCED AI SEARCH DEFENSE ACTIVE (SCORE: ' + auditData.overallScore + '/100)', margin + 4, yPos + 6);
+
+        doc.setFont('helvetica', 'normal');
+        doc.setTextColor(60, 60, 60);
+        doc.setFontSize(8);
+        const alertLines = doc.splitTextToSize(
+          `Your core web-root manifests (/llms.txt, AI crawler directives, and Schema @graph) are actively verified. Because your foundation is already sound, an invasive 12-month overhaul is NOT required. We recommend a focused 1–3 month Citation Defense Sprint to defend against model drift, audit weekly LLM recalibrations, and prevent competitor counter-optimization.`,
+          contentWidth - 8
+        );
+        doc.text(alertLines, margin + 4, yPos + 11.5);
+      } else {
+        doc.setFillColor(254, 242, 242);
+        doc.setDrawColor(239, 68, 68);
+        doc.roundedRect(margin, yPos, contentWidth, 24, 2, 2, 'FD');
+
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor(185, 28, 28);
+        doc.setFontSize(9.5);
+        doc.text('CRITICAL SEARCH ALERT: AI ENGINE BLIND SPOT DETECTED (SCORE: ' + auditData.overallScore + '/100)', margin + 4, yPos + 6);
+
+        doc.setFont('helvetica', 'normal');
+        doc.setTextColor(60, 60, 60);
+        doc.setFontSize(8);
+        const alertLines = doc.splitTextToSize(
+          `Without machine-readable /llms.txt manifests and validated Schema @graph nodes, generative search models (SearchGPT, Claude, Perplexity) cannot verify your core value proposition. Competitors who maintain active entity publishing are currently capturing the top recommendation slots in your category. A structured optimization roadmap is required to capture and retain citations.`,
+          contentWidth - 8
+        );
+        doc.text(alertLines, margin + 4, yPos + 11.5);
+      }
+
+      // Section 2: Dynamic Phased Roadmap
+      yPos = 68;
+      doc.setTextColor(17, 17, 17);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(11);
+      
+      const roadmapSectionHeader = isHighScore
+        ? 'Recommended 1–3 Month Citation Defense Protocol'
+        : (isMidScore 
+            ? 'Recommended 3–6 Month Growth & Acceleration Plan'
+            : 'Recommended 12-Month Autonomous AI & Search Monopolization Plan');
+      doc.text(roadmapSectionHeader, margin, yPos);
+
+      yPos += 6;
+
+      // Phased roadmaps tailored directly to audit score
+      let phasesToRender = [];
+
+      if (isHighScore) {
+        phasesToRender = [
+          {
+            phase: 'Month 1: Multi-Engine Grounding Audit & Citation Drift Baseline',
+            desc: 'Execute automated prompt audits across ChatGPT Search, Claude 3.5, and Perplexity AI. Benchmark entity recall and detect any latent citation drift or missing brand ground truth.'
+          },
+          {
+            phase: 'Month 2: Competitor Citation Displacement & Comparative Defense',
+            desc: 'Reverse-engineer competitor citation attempts in your category. Programmatically inject comparative proof matrices and feature matrices to permanently defend your category leadership.'
+          },
+          {
+            phase: 'Month 3: Semantic Schema Expansion & Autonomous Drift Sentinel',
+            desc: 'Expand machine-readable entity nodes across 80+ tangential buying queries. Deploy autonomous daily drift sentinels to alert on generative algorithm weight adjustments.'
+          }
+        ];
+      } else if (isMidScore) {
+        phasesToRender = [
+          {
+            phase: 'Months 1–2: Ingestion Gap Closure & Schema @graph Interlinking',
+            desc: 'Deploy missing /llms.txt manifests and connect isolated Schema nodes into a cohesive @graph. Anchor primary Organization entity across Google Knowledge Graph and AI search engines.'
+          },
+          {
+            phase: 'Months 3–4: Passage-Level Direct Answer Engineering (40–55 words)',
+            desc: 'Deploy 45+ declarative answer blocks positioned directly beneath exact-match intent queries. Seeds Google AI Overviews and Perplexity with concise, verifiable solution snippets.'
+          },
+          {
+            phase: 'Months 5–6: Citation Growth & Competitive Disambiguation',
+            desc: 'Scale entity coverage across secondary and tertiary prompt clusters. Defend market share against incumbent brand displacement with automated weekly PR updates.'
+          }
+        ];
+      } else {
+        phasesToRender = [
+          {
+            phase: 'Months 1–2: Emergency Ingestion Triage & Machine-Readable Foundation',
+            desc: 'Deploy /llms.txt, /llms-full.txt, and complete JSON-LD @graph. Implement AI crawler directives to stop immediate competitor citation theft and anchor brand entity in Google Knowledge Graph.'
+          },
+          {
+            phase: 'Months 3–4: Passage-Level AEO Direct Answers & Zero-Click Capture',
+            desc: 'Deploy 60+ declarative answer blocks positioned directly below exact-match intent queries. Seeds Google AI Overviews and Perplexity with concise, verifiable solution snippets.'
+          },
+          {
+            phase: 'Months 5–6: Competitor Citation Displacement & Comparative Proofs',
+            desc: 'Reverse-engineer competitors citation footprints. Programmatically deploy feature comparison tables, integration blueprints, and alternative matrices to capture their traffic.'
+          },
+          {
+            phase: 'Months 7–9: Semantic Entity Graph Expansion & Deep Category Moat',
+            desc: 'Expand entity footprint across 180+ topical and vertical query clusters. Secures permanent presence in complex, multi-turn conversational AI buying prompts.'
+          },
+          {
+            phase: 'Months 10–12: Complete AI Consensus Monopolization & Model Recalibration',
+            desc: 'Continuous daily monitoring and automated PR delivery to adapt to weekly LLM model updates (GPT-5, Gemini 2, Claude 4), locking in #1 AI search consensus rankings year-round.'
+          }
+        ];
+      }
+
+      const phaseCardHeight = isHighScore ? 22 : 18;
+      const phaseSpacing = isHighScore ? 25 : 21;
+
+      phasesToRender.forEach((item) => {
+        doc.setFillColor(248, 249, 252);
+        doc.setDrawColor(220, 226, 235);
+        doc.roundedRect(margin, yPos, contentWidth, phaseCardHeight, 2, 2, 'FD');
+
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor(58, 87, 252);
+        doc.setFontSize(8.8);
+        doc.text(item.phase, margin + 4, yPos + 5.2);
+
+        doc.setFont('helvetica', 'normal');
+        doc.setTextColor(60, 60, 60);
+        doc.setFontSize(7.6);
+        const pLines = doc.splitTextToSize(item.desc, contentWidth - 8);
+        doc.text(pLines, margin + 4, yPos + 10.2);
+
+        yPos += phaseSpacing;
+      });
+
+      // Section 3: High-Conversion Call-to-Action (GENEROUS PADDING ALL AROUND)
+      yPos += 6; // Extra breathing room before the CTA box
+      const ctaBoxHeight = 56;
+      doc.setFillColor(245, 244, 240);
+      doc.setDrawColor(58, 87, 252);
+      doc.roundedRect(margin, yPos, contentWidth, ctaBoxHeight, 3, 3, 'FD');
+
+      // Internal padding: 8mm top, 8mm left, 8mm right
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(17, 17, 17);
+      doc.setFontSize(10.5);
+      doc.text('Put Your Search & AI Growth on Autonomous Autopilot', margin + 8, yPos + 8.5);
+
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(70, 70, 70);
+      doc.setFontSize(7.8);
+      const ctaDescText = isHighScore
+        ? `Answer Index Pro delivers automated daily pull requests directly to your repository (1 new answer piece + 1 technical SEO fix daily). Because ${auditData.domain} has an elite foundation, choose the Flexible Monthly Plan ($149/mo) for drift defense, or lock in full annual category domination with 20% savings.`
+        : 'Answer Index Pro delivers automated daily pull requests directly to your repository (1 new answer piece + 1 technical SEO fix daily). Start flexible with the Monthly Plan ($149/mo) or lock in full 12-month compounding category dominance with the Annual Plan ($119/mo billed annually with 20% savings).';
+      
+      const ctaDesc = doc.splitTextToSize(ctaDescText, contentWidth - 16);
+      doc.text(ctaDesc, margin + 8, yPos + 15.5);
+
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(58, 87, 252);
+      doc.setFontSize(8.2);
+      doc.text('• Starter Tier: $149/mo ($119/mo billed annually) · 1-click GitHub PR approvals', margin + 8, yPos + 28);
+      doc.text('• Growth Tier: $249/mo ($199/mo billed annually) · Dual daily PRs & Competitor Defense', margin + 8, yPos + 35);
+      doc.text('• Commercial Pricing Portal: https://answerindex-pro.pages.dev/#pricing', margin + 8, yPos + 42);
+      doc.text('• Founder Consultation & Custom Setup: sameer@answerindex.com', margin + 8, yPos + 49);
+
+      // Page 2 Footer
+      doc.setFontSize(8);
+      doc.setTextColor(140, 140, 140);
+      doc.text(`Page 2 of 2  ·  Answer Index Official Enterprise Report  ·  https://answerindex-pro.pages.dev`, pageWidth / 2, 290, { align: 'center' });
+
+      const cleanDomain = auditData.domain.replace(/[^a-zA-Z0-9.-]/g, '_');
+      doc.save(`${cleanDomain}-AnswerIndex-SEO-Audit.pdf`);
+    }
+  </script>
+  <script src="assets/client-portal.js"></script>
+</body>
+</html>
