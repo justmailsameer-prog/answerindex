@@ -574,6 +574,83 @@
       cursor: default;
     }
 
+    /* Multi-Platform Delivery & Preview Styles */
+    .btn-action-preview {
+      background-color: #ffffff;
+      border: 1px solid var(--border-color);
+      color: #1e293b;
+      padding: 0.45rem 0.85rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s;
+    }
+
+    .btn-action-preview:hover {
+      background-color: var(--bg-page);
+      border-color: var(--c-cobalt);
+      color: var(--c-cobalt);
+    }
+
+    .btn-action-copy {
+      background-color: rgba(58, 87, 252, 0.08);
+      border: 1px solid rgba(58, 87, 252, 0.3);
+      color: var(--c-cobalt);
+      padding: 0.45rem 0.85rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s;
+    }
+
+    .btn-action-copy:hover {
+      background-color: rgba(58, 87, 252, 0.18);
+      border-color: var(--c-cobalt);
+      transform: translateY(-1px);
+    }
+
+    .btn-cms-open {
+      background-color: #ffffff;
+      border: 1px solid var(--border-color);
+      color: #333333;
+      padding: 0.45rem 0.85rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s;
+    }
+
+    .btn-cms-open:hover {
+      border-color: var(--border-hover);
+      background-color: var(--bg-page);
+    }
+
+    .platform-indicator-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: #ffffff;
+      border: 1.5px solid var(--border-color);
+      padding: 0.4rem 0.85rem;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: #111;
+      box-shadow: var(--shadow-sm);
+    }
+
     /* Sidebar Telemetry Widgets */
     .engine-card {
       background-color: #faf9f6;
@@ -700,6 +777,7 @@
       opacity: 1;
     }
   </style>
+  <link rel="stylesheet" href="assets/client-portal.css" />
 </head>
 <body>
 
@@ -719,18 +797,75 @@
       </a>
 
       <div class="nav-actions">
+        <!-- Platform Selector Indicator -->
+        <div class="platform-indicator-pill" id="platformBadge" title="Connected Platform">
+          <span id="platformIcon">🐙</span>
+          <span id="platformName">GitHub</span>
+        </div>
+
         <div class="project-pill" id="projectPill">
           <span>Target:</span> <strong id="projectDomain">answerindex.pages.dev</strong>
           <span style="color: rgba(0,0,0,0.15)">|</span>
           <span id="projectBranch">main</span>
         </div>
+
         <div class="plan-tag" id="planTag">Pro Autonomous · $249/mo</div>
+
+        <button onclick="openClientAuthModal('register')" class="btn-secondary" style="background: rgba(58,87,252,0.08); border-color: rgba(58,87,252,0.3); color: var(--c-cobalt); font-weight:700;">
+          ➕ Connect Site
+        </button>
+        <button onclick="openClientAuthModal('login')" class="btn-secondary">
+          🔄 Switch Client
+        </button>
         <a href="pro.html#audit-tool" class="btn-secondary">🔍 Free Audit</a>
-        <a href="about.html" class="btn-secondary">💡 About</a>
-        <a href="pro.html" class="btn-secondary">View Portal</a>
       </div>
     </div>
   </nav>
+
+  <!-- Content Preview Modal for Staged AEO Answers & Schema (WordPress, Shopify, Magento, Web Portal) -->
+  <div id="contentPreviewModal" class="auth-modal-overlay" onclick="handlePreviewOverlayClick(event)">
+    <div class="auth-modal-card" style="max-width: 780px;">
+      <button class="auth-modal-close" onclick="closePreviewModal()" aria-label="Close modal">✕</button>
+      <div class="auth-header" style="text-align: left; margin-bottom: 1.25rem;">
+        <div class="auth-badge" id="previewChannelBadge">🌐 Staged WordPress Draft</div>
+        <h2 class="auth-title" id="previewTitle" style="font-size: 1.35rem; margin-top: 0.35rem; color:#fff;">Job Title</h2>
+        <p class="auth-subtitle" id="previewSubtitle" style="margin: 0; max-width: 100%; color:#94a3b8;">Target Keyword &amp; Invariants</p>
+      </div>
+
+      <!-- Preview Tabs: Rendered Rich Content vs Raw Code/Schema -->
+      <div class="auth-tabs" style="margin-bottom: 1rem;">
+        <button type="button" class="auth-tab-btn active" id="tabPreviewRendered" onclick="switchPreviewTab('rendered')">
+          👁️ Formatted Article &amp; Schema Preview
+        </button>
+        <button type="button" class="auth-tab-btn" id="tabPreviewCode" onclick="switchPreviewTab('code')">
+          📋 Raw HTML / Schema Block
+        </button>
+      </div>
+
+      <!-- Tab 1: Rendered View -->
+      <div id="previewRenderedView" style="background: #ffffff; color: #181818; padding: 1.5rem; border-radius: 12px; max-height: 48vh; overflow-y: auto; border: 1px solid var(--border-color); font-size: 0.95rem; line-height: 1.6;">
+      </div>
+
+      <!-- Tab 2: Code View -->
+      <div id="previewCodeView" style="display: none;">
+        <pre id="previewCodeContent" style="background: #080d1a; color: #38bdf8; padding: 1.25rem; border-radius: 12px; max-height: 48vh; overflow-y: auto; font-family: var(--font-mono); font-size: 0.82rem; white-space: pre-wrap; word-break: break-all; border: 1px solid rgba(255,255,255,0.1);"></pre>
+      </div>
+
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 1.25rem; gap: 1rem; flex-wrap: wrap;">
+        <button type="button" class="btn-action-copy" id="btnModalCopy" onclick="copyCurrentModalContent()" style="padding: 0.65rem 1.25rem; font-size: 0.88rem;">
+          📋 Copy Full Content to Clipboard
+        </button>
+        <div style="display: flex; gap: 0.75rem;">
+          <a id="btnModalCmsLink" href="#" target="_blank" class="btn-secondary" style="display: none; padding: 0.65rem 1.1rem; text-decoration: none;">
+            Open in CMS ↗
+          </a>
+          <button type="button" class="btn-approve" id="btnModalApprove" style="padding: 0.65rem 1.25rem;">
+            ✓ 1-Click Publish
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Dashboard Container -->
   <main class="dashboard-container">
@@ -897,35 +1032,114 @@
     <span id="toastMessage">PR approved successfully!</span>
   </div>
 
+  <script src="assets/client-portal.js"></script>
   <script>
+    let currentProject = {
+      id: 'proj_answerindex_core',
+      domain: 'answerindex.pages.dev',
+      brand_name: 'Answer Index',
+      cms_type: 'github',
+      branch: 'main',
+      plan_tier: 'pro_autonomous'
+    };
     let allJobs = [];
     let currentFilter = 'all';
+    let currentPreviewJob = null;
 
-    // 1. Fetch Connected Project Metadata
+    // 1. Fetch Connected Project Metadata (URL param > LocalStorage > Default)
     async function loadProject() {
       try {
-        const res = await fetch('/api/project');
+        const urlParams = new URLSearchParams(window.location.search);
+        const emailParam = urlParams.get('email');
+        const projIdParam = urlParams.get('project_id') || urlParams.get('id');
+
+        let queryUrl = '/api/project';
+        if (emailParam) {
+          queryUrl += `?email=${encodeURIComponent(emailParam)}`;
+        } else if (projIdParam) {
+          queryUrl += `?id=${encodeURIComponent(projIdParam)}`;
+        } else {
+          const storedUser = localStorage.getItem('answerindex_user');
+          if (storedUser) {
+            try {
+              const u = JSON.parse(storedUser);
+              if (u && u.email) queryUrl += `?email=${encodeURIComponent(u.email)}`;
+            } catch (e) {}
+          }
+        }
+
+        const res = await fetch(queryUrl);
         if (res.ok) {
           const data = await res.json();
           if (data.success && data.project) {
-            document.getElementById('projectDomain').textContent = data.project.domain;
-            document.getElementById('projectBranch').textContent = data.project.branch;
-            if (data.project.plan_tier === 'pro_autonomous') {
-              document.getElementById('planTag').textContent = 'Pro Autonomous · $249/mo';
-            } else {
-              document.getElementById('planTag').textContent = 'Growth · $149/mo';
-            }
+            currentProject = data.project;
+            updateProjectUI(currentProject);
           }
         }
       } catch (err) {
         console.warn('Could not load project metadata:', err);
+      } finally {
+        updateProjectUI(currentProject);
+        await loadJobs();
+      }
+    }
+
+    function updateProjectUI(proj) {
+      if (!proj) return;
+      const domainElem = document.getElementById('projectDomain');
+      const branchElem = document.getElementById('projectBranch');
+      const planTagElem = document.getElementById('planTag');
+      const platformBadge = document.getElementById('platformBadge');
+      const platformIcon = document.getElementById('platformIcon');
+      const platformName = document.getElementById('platformName');
+
+      if (domainElem) domainElem.textContent = proj.domain || 'yoursite.com';
+      if (branchElem) {
+        if (proj.cms_type === 'github') {
+          branchElem.textContent = proj.branch || 'main';
+        } else {
+          branchElem.textContent = (proj.cms_type || 'cms').toUpperCase();
+        }
+      }
+
+      if (planTagElem) {
+        if (proj.plan_tier === 'pro_autonomous') {
+          planTagElem.textContent = 'Pro Autonomous · $249/mo';
+        } else {
+          planTagElem.textContent = 'Growth · $149/mo';
+        }
+      }
+
+      // Update Platform Selector Badge
+      if (platformBadge && platformIcon && platformName) {
+        const cms = (proj.cms_type || 'github').toLowerCase();
+        if (cms === 'wordpress') {
+          platformIcon.textContent = '🌐';
+          platformName.textContent = 'WordPress Drafts';
+        } else if (cms === 'shopify') {
+          platformIcon.textContent = '🛍️';
+          platformName.textContent = 'Shopify Store';
+        } else if (cms === 'magento') {
+          platformIcon.textContent = '📦';
+          platformName.textContent = 'Magento Commerce';
+        } else if (cms === 'portal') {
+          platformIcon.textContent = '💻';
+          platformName.textContent = 'Web Portal & Copy';
+        } else {
+          platformIcon.textContent = '🐙';
+          platformName.textContent = 'GitHub PRs';
+        }
       }
     }
 
     // 2. Fetch Daily Jobs from Cloudflare D1
     async function loadJobs() {
       try {
-        const res = await fetch('/api/jobs');
+        let url = '/api/jobs';
+        if (currentProject && currentProject.id) {
+          url += `?project_id=${encodeURIComponent(currentProject.id)}`;
+        }
+        const res = await fetch(url);
         if (!res.ok) throw new Error('Failed to load jobs');
         const data = await res.json();
         if (data.success && data.jobs) {
@@ -942,7 +1156,7 @@
       }
     }
 
-    // 3. Render Jobs in Queue
+    // 3. Render Jobs in Queue with Multi-Platform CMS Adapters
     function renderJobs() {
       const container = document.getElementById('jobsList');
       const filtered = allJobs.filter(job => {
@@ -963,9 +1177,37 @@
 
       container.innerHTML = filtered.map(job => {
         const isJob1 = job.job_type === 'job_1_new_answer';
-        const typeLabel = isJob1 ? 'Job 1: New AEO Asset' : 'Job 2: Technical SEO Refactor';
-        const typeClass = isJob1 ? 'type-job1' : 'type-job2';
         const isPending = job.pr_status === 'pending';
+
+        // Determine delivery channel
+        const cmsType = (currentProject.cms_type || 'github').toLowerCase();
+        let channel = job.delivery_channel;
+        if (!channel || channel === 'github_pr') {
+          if (cmsType === 'wordpress') channel = 'wp_draft';
+          else if (cmsType === 'shopify') channel = 'shopify_draft';
+          else if (cmsType === 'magento') channel = 'magento_block';
+          else if (cmsType === 'portal') channel = 'portal_copy';
+          else channel = 'github_pr';
+        }
+
+        let channelBadge = '🐙 GitHub PR';
+        let channelIcon = '🐙';
+        if (channel === 'wp_draft') {
+          channelBadge = '🌐 WordPress Staged Draft';
+          channelIcon = '🌐';
+        } else if (channel === 'shopify_draft') {
+          channelBadge = '🛍️ Shopify Staged Blog & Metafield';
+          channelIcon = '🛍️';
+        } else if (channel === 'magento_block') {
+          channelBadge = '📦 Magento CMS Block';
+          channelIcon = '📦';
+        } else if (channel === 'portal_copy') {
+          channelBadge = '💻 Web Portal (1-Click Copy)';
+          channelIcon = '💻';
+        }
+
+        const typeLabel = isJob1 ? `${channelIcon} Job 1: AEO Direct Answer` : `🛡️ Job 2: Schema & Technical Refactor`;
+        const typeClass = isJob1 ? 'type-job1' : 'type-job2';
 
         return `
           <div class="job-card ${job.pr_status}" id="job-${job.id}">
@@ -973,52 +1215,76 @@
               <div class="meta-left">
                 <span class="job-type-pill ${typeClass}">${typeLabel}</span>
                 <span class="date-tag">${job.date}</span>
+                <span style="font-size:0.75rem; background:rgba(0,0,0,0.05); padding:0.15rem 0.5rem; border-radius:12px; font-weight:700;">${channelBadge}</span>
               </div>
               <div class="score-badge">
                 🛡️ ${job.schema_score}/100 Schema
               </div>
             </div>
 
-            <h3 class="job-title">${job.title}</h3>
+            <h3 class="job-title">${escapeHtml(job.title)}</h3>
 
             <div class="job-details-row">
               <div class="detail-item">
-                <span>Target:</span> <strong>${job.target_keyword || 'Core Entity'}</strong>
+                <span>Target:</span> <strong>${escapeHtml(job.target_keyword || 'Core Entity')}</strong>
               </div>
               <div class="detail-item">
-                <span>File:</span> <strong>${job.target_url || '/'}</strong>
+                <span>URL/Slug:</span> <strong>${escapeHtml(job.target_url || '/')}</strong>
               </div>
-              <div class="detail-item">
-                <span>PR:</span> <strong>#${job.pr_number || 'Auto'}</strong>
-              </div>
+              ${job.pr_number ? `
+                <div class="detail-item">
+                  <span>PR:</span> <strong>#${job.pr_number}</strong>
+                </div>
+              ` : `
+                <div class="detail-item">
+                  <span>Delivery:</span> <strong>${channelBadge.split(' ')[1] || 'Direct'}</strong>
+                </div>
+              `}
             </div>
 
             ${job.zero_click_snippet ? `
               <div class="snippet-box">
                 <div class="snippet-label">✦ Zero-Click AI Answer Excerpt</div>
-                <div class="snippet-content">${job.zero_click_snippet}</div>
+                <div class="snippet-content">${escapeHtml(job.zero_click_snippet)}</div>
               </div>
             ` : ''}
 
             <div class="job-actions">
               <div class="diff-summary">
-                ${job.diff_summary || 'Standard AEO optimizations'}
+                ${escapeHtml(job.diff_summary || 'Standard AEO optimizations')}
               </div>
 
               <div class="action-buttons">
-                ${job.pr_url ? `
+                <!-- Preview & Copy buttons for CMS & Portal users -->
+                <button type="button" class="btn-action-preview" onclick="openPreviewModal('${job.id}')">
+                  👁️ View Staged Content
+                </button>
+                <button type="button" class="btn-action-copy" onclick="copyJobContent('${job.id}')">
+                  📋 Copy ${channel === 'wp_draft' ? 'Gutenberg Block' : (channel === 'shopify_draft' ? 'Metafields' : (channel === 'magento_block' ? 'XML Block' : 'HTML'))}
+                </button>
+
+                <!-- GitHub PR Link -->
+                ${channel === 'github_pr' && job.pr_url ? `
                   <a href="${job.pr_url}" target="_blank" rel="noopener noreferrer" class="btn-github">
-                    GitHub PR ↗
+                    GitHub PR #${job.pr_number || 'Auto'} ↗
                   </a>
                 ` : ''}
 
+                <!-- Direct CMS Link if provided -->
+                ${currentProject.cms_url ? `
+                  <a href="${currentProject.cms_url}" target="_blank" class="btn-cms-open">
+                    ${channel === 'wp_draft' ? 'WP Admin ↗' : (channel === 'shopify_draft' ? 'Shopify Admin ↗' : 'CMS Admin ↗')}
+                  </a>
+                ` : ''}
+
+                <!-- 1-Click Action Button -->
                 ${isPending ? `
                   <button class="btn-approve" onclick="approveJob('${job.id}')" id="btn-approve-${job.id}">
-                    ✓ 1-Click Approve & Merge
+                    ${channel === 'github_pr' ? '✓ 1-Click Approve & Merge' : (channel === 'wp_draft' ? '✓ 1-Click Publish to WordPress' : (channel === 'shopify_draft' ? '✓ 1-Click Publish to Shopify' : (channel === 'magento_block' ? '✓ 1-Click Push to Magento' : '✓ Mark as Applied')))}
                   </button>
                 ` : `
                   <span class="btn-merged">
-                    ✓ Merged & Deployed
+                    ${channel === 'github_pr' ? '✓ Merged & Deployed' : (channel === 'wp_draft' ? '✓ Published to WordPress' : (channel === 'shopify_draft' ? '✓ Published to Shopify' : (channel === 'magento_block' ? '✓ Synced to Magento' : '✓ Applied to Site')))}
                   </span>
                 `}
               </div>
@@ -1033,7 +1299,7 @@
       const btn = document.getElementById(`btn-approve-${jobId}`);
       if (btn) {
         btn.disabled = true;
-        btn.textContent = 'Merging...';
+        btn.textContent = 'Publishing...';
       }
 
       try {
@@ -1045,31 +1311,133 @@
 
         const data = await res.json();
         if (data.success) {
-          // Update local state
           const job = allJobs.find(j => j.id === jobId);
           if (job) {
             job.pr_status = 'approved';
           }
           renderJobs();
           updateKPIs();
-          showToast('🎉 Pull Request merged & deployed instantly to Cloudflare edge!');
+          showToast('🎉 Content published & synced to edge!', '🎉');
         } else {
           showToast('❌ Failed: ' + (data.error || 'Server error'), '❌');
           if (btn) {
             btn.disabled = false;
-            btn.textContent = '✓ 1-Click Approve & Merge';
+            btn.textContent = '✓ 1-Click Approve';
           }
         }
       } catch (err) {
-        showToast('❌ Network error while approving PR', '❌');
+        showToast('❌ Network error while publishing', '❌');
         if (btn) {
           btn.disabled = false;
-          btn.textContent = '✓ 1-Click Approve & Merge';
+          btn.textContent = '✓ 1-Click Approve';
         }
       }
     }
 
-    // 5. Update KPI Cards
+    // 5. Preview Modal Logic
+    function openPreviewModal(jobId) {
+      const job = allJobs.find(j => j.id === jobId);
+      if (!job) return;
+      currentPreviewJob = job;
+
+      const modal = document.getElementById('contentPreviewModal');
+      const title = document.getElementById('previewTitle');
+      const subtitle = document.getElementById('previewSubtitle');
+      const badge = document.getElementById('previewChannelBadge');
+      const renderedView = document.getElementById('previewRenderedView');
+      const codeContent = document.getElementById('previewCodeContent');
+      const cmsLink = document.getElementById('btnModalCmsLink');
+      const approveBtn = document.getElementById('btnModalApprove');
+
+      title.textContent = job.title;
+      subtitle.innerHTML = `Target Keyword: <strong>${escapeHtml(job.target_keyword || 'Core')}</strong> · URL: <code>${escapeHtml(job.target_url || '/')}</code> · Schema Score: <strong>${job.schema_score}/100</strong>`;
+      
+      const cmsType = (currentProject.cms_type || 'github').toUpperCase();
+      badge.textContent = `Staged for ${cmsType}`;
+
+      const contentToDisplay = job.content_html || `<h2>${escapeHtml(job.title)}</h2><p>${escapeHtml(job.zero_click_snippet)}</p><div style="margin-top:1rem; padding:1rem; background:#f5f4f0; border-radius:8px;"><strong>Schema.org Validated Invariant:</strong> Zero-error FAQPage graph pre-rendered for search bots.</div>`;
+      renderedView.innerHTML = contentToDisplay;
+      codeContent.textContent = contentToDisplay;
+
+      if (currentProject.cms_url) {
+        cmsLink.href = currentProject.cms_url;
+        cmsLink.style.display = 'inline-flex';
+      } else {
+        cmsLink.style.display = 'none';
+      }
+
+      if (job.pr_status === 'pending') {
+        approveBtn.style.display = 'inline-flex';
+        approveBtn.textContent = '✓ 1-Click Publish';
+        approveBtn.onclick = () => {
+          approveJob(job.id);
+          closePreviewModal();
+        };
+      } else {
+        approveBtn.style.display = 'none';
+      }
+
+      switchPreviewTab('rendered');
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePreviewModal() {
+      const modal = document.getElementById('contentPreviewModal');
+      if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function handlePreviewOverlayClick(e) {
+      if (e.target && e.target.id === 'contentPreviewModal') {
+        closePreviewModal();
+      }
+    }
+
+    function switchPreviewTab(tab) {
+      const btnRendered = document.getElementById('tabPreviewRendered');
+      const btnCode = document.getElementById('tabPreviewCode');
+      const viewRendered = document.getElementById('previewRenderedView');
+      const viewCode = document.getElementById('previewCodeView');
+
+      if (tab === 'code') {
+        btnRendered.classList.remove('active');
+        btnCode.classList.add('active');
+        viewRendered.style.display = 'none';
+        viewCode.style.display = 'block';
+      } else {
+        btnCode.classList.remove('active');
+        btnRendered.classList.add('active');
+        viewCode.style.display = 'none';
+        viewRendered.style.display = 'block';
+      }
+    }
+
+    // 6. Copy Utilities
+    function copyJobContent(jobId) {
+      const job = allJobs.find(j => j.id === jobId);
+      if (!job) return;
+      const text = job.content_html || job.zero_click_snippet || job.title;
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('📋 Staged content copied to clipboard!', '📋');
+      }).catch(() => {
+        showToast('⚠️ Could not access clipboard', '⚠️');
+      });
+    }
+
+    function copyCurrentModalContent() {
+      if (!currentPreviewJob) return;
+      const text = currentPreviewJob.content_html || currentPreviewJob.zero_click_snippet || currentPreviewJob.title;
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('📋 Staged content copied to clipboard!', '📋');
+      }).catch(() => {
+        showToast('⚠️ Could not access clipboard', '⚠️');
+      });
+    }
+
+    // 7. Update KPI Cards
     function updateKPIs() {
       const pendingCount = allJobs.filter(j => j.pr_status === 'pending').length;
       const approvedCount = allJobs.filter(j => j.pr_status === 'approved' || j.pr_status === 'merged').length;
@@ -1085,11 +1453,11 @@
 
       const totalPrsElem = document.getElementById('kpiTotalPrs');
       if (totalPrsElem) {
-        totalPrsElem.innerHTML = `${approvedCount + 44} / ${allJobs.length + 44} <span style="font-size: 1rem; color: var(--c-text-muted); font-weight: 600;">PRs</span>`;
+        totalPrsElem.innerHTML = `${approvedCount + 44} / ${allJobs.length + 44} <span style="font-size: 1rem; color: var(--c-text-muted); font-weight: 600;">Assets</span>`;
       }
     }
 
-    // 6. Filter Buttons
+    // 8. Filter Buttons
     function filterJobs(filter) {
       currentFilter = filter;
       document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -1098,7 +1466,7 @@
       renderJobs();
     }
 
-    // 7. Manual Dispatch Simulation
+    // 9. Manual Dispatch Simulation (Platform Tailored)
     async function triggerManualDispatch() {
       const btn = document.getElementById('btnManualDispatch');
       btn.disabled = true;
@@ -1106,27 +1474,63 @@
 
       try {
         const today = new Date().toISOString().split('T')[0];
+        const cmsType = (currentProject.cms_type || 'github').toLowerCase();
+
+        let title = `AEO Optimization Asset [Manual Cadence ${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}]`;
+        let channel = 'github_pr';
+        let prUrl = 'https://github.com/justmailsameer-prog/answerindex/pull/146';
+        let prNum = 146;
+        let diff = '+185 lines · FAQPage + Article Schema';
+
+        if (cmsType === 'wordpress') {
+          title = `WordPress Draft Post: "Real-Time AEO Guide for ${currentProject.brand_name || currentProject.domain}"`;
+          channel = 'wp_draft';
+          prUrl = null;
+          prNum = null;
+          diff = '+1,400 words · Staged as Gutenberg Draft Block';
+        } else if (cmsType === 'shopify') {
+          title = `Shopify Draft Blog: "Product Q&A & Buying Recommendations"`;
+          channel = 'shopify_draft';
+          prUrl = null;
+          prNum = null;
+          diff = 'Metafield Product Schema + Article Draft';
+        } else if (cmsType === 'magento') {
+          title = `Magento CMS Block: "Authoritative Answers PageBuilder Block"`;
+          channel = 'magento_block';
+          prUrl = null;
+          prNum = null;
+          diff = 'PageBuilder XML + FAQ Microdata';
+        } else if (cmsType === 'portal') {
+          title = `High-Velocity Direct Answer: "Complete Entity Overview"`;
+          channel = 'portal_copy';
+          prUrl = null;
+          prNum = null;
+          diff = '+1,500 words · 1-Click Copy Ready';
+        }
+
         const res = await fetch('/api/jobs', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            project_id: 'proj_answerindex_core',
+            project_id: currentProject.id || 'proj_answerindex_core',
             date: today,
             job_type: 'job_1_new_answer',
-            title: `Real-Time AEO Optimization Asset [Manual Trigger ${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}]`,
-            target_keyword: 'generative ai crawler verification',
-            target_url: `/answers/crawler-verification-${Date.now().toString(36)}.html`,
-            pr_url: 'https://github.com/justmailsameer-prog/answerindex/pull/145',
-            pr_number: 145,
+            title,
+            target_keyword: `${currentProject.domain} generative search verification`,
+            target_url: `/answers/cadence-${Date.now().toString(36)}.html`,
+            pr_url: prUrl,
+            pr_number: prNum,
             schema_score: 100,
-            diff_summary: '+165 lines · Fresh FAQPage JSON-LD Graph',
-            zero_click_snippet: 'Automated on-demand AEO snippet verifying instant crawler freshness across Perplexity, ChatGPT Search, and Claude engines.'
+            diff_summary: diff,
+            delivery_channel: channel,
+            content_html: `<h2>Direct Answer for ${escapeHtml(currentProject.brand_name || currentProject.domain)}</h2><p>Synthesized authoritative facts structured for Perplexity, ChatGPT Search, and Claude engines.</p>`,
+            zero_click_snippet: `Authoritative verified answer snippet ensuring ${currentProject.brand_name || currentProject.domain} is cited by generative engines.`
           })
         });
 
         const data = await res.json();
         if (data.success) {
-          showToast('🚀 New Autonomous Job dispatched into D1 queue!');
+          showToast('🚀 New Autonomous Job dispatched into Cloudflare D1 queue!');
           await loadJobs();
         } else {
           showToast('❌ Dispatch error: ' + data.error, '❌');
@@ -1139,7 +1543,7 @@
       }
     }
 
-    // 8. Citation Telemetry Refresh
+    // 10. Citation Telemetry Refresh
     async function refreshCitations() {
       try {
         const res = await fetch('/api/citations');
@@ -1155,7 +1559,7 @@
       }
     }
 
-    // 9. Toast Notification Handler
+    // 11. Toast Notification Handler
     function showToast(message, icon = '🎉') {
       const toast = document.getElementById('toast');
       const toastIcon = document.getElementById('toastIcon');
@@ -1170,9 +1574,18 @@
       }, 4000);
     }
 
+    function escapeHtml(text) {
+      if (!text) return '';
+      return String(text)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
     // Initialize Dashboard on page load
     loadProject();
-    loadJobs();
   </script>
 </body>
 </html>

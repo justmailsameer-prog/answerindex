@@ -20,6 +20,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <!-- jsPDF for instant client-side audit report generation -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <link rel="stylesheet" href="assets/client-portal.css" />
 
   <style>
     :root {
@@ -1888,6 +1889,9 @@
         <a href="dashboard.html" class="btn btn-secondary-dark" style="font-size: 0.85rem; padding: 0.5rem 0.9rem; border-color: rgba(58,87,252,0.45); color: #fff; background: rgba(58,87,252,0.12);">
           ⚡ Live Dashboard
         </a>
+        <button onclick="openClientAuthModal('login')" class="btn-client-portal" style="cursor: pointer; padding: 0.5rem 0.95rem;">
+          🔑 Client Portal
+        </button>
         <button onclick="openContactModal('call')" class="btn btn-secondary-dark nav-btn-call" style="font-size: 0.85rem; padding: 0.5rem 1rem; border-color: rgba(255,255,255,0.22);">
           📞 Book 15-Min Intro
         </button>
@@ -1906,10 +1910,26 @@
 
           <!-- Clean Minimal Dropdown Menu with Submenus -->
           <div id="navDropdownMenu" class="nav-dropdown-menu">
+            <a href="javascript:void(0)" class="dropdown-link" onclick="closeDropdown(); openClientAuthModal('login');">
+              <span>🔑</span>
+              <div>
+                <div style="font-weight: 700; color: #fff;">Client Portal (Sign In)</div>
+                <div style="font-size: 0.72rem; color: #94a3b8; font-weight: normal;">WordPress, Shopify, Magento &amp; GitHub</div>
+              </div>
+            </a>
+
+            <a href="javascript:void(0)" class="dropdown-link" onclick="closeDropdown(); openClientAuthModal('register');">
+              <span>🚀</span>
+              <div>
+                <div style="font-weight: 700; color: #60a5fa;">Onboard New Site</div>
+                <div style="font-size: 0.72rem; color: #94a3b8; font-weight: normal;">Choose Platform (CMS or Git)</div>
+              </div>
+            </a>
+
             <a href="#audit-tool" class="dropdown-link highlight-audit" onclick="closeDropdown()">
               <span>🔍</span>
               <div>
-                <div style="font-weight: 700; color: #60a5fa;">Free SEO & AI Audit</div>
+                <div style="font-weight: 700; color: #60a5fa;">Free SEO &amp; AI Audit</div>
                 <div style="font-size: 0.72rem; color: #94a3b8; font-weight: normal;">Instant PDF report</div>
               </div>
             </a>
@@ -4454,5 +4474,6 @@
       doc.save(`${cleanDomain}-AnswerIndex-SEO-Audit.pdf`);
     }
   </script>
+  <script src="assets/client-portal.js"></script>
 </body>
 </html>

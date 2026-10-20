@@ -72,6 +72,8 @@ export async function onRequestPost({ request, env }) {
       diff_summary = '',
       diff_details = '',
       zero_click_snippet = '',
+      delivery_channel = 'github_pr',
+      content_html = '',
       scheduled_at = null,
       dispatched_at = new Date().toISOString()
     } = data;
@@ -89,12 +91,12 @@ export async function onRequestPost({ request, env }) {
       `INSERT INTO daily_jobs (
         id, project_id, date, job_type, title, description, target_keyword, target_url,
         pr_url, pr_number, pr_status, schema_score, diff_summary, diff_details,
-        zero_click_snippet, scheduled_at, dispatched_at
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+        zero_click_snippet, delivery_channel, content_html, scheduled_at, dispatched_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
     ).bind(
       id, project_id, date, job_type, title, description, target_keyword, target_url,
       pr_url, pr_number, pr_status, schema_score, diff_summary, diff_details,
-      zero_click_snippet, scheduled_at, dispatched_at
+      zero_click_snippet, delivery_channel, content_html, scheduled_at, dispatched_at
     ).run();
 
     return new Response(
