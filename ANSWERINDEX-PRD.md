@@ -300,10 +300,34 @@ The paid autonomous version of Answer Index introduces a commercial subscription
 
 ---
 
-## 11. Next Milestone (v2.4)
+## 10. Completed Milestone (v2.4.0) — Minimalist Submenus, Logo-Branded Audit PDF & 12-Month Annual Dominance Roadmap
 
-1. **Merchant KYC Activation:** Complete business profile / bank payout details in Dodo Payments Dashboard for Answer Index to enable live charge processing.
-2. **GitHub App Webhook Integration:** Bi-directional sync between GitHub PR merge events and Cloudflare D1 job statuses.
+1. **Minimalist Hamburger Menu with Accordion Submenus:**
+   - Streamlined long 16-item vertical navigation list into a clean, compact hierarchy.
+   - Primary high-intent links: `🔍 Free SEO & AI Audit` (highlighted pill), `💡 About Answer Index`, `⚡ Commercial Pro`, `📊 Live Client Dashboard`.
+   - Expandable Submenu 1: **⚙️ Platform & Features** (`Daily Autonomous Routine`, `Market Comparison`, `Pricing & Plans`, `FAQ & How It Works`).
+   - Expandable Submenu 2: **📞 Contact Us** (`Book 15-Min Intro Call`, `Email Founder Directly`, `Direct Feedback Channel`).
+   - Deployed across `pro.html`, `index.html`, and `dist/pro/`.
+
+2. **Executive Audit PDF Enhancements (Paid Conversion Engine):**
+   - **Prominent Brand Identity:** Answer Index 3D vector logo dynamically rendered on top of every page header alongside bold white enterprise typography.
+   - **Zero Open-Source Leaks:** Completely removed all GitHub and MIT open-source repository links to prevent sales leakage and maximize paid plan conversions.
+   - **Replaced 30-Day Plan with Urgent Emergency Alerts:** Eliminated the 30-day plan (which mistakenly implied SEO is finished in a month). Replaced with high-severity emergency alerts regarding missing `/llms.txt`, Schema `@graph` voids, and active competitor citation theft in ChatGPT Search, Perplexity, and Google AI Overviews.
+   - **12-Month Autonomous AI & Search Dominance Roadmap:** Added a detailed 5-phase annual roadmap demonstrating why continuous 12-month optimization is essential to build an insurmountable AI citation moat:
+     - *Months 1–2:* Emergency Ingestion Triage & Machine-Readable Foundation (`/llms.txt`, Schema graph, AI crawler directives).
+     - *Months 3–4:* Passage-Level AEO Direct Answers & Zero-Click Capture (60+ declarative answer blocks).
+     - *Months 5–6:* Competitor Citation Displacement & Comparative Proofs (feature matrices, alternative guides).
+     - *Months 7–9:* Semantic Entity Graph Expansion & Deep Long-Tail Category Moat (180+ topical clusters).
+     - *Months 10–12:* Complete AI Consensus Monopolization & Continuous Model Recalibration (auto-adapting to GPT-5, Gemini 2, Claude 4 updates).
+   - **Dual Conversion Call-to-Action:** Highlights immediate start with Monthly Pro ($249/mo) and 20% annual savings with the 12-Month Annual Plan ($199/mo).
+
+---
+
+## 11. Next Milestone (v2.5)
+
+1. **Merchant KYC Activation:** Complete business profile / bank payout details in Dodo Payments Dashboard under Settings > Business Profile for Answer Index to enable live card charges.
+2. **GitHub App Webhook Integration:** Bi-directional sync between GitHub PR merge events and Cloudflare D1 job queue statuses.
+
 
 
 
