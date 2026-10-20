@@ -1,7 +1,7 @@
 # Answer Index — Product Requirements Document (PRD)
 
-**Document Version:** 2.5.0  
-**Status:** Production Active (v2.5.0)  
+**Document Version:** 2.5.1  
+**Status:** Production Active (v2.5.1)  
 **Product Name:** Answer Index (Open Source Core & Commercial Pro Autonomous)  
 **Live Production Portals:**
 - **Commercial Pro Engine:** [https://answerindex-pro.pages.dev](https://answerindex-pro.pages.dev)
@@ -107,8 +107,9 @@ Files deployed at `https://yourdomain.com/<file>` that instruct AI crawler bots 
 
 ```
 answerindex/
-├── index.html                   # Open-Source Developer Landing Page
-├── pro.html                     # Commercial Pro Growth Engine Landing Page
+├── index.html                   # Primary Commercial Pro Landing Page (Unified)
+├── pro.html                     # Commercial Pro Growth Engine Landing Page (Alias)
+├── index-oss.html               # Open-Source Developer Landing Page (Preserved)
 ├── about.html                   # Executive Clarity: What, Does, Sales
 ├── dashboard.html               # Real-Time Autonomous Client Portal & Dispatch Queue
 ├── feedback.html                # Direct Founder Feedback Channel
@@ -316,7 +317,8 @@ Customers frequently ask why they should maintain an annual subscription if init
 | **v2.2.0** | Oct 2026 | Live Client Dashboard (`dashboard.html`), Dodo Payments dual-mode checkout fallback, annual billing toggle. |
 | **v2.3.0** | Oct 2026 | Free instant SEO & AI diagnostic scanner (`#audit-tool`), client-side jsPDF executive report generator. |
 | **v2.4.0** | Oct 2026 | Minimalist hamburger menu with accordion submenus, 20-point deterministic edge audit probe (`/api/audit`), score-tailored roadmap, manual PDF download, padded CTA box, zero open-source links on reports. |
-| **v2.5.0** | Oct 2026 | **Client Portal & Multi-Platform CMS Delivery (Current Release):**<br>• Added `🔑 Client Portal` button and responsive auth modal across all pages.<br>• Built 5-Platform Selector (`WordPress`, `Shopify`, `GitHub`, `Magento`, `Web Portal`).<br>• Migration 0003 adding CMS columns and seed data to Cloudflare D1.<br>• Upgraded `dashboard.html` with platform indicator badges, content preview drawers, and tailored 1-click publishing actions.<br>• Automated browser verification video recorded and committed to GitHub `main`. |
+| **v2.5.0** | Oct 2026 | **Client Portal & Multi-Platform CMS Delivery:**<br>• Added `🔑 Client Portal` button and responsive auth modal across all pages.<br>• Built 5-Platform Selector (`WordPress`, `Shopify`, `GitHub`, `Magento`, `Web Portal`).<br>• Migration 0003 adding CMS columns and seed data to Cloudflare D1.<br>• Upgraded `dashboard.html` with platform indicator badges, content preview drawers, and tailored 1-click publishing actions.<br>• Automated browser verification video recorded and committed to GitHub `main`. |
+| **v2.5.1** | Oct 2026 | **Landing Page Architecture & Headline Harmonization (Current Release):**<br>• Unified primary landing page on `answerindex-pro.pages.dev` to eliminate duplicate legacy single-color UI.<br>• Synchronized latest 5-brand color palette (#3a57fc Cobalt, #333333 Charcoal, #000000 Obsidian, #f5f4f0 Warm Cream, #a7c75d Lime) across root index and `/pro`.<br>• Applied canonical banner tagline *"Make your content indexable as authoritative answers across Search & AI Engines"* with `text-wrap: balance;` to eliminate orphaned line breaks.<br>• Preserved legacy CLI open-source layout as `index-oss.html`.<br>• Deployed live to Cloudflare Pages and verified production HTTP 200 responses. |
 
 ---
 
