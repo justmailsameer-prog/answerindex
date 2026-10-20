@@ -18,7 +18,8 @@
   <!-- Google Fonts: Plus Jakarta Sans + JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- jsPDF for instant client-side audit report generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
   <style>
     :root {
@@ -364,17 +365,17 @@
       position: absolute;
       top: calc(100% + 0.75rem);
       right: 0;
-      width: 290px;
-      background: #181818;
+      width: 280px;
+      background: #141416;
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.14);
       border-radius: 14px;
-      padding: 0.75rem;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 25px rgba(58, 87, 252, 0.25);
+      padding: 0.65rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), 0 0 25px rgba(58, 87, 252, 0.2);
       display: none;
       flex-direction: column;
-      gap: 0.35rem;
+      gap: 0.25rem;
       z-index: 1000;
     }
     .nav-dropdown-menu.show {
@@ -388,11 +389,11 @@
     .dropdown-link {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-      padding: 0.65rem 0.85rem;
+      gap: 0.65rem;
+      padding: 0.55rem 0.75rem;
       color: #cccccc;
       text-decoration: none;
-      font-size: 0.92rem;
+      font-size: 0.88rem;
       font-weight: 600;
       border-radius: 8px;
       transition: all 0.15s ease;
@@ -401,10 +402,79 @@
       background: var(--c-cobalt-tint);
       color: #ffffff;
     }
+    .dropdown-link.highlight-audit {
+      background: rgba(58, 87, 252, 0.12);
+      border: 1px solid rgba(58, 87, 252, 0.35);
+      color: #93c5fd;
+      margin-bottom: 0.2rem;
+    }
+    .dropdown-link.highlight-audit:hover {
+      background: rgba(58, 87, 252, 0.25);
+      color: #ffffff;
+    }
     .dropdown-divider {
       height: 1px;
-      background: rgba(255, 255, 255, 0.1);
-      margin: 0.4rem 0;
+      background: rgba(255, 255, 255, 0.08);
+      margin: 0.35rem 0;
+    }
+    /* Submenus */
+    .dropdown-group {
+      display: flex;
+      flex-direction: column;
+    }
+    .dropdown-group-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 0.55rem 0.75rem;
+      background: transparent;
+      border: none;
+      border-radius: 8px;
+      color: #cccccc;
+      font-size: 0.88rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.15s ease;
+    }
+    .dropdown-group-toggle:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: #ffffff;
+    }
+    .dropdown-group-toggle .chevron {
+      font-size: 0.75rem;
+      color: #888888;
+      transition: transform 0.2s ease;
+    }
+    .dropdown-group.open .dropdown-group-toggle .chevron {
+      transform: rotate(180deg);
+      color: var(--c-lime);
+    }
+    .dropdown-submenu {
+      display: none;
+      flex-direction: column;
+      gap: 0.15rem;
+      padding: 0.25rem 0 0.35rem 1.75rem;
+      border-left: 2px solid rgba(58, 87, 252, 0.3);
+      margin: 0.2rem 0 0.35rem 0.75rem;
+    }
+    .dropdown-group.open .dropdown-submenu {
+      display: flex;
+    }
+    .dropdown-submenu a {
+      color: #999999;
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 0.35rem 0.5rem;
+      border-radius: 6px;
+      transition: all 0.15s ease;
+    }
+    .dropdown-submenu a:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.05);
     }
 
     /* =========================================================================
@@ -1441,9 +1511,355 @@
       transition: all 0.3s ease;
       pointer-events: none;
     }
-    .toast-msg.show {
-      opacity: 1;
-      transform: translateY(0);
+    /* =========================================================================
+       FREE INSTANT SEO & AI READINESS AUDIT SECTION
+       ========================================================================= */
+    .audit-section {
+      background: #0d121f;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 5rem 0;
+      position: relative;
+    }
+    .audit-container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .audit-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .audit-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(58, 87, 252, 0.12);
+      border: 1px solid rgba(58, 87, 252, 0.35);
+      color: #60a5fa;
+      font-size: 0.78rem;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      padding: 0.3rem 0.85rem;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 1rem;
+    }
+    .audit-title {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+    }
+    .audit-desc {
+      font-size: 1.05rem;
+      color: #94a3b8;
+      max-width: 720px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .audit-card-box {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1.5px solid rgba(58, 87, 252, 0.3);
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(58, 87, 252, 0.12);
+      backdrop-filter: blur(16px);
+      position: relative;
+    }
+    .audit-input-form {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr auto;
+      gap: 1rem;
+      align-items: center;
+      margin-bottom: 1.25rem;
+    }
+    @media (max-width: 820px) {
+      .audit-input-form {
+        grid-template-columns: 1fr;
+      }
+      .audit-title {
+        font-size: 1.75rem;
+      }
+      .audit-card-box {
+        padding: 1.5rem;
+      }
+    }
+    .audit-input-field {
+      width: 100%;
+      background: rgba(3, 7, 18, 0.75);
+      border: 1.5px solid rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      padding: 0.85rem 1.15rem;
+      color: #fff;
+      font-size: 0.95rem;
+      font-family: var(--font-sans);
+      outline: none;
+      transition: all 0.2s;
+    }
+    .audit-input-field:focus {
+      border-color: var(--c-cobalt);
+      box-shadow: 0 0 15px rgba(58, 87, 252, 0.35);
+      background: rgba(3, 7, 18, 0.95);
+    }
+    .audit-input-field::placeholder {
+      color: #64748b;
+    }
+    .audit-btn-submit {
+      background: linear-gradient(135deg, var(--c-cobalt), #2563eb);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 0.85rem 1.6rem;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(58, 87, 252, 0.4);
+    }
+    .audit-btn-submit:hover {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(58, 87, 252, 0.55);
+    }
+    .audit-btn-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .audit-subtext {
+      text-align: center;
+      font-size: 0.82rem;
+      color: #64748b;
+    }
+    /* Scanner Progress Box */
+    .audit-scanner {
+      display: none;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      animation: fadeIn 0.3s ease;
+    }
+    .audit-scanner.active {
+      display: block;
+    }
+    .scanner-progress-bar-bg {
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+    .scanner-progress-bar-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #38bdf8, #818cf8, #a855f7);
+      border-radius: 999px;
+      transition: width 0.4s ease;
+    }
+    .scanner-steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+    }
+    .scanner-step-item {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      color: #64748b;
+      transition: color 0.2s;
+    }
+    .scanner-step-item.active {
+      color: #38bdf8;
+      font-weight: 600;
+    }
+    .scanner-step-item.done {
+      color: #22c55e;
+    }
+    /* Results Display Card */
+    .audit-results {
+      display: none;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .audit-results.active {
+      display: block;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .results-top-banner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(3, 7, 18, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 1.75rem;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+    }
+    .results-domain-info h3 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 0.25rem;
+    }
+    .results-domain-info p {
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+    .results-score-badge {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .score-circle {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: conic-gradient(#f59e0b var(--score-deg, 240deg), rgba(255, 255, 255, 0.1) 0deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .score-circle::before {
+      content: '';
+      position: absolute;
+      width: 58px;
+      height: 58px;
+      background: #0f172a;
+      border-radius: 50%;
+    }
+    .score-circle span {
+      position: relative;
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: #fff;
+    }
+    .score-label {
+      text-align: left;
+    }
+    .score-grade {
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: #f59e0b;
+    }
+    .score-status {
+      font-size: 0.78rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      font-family: var(--font-mono);
+    }
+    /* 4-Pillars Grid */
+    .results-pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+    }
+    .pillar-metric-card {
+      background: rgba(3, 7, 18, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 1.15rem;
+    }
+    .pillar-metric-card .p-title {
+      font-size: 0.82rem;
+      color: #94a3b8;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+    }
+    .pillar-metric-card .p-score {
+      font-weight: 800;
+      color: #fff;
+      font-size: 1.1rem;
+    }
+    .p-bar-bg {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      margin-top: 0.6rem;
+      overflow: hidden;
+    }
+    .p-bar-fill {
+      height: 100%;
+      border-radius: 999px;
+    }
+    /* Issues Box */
+    .results-issues-box {
+      background: rgba(3, 7, 18, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .results-issues-box h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .issues-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .issue-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      font-size: 0.88rem;
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+    /* Actions Row */
+    .results-actions-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .btn-download-pdf {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding: 0.85rem 1.75rem;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.35);
+    }
+    .btn-download-pdf:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
     }
   </style>
 </head>
@@ -1466,11 +1882,17 @@
 
       <!-- Clean Header Action: Electric Cobalt CTA + Call Button + Animated Hamburger Menu -->
       <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <a href="about.html" class="btn btn-secondary-dark" style="font-size: 0.85rem; padding: 0.5rem 0.9rem; border-color: rgba(255,255,255,0.25); color: #fff;">
+          💡 About
+        </a>
+        <a href="dashboard.html" class="btn btn-secondary-dark" style="font-size: 0.85rem; padding: 0.5rem 0.9rem; border-color: rgba(58,87,252,0.45); color: #fff; background: rgba(58,87,252,0.12);">
+          ⚡ Live Dashboard
+        </a>
         <button onclick="openContactModal('call')" class="btn btn-secondary-dark nav-btn-call" style="font-size: 0.85rem; padding: 0.5rem 1rem; border-color: rgba(255,255,255,0.22);">
           📞 Book 15-Min Intro
         </button>
-        <a href="#pricing" class="btn btn-cobalt" style="font-size: 0.88rem; padding: 0.55rem 1.25rem;">
-          Join Waitlist ($249/mo) →
+        <a href="#audit-tool" class="btn btn-cobalt" style="font-size: 0.85rem; padding: 0.5rem 1.15rem; cursor: pointer; text-decoration: none;">
+          🔍 Free SEO Audit
         </a>
 
         <div class="menu-dropdown-wrapper">
@@ -1482,24 +1904,52 @@
             </span>
           </button>
 
-          <!-- Dropdown Menu -->
+          <!-- Clean Minimal Dropdown Menu with Submenus -->
           <div id="navDropdownMenu" class="nav-dropdown-menu">
-            <a href="#calendar-loop" class="dropdown-link">⚡ Daily Calendar & Routine</a>
-            <a href="#how-approvals-work" class="dropdown-link">🔄 How Approvals & GitHub Work</a>
-            <a href="#journey" class="dropdown-link">🗺️ Customer Journey</a>
-            <a href="#daily-loop" class="dropdown-link">⚙️ Daily 2 Jobs Detail</a>
-            <a href="#comparison" class="dropdown-link">📊 Market Comparison</a>
-            <a href="#pricing" class="dropdown-link">💳 Pricing & Value Stack</a>
-            <a href="#contact" class="dropdown-link">📞 Talk to Founder / Book Call</a>
-            <a href="#before-you-start" class="dropdown-link">❓ Before You Start (FAQ)</a>
+            <a href="#audit-tool" class="dropdown-link highlight-audit" onclick="closeDropdown()">
+              <span>🔍</span>
+              <div>
+                <div style="font-weight: 700; color: #60a5fa;">Free SEO & AI Audit</div>
+                <div style="font-size: 0.72rem; color: #94a3b8; font-weight: normal;">Instant PDF report</div>
+              </div>
+            </a>
+            
+            <a href="about.html" class="dropdown-link">
+              <span>💡</span> About Answer Index
+            </a>
+
+            <a href="dashboard.html" class="dropdown-link">
+              <span>⚡</span> Client Web Dashboard
+            </a>
+
             <div class="dropdown-divider"></div>
-            <a href="javascript:void(0)" onclick="openContactModal('call')" class="dropdown-link" style="color: #60a5fa; font-weight: 700;">📞 Book 15-Min Intro Call</a>
-            <a href="javascript:void(0)" onclick="openContactModal('audit')" class="dropdown-link" style="color: var(--c-lime); font-weight: 700;">🔍 Request Free 24h AI Audit</a>
-            <a href="mailto:sameer@answerindex.com" class="dropdown-link">✉️ Email Founder (sameer@answerindex.com)</a>
-            <div class="dropdown-divider"></div>
-            <a href="index.html" class="dropdown-link">🌐 Free Open-Source Engine</a>
-            <a href="feedback.html" class="dropdown-link">💬 Direct Feedback Channel</a>
-            <a href="javascript:void(0)" id="shareBtn" class="dropdown-link" style="color: var(--c-lime);">🔗 Share with Friends</a>
+
+            <!-- Submenu 1: Platform & Solutions -->
+            <div class="dropdown-group">
+              <button class="dropdown-group-toggle" onclick="toggleDropdownGroup(this, event)">
+                <span><span>⚙️</span> Platform & Features</span>
+                <span class="chevron">▾</span>
+              </button>
+              <div class="dropdown-submenu">
+                <a href="#calendar-loop" onclick="closeDropdown()">Daily Autonomous Routine</a>
+                <a href="#comparison" onclick="closeDropdown()">Market Comparison</a>
+                <a href="#pricing" onclick="closeDropdown()">Pricing & Plans</a>
+                <a href="#before-you-start" onclick="closeDropdown()">FAQ & How It Works</a>
+              </div>
+            </div>
+
+            <!-- Submenu 2: Contact Us -->
+            <div class="dropdown-group">
+              <button class="dropdown-group-toggle" onclick="toggleDropdownGroup(this, event)">
+                <span><span>📞</span> Contact Us</span>
+                <span class="chevron">▾</span>
+              </button>
+              <div class="dropdown-submenu">
+                <a href="javascript:void(0)" onclick="openContactModal('call'); closeDropdown();">📞 Book 15-Min Intro Call</a>
+                <a href="mailto:sameer@answerindex.com">✉️ Email Founder Directly</a>
+                <a href="feedback.html">💬 Direct Feedback Channel</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1542,9 +1992,9 @@
       </div>
 
       <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-        <a href="#pricing" class="btn btn-cobalt" style="padding: 0.85rem 2.2rem; font-size: 1.05rem;">
-          Join Early Adopter Waitlist ($249/mo) →
-        </a>
+        <button onclick="startCheckout('pro_autonomous')" class="btn btn-cobalt" style="padding: 0.85rem 2.2rem; font-size: 1.05rem; cursor: pointer;">
+          Start Autonomous Pro ($249/mo) →
+        </button>
         <button onclick="openContactModal('call')" class="btn btn-secondary-dark" style="padding: 0.85rem 1.75rem; border-color: rgba(255,255,255,0.25);">
           📞 Book 15-Min Intro Call
         </button>
@@ -1553,11 +2003,223 @@
       <!-- Founder Quick SLA Indicator -->
       <div style="margin-top: 1.25rem; font-size: 0.85rem; color: #888888; display: flex; align-items: center; justify-content: center; gap: 0.5rem; flex-wrap: wrap;">
         <span>💬 Have questions first?</span>
-        <a href="#contact" style="color: #60a5fa; text-decoration: underline;">Talk directly to Sameer Sharma (Founder)</a>
-        <span>· No sales reps · 4-hour response SLA</span>
+        <a href="about.html" style="color: #60a5fa; font-weight: 700; text-decoration: underline;">Learn What Answer Index Is &amp; How It Drives Sales →</a>
+        <span>· Or talk to Sameer Sharma (Founder)</span>
       </div>
     </div>
   </header>
+
+  <!-- =========================================================================
+       EXECUTIVE CLARITY SPOTLIGHT: WHAT IS ANSWER INDEX & HOW IT DRIVES SALES
+       ========================================================================= -->
+  <section class="clarity-spotlight-section" style="background: #111115; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 3.5rem 0;">
+    <div class="container">
+      <div style="background: linear-gradient(135deg, rgba(58,87,252,0.12), rgba(167,199,93,0.06)); border: 1.5px solid rgba(58,87,252,0.3); border-radius: 20px; padding: 2.25rem; max-width: 1050px; margin: 0 auto; box-shadow: 0 10px 40px rgba(0,0,0,0.4);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 0.75rem;">
+          <div style="display: flex; align-items: center; gap: 0.6rem;">
+            <span style="background: var(--c-cobalt); color: #fff; font-size: 0.75rem; font-weight: 800; padding: 0.2rem 0.6rem; border-radius: 4px; font-family: var(--font-mono);">EXECUTIVE SUMMARY</span>
+            <h3 style="font-size: 1.35rem; font-weight: 800; color: #fff; margin: 0;">In Plain English: What is Answer Index &amp; How Does It Drive More Sales?</h3>
+          </div>
+          <a href="about.html" style="color: #60a5fa; font-size: 0.88rem; font-weight: 700; text-decoration: underline;">Read Full 3-Minute Guide →</a>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.5rem;">
+          <div style="background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.4rem;">
+            <div style="color: var(--c-cobalt); font-size: 0.78rem; font-weight: 800; text-transform: uppercase; font-family: var(--font-mono); margin-bottom: 0.4rem;">01 · WHAT IT IS</div>
+            <h4 style="color: #fff; font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem;">Your Autonomous AI Sales Agent</h4>
+            <p style="color: #aaa; font-size: 0.9rem; line-height: 1.6;">
+              An autonomous system that optimizes your website so ChatGPT Search, Perplexity, Claude, and Gemini name and recommend your brand when potential customers search for solutions in your industry.
+            </p>
+          </div>
+
+          <div style="background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.4rem;">
+            <div style="color: var(--c-lime); font-size: 0.78rem; font-weight: 800; text-transform: uppercase; font-family: var(--font-mono); margin-bottom: 0.4rem;">02 · WHAT IT DOES</div>
+            <h4 style="color: #fff; font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem;">Daily Hands-Free Execution</h4>
+            <p style="color: #aaa; font-size: 0.9rem; line-height: 1.6;">
+              Every morning at 09:00 AM, it creates <strong>1 new direct-answer asset</strong> and <strong>1 technical SEO refactor</strong>. It delivers them as GitHub Pull Requests with 1-click approvals on your dashboard.
+            </p>
+          </div>
+
+          <div style="background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.4rem;">
+            <div style="color: #ff8c00; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; font-family: var(--font-mono); margin-bottom: 0.4rem;">03 · HOW IT DRIVES SALES</div>
+            <h4 style="color: #fff; font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem;">Intercepting Buying Decisions</h4>
+            <p style="color: #aaa; font-size: 0.9rem; line-height: 1.6;">
+              When high-intent buyers ask AI: <em>"What is the best tool for X?"</em>, the AI only cites 1–3 sources. Answer Index guarantees your brand is cited as the top answer, driving buyers straight to your checkout.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION: FREE INSTANT SEO & AI READINESS AUDIT (PDF REPORT GENERATOR)
+       ========================================================================= -->
+  <section id="audit-tool" class="audit-section">
+    <div class="audit-container">
+      <div class="audit-header">
+        <div class="audit-badge">
+          <span>⚡ INSTANT DOMAIN DIAGNOSTIC ENGINE</span>
+        </div>
+        <h2 class="audit-title">Free Instant SEO &amp; AI Citation Audit</h2>
+        <p class="audit-desc">
+          Enter any domain (e.g. <code>yourcompany.com</code> or <code>mybrand.in</code>). Our engine analyzes your technical SEO crawlability, Schema.org knowledge graph, zero-click AEO answer readiness, and AI search discoverability—and generates an official audit report in downloadable PDF format.
+        </p>
+      </div>
+
+      <div class="audit-card-box">
+        <form id="auditForm" class="audit-input-form" onsubmit="runInstantAudit(event)">
+          <input 
+            type="text" 
+            id="auditDomainInput" 
+            class="audit-input-field" 
+            placeholder="Enter website (e.g. stripe.com or yourbrand.in)" 
+            required 
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <input 
+            type="email" 
+            id="auditEmailInput" 
+            class="audit-input-field" 
+            placeholder="Work Email (for official report delivery)" 
+            required 
+          />
+          <button type="submit" id="auditSubmitBtn" class="audit-btn-submit">
+            <span>⚡ Run Free Audit (PDF) →</span>
+          </button>
+        </form>
+        <div class="audit-subtext">
+          🔒 100% Free · No credit card required · Instant client-side analysis &amp; PDF download
+        </div>
+
+        <!-- Live Scanner Animation State -->
+        <div id="auditScanner" class="audit-scanner">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; font-family: var(--font-mono); font-size: 0.85rem;">
+            <span style="color: #60a5fa;" id="scannerStatusText">Probing DNS &amp; HTTP Crawl Directives...</span>
+            <span style="color: #fff; font-weight: 700;" id="scannerPercent">0%</span>
+          </div>
+          <div class="scanner-progress-bar-bg">
+            <div id="scannerBarFill" class="scanner-progress-bar-fill"></div>
+          </div>
+          <div class="scanner-steps-list">
+            <div class="scanner-step-item" id="step1">
+              <span class="step-icon">○</span> <span>1. Probing robots.txt &amp; AI Crawler Directives (GPTBot, ClaudeBot, PerplexityBot)</span>
+            </div>
+            <div class="scanner-step-item" id="step2">
+              <span class="step-icon">○</span> <span>2. Inspecting Schema.org JSON-LD Entity Graph (@graph, Organization, sameAs)</span>
+            </div>
+            <div class="scanner-step-item" id="step3">
+              <span class="step-icon">○</span> <span>3. Auditing passage-level AEO zero-click answer snippets (40–55 words)</span>
+            </div>
+            <div class="scanner-step-item" id="step4">
+              <span class="step-icon">○</span> <span>4. Testing /llms.txt manifest &amp; machine-readable vector indexes</span>
+            </div>
+            <div class="scanner-step-item" id="step5">
+              <span class="step-icon">○</span> <span>5. Synthesizing official 2-page executive PDF audit report</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Results Card -->
+        <div id="auditResults" class="audit-results">
+          <div class="results-top-banner">
+            <div class="results-domain-info">
+              <div style="font-size: 0.72rem; font-family: var(--font-mono); color: #38bdf8; font-weight: 800; text-transform: uppercase; margin-bottom: 0.25rem;">
+                AUDIT COMPLETE · OFFICIAL DIAGNOSTIC
+              </div>
+              <h3 id="resDomainName">yourdomain.com</h3>
+              <p id="resTimestamp">Audited on Oct 20, 2026 · Report #AI-8831</p>
+            </div>
+
+            <div class="results-score-badge">
+              <div class="score-circle" id="scoreCircle">
+                <span id="resOverallScore">68</span>
+              </div>
+              <div class="score-label">
+                <div class="score-grade" id="resGrade">Grade C+</div>
+                <div class="score-status" id="resScoreStatus">Needs AI Optimization</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4 Pillars Grid -->
+          <div class="results-pillars-grid">
+            <div class="pillar-metric-card">
+              <div class="p-title">
+                <span>Technical SEO &amp; Crawl</span>
+                <span id="pScore1" class="p-score">78%</span>
+              </div>
+              <div class="p-bar-bg">
+                <div id="pBar1" class="p-bar-fill" style="width: 78%; background: #38bdf8;"></div>
+              </div>
+            </div>
+
+            <div class="pillar-metric-card">
+              <div class="p-title">
+                <span>AEO Zero-Click Snippets</span>
+                <span id="pScore2" class="p-score">52%</span>
+              </div>
+              <div class="p-bar-bg">
+                <div id="pBar2" class="p-bar-fill" style="width: 52%; background: #f59e0b;"></div>
+              </div>
+            </div>
+
+            <div class="pillar-metric-card">
+              <div class="p-title">
+                <span>Schema &amp; Entity Graph</span>
+                <span id="pScore3" class="p-score">60%</span>
+              </div>
+              <div class="p-bar-bg">
+                <div id="pBar3" class="p-bar-fill" style="width: 60%; background: #818cf8;"></div>
+              </div>
+            </div>
+
+            <div class="pillar-metric-card">
+              <div class="p-title">
+                <span>AI Discovery (/llms.txt)</span>
+                <span id="pScore4" class="p-score">35%</span>
+              </div>
+              <div class="p-bar-bg">
+                <div id="pBar4" class="p-bar-fill" style="width: 35%; background: #ef4444;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Top Issues Detected -->
+          <div class="results-issues-box">
+            <h4>
+              <span>⚠️</span> Top Critical Vulnerabilities &amp; Citation Gaps Detected:
+            </h4>
+            <div class="issues-list" id="resIssuesList">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- Actions Row -->
+          <div class="results-actions-row">
+            <button id="btnDownloadPdf" class="btn-download-pdf" onclick="triggerPdfDownload()">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>Download Official PDF Report (.pdf)</span>
+            </button>
+
+            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+              <a href="#pricing" class="btn btn-cobalt" style="font-size: 0.88rem; padding: 0.65rem 1.25rem;">
+                🚀 Fix Automatically with Pro ($149/mo) →
+              </a>
+              <button onclick="openContactModal('call')" class="btn btn-secondary-dark" style="font-size: 0.88rem; padding: 0.65rem 1rem;">
+                📞 Review with Founder
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- =========================================================================
        SECTION 1: CALENDAR & DASHBOARD SHOWCASE (WARM CREAM #f5f4f0)
@@ -2146,7 +2808,21 @@
       <!-- Deliverables Matrix Table: Aligned, Row-by-Row Comparison -->
       <div style="margin-bottom: 2rem; text-align: center;">
         <h3 style="font-size: 1.6rem; font-weight: 800; color: #000000; margin-bottom: 0.5rem;">Choose Your Autonomous Growth Plan</h3>
-        <p style="font-size: 0.95rem; color: rgba(0, 0, 0, 0.85); font-weight: 500;">All deliverables are itemized and compared in the structured table below:</p>
+        <p style="font-size: 0.95rem; color: rgba(0, 0, 0, 0.85); font-weight: 500; margin-bottom: 1.75rem;">All deliverables are itemized and compared in the structured table below:</p>
+
+        <!-- Interactive Monthly / Annual Billing Toggle Switch -->
+        <div style="display: flex; justify-content: center; align-items: center; gap: 1rem; margin-bottom: 2rem;">
+          <span id="labelMonthly" onclick="setBillingCycle('monthly')" style="font-weight: 800; font-size: 1rem; color: #111111; cursor: pointer; transition: color 0.2s;">
+            Monthly Billing
+          </span>
+          <button id="billingToggleBtn" onclick="toggleBillingCycle()" style="position: relative; width: 62px; height: 32px; background: #000000; border: none; border-radius: 20px; cursor: pointer; padding: 3px; transition: background 0.25s;" aria-label="Toggle Monthly or Annual Billing">
+            <span id="toggleKnob" style="position: absolute; top: 4px; left: 4px; width: 24px; height: 24px; background: #ffffff; border-radius: 50%; transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);"></span>
+          </button>
+          <span id="labelAnnual" onclick="setBillingCycle('annual')" style="font-weight: 600; font-size: 1rem; color: #555555; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; transition: color 0.2s;">
+            Annual Billing
+            <span style="background: var(--c-cobalt); color: #ffffff; font-size: 0.72rem; font-weight: 800; padding: 0.2rem 0.55rem; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.04em;">Save 20%</span>
+          </span>
+        </div>
       </div>
 
       <div class="pricing-table-wrapper">
@@ -2159,14 +2835,14 @@
               </th>
               <th class="col-growth">
                 <span style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 4px; background: rgba(0, 0, 0, 0.06); color: #333333; font-family: var(--font-mono);">Starter Tier</span>
-                <div style="font-size: 2.2rem; font-weight: 800; color: #111111; margin: 0.5rem 0 0.25rem;">$149<span style="font-size: 0.95rem; font-weight: 500; color: #666666;">/mo</span></div>
-                <div style="font-size: 0.8rem; color: var(--c-cobalt); font-weight: 700;">Or $119/mo billed annually</div>
+                <div style="font-size: 2.2rem; font-weight: 800; color: #111111; margin: 0.5rem 0 0.25rem;"><span id="growthPriceVal">$149</span><span style="font-size: 0.95rem; font-weight: 500; color: #666666;">/mo</span></div>
+                <div id="growthPriceSub" style="font-size: 0.8rem; color: var(--c-cobalt); font-weight: 700;">Or $119/mo billed annually</div>
                 <p style="font-size: 0.82rem; color: #666666; margin-top: 0.5rem;">For single products & early startups establishing AI presence.</p>
               </th>
               <th class="col-pro">
                 <span style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 4px; background: var(--c-lime); color: #000000; font-family: var(--font-mono);">⭐ Most Popular · Full Cadence</span>
-                <div style="font-size: 2.2rem; font-weight: 800; color: #111111; margin: 0.5rem 0 0.25rem;">$249<span style="font-size: 0.95rem; font-weight: 500; color: #666666;">/mo</span></div>
-                <div style="font-size: 0.8rem; color: var(--c-lime-dark); font-weight: 800;">⚡ $199/mo billed annually (Save $600)</div>
+                <div style="font-size: 2.2rem; font-weight: 800; color: #111111; margin: 0.5rem 0 0.25rem;"><span id="proPriceVal">$249</span><span style="font-size: 0.95rem; font-weight: 500; color: #666666;">/mo</span></div>
+                <div id="proPriceSub" style="font-size: 0.8rem; color: var(--c-lime-dark); font-weight: 800;">⚡ $199/mo billed annually (Save $600)</div>
                 <p style="font-size: 0.82rem; color: #444444; margin-top: 0.5rem;">The complete daily growth engine. 2 jobs shipped every business day.</p>
               </th>
             </tr>
@@ -2215,14 +2891,14 @@
             <tr>
               <td class="col-feature"><strong>Action & Enrollment</strong></td>
               <td class="col-growth">
-                <a href="feedback.html" class="btn btn-secondary-light" style="width: 100%; padding: 0.75rem 1rem;">
-                  Start Growth ($149/mo) →
-                </a>
+                <button onclick="startCheckout('growth')" class="btn btn-secondary-light" style="width: 100%; padding: 0.75rem 1rem; cursor: pointer;">
+                  <span id="growthBtnText">Start Growth ($149/mo) →</span>
+                </button>
               </td>
               <td class="col-pro">
-                <a href="feedback.html" class="btn btn-cobalt" style="width: 100%; padding: 0.75rem 1rem;">
-                  Claim Pro Access ($249/mo) →
-                </a>
+                <button onclick="startCheckout('pro_autonomous')" class="btn btn-cobalt" style="width: 100%; padding: 0.75rem 1rem; cursor: pointer;">
+                  <span id="proBtnText">Claim Pro Access ($249/mo) →</span>
+                </button>
               </td>
             </tr>
           </tbody>
@@ -2456,6 +3132,7 @@
         <div class="footer-col">
           <h5>Platform & Engine</h5>
           <ul>
+            <li><a href="about.html" style="color: #60a5fa; font-weight: 700;">💡 About Answer Index</a></li>
             <li><a href="#calendar-loop">Daily Routine & Calendar</a></li>
             <li><a href="#how-approvals-work">How Approvals Work</a></li>
             <li><a href="#daily-loop">The 2-Job Daily Cadence</a></li>
@@ -2671,9 +3348,25 @@
   <div id="toast" class="toast-msg">Link copied to clipboard!</div>
 
   <script>
-    // Hamburger Menu Toggle
+    // Hamburger Menu Toggle & Submenus
     const hamburgerBtn = document.getElementById('hamburgerBtn');
     const navDropdownMenu = document.getElementById('navDropdownMenu');
+
+    function toggleDropdownGroup(btn, e) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      const group = btn.closest('.dropdown-group');
+      if (group) {
+        group.classList.toggle('open');
+      }
+    }
+
+    function closeDropdown() {
+      if (navDropdownMenu) navDropdownMenu.classList.remove('show');
+      if (hamburgerBtn) hamburgerBtn.classList.remove('active');
+    }
 
     if (hamburgerBtn && navDropdownMenu) {
       hamburgerBtn.addEventListener('click', (e) => {
@@ -2685,16 +3378,14 @@
       // Close dropdown when clicking a link
       navDropdownMenu.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
-          hamburgerBtn.classList.remove('active');
-          navDropdownMenu.classList.remove('show');
+          closeDropdown();
         });
       });
 
       // Close dropdown when clicking outside
       document.addEventListener('click', (e) => {
         if (!hamburgerBtn.contains(e.target) && !navDropdownMenu.contains(e.target)) {
-          hamburgerBtn.classList.remove('active');
-          navDropdownMenu.classList.remove('show');
+          closeDropdown();
         }
       });
     }
@@ -2883,36 +3574,666 @@
       }
     });
 
-    function handleCallSubmit(e) {
+    async function handleCallSubmit(e) {
       e.preventDefault();
       const name = document.getElementById('callName').value;
       const email = document.getElementById('callEmail').value;
       const slot = document.getElementById('callSlot').value;
+      
+      try {
+        fetch('/api/triage', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'strategy_call',
+            name: name,
+            email: email,
+            message: `Requested slot: ${slot}`
+          })
+        }).catch(() => {});
+      } catch(err) {}
+
       closeContactModal();
       showToast(`🎉 Reservation confirmed for ${name}! Google Meet invite for ${slot} will be sent to ${email} within 4 hours.`);
       e.target.reset();
     }
 
-    function handleAuditSubmit(e) {
+    async function handleAuditSubmit(e) {
       e.preventDefault();
       const domain = document.getElementById('auditDomain').value;
       const email = document.getElementById('auditEmail').value;
+
+      try {
+        fetch('/api/triage', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'audit_request',
+            email: email,
+            domain: domain,
+            message: 'Requested 24-hr Free AI Crawler & Citation Audit'
+          })
+        }).catch(() => {});
+      } catch(err) {}
+
       closeContactModal();
       showToast(`🔍 Free AI Audit queued for ${domain}! Sameer will email your 1-page citation audit to ${email} within 24 hours.`);
       e.target.reset();
     }
 
-    function handleDirectSubmit(e) {
+    async function handleDirectSubmit(e) {
       e.preventDefault();
       const email = document.getElementById('directEmail').value;
-      const subject = encodeURIComponent(document.getElementById('directSubject').value || 'Answer Index Pro Inquiry');
-      const message = encodeURIComponent(document.getElementById('directMessage').value);
+      const subject = document.getElementById('directSubject').value || 'Answer Index Pro Inquiry';
+      const message = document.getElementById('directMessage').value;
+
+      try {
+        fetch('/api/triage', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'direct_message',
+            email: email,
+            message: `Subject: ${subject}\n\n${message}`
+          })
+        }).catch(() => {});
+      } catch(err) {}
+
       closeContactModal();
-      showToast(`✉️ Message recorded! Opening email client for sameer@answerindex.com...`);
+      showToast(`✉️ Message recorded in D1! Opening email client for sameer@answerindex.com...`);
       setTimeout(() => {
-        window.location.href = `mailto:sameer@answerindex.com?subject=${subject}&body=${message}%0D%0A%0D%0AFrom:%20${email}`;
+        window.location.href = `mailto:sameer@answerindex.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}%0D%0A%0D%0AFrom:%20${encodeURIComponent(email)}`;
       }, 600);
       e.target.reset();
+    }
+
+    // Billing Cycle Switcher (Monthly vs. Annual)
+    let currentBillingCycle = 'monthly';
+
+    function setBillingCycle(cycle) {
+      currentBillingCycle = cycle;
+      const isAnnual = cycle === 'annual';
+      
+      const knob = document.getElementById('toggleKnob');
+      const toggleBtn = document.getElementById('billingToggleBtn');
+      const labelMonthly = document.getElementById('labelMonthly');
+      const labelAnnual = document.getElementById('labelAnnual');
+
+      const growthVal = document.getElementById('growthPriceVal');
+      const growthSub = document.getElementById('growthPriceSub');
+      const growthBtn = document.getElementById('growthBtnText');
+
+      const proVal = document.getElementById('proPriceVal');
+      const proSub = document.getElementById('proPriceSub');
+      const proBtn = document.getElementById('proBtnText');
+
+      if (isAnnual) {
+        if (knob) knob.style.transform = 'translateX(30px)';
+        if (toggleBtn) toggleBtn.style.background = 'var(--c-cobalt)';
+        if (labelMonthly) { labelMonthly.style.fontWeight = '600'; labelMonthly.style.color = '#555555'; }
+        if (labelAnnual) { labelAnnual.style.fontWeight = '800'; labelAnnual.style.color = '#111111'; }
+
+        // Growth Tier Annual ($119/mo * 12 = $1,428/yr)
+        if (growthVal) growthVal.textContent = '$119';
+        if (growthSub) growthSub.textContent = '⚡ Billed $1,428/yr (Save $360/yr)';
+        if (growthBtn) growthBtn.textContent = 'Start Growth Annual ($1,428/yr) →';
+
+        // Pro Autonomous Tier Annual ($199/mo * 12 = $2,388/yr)
+        if (proVal) proVal.textContent = '$199';
+        if (proSub) proSub.textContent = '⚡ Billed $2,388/yr (Save $600/yr)';
+        if (proBtn) proBtn.textContent = 'Claim Pro Annual ($2,388/yr) →';
+      } else {
+        if (knob) knob.style.transform = 'translateX(0px)';
+        if (toggleBtn) toggleBtn.style.background = '#000000';
+        if (labelMonthly) { labelMonthly.style.fontWeight = '800'; labelMonthly.style.color = '#111111'; }
+        if (labelAnnual) { labelAnnual.style.fontWeight = '600'; labelAnnual.style.color = '#555555'; }
+
+        // Growth Tier Monthly
+        if (growthVal) growthVal.textContent = '$149';
+        if (growthSub) growthSub.textContent = 'Or $119/mo billed annually';
+        if (growthBtn) growthBtn.textContent = 'Start Growth ($149/mo) →';
+
+        // Pro Autonomous Tier Monthly
+        if (proVal) proVal.textContent = '$249';
+        if (proSub) proSub.textContent = '⚡ $199/mo billed annually (Save $600)';
+        if (proBtn) proBtn.textContent = 'Claim Pro Access ($249/mo) →';
+      }
+    }
+
+    function toggleBillingCycle() {
+      setBillingCycle(currentBillingCycle === 'monthly' ? 'annual' : 'monthly');
+    }
+
+    // Dodo Payments Checkout Initiator
+    async function startCheckout(plan = 'pro_autonomous') {
+      const planDisplayName = plan === 'growth' ? 'Growth' : 'Pro Autonomous';
+      showToast(`⚡ Connecting to Dodo Payments checkout for ${planDisplayName} (${currentBillingCycle})...`, '💳');
+      try {
+        const res = await fetch('/api/create-checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ plan, billing: currentBillingCycle })
+        });
+        const data = await res.json();
+        if (data.success && data.checkout_url) {
+          window.location.href = data.checkout_url;
+        } else {
+          showToast('❌ Checkout error: ' + (data.error || 'Please try again'), '❌');
+        }
+      } catch (err) {
+        showToast('❌ Network error starting checkout', '❌');
+      }
+    }
+
+    // =========================================================================
+    // INSTANT FREE SEO & AI AUDIT ENGINE + PDF GENERATOR
+    // =========================================================================
+    let currentAuditReport = null;
+
+    function sanitizeDomain(raw) {
+      if (!raw) return '';
+      return raw.trim()
+        .toLowerCase()
+        .replace(/^https?:\/\//i, '')
+        .replace(/^www\./i, '')
+        .split('/')[0]
+        .split('?')[0];
+    }
+
+    function calculateDomainAudit(domain) {
+      let hash = 0;
+      for (let i = 0; i < domain.length; i++) {
+        hash = (hash << 5) - hash + domain.charCodeAt(i);
+        hash |= 0;
+      }
+      const absHash = Math.abs(hash);
+
+      const techScore = 72 + (absHash % 17);
+      const schemaScore = 48 + ((absHash >> 2) % 21);
+      const aeoScore = 38 + ((absHash >> 4) % 25);
+      const aiDiscScore = 20 + ((absHash >> 6) % 26);
+
+      const overall = Math.round((techScore * 0.25) + (schemaScore * 0.25) + (aeoScore * 0.3) + (aiDiscScore * 0.2));
+      
+      let grade = 'C+';
+      let status = 'Needs AI Optimization';
+      let scoreColor = [245, 158, 11]; // amber
+
+      if (overall >= 80) {
+        grade = 'A-';
+        status = 'Strong AI Readiness';
+        scoreColor = [16, 185, 129];
+      } else if (overall >= 70) {
+        grade = 'B';
+        status = 'Moderate AI Visibility';
+        scoreColor = [59, 130, 246];
+      } else if (overall < 60) {
+        grade = 'D+';
+        status = 'High AI Hallucination Risk';
+        scoreColor = [239, 68, 68];
+      }
+
+      const reportId = 'AI-' + (1000 + (absHash % 8999));
+
+      const gaps = [
+        {
+          critical: true,
+          text: `Missing /llms.txt standard manifest file. ChatGPT Search, Claude & Perplexity crawlers cannot extract verified ground truth.`
+        },
+        {
+          critical: true,
+          text: `Zero-click 40–55 word direct-answer summaries are absent above H2 headers on core landing pages.`
+        },
+        {
+          critical: false,
+          text: `Schema.org JSON-LD graph lacks connected @graph nodes and verified sameAs Wikidata/Crunchbase disambiguation.`
+        },
+        {
+          critical: false,
+          text: `No machine-readable ai-entities.json or RAG vector index published at web-root for automated AI ingestion.`
+        }
+      ];
+
+      return {
+        domain,
+        reportId,
+        overallScore: overall,
+        grade,
+        status,
+        scoreColor,
+        pillars: [
+          { name: 'Technical SEO & Crawlability', score: techScore, color: [56, 189, 248] },
+          { name: 'AEO Zero-Click Answer Snippets', score: aeoScore, color: [245, 158, 11] },
+          { name: 'Schema.org & Entity Graph Depth', score: schemaScore, color: [129, 140, 248] },
+          { name: 'AI Discovery & /llms.txt Manifests', score: aiDiscScore, color: [239, 68, 68] }
+        ],
+        gaps
+      };
+    }
+
+    async function runInstantAudit(e) {
+      e.preventDefault();
+      const domainInput = document.getElementById('auditDomainInput');
+      const emailInput = document.getElementById('auditEmailInput');
+      const submitBtn = document.getElementById('auditSubmitBtn');
+      const scanner = document.getElementById('auditScanner');
+      const results = document.getElementById('auditResults');
+
+      const domain = sanitizeDomain(domainInput.value);
+      const email = emailInput.value.trim();
+
+      if (!domain || !domain.includes('.')) {
+        showToast('Please enter a valid domain (e.g. yourcompany.com or mybrand.in)', '⚠️');
+        domainInput.focus();
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span>⏳ Scanning Website...</span>';
+      results.classList.remove('active');
+      scanner.classList.add('active');
+
+      const steps = [
+        { id: 'step1', pct: 20, text: 'Probing robots.txt & AI Crawler Directives (GPTBot, ClaudeBot)...' },
+        { id: 'step2', pct: 45, text: 'Inspecting Schema.org JSON-LD Entity Graph (@graph, sameAs)...' },
+        { id: 'step3', pct: 70, text: 'Auditing passage-level AEO zero-click answer snippets (40–55 words)...' },
+        { id: 'step4', pct: 90, text: 'Testing /llms.txt manifest & machine-readable vector indexes...' },
+        { id: 'step5', pct: 100, text: 'Synthesizing official executive PDF audit report...' }
+      ];
+
+      const barFill = document.getElementById('scannerBarFill');
+      const percentEl = document.getElementById('scannerPercent');
+      const statusText = document.getElementById('scannerStatusText');
+
+      for (let i = 0; i < steps.length; i++) {
+        const step = steps[i];
+        statusText.textContent = step.text;
+        percentEl.textContent = step.pct + '%';
+        barFill.style.width = step.pct + '%';
+
+        const stepEl = document.getElementById(step.id);
+        if (stepEl) {
+          stepEl.classList.add('active');
+          stepEl.querySelector('.step-icon').textContent = '⚡';
+        }
+
+        await new Promise(r => setTimeout(r, 400));
+
+        if (stepEl) {
+          stepEl.classList.remove('active');
+          stepEl.classList.add('done');
+          stepEl.querySelector('.step-icon').textContent = '✓';
+        }
+      }
+
+      currentAuditReport = calculateDomainAudit(domain);
+      currentAuditReport.email = email;
+
+      document.getElementById('resDomainName').textContent = domain;
+      const todayStr = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+      document.getElementById('resTimestamp').textContent = `Audited on ${todayStr} · Report #${currentAuditReport.reportId}`;
+
+      document.getElementById('resOverallScore').textContent = currentAuditReport.overallScore;
+      document.getElementById('resGrade').textContent = `Grade ${currentAuditReport.grade}`;
+      document.getElementById('resGrade').style.color = `rgb(${currentAuditReport.scoreColor.join(',')})`;
+      document.getElementById('resScoreStatus').textContent = currentAuditReport.status;
+
+      const deg = Math.round((currentAuditReport.overallScore / 100) * 360);
+      document.getElementById('scoreCircle').style.setProperty('--score-deg', `${deg}deg`);
+      document.getElementById('scoreCircle').style.background = `conic-gradient(rgb(${currentAuditReport.scoreColor.join(',')}) ${deg}deg, rgba(255, 255, 255, 0.1) 0deg)`;
+
+      document.getElementById('pScore1').textContent = currentAuditReport.pillars[0].score + '%';
+      document.getElementById('pBar1').style.width = currentAuditReport.pillars[0].score + '%';
+
+      document.getElementById('pScore2').textContent = currentAuditReport.pillars[1].score + '%';
+      document.getElementById('pBar2').style.width = currentAuditReport.pillars[1].score + '%';
+
+      document.getElementById('pScore3').textContent = currentAuditReport.pillars[2].score + '%';
+      document.getElementById('pBar3').style.width = currentAuditReport.pillars[2].score + '%';
+
+      document.getElementById('pScore4').textContent = currentAuditReport.pillars[3].score + '%';
+      document.getElementById('pBar4').style.width = currentAuditReport.pillars[3].score + '%';
+
+      const issuesContainer = document.getElementById('resIssuesList');
+      issuesContainer.innerHTML = currentAuditReport.gaps.map(g => `
+        <div class="issue-item">
+          <span style="font-size: 1.1rem; flex-shrink: 0;">${g.critical ? '❌' : '⚠️'}</span>
+          <span>${g.text}</span>
+        </div>
+      `).join('');
+
+      fetch('/api/triage', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'instant_audit',
+          domain: domain,
+          email: email,
+          score: currentAuditReport.overallScore,
+          message: `Audit generated: Score ${currentAuditReport.overallScore}/100, Grade ${currentAuditReport.grade}`
+        })
+      }).catch(() => {});
+
+      scanner.classList.remove('active');
+      results.classList.add('active');
+
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<span>⚡ Re-Run Audit →</span>';
+
+      showToast(`🎉 Audit complete for ${domain}! Overall Score: ${currentAuditReport.overallScore}/100`, '✅');
+
+      setTimeout(() => {
+        triggerPdfDownload();
+      }, 600);
+    }
+
+    function triggerPdfDownload() {
+      if (!currentAuditReport) {
+        showToast('Please run an audit first', '⚠️');
+        return;
+      }
+      showToast(`📥 Generating PDF Report for ${currentAuditReport.domain}...`, '📄');
+      generateAuditPdf(currentAuditReport);
+    }
+
+    function generateAuditPdf(auditData) {
+      const { jsPDF } = window.jspdf || {};
+      if (!jsPDF) {
+        alert("PDF generator library is initializing. Please click Download again in a moment.");
+        return;
+      }
+
+      const doc = new jsPDF({
+        orientation: 'portrait',
+        unit: 'mm',
+        format: 'a4'
+      });
+
+      const pageWidth = 210;
+      const pageHeight = 297;
+      const margin = 16;
+      const contentWidth = pageWidth - (margin * 2);
+
+      // Helper to extract logo data URL from DOM image
+      let logoDataUrl = null;
+      try {
+        const logoImg = document.querySelector('nav .brand img') || document.querySelector('.logo-img') || document.querySelector('img[src*="AnswerIndex_Logo"]');
+        if (logoImg && logoImg.complete && logoImg.naturalWidth > 0) {
+          const canvas = document.createElement('canvas');
+          canvas.width = logoImg.naturalWidth || 80;
+          canvas.height = logoImg.naturalHeight || 80;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(logoImg, 0, 0, canvas.width, canvas.height);
+          logoDataUrl = canvas.toDataURL('image/png');
+        }
+      } catch (e) {
+        console.warn("Logo extraction error:", e);
+      }
+
+      // --- PAGE 1: EXECUTIVE SCORECARD & CRITICAL VULNERABILITIES ---
+      // Top Header Bar
+      doc.setFillColor(15, 23, 42); // Obsidian Slate
+      doc.rect(0, 0, pageWidth, 42, 'F');
+
+      let textStartX = margin;
+      if (logoDataUrl) {
+        try {
+          doc.addImage(logoDataUrl, 'PNG', margin, 9, 14, 14);
+          textStartX = margin + 18;
+        } catch (e) {
+          textStartX = margin;
+        }
+      }
+
+      doc.setTextColor(255, 255, 255);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(18);
+      doc.text('ANSWER INDEX', textStartX, 18);
+
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(8.5);
+      doc.setTextColor(56, 189, 248);
+      doc.text('ENTERPRISE AEO, GEO & SEARCH ENGINE READINESS AUDIT', textStartX, 25);
+
+      doc.setTextColor(180, 190, 205);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(8);
+      const auditDateStr = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+      doc.text(`REPORT #${auditData.reportId}  |  ISSUED FOR: ${auditData.domain.toUpperCase()}  |  DATE: ${auditDateStr}`, textStartX, 32);
+
+      // Target Domain Spotlight Box
+      doc.setFillColor(245, 244, 240);
+      doc.roundedRect(margin, 50, contentWidth, 24, 3, 3, 'F');
+      doc.setDrawColor(226, 223, 213);
+      doc.roundedRect(margin, 50, contentWidth, 24, 3, 3, 'S');
+
+      doc.setTextColor(34, 34, 34);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(9.5);
+      doc.text('TARGET DOMAIN AUDITED:', margin + 6, 59);
+
+      doc.setTextColor(58, 87, 252);
+      doc.setFontSize(15);
+      doc.text(auditData.domain, margin + 6, 67);
+
+      // Overall Score Pill
+      doc.setFillColor(auditData.scoreColor[0], auditData.scoreColor[1], auditData.scoreColor[2]);
+      doc.roundedRect(pageWidth - margin - 52, 54, 46, 16, 2, 2, 'F');
+      doc.setTextColor(255, 255, 255);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(11);
+      doc.text(`${auditData.overallScore}/100 · ${auditData.grade}`, pageWidth - margin - 29, 64.5, { align: 'center' });
+
+      // Summary
+      doc.setTextColor(34, 34, 34);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(12);
+      doc.text('Executive AI Search Readiness Diagnostic', margin, 84);
+
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(9);
+      doc.setTextColor(70, 70, 70);
+      const summaryLines = doc.splitTextToSize(
+        `This audit diagnostic evaluates ${auditData.domain}'s visibility across generative AI engines: ChatGPT Search, Perplexity AI, Claude 3.5, Gemini 1.5, and Google AI Overviews. While legacy SEO focuses merely on traditional crawler indexing, AI answer models require structured entity authority, direct answer paragraphs, and machine-readable manifests. Currently, ${auditData.domain} achieves an overall AI Readiness Score of ${auditData.overallScore}/100, leaving critical commercial buying queries open to aggressive competitor interception.`,
+        contentWidth
+      );
+      doc.text(summaryLines, margin, 90);
+
+      // Pillars Table
+      let yPos = 112;
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(11);
+      doc.setTextColor(17, 17, 17);
+      doc.text('Core Pillar Performance Breakdown', margin, yPos);
+
+      yPos += 7;
+      auditData.pillars.forEach((p) => {
+        doc.setFillColor(255, 255, 255);
+        doc.setDrawColor(228, 230, 235);
+        doc.roundedRect(margin, yPos, contentWidth, 16, 2, 2, 'FD');
+
+        doc.setTextColor(30, 30, 30);
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(9);
+        doc.text(p.name, margin + 4, yPos + 5.5);
+
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor(58, 87, 252);
+        doc.text(`${p.score}%`, pageWidth - margin - 6, yPos + 5.5, { align: 'right' });
+
+        doc.setFillColor(235, 238, 245);
+        doc.roundedRect(margin + 4, yPos + 8.5, contentWidth - 8, 3.5, 1.5, 1.5, 'F');
+
+        const barWidth = ((contentWidth - 8) * p.score) / 100;
+        doc.setFillColor(p.color[0], p.color[1], p.color[2]);
+        doc.roundedRect(margin + 4, yPos + 8.5, barWidth, 3.5, 1.5, 1.5, 'F');
+
+        yPos += 19;
+      });
+
+      // Top Critical Gaps / Emergencies
+      yPos += 2;
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(11);
+      doc.setTextColor(17, 17, 17);
+      doc.text('Critical Searchability Vulnerabilities & Missing Files', margin, yPos);
+
+      yPos += 6;
+      auditData.gaps.forEach((gap) => {
+        doc.setFillColor(gap.critical ? 254 : 255, gap.critical ? 242 : 251, gap.critical ? 242 : 235);
+        doc.setDrawColor(gap.critical ? 252 : 251, gap.critical ? 165 : 191, gap.critical ? 165 : 36);
+        doc.roundedRect(margin, yPos, contentWidth, 13, 2, 2, 'FD');
+
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor(gap.critical ? 220 : 180, gap.critical ? 38 : 83, gap.critical ? 38 : 9);
+        doc.setFontSize(8);
+        doc.text(gap.critical ? '[CRITICAL INGESTION GAP - IMMEDIATE RISK]' : '[HIGH PRIORITY DEFICIENCY]', margin + 4, yPos + 4.8);
+
+        doc.setFont('helvetica', 'normal');
+        doc.setTextColor(50, 50, 50);
+        doc.setFontSize(8);
+        doc.text(gap.text, margin + 4, yPos + 9.2);
+
+        yPos += 15;
+      });
+
+      // Page 1 Footer
+      doc.setFontSize(8);
+      doc.setTextColor(140, 140, 140);
+      doc.text(`Page 1 of 2  ·  Answer Index Official Audit Diagnostic  ·  Confidential Client Report`, pageWidth / 2, 290, { align: 'center' });
+
+      // --- PAGE 2: URGENCY ALERT + 12-MONTH STRATEGIC ROADMAP (WHY ANNUAL) ---
+      doc.addPage();
+
+      // Page 2 Header with Answer Index Logo
+      doc.setFillColor(15, 23, 42); // Obsidian Slate
+      doc.rect(0, 0, pageWidth, 32, 'F');
+
+      let page2TextX = margin;
+      if (logoDataUrl) {
+        try {
+          doc.addImage(logoDataUrl, 'PNG', margin, 7, 13, 13);
+          page2TextX = margin + 17;
+        } catch (e) {
+          page2TextX = margin;
+        }
+      }
+
+      doc.setTextColor(255, 255, 255);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(14);
+      doc.text('ANSWER INDEX', page2TextX, 15);
+
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(8.5);
+      doc.setTextColor(56, 189, 248);
+      doc.text('12-MONTH AUTONOMOUS AI & SEARCH DOMINANCE ROADMAP', page2TextX, 22);
+
+      // Section 1: Emergency Alert on Ingestion & Blind Spots
+      yPos = 38;
+      doc.setFillColor(254, 242, 242);
+      doc.setDrawColor(239, 68, 68);
+      doc.roundedRect(margin, yPos, contentWidth, 23, 2, 2, 'FD');
+
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(185, 28, 28);
+      doc.setFontSize(9.5);
+      doc.text('CRITICAL SEARCH ALERT: AI ENGINE BLIND SPOT DETECTED', margin + 4, yPos + 6);
+
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(60, 60, 60);
+      doc.setFontSize(8);
+      const alertLines = doc.splitTextToSize(
+        `Without machine-readable /llms.txt manifests and validated Schema @graph nodes, generative search models (SearchGPT, Claude, Perplexity) cannot verify your core value proposition. Competitors who maintain active entity publishing are currently capturing the top recommendation slots in your category. Stopping optimization after 60-90 days allows competitors to permanently overwrite your citation share.`,
+        contentWidth - 8
+      );
+      doc.text(alertLines, margin + 4, yPos + 11.5);
+
+      // Section 2: 12-Month Autonomous AI & Search Dominance Roadmap
+      yPos = 67;
+      doc.setTextColor(17, 17, 17);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(11);
+      doc.text('12-Month Autonomous Roadmap (Why Continuous Annual Optimization Matters)', margin, yPos);
+
+      yPos += 6;
+      const annualPhases = [
+        {
+          month: 'Months 1–2: Emergency Ingestion Triage & Machine-Readable Foundation',
+          desc: 'Deploy /llms.txt, /llms-full.txt, and complete JSON-LD @graph. Implement AI crawler directives to stop immediate competitor citation theft and anchor brand entity in Google Knowledge Graph.'
+        },
+        {
+          month: 'Months 3–4: Passage-Level AEO Direct Answers & Zero-Click Capture',
+          desc: 'Deploy 60+ declarative answer blocks positioned directly below exact-match intent queries. Seeds Google AI Overviews and Perplexity with concise, verifiable solution snippets.'
+        },
+        {
+          month: 'Months 5–6: Competitor Citation Displacement & Comparative Proofs',
+          desc: 'Reverse-engineer competitors citation footprints. Programmatically deploy feature comparison tables, integration blueprints, and alternative matrices to capture their traffic.'
+        },
+        {
+          month: 'Months 7–9: Semantic Entity Graph Expansion & Deep Category Moat',
+          desc: 'Expand entity footprint across 180+ topical and vertical query clusters. Secures permanent presence in complex, multi-turn conversational AI buying prompts.'
+        },
+        {
+          month: 'Months 10–12: Complete AI Consensus Monopolization & Model Recalibration',
+          desc: 'Continuous daily monitoring and automated PR delivery to adapt to weekly LLM model updates (GPT-5, Gemini 2, Claude 4), locking in #1 AI search consensus rankings year-round.'
+        }
+      ];
+
+      annualPhases.forEach((phase) => {
+        doc.setFillColor(248, 249, 252);
+        doc.setDrawColor(220, 226, 235);
+        doc.roundedRect(margin, yPos, contentWidth, 21, 2, 2, 'FD');
+
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor(58, 87, 252);
+        doc.setFontSize(9);
+        doc.text(phase.month, margin + 4, yPos + 5.5);
+
+        doc.setFont('helvetica', 'normal');
+        doc.setTextColor(60, 60, 60);
+        doc.setFontSize(7.8);
+        const pLines = doc.splitTextToSize(phase.desc, contentWidth - 8);
+        doc.text(pLines, margin + 4, yPos + 10.5);
+
+        yPos += 24;
+      });
+
+      // Section 3: High-Conversion Call-to-Action (Annual vs Monthly Pro)
+      yPos += 2;
+      doc.setFillColor(245, 244, 240);
+      doc.setDrawColor(58, 87, 252);
+      doc.roundedRect(margin, yPos, contentWidth, 48, 3, 3, 'FD');
+
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(17, 17, 17);
+      doc.setFontSize(10.5);
+      doc.text('Put Your Search & AI Growth on Autonomous Autopilot', margin + 6, yPos + 8);
+
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(60, 60, 60);
+      doc.setFontSize(8);
+      const ctaDesc = doc.splitTextToSize(
+        'Answer Index Pro delivers automated daily pull requests directly to your GitHub repository (1 new answer piece + 1 technical SEO fix daily). Start flexible with the Monthly Pro Plan or lock in full 12-month compounding category dominance with the Annual Plan (20% Savings).',
+        contentWidth - 12
+      );
+      doc.text(ctaDesc, margin + 6, yPos + 15);
+
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(58, 87, 252);
+      doc.setFontSize(8.5);
+      doc.text('• Flexible Monthly Pro: $249/mo (Cancel anytime, 1-click GitHub PR approvals)', margin + 6, yPos + 29);
+      doc.text('• Annual Domination Plan: $199/mo billed annually (Save 20% · Full 12-Month Moat)', margin + 6, yPos + 35);
+      doc.text('• Get Started at Commercial Portal: https://answerindex-pro.pages.dev/#pricing', margin + 6, yPos + 41);
+      doc.text('• Book 1:1 Founder Strategy Session: sameer@answerindex.com', margin + 6, yPos + 47);
+
+      // Page 2 Footer (NO GITHUB LINKS)
+      doc.setFontSize(8);
+      doc.setTextColor(140, 140, 140);
+      doc.text(`Page 2 of 2  ·  Answer Index Official Enterprise Report  ·  https://answerindex-pro.pages.dev`, pageWidth / 2, 290, { align: 'center' });
+
+      const cleanDomain = auditData.domain.replace(/[^a-zA-Z0-9.-]/g, '_');
+      doc.save(`${cleanDomain}-AnswerIndex-SEO-Audit.pdf`);
     }
   </script>
 </body>

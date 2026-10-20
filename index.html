@@ -232,13 +232,13 @@
       position: absolute;
       top: calc(100% + 0.65rem);
       right: 0;
-      width: 250px;
+      width: 270px;
       max-width: calc(100vw - 2rem);
       background: rgba(9, 14, 29, 0.98);
       border: 1px solid var(--border-glow);
-      border-radius: 12px;
+      border-radius: 14px;
       padding: 0.65rem;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(56, 189, 248, 0.15);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(56, 189, 248, 0.15);
       backdrop-filter: blur(20px);
       display: none;
       flex-direction: column;
@@ -256,17 +256,91 @@
     .dropdown-item {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-      padding: 0.65rem 0.85rem;
+      gap: 0.65rem;
+      padding: 0.55rem 0.75rem;
       color: var(--text-muted);
       text-decoration: none;
       font-size: 0.88rem;
       font-weight: 500;
-      border-radius: 6px;
+      border-radius: 8px;
       transition: all 0.15s ease;
     }
     .dropdown-item:hover {
       color: var(--text-main);
+      background: rgba(56, 189, 248, 0.1);
+    }
+    .dropdown-item.highlight-audit {
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color: #38bdf8;
+      margin-bottom: 0.2rem;
+    }
+    .dropdown-item.highlight-audit:hover {
+      background: rgba(56, 189, 248, 0.25);
+      color: #ffffff;
+    }
+    .dropdown-divider {
+      height: 1px;
+      background: var(--border-subtle);
+      margin: 0.35rem 0;
+    }
+    /* Submenus */
+    .dropdown-group {
+      display: flex;
+      flex-direction: column;
+    }
+    .dropdown-group-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 0.55rem 0.75rem;
+      background: transparent;
+      border: none;
+      border-radius: 8px;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      font-weight: 500;
+      font-family: inherit;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.15s ease;
+    }
+    .dropdown-group-toggle:hover {
+      background: rgba(56, 189, 248, 0.08);
+      color: #ffffff;
+    }
+    .dropdown-group-toggle .chevron {
+      font-size: 0.75rem;
+      color: #64748b;
+      transition: transform 0.2s ease;
+    }
+    .dropdown-group.open .dropdown-group-toggle .chevron {
+      transform: rotate(180deg);
+      color: #38bdf8;
+    }
+    .dropdown-submenu {
+      display: none;
+      flex-direction: column;
+      gap: 0.15rem;
+      padding: 0.25rem 0 0.35rem 1.75rem;
+      border-left: 2px solid rgba(56, 189, 248, 0.3);
+      margin: 0.2rem 0 0.35rem 0.75rem;
+    }
+    .dropdown-group.open .dropdown-submenu {
+      display: flex;
+    }
+    .dropdown-submenu a {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 0.35rem 0.5rem;
+      border-radius: 6px;
+      transition: all 0.15s ease;
+    }
+    .dropdown-submenu a:hover {
+      color: #ffffff;
       background: rgba(56, 189, 248, 0.1);
     }
 
@@ -1566,49 +1640,54 @@
             </span>
           </button>
           <div class="nav-dropdown-menu" id="navDropdownMenu">
-            <a href="#audit-tool" class="dropdown-item" onclick="closeDropdown()" style="color: #38bdf8; font-weight: 700;">
-              <span>🔍</span> Free Instant SEO Audit (PDF)
+            <a href="#audit-tool" class="dropdown-item highlight-audit" onclick="closeDropdown()">
+              <span>🔍</span>
+              <div>
+                <div style="font-weight: 700; color: #38bdf8;">Free SEO & AI Audit</div>
+                <div style="font-size: 0.72rem; color: #94a3b8; font-weight: normal;">Instant PDF report</div>
+              </div>
             </a>
-            <a href="about.html" class="dropdown-item" style="color: #38bdf8; font-weight: 700; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.75rem; margin-bottom: 0.25rem;">
+            
+            <a href="about.html" class="dropdown-item">
               <span>💡</span> About Answer Index
             </a>
+
             <a href="pro.html" class="dropdown-item" style="color: #c084fc; font-weight: 700;">
               <span>⚡</span> Commercial Pro ($149/mo)
             </a>
+
             <a href="dashboard.html" class="dropdown-item" style="color: #34d399; font-weight: 700;">
               <span>📊</span> Live Client Dashboard
             </a>
-            <div style="border-top: 1px solid var(--border-subtle); margin: 0.25rem 0;"></div>
-            <a href="#why" class="dropdown-item" onclick="closeDropdown()">
-              <span>💡</span> Why Answer Index
-            </a>
-            <a href="#how-it-works" class="dropdown-item" onclick="closeDropdown()">
-              <span>⚙️</span> How It Works
-            </a>
-            <a href="#features" class="dropdown-item" onclick="closeDropdown()">
-              <span>⚡</span> Features Matrix
-            </a>
-            <a href="#architecture" class="dropdown-item" onclick="closeDropdown()">
-              <span>📦</span> 26-File Architecture
-            </a>
-            <a href="#geo" class="dropdown-item" onclick="closeDropdown()">
-              <span>🎯</span> Passage-Level GEO
-            </a>
-            <a href="#anti-hallucination" class="dropdown-item" onclick="closeDropdown()">
-              <span>🛡️</span> Anti-Hallucination
-            </a>
-            <a href="#mcp" class="dropdown-item" onclick="closeDropdown()">
-              <span>🔌</span> MCP Server
-            </a>
-            <a href="#quickstart" class="dropdown-item" onclick="closeDropdown()">
-              <span>🚀</span> Instant Quickstart
-            </a>
-            <a href="javascript:void(0)" class="dropdown-item" onclick="shareWebsite(); closeDropdown();" style="color: #38bdf8; font-weight: 600; border-top: 1px solid var(--border-subtle); margin-top: 0.25rem; padding-top: 0.75rem;">
-              <span>🔗</span> Share with Friends
-            </a>
-            <a href="feedback.html" class="dropdown-item" style="color: var(--text-muted); font-weight: 500;">
-              <span>💬</span> Share Feedback
-            </a>
+
+            <div class="dropdown-divider"></div>
+
+            <!-- Submenu 1: Platform & Solutions -->
+            <div class="dropdown-group">
+              <button class="dropdown-group-toggle" onclick="toggleDropdownGroup(this, event)">
+                <span><span>⚙️</span> Platform & Features</span>
+                <span class="chevron">▾</span>
+              </button>
+              <div class="dropdown-submenu">
+                <a href="#why" onclick="closeDropdown()">Why Answer Index</a>
+                <a href="#how-it-works" onclick="closeDropdown()">How It Works</a>
+                <a href="#features" onclick="closeDropdown()">Features Matrix</a>
+                <a href="#architecture" onclick="closeDropdown()">26-File Architecture</a>
+              </div>
+            </div>
+
+            <!-- Submenu 2: Contact Us -->
+            <div class="dropdown-group">
+              <button class="dropdown-group-toggle" onclick="toggleDropdownGroup(this, event)">
+                <span><span>📞</span> Contact Us</span>
+                <span class="chevron">▾</span>
+              </button>
+              <div class="dropdown-submenu">
+                <a href="https://answerindex-pro.pages.dev/#contact" onclick="closeDropdown()">📞 Book 15-Min Intro Call</a>
+                <a href="mailto:sameer@answerindex.com">✉️ Email Founder Directly</a>
+                <a href="feedback.html">💬 Direct Feedback Channel</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -2435,9 +2514,20 @@
 
   <!-- Scripts -->
   <script>
-    // Dropdown Menu
+    // Dropdown Menu & Submenus
     const dropdownBtn = document.getElementById('menuDropdownBtn');
     const dropdownMenu = document.getElementById('navDropdownMenu');
+
+    function toggleDropdownGroup(btn, e) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      const group = btn.closest('.dropdown-group');
+      if (group) {
+        group.classList.toggle('open');
+      }
+    }
 
     if (dropdownBtn && dropdownMenu) {
       dropdownBtn.addEventListener('click', (e) => {
@@ -2783,103 +2873,131 @@
       const margin = 16;
       const contentWidth = pageWidth - (margin * 2);
 
-      // --- PAGE 1: EXECUTIVE SCORECARD ---
-      doc.setFillColor(15, 23, 42); // Slate
-      doc.rect(0, 0, pageWidth, 40, 'F');
+      // Helper to extract logo data URL from DOM image
+      let logoDataUrl = null;
+      try {
+        const logoImg = document.querySelector('nav .brand img') || document.querySelector('.logo-img') || document.querySelector('img[src*="AnswerIndex_Logo"]');
+        if (logoImg && logoImg.complete && logoImg.naturalWidth > 0) {
+          const canvas = document.createElement('canvas');
+          canvas.width = logoImg.naturalWidth || 80;
+          canvas.height = logoImg.naturalHeight || 80;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(logoImg, 0, 0, canvas.width, canvas.height);
+          logoDataUrl = canvas.toDataURL('image/png');
+        }
+      } catch (e) {
+        console.warn("Logo extraction error:", e);
+      }
+
+      // --- PAGE 1: EXECUTIVE SCORECARD & CRITICAL VULNERABILITIES ---
+      // Top Header Bar
+      doc.setFillColor(15, 23, 42); // Obsidian Slate
+      doc.rect(0, 0, pageWidth, 42, 'F');
+
+      let textStartX = margin;
+      if (logoDataUrl) {
+        try {
+          doc.addImage(logoDataUrl, 'PNG', margin, 9, 14, 14);
+          textStartX = margin + 18;
+        } catch (e) {
+          textStartX = margin;
+        }
+      }
 
       doc.setTextColor(255, 255, 255);
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(18);
-      doc.text('ANSWER INDEX', margin, 18);
+      doc.text('ANSWER INDEX', textStartX, 18);
 
-      doc.setFont('helvetica', 'normal');
-      doc.setFontSize(9);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(8.5);
       doc.setTextColor(56, 189, 248);
-      doc.text('AEO, GEO & TECHNICAL SEO AUDIT REPORT', margin, 25);
+      doc.text('ENTERPRISE AEO, GEO & SEARCH ENGINE READINESS AUDIT', textStartX, 25);
 
       doc.setTextColor(180, 190, 205);
+      doc.setFont('helvetica', 'normal');
       doc.setFontSize(8);
       const auditDateStr = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-      doc.text(`REPORT #${auditData.reportId}  |  AUDIT DATE: ${auditDateStr}`, margin, 32);
+      doc.text(`REPORT #${auditData.reportId}  |  ISSUED FOR: ${auditData.domain.toUpperCase()}  |  DATE: ${auditDateStr}`, textStartX, 32);
 
       // Target Domain Spotlight Box
       doc.setFillColor(245, 244, 240);
-      doc.roundedRect(margin, 48, contentWidth, 24, 3, 3, 'F');
+      doc.roundedRect(margin, 50, contentWidth, 24, 3, 3, 'F');
       doc.setDrawColor(226, 223, 213);
-      doc.roundedRect(margin, 48, contentWidth, 24, 3, 3, 'S');
+      doc.roundedRect(margin, 50, contentWidth, 24, 3, 3, 'S');
 
       doc.setTextColor(34, 34, 34);
       doc.setFont('helvetica', 'bold');
-      doc.setFontSize(10);
-      doc.text('TARGET DOMAIN AUDITED:', margin + 6, 58);
+      doc.setFontSize(9.5);
+      doc.text('TARGET DOMAIN AUDITED:', margin + 6, 59);
 
       doc.setTextColor(58, 87, 252);
       doc.setFontSize(15);
-      doc.text(auditData.domain, margin + 6, 66);
+      doc.text(auditData.domain, margin + 6, 67);
 
       // Overall Score Pill
       doc.setFillColor(auditData.scoreColor[0], auditData.scoreColor[1], auditData.scoreColor[2]);
-      doc.roundedRect(pageWidth - margin - 52, 52, 46, 16, 2, 2, 'F');
+      doc.roundedRect(pageWidth - margin - 52, 54, 46, 16, 2, 2, 'F');
       doc.setTextColor(255, 255, 255);
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(11);
-      doc.text(`${auditData.overallScore}/100 · ${auditData.grade}`, pageWidth - margin - 29, 62.5, { align: 'center' });
+      doc.text(`${auditData.overallScore}/100 · ${auditData.grade}`, pageWidth - margin - 29, 64.5, { align: 'center' });
 
       // Summary
       doc.setTextColor(34, 34, 34);
       doc.setFont('helvetica', 'bold');
-      doc.setFontSize(13);
-      doc.text('Executive AI Search Readiness Summary', margin, 82);
+      doc.setFontSize(12);
+      doc.text('Executive AI Search Readiness Diagnostic', margin, 84);
 
       doc.setFont('helvetica', 'normal');
-      doc.setFontSize(9.5);
+      doc.setFontSize(9);
       doc.setTextColor(70, 70, 70);
       const summaryLines = doc.splitTextToSize(
-        `This audit assesses ${auditData.domain}'s visibility across the new search ecosystem: ChatGPT Search, Perplexity AI, Claude 3.5, Gemini 1.5, and Google AI Overviews. While traditional SEO evaluates crawlability for standard web crawlers, generative AI answer engines only synthesize verified, structured, and citation-rich entities. Currently, ${auditData.domain} achieves an overall AI Readiness Score of ${auditData.overallScore}/100, leaving commercial-intent purchase prompts susceptible to competitor interception.`,
+        `This audit diagnostic evaluates ${auditData.domain}'s visibility across generative AI engines: ChatGPT Search, Perplexity AI, Claude 3.5, Gemini 1.5, and Google AI Overviews. While legacy SEO focuses merely on traditional crawler indexing, AI answer models require structured entity authority, direct answer paragraphs, and machine-readable manifests. Currently, ${auditData.domain} achieves an overall AI Readiness Score of ${auditData.overallScore}/100, leaving critical commercial buying queries open to aggressive competitor interception.`,
         contentWidth
       );
-      doc.text(summaryLines, margin, 89);
+      doc.text(summaryLines, margin, 90);
 
       // Pillars Table
-      let yPos = 114;
+      let yPos = 112;
       doc.setFont('helvetica', 'bold');
-      doc.setFontSize(12);
+      doc.setFontSize(11);
       doc.setTextColor(17, 17, 17);
       doc.text('Core Pillar Performance Breakdown', margin, yPos);
 
-      yPos += 8;
+      yPos += 7;
       auditData.pillars.forEach((p) => {
         doc.setFillColor(255, 255, 255);
         doc.setDrawColor(228, 230, 235);
-        doc.roundedRect(margin, yPos, contentWidth, 18, 2, 2, 'FD');
+        doc.roundedRect(margin, yPos, contentWidth, 16, 2, 2, 'FD');
 
         doc.setTextColor(30, 30, 30);
         doc.setFont('helvetica', 'bold');
-        doc.setFontSize(9.5);
-        doc.text(p.name, margin + 4, yPos + 6);
+        doc.setFontSize(9);
+        doc.text(p.name, margin + 4, yPos + 5.5);
 
         doc.setFont('helvetica', 'bold');
         doc.setTextColor(58, 87, 252);
-        doc.text(`${p.score}%`, pageWidth - margin - 6, yPos + 6, { align: 'right' });
+        doc.text(`${p.score}%`, pageWidth - margin - 6, yPos + 5.5, { align: 'right' });
 
         doc.setFillColor(235, 238, 245);
-        doc.roundedRect(margin + 4, yPos + 9, contentWidth - 8, 4, 1.5, 1.5, 'F');
+        doc.roundedRect(margin + 4, yPos + 8.5, contentWidth - 8, 3.5, 1.5, 1.5, 'F');
 
         const barWidth = ((contentWidth - 8) * p.score) / 100;
         doc.setFillColor(p.color[0], p.color[1], p.color[2]);
-        doc.roundedRect(margin + 4, yPos + 9, barWidth, 4, 1.5, 1.5, 'F');
+        doc.roundedRect(margin + 4, yPos + 8.5, barWidth, 3.5, 1.5, 1.5, 'F');
 
-        yPos += 22;
+        yPos += 19;
       });
 
-      // Top Gaps
-      yPos += 3;
+      // Top Critical Gaps / Emergencies
+      yPos += 2;
       doc.setFont('helvetica', 'bold');
-      doc.setFontSize(12);
+      doc.setFontSize(11);
       doc.setTextColor(17, 17, 17);
-      doc.text('Top Critical Vulnerabilities & Gaps Detected', margin, yPos);
+      doc.text('Critical Searchability Vulnerabilities & Missing Files', margin, yPos);
 
-      yPos += 7;
+      yPos += 6;
       auditData.gaps.forEach((gap) => {
         doc.setFillColor(gap.critical ? 254 : 255, gap.critical ? 242 : 251, gap.critical ? 242 : 235);
         doc.setDrawColor(gap.critical ? 252 : 251, gap.critical ? 165 : 191, gap.critical ? 165 : 36);
@@ -2887,110 +3005,151 @@
 
         doc.setFont('helvetica', 'bold');
         doc.setTextColor(gap.critical ? 220 : 180, gap.critical ? 38 : 83, gap.critical ? 38 : 9);
-        doc.setFontSize(8.5);
-        doc.text(gap.critical ? '[CRITICAL GAP]' : '[RECOMMENDED FIX]', margin + 4, yPos + 5);
+        doc.setFontSize(8);
+        doc.text(gap.critical ? '[CRITICAL INGESTION GAP - IMMEDIATE RISK]' : '[HIGH PRIORITY DEFICIENCY]', margin + 4, yPos + 4.8);
 
         doc.setFont('helvetica', 'normal');
         doc.setTextColor(50, 50, 50);
-        doc.setFontSize(8.5);
-        doc.text(gap.text, margin + 4, yPos + 9.5);
+        doc.setFontSize(8);
+        doc.text(gap.text, margin + 4, yPos + 9.2);
 
         yPos += 15;
       });
 
       // Page 1 Footer
       doc.setFontSize(8);
-      doc.setTextColor(150, 150, 150);
-      doc.text(`Page 1 of 2  ·  Answer Index Official Audit Report  ·  https://answerindex.pages.dev`, pageWidth / 2, 290, { align: 'center' });
+      doc.setTextColor(140, 140, 140);
+      doc.text(`Page 1 of 2  ·  Answer Index Official Audit Diagnostic  ·  Confidential Client Report`, pageWidth / 2, 290, { align: 'center' });
 
-      // --- PAGE 2: ACTIONABLE ROADMAP ---
+      // --- PAGE 2: URGENCY ALERT + 12-MONTH STRATEGIC ROADMAP (WHY ANNUAL) ---
       doc.addPage();
 
-      doc.setFillColor(15, 23, 42);
-      doc.rect(0, 0, pageWidth, 28, 'F');
+      // Page 2 Header with Answer Index Logo
+      doc.setFillColor(15, 23, 42); // Obsidian Slate
+      doc.rect(0, 0, pageWidth, 32, 'F');
+
+      let page2TextX = margin;
+      if (logoDataUrl) {
+        try {
+          doc.addImage(logoDataUrl, 'PNG', margin, 7, 13, 13);
+          page2TextX = margin + 17;
+        } catch (e) {
+          page2TextX = margin;
+        }
+      }
+
       doc.setTextColor(255, 255, 255);
       doc.setFont('helvetica', 'bold');
-      doc.setFontSize(12);
-      doc.text('ANSWER INDEX · 30-DAY AI OPTIMIZATION BLUEPRINT', margin, 14);
+      doc.setFontSize(14);
+      doc.text('ANSWER INDEX', page2TextX, 15);
 
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(8.5);
       doc.setTextColor(56, 189, 248);
-      doc.setFontSize(8);
-      doc.text(`RECOMMENDED REMEDIATION PLAN FOR ${auditData.domain.toUpperCase()}`, margin, 21);
+      doc.text('12-MONTH AUTONOMOUS AI & SEARCH DOMINANCE ROADMAP', page2TextX, 22);
 
+      // Section 1: Emergency Alert on Ingestion & Blind Spots
       yPos = 38;
+      doc.setFillColor(254, 242, 242);
+      doc.setDrawColor(239, 68, 68);
+      doc.roundedRect(margin, yPos, contentWidth, 23, 2, 2, 'FD');
+
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(185, 28, 28);
+      doc.setFontSize(9.5);
+      doc.text('CRITICAL SEARCH ALERT: AI ENGINE BLIND SPOT DETECTED', margin + 4, yPos + 6);
+
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(60, 60, 60);
+      doc.setFontSize(8);
+      const alertLines = doc.splitTextToSize(
+        `Without machine-readable /llms.txt manifests and validated Schema @graph nodes, generative search models (SearchGPT, Claude, Perplexity) cannot verify your core value proposition. Competitors who maintain active entity publishing are currently capturing the top recommendation slots in your category. Stopping optimization after 60-90 days allows competitors to permanently overwrite your citation share.`,
+        contentWidth - 8
+      );
+      doc.text(alertLines, margin + 4, yPos + 11.5);
+
+      // Section 2: 12-Month Autonomous AI & Search Dominance Roadmap
+      yPos = 67;
       doc.setTextColor(17, 17, 17);
       doc.setFont('helvetica', 'bold');
-      doc.setFontSize(12);
-      doc.text('Phase-by-Phase Remediation Action Items', margin, yPos);
+      doc.setFontSize(11);
+      doc.text('12-Month Autonomous Roadmap (Why Continuous Annual Optimization Matters)', margin, yPos);
 
-      yPos += 8;
-      const phases = [
+      yPos += 6;
+      const annualPhases = [
         {
-          title: 'Phase 1: Web-Root AI Discovery Manifests (Days 1–3)',
-          desc: 'Deploy /llms.txt, /llms-full.txt, and /ai.txt to establish machine-readable context for ChatGPT Search, Claude, and Perplexity crawlers. Eliminates crawler confusion and ground truth hallucinations.'
+          month: 'Months 1–2: Emergency Ingestion Triage & Machine-Readable Foundation',
+          desc: 'Deploy /llms.txt, /llms-full.txt, and complete JSON-LD @graph. Implement AI crawler directives to stop immediate competitor citation theft and anchor brand entity in Google Knowledge Graph.'
         },
         {
-          title: 'Phase 2: Comprehensive Schema.org JSON-LD Graph (Days 4–10)',
-          desc: 'Inject validated @graph structures connecting Organization, SoftwareApplication, FAQPage, and sameAs entity properties (Wikidata, Crunchbase, verified social handles) to anchor knowledge graphs.'
+          month: 'Months 3–4: Passage-Level AEO Direct Answers & Zero-Click Capture',
+          desc: 'Deploy 60+ declarative answer blocks positioned directly below exact-match intent queries. Seeds Google AI Overviews and Perplexity with concise, verifiable solution snippets.'
         },
         {
-          title: 'Phase 3: Passage-Level Direct-Answer Snippets (Days 11–20)',
-          desc: 'Restructure top landing pages with concise 40–55 word declarative answer blocks placed directly below exact H2/H3 question headers for zero-click AI snippet ingestion.'
+          month: 'Months 5–6: Competitor Citation Displacement & Comparative Proofs',
+          desc: 'Reverse-engineer competitors citation footprints. Programmatically deploy feature comparison tables, integration blueprints, and alternative matrices to capture their traffic.'
         },
         {
-          title: 'Phase 4: Autonomous Daily 2-Job Routine (Continuous)',
-          desc: 'Activate Answer Index Pro: 1 new authoritative AEO answer piece + 1 technical SEO/Schema refactor shipped every morning at 09:00 AM as safe GitHub pull requests with 1-click approvals.'
+          month: 'Months 7–9: Semantic Entity Graph Expansion & Deep Category Moat',
+          desc: 'Expand entity footprint across 180+ topical and vertical query clusters. Secures permanent presence in complex, multi-turn conversational AI buying prompts.'
+        },
+        {
+          month: 'Months 10–12: Complete AI Consensus Monopolization & Model Recalibration',
+          desc: 'Continuous daily monitoring and automated PR delivery to adapt to weekly LLM model updates (GPT-5, Gemini 2, Claude 4), locking in #1 AI search consensus rankings year-round.'
         }
       ];
 
-      phases.forEach((ph) => {
+      annualPhases.forEach((phase) => {
         doc.setFillColor(248, 249, 252);
         doc.setDrawColor(220, 226, 235);
-        doc.roundedRect(margin, yPos, contentWidth, 26, 2, 2, 'FD');
+        doc.roundedRect(margin, yPos, contentWidth, 21, 2, 2, 'FD');
 
         doc.setFont('helvetica', 'bold');
         doc.setTextColor(58, 87, 252);
-        doc.setFontSize(9.5);
-        doc.text(ph.title, margin + 4, yPos + 7);
+        doc.setFontSize(9);
+        doc.text(phase.month, margin + 4, yPos + 5.5);
 
         doc.setFont('helvetica', 'normal');
         doc.setTextColor(60, 60, 60);
-        doc.setFontSize(8);
-        const pLines = doc.splitTextToSize(ph.desc, contentWidth - 8);
-        doc.text(pLines, margin + 4, yPos + 13);
+        doc.setFontSize(7.8);
+        const pLines = doc.splitTextToSize(phase.desc, contentWidth - 8);
+        doc.text(pLines, margin + 4, yPos + 10.5);
 
-        yPos += 30;
+        yPos += 24;
       });
 
-      yPos += 4;
+      // Section 3: High-Conversion Call-to-Action (Annual vs Monthly Pro)
+      yPos += 2;
       doc.setFillColor(245, 244, 240);
       doc.setDrawColor(58, 87, 252);
       doc.roundedRect(margin, yPos, contentWidth, 48, 3, 3, 'FD');
 
       doc.setFont('helvetica', 'bold');
       doc.setTextColor(17, 17, 17);
-      doc.setFontSize(11);
-      doc.text('Ready to Put Your AI Optimization on Autopilot?', margin + 6, yPos + 9);
+      doc.setFontSize(10.5);
+      doc.text('Put Your Search & AI Growth on Autonomous Autopilot', margin + 6, yPos + 8);
 
       doc.setFont('helvetica', 'normal');
       doc.setTextColor(60, 60, 60);
-      doc.setFontSize(8.5);
+      doc.setFontSize(8);
       const ctaDesc = doc.splitTextToSize(
-        'Answer Index Pro delivers automated daily pull requests to your GitHub repository to fix every gap identified in this report. Starts at $149/mo with zero retainers, 1-click approvals, and founder onboarding.',
+        'Answer Index Pro delivers automated daily pull requests directly to your GitHub repository (1 new answer piece + 1 technical SEO fix daily). Start flexible with the Monthly Pro Plan or lock in full 12-month compounding category dominance with the Annual Plan (20% Savings).',
         contentWidth - 12
       );
-      doc.text(ctaDesc, margin + 6, yPos + 16);
+      doc.text(ctaDesc, margin + 6, yPos + 15);
 
       doc.setFont('helvetica', 'bold');
       doc.setTextColor(58, 87, 252);
-      doc.setFontSize(9);
-      doc.text('• Commercial Pro Portal: https://answerindex-pro.pages.dev', margin + 6, yPos + 32);
-      doc.text('• Book 15-Min Strategy Session: sameer@answerindex.com', margin + 6, yPos + 38);
-      doc.text('• Open-Source Suite (MIT): https://github.com/justmailsameer-prog/answerindex', margin + 6, yPos + 44);
+      doc.setFontSize(8.5);
+      doc.text('• Flexible Monthly Pro: $249/mo (Cancel anytime, 1-click GitHub PR approvals)', margin + 6, yPos + 29);
+      doc.text('• Annual Domination Plan: $199/mo billed annually (Save 20% · Full 12-Month Moat)', margin + 6, yPos + 35);
+      doc.text('• Get Started at Commercial Portal: https://answerindex-pro.pages.dev/#pricing', margin + 6, yPos + 41);
+      doc.text('• Book 1:1 Founder Strategy Session: sameer@answerindex.com', margin + 6, yPos + 47);
 
+      // Page 2 Footer (NO GITHUB LINKS)
       doc.setFontSize(8);
-      doc.setTextColor(150, 150, 150);
-      doc.text(`Page 2 of 2  ·  Answer Index Official Audit Report  ·  https://answerindex.pages.dev`, pageWidth / 2, 290, { align: 'center' });
+      doc.setTextColor(140, 140, 140);
+      doc.text(`Page 2 of 2  ·  Answer Index Official Enterprise Report  ·  https://answerindex-pro.pages.dev`, pageWidth / 2, 290, { align: 'center' });
 
       const cleanDomain = auditData.domain.replace(/[^a-zA-Z0-9.-]/g, '_');
       doc.save(`${cleanDomain}-AnswerIndex-SEO-Audit.pdf`);
