@@ -442,6 +442,185 @@
       transform: translateY(-2px);
     }
 
+    /* Executive Clarity Spotlight Box */
+    .executive-clarity-box {
+      margin: 2.75rem auto 2.5rem;
+      max-width: 1040px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1.5px solid rgba(56, 189, 248, 0.35);
+      border-radius: 20px;
+      padding: 2.5rem 2.25rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 35px rgba(56, 189, 248, 0.12);
+      backdrop-filter: blur(16px);
+      position: relative;
+      overflow: hidden;
+      text-align: left;
+    }
+    .executive-clarity-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc);
+    }
+    .clarity-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .clarity-tag {
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
+    }
+    .clarity-title {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+    .clarity-subtitle {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 680px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .clarity-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 1.75rem;
+    }
+    .clarity-card {
+      background: rgba(8, 13, 26, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 1.5rem;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .clarity-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+    .clarity-card.card-cyan:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+    }
+    .clarity-card.card-blue:hover {
+      border-color: rgba(129, 140, 248, 0.4);
+    }
+    .clarity-card.card-purple:hover {
+      border-color: rgba(192, 132, 252, 0.4);
+    }
+    .clarity-card-badge {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.6rem;
+    }
+    .card-cyan .clarity-card-badge { color: #38bdf8; }
+    .card-blue .clarity-card-badge { color: #818cf8; }
+    .card-purple .clarity-card-badge { color: #c084fc; }
+    .clarity-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.6rem;
+      line-height: 1.35;
+    }
+    .clarity-card p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+    .clarity-footer-cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .clarity-more-btn {
+      color: #38bdf8;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s;
+    }
+    .clarity-more-btn:hover {
+      color: #7dd3fc;
+      transform: translateX(4px);
+    }
+    .clarity-note {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+    .btn-nav-about {
+      color: #f8fafc;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 0.45rem 0.85rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.05);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .btn-nav-about:hover {
+      background: rgba(56, 189, 248, 0.12);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    .btn-nav-pro {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 0.45rem 0.95rem;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #3a57fc 0%, #2563eb 100%);
+      box-shadow: 0 4px 14px rgba(58, 87, 252, 0.35);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .btn-nav-pro:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(58, 87, 252, 0.5);
+    }
+    @media (max-width: 680px) {
+      .btn-nav-about, .btn-nav-pro {
+        display: none;
+      }
+      .clarity-title {
+        font-size: 1.45rem;
+      }
+      .executive-clarity-box {
+        padding: 1.5rem 1.25rem;
+      }
+    }
+
     /* Terminal Preview Box */
     .terminal-window {
       max-width: 100%;
@@ -992,6 +1171,12 @@
       </a>
 
       <div class="nav-actions">
+        <a href="about.html" class="btn-nav-about">
+          💡 About
+        </a>
+        <a href="pro.html" class="btn-nav-pro">
+          ⚡ Pro Agent
+        </a>
         <a href="https://github.com/justmailsameer-prog/answerindex" target="_blank" class="btn-github">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
@@ -1009,6 +1194,16 @@
             </span>
           </button>
           <div class="nav-dropdown-menu" id="navDropdownMenu">
+            <a href="about.html" class="dropdown-item" style="color: #38bdf8; font-weight: 700; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.75rem; margin-bottom: 0.25rem;">
+              <span>💡</span> About Answer Index
+            </a>
+            <a href="pro.html" class="dropdown-item" style="color: #c084fc; font-weight: 700;">
+              <span>⚡</span> Commercial Pro ($149/mo)
+            </a>
+            <a href="dashboard.html" class="dropdown-item" style="color: #34d399; font-weight: 700;">
+              <span>📊</span> Live Client Dashboard
+            </a>
+            <div style="border-top: 1px solid var(--border-subtle); margin: 0.25rem 0;"></div>
             <a href="#why" class="dropdown-item" onclick="closeDropdown()">
               <span>💡</span> Why Answer Index
             </a>
@@ -1077,10 +1272,60 @@
               </svg>
               Get Started Free
             </a>
+            <a href="about.html" class="btn-secondary" style="border-color: rgba(56, 189, 248, 0.45); color: #f8fafc; font-weight: 700;">
+              💡 Read What We Do &amp; Drive Sales
+            </a>
             <a href="https://github.com/justmailsameer-prog/answerindex" target="_blank" class="btn-secondary">
               View Documentation
             </a>
           </div>
+        </div>
+      </div>
+
+      <!-- Executive Clarity Spotlight Box: What it is, What it does, How it drives sales -->
+      <div class="executive-clarity-box">
+        <div class="clarity-header">
+          <div class="clarity-tag">💡 EXECUTIVE CLARITY · 3 QUESTIONS ANSWERED IN ONE MINUTE</div>
+          <h2 class="clarity-title">What is Answer Index &amp; How Does It Drive More Sales?</h2>
+          <p class="clarity-subtitle">
+            Search has permanently shifted: prospective buyers no longer browse 10 blue links on Google. They ask ChatGPT, Perplexity, and Claude for recommendations. <strong>Answer Index makes sure your brand is the answer they get.</strong>
+          </p>
+        </div>
+
+        <div class="clarity-grid">
+          <!-- Card 1: What is it -->
+          <div class="clarity-card card-cyan">
+            <div class="clarity-card-badge">01 · WHAT IT IS</div>
+            <h3>Your Autonomous AI Recommendation Engine</h3>
+            <p>
+              An intelligent software agent that optimizes your website so artificial intelligence engines (ChatGPT Search, Perplexity, Claude, Gemini, and Google AI Overviews) recognize your company as the authoritative #1 recommended solution in your market.
+            </p>
+          </div>
+
+          <!-- Card 2: What it does -->
+          <div class="clarity-card card-blue">
+            <div class="clarity-card-badge">02 · WHAT IT DOES</div>
+            <h3>Daily Codebase Execution via Pull Requests</h3>
+            <p>
+              Every morning at 09:00 AM, it diagnoses what questions buyers are asking AI bots about your industry, then ships 2 verified improvements to your GitHub repo (1 new direct-answer asset + 1 technical SEO/Schema refactor) for safe, 1-click human approval.
+            </p>
+          </div>
+
+          <!-- Card 3: How it increases sales -->
+          <div class="clarity-card card-purple">
+            <div class="clarity-card-badge">03 · HOW IT DRIVES SALES</div>
+            <h3>Captures High-Intent Buyers at Point of Purchase</h3>
+            <p>
+              When a buyer asks AI <em>"What is the best [product] for [problem]?"</em>, the AI only recommends 1–3 sources. Answer Index ensures the AI explicitly names your company, cites your value proposition, and links straight to your product checkout.
+            </p>
+          </div>
+        </div>
+
+        <div class="clarity-footer-cta">
+          <a href="about.html" class="clarity-more-btn">
+            Read the Full 3-Minute About Page Guide →
+          </a>
+          <span class="clarity-note">No retainers · Zero agency coordination · 100% Human-in-the-loop</span>
         </div>
       </div>
 
@@ -1584,6 +1829,9 @@
         <div class="footer-col">
           <h5>Resources & Legal</h5>
           <ul class="footer-menu">
+            <li><a href="about.html" style="color: #38bdf8; font-weight: 700;">💡 About Answer Index</a></li>
+            <li><a href="pro.html" style="color: #c084fc; font-weight: 700;">⚡ Commercial Pro Agent</a></li>
+            <li><a href="dashboard.html" style="color: #34d399; font-weight: 600;">📊 Client Dashboard</a></li>
             <li><a href="https://github.com/justmailsameer-prog/answerindex" target="_blank">GitHub Repository</a></li>
             <li><a href="https://github.com/justmailsameer-prog/answerindex/blob/main/ANSWERINDEX-PRD.md" target="_blank">Product Requirements (PRD)</a></li>
             <li><a href="https://github.com/justmailsameer-prog/answerindex/blob/main/EXECUTION-ENGINE-SPEC.md" target="_blank">5-Phase Engine Spec</a></li>
