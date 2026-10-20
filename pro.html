@@ -2150,7 +2150,21 @@
       <!-- Deliverables Matrix Table: Aligned, Row-by-Row Comparison -->
       <div style="margin-bottom: 2rem; text-align: center;">
         <h3 style="font-size: 1.6rem; font-weight: 800; color: #000000; margin-bottom: 0.5rem;">Choose Your Autonomous Growth Plan</h3>
-        <p style="font-size: 0.95rem; color: rgba(0, 0, 0, 0.85); font-weight: 500;">All deliverables are itemized and compared in the structured table below:</p>
+        <p style="font-size: 0.95rem; color: rgba(0, 0, 0, 0.85); font-weight: 500; margin-bottom: 1.75rem;">All deliverables are itemized and compared in the structured table below:</p>
+
+        <!-- Interactive Monthly / Annual Billing Toggle Switch -->
+        <div style="display: flex; justify-content: center; align-items: center; gap: 1rem; margin-bottom: 2rem;">
+          <span id="labelMonthly" onclick="setBillingCycle('monthly')" style="font-weight: 800; font-size: 1rem; color: #111111; cursor: pointer; transition: color 0.2s;">
+            Monthly Billing
+          </span>
+          <button id="billingToggleBtn" onclick="toggleBillingCycle()" style="position: relative; width: 62px; height: 32px; background: #000000; border: none; border-radius: 20px; cursor: pointer; padding: 3px; transition: background 0.25s;" aria-label="Toggle Monthly or Annual Billing">
+            <span id="toggleKnob" style="position: absolute; top: 4px; left: 4px; width: 24px; height: 24px; background: #ffffff; border-radius: 50%; transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);"></span>
+          </button>
+          <span id="labelAnnual" onclick="setBillingCycle('annual')" style="font-weight: 600; font-size: 1rem; color: #555555; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; transition: color 0.2s;">
+            Annual Billing
+            <span style="background: var(--c-cobalt); color: #ffffff; font-size: 0.72rem; font-weight: 800; padding: 0.2rem 0.55rem; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.04em;">Save 20%</span>
+          </span>
+        </div>
       </div>
 
       <div class="pricing-table-wrapper">
@@ -2163,14 +2177,14 @@
               </th>
               <th class="col-growth">
                 <span style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 4px; background: rgba(0, 0, 0, 0.06); color: #333333; font-family: var(--font-mono);">Starter Tier</span>
-                <div style="font-size: 2.2rem; font-weight: 800; color: #111111; margin: 0.5rem 0 0.25rem;">$149<span style="font-size: 0.95rem; font-weight: 500; color: #666666;">/mo</span></div>
-                <div style="font-size: 0.8rem; color: var(--c-cobalt); font-weight: 700;">Or $119/mo billed annually</div>
+                <div style="font-size: 2.2rem; font-weight: 800; color: #111111; margin: 0.5rem 0 0.25rem;"><span id="growthPriceVal">$149</span><span style="font-size: 0.95rem; font-weight: 500; color: #666666;">/mo</span></div>
+                <div id="growthPriceSub" style="font-size: 0.8rem; color: var(--c-cobalt); font-weight: 700;">Or $119/mo billed annually</div>
                 <p style="font-size: 0.82rem; color: #666666; margin-top: 0.5rem;">For single products & early startups establishing AI presence.</p>
               </th>
               <th class="col-pro">
                 <span style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 4px; background: var(--c-lime); color: #000000; font-family: var(--font-mono);">⭐ Most Popular · Full Cadence</span>
-                <div style="font-size: 2.2rem; font-weight: 800; color: #111111; margin: 0.5rem 0 0.25rem;">$249<span style="font-size: 0.95rem; font-weight: 500; color: #666666;">/mo</span></div>
-                <div style="font-size: 0.8rem; color: var(--c-lime-dark); font-weight: 800;">⚡ $199/mo billed annually (Save $600)</div>
+                <div style="font-size: 2.2rem; font-weight: 800; color: #111111; margin: 0.5rem 0 0.25rem;"><span id="proPriceVal">$249</span><span style="font-size: 0.95rem; font-weight: 500; color: #666666;">/mo</span></div>
+                <div id="proPriceSub" style="font-size: 0.8rem; color: var(--c-lime-dark); font-weight: 800;">⚡ $199/mo billed annually (Save $600)</div>
                 <p style="font-size: 0.82rem; color: #444444; margin-top: 0.5rem;">The complete daily growth engine. 2 jobs shipped every business day.</p>
               </th>
             </tr>
@@ -2220,12 +2234,12 @@
               <td class="col-feature"><strong>Action & Enrollment</strong></td>
               <td class="col-growth">
                 <button onclick="startCheckout('growth')" class="btn btn-secondary-light" style="width: 100%; padding: 0.75rem 1rem; cursor: pointer;">
-                  Start Growth ($149/mo) →
+                  <span id="growthBtnText">Start Growth ($149/mo) →</span>
                 </button>
               </td>
               <td class="col-pro">
                 <button onclick="startCheckout('pro_autonomous')" class="btn btn-cobalt" style="width: 100%; padding: 0.75rem 1rem; cursor: pointer;">
-                  Claim Pro Access ($249/mo) →
+                  <span id="proBtnText">Claim Pro Access ($249/mo) →</span>
                 </button>
               </td>
             </tr>
@@ -2960,14 +2974,72 @@
       e.target.reset();
     }
 
+    // Billing Cycle Switcher (Monthly vs. Annual)
+    let currentBillingCycle = 'monthly';
+
+    function setBillingCycle(cycle) {
+      currentBillingCycle = cycle;
+      const isAnnual = cycle === 'annual';
+      
+      const knob = document.getElementById('toggleKnob');
+      const toggleBtn = document.getElementById('billingToggleBtn');
+      const labelMonthly = document.getElementById('labelMonthly');
+      const labelAnnual = document.getElementById('labelAnnual');
+
+      const growthVal = document.getElementById('growthPriceVal');
+      const growthSub = document.getElementById('growthPriceSub');
+      const growthBtn = document.getElementById('growthBtnText');
+
+      const proVal = document.getElementById('proPriceVal');
+      const proSub = document.getElementById('proPriceSub');
+      const proBtn = document.getElementById('proBtnText');
+
+      if (isAnnual) {
+        if (knob) knob.style.transform = 'translateX(30px)';
+        if (toggleBtn) toggleBtn.style.background = 'var(--c-cobalt)';
+        if (labelMonthly) { labelMonthly.style.fontWeight = '600'; labelMonthly.style.color = '#555555'; }
+        if (labelAnnual) { labelAnnual.style.fontWeight = '800'; labelAnnual.style.color = '#111111'; }
+
+        // Growth Tier Annual ($119/mo * 12 = $1,428/yr)
+        if (growthVal) growthVal.textContent = '$119';
+        if (growthSub) growthSub.textContent = '⚡ Billed $1,428/yr (Save $360/yr)';
+        if (growthBtn) growthBtn.textContent = 'Start Growth Annual ($1,428/yr) →';
+
+        // Pro Autonomous Tier Annual ($199/mo * 12 = $2,388/yr)
+        if (proVal) proVal.textContent = '$199';
+        if (proSub) proSub.textContent = '⚡ Billed $2,388/yr (Save $600/yr)';
+        if (proBtn) proBtn.textContent = 'Claim Pro Annual ($2,388/yr) →';
+      } else {
+        if (knob) knob.style.transform = 'translateX(0px)';
+        if (toggleBtn) toggleBtn.style.background = '#000000';
+        if (labelMonthly) { labelMonthly.style.fontWeight = '800'; labelMonthly.style.color = '#111111'; }
+        if (labelAnnual) { labelAnnual.style.fontWeight = '600'; labelAnnual.style.color = '#555555'; }
+
+        // Growth Tier Monthly
+        if (growthVal) growthVal.textContent = '$149';
+        if (growthSub) growthSub.textContent = 'Or $119/mo billed annually';
+        if (growthBtn) growthBtn.textContent = 'Start Growth ($149/mo) →';
+
+        // Pro Autonomous Tier Monthly
+        if (proVal) proVal.textContent = '$249';
+        if (proSub) proSub.textContent = '⚡ $199/mo billed annually (Save $600)';
+        if (proBtn) proBtn.textContent = 'Claim Pro Access ($249/mo) →';
+      }
+    }
+
+    function toggleBillingCycle() {
+      setBillingCycle(currentBillingCycle === 'monthly' ? 'annual' : 'monthly');
+    }
+
     // Dodo Payments Checkout Initiator
     async function startCheckout(plan = 'pro_autonomous') {
-      showToast('⚡ Connecting to Dodo Payments checkout...', '💳');
+      const planDisplayName = plan === 'growth' ? 'Growth' : 'Pro Autonomous';
+      showToast(`⚡ Connecting to Dodo Payments checkout for ${planDisplayName} (${currentBillingCycle})...`, '💳');
       try {
         const res = await fetch('/api/create-checkout', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ plan })
+          body: JSON.stringify({ plan, billing: currentBillingCycle })
         });
         const data = await res.json();
         if (data.success && data.checkout_url) {

@@ -14,28 +14,32 @@
 
   <style>
     :root {
-      --bg-dark: #0a0a0c;
-      --bg-card: #131317;
-      --bg-card-hover: #191920;
-      --border-color: rgba(255, 255, 255, 0.08);
-      --border-accent: rgba(58, 87, 252, 0.35);
+      /* Warm Editorial Cream Color Palette matching the landing page */
+      --bg-page: #f5f4f0;
+      --bg-card: #ffffff;
+      --bg-card-subtle: #faf9f6;
+      --border-color: #e2dfd5;
+      --border-hover: #c8c5b9;
 
       --c-cobalt: #3a57fc;
       --c-cobalt-hover: #2944e8;
-      --c-cobalt-glow: rgba(58, 87, 252, 0.25);
+      --c-cobalt-tint: rgba(58, 87, 252, 0.08);
 
       --c-lime: #a7c75d;
-      --c-lime-glow: rgba(167, 199, 93, 0.25);
+      --c-lime-dark: #3f5518;
+      --c-lime-tint: rgba(167, 199, 93, 0.14);
 
-      --c-amber: #ff8c00;
-      --c-amber-glow: rgba(255, 140, 0, 0.25);
+      --c-amber: #d97706;
+      --c-amber-tint: rgba(217, 119, 6, 0.1);
 
-      --c-text-main: #ffffff;
-      --c-text-muted: #9ba1b0;
-      --c-text-dim: #656a79;
+      --c-text-main: #181818;
+      --c-text-muted: #555555;
+      --c-text-dim: #777777;
 
       --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 8px 25px rgba(0, 0, 0, 0.06);
     }
 
     * {
@@ -45,7 +49,7 @@
     }
 
     body {
-      background-color: var(--bg-dark);
+      background-color: var(--bg-page);
       color: var(--c-text-main);
       font-family: var(--font-sans);
       min-height: 100vh;
@@ -55,13 +59,14 @@
 
     /* Top Navigation Bar */
     .navbar {
-      background-color: rgba(19, 19, 23, 0.85);
+      background-color: rgba(255, 255, 255, 0.92);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border-color);
       position: sticky;
       top: 0;
       z-index: 100;
       padding: 0.85rem 1.5rem;
+      box-shadow: var(--shadow-sm);
     }
 
     .nav-container {
@@ -96,6 +101,7 @@
       font-weight: 800;
       font-size: 1.15rem;
       letter-spacing: -0.02em;
+      color: #111111;
       display: flex;
       align-items: center;
       gap: 0.5rem;
@@ -114,19 +120,20 @@
 
     .cadence-badge {
       font-size: 0.75rem;
-      color: var(--c-lime);
+      color: var(--c-lime-dark);
       display: flex;
       align-items: center;
       gap: 0.4rem;
       font-family: var(--font-mono);
+      font-weight: 600;
     }
 
     .pulse-dot {
       width: 7px;
       height: 7px;
-      background-color: var(--c-lime);
+      background-color: #22c55e;
       border-radius: 50%;
-      box-shadow: 0 0 8px var(--c-lime);
+      box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
       animation: pulse 2s infinite ease-in-out;
     }
 
@@ -142,7 +149,7 @@
     }
 
     .project-pill {
-      background-color: rgba(255, 255, 255, 0.04);
+      background-color: var(--bg-page);
       border: 1px solid var(--border-color);
       padding: 0.45rem 0.85rem;
       border-radius: 20px;
@@ -155,41 +162,42 @@
     }
 
     .project-pill strong {
-      color: #fff;
+      color: #111111;
     }
 
     .plan-tag {
-      background-color: rgba(167, 199, 93, 0.12);
-      border: 1px solid rgba(167, 199, 93, 0.35);
-      color: var(--c-lime);
+      background-color: var(--c-lime-tint);
+      border: 1px solid rgba(167, 199, 93, 0.5);
+      color: var(--c-lime-dark);
       font-size: 0.75rem;
       padding: 0.35rem 0.75rem;
       border-radius: 6px;
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .btn-secondary {
-      background-color: transparent;
+      background-color: #ffffff;
       border: 1px solid var(--border-color);
-      color: var(--c-text-muted);
+      color: var(--c-text-main);
       padding: 0.45rem 0.9rem;
       border-radius: 8px;
       font-size: 0.82rem;
+      font-weight: 600;
       cursor: pointer;
       text-decoration: none;
       transition: all 0.2s;
     }
 
     .btn-secondary:hover {
-      border-color: rgba(255, 255, 255, 0.2);
-      color: #fff;
+      border-color: var(--border-hover);
+      background-color: var(--bg-card-subtle);
     }
 
     /* Main Container */
     .dashboard-container {
       max-width: 1380px;
       margin: 0 auto;
-      padding: 2rem 1.5rem 4rem;
+      padding: 2.25rem 1.5rem 4rem;
     }
 
     /* KPI Grid */
@@ -203,16 +211,18 @@
     .kpi-card {
       background-color: var(--bg-card);
       border: 1px solid var(--border-color);
-      border-radius: 14px;
+      border-radius: 16px;
       padding: 1.4rem;
       position: relative;
       overflow: hidden;
-      transition: transform 0.2s, border-color 0.2s;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
     }
 
     .kpi-card:hover {
       transform: translateY(-2px);
-      border-color: rgba(255, 255, 255, 0.16);
+      box-shadow: var(--shadow-md);
+      border-color: var(--border-hover);
     }
 
     .kpi-card::before {
@@ -221,8 +231,8 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--card-accent, var(--c-cobalt)), transparent);
+      height: 3px;
+      background: var(--card-accent, var(--c-cobalt));
     }
 
     .kpi-header {
@@ -233,8 +243,8 @@
     }
 
     .kpi-title {
-      font-size: 0.82rem;
-      font-weight: 600;
+      font-size: 0.8rem;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       color: var(--c-text-dim);
@@ -243,7 +253,7 @@
     .kpi-badge {
       font-size: 0.72rem;
       font-weight: 700;
-      padding: 0.15rem 0.45rem;
+      padding: 0.15rem 0.5rem;
       border-radius: 4px;
       font-family: var(--font-mono);
     }
@@ -252,7 +262,7 @@
       font-size: 2.1rem;
       font-weight: 800;
       letter-spacing: -0.03em;
-      color: #fff;
+      color: #111111;
       display: flex;
       align-items: baseline;
       gap: 0.4rem;
@@ -281,9 +291,10 @@
     .panel {
       background-color: var(--bg-card);
       border: 1px solid var(--border-color);
-      border-radius: 16px;
-      padding: 1.6rem;
+      border-radius: 18px;
+      padding: 1.75rem;
       margin-bottom: 1.75rem;
+      box-shadow: var(--shadow-sm);
     }
 
     .panel-header {
@@ -297,8 +308,9 @@
 
     .panel-title {
       font-size: 1.25rem;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: -0.02em;
+      color: #111111;
       display: flex;
       align-items: center;
       gap: 0.6rem;
@@ -316,20 +328,20 @@
     }
 
     .filter-btn {
-      background-color: rgba(255, 255, 255, 0.04);
+      background-color: var(--bg-page);
       border: 1px solid var(--border-color);
       color: var(--c-text-muted);
       padding: 0.35rem 0.75rem;
       border-radius: 6px;
       font-size: 0.78rem;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
       transition: all 0.2s;
     }
 
     .filter-btn.active, .filter-btn:hover {
       background-color: var(--c-cobalt);
-      color: #fff;
+      color: #ffffff;
       border-color: var(--c-cobalt);
     }
 
@@ -341,25 +353,27 @@
     }
 
     .job-card {
-      background-color: #16161c;
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
+      background-color: #ffffff;
+      border: 1.5px solid var(--border-color);
+      border-radius: 14px;
       padding: 1.4rem;
       transition: all 0.25s ease;
       position: relative;
+      box-shadow: var(--shadow-sm);
     }
 
     .job-card:hover {
-      border-color: rgba(255, 255, 255, 0.16);
-      background-color: var(--bg-card-hover);
+      border-color: var(--border-hover);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-1px);
     }
 
     .job-card.pending {
-      border-left: 4px solid var(--c-amber);
+      border-left: 5px solid var(--c-amber);
     }
 
     .job-card.merged {
-      border-left: 4px solid var(--c-lime);
+      border-left: 5px solid #22c55e;
     }
 
     .job-meta-row {
@@ -379,7 +393,7 @@
 
     .job-type-pill {
       font-size: 0.72rem;
-      font-weight: 700;
+      font-weight: 800;
       padding: 0.2rem 0.55rem;
       border-radius: 4px;
       font-family: var(--font-mono);
@@ -387,30 +401,31 @@
     }
 
     .type-job1 {
-      background-color: rgba(58, 87, 252, 0.15);
-      color: #6d83ff;
-      border: 1px solid rgba(58, 87, 252, 0.3);
+      background-color: var(--c-cobalt-tint);
+      color: var(--c-cobalt);
+      border: 1px solid rgba(58, 87, 252, 0.25);
     }
 
     .type-job2 {
-      background-color: rgba(167, 199, 93, 0.15);
-      color: var(--c-lime);
-      border: 1px solid rgba(167, 199, 93, 0.3);
+      background-color: var(--c-lime-tint);
+      color: var(--c-lime-dark);
+      border: 1px solid rgba(167, 199, 93, 0.4);
     }
 
     .date-tag {
       font-size: 0.8rem;
       color: var(--c-text-dim);
       font-family: var(--font-mono);
+      font-weight: 600;
     }
 
     .score-badge {
-      background-color: rgba(167, 199, 93, 0.1);
-      border: 1px solid rgba(167, 199, 93, 0.3);
-      color: var(--c-lime);
+      background-color: rgba(34, 197, 94, 0.08);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      color: #15803d;
       font-size: 0.74rem;
-      font-weight: 700;
-      padding: 0.2rem 0.5rem;
+      font-weight: 800;
+      padding: 0.2rem 0.55rem;
       border-radius: 4px;
       font-family: var(--font-mono);
       display: flex;
@@ -420,8 +435,8 @@
 
     .job-title {
       font-size: 1.15rem;
-      font-weight: 700;
-      color: #ffffff;
+      font-weight: 800;
+      color: #111111;
       margin-bottom: 0.5rem;
       line-height: 1.4;
     }
@@ -444,21 +459,21 @@
     }
 
     .detail-item strong {
-      color: #ddd;
+      color: #222222;
     }
 
-    /* Zero Click Answer Snippet Box */
+    /* Zero Click Answer Snippet Box (Editorial Cream Contrast) */
     .snippet-box {
-      background-color: #0c0c0f;
-      border: 1px dashed rgba(255, 255, 255, 0.12);
-      border-radius: 8px;
+      background-color: #faf9f5;
+      border: 1.5px dashed var(--border-color);
+      border-radius: 10px;
       padding: 1rem;
       margin-bottom: 1.1rem;
     }
 
     .snippet-label {
       font-size: 0.72rem;
-      font-weight: 700;
+      font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       color: var(--c-cobalt);
@@ -471,8 +486,8 @@
 
     .snippet-content {
       font-size: 0.88rem;
-      color: #e5e7eb;
-      line-height: 1.5;
+      color: #2b2b2b;
+      line-height: 1.55;
     }
 
     /* Actions Row */
@@ -481,7 +496,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      border-top: 1px solid var(--border-color);
       padding-top: 0.9rem;
       flex-wrap: wrap;
     }
@@ -490,6 +505,7 @@
       font-size: 0.8rem;
       color: var(--c-text-dim);
       font-family: var(--font-mono);
+      font-weight: 600;
     }
 
     .action-buttons {
@@ -499,13 +515,13 @@
     }
 
     .btn-github {
-      background-color: rgba(255, 255, 255, 0.06);
+      background-color: #ffffff;
       border: 1px solid var(--border-color);
-      color: #fff;
+      color: #222222;
       padding: 0.45rem 0.85rem;
       border-radius: 8px;
       font-size: 0.8rem;
-      font-weight: 600;
+      font-weight: 700;
       text-decoration: none;
       display: flex;
       align-items: center;
@@ -514,28 +530,29 @@
     }
 
     .btn-github:hover {
-      background-color: rgba(255, 255, 255, 0.12);
+      background-color: var(--bg-page);
+      border-color: var(--border-hover);
     }
 
     .btn-approve {
-      background: linear-gradient(135deg, #22c55e, #16a34a);
-      color: #fff;
+      background: linear-gradient(135deg, #16a34a, #15803d);
+      color: #ffffff;
       border: none;
       padding: 0.5rem 1.15rem;
       border-radius: 8px;
       font-size: 0.82rem;
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
       display: flex;
       align-items: center;
       gap: 0.45rem;
-      transition: transform 0.15s, opacity 0.2s;
-      box-shadow: 0 4px 12px rgba(34, 197, 94, 0.25);
+      transition: transform 0.15s, opacity 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 12px rgba(22, 163, 74, 0.25);
     }
 
     .btn-approve:hover {
       transform: translateY(-1px);
-      box-shadow: 0 6px 16px rgba(34, 197, 94, 0.35);
+      box-shadow: 0 6px 16px rgba(22, 163, 74, 0.35);
     }
 
     .btn-approve:disabled {
@@ -544,13 +561,13 @@
     }
 
     .btn-merged {
-      background-color: rgba(167, 199, 93, 0.12);
-      border: 1px solid rgba(167, 199, 93, 0.3);
-      color: var(--c-lime);
+      background-color: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.35);
+      color: #15803d;
       padding: 0.5rem 1rem;
       border-radius: 8px;
       font-size: 0.82rem;
-      font-weight: 700;
+      font-weight: 800;
       display: flex;
       align-items: center;
       gap: 0.45rem;
@@ -559,20 +576,20 @@
 
     /* Sidebar Telemetry Widgets */
     .engine-card {
-      background-color: #16161c;
+      background-color: #faf9f6;
       border: 1px solid var(--border-color);
-      border-radius: 10px;
+      border-radius: 12px;
       padding: 1rem;
       margin-bottom: 0.85rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      transition: transform 0.2s;
+      transition: transform 0.2s, border-color 0.2s;
     }
 
     .engine-card:hover {
       transform: translateX(3px);
-      border-color: rgba(255, 255, 255, 0.16);
+      border-color: var(--border-hover);
     }
 
     .engine-info {
@@ -582,51 +599,53 @@
     }
 
     .engine-icon {
-      width: 32px;
-      height: 32px;
+      width: 34px;
+      height: 34px;
       border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1rem;
-      background-color: rgba(255, 255, 255, 0.05);
+      background-color: #ffffff;
+      border: 1px solid var(--border-color);
     }
 
     .engine-name {
-      font-weight: 600;
-      font-size: 0.9rem;
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: #111111;
     }
 
     .engine-status {
       font-size: 0.75rem;
-      color: var(--c-text-dim);
+      color: var(--c-text-muted);
     }
 
     .engine-rate {
       font-size: 1.15rem;
       font-weight: 800;
       font-family: var(--font-mono);
-      color: var(--c-lime);
+      color: var(--c-lime-dark);
     }
 
     /* Dispatch Controls Box */
     .dispatch-box {
-      background: linear-gradient(135deg, rgba(58, 87, 252, 0.1), rgba(167, 199, 93, 0.05));
-      border: 1px solid rgba(58, 87, 252, 0.25);
-      border-radius: 12px;
-      padding: 1.25rem;
+      background: linear-gradient(135deg, rgba(58, 87, 252, 0.06), rgba(167, 199, 93, 0.08));
+      border: 1.5px solid rgba(58, 87, 252, 0.25);
+      border-radius: 14px;
+      padding: 1.35rem;
       margin-top: 1.5rem;
     }
 
     .dispatch-box h4 {
       font-size: 0.95rem;
-      font-weight: 700;
+      font-weight: 800;
       margin-bottom: 0.4rem;
-      color: #fff;
+      color: #111111;
     }
 
     .dispatch-box p {
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       color: var(--c-text-muted);
       margin-bottom: 1rem;
     }
@@ -634,22 +653,24 @@
     .btn-dispatch {
       width: 100%;
       background: linear-gradient(135deg, var(--c-cobalt), #4f46e5);
-      color: #fff;
+      color: #ffffff;
       border: none;
-      padding: 0.65rem 1rem;
+      padding: 0.7rem 1rem;
       border-radius: 8px;
-      font-size: 0.82rem;
-      font-weight: 700;
+      font-size: 0.85rem;
+      font-weight: 800;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
       transition: all 0.2s;
+      box-shadow: 0 4px 14px rgba(58, 87, 252, 0.25);
     }
 
     .btn-dispatch:hover {
       background: linear-gradient(135deg, var(--c-cobalt-hover), #4338ca);
+      transform: translateY(-1px);
     }
 
     /* Toast Notifications */
@@ -657,14 +678,14 @@
       position: fixed;
       bottom: 2rem;
       right: 2rem;
-      background-color: #1e1e24;
-      color: #fff;
-      border: 1px solid rgba(167, 199, 93, 0.4);
+      background-color: #181818;
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.15);
       padding: 1rem 1.4rem;
       border-radius: 10px;
       font-size: 0.88rem;
       font-weight: 600;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
       transform: translateY(100px);
       opacity: 0;
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -682,7 +703,7 @@
 </head>
 <body>
 
-  <!-- Top Navigation -->
+  <!-- Top Navigation (Warm Editorial Cream Aesthetic) -->
   <nav class="navbar">
     <div class="nav-container">
       <a href="pro.html" class="brand-group">
@@ -700,7 +721,7 @@
       <div class="nav-actions">
         <div class="project-pill" id="projectPill">
           <span>Target:</span> <strong id="projectDomain">answerindex.pages.dev</strong>
-          <span style="color: rgba(255,255,255,0.2)">|</span>
+          <span style="color: rgba(0,0,0,0.15)">|</span>
           <span id="projectBranch">main</span>
         </div>
         <div class="plan-tag" id="planTag">Pro Autonomous · $249/mo</div>
@@ -717,21 +738,21 @@
       <div class="kpi-card" style="--card-accent: var(--c-cobalt);">
         <div class="kpi-header">
           <span class="kpi-title">Daily Dispatch Queue</span>
-          <span class="kpi-badge" style="background: rgba(58,87,252,0.15); color: #6d83ff;">2 / Day</span>
+          <span class="kpi-badge" style="background: var(--c-cobalt-tint); color: var(--c-cobalt);">2 / Day</span>
         </div>
         <div class="kpi-value" id="kpiQueueCount">
-          2 <span style="font-size: 1rem; color: var(--c-amber); font-weight: 600;">Pending Approval</span>
+          2 <span style="font-size: 1rem; color: var(--c-amber); font-weight: 700;">Pending Approval</span>
         </div>
         <div class="kpi-subtext">Job 1 (AEO Asset) + Job 2 (Tech Refactor) ready for merge</div>
       </div>
 
-      <div class="kpi-card" style="--card-accent: var(--c-lime);">
+      <div class="kpi-card" style="--card-accent: #22c55e;">
         <div class="kpi-header">
           <span class="kpi-title">Schema Ingestion Score</span>
-          <span class="kpi-badge" style="background: rgba(167,199,93,0.15); color: var(--c-lime);">Zero Error</span>
+          <span class="kpi-badge" style="background: rgba(34,197,94,0.1); color: #15803d;">Zero Error</span>
         </div>
         <div class="kpi-value" id="kpiSchemaScore">
-          100% <span style="font-size: 1rem; color: var(--c-lime); font-weight: 600;">Valid JSON-LD</span>
+          100% <span style="font-size: 1rem; color: #15803d; font-weight: 700;">Valid JSON-LD</span>
         </div>
         <div class="kpi-subtext">Verified canonical @graph for ChatGPT & Perplexity bots</div>
       </div>
@@ -739,10 +760,10 @@
       <div class="kpi-card" style="--card-accent: #6366f1;">
         <div class="kpi-header">
           <span class="kpi-title">AI Citation Velocity</span>
-          <span class="kpi-badge" style="background: rgba(99,102,241,0.15); color: #818cf8;">Telemetry</span>
+          <span class="kpi-badge" style="background: rgba(99,102,241,0.1); color: #4f46e5;">Telemetry</span>
         </div>
         <div class="kpi-value" id="kpiCitationRate">
-          78.4% <span style="font-size: 1rem; color: var(--c-lime); font-weight: 600;">+4.2%</span>
+          78.4% <span style="font-size: 1rem; color: #15803d; font-weight: 700;">+4.2%</span>
         </div>
         <div class="kpi-subtext">Across Perplexity, ChatGPT Search, and Claude 3.7</div>
       </div>
@@ -750,10 +771,10 @@
       <div class="kpi-card" style="--card-accent: var(--c-amber);">
         <div class="kpi-header">
           <span class="kpi-title">Cumulative Delivery</span>
-          <span class="kpi-badge" style="background: rgba(255,140,0,0.15); color: var(--c-amber);">30-Day Cadence</span>
+          <span class="kpi-badge" style="background: var(--c-amber-tint); color: var(--c-amber);">30-Day Cadence</span>
         </div>
         <div class="kpi-value" id="kpiTotalPrs">
-          48 / 48 <span style="font-size: 1rem; color: var(--c-text-muted); font-weight: 500;">PRs</span>
+          48 / 48 <span style="font-size: 1rem; color: var(--c-text-muted); font-weight: 600;">PRs</span>
         </div>
         <div class="kpi-subtext">45 Indexed Zero-Click Answer Snippets live at edge</div>
       </div>
@@ -792,7 +813,7 @@
         <div class="panel">
           <div class="panel-header" style="margin-bottom: 1rem; padding-bottom: 0.75rem;">
             <div>
-              <h3 style="font-size: 1rem; font-weight: 700;">AI Engine Citation Velocity</h3>
+              <h3 style="font-size: 1rem; font-weight: 800; color: #111;">AI Engine Citation Velocity</h3>
               <p class="panel-subtitle">Live benchmark recognition by engine</p>
             </div>
             <button class="filter-btn" onclick="refreshCitations()" style="padding: 0.2rem 0.5rem;">↻ Refresh</button>
@@ -801,7 +822,7 @@
           <div id="citationList">
             <div class="engine-card">
               <div class="engine-info">
-                <div class="engine-icon" style="color: #20b2aa;">✦</div>
+                <div class="engine-icon" style="color: #0d9488;">✦</div>
                 <div>
                   <div class="engine-name">Perplexity AI</div>
                   <div class="engine-status">Rank #1 Citation · 0.18s parse</div>
@@ -834,7 +855,7 @@
 
             <div class="engine-card">
               <div class="engine-info">
-                <div class="engine-icon" style="color: #3b82f6;">◆</div>
+                <div class="engine-icon" style="color: #2563eb;">◆</div>
                 <div>
                   <div class="engine-name">Google Gemini</div>
                   <div class="engine-status">AI Overview grounded entity</div>
@@ -855,8 +876,8 @@
         </div>
 
         <!-- Infrastructure & Security Card -->
-        <div class="panel" style="background: rgba(255,255,255,0.02);">
-          <h4 style="font-size: 0.9rem; font-weight: 700; margin-bottom: 0.6rem; color: #fff;">Edge Verification Safeguards</h4>
+        <div class="panel" style="background: #faf9f6;">
+          <h4 style="font-size: 0.9rem; font-weight: 800; margin-bottom: 0.6rem; color: #111;">Edge Verification Safeguards</h4>
           <ul style="font-size: 0.8rem; color: var(--c-text-muted); list-style: none; display: flex; flex-direction: column; gap: 0.5rem;">
             <li>🛡️ <strong>Zero-Error Invariants:</strong> All PRs pre-validated against Schema.org validators.</li>
             <li>🔒 <strong>Human-in-the-Loop:</strong> Nothing deploys until you click Approve or merge on GitHub.</li>
@@ -912,7 +933,7 @@
         }
       } catch (err) {
         document.getElementById('jobsList').innerHTML = `
-          <div style="text-align: center; padding: 2.5rem; color: #ff6b6b;">
+          <div style="text-align: center; padding: 2.5rem; color: #dc2626;">
             Failed to connect to Cloudflare D1 API. Ensure you are online and functions are deployed.
           </div>
         `;
@@ -1054,15 +1075,15 @@
       const queueCountElem = document.getElementById('kpiQueueCount');
       if (queueCountElem) {
         if (pendingCount > 0) {
-          queueCountElem.innerHTML = `${pendingCount} <span style="font-size: 1rem; color: var(--c-amber); font-weight: 600;">Pending Approval</span>`;
+          queueCountElem.innerHTML = `${pendingCount} <span style="font-size: 1rem; color: var(--c-amber); font-weight: 700;">Pending Approval</span>`;
         } else {
-          queueCountElem.innerHTML = `All Clean <span style="font-size: 1rem; color: var(--c-lime); font-weight: 600;">✓ Synced</span>`;
+          queueCountElem.innerHTML = `All Clean <span style="font-size: 1rem; color: #15803d; font-weight: 700;">✓ Synced</span>`;
         }
       }
 
       const totalPrsElem = document.getElementById('kpiTotalPrs');
       if (totalPrsElem) {
-        totalPrsElem.innerHTML = `${approvedCount + 44} / ${allJobs.length + 44} <span style="font-size: 1rem; color: var(--c-text-muted); font-weight: 500;">PRs</span>`;
+        totalPrsElem.innerHTML = `${approvedCount + 44} / ${allJobs.length + 44} <span style="font-size: 1rem; color: var(--c-text-muted); font-weight: 600;">PRs</span>`;
       }
     }
 
@@ -1123,7 +1144,7 @@
         if (res.ok) {
           const data = await res.json();
           if (data.success && data.stats) {
-            document.getElementById('kpiCitationRate').innerHTML = `${data.stats.citation_rate} <span style="font-size: 1rem; color: var(--c-lime); font-weight: 600;">Live</span>`;
+            document.getElementById('kpiCitationRate').innerHTML = `${data.stats.citation_rate} <span style="font-size: 1rem; color: #15803d; font-weight: 700;">Live</span>`;
             showToast('📊 Citation velocity telemetry refreshed from D1!');
           }
         }
