@@ -323,10 +323,42 @@ The paid autonomous version of Answer Index introduces a commercial subscription
 
 ---
 
-## 11. Next Milestone (v2.5)
+## 11. Completed Milestone (v2.5.0) — Client Portal, Multi-Platform CMS Delivery & Cloudflare D1 Workspace Auth
+
+1. **Client Portal & Header Authentication Navigation:**
+   - Deployed high-visibility `🔑 Client Portal` button across `index.html`, `pro.html`, `about.html`, and `dashboard.html`.
+   - Built the unified Client Auth & Onboarding Modal (`assets/client-portal.css`, `assets/client-portal.js`).
+   - Tab 1: **Client Sign In** — Instant work email verification against Cloudflare D1 `users` and `projects` tables, featuring 1-click test logins (`client@shopify-store.com`, `editor@wordpress-brand.com`, `sameer@answerindex.com`).
+   - Tab 2: **Onboard New Site** — Zero-friction onboarding for new clients with website domain, company name, and CMS platform selection.
+
+2. **Universal Platform Selector for Technical & Non-Technical Merchants:**
+   - Solved the non-GitHub delivery requirement with first-class platform cards:
+     - 🐙 **GitHub Repository:** Daily automated PRs with JSON-LD schema & AEO markdown files.
+     - 🌐 **WordPress:** Daily answer pieces & FAQ blocks staged as WordPress Drafts in WP Admin via REST API.
+     - 🛍️ **Shopify:** Daily articles & product Q&A structured schema staged in Shopify Drafts & Metafields via Shopify Admin API.
+     - 📦 **Magento / Adobe Commerce:** Staged PageBuilder CMS blocks & XML via Magento 2 REST API.
+     - 💻 **Web Portal & 1-Click Copy:** Native in-dashboard review with 1-click clipboard copy and daily email digests.
+
+3. **Multi-Platform Dashboard View Adapter & D1 Integration:**
+   - **Database Migration (`migrations/0003_add_cms_support.sql`):** Added `cms_type`, `cms_url`, `delivery_channel`, and `content_html` to Cloudflare D1 `projects` and `daily_jobs`.
+   - **Backend API (`/api/auth/client`):** Edge endpoints for client login, site registration, and dynamic platform-tailored daily job seeding.
+   - **Platform-Tailored Action Buttons:**
+     - WordPress: `🌐 Open WP Draft ↗`, `📋 Copy Gutenberg Block`, `✓ 1-Click Publish to WordPress`.
+     - Shopify: `🛍️ Shopify Admin ↗`, `📋 Copy Metafields`, `✓ 1-Click Publish to Shopify`.
+     - Magento: `📦 Open PageBuilder ↗`, `📋 Copy XML Block`, `✓ 1-Click Push to Magento`.
+     - Web Portal: `📋 1-Click Copy HTML & Schema`, `✓ Mark as Applied`.
+     - GitHub: `🐙 GitHub PR #... ↗`, `✓ 1-Click Approve & Merge`.
+   - **Content Preview Modal:** Live rendered rich article preview + raw syntax-highlighted HTML/Schema graph with 1-click copy.
+   - Verified end-to-end in browser via autonomous subagent with visual video artifact recording.
+
+---
+
+## 12. Next Milestone (v2.6.0)
 
 1. **Merchant KYC Activation:** Complete business profile / bank payout details in Dodo Payments Dashboard under Settings > Business Profile for Answer Index to enable live card charges.
 2. **GitHub App Webhook Integration:** Bi-directional sync between GitHub PR merge events and Cloudflare D1 job queue statuses.
+3. **Automated WP/Shopify Webhook Dispatch:** Native OAuth plugin endpoints for instant direct draft injection.
+
 
 
 
