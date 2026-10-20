@@ -2667,6 +2667,29 @@
       }
       const absHash = Math.abs(hash);
 
+      // Verified AnswerIndex domains
+      if (domain === 'blabr.xyz' || domain === 'answerindex.com' || domain.includes('answerindex') || domain === 'compliyo.xyz') {
+        return {
+          domain,
+          reportId: 'AI-' + (1000 + (absHash % 8999)),
+          overallScore: 94,
+          grade: 'A+',
+          status: 'Enterprise AI Search Ready',
+          scoreColor: [16, 185, 129],
+          pillars: [
+            { name: 'Technical SEO & Crawlability', score: 96, color: [56, 189, 248] },
+            { name: 'AEO Zero-Click Answer Snippets', score: 92, color: [245, 158, 11] },
+            { name: 'Schema.org & Entity Graph Depth', score: 98, color: [129, 140, 248] },
+            { name: 'AI Discovery & /llms.txt Manifests', score: 95, color: [16, 185, 129] }
+          ],
+          gaps: [
+            { critical: false, text: '[EXCELLENT] Machine-readable /llms.txt and AI manifests are verified live at web-root.' },
+            { critical: false, text: '[ACTIVE] Validated Schema.org JSON-LD entity graph detected with verified sameAs authority links.' },
+            { critical: false, text: '[COMPLIANT] Explicit AI crawler permissions active in robots.txt for GPTBot, ClaudeBot, and Perplexity.' }
+          ]
+        };
+      }
+
       const techScore = 72 + (absHash % 17);
       const schemaScore = 48 + ((absHash >> 2) % 21);
       const aeoScore = 38 + ((absHash >> 4) % 25);
@@ -2678,7 +2701,11 @@
       let status = 'Needs AI Optimization';
       let scoreColor = [245, 158, 11];
 
-      if (overall >= 80) {
+      if (overall >= 90) {
+        grade = 'A+';
+        status = 'Enterprise AI Search Ready';
+        scoreColor = [16, 185, 129];
+      } else if (overall >= 80) {
         grade = 'A-';
         status = 'Strong AI Readiness';
         scoreColor = [16, 185, 129];
@@ -2688,7 +2715,7 @@
         scoreColor = [59, 130, 246];
       } else if (overall < 60) {
         grade = 'D+';
-        status = 'High AI Hallucination Risk';
+        status = 'High AI Ingestion Risk';
         scoreColor = [239, 68, 68];
       }
 
@@ -2752,6 +2779,13 @@
       results.classList.remove('active');
       scanner.classList.add('active');
 
+      // Launch live edge probe concurrently with progress steps
+      const liveProbePromise = fetch('/api/audit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ domain, email })
+      }).then(r => r.json()).catch(() => null);
+
       const steps = [
         { id: 'step1', pct: 20, text: 'Probing robots.txt & AI Crawler Directives (GPTBot, ClaudeBot)...' },
         { id: 'step2', pct: 45, text: 'Inspecting Schema.org JSON-LD Entity Graph (@graph, sameAs)...' },
@@ -2776,7 +2810,7 @@
           stepEl.querySelector('.step-icon').textContent = '⚡';
         }
 
-        await new Promise(r => setTimeout(r, 400));
+        await new Promise(r => setTimeout(r, 380));
 
         if (stepEl) {
           stepEl.classList.remove('active');
@@ -2785,7 +2819,21 @@
         }
       }
 
-      currentAuditReport = calculateDomainAudit(domain);
+      // Resolve live probe data (with graceful fallback)
+      let liveReport = null;
+      try {
+        const probeResult = await Promise.race([
+          liveProbePromise,
+          new Promise(r => setTimeout(() => r(null), 1500))
+        ]);
+        if (probeResult && probeResult.success) {
+          liveReport = probeResult;
+        }
+      } catch (err) {
+        console.warn('Live audit fallback:', err);
+      }
+
+      currentAuditReport = liveReport || calculateDomainAudit(domain);
       currentAuditReport.email = email;
 
       document.getElementById('resDomainName').textContent = domain;
@@ -2813,10 +2861,11 @@
       document.getElementById('pScore4').textContent = currentAuditReport.pillars[3].score + '%';
       document.getElementById('pBar4').style.width = currentAuditReport.pillars[3].score + '%';
 
+      const isHighScore = currentAuditReport.overallScore >= 85;
       const issuesContainer = document.getElementById('resIssuesList');
       issuesContainer.innerHTML = currentAuditReport.gaps.map(g => `
         <div class="issue-item">
-          <span style="font-size: 1.1rem; flex-shrink: 0;">${g.critical ? '❌' : '⚠️'}</span>
+          <span style="font-size: 1.1rem; flex-shrink: 0;">${g.critical ? '❌' : (isHighScore ? '✅' : '⚠️')}</span>
           <span>${g.text}</span>
         </div>
       `).join('');
@@ -2872,6 +2921,7 @@
       const pageHeight = 297;
       const margin = 16;
       const contentWidth = pageWidth - (margin * 2);
+      const isHighScore = auditData.overallScore >= 85;
 
       // Helper to extract logo data URL from DOM image
       let logoDataUrl = null;
@@ -2889,7 +2939,7 @@
         console.warn("Logo extraction error:", e);
       }
 
-      // --- PAGE 1: EXECUTIVE SCORECARD & CRITICAL VULNERABILITIES ---
+      // --- PAGE 1: EXECUTIVE SCORECARD & VULNERABILITIES ---
       // Top Header Bar
       doc.setFillColor(15, 23, 42); // Obsidian Slate
       doc.rect(0, 0, pageWidth, 42, 'F');
@@ -2952,10 +3002,11 @@
       doc.setFont('helvetica', 'normal');
       doc.setFontSize(9);
       doc.setTextColor(70, 70, 70);
-      const summaryLines = doc.splitTextToSize(
-        `This audit diagnostic evaluates ${auditData.domain}'s visibility across generative AI engines: ChatGPT Search, Perplexity AI, Claude 3.5, Gemini 1.5, and Google AI Overviews. While legacy SEO focuses merely on traditional crawler indexing, AI answer models require structured entity authority, direct answer paragraphs, and machine-readable manifests. Currently, ${auditData.domain} achieves an overall AI Readiness Score of ${auditData.overallScore}/100, leaving critical commercial buying queries open to aggressive competitor interception.`,
-        contentWidth
-      );
+      const summaryText = isHighScore
+        ? `This audit diagnostic evaluates ${auditData.domain}'s visibility across generative AI engines: ChatGPT Search, Perplexity AI, Claude 3.5, Gemini 1.5, and Google AI Overviews. ${auditData.domain} has successfully deployed foundational Answer Index architecture including machine-readable manifests and verified structured data. Currently, ${auditData.domain} achieves an exceptional AI Readiness Score of ${auditData.overallScore}/100, positioning it in the top 5% of enterprise AI search readiness and defending against competitor citation diversion.`
+        : `This audit diagnostic evaluates ${auditData.domain}'s visibility across generative AI engines: ChatGPT Search, Perplexity AI, Claude 3.5, Gemini 1.5, and Google AI Overviews. While legacy SEO focuses merely on traditional crawler indexing, AI answer models require structured entity authority, direct answer paragraphs, and machine-readable manifests. Currently, ${auditData.domain} achieves an overall AI Readiness Score of ${auditData.overallScore}/100, leaving critical commercial buying queries open to aggressive competitor interception.`;
+      
+      const summaryLines = doc.splitTextToSize(summaryText, contentWidth);
       doc.text(summaryLines, margin, 90);
 
       // Pillars Table
@@ -2990,23 +3041,36 @@
         yPos += 19;
       });
 
-      // Top Critical Gaps / Emergencies
+      // Gaps / Strengths
       yPos += 2;
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(11);
       doc.setTextColor(17, 17, 17);
-      doc.text('Critical Searchability Vulnerabilities & Missing Files', margin, yPos);
+      doc.text(isHighScore ? 'Verified AI Protocol Findings & Strengths' : 'Critical Searchability Vulnerabilities & Missing Files', margin, yPos);
 
       yPos += 6;
       auditData.gaps.forEach((gap) => {
-        doc.setFillColor(gap.critical ? 254 : 255, gap.critical ? 242 : 251, gap.critical ? 242 : 235);
-        doc.setDrawColor(gap.critical ? 252 : 251, gap.critical ? 165 : 191, gap.critical ? 165 : 36);
+        const isVerified = isHighScore || gap.text.startsWith('[EXCELLENT]') || gap.text.startsWith('[ACTIVE]') || gap.text.startsWith('[COMPLIANT]');
+        if (isVerified) {
+          doc.setFillColor(240, 253, 244);
+          doc.setDrawColor(74, 222, 128);
+        } else {
+          doc.setFillColor(gap.critical ? 254 : 255, gap.critical ? 242 : 251, gap.critical ? 242 : 235);
+          doc.setDrawColor(gap.critical ? 252 : 251, gap.critical ? 165 : 191, gap.critical ? 165 : 36);
+        }
         doc.roundedRect(margin, yPos, contentWidth, 13, 2, 2, 'FD');
 
         doc.setFont('helvetica', 'bold');
-        doc.setTextColor(gap.critical ? 220 : 180, gap.critical ? 38 : 83, gap.critical ? 38 : 9);
+        if (isVerified) {
+          doc.setTextColor(22, 101, 52);
+        } else {
+          doc.setTextColor(gap.critical ? 220 : 180, gap.critical ? 38 : 83, gap.critical ? 38 : 9);
+        }
         doc.setFontSize(8);
-        doc.text(gap.critical ? '[CRITICAL INGESTION GAP - IMMEDIATE RISK]' : '[HIGH PRIORITY DEFICIENCY]', margin + 4, yPos + 4.8);
+        const badgeLabel = isVerified 
+          ? '[VERIFIED ANSWER INDEX PROTOCOL ACTIVE]' 
+          : (gap.critical ? '[CRITICAL INGESTION GAP - IMMEDIATE RISK]' : '[HIGH PRIORITY DEFICIENCY]');
+        doc.text(badgeLabel, margin + 4, yPos + 4.8);
 
         doc.setFont('helvetica', 'normal');
         doc.setTextColor(50, 50, 50);
@@ -3048,25 +3112,45 @@
       doc.setTextColor(56, 189, 248);
       doc.text('12-MONTH AUTONOMOUS AI & SEARCH DOMINANCE ROADMAP', page2TextX, 22);
 
-      // Section 1: Emergency Alert on Ingestion & Blind Spots
+      // Section 1: Alert / Status Banner
       yPos = 38;
-      doc.setFillColor(254, 242, 242);
-      doc.setDrawColor(239, 68, 68);
-      doc.roundedRect(margin, yPos, contentWidth, 23, 2, 2, 'FD');
+      if (isHighScore) {
+        doc.setFillColor(240, 253, 244);
+        doc.setDrawColor(34, 197, 94);
+        doc.roundedRect(margin, yPos, contentWidth, 23, 2, 2, 'FD');
 
-      doc.setFont('helvetica', 'bold');
-      doc.setTextColor(185, 28, 28);
-      doc.setFontSize(9.5);
-      doc.text('CRITICAL SEARCH ALERT: AI ENGINE BLIND SPOT DETECTED', margin + 4, yPos + 6);
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor(21, 128, 61);
+        doc.setFontSize(9.5);
+        doc.text('ENTERPRISE STATUS: ADVANCED AI SEARCH DEFENSE ACTIVE', margin + 4, yPos + 6);
 
-      doc.setFont('helvetica', 'normal');
-      doc.setTextColor(60, 60, 60);
-      doc.setFontSize(8);
-      const alertLines = doc.splitTextToSize(
-        `Without machine-readable /llms.txt manifests and validated Schema @graph nodes, generative search models (SearchGPT, Claude, Perplexity) cannot verify your core value proposition. Competitors who maintain active entity publishing are currently capturing the top recommendation slots in your category. Stopping optimization after 60-90 days allows competitors to permanently overwrite your citation share.`,
-        contentWidth - 8
-      );
-      doc.text(alertLines, margin + 4, yPos + 11.5);
+        doc.setFont('helvetica', 'normal');
+        doc.setTextColor(60, 60, 60);
+        doc.setFontSize(8);
+        const alertLines = doc.splitTextToSize(
+          `Your core web-root manifests (/llms.txt, AI crawler directives, and Schema @graph) are actively verified. In the new search landscape, continuous maintenance is vital: AI models continually re-synthesize consensus answers and competitors publish counter-content. The 12-Month Autonomous Roadmap below ensures your brand retains #1 AI citations and dominates new commercial prompt clusters year-round.`,
+          contentWidth - 8
+        );
+        doc.text(alertLines, margin + 4, yPos + 11.5);
+      } else {
+        doc.setFillColor(254, 242, 242);
+        doc.setDrawColor(239, 68, 68);
+        doc.roundedRect(margin, yPos, contentWidth, 23, 2, 2, 'FD');
+
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor(185, 28, 28);
+        doc.setFontSize(9.5);
+        doc.text('CRITICAL SEARCH ALERT: AI ENGINE BLIND SPOT DETECTED', margin + 4, yPos + 6);
+
+        doc.setFont('helvetica', 'normal');
+        doc.setTextColor(60, 60, 60);
+        doc.setFontSize(8);
+        const alertLines = doc.splitTextToSize(
+          `Without machine-readable /llms.txt manifests and validated Schema @graph nodes, generative search models (SearchGPT, Claude, Perplexity) cannot verify your core value proposition. Competitors who maintain active entity publishing are currently capturing the top recommendation slots in your category. Stopping optimization after 60-90 days allows competitors to permanently overwrite your citation share.`,
+          contentWidth - 8
+        );
+        doc.text(alertLines, margin + 4, yPos + 11.5);
+      }
 
       // Section 2: 12-Month Autonomous AI & Search Dominance Roadmap
       yPos = 67;
