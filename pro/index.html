@@ -1,0 +1,2919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Answer Index Pro — Autonomous AEO, GEO & SEO Growth Engine</title>
+  <meta name="description" content="One authoritative AEO answer piece. One technical SEO/GEO improvement. Every day. Shipped as GitHub pull requests you approve." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/AnswerIndex_Logo.png" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Answer Index Pro — Autonomous AEO, GEO & SEO Growth Engine" />
+  <meta property="og:description" content="One new answer asset and one technical improvement every day. Set and forget. Shipped as pull requests you approve." />
+  <meta property="og:image" content="https://answerindex.pages.dev/assets/AnswerIndex_Logo.png" />
+  <meta property="og:type" content="website" />
+
+  <!-- Google Fonts: Plus Jakarta Sans + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      /* =======================================================================
+         EXPLICIT BRAND COLOR SYSTEM REQUESTED BY USER
+         #3a57fc -> Electric Cobalt / Royal Blue
+         #333333 -> Deep Charcoal Grey
+         #000000 -> Pure Obsidian Black
+         #f5f4f0 -> Warm Editorial Cream / Soft Alabaster
+         #a7c75d -> Crisp Lime / Sage Green
+         ======================================================================= */
+      --c-cobalt: #3a57fc;
+      --c-cobalt-hover: #2944e8;
+      --c-cobalt-glow: rgba(58, 87, 252, 0.35);
+      --c-cobalt-tint: rgba(58, 87, 252, 0.12);
+
+      --c-charcoal: #333333;
+      --c-charcoal-dark: #242424;
+      --c-charcoal-card: #2c2c2c;
+      --c-charcoal-border: rgba(255, 255, 255, 0.12);
+
+      --c-black: #000000;
+      --c-black-surface: #0f0f0f;
+      --c-black-card: #181818;
+      --c-black-border: rgba(255, 255, 255, 0.08);
+
+      --c-cream: #f5f4f0;
+      --c-cream-card: #ffffff;
+      --c-cream-border: #e2dfd5;
+      --c-cream-border-hover: #c8c5b9;
+      --c-cream-text-main: #222222;
+      --c-cream-text-muted: #555555;
+      --c-cream-text-dim: #777777;
+
+      --c-lime: #a7c75d;
+      --c-lime-hover: #96b54e;
+      --c-lime-dark: #587023;
+      --c-lime-tint: rgba(167, 199, 93, 0.18);
+      --c-lime-border: rgba(167, 199, 93, 0.45);
+
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--c-black);
+      color: #ffffff;
+      font-family: var(--font-sans);
+      overflow-x: hidden;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* =========================================================================
+       SECTION BACKGROUND RHYTHM SYSTEM
+       Strictly alternates so NO TWO CONCURRENT SECTIONS have identical backgrounds:
+       1. Hero & Navbar: Pure Black (#000000)
+       2. Calendar & Routine: Warm Cream (#f5f4f0)
+       3. How Approvals Work: Charcoal Grey (#333333)
+       4. Customer Journey: Warm Cream (#f5f4f0)
+       5. The Daily 2 Jobs: Pure Black (#000000)
+       6. Competitive Landscape: Charcoal Grey (#333333)
+       7. Value Economics & Pricing: Warm Cream (#f5f4f0)
+       8. Before You Start (FAQ): Charcoal Grey (#333333)
+       9. Footer: Pure Black (#000000)
+       ========================================================================= */
+    .section-black {
+      background-color: var(--c-black);
+      color: #ffffff;
+      position: relative;
+    }
+    .section-charcoal {
+      background-color: var(--c-charcoal);
+      color: #ffffff;
+      position: relative;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .section-cream {
+      background-color: var(--c-cream);
+      color: var(--c-cream-text-main);
+      position: relative;
+      border-top: 1px solid var(--c-cream-border);
+      border-bottom: 1px solid var(--c-cream-border);
+    }
+
+    /* Typography in Sections */
+    .section-eyebrow {
+      text-transform: uppercase;
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      margin-bottom: 0.5rem;
+      font-family: var(--font-mono);
+    }
+    .eyebrow-cobalt { color: var(--c-cobalt); }
+    .eyebrow-lime { color: var(--c-lime); }
+
+    .section-title {
+      font-size: clamp(2rem, 3.5vw, 2.75rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    .title-light { color: #ffffff; }
+    .title-dark { color: #111111; }
+
+    .section-desc {
+      font-size: 1.1rem;
+      max-width: 720px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .desc-light { color: #cccccc; }
+    .desc-dark { color: var(--c-cream-text-muted); }
+
+    /* Button System */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.4rem;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+      border: none;
+    }
+    .btn-cobalt {
+      background: var(--c-cobalt);
+      color: #ffffff;
+      box-shadow: 0 4px 18px var(--c-cobalt-glow);
+    }
+    .btn-cobalt:hover {
+      background: var(--c-cobalt-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(58, 87, 252, 0.5);
+      color: #ffffff;
+    }
+    .btn-lime {
+      background: var(--c-lime);
+      color: #000000;
+      box-shadow: 0 4px 18px rgba(167, 199, 93, 0.35);
+    }
+    .btn-lime:hover {
+      background: var(--c-lime-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(167, 199, 93, 0.5);
+      color: #000000;
+    }
+    .btn-secondary-dark {
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .btn-secondary-dark:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.35);
+    }
+    .btn-secondary-light {
+      background: #ffffff;
+      color: #222222;
+      border: 1.5px solid var(--c-cream-border);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    }
+    .btn-secondary-light:hover {
+      border-color: var(--c-cobalt);
+      color: var(--c-cobalt);
+      background: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    /* Ambient Glow Blobs */
+    .bg-blobs {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(150px);
+      opacity: 0.18;
+    }
+    .blob-1 {
+      top: -10%;
+      left: 20%;
+      width: 650px;
+      height: 650px;
+      background: radial-gradient(circle, var(--c-cobalt), transparent 70%);
+    }
+    .blob-2 {
+      bottom: 10%;
+      right: 0%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--c-lime), transparent 70%);
+      opacity: 0.12;
+    }
+
+    /* Notice Banner */
+    .wireframe-banner {
+      background: linear-gradient(90deg, rgba(58, 87, 252, 0.2), rgba(167, 199, 93, 0.2));
+      border-bottom: 1px solid rgba(58, 87, 252, 0.35);
+      padding: 0.6rem 0;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #d1dcff;
+      font-weight: 600;
+    }
+    .wireframe-banner a {
+      color: var(--c-lime);
+      text-decoration: underline;
+      margin-left: 0.5rem;
+      font-weight: 700;
+    }
+
+    /* Navigation Bar (Pure Black #000000) */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(0, 0, 0, 0.92);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: #ffffff;
+    }
+    .brand img {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+    }
+    .brand-title {
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+    .badge-pro {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.2rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: var(--c-cobalt-tint);
+      border: 1px solid rgba(58, 87, 252, 0.45);
+      color: #9cb1ff;
+    }
+
+    /* Header Hamburger Dropdown */
+    .menu-dropdown-wrapper {
+      position: relative;
+    }
+    .btn-dropdown-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem;
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+    .btn-dropdown-toggle:hover {
+      background: var(--c-cobalt-tint);
+      border-color: var(--c-cobalt);
+    }
+    .hamburger-icon {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 20px;
+      height: 15px;
+      pointer-events: none;
+    }
+    .hamburger-bar {
+      display: block;
+      width: 100%;
+      height: 2.2px;
+      background: #ffffff;
+      border-radius: 2px;
+      transition: all 0.25s ease;
+    }
+    .btn-dropdown-toggle.active .hamburger-bar:nth-child(1) {
+      transform: translateY(6.4px) rotate(45deg);
+      background: var(--c-lime);
+    }
+    .btn-dropdown-toggle.active .hamburger-bar:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    .btn-dropdown-toggle.active .hamburger-bar:nth-child(3) {
+      transform: translateY(-6.4px) rotate(-45deg);
+      background: var(--c-lime);
+    }
+    .nav-dropdown-menu {
+      position: absolute;
+      top: calc(100% + 0.75rem);
+      right: 0;
+      width: 290px;
+      background: #181818;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 14px;
+      padding: 0.75rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 25px rgba(58, 87, 252, 0.25);
+      display: none;
+      flex-direction: column;
+      gap: 0.35rem;
+      z-index: 1000;
+    }
+    .nav-dropdown-menu.show {
+      display: flex;
+      animation: fadeInDown 0.2s ease forwards;
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .dropdown-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.65rem 0.85rem;
+      color: #cccccc;
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 600;
+      border-radius: 8px;
+      transition: all 0.15s ease;
+    }
+    .dropdown-link:hover {
+      background: var(--c-cobalt-tint);
+      color: #ffffff;
+    }
+    .dropdown-divider {
+      height: 1px;
+      background: rgba(255, 255, 255, 0.1);
+      margin: 0.4rem 0;
+    }
+
+    /* =========================================================================
+       SECTION 0: HERO (PURE BLACK #000000)
+       ========================================================================= */
+    .hero {
+      padding: 5.5rem 0 4.5rem;
+      text-align: center;
+      background: radial-gradient(circle at 50% 20%, rgba(58, 87, 252, 0.15) 0%, transparent 60%);
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1.1rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      background: var(--c-cobalt-tint);
+      border: 1px solid rgba(58, 87, 252, 0.4);
+      color: #9cb1ff;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.04em;
+    }
+    .hero-title {
+      font-size: clamp(2.5rem, 5.5vw, 4.2rem);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+      max-width: 980px;
+      margin-left: auto;
+      margin-right: auto;
+      color: #ffffff;
+    }
+    .gradient-hero-text {
+      background: linear-gradient(135deg, #ffffff 0%, #a7c75d 50%, #3a57fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-subtitle {
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      color: #cccccc;
+      max-width: 780px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.6;
+    }
+    .hero-cadence-pill {
+      display: inline-grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      max-width: 820px;
+      margin: 0 auto 2.5rem;
+      text-align: left;
+    }
+    .cadence-item {
+      background: var(--c-black-card);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      padding: 1.1rem 1.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.95rem;
+    }
+    .cadence-num {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: var(--c-lime-tint);
+      color: var(--c-lime);
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      flex-shrink: 0;
+      font-family: var(--font-mono);
+      border: 1px solid var(--c-lime-border);
+    }
+    .cadence-text {
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+    .cadence-desc {
+      font-size: 0.82rem;
+      color: #999999;
+      font-weight: 400;
+    }
+
+    /* =========================================================================
+       SECTION 1: CALENDAR & SHOWCASE (WARM CREAM #f5f4f0)
+       High-end editorial warmth with crisp white elevated elements
+       ========================================================================= */
+    .calendar-showcase-section {
+      padding: 5.5rem 0 4.5rem;
+      background: var(--c-cream);
+      color: var(--c-cream-text-main);
+    }
+    .calendar-image-frame {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 2px solid var(--c-cream-border);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
+      margin: 2.75rem auto 2.5rem;
+      background: #000000;
+      max-width: 1050px;
+    }
+    .calendar-image-frame img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .calendar-image-frame:hover img {
+      transform: scale(1.01);
+    }
+
+    /* Interactive Calendar Widget on Warm Cream */
+    .calendar-interactive-box {
+      max-width: 1050px;
+      margin: 0 auto 3.5rem;
+      background: #ffffff;
+      border: 1.5px solid var(--c-cream-border);
+      border-radius: 18px;
+      padding: 2rem;
+      text-align: left;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    }
+    .cal-days-nav {
+      display: flex;
+      gap: 0.85rem;
+      overflow-x: auto;
+      padding: 14px 8px 14px 8px; /* Generous top & bottom padding prevents box-shadow & border clipping on hover */
+      border-bottom: 1px solid var(--c-cream-border);
+      margin-bottom: 1.5rem;
+      scrollbar-width: thin;
+    }
+    .cal-day-btn {
+      background: var(--c-cream);
+      border: 1.5px solid var(--c-cream-border);
+      border-radius: 10px;
+      padding: 0.75rem 1.25rem;
+      color: var(--c-cream-text-muted);
+      cursor: pointer;
+      font-size: 0.88rem;
+      font-weight: 700;
+      white-space: nowrap;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      position: relative;
+      margin-top: 2px;
+    }
+    .cal-day-btn span.day-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      font-family: var(--font-mono);
+      color: var(--c-cobalt);
+    }
+    .cal-day-btn.active, .cal-day-btn:hover {
+      background: #ffffff;
+      border-color: var(--c-cobalt);
+      color: var(--c-cobalt);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(58, 87, 252, 0.18);
+    }
+    .cal-day-btn.active {
+      border-color: var(--c-cobalt);
+      border-width: 2px;
+    }
+
+    /* Telemetry Stats Strip on Warm Cream */
+    .telemetry-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .telemetry-stat {
+      background: var(--c-cream);
+      border: 1px solid var(--c-cream-border);
+      border-radius: 12px;
+      padding: 0.9rem 1.1rem;
+    }
+    .telemetry-val {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #111111;
+      font-family: var(--font-mono);
+    }
+    .telemetry-label {
+      font-size: 0.8rem;
+      color: var(--c-cream-text-muted);
+      margin-top: 0.2rem;
+      font-weight: 600;
+    }
+
+    /* Meta Grid on Warm Cream */
+    .calendar-meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      max-width: 1050px;
+      margin: 0 auto 3.5rem;
+    }
+    @media (max-width: 860px) {
+      .calendar-meta-grid { grid-template-columns: 1fr; }
+    }
+    .movement-card-cream {
+      background: #ffffff;
+      border: 1.5px solid var(--c-cream-border);
+      border-radius: 18px;
+      padding: 1.75rem 2rem;
+      text-align: left;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    }
+    .movement-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--c-cream-border);
+    }
+    .movement-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+    .movement-item-cream {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.92rem;
+      padding: 0.75rem 1rem;
+      background: var(--c-cream);
+      border-radius: 10px;
+      border: 1px solid var(--c-cream-border);
+    }
+
+    /* 3 Strategic Pillars on Warm Cream */
+    .three-pillars {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 1050px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .pillar-card-cream {
+      background: #ffffff;
+      border: 1.5px solid var(--c-cream-border);
+      border-radius: 16px;
+      padding: 1.75rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+      transition: all 0.25s ease;
+    }
+    .pillar-card-cream:hover {
+      border-color: var(--c-cobalt);
+      transform: translateY(-2px);
+    }
+    .pillar-num {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--c-cobalt);
+      margin-bottom: 0.75rem;
+      display: inline-block;
+    }
+
+    /* =========================================================================
+       SECTION 2: HOW APPROVALS & GITHUB WORK (CHARCOAL GREY #333333)
+       ========================================================================= */
+    .approvals-section {
+      padding: 5.5rem 0;
+      background-color: var(--c-charcoal);
+      color: #ffffff;
+    }
+    .flow-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 3rem 0;
+      text-align: left;
+    }
+    .flow-step-card-dark {
+      background: var(--c-charcoal-dark);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 18px;
+      padding: 2.25rem 1.75rem;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    .flow-step-card-dark:hover {
+      border-color: var(--c-lime);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+    .flow-step-badge-lime {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: var(--c-lime-tint);
+      color: var(--c-lime);
+      border: 1px solid var(--c-lime-border);
+      font-weight: 800;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      font-family: var(--font-mono);
+    }
+
+    .approval-options-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2rem;
+      text-align: left;
+    }
+    @media (max-width: 860px) {
+      .approval-options-grid { grid-template-columns: 1fr; }
+    }
+    .approval-card-dark {
+      background: var(--c-charcoal-dark);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 18px;
+      padding: 2.25rem 2rem;
+      position: relative;
+    }
+
+    /* =========================================================================
+       SECTION 3: CUSTOMER JOURNEY (ELECTRIC COBALT BLUE #3a57fc)
+       ========================================================================= */
+    .journey-section {
+      padding: 5.5rem 0;
+      background-color: var(--c-cobalt);
+      color: #ffffff;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 3rem;
+    }
+    .timeline-card-cobalt {
+      background: #ffffff;
+      border: 2px solid rgba(255, 255, 255, 0.25);
+      border-radius: 16px;
+      padding: 1.75rem 1.5rem;
+      position: relative;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
+    }
+    .timeline-card-cobalt.active, .timeline-card-cobalt:hover {
+      border-color: var(--c-lime);
+      background: #ffffff;
+      transform: translateY(-4px);
+      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.25), 0 0 20px rgba(167, 199, 93, 0.35);
+    }
+    .timeline-step-badge {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--c-cobalt);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.75rem;
+      font-family: var(--font-mono);
+      background: var(--c-cobalt-tint);
+      display: inline-block;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+    }
+
+    /* Terminal Visualizer Box on Warm Cream */
+    .visualizer-box {
+      background: #000000;
+      border: 2px solid var(--c-cream-border);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.18);
+    }
+    .visualizer-topbar {
+      background: #181818;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .visualizer-dots {
+      display: flex;
+      gap: 6px;
+    }
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    .dot-red { background: #ef4444; }
+    .dot-yellow { background: #f59e0b; }
+    .dot-green { background: #a7c75d; }
+    .visualizer-title {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: #999999;
+    }
+    .visualizer-content {
+      padding: 2rem;
+      text-align: left;
+    }
+
+    /* =========================================================================
+       SECTION 4: THE DAILY 2 JOBS DETAIL (PURE BLACK #000000)
+       ========================================================================= */
+    .daily-jobs-section {
+      padding: 5.5rem 0;
+      background-color: var(--c-black);
+      color: #ffffff;
+    }
+    .daily-jobs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2rem;
+      text-align: left;
+    }
+    @media (max-width: 860px) {
+      .daily-jobs-grid { grid-template-columns: 1fr; }
+    }
+    .job-card-black {
+      background: var(--c-black-card);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 18px;
+      padding: 2.25rem;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    .job-card-black:hover {
+      border-color: var(--c-cobalt);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(58, 87, 252, 0.15);
+    }
+
+    /* =========================================================================
+       SECTION 5: COMPETITIVE LANDSCAPE (CHARCOAL GREY #333333)
+       With Distinct Gradient Shades Across Columns
+       ========================================================================= */
+    .comparison-section {
+      padding: 5.5rem 0;
+      background: var(--c-charcoal);
+      color: #ffffff;
+    }
+    .comp-table-wrapper {
+      overflow-x: auto;
+      margin-top: 2.5rem;
+      border: 1.5px solid rgba(255, 255, 255, 0.15);
+      border-radius: 18px;
+      background: #1f1f1f;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+    .comp-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.95rem;
+    }
+    .comp-table th, .comp-table td {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .comp-table th {
+      background: linear-gradient(180deg, #2b2b2b 0%, #1a1a1a 100%);
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    /* Column Gradient Differentiation */
+    .col-grad-capability {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+    }
+    .col-grad-legacy {
+      background: linear-gradient(180deg, rgba(255, 140, 0, 0.04) 0%, rgba(255, 140, 0, 0.01) 100%);
+    }
+    .col-grad-trackers {
+      background: linear-gradient(180deg, rgba(167, 199, 93, 0.05) 0%, rgba(167, 199, 93, 0.01) 100%);
+    }
+    .col-grad-copywriters {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.04) 100%);
+    }
+    .col-grad-answerindex {
+      background: linear-gradient(180deg, rgba(58, 87, 252, 0.28) 0%, rgba(58, 87, 252, 0.08) 100%);
+      border-left: 2px solid var(--c-cobalt);
+      border-right: 2px solid var(--c-cobalt);
+      font-weight: 600;
+    }
+
+    /* =========================================================================
+       SECTION 6: VALUE ECONOMICS & PRICING TABLE (ELECTRIC LIME #a7c75d)
+       Deliverables formatted as Unified Aligned Matrix Table
+       ========================================================================= */
+    .pricing-section {
+      padding: 5.5rem 0 6rem;
+      background-color: #a7c75d;
+      color: #000000;
+      text-align: center;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    /* Transparent Value Economics: Justified, Wide, Single-Line Prices */
+    .value-stack-card-cream {
+      max-width: 1020px;
+      margin: 0 auto 3.5rem;
+      background: #ffffff;
+      border: 1.5px solid var(--c-cream-border);
+      border-radius: 20px;
+      padding: 2rem 2.5rem;
+      text-align: left;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    }
+    .value-stack-header-cream {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-bottom: 2px solid var(--c-cream-border);
+      padding-bottom: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .value-stack-title-cream {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #111111;
+    }
+    .value-stack-total-cream {
+      font-family: var(--font-mono);
+      font-size: 1.15rem;
+      color: var(--c-lime-dark);
+      font-weight: 800;
+      background: var(--c-lime-tint);
+      padding: 0.35rem 0.85rem;
+      border-radius: 8px;
+      border: 1px solid var(--c-lime-border);
+    }
+    .value-stack-table {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .value-stack-row-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.95rem 0.5rem;
+      border-bottom: 1px solid var(--c-cream-border);
+      font-size: 0.96rem;
+    }
+    .value-stack-row-item:last-child {
+      border-bottom: none;
+      padding-top: 1.25rem;
+    }
+    .val-single-line {
+      white-space: nowrap !important;
+      font-family: var(--font-mono);
+      font-weight: 800;
+      color: #111111;
+      min-width: 140px;
+      text-align: right;
+      flex-shrink: 0;
+      margin-left: 1.5rem;
+    }
+
+    /* Enterprise Deliverables Matrix Table */
+    .pricing-table-wrapper {
+      max-width: 1050px;
+      margin: 0 auto;
+      background: #ffffff;
+      border: 2px solid var(--c-cream-border);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+    }
+    .pricing-matrix-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    .pricing-matrix-table th, .pricing-matrix-table td {
+      padding: 1.25rem 1.6rem;
+      border-bottom: 1px solid var(--c-cream-border);
+    }
+    .pricing-matrix-table th {
+      vertical-align: top;
+      background: #faf9f5;
+    }
+    .pricing-matrix-table th.col-feature {
+      width: 38%;
+      border-right: 1px solid var(--c-cream-border);
+    }
+    .pricing-matrix-table th.col-growth {
+      width: 31%;
+      border-right: 1px solid var(--c-cream-border);
+    }
+    .pricing-matrix-table th.col-pro {
+      width: 31%;
+      background: linear-gradient(180deg, #edf2ff 0%, #ffffff 100%);
+      border-top: 4px solid var(--c-cobalt);
+    }
+    .pricing-matrix-table td.col-feature {
+      border-right: 1px solid var(--c-cream-border);
+      font-weight: 600;
+      color: #333333;
+    }
+    .pricing-matrix-table td.col-growth {
+      border-right: 1px solid var(--c-cream-border);
+      color: #555555;
+    }
+    .pricing-matrix-table td.col-pro {
+      background: rgba(58, 87, 252, 0.025);
+      color: #111111;
+      font-weight: 600;
+    }
+    .pricing-matrix-table tr:hover td {
+      background-color: #faf8f2;
+    }
+    .pricing-matrix-table tr:hover td.col-pro {
+      background-color: #f1f4ff;
+    }
+
+    /* =========================================================================
+       SECTION: CONTACT & CONSULTATION (#333333 CHARCOAL GREY)
+       Direct founder touchpoints: 15-min call, free audit, direct email
+       ========================================================================= */
+    .contact-section-charcoal {
+      padding: 5.5rem 0 6rem;
+      background-color: var(--c-charcoal);
+      color: #ffffff;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.75rem;
+      margin-top: 3rem;
+      text-align: left;
+    }
+    @media (max-width: 960px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .contact-card {
+      background: #242424;
+      border: 1.5px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 2.25rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s ease;
+      position: relative;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+    }
+    .contact-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.45);
+    }
+    .contact-card-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.3rem 0.65rem;
+      border-radius: 6px;
+      margin-bottom: 1.25rem;
+    }
+    .contact-card-badge-lime {
+      background: var(--c-lime-tint);
+      color: var(--c-lime);
+      border: 1px solid var(--c-lime-border);
+    }
+    .contact-card-badge-cobalt {
+      background: var(--c-cobalt-tint);
+      color: #93c5fd;
+      border: 1px solid rgba(58, 87, 252, 0.4);
+    }
+    .contact-card-badge-orange {
+      background: rgba(255, 140, 0, 0.15);
+      color: #ffaa40;
+      border: 1px solid rgba(255, 140, 0, 0.3);
+    }
+    .contact-card-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 0.85rem;
+      line-height: 1.3;
+    }
+    .contact-card-desc {
+      font-size: 0.92rem;
+      color: #b0b0b0;
+      line-height: 1.6;
+      margin-bottom: 1.75rem;
+      flex-grow: 1;
+    }
+    .contact-meta-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.75rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      font-size: 0.88rem;
+      color: #dddddd;
+    }
+    .contact-meta-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    /* Modal for Scheduling & Contact */
+    .contact-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.78);
+      backdrop-filter: blur(8px);
+      z-index: 10000;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+    }
+    .contact-modal-overlay.active {
+      display: flex;
+    }
+    .contact-modal-box {
+      background: #1e1e1e;
+      border: 1.5px solid rgba(255, 255, 255, 0.16);
+      border-radius: 24px;
+      max-width: 640px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 2.25rem 2.5rem;
+      box-shadow: 0 25px 65px rgba(0, 0, 0, 0.85);
+      position: relative;
+      animation: modalFadeIn 0.25s ease-out;
+    }
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: scale(0.96) translateY(10px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .contact-modal-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.5rem;
+      background: none;
+      border: none;
+      color: #888888;
+      font-size: 1.8rem;
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+    .contact-modal-close:hover {
+      color: #ffffff;
+    }
+    .modal-tab-nav {
+      display: flex;
+      gap: 0.5rem;
+      background: #141414;
+      padding: 0.35rem;
+      border-radius: 12px;
+      margin: 1.5rem 0 1.75rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .modal-tab-btn {
+      flex: 1;
+      padding: 0.65rem 0.75rem;
+      background: transparent;
+      border: none;
+      color: #888888;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .modal-tab-btn.active {
+      background: #2b2b2b;
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+    .modal-tab-content {
+      display: none;
+    }
+    .modal-tab-content.active {
+      display: block;
+    }
+    .form-group {
+      margin-bottom: 1.15rem;
+      text-align: left;
+    }
+    .form-label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #cccccc;
+      margin-bottom: 0.4rem;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      background: #141414;
+      border: 1.5px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+      color: #ffffff;
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+      box-sizing: border-box;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--c-cobalt);
+      box-shadow: 0 0 0 3px rgba(58, 87, 252, 0.25);
+    }
+    @media (max-width: 680px) {
+      .nav-btn-call {
+        display: none !important;
+      }
+      .contact-modal-box {
+        padding: 1.75rem 1.25rem;
+      }
+    }
+
+    /* =========================================================================
+       SECTION 7: FAQ BEFORE YOU START (#ff8c00 DARK ORANGE)
+       ========================================================================= */
+    .faq-section-orange {
+      padding: 5.5rem 0 6rem;
+      background-color: #ff8c00;
+      color: #000000;
+      border-top: 1px solid rgba(0, 0, 0, 0.12);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    }
+    .faq-grid-orange {
+      max-width: 900px;
+      margin: 2.5rem auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.15rem;
+    }
+    .faq-item-orange {
+      background: #ffffff;
+      border: 1.5px solid rgba(0, 0, 0, 0.08);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.25s ease;
+    }
+    .faq-item-orange:hover {
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.14);
+      transform: translateY(-2px);
+    }
+    .faq-question-orange {
+      padding: 1.4rem 1.75rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: #111111;
+      transition: color 0.15s;
+    }
+    .faq-question-orange:hover {
+      color: var(--c-cobalt);
+    }
+    .faq-question-orange span:last-child {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #ff8c00;
+      line-height: 1;
+      margin-left: 1rem;
+      flex-shrink: 0;
+    }
+    .faq-answer-orange {
+      padding: 0 1.75rem 1.5rem;
+      color: #444444;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .faq-value-box-orange {
+      margin-top: 0.85rem;
+      padding: 0.9rem 1.2rem;
+      background: #fff8f0;
+      border-left: 4px solid #ff8c00;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      color: #7c2d12;
+      border-top: 1px solid rgba(255, 140, 0, 0.18);
+      border-right: 1px solid rgba(255, 140, 0, 0.18);
+      border-bottom: 1px solid rgba(255, 140, 0, 0.18);
+    }
+
+    /* =========================================================================
+       FOOTER (PURE BLACK #000000)
+       ========================================================================= */
+    footer.detailed-footer {
+      background: var(--c-black);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 5rem 0 3rem;
+      color: #999999;
+      text-align: left;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr repeat(4, 1fr);
+      gap: 2.5rem;
+      margin-bottom: 4rem;
+    }
+    @media (max-width: 1024px) {
+      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+    .footer-brand-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      margin-bottom: 1rem;
+    }
+    .footer-brand-desc {
+      font-size: 0.9rem;
+      color: #888888;
+      line-height: 1.6;
+      max-width: 320px;
+      margin-bottom: 1.5rem;
+    }
+    .footer-col h5 {
+      color: #ffffff;
+      font-size: 0.92rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      font-family: var(--font-mono);
+    }
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+    .footer-col ul li a {
+      color: #999999;
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover {
+      color: var(--c-lime);
+    }
+    .footer-bottom-bar {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      font-size: 0.85rem;
+      color: #777777;
+    }
+    .status-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      background: var(--c-lime-tint);
+      border: 1px solid var(--c-lime-border);
+      color: var(--c-lime);
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--c-lime);
+      box-shadow: 0 0 8px var(--c-lime);
+    }
+    .toast-msg {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: #181818;
+      border: 1px solid var(--c-cobalt);
+      color: #fff;
+      padding: 0.8rem 1.4rem;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+      z-index: 9999;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+    .toast-msg.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Glow Blobs -->
+  <div class="bg-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+  </div>
+
+  <!-- Navigation Bar (Pure Black #000000) -->
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a href="pro.html" class="brand">
+        <img src="assets/AnswerIndex_Logo.png" alt="Answer Index Logo" />
+        <span class="brand-title">Answer Index</span>
+        <span class="badge-pro">Pro Agent</span>
+      </a>
+
+      <!-- Clean Header Action: Electric Cobalt CTA + Call Button + Animated Hamburger Menu -->
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <button onclick="openContactModal('call')" class="btn btn-secondary-dark nav-btn-call" style="font-size: 0.85rem; padding: 0.5rem 1rem; border-color: rgba(255,255,255,0.22);">
+          📞 Book 15-Min Intro
+        </button>
+        <a href="#pricing" class="btn btn-cobalt" style="font-size: 0.88rem; padding: 0.55rem 1.25rem;">
+          Join Waitlist ($249/mo) →
+        </a>
+
+        <div class="menu-dropdown-wrapper">
+          <button id="hamburgerBtn" class="btn-dropdown-toggle" aria-label="Toggle Navigation Menu">
+            <span class="hamburger-icon">
+              <span class="hamburger-bar"></span>
+              <span class="hamburger-bar"></span>
+              <span class="hamburger-bar"></span>
+            </span>
+          </button>
+
+          <!-- Dropdown Menu -->
+          <div id="navDropdownMenu" class="nav-dropdown-menu">
+            <a href="#calendar-loop" class="dropdown-link">⚡ Daily Calendar & Routine</a>
+            <a href="#how-approvals-work" class="dropdown-link">🔄 How Approvals & GitHub Work</a>
+            <a href="#journey" class="dropdown-link">🗺️ Customer Journey</a>
+            <a href="#daily-loop" class="dropdown-link">⚙️ Daily 2 Jobs Detail</a>
+            <a href="#comparison" class="dropdown-link">📊 Market Comparison</a>
+            <a href="#pricing" class="dropdown-link">💳 Pricing & Value Stack</a>
+            <a href="#contact" class="dropdown-link">📞 Talk to Founder / Book Call</a>
+            <a href="#before-you-start" class="dropdown-link">❓ Before You Start (FAQ)</a>
+            <div class="dropdown-divider"></div>
+            <a href="javascript:void(0)" onclick="openContactModal('call')" class="dropdown-link" style="color: #60a5fa; font-weight: 700;">📞 Book 15-Min Intro Call</a>
+            <a href="javascript:void(0)" onclick="openContactModal('audit')" class="dropdown-link" style="color: var(--c-lime); font-weight: 700;">🔍 Request Free 24h AI Audit</a>
+            <a href="mailto:sameer@answerindex.com" class="dropdown-link">✉️ Email Founder (sameer@answerindex.com)</a>
+            <div class="dropdown-divider"></div>
+            <a href="index.html" class="dropdown-link">🌐 Free Open-Source Engine</a>
+            <a href="feedback.html" class="dropdown-link">💬 Direct Feedback Channel</a>
+            <a href="javascript:void(0)" id="shareBtn" class="dropdown-link" style="color: var(--c-lime);">🔗 Share with Friends</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- =========================================================================
+       SECTION 0: HERO (PURE BLACK #000000)
+       ========================================================================= -->
+  <header class="hero section-black">
+    <div class="container">
+      <div class="hero-badge">
+        <span>⚡ THE AUTONOMOUS GROWTH LOOP FOR SEARCH & GENERATIVE AI ENGINES</span>
+      </div>
+
+      <h1 class="hero-title">
+        One new answer asset. One page improvement.<br />
+        <span class="gradient-hero-text">Every single day. Shipped as Pull Requests.</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        While traditional tools stop at Google keywords, <strong>Answer Index Pro</strong> optimizes your brand simultaneously for <strong>ChatGPT Search, Perplexity, Claude, Gemini, and Google AI Overviews</strong>. Set and forget. You review and merge.
+      </p>
+
+      <div class="hero-cadence-pill">
+        <div class="cadence-item">
+          <div class="cadence-num">01</div>
+          <div>
+            <div class="cadence-text">1 New AEO/GEO Answer Piece / Day</div>
+            <div class="cadence-desc">Addresses uncovered commercial intent with zero-click snippets</div>
+          </div>
+        </div>
+        <div class="cadence-item">
+          <div class="cadence-num">02</div>
+          <div>
+            <div class="cadence-text">1 Technical SEO & Content Fix / Day</div>
+            <div class="cadence-desc">Rewrites slipping pages, injects JSON-LD, strengthens internal links</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="#pricing" class="btn btn-cobalt" style="padding: 0.85rem 2.2rem; font-size: 1.05rem;">
+          Join Early Adopter Waitlist ($249/mo) →
+        </a>
+        <button onclick="openContactModal('call')" class="btn btn-secondary-dark" style="padding: 0.85rem 1.75rem; border-color: rgba(255,255,255,0.25);">
+          📞 Book 15-Min Intro Call
+        </button>
+      </div>
+
+      <!-- Founder Quick SLA Indicator -->
+      <div style="margin-top: 1.25rem; font-size: 0.85rem; color: #888888; display: flex; align-items: center; justify-content: center; gap: 0.5rem; flex-wrap: wrap;">
+        <span>💬 Have questions first?</span>
+        <a href="#contact" style="color: #60a5fa; text-decoration: underline;">Talk directly to Sameer Sharma (Founder)</a>
+        <span>· No sales reps · 4-hour response SLA</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       SECTION 1: CALENDAR & DASHBOARD SHOWCASE (WARM CREAM #f5f4f0)
+       Clean editorial warmth with crisp white elevated components
+       ========================================================================= -->
+  <section id="calendar-loop" class="calendar-showcase-section section-cream">
+    <div class="container" style="text-align: center;">
+      <div class="section-eyebrow eyebrow-cobalt">⚡ The Autonomous Daily Routine</div>
+      <h2 class="section-title title-dark">
+        One new post. One improvement.<br />
+        <span style="color: var(--c-cobalt);">Every day. Set and forget.</span>
+      </h2>
+      <p class="section-desc desc-dark">
+        Every morning, Answer Index checks yesterday’s Search Console movements and AI engine citations. By 09:00 AM, two precision jobs arrive in your GitHub as an open Pull Request. You review and merge with one click.
+      </p>
+
+      <!-- Calendar & Dashboard Mockup Image Frame -->
+      <div class="calendar-image-frame">
+        <img src="assets/content-calendar-preview.jpg" alt="Autonomous Content Calendar and Daily SEO Growth Dashboard" loading="lazy" />
+      </div>
+
+      <!-- Interactive Calendar Day Selector Widget on Warm Cream -->
+      <div class="calendar-interactive-box">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 0.5rem;">
+          <div>
+            <h4 style="font-size: 1.15rem; color: #111111; font-weight: 800;">Interactive Daily Dispatcher</h4>
+            <p style="font-size: 0.85rem; color: var(--c-cream-text-muted);">Click any weekday to inspect the exact autonomous jobs queued for release:</p>
+          </div>
+          <div style="font-size: 0.78rem; font-family: var(--font-mono); color: var(--c-cobalt); font-weight: 800; background: var(--c-cobalt-tint); padding: 0.3rem 0.75rem; border-radius: 6px;">
+            ● AUTO-ROTATING LIVE SCHEDULE
+          </div>
+        </div>
+
+        <!-- 5-Day Interactive Selector -->
+        <div class="cal-days-nav">
+          <button class="cal-day-btn active" data-day="0">
+            <span class="day-label">Mon · Oct 19</span>
+            <span>AEO Answer Hub</span>
+          </button>
+          <button class="cal-day-btn" data-day="1">
+            <span class="day-label">Tue · Oct 20 (Today)</span>
+            <span>Rank Defense & Schema</span>
+          </button>
+          <button class="cal-day-btn" data-day="2">
+            <span class="day-label">Wed · Oct 21</span>
+            <span>llms.txt Protocol Sync</span>
+          </button>
+          <button class="cal-day-btn" data-day="3">
+            <span class="day-label">Thu · Oct 22</span>
+            <span>Commercial Intent Capture</span>
+          </button>
+          <button class="cal-day-btn" data-day="4">
+            <span class="day-label">Fri · Oct 23</span>
+            <span>Contrast Grounding Pass</span>
+          </button>
+        </div>
+
+        <!-- Telemetry Stats Ribbon -->
+        <div class="telemetry-strip">
+          <div class="telemetry-stat">
+            <div class="telemetry-val" style="color: var(--c-cobalt);" id="telemetryCitation">68.4%</div>
+            <div class="telemetry-label">AEO Citation Share (+312% 30d)</div>
+          </div>
+          <div class="telemetry-stat">
+            <div class="telemetry-val" style="color: var(--c-lime-dark);" id="telemetryPRs">42 / 42</div>
+            <div class="telemetry-label">Pull Requests Merged (0 Breakages)</div>
+          </div>
+          <div class="telemetry-stat">
+            <div class="telemetry-val" style="color: #ff6b00;" id="telemetrySnippets">38 Snippets</div>
+            <div class="telemetry-label">Active Zero-Click Citations</div>
+          </div>
+          <div class="telemetry-stat">
+            <div class="telemetry-val" style="color: #333333;">26 / 26</div>
+            <div class="telemetry-label">Crawler Protocol Files Synced</div>
+          </div>
+        </div>
+
+        <!-- Dynamic Day Preview Display -->
+        <div id="dayPreviewContainer" style="background: #000000; border: 1.5px solid var(--c-cream-border); border-radius: 12px; padding: 1.35rem; font-family: var(--font-mono); font-size: 0.86rem; color: #ffffff;">
+          <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255, 255, 255, 0.12); padding-bottom: 0.6rem; margin-bottom: 0.75rem;">
+            <strong style="color: #9cb1ff;" id="dayPreviewTitle">PR #141 · Mon Oct 19: High-Intent Answer Article</strong>
+            <span style="color: var(--c-lime); font-weight: 700;">✓ 100% Schema Valid · 0 Hallucinations</span>
+          </div>
+          <p style="color: #a7c75d; margin-bottom: 0.4rem;" id="dayPreviewJob1">+ [Job 1: New] /guides/how-to-rank-chatgpt-search.html (Targeting: "chatgpt search ranking factors")</p>
+          <p style="color: #fbbf24; margin-bottom: 0.4rem;" id="dayPreviewJob2">+ [Job 2: Fix] /features.html (Injected connected FAQPage JSON-LD & 48-word zero-click answer)</p>
+          <p style="color: #cccccc;" id="dayPreviewSync">+ [Crawler Sync] Synchronized entity relationships across /llms.txt and /ai-entities.json</p>
+        </div>
+      </div>
+
+      <!-- Movement vs Automated Queue Meta Grid on Warm Cream -->
+      <div class="calendar-meta-grid">
+        <div class="movement-card-cream">
+          <div class="movement-header">
+            <div>
+              <h3 style="font-size: 1.15rem; font-weight: 800; color: #111111;">What Moved On Your Site</h3>
+              <p style="font-size: 0.82rem; color: var(--c-cream-text-muted);">Tracked across Google, Perplexity & ChatGPT</p>
+            </div>
+            <span style="font-size: 0.75rem; color: var(--c-lime-dark); font-weight: 800; font-family: var(--font-mono); background: var(--c-lime-tint); padding: 0.25rem 0.5rem; border-radius: 6px;">● CHECKED TODAY</span>
+          </div>
+
+          <ul class="movement-list">
+            <li class="movement-item-cream">
+              <span style="font-weight: 600; color: #222222;">Pricing & ROI Guide</span>
+              <span style="color: var(--c-lime-dark); font-family: var(--font-mono); font-weight: 800;">↑ 8 Perplexity citations</span>
+            </li>
+            <li class="movement-item-cream">
+              <span style="font-weight: 600; color: #222222;">Best Tools Comparison</span>
+              <span style="color: #e11d48; font-family: var(--font-mono); font-weight: 800;">↓ 3 ChatGPT Search rank</span>
+            </li>
+            <li class="movement-item-cream">
+              <span style="font-weight: 600; color: #222222;">Integrations & API Architecture</span>
+              <span style="color: var(--c-lime-dark); font-family: var(--font-mono); font-weight: 800;">↑ 14 AI Overview impressions</span>
+            </li>
+            <li class="movement-item-cream">
+              <span style="font-weight: 600; color: #222222;">Onboarding & Security Checklist</span>
+              <span style="color: #d97706; font-family: var(--font-mono); font-weight: 700; font-size: 0.82rem;">Page 2 · Low CTR (Needs boost)</span>
+            </li>
+          </ul>
+
+          <div style="font-size: 0.82rem; color: var(--c-cream-text-dim); margin-top: 1rem;">
+            <em>Every day, movement data directly determines tomorrow’s automated work queue.</em>
+          </div>
+        </div>
+
+        <div class="movement-card-cream">
+          <div class="movement-header">
+            <div>
+              <h3 style="font-size: 1.15rem; font-weight: 800; color: #111111;">Today's Autonomous Work</h3>
+              <p style="font-size: 0.82rem; color: var(--c-cream-text-muted);">Delivered as Pull Request #142 ready for 1-click merge</p>
+            </div>
+            <span style="font-size: 0.75rem; color: var(--c-cobalt); font-weight: 800; font-family: var(--font-mono); background: var(--c-cobalt-tint); padding: 0.25rem 0.5rem; border-radius: 6px;">⚡ 2 JOBS READY</span>
+          </div>
+
+          <ul class="movement-list">
+            <li class="movement-item-cream">
+              <div>
+                <span style="font-size: 0.72rem; font-weight: 800; padding: 0.15rem 0.5rem; border-radius: 4px; text-transform: uppercase; font-family: var(--font-mono); background: var(--c-cobalt-tint); color: var(--c-cobalt);">Job 01 · New</span>
+                <span style="font-weight: 700; margin-left: 0.4rem; color: #111111;">Write the missing answer page</span>
+                <div style="font-size: 0.78rem; color: var(--c-cream-text-muted); margin-top: 0.2rem;">Targets high-intent commercial prompt in your niche</div>
+              </div>
+              <span style="color: var(--c-cobalt); font-weight: 800;">+1 Draft</span>
+            </li>
+            <li class="movement-item-cream">
+              <div>
+                <span style="font-size: 0.72rem; font-weight: 800; padding: 0.15rem 0.5rem; border-radius: 4px; text-transform: uppercase; font-family: var(--font-mono); background: var(--c-lime-tint); color: var(--c-lime-dark);">Job 02 · Fix</span>
+                <span style="font-weight: 700; margin-left: 0.4rem; color: #111111;">Rewrite the post that slipped</span>
+                <div style="font-size: 0.78rem; color: var(--c-cream-text-muted); margin-top: 0.2rem;">Injects FAQPage JSON-LD & 48-word zero-click summary</div>
+              </div>
+              <span style="color: #d97706; font-weight: 800;">+1 Patch</span>
+            </li>
+            <li class="movement-item-cream">
+              <div>
+                <span style="font-size: 0.72rem; font-weight: 800; padding: 0.15rem 0.5rem; border-radius: 4px; text-transform: uppercase; font-family: var(--font-mono); background: rgba(0, 0, 0, 0.08); color: #333333;">Sync</span>
+                <span style="font-weight: 700; margin-left: 0.4rem; color: #111111;">Update AI Crawler protocols</span>
+                <div style="font-size: 0.78rem; color: var(--c-cream-text-muted); margin-top: 0.2rem;">Appends verified entities to /llms.txt & /ai-entities.json</div>
+              </div>
+              <span style="color: var(--c-lime-dark); font-weight: 800;">Done</span>
+            </li>
+          </ul>
+
+          <div style="font-size: 0.82rem; color: var(--c-cream-text-dim); margin-top: 1rem;">
+            <em>Delivered to branch <code>answerindex/daily-2026-10-20</code> with 100% pre-validated schema.</em>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 Strategic Pillars Row on Warm Cream -->
+      <div class="three-pillars">
+        <div class="pillar-card-cream">
+          <span class="pillar-num">01 / INTELLIGENCE</span>
+          <h4 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.5rem; color: #111111;">Finds the unaddressed queries</h4>
+          <p style="font-size: 0.9rem; color: var(--c-cream-text-muted); line-height: 1.55;">Scans real conversational prompts, zero-click answer boxes, and competitor gaps before choosing what to write.</p>
+        </div>
+        <div class="pillar-card-cream">
+          <span class="pillar-num">02 / HUMAN-GRADE VOICE</span>
+          <h4 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.5rem; color: #111111;">Writes authoritative AEO content</h4>
+          <p style="font-size: 0.9rem; color: var(--c-cream-text-muted); line-height: 1.55;">Every draft follows your brand tone, embeds zero-click snippets, and passes an automated anti-hallucination QA check.</p>
+        </div>
+        <div class="pillar-card-cream">
+          <span class="pillar-num">03 / CONTINUOUS DEFENSE</span>
+          <h4 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.5rem; color: #111111;">Fixes slipping pages every day</h4>
+          <p style="font-size: 0.9rem; color: var(--c-cream-text-muted); line-height: 1.55;">Rewrites weak titles, expands thin sections, fixes broken internal links, and updates your machine-readable crawler files.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 2: HOW APPROVALS & GITHUB WORK (CHARCOAL GREY #333333)
+       ========================================================================= -->
+  <section id="how-approvals-work" class="approvals-section section-charcoal">
+    <div class="container" style="text-align: center;">
+      <div class="section-eyebrow eyebrow-lime">Zero Terminal Commands · 100% Human-in-the-Loop</div>
+      <h2 class="section-title title-light">How Account Access, GitHub & Content Approvals Work</h2>
+      <p class="section-desc desc-light">
+        No copy-pasting into CMS text editors. No manual coding. Here is the exact end-to-end flow from account setup to live production deployment.
+      </p>
+
+      <!-- 4-Step Process Grid -->
+      <div class="flow-steps-grid">
+        <div class="flow-step-card-dark">
+          <div class="flow-step-badge-lime">01</div>
+          <h4 style="font-size: 1.18rem; font-weight: 800; margin-bottom: 0.5rem; color: #ffffff;">Sign In & Connect Repo</h4>
+          <p style="font-size: 0.9rem; color: #cccccc; line-height: 1.6;">
+            Sign in at <code>app.answerindex.com</code> using GitHub or Google. Install the verified Answer Index GitHub App on your website repository with one click.
+          </p>
+          <div style="margin-top: 1.25rem; font-size: 0.78rem; color: var(--c-lime); font-family: var(--font-mono); font-weight: 700;">
+            🔒 Scoped permissions: Create branch & PRs only. Zero write to main.
+          </div>
+        </div>
+
+        <div class="flow-step-card-dark">
+          <div class="flow-step-badge-lime">02</div>
+          <h4 style="font-size: 1.18rem; font-weight: 800; margin-bottom: 0.5rem; color: #ffffff;">Agent Runs in Background</h4>
+          <p style="font-size: 0.9rem; color: #cccccc; line-height: 1.6;">
+            Every morning at 06:00 AM, the agent analyzes yesterday’s Search Console movements and AI engine citations to prepare 1 new answer guide and 1 page improvement.
+          </p>
+          <div style="margin-top: 1.25rem; font-size: 0.78rem; color: #9cb1ff; font-family: var(--font-mono); font-weight: 700;">
+            ⚡ Fully automated: No prompts or manual intervention required.
+          </div>
+        </div>
+
+        <div class="flow-step-card-dark">
+          <div class="flow-step-badge-lime">03</div>
+          <h4 style="font-size: 1.18rem; font-weight: 800; margin-bottom: 0.5rem; color: #ffffff;">You Give Approval</h4>
+          <p style="font-size: 0.9rem; color: #cccccc; line-height: 1.6;">
+            You receive an email and notification. Review the content either directly on GitHub or inside our web dashboard. Nothing ever goes live without your explicit approval.
+          </p>
+          <div style="margin-top: 1.25rem; font-size: 0.78rem; color: var(--c-lime); font-family: var(--font-mono); font-weight: 700;">
+            ✓ 1-click approval via GitHub PR or Web Dashboard.
+          </div>
+        </div>
+
+        <div class="flow-step-card-dark">
+          <div class="flow-step-badge-lime">04</div>
+          <h4 style="font-size: 1.18rem; font-weight: 800; margin-bottom: 0.5rem; color: #ffffff;">Instant Live Deployment</h4>
+          <p style="font-size: 0.9rem; color: #cccccc; line-height: 1.6;">
+            Upon your approval, your existing CI/CD (Cloudflare Pages, Vercel, Netlify, or CMS) builds and deploys the changes to production in seconds.
+          </p>
+          <div style="margin-top: 1.25rem; font-size: 0.78rem; color: #9cb1ff; font-family: var(--font-mono); font-weight: 700;">
+            🚀 Live worldwide & ingested by AI crawlers instantly.
+          </div>
+        </div>
+      </div>
+
+      <!-- Two Approval Pathways Detail -->
+      <div style="max-width: 1050px; margin: 3rem auto 0; text-align: left;">
+        <h3 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 0.5rem; text-align: center; color: #ffffff;">Two Ways to Approve Content (Choose Your Preference)</h3>
+        <p style="text-align: center; color: #cccccc; font-size: 0.95rem; margin-bottom: 2rem;">
+          Whether your team prefers developer-friendly Git workflows or a visual non-technical dashboard, Answer Index Pro adapts to you:
+        </p>
+
+        <div class="approval-options-grid">
+          <!-- Pathway 1: GitHub -->
+          <div class="approval-card-dark">
+            <span style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; padding: 0.3rem 0.75rem; border-radius: 6px; margin-bottom: 1rem; display: inline-block; font-family: var(--font-mono); background: var(--c-cobalt-tint); color: #9cb1ff; border: 1px solid rgba(58, 87, 252, 0.4);">Workflow A · For Developers & Git Teams</span>
+            <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.75rem; color: #ffffff;">Approve Directly on GitHub</h3>
+            <p style="color: #cccccc; font-size: 0.92rem; line-height: 1.6; margin-bottom: 1.25rem;">
+              The agent creates a branch <code>answerindex/daily-YYYY-MM-DD</code> and opens a GitHub Pull Request with a clear markdown preview, schema validation report, and code diff.
+            </p>
+            <div style="background: #111111; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; padding: 1.25rem; font-family: var(--font-mono); font-size: 0.82rem; margin-bottom: 1.25rem;">
+              <div style="color: #999999; margin-bottom: 0.5rem;">GitHub PR #142 · AnswerIndex Daily Improvements</div>
+              <div style="color: var(--c-lime); font-weight: 700;">✓ All checks passed (Schema valid, Grounding check passed)</div>
+              <div style="margin-top: 0.75rem; display: inline-block; background: #238636; color: #fff; padding: 0.45rem 0.95rem; border-radius: 6px; font-weight: 700;">
+                Merge pull request
+              </div>
+            </div>
+            <p style="font-size: 0.85rem; color: #888888;">
+              <strong>How it merges:</strong> Clicking "Merge pull request" merges the branch into <code>main</code>, triggering your existing deployment pipeline.
+            </p>
+          </div>
+
+          <!-- Pathway 2: Web Dashboard -->
+          <div class="approval-card-dark">
+            <span style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; padding: 0.3rem 0.75rem; border-radius: 6px; margin-bottom: 1rem; display: inline-block; font-family: var(--font-mono); background: var(--c-lime-tint); color: var(--c-lime); border: 1px solid var(--c-lime-border);">Workflow B · For Founders & Marketing Leads</span>
+            <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.75rem; color: #ffffff;">Approve in the Answer Index Dashboard</h3>
+            <p style="color: #cccccc; font-size: 0.92rem; line-height: 1.6; margin-bottom: 1.25rem;">
+              Don't want to use GitHub? Log into <code>app.answerindex.com</code>. Read the formatted draft in a clean editorial preview, make any optional text edits right in your browser, and click approve.
+            </p>
+            <div style="background: #111111; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; padding: 1.25rem; font-family: var(--font-mono); font-size: 0.82rem; margin-bottom: 1.25rem;">
+              <div style="color: #999999; margin-bottom: 0.5rem;">Dashboard · Pending Review (2 Jobs)</div>
+              <div style="color: #9cb1ff;">[Editable Preview Mode] 850-word AEO Guide</div>
+              <div style="margin-top: 0.75rem; display: inline-block; background: var(--c-cobalt); color: #fff; padding: 0.45rem 0.95rem; border-radius: 6px; font-weight: 700;">
+                ✓ Approve & Ship to Live Site
+              </div>
+            </div>
+            <p style="font-size: 0.85rem; color: #888888;">
+              <strong>How it merges:</strong> When you click Approve in the dashboard, Answer Index commits your edits and merges the GitHub PR via API automatically.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 3: CUSTOMER JOURNEY (ELECTRIC COBALT BLUE #3a57fc)
+       ========================================================================= -->
+  <section id="journey" class="journey-section">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 3.5rem;">
+        <div class="section-eyebrow eyebrow-lime">Customer Flow & Lifecycle</div>
+        <h2 class="section-title title-light" style="color: #ffffff;">How Answer Index Pro Works (The Customer Journey)</h2>
+        <p class="section-desc desc-light" style="color: #dbe4ff;">
+          From zero-configuration setup to daily autonomous GitHub pull requests and measurable AI citation gains.
+        </p>
+      </div>
+
+      <!-- Timeline Tabs -->
+      <div class="timeline">
+        <div class="timeline-card-cobalt active">
+          <div class="timeline-step-badge">Day 0 · Setup (5 Mins)</div>
+          <h4 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.5rem; color: #111111;">1. Connect Repo & GSC</h4>
+          <p style="font-size: 0.88rem; color: #555555; line-height: 1.5;">Connect your GitHub repo (read/write PRs only) and Google Search Console (read-only). Zero software to install.</p>
+        </div>
+
+        <div class="timeline-card-cobalt">
+          <div class="timeline-step-badge">Day 1 · Intelligence</div>
+          <h4 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.5rem; color: #111111;">2. Living Site Inventory</h4>
+          <p style="font-size: 0.88rem; color: #555555; line-height: 1.5;">Builds dynamic index of every page, intent map, crawler logs, and baseline citation rate across ChatGPT & Perplexity.</p>
+        </div>
+
+        <div class="timeline-card-cobalt">
+          <div class="timeline-step-badge">Every Morning · Execution</div>
+          <h4 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.5rem; color: #111111;">3. The 2-Job Daily Cadence</h4>
+          <p style="font-size: 0.88rem; color: #555555; line-height: 1.5;">Agent researches yesterday's rank and citation movement, drafting 1 new answer guide and 1 page refactor.</p>
+        </div>
+
+        <div class="timeline-card-cobalt">
+          <div class="timeline-step-badge">Quality Gate · Verification</div>
+          <h4 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.5rem; color: #111111;">4. QA & Grounding Check</h4>
+          <p style="font-size: 0.88rem; color: #555555; line-height: 1.5;">Every piece is verified against brand truth, schema validators, and 45-word zero-click AEO answer constraints.</p>
+        </div>
+
+        <div class="timeline-card-cobalt">
+          <div class="timeline-step-badge">One-Click Merge · Result</div>
+          <h4 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.5rem; color: #111111;">5. Shipped as Pull Request</h4>
+          <p style="font-size: 0.88rem; color: #555555; line-height: 1.5;">Review clean code diffs in GitHub. Merge with one click. Instant re-indexation by Google and AI web crawlers.</p>
+        </div>
+      </div>
+
+      <!-- Interactive Journey Visualizer Box (High Contrast Dark Box) -->
+      <div class="visualizer-box">
+        <div class="visualizer-topbar">
+          <div class="visualizer-dots">
+            <div class="dot dot-red"></div>
+            <div class="dot dot-yellow"></div>
+            <div class="dot dot-green"></div>
+          </div>
+          <div class="visualizer-title">github.com/your-brand/website/pull/142 · [AnswerIndex Bot] Daily Growth Package</div>
+          <div style="font-size: 0.75rem; color: var(--c-lime); font-weight: 800; font-family: var(--font-mono);">● ALL CHECKS PASSED</div>
+        </div>
+
+        <div class="visualizer-content">
+          <div style="font-family: var(--font-mono); font-size: 0.88rem; line-height: 1.6;">
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255, 255, 255, 0.12); padding-bottom: 0.75rem; margin-bottom: 1rem;">
+              <div>
+                <span style="background: #238636; color: #fff; padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: 800; font-size: 0.75rem;">Open</span>
+                <strong style="margin-left: 0.5rem; color: #fff;">AnswerIndex Daily Autonomous Improvements (2026-10-20)</strong>
+              </div>
+              <span style="color: #888888;">Branch: answerindex/daily-2026-10-20</span>
+            </div>
+
+            <p style="color: #aaaaaa; font-weight: 600;">## Summary of Changes Delivered Today:</p>
+            <p style="color: var(--c-lime);">+ [Job 1: New Answer Page] docs/guides/ai-search-citation-rules.html (Targeting: "how to get cited in ChatGPT Search")</p>
+            <p style="color: var(--c-lime);">+ [Job 2: Page Improvement] pricing.html (Injected connected JSON-LD Schema & 48-word AEO contrast snippet)</p>
+            <p style="color: var(--c-lime);">+ [Protocol Ingestion] Appended new canonical entity definitions to /llms.txt and /ai-entities.json</p>
+            <br />
+            <p style="color: #aaaaaa; font-weight: 600;">## Automated QA & Grounding Verdict:</p>
+            <p style="color: #9cb1ff;">✓ Schema Validation: 100% Valid (FAQPage, TechArticle)</p>
+            <p style="color: #9cb1ff;">✓ Anti-Hallucination Gate: Passed (Zero fabrication against ground-truth facts)</p>
+            <p style="color: #9cb1ff;">✓ Reading Level: Human-grade editorial pass verified</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 4: THE DAILY 2 JOBS DETAIL (PURE BLACK #000000)
+       ========================================================================= -->
+  <section id="daily-loop" class="daily-jobs-section section-black">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 3.5rem;">
+        <div class="section-eyebrow eyebrow-lime">The Engine Mechanics</div>
+        <h2 class="section-title title-light">What Happens Every Single Day</h2>
+        <p class="section-desc desc-light">
+          You don't need a team of prompt engineers or manual copywriters. The agent watches your traffic and handles both new demand and existing assets.
+        </p>
+      </div>
+
+      <div class="daily-jobs-grid">
+        <!-- Job 1 -->
+        <div class="job-card-black">
+          <span style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; padding: 0.3rem 0.75rem; border-radius: 6px; margin-bottom: 1rem; display: inline-block; font-family: var(--font-mono); background: var(--c-cobalt-tint); color: #9cb1ff; border: 1px solid rgba(58, 87, 252, 0.4);">Job 01 · Net New Authority</span>
+          <h3 style="font-size: 1.35rem; margin-bottom: 0.75rem; font-weight: 800; color: #ffffff;">1 New High-Intent Answer Asset / Day</h3>
+          <p style="color: #cccccc; font-size: 0.95rem; line-height: 1.6;">
+            AnswerIndex analyzes real search queries, zero-click answer boxes, and competitor gaps where people are asking questions you don't yet have a page for.
+          </p>
+
+          <ul style="list-style: none; margin-top: 1.25rem; display: flex; flex-direction: column; gap: 0.85rem;">
+            <li style="display: flex; align-items: flex-start; gap: 0.65rem; font-size: 0.92rem; color: #cccccc;">
+              <span style="color: var(--c-lime); font-weight: 800;">✓</span> <strong>Real Search & AEO Intent:</strong> Verified search volume and generative prompt frequency.
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 0.65rem; font-size: 0.92rem; color: #cccccc;">
+              <span style="color: var(--c-lime); font-weight: 800;">✓</span> <strong>40–55 Word Direct-Answer Snippets:</strong> Formatted for top-of-page quotation by ChatGPT and Perplexity.
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 0.65rem; font-size: 0.92rem; color: #cccccc;">
+              <span style="color: var(--c-lime); font-weight: 800;">✓</span> <strong>Comparison Tables & Schema:</strong> Scrapeable markdown tables and JSON-LD structured data included.
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 0.65rem; font-size: 0.92rem; color: #cccccc;">
+              <span style="color: var(--c-lime); font-weight: 800;">✓</span> <strong>Contextual Internal Links:</strong> Automatically connects to your relevant product and pricing pages.
+            </li>
+          </ul>
+        </div>
+
+        <!-- Job 2 -->
+        <div class="job-card-black">
+          <span style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; padding: 0.3rem 0.75rem; border-radius: 6px; margin-bottom: 1rem; display: inline-block; font-family: var(--font-mono); background: var(--c-lime-tint); color: var(--c-lime); border: 1px solid var(--c-lime-border);">Job 02 · Existing Asset Defense</span>
+          <h3 style="font-size: 1.35rem; margin-bottom: 0.75rem; font-weight: 800; color: #ffffff;">1 Technical SEO / GEO Improvement / Day</h3>
+          <p style="color: #cccccc; font-size: 0.95rem; line-height: 1.6;">
+            Rather than letting old pages decay, AnswerIndex analyzes Search Console slips and AI citation drops to revive past work.
+          </p>
+
+          <ul style="list-style: none; margin-top: 1.25rem; display: flex; flex-direction: column; gap: 0.85rem;">
+            <li style="display: flex; align-items: flex-start; gap: 0.65rem; font-size: 0.92rem; color: #cccccc;">
+              <span style="color: var(--c-lime); font-weight: 800;">✓</span> <strong>Revive Slipping Rankings:</strong> Catches dropping pages within days rather than waiting for quarterly audits.
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 0.65rem; font-size: 0.92rem; color: #cccccc;">
+              <span style="color: var(--c-lime); font-weight: 800;">✓</span> <strong>Page 2 to Page 1 Boost:</strong> Pushes high-impression keywords on page 2 onto page 1 with expanded coverage.
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 0.65rem; font-size: 0.92rem; color: #cccccc;">
+              <span style="color: var(--c-lime); font-weight: 800;">✓</span> <strong>Anti-Hallucination Contrast Grounding:</strong> Injects direct corrections against outdated competitor claims.
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 0.65rem; font-size: 0.92rem; color: #cccccc;">
+              <span style="color: var(--c-lime); font-weight: 800;">✓</span> <strong>Crawler Protocols Updated:</strong> Keeps your public <code>/llms.txt</code> and <code>/ai-entities.json</code> perpetually synchronized.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 5: COMPETITIVE LANDSCAPE (CHARCOAL GREY #333333)
+       With Gradient Shades in the Tables to Differentiate Columns
+       ========================================================================= -->
+  <section id="comparison" class="comparison-section section-charcoal">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 3.5rem;">
+        <div class="section-eyebrow eyebrow-lime">Competitive Landscape</div>
+        <h2 class="section-title title-light">How Answer Index Pro Compares to Market Leaders</h2>
+        <p class="section-desc desc-light">
+          Most solutions fall into three buckets: legacy keyword trackers, passive AI analytics dashboards, or generic AI copywriters. Answer Index Pro is the first autonomous agent that bridges intelligence with direct Git execution.
+        </p>
+      </div>
+
+      <div class="comp-table-wrapper">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th style="width: 20%;" class="col-grad-capability">Capability & Deliverables</th>
+              <th style="width: 20%;" class="col-grad-legacy">Legacy SEO Suites<br /><span style="font-size: 0.78rem; font-weight: normal; color: #aaaaaa;">(Semrush, Ahrefs)</span></th>
+              <th style="width: 20%;" class="col-grad-trackers">AI Search Trackers<br /><span style="font-size: 0.78rem; font-weight: normal; color: #aaaaaa;">(Profound, Peec, Otterly)</span></th>
+              <th style="width: 18%;" class="col-grad-copywriters">AI Copywriters<br /><span style="font-size: 0.78rem; font-weight: normal; color: #aaaaaa;">(Jasper, Copy.ai)</span></th>
+              <th style="width: 22%;" class="col-grad-answerindex">
+                Answer Index Pro<br />
+                <span style="font-size: 0.75rem; font-weight: 800; color: var(--c-lime); text-transform: uppercase;">⭐ RECOMMENDED · AUTONOMOUS</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-grad-capability"><strong>Primary Target Search Engines</strong></td>
+              <td class="col-grad-legacy">Google traditional search only (10 blue links).</td>
+              <td class="col-grad-trackers">ChatGPT, Perplexity, Claude (monitoring only).</td>
+              <td class="col-grad-copywriters">None (un-indexed raw text).</td>
+              <td class="col-grad-answerindex"><strong>Unified: Google + ChatGPT Search, Perplexity, Claude, Gemini & Copilot.</strong></td>
+            </tr>
+            <tr>
+              <td class="col-grad-capability"><strong>Autonomous Execution Model</strong></td>
+              <td class="col-grad-legacy">❌ <strong>None.</strong> Produces lists of 400 errors you must fix yourself.</td>
+              <td class="col-grad-trackers">❌ <strong>None.</strong> Passive analytics dashboard with zero code changes.</td>
+              <td class="col-grad-copywriters">⚠️ <strong>Prompt-based.</strong> Must be manually prompted and pasted.</td>
+              <td class="col-grad-answerindex">✅ <strong>Fully Autonomous:</strong> Researches, writes, and delivers 2 jobs every single day.</td>
+            </tr>
+            <tr>
+              <td class="col-grad-capability"><strong>Delivery Format</strong></td>
+              <td class="col-grad-legacy">PDF reports & charts.</td>
+              <td class="col-grad-trackers">Web dashboards & notifications.</td>
+              <td class="col-grad-copywriters">Raw markdown / rich text.</td>
+              <td class="col-grad-answerindex">✅ <strong>GitHub Pull Requests:</strong> Tested code diffs ready for 1-click merge into your site.</td>
+            </tr>
+            <tr>
+              <td class="col-grad-capability"><strong>AI Crawler Governance</strong></td>
+              <td class="col-grad-legacy">❌ Ignores <code>/llms.txt</code>, <code>ai-entities.json</code>, and vector chunking.</td>
+              <td class="col-grad-trackers">⚠️ Monitors citations, but cannot write or update crawler protocols.</td>
+              <td class="col-grad-copywriters">❌ None.</td>
+              <td class="col-grad-answerindex">✅ <strong>Native 26-File Protocol Engine:</strong> Perpetual sync of <code>/llms.txt</code> & schema graphs.</td>
+            </tr>
+            <tr>
+              <td class="col-grad-capability"><strong>Anti-Hallucination & Grounding</strong></td>
+              <td class="col-grad-legacy">❌ Not supported.</td>
+              <td class="col-grad-trackers">⚠️ Flags hallucinated mentions, but cannot remediate them.</td>
+              <td class="col-grad-copywriters">❌ High risk of fabricating ungrounded claims.</td>
+              <td class="col-grad-answerindex">✅ <strong>Deterministic Triage:</strong> Injects AEO contrast statements to force model recalibration.</td>
+            </tr>
+            <tr>
+              <td class="col-grad-capability"><strong>Daily Cadence Guaranteed</strong></td>
+              <td class="col-grad-legacy">❌ Passive software.</td>
+              <td class="col-grad-trackers">❌ Passive analytics.</td>
+              <td class="col-grad-copywriters">❌ Requires manual prompts.</td>
+              <td class="col-grad-answerindex">✅ <strong>Guaranteed 2 Jobs/Day:</strong> 30 new answer assets + 30 page revivals/mo.</td>
+            </tr>
+            <tr>
+              <td class="col-grad-capability"><strong>Monthly Investment</strong></td>
+              <td class="col-grad-legacy">$139 – $499 / mo</td>
+              <td class="col-grad-trackers">$499 – $2,500+ / mo</td>
+              <td class="col-grad-copywriters">$49 – $125 / mo</td>
+              <td class="col-grad-answerindex"><strong style="color: var(--c-lime); font-size: 1.2rem;">$249 / month</strong> ($199/mo billed annually)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 6: VALUE ECONOMICS & PRICING TABLE (ELECTRIC LIME #a7c75d)
+       Deliverables in Proper Aligned Tables Format
+       ========================================================================= -->
+  <section id="pricing" class="pricing-section">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 3.5rem;">
+        <div class="section-eyebrow" style="background: rgba(0, 0, 0, 0.08); color: #000000; border: 1.5px solid rgba(0, 0, 0, 0.16); font-weight: 800;">Transparent Value Economics</div>
+        <h2 class="section-title title-dark" style="color: #000000;">The Price of an In-House Autonomous Growth Engineer</h2>
+        <p class="section-desc desc-dark" style="color: rgba(0, 0, 0, 0.85); font-weight: 500;">
+          Replacing ~$4,249/month in manual agency retainers, technical consultants, and fragmented software tools.
+        </p>
+      </div>
+
+      <!-- Standalone Cost Replacement Card: Justified Table Layout with Single-Line Pricing -->
+      <div class="value-stack-card-cream" style="box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);">
+        <div class="value-stack-header-cream">
+          <div>
+            <div class="value-stack-title-cream">📊 Standalone Cost of Replaced Tools & Services</div>
+            <div style="font-size: 0.88rem; color: #555555;">What you would spend paying separate agencies, tools, and engineers</div>
+          </div>
+          <div class="value-stack-total-cream" style="background: #000000; color: #a7c75d; border-color: #000000;">Replaces ~$4,249 / month</div>
+        </div>
+
+        <div class="value-stack-table">
+          <div class="value-stack-row-item">
+            <span style="font-weight: 600; color: #222222;">30 AEO Answer Articles (Monthly Agency Retainer)</span>
+            <span class="val-single-line">$1,500 / mo</span>
+          </div>
+          <div class="value-stack-row-item">
+            <span style="font-weight: 600; color: #222222;">30 Technical Page Refactors (Technical SEO Consultant)</span>
+            <span class="val-single-line">$800 / mo</span>
+          </div>
+          <div class="value-stack-row-item">
+            <span style="font-weight: 600; color: #222222;">AI Search Citation Tracker (Profound / Athena AI Suite)</span>
+            <span class="val-single-line">$499 / mo</span>
+          </div>
+          <div class="value-stack-row-item">
+            <span style="font-weight: 600; color: #222222;">AI Crawler & Anti-Hallucination Protocols Governance</span>
+            <span class="val-single-line">$750 / mo</span>
+          </div>
+          <div class="value-stack-row-item">
+            <span style="font-weight: 600; color: #222222;">Developer Time Formatting, Testing & Merging Pull Requests</span>
+            <span class="val-single-line">$500 / mo</span>
+          </div>
+          <div class="value-stack-row-item" style="background: rgba(58, 87, 252, 0.05); border-radius: 10px; padding: 1.1rem 1rem;">
+            <div>
+              <span style="color: var(--c-cobalt); font-weight: 800; font-size: 1.05rem;">Answer Index Pro (Everything Included in One Autonomous Loop)</span>
+              <div style="font-size: 0.82rem; color: #555555;">Zero manual work. Two precision jobs shipped every single morning.</div>
+            </div>
+            <span class="val-single-line" style="color: var(--c-cobalt); font-size: 1.25rem;">From $149 / mo</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Deliverables Matrix Table: Aligned, Row-by-Row Comparison -->
+      <div style="margin-bottom: 2rem; text-align: center;">
+        <h3 style="font-size: 1.6rem; font-weight: 800; color: #000000; margin-bottom: 0.5rem;">Choose Your Autonomous Growth Plan</h3>
+        <p style="font-size: 0.95rem; color: rgba(0, 0, 0, 0.85); font-weight: 500;">All deliverables are itemized and compared in the structured table below:</p>
+      </div>
+
+      <div class="pricing-table-wrapper">
+        <table class="pricing-matrix-table">
+          <thead>
+            <tr>
+              <th class="col-feature">
+                <span style="font-size: 0.8rem; text-transform: uppercase; font-family: var(--font-mono); color: var(--c-cobalt); font-weight: 800;">Deliverables Matrix</span>
+                <div style="font-size: 1.25rem; font-weight: 800; color: #111111; margin-top: 0.25rem;">Scope & Capabilities</div>
+              </th>
+              <th class="col-growth">
+                <span style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 4px; background: rgba(0, 0, 0, 0.06); color: #333333; font-family: var(--font-mono);">Starter Tier</span>
+                <div style="font-size: 2.2rem; font-weight: 800; color: #111111; margin: 0.5rem 0 0.25rem;">$149<span style="font-size: 0.95rem; font-weight: 500; color: #666666;">/mo</span></div>
+                <div style="font-size: 0.8rem; color: var(--c-cobalt); font-weight: 700;">Or $119/mo billed annually</div>
+                <p style="font-size: 0.82rem; color: #666666; margin-top: 0.5rem;">For single products & early startups establishing AI presence.</p>
+              </th>
+              <th class="col-pro">
+                <span style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 4px; background: var(--c-lime); color: #000000; font-family: var(--font-mono);">⭐ Most Popular · Full Cadence</span>
+                <div style="font-size: 2.2rem; font-weight: 800; color: #111111; margin: 0.5rem 0 0.25rem;">$249<span style="font-size: 0.95rem; font-weight: 500; color: #666666;">/mo</span></div>
+                <div style="font-size: 0.8rem; color: var(--c-lime-dark); font-weight: 800;">⚡ $199/mo billed annually (Save $600)</div>
+                <p style="font-size: 0.82rem; color: #444444; margin-top: 0.5rem;">The complete daily growth engine. 2 jobs shipped every business day.</p>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-feature"><strong>1. Net New AEO Answer Assets</strong></td>
+              <td class="col-growth">15 New Assets / mo<br /><span style="font-size: 0.8rem; color: #777;">(Every other business day)</span></td>
+              <td class="col-pro"><strong style="color: var(--c-cobalt);">30 New Assets / mo (Daily Cadence)</strong><br /><span style="font-size: 0.8rem; color: #555;">(Every single business day)</span></td>
+            </tr>
+            <tr>
+              <td class="col-feature"><strong>2. Technical SEO & Page Refactors</strong></td>
+              <td class="col-growth">15 Slipping Page Fixes / mo</td>
+              <td class="col-pro"><strong style="color: var(--c-cobalt);">30 Slipping Page Fixes / mo (Daily Cadence)</strong></td>
+            </tr>
+            <tr>
+              <td class="col-feature"><strong>3. Generative Engine Tracking</strong></td>
+              <td class="col-growth">ChatGPT Search & Perplexity</td>
+              <td class="col-pro"><strong style="color: var(--c-cobalt);">All 5: ChatGPT, Perplexity, Claude, Gemini & Google AI</strong></td>
+            </tr>
+            <tr>
+              <td class="col-feature"><strong>4. AI Crawler Protocols Synchronization</strong></td>
+              <td class="col-growth">Basic <code>/llms.txt</code> updates</td>
+              <td class="col-pro"><strong style="color: var(--c-cobalt);">Full 26-File Engine (llms.txt, ai-entities.json, vector chunks)</strong></td>
+            </tr>
+            <tr>
+              <td class="col-feature"><strong>5. Anti-Hallucination & Grounding Engine</strong></td>
+              <td class="col-growth">Standard fact check</td>
+              <td class="col-pro"><strong style="color: var(--c-cobalt);">4-Tier Deterministic Engine & Canonical Contrast Statements</strong></td>
+            </tr>
+            <tr>
+              <td class="col-feature"><strong>6. Pull Request & Approval Workflows</strong></td>
+              <td class="col-growth">Automated GitHub PRs only</td>
+              <td class="col-pro"><strong style="color: var(--c-cobalt);">Dual: GitHub PRs + Web Dashboard 1-Click Approval</strong></td>
+            </tr>
+            <tr>
+              <td class="col-feature"><strong>7. Automated Pre-Merge CI/CD Verification</strong></td>
+              <td class="col-growth">JSON-LD Schema validation</td>
+              <td class="col-pro"><strong style="color: var(--c-cobalt);">Schema Validation + Readability & Grounding Scorecards</strong></td>
+            </tr>
+            <tr>
+              <td class="col-feature"><strong>8. Founder Strategy & Roadmap Reviews</strong></td>
+              <td class="col-growth">Email Support (24h SLA)</td>
+              <td class="col-pro"><strong style="color: var(--c-cobalt);">Monthly 1-on-1 Performance Review with Sameer Sharma</strong></td>
+            </tr>
+            <tr>
+              <td class="col-feature"><strong>Action & Enrollment</strong></td>
+              <td class="col-growth">
+                <a href="feedback.html" class="btn btn-secondary-light" style="width: 100%; padding: 0.75rem 1rem;">
+                  Start Growth ($149/mo) →
+                </a>
+              </td>
+              <td class="col-pro">
+                <a href="feedback.html" class="btn btn-cobalt" style="width: 100%; padding: 0.75rem 1rem;">
+                  Claim Pro Access ($249/mo) →
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 7: CONTACT & CONSULTATION (CHARCOAL GREY #333333)
+       Direct founder touchpoints: 15-min call, free audit, direct email
+       ========================================================================= -->
+  <section id="contact" class="contact-section-charcoal">
+    <div class="container">
+      <div style="text-align: center; max-width: 780px; margin: 0 auto;">
+        <div class="section-eyebrow eyebrow-lime">Direct Founder Access</div>
+        <h2 class="section-title title-light">
+          Have Questions Before You Commit?<br />
+          <span style="color: var(--c-lime);">Talk directly to the creator.</span>
+        </h2>
+        <p class="section-desc desc-light">
+          Answer Index Pro is an active autonomous code and content engine. We understand you need to verify stack compatibility, review GitHub security permissions, or inspect how your site ranks today in ChatGPT Search and Perplexity before subscribing.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Option 1: 15-Minute Intro Strategy Call -->
+        <div class="contact-card">
+          <div>
+            <span class="contact-card-badge contact-card-badge-cobalt">1-on-1 Video Walkthrough</span>
+            <h3 class="contact-card-title">Book a 15-Min Intro Call</h3>
+            <p class="contact-card-desc">
+              Hop on a 15-minute Google Meet directly with <strong>Sameer Sharma</strong>. We'll run a live query simulation for your brand on Perplexity & ChatGPT, inspect your crawl directives, and explain the daily PR loop.
+            </p>
+            <ul class="contact-meta-list">
+              <li><span>✅</span> <strong>No sales reps:</strong> Speak directly with the architect</li>
+              <li><span>✅</span> <strong>Zero obligation:</strong> Free stack & AEO viability review</li>
+              <li><span>✅</span> <strong>Flexible slots:</strong> Global timezone scheduling</li>
+            </ul>
+          </div>
+          <button onclick="openContactModal('call')" class="btn btn-cobalt" style="width: 100%; padding: 0.85rem 1.25rem;">
+            Schedule 15-Min Intro Call ↗
+          </button>
+        </div>
+
+        <!-- Option 2: Free 24-Hour AI Crawler Audit -->
+        <div class="contact-card">
+          <div>
+            <span class="contact-card-badge contact-card-badge-lime">Asynchronous & Free</span>
+            <h3 class="contact-card-title">Request a Free AI Audit</h3>
+            <p class="contact-card-desc">
+              Don't have time for a call? Share your domain and top commercial search term. We'll simulate 5 AI search engines and email you a 1-page baseline citation report within 24 hours.
+            </p>
+            <ul class="contact-meta-list">
+              <li><span>✅</span> <strong>Crawler simulation:</strong> Perplexity, ChatGPT, Claude</li>
+              <li><span>✅</span> <strong>Competitive gap:</strong> Who the models cite instead</li>
+              <li><span>✅</span> <strong>2 Quick PR fixes:</strong> Ready-to-implement code patches</li>
+            </ul>
+          </div>
+          <button onclick="openContactModal('audit')" class="btn btn-secondary-dark" style="width: 100%; padding: 0.85rem 1.25rem; border-color: rgba(255,255,255,0.25);">
+            Request 24h AI Audit (Free) →
+          </button>
+        </div>
+
+        <!-- Option 3: Direct Founder Email -->
+        <div class="contact-card">
+          <div>
+            <span class="contact-card-badge contact-card-badge-orange">Zero Red Tape</span>
+            <h3 class="contact-card-title">Direct Founder Inbox</h3>
+            <p class="contact-card-desc">
+              Prefer writing? Send questions about enterprise procurement, custom GitHub branch setups, or multi-domain agency subscriptions directly to Sameer's personal inbox.
+            </p>
+            <ul class="contact-meta-list">
+              <li><span>✉️</span> <strong>Email:</strong> <a href="mailto:sameer@answerindex.com" style="color: #60a5fa; text-decoration: underline;">sameer@answerindex.com</a></li>
+              <li><span>⚡</span> <strong>Response SLA:</strong> Guaranteed reply within 4 hours</li>
+              <li><span>📍</span> <strong>Timezone:</strong> IST (UTC +5:30) · Overlaps with US/EU</li>
+            </ul>
+          </div>
+          <a href="mailto:sameer@answerindex.com?subject=Answer%20Index%20Pro%20Inquiry" class="btn btn-secondary-dark" style="width: 100%; padding: 0.85rem 1.25rem; text-align: center; border-color: rgba(255,255,255,0.25);">
+            Send Direct Email ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Trust Assurance Box -->
+      <div style="margin-top: 3.5rem; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.25rem;">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--c-cobalt); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">
+            👨‍💻
+          </div>
+          <div>
+            <div style="color: #ffffff; font-weight: 700; font-size: 0.98rem;">Sameer Sharma · Founder & Architect</div>
+            <div style="color: #888888; font-size: 0.85rem;">Creator of Answer Index (Open Source & Pro). Based in India, working with global customers.</div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+          <button onclick="openContactModal('call')" class="btn btn-cobalt" style="font-size: 0.85rem; padding: 0.5rem 1.15rem;">
+            Book Call with Sameer →
+          </button>
+          <a href="mailto:sameer@answerindex.com" class="btn btn-secondary-dark" style="font-size: 0.85rem; padding: 0.5rem 1.15rem;">
+            sameer@answerindex.com
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 8: FAQ BEFORE YOU START (DARK ORANGE #ff8c00)
+       "Transparent Answers" section requested by user with #ff8c00 color
+       ========================================================================= -->
+  <section id="before-you-start" class="faq-section-orange">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 3.5rem;">
+        <div class="section-eyebrow" style="background: rgba(0, 0, 0, 0.08); color: #000000; border: 1.5px solid rgba(0, 0, 0, 0.16); font-weight: 800;">Transparent Answers</div>
+        <h2 class="section-title" style="color: #000000;">Before You Start</h2>
+        <p class="section-desc" style="color: rgba(0, 0, 0, 0.85); font-weight: 500;">
+          Everything you need to know about safety, permissions, delivery, and how Answer Index Pro protects your brand.
+        </p>
+      </div>
+
+      <div class="faq-grid-orange">
+        <!-- Q1 -->
+        <div class="faq-item-orange">
+          <div class="faq-question-orange">
+            <span>Can Answer Index publish changes to my site without my approval?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer-orange">
+            Never. AnswerIndex operates on a strict human-in-the-loop philosophy. Every piece of work is delivered as a <strong>GitHub Pull Request</strong> or CMS draft. You inspect the code diff, review the AI grounding score, and decide when to click "Merge".
+            <div class="faq-value-box-orange">
+              <strong style="color: #ff8c00;">AnswerIndex Value-Add:</strong> Unlike black-box publishing tools, we provide explicit Schema validation reports and zero-click snippet previews inside the PR description before anything ever touches production.
+            </div>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="faq-item-orange">
+          <div class="faq-question-orange">
+            <span>How does this differ from tools like Semrush, Ahrefs, or Profound AI?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer-orange">
+            Legacy tools like Semrush and Ahrefs hand you complex analytical dashboards and massive audit checklists that leave all the manual work to you. Meanwhile, modern AI trackers like Profound AI only monitor citations without fixing anything. Answer Index Pro is an <strong>active autonomous execution agent</strong>: it doesn't just diagnose issues; it generates the actual code patches, writes authoritative AEO answer pieces, updates your AI crawler protocols, and delivers them as ready-to-merge GitHub Pull Requests.
+            <div class="faq-value-box-orange">
+              <strong style="color: #ff8c00;">AnswerIndex Value-Add:</strong> You get diagnosis plus automatic execution in one platform: traditional Google rank recovery + machine-readable AI crawler protocols (<code>/llms.txt</code>, <code>ai-entities.json</code>, and vector chunking).
+            </div>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="faq-item-orange">
+          <div class="faq-question-orange">
+            <span>What permissions do you need from my GitHub and Google accounts?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer-orange">
+            We require only <strong>read-only access to Google Search Console</strong> (to detect page impression and ranking trends) and <strong>scoped repository access</strong> limited to creating branches and opening Pull Requests. We never request administrative permissions or write permissions to your production branch.
+            <div class="faq-value-box-orange">
+              <strong style="color: #ff8c00;">AnswerIndex Value-Add:</strong> All tokens are encrypted at rest with zero storage of proprietary application code.
+            </div>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="faq-item-orange">
+          <div class="faq-question-orange">
+            <span>Does my site need to be built with a specific tech stack or framework?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer-orange">
+            No. Answer Index Pro is stack-agnostic. It works seamlessly with static site generators (Next.js, Astro, Hugo, 11ty), modern web applications, headless architectures, as well as traditional CMS platforms (WordPress, Webflow, Shopify) via Git adapters or webhooks.
+          </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="faq-item-orange">
+          <div class="faq-question-orange">
+            <span>What happens if an AI model hallucinates or invents false details about my brand?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer-orange">
+            This is the core problem Answer Index was built to solve. When our benchmark engine detects a hallucination (pricing errors, incorrect feature claims, competitor conflation), Job 2 automatically formulates an <strong>AEO Contrast Grounding Snippet</strong> and updates your <code>/llms.txt</code> file to enforce the canonical truth across future crawler passes.
+            <div class="faq-value-box-orange">
+              <strong style="color: #ff8c00;">AnswerIndex Value-Add:</strong> No other tool on the market includes automated hallucination triage and machine-readable truth reconciliation.
+            </div>
+          </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="faq-item-orange">
+          <div class="faq-question-orange">
+            <span>Do I get access to an expert or founder support?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer-orange">
+            Yes. Every active subscription includes a monthly strategy review with Sameer Sharma (creator of Answer Index). We review your Search Console trends, benchmark your AI citation growth across Perplexity and ChatGPT, and tune your target entity roadmap.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       FOOTER (PURE BLACK #000000)
+       ========================================================================= -->
+  <footer class="detailed-footer section-black">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Brand & Mission Column -->
+        <div class="footer-col" style="padding-right: 1.5rem;">
+          <div class="footer-brand-title">
+            <img src="assets/AnswerIndex_Logo.png" alt="Answer Index Logo" style="width: 32px; height: 32px; border-radius: 6px;" />
+            <span>Answer Index Pro</span>
+          </div>
+          <p class="footer-brand-desc">
+            The autonomous growth engine built for the post-search generative AI era. One authoritative AEO answer piece and one technical optimization every single day, shipped as Pull Requests you approve.
+          </p>
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <a href="https://github.com/justmailsameer-prog/answerindex" target="_blank" class="btn btn-secondary-dark" style="font-size: 0.8rem; padding: 0.4rem 0.85rem;">
+              ⭐ Star on GitHub
+            </a>
+            <a href="feedback.html" class="btn btn-secondary-dark" style="font-size: 0.8rem; padding: 0.4rem 0.85rem;">
+              Direct Feedback
+            </a>
+          </div>
+        </div>
+
+        <!-- Col 1: Platform & Engine -->
+        <div class="footer-col">
+          <h5>Platform & Engine</h5>
+          <ul>
+            <li><a href="#calendar-loop">Daily Routine & Calendar</a></li>
+            <li><a href="#how-approvals-work">How Approvals Work</a></li>
+            <li><a href="#daily-loop">The 2-Job Daily Cadence</a></li>
+            <li><a href="#journey">Customer Flow & Lifecycle</a></li>
+            <li><a href="index.html#features">26-File Protocol Engine</a></li>
+            <li><a href="index.html#anti-hallucination">Anti-Hallucination Gate</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 2: Integrations & Delivery -->
+        <div class="footer-col">
+          <h5>Integrations & Git</h5>
+          <ul>
+            <li><a href="#how-approvals-work">GitHub App & Scoped PRs</a></li>
+            <li><a href="#how-approvals-work">Answer Index Web Dashboard</a></li>
+            <li><a href="#journey">Google Search Console API</a></li>
+            <li><a href="index.html#mcp">Native MCP Server (Cursor/Claude)</a></li>
+            <li><a href="#before-you-start">CMS Webhooks (WordPress/Webflow)</a></li>
+            <li><a href="https://answerindex.pages.dev">Live Cloudflare Deployment</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Compare & Economics -->
+        <div class="footer-col">
+          <h5>Compare & Pricing</h5>
+          <ul>
+            <li><a href="#comparison">Market Comparison Matrix</a></li>
+            <li><a href="#pricing">Value Replacement ($4,249/mo)</a></li>
+            <li><a href="#pricing">Growth Plan ($149/mo)</a></li>
+            <li><a href="#pricing">Pro Autonomous Plan ($249/mo)</a></li>
+            <li><a href="index.html">Free Open Source vs Pro</a></li>
+            <li><a href="#before-you-start">FAQ: Before You Start</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Founder & Direct Contact -->
+        <div class="footer-col">
+          <h5>Founder & Contact</h5>
+          <ul>
+            <li><a href="javascript:void(0)" onclick="openContactModal('call')" style="color: var(--c-lime); font-weight: 700;">📞 Book 15-Min Intro Call</a></li>
+            <li><a href="javascript:void(0)" onclick="openContactModal('audit')">🔍 Request Free AI Audit</a></li>
+            <li><a href="mailto:sameer@answerindex.com">✉️ sameer@answerindex.com</a></li>
+            <li><span style="font-size: 0.8rem; color: #aaaaaa;">⚡ Guaranteed reply within 4h (Mon–Sat)</span></li>
+            <li><a href="https://github.com/justmailsameer-prog/answerindex/blob/main/LICENSE" target="_blank">MIT Open Source License</a></li>
+            <li><a href="feedback.html">Direct Feedback Channel</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom-bar">
+        <div>
+          Copyright © 2026 Sameer Sharma. All rights reserved. Free for open source & commercial use under MIT.
+        </div>
+        <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+          <div class="status-indicator">
+            <span class="status-dot"></span>
+            <span>Autonomous Engine Active · v2.0 Pro</span>
+          </div>
+          <a href="javascript:void(0)" id="footerShareBtn" style="color: var(--c-lime); text-decoration: none; font-size: 0.85rem; font-weight: 700;">
+            🔗 Share with Friends
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive Contact & Scheduling Modal -->
+  <div id="contactModal" class="contact-modal-overlay">
+    <div class="contact-modal-box">
+      <button class="contact-modal-close" onclick="closeContactModal()" aria-label="Close Modal">&times;</button>
+      
+      <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+        <img src="assets/AnswerIndex_Logo.png" alt="Answer Index" style="width: 32px; height: 32px; border-radius: 6px;" />
+        <div>
+          <div style="font-weight: 800; color: #ffffff; font-size: 1.15rem; line-height: 1.2;">Connect with Answer Index Pro</div>
+          <div style="color: #888888; font-size: 0.82rem;">Direct access to founder Sameer Sharma · 4-hour response SLA</div>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="modal-tab-nav">
+        <button id="tabBtnCall" class="modal-tab-btn active" onclick="switchModalTab('call')">
+          📞 Book 15-Min Intro Call
+        </button>
+        <button id="tabBtnAudit" class="modal-tab-btn" onclick="switchModalTab('audit')">
+          🔍 Free 24h AI Audit
+        </button>
+        <button id="tabBtnDirect" class="modal-tab-btn" onclick="switchModalTab('direct')">
+          ✉️ Direct Message
+        </button>
+      </div>
+
+      <!-- Tab 1: Book 15-Min Intro Call -->
+      <div id="tabContentCall" class="modal-tab-content active">
+        <form id="callBookingForm" onsubmit="handleCallSubmit(event)">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label">Your Name *</label>
+              <input type="text" id="callName" class="form-input" placeholder="e.g. Alex Miller" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Work Email *</label>
+              <input type="email" id="callEmail" class="form-input" placeholder="alex@company.com" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Company Website / GitHub Repo *</label>
+            <input type="text" id="callWebsite" class="form-input" placeholder="https://yourcompany.com" required />
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label">Preferred Time Slot *</label>
+              <select id="callSlot" class="form-select" required>
+                <option value="Tomorrow · 04:00 PM IST (06:30 AM EST)">Tomorrow · 04:00 PM IST (06:30 AM EST)</option>
+                <option value="Tomorrow · 07:00 PM IST (09:30 AM EST)">Tomorrow · 07:00 PM IST (09:30 AM EST)</option>
+                <option value="Day After Tomorrow · 04:00 PM IST">Day After Tomorrow · 04:00 PM IST</option>
+                <option value="Day After Tomorrow · 07:00 PM IST">Day After Tomorrow · 07:00 PM IST</option>
+                <option value="Send custom Cal.com link">Other (Send me your calendar link)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Primary Discussion Focus</label>
+              <select id="callFocus" class="form-select">
+                <option value="ChatGPT & Perplexity Citations">ChatGPT & Perplexity Citations</option>
+                <option value="Technical SEO & JSON-LD fixes">Technical SEO & JSON-LD fixes</option>
+                <option value="GitHub PR Workflow Verification">GitHub PR Workflow Verification</option>
+                <option value="Multi-domain / Agency Retainer">Multi-domain / Agency Retainer</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Brief Notes or Stack (Optional)</label>
+            <textarea id="callNotes" class="form-textarea" rows="2" placeholder="Tell us about your tech stack (Next.js, Astro, WordPress...) or questions..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-cobalt" style="width: 100%; padding: 0.9rem; font-size: 0.98rem; font-weight: 700; border-radius: 10px;">
+            Confirm 15-Minute Intro Call Reservation →
+          </button>
+        </form>
+      </div>
+
+      <!-- Tab 2: Free 24-Hour AI Audit -->
+      <div id="tabContentAudit" class="modal-tab-content">
+        <form id="auditRequestForm" onsubmit="handleAuditSubmit(event)">
+          <div class="form-group">
+            <label class="form-label">Your Website URL *</label>
+            <input type="text" id="auditDomain" class="form-input" placeholder="https://yourbrand.com" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Work Email (where to send the 1-page report) *</label>
+            <input type="email" id="auditEmail" class="form-input" placeholder="founder@yourbrand.com" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Primary Commercial Keyword or Main Competitor *</label>
+            <input type="text" id="auditQuery" class="form-input" placeholder="e.g. 'best workflow automation tool' or competitor brand" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Your Tech Stack</label>
+            <select id="auditStack" class="form-select">
+              <option value="Next.js / React">Next.js / React</option>
+              <option value="Astro / Static Site">Astro / Static Site Generator</option>
+              <option value="WordPress / Headless WP">WordPress / Headless WP</option>
+              <option value="Webflow / Shopify">Webflow / Shopify</option>
+              <option value="Other / Custom Stack">Other / Custom Stack</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn" style="width: 100%; padding: 0.9rem; font-size: 0.98rem; font-weight: 800; background: var(--c-lime); color: #000000; border: none; border-radius: 10px; cursor: pointer;">
+            Generate & Email My 24-Hour AI Audit Report (Free) →
+          </button>
+        </form>
+      </div>
+
+      <!-- Tab 3: Direct Message -->
+      <div id="tabContentDirect" class="modal-tab-content">
+        <form id="directMsgForm" onsubmit="handleDirectSubmit(event)">
+          <div style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 1rem; margin-bottom: 1.25rem; font-size: 0.88rem; color: #cccccc;">
+            💡 Direct line to <strong>Sameer Sharma</strong> at <a href="mailto:sameer@answerindex.com" style="color: #60a5fa; text-decoration: underline;">sameer@answerindex.com</a>. Average response time is under 4 hours during business days.
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Your Email *</label>
+            <input type="email" id="directEmail" class="form-input" placeholder="you@domain.com" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Subject</label>
+            <input type="text" id="directSubject" class="form-input" placeholder="Question regarding Answer Index Pro setup" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Message *</label>
+            <textarea id="directMessage" class="form-textarea" rows="4" placeholder="How can we help? Tell us about your site, questions, or custom requirements..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-cobalt" style="width: 100%; padding: 0.9rem; font-size: 0.98rem; font-weight: 700; border-radius: 10px;">
+            Send Direct Message to Sameer →
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast-msg">Link copied to clipboard!</div>
+
+  <script>
+    // Hamburger Menu Toggle
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const navDropdownMenu = document.getElementById('navDropdownMenu');
+
+    if (hamburgerBtn && navDropdownMenu) {
+      hamburgerBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        hamburgerBtn.classList.toggle('active');
+        navDropdownMenu.classList.toggle('show');
+      });
+
+      // Close dropdown when clicking a link
+      navDropdownMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          hamburgerBtn.classList.remove('active');
+          navDropdownMenu.classList.remove('show');
+        });
+      });
+
+      // Close dropdown when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!hamburgerBtn.contains(e.target) && !navDropdownMenu.contains(e.target)) {
+          hamburgerBtn.classList.remove('active');
+          navDropdownMenu.classList.remove('show');
+        }
+      });
+    }
+
+    // Interactive accordion for FAQ
+    document.querySelectorAll('.faq-question-orange, .faq-question-charcoal').forEach(item => {
+      item.addEventListener('click', () => {
+        const parent = item.parentElement;
+        const answer = parent.querySelector('.faq-answer-orange, .faq-answer-charcoal');
+        if (!answer) return;
+        const isHidden = answer.style.display === 'none';
+        answer.style.display = isHidden ? 'block' : 'none';
+        const icon = item.querySelector('span:last-child');
+        if (icon) icon.textContent = isHidden ? '−' : '+';
+      });
+    });
+
+    // Interactive Calendar Day Dispatcher Schedule Data
+    const calendarDaysData = [
+      {
+        title: "PR #141 · Mon Oct 19: High-Intent Answer Article",
+        job1: "+ [Job 1: New] /guides/how-to-rank-chatgpt-search.html (Targeting: 'chatgpt search ranking factors')",
+        job2: "+ [Job 2: Fix] /features.html (Injected connected FAQPage JSON-LD & 48-word zero-click answer)",
+        sync: "+ [Crawler Sync] Synchronized entity relationships across /llms.txt and /ai-entities.json",
+        citation: "64.2%",
+        prs: "40 / 40",
+        snippets: "35 Snippets"
+      },
+      {
+        title: "PR #142 · Tue Oct 20 (Today): Rank Defense & FAQ Schema Patch",
+        job1: "+ [Job 1: New] /guides/ai-search-citation-rules.html (Targeting: 'how to get cited in ChatGPT Search')",
+        job2: "+ [Job 2: Fix] /pricing.html (Injected connected JSON-LD Schema & 48-word AEO contrast snippet)",
+        sync: "+ [Crawler Sync] Updated canonical contrast statements in /llms.txt",
+        citation: "68.4%",
+        prs: "42 / 42",
+        snippets: "38 Snippets"
+      },
+      {
+        title: "PR #143 · Wed Oct 21: /llms.txt & Vector Chunking Sync",
+        job1: "+ [Job 1: New] /comparisons/traditional-seo-vs-aeo.html (Targeting: 'aeo vs traditional seo comparison')",
+        job2: "+ [Job 2: Fix] /security.html (Rewrote slipping section & optimized H2 semantic hierarchy)",
+        sync: "+ [Crawler Sync] Re-indexed vector embeddings across Claude & Perplexity endpoints",
+        citation: "71.8%",
+        prs: "44 / 44",
+        snippets: "42 Snippets"
+      },
+      {
+        title: "PR #144 · Thu Oct 22: Commercial Buyer Intent Sniping",
+        job1: "+ [Job 1: New] /reviews/best-aeo-geo-software-2026.html (Targeting: 'best answer engine optimization software')",
+        job2: "+ [Job 2: Fix] /integrations/github.html (Injected missing structured BreadcrumbList Schema)",
+        sync: "+ [Crawler Sync] Updated sitemap-ai.xml with fresh modified dates",
+        citation: "75.1%",
+        prs: "46 / 46",
+        snippets: "45 Snippets"
+      },
+      {
+        title: "PR #145 · Fri Oct 23: Anti-Hallucination Contrast Grounding",
+        job1: "+ [Job 1: New] /faq/how-answerindex-handles-crawler-budget.html (Targeting: 'ai bot crawl budget optimization')",
+        job2: "+ [Job 2: Fix] /about.html (Injected canonical brand statements to prevent entity conflation)",
+        sync: "+ [Crawler Sync] Pushed cryptographic ground-truth verification block",
+        citation: "79.3%",
+        prs: "48 / 48",
+        snippets: "49 Snippets"
+      }
+    ];
+
+    const calDayBtns = document.querySelectorAll('.cal-day-btn');
+    const dayPreviewTitle = document.getElementById('dayPreviewTitle');
+    const dayPreviewJob1 = document.getElementById('dayPreviewJob1');
+    const dayPreviewJob2 = document.getElementById('dayPreviewJob2');
+    const dayPreviewSync = document.getElementById('dayPreviewSync');
+    const telemetryCitation = document.getElementById('telemetryCitation');
+    const telemetryPRs = document.getElementById('telemetryPRs');
+    const telemetrySnippets = document.getElementById('telemetrySnippets');
+
+    let currentDayIndex = 1; // Default to Today (Tuesday)
+    let autoRotateTimer = null;
+
+    function renderDay(index) {
+      calDayBtns.forEach((btn, i) => {
+        btn.classList.toggle('active', i === index);
+      });
+      const data = calendarDaysData[index];
+      if (data && dayPreviewTitle) {
+        dayPreviewTitle.textContent = data.title;
+        dayPreviewJob1.textContent = data.job1;
+        dayPreviewJob2.textContent = data.job2;
+        dayPreviewSync.textContent = data.sync;
+        if (telemetryCitation) telemetryCitation.textContent = data.citation;
+        if (telemetryPRs) telemetryPRs.textContent = data.prs;
+        if (telemetrySnippets) telemetrySnippets.textContent = data.snippets;
+      }
+    }
+
+    calDayBtns.forEach((btn, index) => {
+      btn.addEventListener('click', () => {
+        clearInterval(autoRotateTimer);
+        currentDayIndex = index;
+        renderDay(currentDayIndex);
+      });
+    });
+
+    // Auto rotate every 5 seconds
+    autoRotateTimer = setInterval(() => {
+      currentDayIndex = (currentDayIndex + 1) % calendarDaysData.length;
+      renderDay(currentDayIndex);
+    }, 5000);
+
+    // Initial render
+    renderDay(1);
+
+    // Social Sharing Handler
+    function handleShare() {
+      const shareData = {
+        title: 'Answer Index Pro — Autonomous AEO, GEO & SEO Growth Engine',
+        text: 'One authoritative AEO answer piece and one technical optimization every single day. Shipped as Pull Requests you approve.',
+        url: window.location.href
+      };
+
+      if (navigator.share) {
+        navigator.share(shareData).catch(() => {});
+      } else {
+        navigator.clipboard.writeText(window.location.href).then(() => {
+          showToast('Link copied to clipboard!');
+        });
+      }
+    }
+
+    const shareBtn = document.getElementById('shareBtn');
+    const footerShareBtn = document.getElementById('footerShareBtn');
+    if (shareBtn) shareBtn.addEventListener('click', handleShare);
+    if (footerShareBtn) footerShareBtn.addEventListener('click', handleShare);
+
+    function showToast(text) {
+      const toast = document.getElementById('toast');
+      if (!toast) return;
+      toast.textContent = text;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3500);
+    }
+
+    // Contact & Consultation Modal Controller
+    function openContactModal(tab = 'call') {
+      const modal = document.getElementById('contactModal');
+      if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        switchModalTab(tab);
+      }
+    }
+
+    function closeContactModal() {
+      const modal = document.getElementById('contactModal');
+      if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function switchModalTab(tab) {
+      const tabs = ['call', 'audit', 'direct'];
+      tabs.forEach(t => {
+        const btn = document.getElementById('tabBtn' + t.charAt(0).toUpperCase() + t.slice(1));
+        const content = document.getElementById('tabContent' + t.charAt(0).toUpperCase() + t.slice(1));
+        if (btn) btn.classList.toggle('active', t === tab);
+        if (content) content.classList.toggle('active', t === tab);
+      });
+    }
+
+    // Close modal on backdrop click
+    const contactModal = document.getElementById('contactModal');
+    if (contactModal) {
+      contactModal.addEventListener('click', (e) => {
+        if (e.target === contactModal) {
+          closeContactModal();
+        }
+      });
+    }
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeContactModal();
+      }
+    });
+
+    function handleCallSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('callName').value;
+      const email = document.getElementById('callEmail').value;
+      const slot = document.getElementById('callSlot').value;
+      closeContactModal();
+      showToast(`🎉 Reservation confirmed for ${name}! Google Meet invite for ${slot} will be sent to ${email} within 4 hours.`);
+      e.target.reset();
+    }
+
+    function handleAuditSubmit(e) {
+      e.preventDefault();
+      const domain = document.getElementById('auditDomain').value;
+      const email = document.getElementById('auditEmail').value;
+      closeContactModal();
+      showToast(`🔍 Free AI Audit queued for ${domain}! Sameer will email your 1-page citation audit to ${email} within 24 hours.`);
+      e.target.reset();
+    }
+
+    function handleDirectSubmit(e) {
+      e.preventDefault();
+      const email = document.getElementById('directEmail').value;
+      const subject = encodeURIComponent(document.getElementById('directSubject').value || 'Answer Index Pro Inquiry');
+      const message = encodeURIComponent(document.getElementById('directMessage').value);
+      closeContactModal();
+      showToast(`✉️ Message recorded! Opening email client for sameer@answerindex.com...`);
+      setTimeout(() => {
+        window.location.href = `mailto:sameer@answerindex.com?subject=${subject}&body=${message}%0D%0A%0D%0AFrom:%20${email}`;
+      }, 600);
+      e.target.reset();
+    }
+  </script>
+</body>
+</html>

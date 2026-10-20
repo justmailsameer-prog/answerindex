@@ -151,9 +151,31 @@ Native MCP integration for AI coding assistants (Cursor, Claude Code, Windsurf, 
 ---
 
 ## 5.3 Deployment & Infrastructure Pipeline
-- **Host Platform:** Cloudflare Pages direct upload project (`answerindex.pages.dev`).
-- **Deployment Method:** `npx wrangler pages deploy . --project-name=answerindex --branch=main`.
+- **Open-Source Portal Platform:** Cloudflare Pages direct upload project (`answerindex.pages.dev`).
+- **Commercial Pro Portal Platform:** Dedicated separate Cloudflare Pages project (`answerindex-pro.pages.dev`), keeping the free open-source portal completely isolated and protected.
 - **Cache Invalidation:** Configured with zero-age revalidation (`Cache-Control: public, max-age=0, must-revalidate`) ensuring instant updates upon deployment across edge locations.
+
+---
+
+## 5.4 Answer Index Pro — Commercial Architecture & Wireframe (`answerindex-pro.pages.dev`)
+The paid autonomous version of Answer Index introduces a commercial subscription layer ($149/mo Growth and $249/mo Pro Autonomous) built around a hands-free daily growth loop:
+- **Daily 2-Job Autonomous Cadence:** One new authoritative AEO/GEO answer piece plus one technical SEO page refactor delivered every morning at 09:00 AM as a GitHub Pull Request.
+- **Human-in-the-Loop Safety:** Dual approval options (GitHub PR review + 1-click web dashboard merge) with pre-merge Schema validation scorecards and zero-click snippet previews.
+- **High-Contrast Editorial Design System:** Alternating high-contrast sections following a tailored brand palette:
+  * Hero & Engine Mechanics: Pure Black (`#000000`)
+  * Daily Calendar Routine: Warm Cream (`#f5f4f0`)
+  * How Approvals Work & Competitive Landscape: Charcoal Grey (`#333333`)
+  * Customer Journey & Lifecycle: Electric Cobalt Blue (`#3a57fc`)
+  * **Transparent Value Economics & Deliverables Matrix:** Electric Lime (`#a7c75d`)
+  * **"Before You Start" Transparent Answers (FAQ):** Dark Orange (`#ff8c00`)
+  * Talk to the Founder & Direct Consultation: Charcoal Grey (`#333333`)
+  * Detailed Footer: Pure Black (`#000000`)
+- **Transparent Value Economics Matrix:** Unified enterprise deliverables comparison table detailing 8 core deliverables and replacing ~$4,249/month of agency and consultant retainers ($1,500/mo for 30 AEO articles + $800/mo for 30 technical fixes).
+- **Direct Founder Channels & Triage:**
+  1. *15-Minute Strategy Triage Video Call:* Direct Google Meet walkthrough with Sameer Sharma.
+  2. *Free 24-Hour AI Crawler & Citation Audit:* Automated domain simulation across ChatGPT, Perplexity, and Claude.
+  3. *Direct Founder Channel:* Direct email contact (`sameer@answerindex.com`) with a guaranteed 4-hour response time (Monday–Saturday).
+- **Interactive Scheduling Modal Dialog:** 3-tab accessible modal for booking intro video calls, requesting free audits, and sending direct messages with escape-key support and feedback toasts.
 
 ---
 
@@ -179,5 +201,44 @@ Native MCP integration for AI coding assistants (Cursor, Claude Code, Windsurf, 
 | **v1.6.0** | Oct 2026 | Mobile responsive drawer, social sharing API, live Cloudflare Pages portal. |
 | **v1.7.0** | Oct 2026 | Dedicated direct feedback portal (`feedback.html`), OpenRouter single-model benchmarking refactor. |
 | **v1.8.0** | Oct 2026 | **Build Freeze (v1 Foundation Finalized):** Production readiness verified, static assets synchronized to `dist/`, PRD synchronized. |
-| **v2.0 (Next)** | Planned | **Autonomous Continuous Loop:** Daily AEO job scheduler (1 new answer piece + 1 page improvement/day), live telemetry / GSC integration, Git Pull Request publishing pipeline, and native AI Agent skills library. |
+| **v2.0.0** | Oct 2026 | **Commercial Pro Wireframe & Live Deployment:** Completed high-converting landing architecture on `answerindex-pro.pages.dev`, interactive calendar dispatcher, approval flow wireframe, value economics, #ff8c00 FAQ section, direct founder contact modal, and separate Cloudflare Pages isolation. |
+| **v2.1.0** | Oct 2026 | **Cloudflare D1 Database & Edge API Architecture (Completed):** Provisioned `answerindex-db` (D1 Database ID: `3894eea3-f7c8-4c9b-a2e8-e75a651aa30c`), applied relational schema (`users`, `projects`, `daily_jobs`, `citation_benchmarks`, `leads_and_triage`, `webhook_events`), bound `DB` to `answerindex-pro` and `answerindex`, deployed live edge API functions (`/api/jobs`, `/api/citations`, `/api/triage`, `/api/approve-pr`, `/api/webhooks/dodo`), and wired landing page consultation modal to D1. |
+| **v2.2.0** | Next | **Payments & Client Dashboard Frontend:** Dodo Payments subscription checkout links, webhook testing, and authenticated client dashboard interface. |
+
+---
+
+## 8. Database Architecture & Edge API Implementation (`answerindex-db`)
+
+### 8.1 Database Specifications
+- **Database Engine:** Cloudflare D1 (Serverless Distributed SQLite at edge)
+- **Database Name:** `answerindex-db`
+- **Database ID:** `3894eea3-f7c8-4c9b-a2e8-e75a651aa30c`
+- **Primary Region:** APAC (Singapore `SIN`) with global edge replication
+- **Edge Latency:** ~0.20ms query duration across Cloudflare PoPs
+- **Binding Variable:** `env.DB`
+
+### 8.2 Deployed Schema & Tables
+1. **`users`**: Tenant accounts, emails, plan tiers (`growth` $149, `pro_autonomous` $249), subscription status (`active`, `inactive`, `cancelled`), and Dodo customer/subscription IDs.
+2. **`projects`**: Tenant domains, brand names, GitHub repo connection (`repo_owner`, `repo_name`, `branch`), and Google Search Console property tracking.
+3. **`daily_jobs`**: The 2-Job Autonomous Dispatch Queue (Job 1: New AEO Answer Asset, Job 2: Technical SEO/GEO Refactor), Schema validation scores (100/100), diff summaries, and 1-click approval statuses (`pending`, `approved`, `merged`).
+4. **`citation_benchmarks`**: Telemetry tracking brand citations across Perplexity, ChatGPT Search, Claude, and Gemini.
+5. **`leads_and_triage`**: Founder consultation bookings, 24-hour free AI audit requests, and direct founder messages submitted via the interactive modal.
+6. **`webhook_events`**: Idempotent audit log for all payment gateway events (`subscription.created`, `subscription.active`, `payment.succeeded`).
+
+### 8.3 Live Edge API Endpoints (`functions/api/`)
+- `GET /api/jobs`: Retrieves real-time daily job queue filtered by project and approval status.
+- `POST /api/jobs`: Dispatches a new autonomous daily job into the queue.
+- `POST /api/approve-pr`: 1-click PR approval handler updating status and recording merge timestamps.
+- `GET /api/citations`: Returns live citation velocity stats and engine benchmarks.
+- `POST /api/triage`: Records strategy call bookings and 24-hr audit requests directly to D1.
+- `POST /api/webhooks/dodo`: Secure Dodo Payments webhook handler updating user subscription tiers.
+
+---
+
+## 9. Next Sprint Backlog (v2.2)
+
+1. **Dodo Payments Checkout Flow:** Wire up direct subscription checkout buttons on the pricing cards ($149 Growth & $249 Pro Autonomous).
+2. **Authenticated Client Dashboard UI:** Build the dedicated client dashboard view consuming `/api/jobs` and `/api/citations` with 1-click approval buttons.
+
+
 

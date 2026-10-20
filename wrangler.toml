@@ -1,0 +1,9 @@
+name = "answerindex"
+compatibility_date = "2024-09-23"
+pages_build_output_dir = "dist"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "answerindex-db"
+database_id = "3894eea3-f7c8-4c9b-a2e8-e75a651aa30c"
+migrations_dir = "migrations"
