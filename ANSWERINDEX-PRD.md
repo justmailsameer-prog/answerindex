@@ -226,19 +226,45 @@ The paid autonomous version of Answer Index introduces a commercial subscription
 6. **`webhook_events`**: Idempotent audit log for all payment gateway events (`subscription.created`, `subscription.active`, `payment.succeeded`).
 
 ### 8.3 Live Edge API Endpoints (`functions/api/`)
+- `GET /api/project`: Returns connected domain, repository connection, plan tier, and aggregate statistics.
 - `GET /api/jobs`: Retrieves real-time daily job queue filtered by project and approval status.
 - `POST /api/jobs`: Dispatches a new autonomous daily job into the queue.
 - `POST /api/approve-pr`: 1-click PR approval handler updating status and recording merge timestamps.
 - `GET /api/citations`: Returns live citation velocity stats and engine benchmarks.
 - `POST /api/triage`: Records strategy call bookings and 24-hr audit requests directly to D1.
+- `POST /api/create-checkout`: Creates hosted Dodo Payments checkout sessions for Growth and Pro Autonomous plans.
 - `POST /api/webhooks/dodo`: Secure Dodo Payments webhook handler updating user subscription tiers.
 
 ---
 
-## 9. Next Sprint Backlog (v2.2)
+## 9. Dodo Payments Integration (`Answer Index` Brand)
 
-1. **Dodo Payments Checkout Flow:** Wire up direct subscription checkout buttons on the pricing cards ($149 Growth & $249 Pro Autonomous).
-2. **Authenticated Client Dashboard UI:** Build the dedicated client dashboard view consuming `/api/jobs` and `/api/citations` with 1-click approval buttons.
+### 9.1 Brand Isolation
+- **Primary Brand:** Blabr
+- **Secondary Dedicated Brand:** Answer Index (Clean workspace separation ensuring all customer invoices, receipts, and checkout descriptors display "Answer Index").
+- **API Environment:** Test Mode (Ready to swap to Live Mode via `.env`).
+
+### 9.2 Configured Subscription Products
+| Plan Tier | Price | Product ID | Billing Interval |
+| :--- | :--- | :--- | :--- |
+| **Answer Index Growth** | $149.00 / month | `pdt_0Nq8T1xSM5rcoI3Pnbv7q` | Monthly recurring (10-year term) |
+| **Answer Index Pro Autonomous** | $249.00 / month | `pdt_0Nq8T1zIQyR0pvdZbTHqU` | Monthly recurring (10-year term) |
+
+### 9.3 Checkout Workflow
+1. User clicks **"Start Growth ($149/mo)"** or **"Claim Pro Access ($249/mo)"** on [pro.html](file:///d:/AI%20Product/answerindex/pro.html).
+2. Client posts to `/api/create-checkout`.
+3. Edge function requests Dodo Payments checkout session at `https://test.dodopayments.com/checkouts`.
+4. User is redirected to hosted checkout: `https://test.checkout.dodopayments.com/session/...`.
+5. Upon successful checkout, customer is redirected to: `https://answerindex-pro.pages.dev/dashboard?checkout=success`.
+6. Webhook triggers `/api/webhooks/dodo` to provision user in Cloudflare D1.
+
+---
+
+## 10. Next Milestone (v2.3)
+
+1. **GitHub App Webhook Integration:** Bi-directional sync between GitHub PR merge events and Cloudflare D1 job statuses.
+2. **Production Payments Activation:** Switch Dodo Payments from Test Mode to Live Mode when ready to accept live credit cards.
+
 
 
 

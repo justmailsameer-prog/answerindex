@@ -1472,9 +1472,9 @@
         <button onclick="openContactModal('call')" class="btn btn-secondary-dark nav-btn-call" style="font-size: 0.85rem; padding: 0.5rem 1rem; border-color: rgba(255,255,255,0.22);">
           📞 Book 15-Min Intro
         </button>
-        <a href="#pricing" class="btn btn-cobalt" style="font-size: 0.88rem; padding: 0.55rem 1.25rem;">
-          Join Waitlist ($249/mo) →
-        </a>
+        <button onclick="startCheckout('pro_autonomous')" class="btn btn-cobalt" style="font-size: 0.88rem; padding: 0.55rem 1.25rem; cursor: pointer;">
+          Subscribe ($249/mo) →
+        </button>
 
         <div class="menu-dropdown-wrapper">
           <button id="hamburgerBtn" class="btn-dropdown-toggle" aria-label="Toggle Navigation Menu">
@@ -1546,9 +1546,9 @@
       </div>
 
       <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-        <a href="#pricing" class="btn btn-cobalt" style="padding: 0.85rem 2.2rem; font-size: 1.05rem;">
-          Join Early Adopter Waitlist ($249/mo) →
-        </a>
+        <button onclick="startCheckout('pro_autonomous')" class="btn btn-cobalt" style="padding: 0.85rem 2.2rem; font-size: 1.05rem; cursor: pointer;">
+          Start Autonomous Pro ($249/mo) →
+        </button>
         <button onclick="openContactModal('call')" class="btn btn-secondary-dark" style="padding: 0.85rem 1.75rem; border-color: rgba(255,255,255,0.25);">
           📞 Book 15-Min Intro Call
         </button>
@@ -2219,14 +2219,14 @@
             <tr>
               <td class="col-feature"><strong>Action & Enrollment</strong></td>
               <td class="col-growth">
-                <a href="feedback.html" class="btn btn-secondary-light" style="width: 100%; padding: 0.75rem 1rem;">
+                <button onclick="startCheckout('growth')" class="btn btn-secondary-light" style="width: 100%; padding: 0.75rem 1rem; cursor: pointer;">
                   Start Growth ($149/mo) →
-                </a>
+                </button>
               </td>
               <td class="col-pro">
-                <a href="feedback.html" class="btn btn-cobalt" style="width: 100%; padding: 0.75rem 1rem;">
+                <button onclick="startCheckout('pro_autonomous')" class="btn btn-cobalt" style="width: 100%; padding: 0.75rem 1rem; cursor: pointer;">
                   Claim Pro Access ($249/mo) →
-                </a>
+                </button>
               </td>
             </tr>
           </tbody>
@@ -2958,6 +2958,26 @@
         window.location.href = `mailto:sameer@answerindex.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}%0D%0A%0D%0AFrom:%20${encodeURIComponent(email)}`;
       }, 600);
       e.target.reset();
+    }
+
+    // Dodo Payments Checkout Initiator
+    async function startCheckout(plan = 'pro_autonomous') {
+      showToast('⚡ Connecting to Dodo Payments checkout...', '💳');
+      try {
+        const res = await fetch('/api/create-checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ plan })
+        });
+        const data = await res.json();
+        if (data.success && data.checkout_url) {
+          window.location.href = data.checkout_url;
+        } else {
+          showToast('❌ Checkout error: ' + (data.error || 'Please try again'), '❌');
+        }
+      } catch (err) {
+        showToast('❌ Network error starting checkout', '❌');
+      }
     }
   </script>
 </body>
