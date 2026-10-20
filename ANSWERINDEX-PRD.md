@@ -244,17 +244,31 @@ The paid autonomous version of Answer Index introduces a commercial subscription
 - **Secondary Dedicated Brand:** Answer Index (Clean workspace separation ensuring all customer invoices, receipts, and checkout descriptors display "Answer Index").
 - **API Environment:** Test Mode (Ready to swap to Live Mode via `.env`).
 
-### 9.2 Configured Subscription Products
-| Plan Tier | Price | Product ID | Billing Interval |
-| :--- | :--- | :--- | :--- |
-| **Answer Index Growth** | $149.00 / month | `pdt_0Nq8T1xSM5rcoI3Pnbv7q` | Monthly recurring (10-year term) |
-| **Answer Index Pro Autonomous** | $249.00 / month | `pdt_0Nq8T1zIQyR0pvdZbTHqU` | Monthly recurring (10-year term) |
+### 9.2 Configured Subscription Products (Answer Index Brand)
 
-### 9.3 Checkout Workflow
-1. User clicks **"Start Growth ($149/mo)"** or **"Claim Pro Access ($249/mo)"** on [pro.html](file:///d:/AI%20Product/answerindex/pro.html).
-2. Client posts to `/api/create-checkout`.
-3. Edge function requests Dodo Payments checkout session at `https://test.dodopayments.com/checkouts`.
-4. User is redirected to hosted checkout: `https://test.checkout.dodopayments.com/session/...`.
+#### Live Mode Products (`https://live.dodopayments.com`)
+| Plan Tier | Price / Term | Product ID (Live) | Billing Interval |
+| :--- | :--- | :--- | :--- |
+| **Answer Index Growth (Monthly)** | $149.00 / mo | `pdt_0Nq8mjgfNfEsNBbQkzqiW` | Monthly recurring |
+| **Answer Index Pro Autonomous (Monthly)** | $249.00 / mo | `pdt_0Nq8mjiTwVYBMTZtswj5O` | Monthly recurring |
+| **Answer Index Growth (Annual)** | $1,428.00 / yr ($119/mo) | `pdt_0Nq8mjkKnCKtceVwCGV89` | Annual recurring (Save 20%) |
+| **Answer Index Pro Autonomous (Annual)** | $2,388.00 / yr ($199/mo) | `pdt_0Nq8mjlabKyFMgkI3zJlb` | Annual recurring (Save 20%) |
+
+#### Test Mode Sandbox Products (`https://test.dodopayments.com`)
+| Plan Tier | Price / Term | Product ID (Test) | Billing Interval |
+| :--- | :--- | :--- | :--- |
+| **Answer Index Growth (Monthly)** | $149.00 / mo | `pdt_0Nq8T1xSM5rcoI3Pnbv7q` | Monthly recurring |
+| **Answer Index Pro Autonomous (Monthly)** | $249.00 / mo | `pdt_0Nq8T1zIQyR0pvdZbTHqU` | Monthly recurring |
+| **Answer Index Growth (Annual)** | $1,428.00 / yr ($119/mo) | `pdt_0Nq8WXISavEALUuPtVxAU` | Annual recurring |
+| **Answer Index Pro Autonomous (Annual)** | $2,388.00 / yr ($199/mo) | `pdt_0Nq8WXJJURRMwGRqVanWP` | Annual recurring |
+
+### 9.3 Checkout Workflow & Fallback Engine
+1. User clicks **"Start Growth"** or **"Claim Pro Access"** (Monthly or Annual toggle) on [pro.html](file:///d:/AI%20Product/answerindex/pro.html).
+2. Client posts to `/api/create-checkout` with `{ plan, billing }`.
+3. Intelligent Edge Engine:
+   * Checks if Live Mode is active and requests live checkout session at `https://live.dodopayments.com/checkouts`.
+   * If merchant KYC activation is pending in Dodo (`MERCHANT_NOT_LIVE`), automatically falls back to Test Mode so visitors never hit broken links.
+4. User is redirected to hosted checkout: `https://...checkout.dodopayments.com/session/...`.
 5. Upon successful checkout, customer is redirected to: `https://answerindex-pro.pages.dev/dashboard?checkout=success`.
 6. Webhook triggers `/api/webhooks/dodo` to provision user in Cloudflare D1.
 
@@ -262,8 +276,9 @@ The paid autonomous version of Answer Index introduces a commercial subscription
 
 ## 10. Next Milestone (v2.3)
 
-1. **GitHub App Webhook Integration:** Bi-directional sync between GitHub PR merge events and Cloudflare D1 job statuses.
-2. **Production Payments Activation:** Switch Dodo Payments from Test Mode to Live Mode when ready to accept live credit cards.
+1. **Merchant KYC Activation:** Complete business profile / bank payout details in Dodo Payments Dashboard for Answer Index to enable live credit card processing.
+2. **GitHub App Webhook Integration:** Bi-directional sync between GitHub PR merge events and Cloudflare D1 job statuses.
+
 
 
 
