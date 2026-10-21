@@ -1,6 +1,10 @@
 // Cloudflare Pages Function: /api/create-checkout
 // Creates a Dodo Payments hosted checkout session for Answer Index subscriptions
-// Supports seamless transition between Live Mode and Test Mode with automatic fallback
+// Supports the 3-Tier Value Ladder:
+// 1. Growth Plan ($199/mo / $159/mo annual)
+// 2. Pro Autonomous ($499/mo / $399/mo annual)
+// 3. Enterprise DFY Partner ($1,499/mo / $1,199/mo annual)
+// Seamless transition between Live Mode and Test Mode with automatic fallback
 
 const CORS_HEADERS = {
   'Access-Control-Allow-Origin': '*',
@@ -19,7 +23,10 @@ const LIVE_PRODUCT_MAP = {
   pro_autonomous: 'pdt_0Nq8mjiTwVYBMTZtswj5O',
   pro_autonomous_monthly: 'pdt_0Nq8mjiTwVYBMTZtswj5O',
   pro_annual: 'pdt_0Nq8mjlabKyFMgkI3zJlb',
-  pro_autonomous_annual: 'pdt_0Nq8mjlabKyFMgkI3zJlb'
+  pro_autonomous_annual: 'pdt_0Nq8mjlabKyFMgkI3zJlb',
+  enterprise: 'pdt_0Nq8mjiTwVYBMTZtswj5O', // Default to highest live tier until dedicated Dodo SKU is registered
+  enterprise_monthly: 'pdt_0Nq8mjiTwVYBMTZtswj5O',
+  enterprise_annual: 'pdt_0Nq8mjlabKyFMgkI3zJlb'
 };
 
 // 2. Test Mode Products (Answer Index Brand)
@@ -32,7 +39,10 @@ const TEST_PRODUCT_MAP = {
   pro_autonomous: 'pdt_0Nq8T1zIQyR0pvdZbTHqU',
   pro_autonomous_monthly: 'pdt_0Nq8T1zIQyR0pvdZbTHqU',
   pro_annual: 'pdt_0Nq8WXJJURRMwGRqVanWP',
-  pro_autonomous_annual: 'pdt_0Nq8WXJJURRMwGRqVanWP'
+  pro_autonomous_annual: 'pdt_0Nq8WXJJURRMwGRqVanWP',
+  enterprise: 'pdt_0Nq8T1zIQyR0pvdZbTHqU',
+  enterprise_monthly: 'pdt_0Nq8T1zIQyR0pvdZbTHqU',
+  enterprise_annual: 'pdt_0Nq8WXJJURRMwGRqVanWP'
 };
 
 const LIVE_API_KEY = 'pAHcoUqy7QVK5Jow.aBlm68kYcm5YKKzaccXSjYl_6niDoqifjMLp7efNufoIwO6M';
@@ -47,7 +57,7 @@ export async function onRequestPost({ request, env }) {
     const data = await request.json().catch(() => ({}));
     const { plan = 'pro_autonomous', billing = 'monthly', email = null, name = null } = data;
 
-    // Resolve plan key: e.g. 'growth_annual' or 'growth_monthly'
+    // Resolve plan key: e.g. 'growth_annual', 'pro_autonomous_monthly', 'enterprise_monthly'
     let planKey = plan;
     if (billing === 'annual' && !plan.includes('annual')) {
       planKey = `${plan}_annual`;

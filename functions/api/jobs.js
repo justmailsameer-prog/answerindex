@@ -1,5 +1,10 @@
 // Cloudflare Pages Function: /api/jobs
-// Manages the Daily 2-Job Autonomous Dispatch Queue (Job 1: New AEO Asset, Job 2: Technical Refactor)
+// Manages the Autonomous Dispatch Queue:
+// - Job 1: New AEO Answer Asset
+// - Job 2: Technical Schema / Latency Refactor
+// - Interactive Mini-Tools (Calculators / Utility Widgets)
+// - AEO Comparison Guides ("Brand vs Competitor")
+// - Digital PR Citation Corrections
 
 const CORS_HEADERS = {
   'Access-Control-Allow-Origin': '*',
@@ -17,7 +22,8 @@ export async function onRequestGet({ request, env }) {
     const url = new URL(request.url);
     const projectId = url.searchParams.get('project_id');
     const status = url.searchParams.get('status');
-    const limit = parseInt(url.searchParams.get('limit') || '30', 10);
+    const jobType = url.searchParams.get('job_type');
+    const limit = parseInt(url.searchParams.get('limit') || '50', 10);
 
     let query = `SELECT * FROM daily_jobs`;
     const conditions = [];
@@ -30,6 +36,10 @@ export async function onRequestGet({ request, env }) {
     if (status) {
       conditions.push(`pr_status = ?`);
       bindings.push(status);
+    }
+    if (jobType) {
+      conditions.push(`job_type = ?`);
+      bindings.push(jobType);
     }
 
     if (conditions.length > 0) {
@@ -74,6 +84,7 @@ export async function onRequestPost({ request, env }) {
       zero_click_snippet = '',
       delivery_channel = 'github_pr',
       content_html = '',
+      is_truth_verified = 1,
       scheduled_at = null,
       dispatched_at = new Date().toISOString()
     } = data;
@@ -91,16 +102,20 @@ export async function onRequestPost({ request, env }) {
       `INSERT INTO daily_jobs (
         id, project_id, date, job_type, title, description, target_keyword, target_url,
         pr_url, pr_number, pr_status, schema_score, diff_summary, diff_details,
-        zero_click_snippet, delivery_channel, content_html, scheduled_at, dispatched_at
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+        zero_click_snippet, delivery_channel, content_html, is_truth_verified, scheduled_at, dispatched_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
     ).bind(
       id, project_id, date, job_type, title, description, target_keyword, target_url,
       pr_url, pr_number, pr_status, schema_score, diff_summary, diff_details,
-      zero_click_snippet, delivery_channel, content_html, scheduled_at, dispatched_at
+      zero_click_snippet, delivery_channel, content_html, is_truth_verified, scheduled_at, dispatched_at
     ).run();
 
     return new Response(
-      JSON.stringify({ success: true, id, message: 'Daily job queued successfully' }),
+      JSON.stringify({
+        success: true,
+        job_id: id,
+        message: 'Daily job queued successfully'
+      }),
       { status: 201, headers: CORS_HEADERS }
     );
   } catch (err) {

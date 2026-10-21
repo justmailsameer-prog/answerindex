@@ -811,6 +811,9 @@
 
         <div class="plan-tag" id="planTag">Pro Autonomous · $249/mo</div>
 
+        <button onclick="openTruthWikiModal()" class="btn-secondary" style="background: rgba(167,199,93,0.15); border-color: rgba(63,85,24,0.3); color: var(--c-lime-dark); font-weight:700;">
+          📖 Brand Truth Wiki
+        </button>
         <button onclick="openClientAuthModal('register')" class="btn-secondary" style="background: rgba(58,87,252,0.08); border-color: rgba(58,87,252,0.3); color: var(--c-cobalt); font-weight:700;">
           ➕ Connect Site
         </button>
@@ -821,6 +824,42 @@
       </div>
     </div>
   </nav>
+
+  <!-- Ground-Truth Anti-Hallucination Wiki Modal -->
+  <div id="truthWikiModal" class="auth-modal-overlay" onclick="handleTruthOverlayClick(event)">
+    <div class="auth-modal-card" style="max-width: 820px;">
+      <button class="auth-modal-close" onclick="closeTruthWikiModal()" aria-label="Close modal">✕</button>
+      <div class="auth-header" style="text-align: left; margin-bottom: 1.25rem;">
+        <div class="auth-badge" style="background: rgba(34,197,94,0.15); color: #4ade80; border: 1px solid rgba(34,197,94,0.3);">🛡️ Ground-Truth Anti-Hallucination Engine</div>
+        <h2 class="auth-title" id="truthModalTitle" style="font-size: 1.35rem; margin-top: 0.35rem; color:#fff;">Brand Ground-Truth Wiki</h2>
+        <p class="auth-subtitle" style="margin: 0; max-width: 100%; color:#94a3b8;">
+          Verified facts, official specifications, canonical pricing, and disallowed claims enforced by our edge engine to eliminate AI hallucinations.
+        </p>
+      </div>
+
+      <div style="margin-bottom: 1rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+          <label style="font-size: 0.82rem; font-weight: 700; color: #cbd5e1;">Ground-Truth Knowledge Base (Markdown):</label>
+          <span id="truthLastUpdated" style="font-size: 0.75rem; color: #94a3b8; font-family: var(--font-mono);">Last updated: Just now</span>
+        </div>
+        <textarea id="truthDocTextarea" rows="14" style="width: 100%; padding: 1rem; background: #080d1a; border: 1.5px solid rgba(255,255,255,0.15); border-radius: 10px; color: #f8fafc; font-family: var(--font-mono); font-size: 0.85rem; line-height: 1.6; resize: vertical; box-sizing: border-box;" placeholder="Enter verified company facts, official pricing, founding date, verified materials, and disallowed claims..."></textarea>
+      </div>
+
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+        <div style="font-size: 0.78rem; color: #94a3b8;">
+          ✦ Every generated AEO piece, comparison guide, and schema patch is verified against these rules.
+        </div>
+        <div style="display: flex; gap: 0.75rem;">
+          <button type="button" class="btn-secondary" onclick="closeTruthWikiModal()" style="padding: 0.65rem 1.1rem; color: #cbd5e1; background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.15);">
+            Cancel
+          </button>
+          <button type="button" class="btn-approve" id="btnSaveTruth" onclick="saveTruthDocument()" style="padding: 0.65rem 1.35rem;">
+            💾 Save Verified Facts
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Content Preview Modal for Staged AEO Answers & Schema (WordPress, Shopify, Magento, Web Portal) -->
   <div id="contentPreviewModal" class="auth-modal-overlay" onclick="handlePreviewOverlayClick(event)">
@@ -1103,10 +1142,21 @@
       }
 
       if (planTagElem) {
-        if (proj.plan_tier === 'pro_autonomous') {
-          planTagElem.textContent = 'Pro Autonomous · $249/mo';
+        if (proj.plan_tier === 'enterprise') {
+          planTagElem.textContent = 'Enterprise DFY · $1,499/mo';
+          planTagElem.style.background = 'rgba(58,87,252,0.15)';
+          planTagElem.style.color = '#3a57fc';
+          planTagElem.style.borderColor = 'rgba(58,87,252,0.4)';
+        } else if (proj.plan_tier === 'pro_autonomous') {
+          planTagElem.textContent = 'Pro Autonomous · $499/mo';
+          planTagElem.style.background = 'var(--c-lime-tint)';
+          planTagElem.style.color = 'var(--c-lime-dark)';
+          planTagElem.style.borderColor = 'rgba(167, 199, 93, 0.5)';
         } else {
-          planTagElem.textContent = 'Growth · $149/mo';
+          planTagElem.textContent = 'Growth · $199/mo';
+          planTagElem.style.background = 'var(--c-lime-tint)';
+          planTagElem.style.color = 'var(--c-lime-dark)';
+          planTagElem.style.borderColor = 'rgba(167, 199, 93, 0.5)';
         }
       }
 
@@ -1177,6 +1227,9 @@
 
       container.innerHTML = filtered.map(job => {
         const isJob1 = job.job_type === 'job_1_new_answer';
+        const isTool = job.job_type === 'interactive_mini_tool';
+        const isComparison = job.job_type === 'aeo_comparison_guide';
+        const isPR = job.job_type === 'digital_pr_correction';
         const isPending = job.pr_status === 'pending';
 
         // Determine delivery channel
@@ -1206,16 +1259,31 @@
           channelIcon = '💻';
         }
 
-        const typeLabel = isJob1 ? `${channelIcon} Job 1: AEO Direct Answer` : `🛡️ Job 2: Schema & Technical Refactor`;
-        const typeClass = isJob1 ? 'type-job1' : 'type-job2';
+        let typeLabel = `🛡️ Job 2: Schema & Technical Refactor`;
+        let typeClass = 'type-job2';
+
+        if (isJob1) {
+          typeLabel = `${channelIcon} Job 1: AEO Direct Answer`;
+          typeClass = 'type-job1';
+        } else if (isTool) {
+          typeLabel = `🧮 Interactive Mini-Tool / Calculator`;
+          typeClass = 'type-job1';
+        } else if (isComparison) {
+          typeLabel = `⚖️ AEO Comparison Guide`;
+          typeClass = 'type-job1';
+        } else if (isPR) {
+          typeLabel = `📢 Digital PR Citation Correction`;
+          typeClass = 'type-job2';
+        }
 
         return `
           <div class="job-card ${job.pr_status}" id="job-${job.id}">
             <div class="job-meta-row">
-              <div class="meta-left">
+              <div class="meta-left" style="display:flex; align-items:center; gap:0.4rem; flex-wrap:wrap;">
                 <span class="job-type-pill ${typeClass}">${typeLabel}</span>
                 <span class="date-tag">${job.date}</span>
                 <span style="font-size:0.75rem; background:rgba(0,0,0,0.05); padding:0.15rem 0.5rem; border-radius:12px; font-weight:700;">${channelBadge}</span>
+                ${job.is_truth_verified ? `<span style="font-size:0.75rem; background:rgba(34,197,94,0.12); color:#15803d; border:1px solid rgba(34,197,94,0.3); padding:0.15rem 0.5rem; border-radius:12px; font-weight:700;">✓ Brand Truth Verified</span>` : ''}
               </div>
               <div class="score-badge">
                 🛡️ ${job.schema_score}/100 Schema
@@ -1357,6 +1425,16 @@
 
       const contentToDisplay = job.content_html || `<h2>${escapeHtml(job.title)}</h2><p>${escapeHtml(job.zero_click_snippet)}</p><div style="margin-top:1rem; padding:1rem; background:#f5f4f0; border-radius:8px;"><strong>Schema.org Validated Invariant:</strong> Zero-error FAQPage graph pre-rendered for search bots.</div>`;
       renderedView.innerHTML = contentToDisplay;
+
+      // Re-execute any inline scripts so interactive mini-tools / calculators function live inside the dashboard
+      const inlineScripts = renderedView.querySelectorAll('script');
+      inlineScripts.forEach(oldScript => {
+        const newScript = document.createElement('script');
+        Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
+        newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+        oldScript.parentNode.replaceChild(newScript, oldScript);
+      });
+
       codeContent.textContent = contentToDisplay;
 
       if (currentProject.cms_url) {
@@ -1393,6 +1471,77 @@
     function handlePreviewOverlayClick(e) {
       if (e.target && e.target.id === 'contentPreviewModal') {
         closePreviewModal();
+      }
+    }
+
+    // 5.1 Ground-Truth Brand Wiki Modal Methods
+    function openTruthWikiModal() {
+      const modal = document.getElementById('truthWikiModal');
+      const title = document.getElementById('truthModalTitle');
+      const textarea = document.getElementById('truthDocTextarea');
+      const updated = document.getElementById('truthLastUpdated');
+
+      if (currentProject) {
+        title.textContent = `${currentProject.brand_name || currentProject.domain} — Ground-Truth Wiki`;
+        textarea.value = currentProject.truth_document || `# ${currentProject.brand_name || currentProject.domain} — Ground-Truth Brand Wiki\n\n## 1. Verified Brand Claims\n- Official brand name and mission.\n\n## 2. Verified Pricing & Features\n- Canonical tiers and specifications.\n\n## 3. Disallowed Claims & Anti-Hallucination Constraints\n- Explicit facts the AI must never fabricate.`;
+        if (currentProject.truth_updated_at) {
+          updated.textContent = 'Last synced: ' + new Date(currentProject.truth_updated_at).toLocaleString();
+        } else {
+          updated.textContent = 'Status: Ready for initial sync';
+        }
+      }
+
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeTruthWikiModal() {
+      const modal = document.getElementById('truthWikiModal');
+      if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function handleTruthOverlayClick(e) {
+      if (e.target && e.target.id === 'truthWikiModal') {
+        closeTruthWikiModal();
+      }
+    }
+
+    async function saveTruthDocument() {
+      const btn = document.getElementById('btnSaveTruth');
+      const textarea = document.getElementById('truthDocTextarea');
+      const updated = document.getElementById('truthLastUpdated');
+      if (!currentProject || !currentProject.id) return;
+
+      btn.disabled = true;
+      btn.textContent = 'Saving to D1...';
+
+      try {
+        const res = await fetch('/api/project', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            projectId: currentProject.id,
+            truth_document: textarea.value
+          })
+        });
+        const data = await res.json();
+        if (data.success) {
+          currentProject.truth_document = textarea.value;
+          currentProject.truth_updated_at = data.updated_at || new Date().toISOString();
+          updated.textContent = 'Last synced: Just now';
+          showToast('🛡️ Brand Ground-Truth facts saved & synced to edge!', '🛡️');
+          setTimeout(closeTruthWikiModal, 800);
+        } else {
+          showToast('❌ Failed to save: ' + (data.error || 'Server error'), '❌');
+        }
+      } catch (err) {
+        showToast('❌ Network error saving truth document', '❌');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = '💾 Save Verified Facts';
       }
     }
 

@@ -1061,21 +1061,22 @@
 
     /* Enterprise Deliverables Matrix Table */
     .pricing-table-wrapper {
-      max-width: 1050px;
+      max-width: 1220px;
       margin: 0 auto;
       background: #ffffff;
       border: 2px solid var(--c-cream-border);
       border-radius: 22px;
-      overflow: hidden;
+      overflow-x: auto;
       box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
     }
     .pricing-matrix-table {
       width: 100%;
       border-collapse: collapse;
       text-align: left;
+      min-width: 860px;
     }
     .pricing-matrix-table th, .pricing-matrix-table td {
-      padding: 1.25rem 1.6rem;
+      padding: 1.15rem 1.4rem;
       border-bottom: 1px solid var(--c-cream-border);
     }
     .pricing-matrix-table th {
@@ -1083,17 +1084,23 @@
       background: #faf9f5;
     }
     .pricing-matrix-table th.col-feature {
-      width: 38%;
+      width: 28%;
       border-right: 1px solid var(--c-cream-border);
     }
     .pricing-matrix-table th.col-growth {
-      width: 31%;
+      width: 24%;
       border-right: 1px solid var(--c-cream-border);
     }
     .pricing-matrix-table th.col-pro {
-      width: 31%;
+      width: 24%;
       background: linear-gradient(180deg, #edf2ff 0%, #ffffff 100%);
       border-top: 4px solid var(--c-cobalt);
+      border-right: 1px solid var(--c-cream-border);
+    }
+    .pricing-matrix-table th.col-enterprise {
+      width: 24%;
+      background: linear-gradient(180deg, #f4f8eb 0%, #ffffff 100%);
+      border-top: 4px solid var(--c-lime-dark);
     }
     .pricing-matrix-table td.col-feature {
       border-right: 1px solid var(--c-cream-border);
@@ -1106,6 +1113,12 @@
     }
     .pricing-matrix-table td.col-pro {
       background: rgba(58, 87, 252, 0.025);
+      border-right: 1px solid var(--c-cream-border);
+      color: #111111;
+      font-weight: 600;
+    }
+    .pricing-matrix-table td.col-enterprise {
+      background: rgba(167, 199, 93, 0.04);
       color: #111111;
       font-weight: 600;
     }
@@ -1114,6 +1127,9 @@
     }
     .pricing-matrix-table tr:hover td.col-pro {
       background-color: #f1f4ff;
+    }
+    .pricing-matrix-table tr:hover td.col-enterprise {
+      background-color: #eef6dd;
     }
 
     /* =========================================================================
@@ -2254,7 +2270,7 @@
 
             <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
               <a href="#pricing" class="btn btn-cobalt" style="font-size: 0.88rem; padding: 0.65rem 1.25rem;">
-                🚀 Fix Automatically with Pro ($149/mo) →
+                🚀 Fix Automatically with Pro ($199/mo) →
               </a>
               <button onclick="openContactModal('call')" class="btn btn-secondary-dark" style="font-size: 0.88rem; padding: 0.65rem 1rem;">
                 📞 Review with Founder
@@ -2845,7 +2861,7 @@
               <span style="color: var(--c-cobalt); font-weight: 800; font-size: 1.05rem;">Answer Index Pro (Everything Included in One Autonomous Loop)</span>
               <div style="font-size: 0.82rem; color: #555555;">Zero manual work. Two precision jobs shipped every single morning.</div>
             </div>
-            <span class="val-single-line" style="color: var(--c-cobalt); font-size: 1.25rem;">From $149 / mo</span>
+            <span class="val-single-line" style="color: var(--c-cobalt); font-size: 1.25rem;">From $199 / mo</span>
           </div>
         </div>
       </div>
@@ -2880,15 +2896,21 @@
               </th>
               <th class="col-growth">
                 <span style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 4px; background: rgba(0, 0, 0, 0.06); color: #333333; font-family: var(--font-mono);">Starter Tier</span>
-                <div style="font-size: 2.2rem; font-weight: 800; color: #111111; margin: 0.5rem 0 0.25rem;"><span id="growthPriceVal">$149</span><span style="font-size: 0.95rem; font-weight: 500; color: #666666;">/mo</span></div>
-                <div id="growthPriceSub" style="font-size: 0.8rem; color: var(--c-cobalt); font-weight: 700;">Or $119/mo billed annually</div>
+                <div style="font-size: 2.2rem; font-weight: 800; color: #111111; margin: 0.5rem 0 0.25rem;"><span id="growthPriceVal">$199</span><span style="font-size: 0.95rem; font-weight: 500; color: #666666;">/mo</span></div>
+                <div id="growthPriceSub" style="font-size: 0.8rem; color: var(--c-cobalt); font-weight: 700;">Or $159/mo billed annually</div>
                 <p style="font-size: 0.82rem; color: #666666; margin-top: 0.5rem;">For single products & early startups establishing AI presence.</p>
               </th>
               <th class="col-pro">
                 <span style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 4px; background: var(--c-lime); color: #000000; font-family: var(--font-mono);">⭐ Most Popular · Full Cadence</span>
-                <div style="font-size: 2.2rem; font-weight: 800; color: #111111; margin: 0.5rem 0 0.25rem;"><span id="proPriceVal">$249</span><span style="font-size: 0.95rem; font-weight: 500; color: #666666;">/mo</span></div>
-                <div id="proPriceSub" style="font-size: 0.8rem; color: var(--c-lime-dark); font-weight: 800;">⚡ $199/mo billed annually (Save $600)</div>
+                <div style="font-size: 2.2rem; font-weight: 800; color: #111111; margin: 0.5rem 0 0.25rem;"><span id="proPriceVal">$499</span><span style="font-size: 0.95rem; font-weight: 500; color: #666666;">/mo</span></div>
+                <div id="proPriceSub" style="font-size: 0.8rem; color: var(--c-lime-dark); font-weight: 800;">⚡ $399/mo billed annually (Save $1,200)</div>
                 <p style="font-size: 0.82rem; color: #444444; margin-top: 0.5rem;">The complete daily growth engine. 2 jobs shipped every business day.</p>
+              </th>
+              <th class="col-enterprise">
+                <span style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 4px; background: #111; color: #ffffff; font-family: var(--font-mono);">💼 Enterprise DFY Partner</span>
+                <div style="font-size: 2.2rem; font-weight: 800; color: #111111; margin: 0.5rem 0 0.25rem;"><span id="enterprisePriceVal">$1,499</span><span style="font-size: 0.95rem; font-weight: 500; color: #666666;">/mo</span></div>
+                <div id="enterprisePriceSub" style="font-size: 0.8rem; color: #15803d; font-weight: 800;">⚡ $1,199/mo billed annually (Save $3,600)</div>
+                <p style="font-size: 0.82rem; color: #444444; margin-top: 0.5rem;">Full-service Done-For-You partner with custom calculators & Slack.</p>
               </th>
             </tr>
           </thead>
@@ -2896,53 +2918,66 @@
             <tr>
               <td class="col-feature"><strong>1. Net New AEO Answer Assets</strong></td>
               <td class="col-growth">15 New Assets / mo<br /><span style="font-size: 0.8rem; color: #777;">(Every other business day)</span></td>
-              <td class="col-pro"><strong style="color: var(--c-cobalt);">30 New Assets / mo (Daily Cadence)</strong><br /><span style="font-size: 0.8rem; color: #555;">(Every single business day)</span></td>
+              <td class="col-pro"><strong style="color: var(--c-cobalt);">30 New Assets / mo (Daily Cadence)</strong><br /><span style="font-size: 0.8rem; color: #555;">(Every business day)</span></td>
+              <td class="col-enterprise"><strong style="color: var(--c-lime-dark);">60 High-Impact Assets / mo</strong><br /><span style="font-size: 0.8rem; color: #555;">(Daily Answers + Calculators)</span></td>
             </tr>
             <tr>
               <td class="col-feature"><strong>2. Technical SEO & Page Refactors</strong></td>
               <td class="col-growth">15 Slipping Page Fixes / mo</td>
               <td class="col-pro"><strong style="color: var(--c-cobalt);">30 Slipping Page Fixes / mo (Daily Cadence)</strong></td>
+              <td class="col-enterprise"><strong style="color: var(--c-lime-dark);">Unlimited Automated Edge Refactors + Schema</strong></td>
             </tr>
             <tr>
-              <td class="col-feature"><strong>3. Generative Engine Tracking</strong></td>
-              <td class="col-growth">ChatGPT Search & Perplexity</td>
-              <td class="col-pro"><strong style="color: var(--c-cobalt);">All 5: ChatGPT, Perplexity, Claude, Gemini & Google AI</strong></td>
+              <td class="col-feature"><strong>3. Interactive Citation Tools (Calculators)</strong></td>
+              <td class="col-growth">—</td>
+              <td class="col-pro">Standard Q&A Block Modules</td>
+              <td class="col-enterprise"><strong style="color: var(--c-lime-dark);">Custom Interactive JS Calculators</strong> (High-citation magnets)</td>
             </tr>
             <tr>
-              <td class="col-feature"><strong>4. AI Crawler Protocols Synchronization</strong></td>
-              <td class="col-growth">Basic <code>/llms.txt</code> updates</td>
-              <td class="col-pro"><strong style="color: var(--c-cobalt);">Full 26-File Engine (llms.txt, ai-entities.json, vector chunks)</strong></td>
+              <td class="col-feature"><strong>4. Competitor Displacement Guides</strong></td>
+              <td class="col-growth">Basic Brand Defense</td>
+              <td class="col-pro">Top 5 Competitor Invariants</td>
+              <td class="col-enterprise"><strong style="color: var(--c-lime-dark);">Active Displacement:</strong> "Brand vs Competitor" suites</td>
             </tr>
             <tr>
-              <td class="col-feature"><strong>5. Anti-Hallucination & Grounding Engine</strong></td>
-              <td class="col-growth">Standard fact check</td>
-              <td class="col-pro"><strong style="color: var(--c-cobalt);">4-Tier Deterministic Engine & Canonical Contrast Statements</strong></td>
+              <td class="col-feature"><strong>5. Anti-Hallucination Ground-Truth</strong></td>
+              <td class="col-growth">Standard Fact Verification</td>
+              <td class="col-pro"><strong style="color: var(--c-cobalt);">D1 Ground-Truth Brand Wiki Validation</strong></td>
+              <td class="col-enterprise"><strong style="color: var(--c-lime-dark);">White-Glove Fact Ingestion</strong> + Zero-Hallucination Invariant</td>
             </tr>
             <tr>
-              <td class="col-feature"><strong>6. Pull Request & Approval Workflows</strong></td>
-              <td class="col-growth">Automated GitHub PRs only</td>
-              <td class="col-pro"><strong style="color: var(--c-cobalt);">Dual: GitHub PRs + Web Dashboard 1-Click Approval</strong></td>
+              <td class="col-feature"><strong>6. Digital PR Citation Correction</strong></td>
+              <td class="col-growth">—</td>
+              <td class="col-pro">AI Mention & Drift Telemetry</td>
+              <td class="col-enterprise"><strong style="color: var(--c-lime-dark);">Targeted Digital PR Outreach Drafts</strong> to 3rd-party domains</td>
             </tr>
             <tr>
-              <td class="col-feature"><strong>7. Automated Pre-Merge CI/CD Verification</strong></td>
-              <td class="col-growth">JSON-LD Schema validation</td>
-              <td class="col-pro"><strong style="color: var(--c-cobalt);">Schema Validation + Readability & Grounding Scorecards</strong></td>
+              <td class="col-feature"><strong>7. CMS Delivery Channels</strong></td>
+              <td class="col-growth">WordPress, Shopify or Git</td>
+              <td class="col-pro"><strong style="color: var(--c-cobalt);">All 5: WP, Shopify, Magento, Web Portal & Git</strong></td>
+              <td class="col-enterprise"><strong style="color: var(--c-lime-dark);">All 5 CMS Platforms</strong> + Staging Webhook Sync</td>
             </tr>
             <tr>
-              <td class="col-feature"><strong>8. Founder Strategy & Roadmap Reviews</strong></td>
+              <td class="col-feature"><strong>8. Founder Strategy & SLAs</strong></td>
               <td class="col-growth">Email Support (24h SLA)</td>
-              <td class="col-pro"><strong style="color: var(--c-cobalt);">Monthly 1-on-1 Performance Review with Sameer Sharma</strong></td>
+              <td class="col-pro"><strong style="color: var(--c-cobalt);">Monthly 1-on-1 Strategy Review</strong></td>
+              <td class="col-enterprise"><strong style="color: var(--c-lime-dark);">Dedicated Private Slack Channel</strong> + Weekly Founder SLA</td>
             </tr>
             <tr>
               <td class="col-feature"><strong>Action & Enrollment</strong></td>
               <td class="col-growth">
                 <button onclick="startCheckout('growth')" class="btn btn-secondary-light" style="width: 100%; padding: 0.75rem 1rem; cursor: pointer;">
-                  <span id="growthBtnText">Start Growth ($149/mo) →</span>
+                  <span id="growthBtnText">Start Growth ($199/mo) →</span>
                 </button>
               </td>
               <td class="col-pro">
                 <button onclick="startCheckout('pro_autonomous')" class="btn btn-cobalt" style="width: 100%; padding: 0.75rem 1rem; cursor: pointer;">
-                  <span id="proBtnText">Claim Pro Access ($249/mo) →</span>
+                  <span id="proBtnText">Claim Pro Access ($499/mo) →</span>
+                </button>
+              </td>
+              <td class="col-enterprise">
+                <button onclick="startCheckout('enterprise')" class="btn btn-secondary-dark" style="width: 100%; padding: 0.75rem 1rem; cursor: pointer; background: #111111; color: #ffffff;">
+                  <span id="enterpriseBtnText">Join Partner ($1,499/mo) →</span>
                 </button>
               </td>
             </tr>
@@ -3206,8 +3241,9 @@
           <ul>
             <li><a href="#comparison">Market Comparison Matrix</a></li>
             <li><a href="#pricing">Value Replacement ($4,249/mo)</a></li>
-            <li><a href="#pricing">Growth Plan ($149/mo)</a></li>
-            <li><a href="#pricing">Pro Autonomous Plan ($249/mo)</a></li>
+            <li><a href="#pricing">Growth Plan ($199/mo)</a></li>
+            <li><a href="#pricing">Pro Autonomous ($499/mo)</a></li>
+            <li><a href="#pricing">Enterprise Partner ($1,499/mo)</a></li>
             <li><a href="index.html">Free Open Source vs Pro</a></li>
             <li><a href="#before-you-start">FAQ: Before You Start</a></li>
           </ul>
@@ -3712,21 +3748,30 @@
       const proSub = document.getElementById('proPriceSub');
       const proBtn = document.getElementById('proBtnText');
 
+      const enterpriseVal = document.getElementById('enterprisePriceVal');
+      const enterpriseSub = document.getElementById('enterprisePriceSub');
+      const enterpriseBtn = document.getElementById('enterpriseBtnText');
+
       if (isAnnual) {
         if (knob) knob.style.transform = 'translateX(30px)';
         if (toggleBtn) toggleBtn.style.background = 'var(--c-cobalt)';
         if (labelMonthly) { labelMonthly.style.fontWeight = '600'; labelMonthly.style.color = '#555555'; }
         if (labelAnnual) { labelAnnual.style.fontWeight = '800'; labelAnnual.style.color = '#111111'; }
 
-        // Growth Tier Annual ($119/mo * 12 = $1,428/yr)
-        if (growthVal) growthVal.textContent = '$119';
-        if (growthSub) growthSub.textContent = '⚡ Billed $1,428/yr (Save $360/yr)';
-        if (growthBtn) growthBtn.textContent = 'Start Growth Annual ($1,428/yr) →';
+        // Growth Tier Annual ($159/mo * 12 = $1,908/yr)
+        if (growthVal) growthVal.textContent = '$159';
+        if (growthSub) growthSub.textContent = '⚡ Billed $1,908/yr (Save $480/yr)';
+        if (growthBtn) growthBtn.textContent = 'Start Growth Annual ($1,908/yr) →';
 
-        // Pro Autonomous Tier Annual ($199/mo * 12 = $2,388/yr)
-        if (proVal) proVal.textContent = '$199';
-        if (proSub) proSub.textContent = '⚡ Billed $2,388/yr (Save $600/yr)';
-        if (proBtn) proBtn.textContent = 'Claim Pro Annual ($2,388/yr) →';
+        // Pro Autonomous Tier Annual ($399/mo * 12 = $4,788/yr)
+        if (proVal) proVal.textContent = '$399';
+        if (proSub) proSub.textContent = '⚡ Billed $4,788/yr (Save $1,200/yr)';
+        if (proBtn) proBtn.textContent = 'Claim Pro Annual ($4,788/yr) →';
+
+        // Enterprise DFY Partner Tier Annual ($1,199/mo * 12 = $14,388/yr)
+        if (enterpriseVal) enterpriseVal.textContent = '$1,199';
+        if (enterpriseSub) enterpriseSub.textContent = '⚡ Billed $14,388/yr (Save $3,600/yr)';
+        if (enterpriseBtn) enterpriseBtn.textContent = 'Join Partner Annual ($14,388/yr) →';
       } else {
         if (knob) knob.style.transform = 'translateX(0px)';
         if (toggleBtn) toggleBtn.style.background = '#000000';
@@ -3734,14 +3779,19 @@
         if (labelAnnual) { labelAnnual.style.fontWeight = '600'; labelAnnual.style.color = '#555555'; }
 
         // Growth Tier Monthly
-        if (growthVal) growthVal.textContent = '$149';
-        if (growthSub) growthSub.textContent = 'Or $119/mo billed annually';
-        if (growthBtn) growthBtn.textContent = 'Start Growth ($149/mo) →';
+        if (growthVal) growthVal.textContent = '$199';
+        if (growthSub) growthSub.textContent = 'Or $159/mo billed annually';
+        if (growthBtn) growthBtn.textContent = 'Start Growth ($199/mo) →';
 
         // Pro Autonomous Tier Monthly
-        if (proVal) proVal.textContent = '$249';
-        if (proSub) proSub.textContent = '⚡ $199/mo billed annually (Save $600)';
-        if (proBtn) proBtn.textContent = 'Claim Pro Access ($249/mo) →';
+        if (proVal) proVal.textContent = '$499';
+        if (proSub) proSub.textContent = '⚡ $399/mo billed annually (Save $1,200)';
+        if (proBtn) proBtn.textContent = 'Claim Pro Access ($499/mo) →';
+
+        // Enterprise DFY Partner Tier Monthly
+        if (enterpriseVal) enterpriseVal.textContent = '$1,499';
+        if (enterpriseSub) enterpriseSub.textContent = '⚡ $1,199/mo billed annually (Save $3,600)';
+        if (enterpriseBtn) enterpriseBtn.textContent = 'Join Partner ($1,499/mo) →';
       }
     }
 
@@ -3751,7 +3801,9 @@
 
     // Dodo Payments Checkout Initiator
     async function startCheckout(plan = 'pro_autonomous') {
-      const planDisplayName = plan === 'growth' ? 'Growth' : 'Pro Autonomous';
+      let planDisplayName = 'Pro Autonomous';
+      if (plan === 'growth') planDisplayName = 'Growth';
+      if (plan === 'enterprise') planDisplayName = 'Enterprise DFY Partner';
       showToast(`⚡ Connecting to Dodo Payments checkout for ${planDisplayName} (${currentBillingCycle})...`, '💳');
       try {
         const res = await fetch('/api/create-checkout', {
@@ -4452,8 +4504,8 @@
       doc.setTextColor(70, 70, 70);
       doc.setFontSize(7.8);
       const ctaDescText = isHighScore
-        ? `Answer Index Pro delivers automated daily pull requests directly to your repository (1 new answer piece + 1 technical SEO fix daily). Because ${auditData.domain} has an elite foundation, choose the Flexible Monthly Plan ($149/mo) for drift defense, or lock in full annual category domination with 20% savings.`
-        : 'Answer Index Pro delivers automated daily pull requests directly to your repository (1 new answer piece + 1 technical SEO fix daily). Start flexible with the Monthly Plan ($149/mo) or lock in full 12-month compounding category dominance with the Annual Plan ($119/mo billed annually with 20% savings).';
+        ? `Answer Index Pro delivers automated daily deliverables directly to your CMS or repository (1 new answer piece + 1 technical SEO fix daily). Because ${auditData.domain} has an elite foundation, choose the Starter Plan ($199/mo) for drift defense, or accelerate category domination with Pro Autonomous ($499/mo) or Enterprise DFY Partner ($1,499/mo).`
+        : 'Answer Index Pro delivers automated daily pull requests and CMS drafts directly to your website (1 new answer piece + 1 technical SEO fix daily). Start with the Starter Plan ($199/mo), the complete Pro Autonomous Cadence ($499/mo), or our high-impact Enterprise DFY Partner ($1,499/mo with dedicated Slack).';
       
       const ctaDesc = doc.splitTextToSize(ctaDescText, contentWidth - 16);
       doc.text(ctaDesc, margin + 8, yPos + 15.5);
@@ -4461,10 +4513,10 @@
       doc.setFont('helvetica', 'bold');
       doc.setTextColor(58, 87, 252);
       doc.setFontSize(8.2);
-      doc.text('• Starter Tier: $149/mo ($119/mo billed annually) · 1-click GitHub PR approvals', margin + 8, yPos + 28);
-      doc.text('• Growth Tier: $249/mo ($199/mo billed annually) · Dual daily PRs & Competitor Defense', margin + 8, yPos + 35);
-      doc.text('• Commercial Pricing Portal: https://answerindex-pro.pages.dev/#pricing', margin + 8, yPos + 42);
-      doc.text('• Founder Consultation & Custom Setup: sameer@answerindex.com', margin + 8, yPos + 49);
+      doc.text('• Starter Plan: $199/mo ($159/mo annual) · 1-click CMS / Git staging', margin + 8, yPos + 28);
+      doc.text('• Pro Autonomous: $499/mo ($399/mo annual) · Dual daily jobs & Competitor Defense', margin + 8, yPos + 35);
+      doc.text('• Enterprise Partner: $1,499/mo ($1,199/mo annual) · Calculators & Dedicated Slack', margin + 8, yPos + 42);
+      doc.text('• Commercial Pricing Portal: https://answerindex-pro.pages.dev/#pricing', margin + 8, yPos + 49);
 
       // Page 2 Footer
       doc.setFontSize(8);

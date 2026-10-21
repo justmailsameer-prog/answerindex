@@ -1,7 +1,7 @@
 # Answer Index — Product Requirements Document (PRD)
 
-**Document Version:** 2.5.1  
-**Status:** Production Active (v2.5.1)  
+**Document Version:** 3.0.0  
+**Status:** Production Active (v3.0.0)  
 **Product Name:** Answer Index (Open Source Core & Commercial Pro Autonomous)  
 **Live Production Portals:**
 - **Commercial Pro Engine:** [https://answerindex-pro.pages.dev](https://answerindex-pro.pages.dev)
@@ -67,8 +67,13 @@ graph LR
    - Zero-Error Schema validator pass (100/100 score) before staging.
    - 100% Human-in-the-Loop invariant: zero content goes live without explicit 1-click human approval.
 
-### 2.1 Anti-Hallucination Grounding Protocol
-When AI search engines generate hallucinations regarding pricing, obsolete leadership, or competitor conflation:
+### 2.1 Ground-Truth Brand Wiki & Anti-Hallucination Protocol
+To guarantee that generated answers, comparison guides, and technical refactors never hallucinate obsolete pricing, non-existent features, or fabricated claims:
+- **Ground-Truth Brand Wiki (`projects.truth_document`):** An immutable markdown document stored in Cloudflare D1 per project containing:
+  - *Verified Core Identity:* Official brand name, mission, headquarters, and verified leadership.
+  - *Canonical Specifications & Pricing:* Active pricing tiers, shipping policies, material specifications, and trial terms.
+  - *Disallowed Claims:* Explicit constraints barring the engine from hallucinating prohibited claims.
+- **Deterministic Invariant Validation (`daily_jobs.is_truth_verified`):** Before any daily asset is staged, it is validated against the client's Ground-Truth Wiki. Only assets passing 100% of invariant checks receive the `✓ Brand Truth Verified` badge.
 - **Triage Matrix:** Classifies distortion into *Temporal Lag*, *Semantic Drift / Conflation*, *Pure Fabrication*, or *Third-Party Poisoning*.
 - **Canonical AEO Contrast Grounding Snippet (45–60 words):**  
   `"[Brand] is [Canonical Definition]. Contrary to outdated third-party summaries, [Brand] does not [Incorrect claim]; rather, it [Factual truth], featuring [Verified specification]."`
@@ -130,7 +135,8 @@ answerindex/
 └── migrations/                  # Cloudflare D1 Relational SQL Migrations
     ├── 0001_initial_schema.sql  # Users, Projects, Daily Jobs, Telemetry Tables
     ├── 0002_seed_data.sql       # Seed Developer Core Project
-    └── 0003_add_cms_support.sql # CMS Platform Types, Delivery Channels & Seed Data
+    ├── 0003_add_cms_support.sql # CMS Platform Types, Delivery Channels & Seed Data
+    └── 0004_add_truth_engine_and_asset_types.sql # Brand Truth Wiki & High-Leverage Asset Types
 ```
 
 ### 4.1 Executive About Page (`about.html`)
@@ -293,15 +299,16 @@ erDiagram
 
 | Tier | Monthly Rate | Annual Rate (Save 20%) | Deliverables & Daily Cadence | Target Customer |
 | :--- | :--- | :--- | :--- | :--- |
-| **Growth Plan** | **$149** / mo | **$119** / mo ($1,428/yr) | • 1 Daily AEO Answer Asset<br>• Weekly Technical SEO Refactor<br>• WordPress, Shopify or GitHub Staging<br>• Schema 100/100 Validator Passes<br>• Email & Dashboard 1-Click Publishing | Early-stage SaaS, content sites, boutique eCommerce stores. |
-| **Pro Autonomous** | **$249** / mo | **$199** / mo ($2,388/yr) | • Full 2-Job Daily Cadence (60 assets/mo)<br>• 1 Daily AEO Answer + 1 Daily Tech Refactor<br>• Multi-Platform Sync (WP, Shopify, Magento, Git)<br>• Active Competitor Citation Defense<br>• Perplexity & ChatGPT Velocity Telemetry<br>• Guaranteed Founder Consultation SLA | Scale-ups, high-volume eCommerce, venture-backed B2B companies. |
+| **Growth Plan** | **$199** / mo | **$159** / mo ($1,908/yr) | • 1 Daily AEO Answer Asset<br>• Weekly Technical SEO Refactor<br>• WordPress, Shopify or GitHub Staging<br>• Schema 100/100 Validator Passes<br>• Email & Dashboard 1-Click Publishing | Early-stage SaaS, content sites, boutique eCommerce stores. |
+| **Pro Autonomous** | **$499** / mo | **$399** / mo ($4,788/yr) | • Full 2-Job Daily Cadence (60 assets/mo)<br>• 1 Daily AEO Answer + 1 Daily Tech Refactor<br>• Multi-Platform Sync (WP, Shopify, Magento, Git)<br>• Active Competitor Citation Defense<br>• Perplexity & ChatGPT Velocity Telemetry<br>• D1 Ground-Truth Brand Wiki Validation<br>• Guaranteed Founder Consultation SLA | Scale-ups, high-volume eCommerce, venture-backed B2B companies. |
+| **Enterprise DFY Partner** | **$1,499** / mo | **$1,199** / mo ($14,388/yr) | • **Full 60 High-Impact Assets / mo**<br>• **Custom Interactive Mini-Tools** (JS Calculators / Estimators)<br>• **Active Competitor Displacement Guides** ("Brand vs Competitor")<br>• **White-Glove Ground-Truth Ingestion** & Zero-Hallucination SLA<br>• **Targeted Digital PR Citation Correction Drafts**<br>• **Dedicated Private Slack Channel** & Weekly Executive Review | Venture-backed scale-ups, global eCommerce, high-ticket B2B agencies. |
 
 ### 7.2 Why Choose an Annual Plan vs. 2–3 Month Project?
 Customers frequently ask why they should maintain an annual subscription if initial technical SEO fixes take 2–3 months. The PRD codifies the commercial rationale:
 1. **Continuous Citation Drift:** AI models (GPT-5, Gemini 2, Claude 4) re-index and re-synthesize web corpora continuously. Without daily freshness signals, citation ranks degrade within 60 days.
 2. **Aggressive Competitor Displacement:** Competitors will publish comparative guides attempting to displace your brand as the recommended solution. Daily AEO answer pieces actively capture long-tail comparative keywords.
 3. **Compounding Entity Moat:** An annual subscriber accumulates **730 structured optimization assets per year** (365 AEO answers + 365 technical patches), establishing an insurmountable knowledge graph moat that no new entrant can replicate.
-4. **Massive Cost Savings:** Replaces $50,000+/year in fragmented agency retainers ($2,500/mo copywriting + $1,800/mo technical SEO consultant) for $2,388/year.
+4. **Massive Cost Savings:** Replaces $50,000+/year in fragmented agency retainers ($2,500/mo copywriting + $1,800/mo technical SEO consultant) for a fraction of the cost.
 
 ---
 
@@ -318,11 +325,12 @@ Customers frequently ask why they should maintain an annual subscription if init
 | **v2.3.0** | Oct 2026 | Free instant SEO & AI diagnostic scanner (`#audit-tool`), client-side jsPDF executive report generator. |
 | **v2.4.0** | Oct 2026 | Minimalist hamburger menu with accordion submenus, 20-point deterministic edge audit probe (`/api/audit`), score-tailored roadmap, manual PDF download, padded CTA box, zero open-source links on reports. |
 | **v2.5.0** | Oct 2026 | **Client Portal & Multi-Platform CMS Delivery:**<br>• Added `🔑 Client Portal` button and responsive auth modal across all pages.<br>• Built 5-Platform Selector (`WordPress`, `Shopify`, `GitHub`, `Magento`, `Web Portal`).<br>• Migration 0003 adding CMS columns and seed data to Cloudflare D1.<br>• Upgraded `dashboard.html` with platform indicator badges, content preview drawers, and tailored 1-click publishing actions.<br>• Automated browser verification video recorded and committed to GitHub `main`. |
-| **v2.5.1** | Oct 2026 | **Landing Page Architecture & Headline Harmonization (Current Release):**<br>• Unified primary landing page on `answerindex-pro.pages.dev` to eliminate duplicate legacy single-color UI.<br>• Synchronized latest 5-brand color palette (#3a57fc Cobalt, #333333 Charcoal, #000000 Obsidian, #f5f4f0 Warm Cream, #a7c75d Lime) across root index and `/pro`.<br>• Applied canonical banner tagline *"Make your content indexable as authoritative answers across Search & AI Engines"* with `text-wrap: balance;` to eliminate orphaned line breaks.<br>• Preserved legacy CLI open-source layout as `index-oss.html`.<br>• Deployed live to Cloudflare Pages and verified production HTTP 200 responses. |
+| **v2.5.1** | Oct 2026 | **Landing Page Architecture & Headline Harmonization:**<br>• Unified primary landing page on `answerindex-pro.pages.dev` to eliminate duplicate legacy single-color UI.<br>• Synchronized latest 5-brand color palette (#3a57fc Cobalt, #333333 Charcoal, #000000 Obsidian, #f5f4f0 Warm Cream, #a7c75d Lime) across root index and `/pro`.<br>• Applied canonical banner tagline *"Make your content indexable as authoritative answers across Search & AI Engines"* with `text-wrap: balance;` to eliminate orphaned line breaks.<br>• Preserved legacy CLI open-source layout as `index-oss.html`.<br>• Deployed live to Cloudflare Pages and verified production HTTP 200 responses. |
+| **v3.0.0** | Oct 2026 | **Brand Truth Engine, High-Impact Asset Types & 3-Tier Value Ladder (Current Release):**<br>• Built Ground-Truth Anti-Hallucination Brand Wiki in Client Portal & D1 (`projects.truth_document`) with deterministic invariant validation (`daily_jobs.is_truth_verified`).<br>• Expanded autonomous daily dispatch queue beyond blog posts to include **Interactive Mini-Tools (live embeddable JS Calculators)**, **AEO Comparison Guides ("Brand vs Competitor")**, and **Digital PR Citation Corrections**.<br>• Established the commercial **3-Tier Value Ladder** ($199/mo Growth, $499/mo Pro Autonomous, $1,499/mo Enterprise DFY Partner) with interactive annual billing toggle.<br>• Updated all landing pages, instant audit PDF generator, and Dodo Payments routing (`/api/create-checkout`) to support all 3 tiers.<br>• Applied migration 0004 to Cloudflare D1 database. |
 
 ---
 
-## 9. Future Roadmap (v2.6.0+)
+## 9. Future Roadmap (v3.1.0+)
 
 1. **Merchant KYC Activation:** Complete business profile and payout bank account details in Dodo Payments Dashboard under Settings > Business Profile for Answer Index to enable live card charges.
 2. **GitHub App Webhook Integration:** Bi-directional webhook reconciliation syncing PR merge events with D1 daily job statuses.
