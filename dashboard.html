@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/client-portal.css" />
 
   <style>
     :root {
@@ -788,7 +789,7 @@
         <img src="assets/AnswerIndex_Logo.png" alt="Answer Index Logo" class="logo-img" />
         <div class="brand-text">
           <div class="brand-name">
-            Answer Index <span class="pro-badge">PRO</span>
+            Answer Index <span class="pro-badge" id="easterEggProBadge" title="Answer Index PRO">PRO</span>
           </div>
           <div class="cadence-badge">
             <span class="pulse-dot"></span> Autonomous Loop Active · 09:00 AM Dispatch
@@ -1755,5 +1756,6 @@
     // Initialize Dashboard on page load
     loadProject();
   </script>
+  <script src="assets/client-portal.js"></script>
 </body>
 </html>

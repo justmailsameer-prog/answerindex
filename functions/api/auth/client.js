@@ -118,13 +118,39 @@ export async function onRequestPost({ request, env }) {
       );
     }
 
+    // Secret Founder & Family Easter Egg Verification (Passcode: 88888888)
+    if (action === 'vip_verify') {
+      const code = (body.code || '').toString().trim();
+      if (code === '88888888') {
+        return new Response(
+          JSON.stringify({
+            success: true,
+            valid: true,
+            tier: 'enterprise',
+            message: '👑 VIP Founder & Family Passcode Accepted! Paywall removed.'
+          }),
+          { status: 200, headers: CORS_HEADERS }
+        );
+      } else {
+        return new Response(
+          JSON.stringify({
+            success: false,
+            valid: false,
+            error: 'Incorrect VIP Passcode. Access Denied.'
+          }),
+          { status: 401, headers: CORS_HEADERS }
+        );
+      }
+    }
+
     if (action === 'register' || action === 'onboard') {
       const email = (body.email || '').trim().toLowerCase();
       const rawDomain = (body.domain || '').trim().toLowerCase().replace(/^https?:\/\//, '').replace(/\/$/, '');
       const brandName = (body.brand_name || rawDomain || 'My Brand').trim();
       const cmsType = (body.cms_type || 'portal').trim().toLowerCase(); // github, wordpress, shopify, magento, portal
       const cmsUrl = (body.cms_url || '').trim();
-      const planTier = body.plan_tier || 'growth';
+      const isVip = (body.vip_code || '').toString().trim() === '88888888';
+      const planTier = isVip ? 'enterprise' : (body.plan_tier || 'growth');
 
       if (!email || !email.includes('@')) {
         return new Response(
@@ -160,6 +186,13 @@ export async function onRequestPost({ request, env }) {
           plan_tier: planTier,
           subscription_status: 'active'
         };
+      } else if (isVip && user.plan_tier !== 'enterprise') {
+        // Upgrade existing user to Enterprise for free via VIP
+        await env.DB.prepare(
+          `UPDATE users SET plan_tier = 'enterprise', subscription_status = 'active' WHERE id = ?`
+        ).bind(user.id).run();
+        user.plan_tier = 'enterprise';
+        user.subscription_status = 'active';
       }
 
       // 2. Create project
