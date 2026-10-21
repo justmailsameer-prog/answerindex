@@ -1,7 +1,7 @@
 # Answer Index — Product Requirements Document (PRD)
 
-**Document Version:** 3.0.0  
-**Status:** Production Active (v3.0.0)  
+**Document Version:** 3.1.0  
+**Status:** Production Active (v3.1.0) — Frozen Milestone  
 **Product Name:** Answer Index (Open Source Core & Commercial Pro Autonomous)  
 **Live Production Portals:**
 - **Commercial Pro Engine:** [https://answerindex-pro.pages.dev](https://answerindex-pro.pages.dev)
@@ -301,7 +301,7 @@ erDiagram
 | :--- | :--- | :--- | :--- | :--- |
 | **Growth Plan** | **$199** / mo | **$159** / mo ($1,908/yr) | • 1 Daily AEO Answer Asset<br>• Weekly Technical SEO Refactor<br>• WordPress, Shopify or GitHub Staging<br>• Schema 100/100 Validator Passes<br>• Email & Dashboard 1-Click Publishing | Early-stage SaaS, content sites, boutique eCommerce stores. |
 | **Pro Autonomous** | **$499** / mo | **$399** / mo ($4,788/yr) | • Full 2-Job Daily Cadence (60 assets/mo)<br>• 1 Daily AEO Answer + 1 Daily Tech Refactor<br>• Multi-Platform Sync (WP, Shopify, Magento, Git)<br>• Active Competitor Citation Defense<br>• Perplexity & ChatGPT Velocity Telemetry<br>• D1 Ground-Truth Brand Wiki Validation<br>• Guaranteed Founder Consultation SLA | Scale-ups, high-volume eCommerce, venture-backed B2B companies. |
-| **Enterprise DFY Partner** | **$1,499** / mo | **$1,199** / mo ($14,388/yr) | • **Full 60 High-Impact Assets / mo**<br>• **Custom Interactive Mini-Tools** (JS Calculators / Estimators)<br>• **Active Competitor Displacement Guides** ("Brand vs Competitor")<br>• **White-Glove Ground-Truth Ingestion** & Zero-Hallucination SLA<br>• **Targeted Digital PR Citation Correction Drafts**<br>• **Dedicated Private Slack Channel** & Weekly Executive Review | Venture-backed scale-ups, global eCommerce, high-ticket B2B agencies. |
+| **Enterprise DFY Partner** | **$1,499** / mo | **$1,199** / mo ($14,388/yr) | • **Full 60 High-Impact Assets / mo**<br>• **Custom Interactive Mini-Tools** (JS Calculators / Estimators)<br>• **Active Competitor Displacement Guides** ("Brand vs Competitor")<br>• **White-Glove Ground-Truth Ingestion** & Zero-Hallucination SLA<br>• **Targeted Digital PR Citation Correction Drafts**<br>• **Priority Enterprise Strategy SLA** & Dedicated White-Glove Support | Venture-backed scale-ups, global eCommerce, high-ticket B2B agencies. |
 
 ### 7.2 Why Choose an Annual Plan vs. 2–3 Month Project?
 Customers frequently ask why they should maintain an annual subscription if initial technical SEO fixes take 2–3 months. The PRD codifies the commercial rationale:
@@ -309,6 +309,18 @@ Customers frequently ask why they should maintain an annual subscription if init
 2. **Aggressive Competitor Displacement:** Competitors will publish comparative guides attempting to displace your brand as the recommended solution. Daily AEO answer pieces actively capture long-tail comparative keywords.
 3. **Compounding Entity Moat:** An annual subscriber accumulates **730 structured optimization assets per year** (365 AEO answers + 365 technical patches), establishing an insurmountable knowledge graph moat that no new entrant can replicate.
 4. **Massive Cost Savings:** Replaces $50,000+/year in fragmented agency retainers ($2,500/mo copywriting + $1,800/mo technical SEO consultant) for a fraction of the cost.
+
+### 7.3 Founder & Family VIP Access Protocol (Easter Egg & Secret Passcode `88888888`)
+For internal demonstration, staging, personal websites, and complimentary provisioning for friends & family without incurring payment gateway charges:
+- **Secret Passcode:** `88888888` (Eight times 8). Permanently documented in [VIP-ACCESS-SECRET.md](file:///d:/AI%20Product/answerindex/VIP-ACCESS-SECRET.md) and [lib/vip-access-config.mjs](file:///d:/AI%20Product/answerindex/lib/vip-access-config.mjs).
+- **Easter Egg Trigger:** Rapidly clicking the **"PRO"** badge (`#easterEggProBadge` / `.badge-pro`) **5 times** in the navigation bar opens the secret `👑 VIP Founder & Family Access` modal.
+- **Verification Engine:** Verified client-side and authenticated edge-side via Cloudflare Pages Function `/api/auth/client` (`action: 'vip_verify'`).
+- **Full Paywall Removal ($0 Complimentary):**
+  - Displays persistent top golden banner: `👑 VIP Founder Mode Active: All tiers 100% Free ($0) · Secret Passcode 88888888`.
+  - Automatically strikes through all commercial pricing ($199, $499, $1,499) to **$0 Free Forever**.
+  - All checkout buttons transform into `⚡ Launch Free VIP Site ($0) →`.
+  - Form submission creates an active **Enterprise** workspace with initial 2-job daily cadence in Cloudflare D1 and redirects directly into `dashboard.html` with zero payment gateway interaction.
+  - State persisted via browser `localStorage` (`answerindex_vip_unlocked = '88888888'`) with 1-click `[Exit VIP Mode]` toggle.
 
 ---
 
@@ -326,12 +338,22 @@ Customers frequently ask why they should maintain an annual subscription if init
 | **v2.4.0** | Oct 2026 | Minimalist hamburger menu with accordion submenus, 20-point deterministic edge audit probe (`/api/audit`), score-tailored roadmap, manual PDF download, padded CTA box, zero open-source links on reports. |
 | **v2.5.0** | Oct 2026 | **Client Portal & Multi-Platform CMS Delivery:**<br>• Added `🔑 Client Portal` button and responsive auth modal across all pages.<br>• Built 5-Platform Selector (`WordPress`, `Shopify`, `GitHub`, `Magento`, `Web Portal`).<br>• Migration 0003 adding CMS columns and seed data to Cloudflare D1.<br>• Upgraded `dashboard.html` with platform indicator badges, content preview drawers, and tailored 1-click publishing actions.<br>• Automated browser verification video recorded and committed to GitHub `main`. |
 | **v2.5.1** | Oct 2026 | **Landing Page Architecture & Headline Harmonization:**<br>• Unified primary landing page on `answerindex-pro.pages.dev` to eliminate duplicate legacy single-color UI.<br>• Synchronized latest 5-brand color palette (#3a57fc Cobalt, #333333 Charcoal, #000000 Obsidian, #f5f4f0 Warm Cream, #a7c75d Lime) across root index and `/pro`.<br>• Applied canonical banner tagline *"Make your content indexable as authoritative answers across Search & AI Engines"* with `text-wrap: balance;` to eliminate orphaned line breaks.<br>• Preserved legacy CLI open-source layout as `index-oss.html`.<br>• Deployed live to Cloudflare Pages and verified production HTTP 200 responses. |
-| **v3.0.0** | Oct 2026 | **Brand Truth Engine, High-Impact Asset Types & 3-Tier Value Ladder (Current Release):**<br>• Built Ground-Truth Anti-Hallucination Brand Wiki in Client Portal & D1 (`projects.truth_document`) with deterministic invariant validation (`daily_jobs.is_truth_verified`).<br>• Expanded autonomous daily dispatch queue beyond blog posts to include **Interactive Mini-Tools (live embeddable JS Calculators)**, **AEO Comparison Guides ("Brand vs Competitor")**, and **Digital PR Citation Corrections**.<br>• Established the commercial **3-Tier Value Ladder** ($199/mo Growth, $499/mo Pro Autonomous, $1,499/mo Enterprise DFY Partner) with interactive annual billing toggle.<br>• Updated all landing pages, instant audit PDF generator, and Dodo Payments routing (`/api/create-checkout`) to support all 3 tiers.<br>• Applied migration 0004 to Cloudflare D1 database. |
+| **v3.0.0** | Oct 2026 | **Brand Truth Engine, High-Impact Asset Types & 3-Tier Value Ladder:**<br>• Built Ground-Truth Anti-Hallucination Brand Wiki in Client Portal & D1 (`projects.truth_document`) with deterministic invariant validation (`daily_jobs.is_truth_verified`).<br>• Expanded autonomous daily dispatch queue beyond blog posts to include **Interactive Mini-Tools (live embeddable JS Calculators)**, **AEO Comparison Guides ("Brand vs Competitor")**, and **Digital PR Citation Corrections**.<br>• Established the commercial **3-Tier Value Ladder** ($199/mo Growth, $499/mo Pro Autonomous, $1,499/mo Enterprise DFY Partner) with interactive annual billing toggle.<br>• Updated all landing pages, instant audit PDF generator, and Dodo Payments routing (`/api/create-checkout`) to support all 3 tiers.<br>• Applied migration 0004 to Cloudflare D1 database. |
+| **v3.1.0** | Oct 2026 | **Enterprise SLA Refinement, Sample Brand Tagging & Founder VIP Bypass Engine (Current Stable Release):**<br>• Strict removal of personal Slack/Discord commitments from landing pages, pricing cards, FAQs, and generated audit PDFs in favor of *"Priority Enterprise Strategy SLA & Dedicated White-Glove Support"*.<br>• Added `⚠️ Sample Brand · Dummy Data` navbar badge and top explanatory ribbon to `dashboard.html` for unauthenticated demonstration clarity.<br>• Built and verified **Option A: 5-Click Secret Easter Egg on "PRO" Badge** with permanent secret passcode **`88888888`** (8 times 8).<br>• Enabled complete paywall bypass ($0 complimentary Enterprise tier provisioning) and session persistence in `localStorage`.<br>• Compiled and deployed production build to Cloudflare Pages (`answerindex-pro.pages.dev`). |
 
 ---
 
-## 9. Future Roadmap (v3.1.0+)
+## 9. Future Roadmap
 
-1. **Merchant KYC Activation:** Complete business profile and payout bank account details in Dodo Payments Dashboard under Settings > Business Profile for Answer Index to enable live card charges.
-2. **GitHub App Webhook Integration:** Bi-directional webhook reconciliation syncing PR merge events with D1 daily job statuses.
-3. **Automated WP & Shopify Direct Draft Ingestion:** Native OAuth application endpoints enabling zero-configuration draft injection into WordPress and Shopify stores.
+1. **v3.2.0: Mobile-First Multi-Page Architecture & CRO Overhaul (Immediate Next Milestone):**
+   - Deconstruct the monolithic single-page experience into a clean 5-page structure:
+     - Page 1: Homepage / High-Conversion Product Overview
+     - Page 2: Autonomous Engine & 09:00 AM Dispatch Mechanics (GitHub PRs, CMS Connectors, `/llms.txt`, Schema JSON-LD)
+     - Page 3: Instant AI Citation Audit & Diagnostic Tool (Single-screen mobile probe, score gauge, PDF download)
+     - Page 4: Transparent Pricing & Value Economics (Starter $199, Pro $499, Enterprise $1,499, FAQ, ROI calculator)
+     - Page 5: Executive About, Anti-Hallucination Philosophy & Founder Channel
+   - Mobile design systems optimization (390px–430px base viewport): minimum 48x48px tap targets, thumb-friendly slide-over drawer, sticky mobile bottom CTA bar, horizontal swipeable cards instead of wide desktop comparison tables.
+2. **Merchant KYC Activation:** Complete business profile and payout bank account details in Dodo Payments Dashboard under Settings > Business Profile for Answer Index to enable live card charges.
+3. **GitHub App Webhook Integration:** Bi-directional webhook reconciliation syncing PR merge events with D1 daily job statuses.
+4. **Automated WP & Shopify Direct Draft Ingestion:** Native OAuth application endpoints enabling zero-configuration draft injection into WordPress and Shopify stores.
+
