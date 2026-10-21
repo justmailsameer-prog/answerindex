@@ -607,14 +607,15 @@
   }
 
   // 5-Click Handler on "PRO" badge or logo
-  function handleProBadgeEasterEggClick(e) {
+  window.handleProBadgeEasterEggClick = function (e) {
+    if (e && e.preventDefault) e.preventDefault();
+    if (e && e.stopPropagation) e.stopPropagation();
+
     proBadgeClickCount++;
     clearTimeout(proBadgeClickTimer);
 
     if (proBadgeClickCount >= 5) {
       proBadgeClickCount = 0;
-      if (e && e.preventDefault) e.preventDefault();
-      if (e && e.stopPropagation) e.stopPropagation();
       openVipPasscodeModal();
       return false;
     }
@@ -627,7 +628,9 @@
     proBadgeClickTimer = setTimeout(() => {
       proBadgeClickCount = 0;
     }, 2500); // 2.5-second reset window
-  }
+    return false;
+  };
+
 
   window.openVipPasscodeModal = function () {
     initVipModals();
@@ -872,7 +875,7 @@
 
   // Wire Click Listeners to badges
   function setupBadgeListeners() {
-    const selectors = ['.badge-pro', '.pro-badge', '#easterEggProBadge', '.brand'];
+    const selectors = ['.badge-pro', '.pro-badge', '#easterEggProBadge'];
     selectors.forEach(sel => {
       document.querySelectorAll(sel).forEach(el => {
         el.style.cursor = 'pointer';
