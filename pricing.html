@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pricing &amp; Plans — Answer Index Pro</title>
+  <meta name="description" content="Transparent pricing for autonomous AEO, GEO, and Technical SEO growth. From $199/mo. Replaces $4,249/mo in manual agency retainers." />
+  <link rel="icon" type="image/png" href="assets/AnswerIndex_Logo.png" />
+
+  <!-- Fonts & Core CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/client-portal.css" />
+  <link rel="stylesheet" href="assets/site-nav.css" />
+
+  <style>
+    :root {
+      --bg-cream: #f5f4f0;
+      --bg-card: #ffffff;
+      --border-color: #e2dfd5;
+      --c-black: #0c0f17;
+      --c-cobalt: #3a57fc;
+      --c-cobalt-hover: #2944e8;
+      --c-lime: #a7c75d;
+      --c-lime-dark: #3f5518;
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg-cream);
+      color: #222222;
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    .pricing-hero {
+      padding: 4.5rem 0 2.5rem;
+      text-align: center;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(167, 199, 93, 0.18);
+      border: 1px solid rgba(167, 199, 93, 0.45);
+      color: var(--c-lime-dark);
+      padding: 0.35rem 0.95rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+
+    .page-title {
+      font-size: clamp(2.1rem, 5.5vw, 3.4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #111111;
+      margin-bottom: 1rem;
+    }
+
+    .page-desc {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: #555555;
+      max-width: 700px;
+      margin: 0 auto 2.25rem;
+    }
+
+    /* Billing Switcher */
+    .billing-toggle-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      background: #ffffff;
+      padding: 0.5rem 1.25rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      margin-bottom: 3.5rem;
+    }
+
+    /* Pricing Grid (Mobile Swipeable & Responsive) */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 4.5rem;
+    }
+
+    .pricing-card {
+      background: #ffffff;
+      border: 1.5px solid var(--border-color);
+      border-radius: 20px;
+      padding: 2.25rem 1.75rem;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      transition: all 0.25s ease;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .pricing-card.featured {
+      border: 2px solid var(--c-cobalt);
+      box-shadow: 0 15px 40px rgba(58, 87, 252, 0.12);
+    }
+
+    .card-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      align-self: flex-start;
+    }
+
+    .plan-price {
+      font-size: 2.75rem;
+      font-weight: 800;
+      color: #111111;
+      line-height: 1;
+      margin: 0.5rem 0 0.25rem;
+    }
+
+    .plan-price span {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #777777;
+    }
+
+    .plan-features {
+      list-style: none;
+      margin: 1.75rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      font-size: 0.92rem;
+      color: #444444;
+      flex-grow: 1;
+    }
+
+    .plan-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.55rem;
+    }
+
+    .plan-features li span {
+      color: var(--c-cobalt);
+      font-weight: 800;
+    }
+
+    .btn-choose-plan {
+      width: 100%;
+      border-radius: 12px;
+      padding: 0.9rem;
+      font-size: 0.95rem;
+      font-weight: 800;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+      min-height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-choose-primary {
+      background: var(--c-cobalt);
+      color: #ffffff;
+      box-shadow: 0 4px 15px rgba(58, 87, 252, 0.35);
+    }
+
+    .btn-choose-primary:hover {
+      background: var(--c-cobalt-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-choose-secondary {
+      background: #111111;
+      color: #ffffff;
+    }
+
+    .btn-choose-secondary:hover {
+      background: #222222;
+      transform: translateY(-1px);
+    }
+
+    /* Replaced Costs Banner */
+    .replacement-box {
+      background: #ffffff;
+      border: 1.5px solid var(--border-color);
+      border-radius: 20px;
+      padding: 2.25rem;
+      margin-bottom: 4.5rem;
+    }
+
+    .replacement-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      font-size: 0.92rem;
+    }
+
+    /* FAQ Section */
+    .faq-accordion-box {
+      max-width: 860px;
+      margin: 0 auto 5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .faq-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .faq-q {
+      padding: 1.25rem 1.5rem;
+      font-weight: 800;
+      font-size: 1.05rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-a {
+      padding: 0 1.5rem 1.25rem;
+      color: #555555;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      display: none;
+    }
+
+    .faq-card.open .faq-a {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Site Navigation Bar -->
+  <header class="site-navbar light-theme">
+    <div class="site-nav-container">
+      <a href="pro.html" class="site-brand">
+        <img src="assets/AnswerIndex_Logo.png" alt="Answer Index Logo" />
+        <span>Answer Index</span>
+        <span class="site-badge-pro" id="easterEggProBadge" onclick="handleProBadgeEasterEggClick(event)" title="Click 5 times for VIP Access">PRO</span>
+      </a>
+
+      <nav class="site-nav-links">
+        <a href="pro.html">Overview</a>
+        <a href="how-it-works.html">How It Works</a>
+        <a href="audit.html">Free AI Audit</a>
+        <a href="pricing.html" class="active">Pricing</a>
+        <a href="about.html">About</a>
+      </nav>
+
+      <div class="site-nav-actions">
+        <button onclick="openClientAuthModal('login')" class="site-nav-btn site-nav-btn-secondary">
+          🔑 Client Portal
+        </button>
+        <a href="audit.html" class="site-nav-btn site-nav-btn-cobalt">
+          🔍 Free Audit
+        </a>
+        <button class="mobile-hamburger-btn" onclick="openMobileDrawer()" aria-label="Open Navigation Menu">
+          ☰
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="pricing-hero">
+      <div class="badge-pill">💎 Transparent Economics · No Lock-In Contracts</div>
+      <h1 class="page-title">Predictable Pricing for Autonomous Growth</h1>
+      <p class="page-desc">
+        One autonomous growth loop replaces $4,249/mo in fragmented copywriting agencies, technical SEO consultants, and manual pull request reviews.
+      </p>
+
+      <div class="billing-toggle-box">
+        <span id="lblMonthly" style="font-weight: 800; color: #111; cursor: pointer;" onclick="setCycle('monthly')">Monthly Billing</span>
+        <input type="checkbox" id="cycleCheckbox" onchange="toggleCycle(this.checked)" style="width: 20px; height: 20px; cursor: pointer;" />
+        <span id="lblAnnual" style="font-weight: 600; color: #666; cursor: pointer; display: flex; align-items: center; gap: 0.4rem;" onclick="setCycle('annual')">
+          Annual Billing
+          <span style="background: var(--c-cobalt); color: #fff; font-size: 0.72rem; font-weight: 800; padding: 0.15rem 0.5rem; border-radius: 999px;">Save 20%</span>
+        </span>
+      </div>
+
+      <!-- 3 Tier Cards -->
+      <div class="pricing-grid">
+        <!-- Starter Tier -->
+        <div class="pricing-card">
+          <span class="card-badge" style="background: rgba(0,0,0,0.06); color:#333;">Starter Tier</span>
+          <h3 style="font-size: 1.4rem; font-weight: 800;">Growth</h3>
+          <p style="font-size: 0.88rem; color: #666; margin-top: 0.25rem;">For single products &amp; early startups establishing AI presence.</p>
+          <div class="plan-price" id="growthPrice">$199<span>/mo</span></div>
+          <div id="growthSub" style="font-size: 0.8rem; color: var(--c-cobalt); font-weight: 700;">Or $159/mo billed annually</div>
+
+          <ul class="plan-features">
+            <li><span>✓</span> <strong>15 New AEO Answer Assets / mo</strong> (Every other day)</li>
+            <li><span>✓</span> <strong>15 Technical SEO Refactors / mo</strong></li>
+            <li><span>✓</span> WordPress, Shopify, or GitHub Staging</li>
+            <li><span>✓</span> Schema 100/100 Validator Verification</li>
+            <li><span>✓</span> Email Support (24h SLA)</li>
+          </ul>
+
+          <button onclick="startCheckout('growth')" class="btn-choose-plan btn-choose-secondary">
+            <span id="growthBtnText">Start Growth ($199/mo) →</span>
+          </button>
+        </div>
+
+        <!-- Pro Autonomous Tier -->
+        <div class="pricing-card featured">
+          <span class="card-badge" style="background: var(--c-lime); color:#000;">⭐ Most Popular · Full Cadence</span>
+          <h3 style="font-size: 1.4rem; font-weight: 800;">Pro Autonomous</h3>
+          <p style="font-size: 0.88rem; color: #666; margin-top: 0.25rem;">The complete daily growth engine. 2 jobs shipped every business day.</p>
+          <div class="plan-price" id="proPrice">$499<span>/mo</span></div>
+          <div id="proSub" style="font-size: 0.8rem; color: var(--c-lime-dark); font-weight: 800;">⚡ $399/mo billed annually (Save $1,200)</div>
+
+          <ul class="plan-features">
+            <li><span>✓</span> <strong>Full 2-Job Daily Cadence</strong> (30 New + 30 Patches)</li>
+            <li><span>✓</span> <strong>All 5 Delivery Channels:</strong> WP, Shopify, Magento, Web Portal &amp; Git</li>
+            <li><span>✓</span> <strong>D1 Ground-Truth Brand Wiki Validation</strong> (Anti-Hallucination)</li>
+            <li><span>✓</span> Active Competitor Displacement Invariants</li>
+            <li><span>✓</span> Monthly 1-on-1 Strategy Review with Sameer</li>
+          </ul>
+
+          <button onclick="startCheckout('pro_autonomous')" class="btn-choose-plan btn-choose-primary">
+            <span id="proBtnText">Claim Pro Access ($499/mo) →</span>
+          </button>
+        </div>
+
+        <!-- Enterprise DFY Partner Tier -->
+        <div class="pricing-card">
+          <span class="card-badge" style="background: #111; color:#fff;">💼 Full-Service Managed</span>
+          <h3 style="font-size: 1.4rem; font-weight: 800;">Enterprise DFY</h3>
+          <p style="font-size: 0.88rem; color: #666; margin-top: 0.25rem;">Done-For-You operational partner with interactive calculators &amp; priority SLA.</p>
+          <div class="plan-price" id="enterprisePrice">$1,499<span>/mo</span></div>
+          <div id="enterpriseSub" style="font-size: 0.8rem; color: #15803d; font-weight: 800;">⚡ $1,199/mo billed annually (Save $3,600)</div>
+
+          <ul class="plan-features">
+            <li><span>✓</span> <strong>60 High-Impact Assets / mo</strong> (Daily Answers + Calculators)</li>
+            <li><span>✓</span> <strong>Interactive JS Calculators &amp; Comparison Guides</strong></li>
+            <li><span>✓</span> White-Glove Ground-Truth Ingestion &amp; Fact Governance</li>
+            <li><span>✓</span> Targeted Digital PR Citation Correction Drafts</li>
+            <li><span>✓</span> <strong>Priority Enterprise Strategy SLA</strong> &amp; Dedicated White-Glove Support</li>
+          </ul>
+
+          <button onclick="startCheckout('enterprise')" class="btn-choose-plan btn-choose-secondary">
+            <span id="enterpriseBtnText">Join Partner ($1,499/mo) →</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Cost Replacement Stack -->
+      <div class="replacement-box">
+        <h3 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 0.5rem;">📊 Replaces ~$4,249 / Month in Fragmented Costs</h3>
+        <p style="font-size: 0.88rem; color: #666; margin-bottom: 1.5rem;">What you would otherwise pay separate contractors, tools, and agencies:</p>
+
+        <div class="replacement-row">
+          <span>30 Monthly AEO Answer Articles (Agency Retainer)</span>
+          <strong>$1,500 / mo</strong>
+        </div>
+        <div class="replacement-row">
+          <span>30 Technical Page Refactors (SEO Consultant)</span>
+          <strong>$800 / mo</strong>
+        </div>
+        <div class="replacement-row">
+          <span>AI Search Citation Tracker (Profound / Athena AI Suite)</span>
+          <strong>$499 / mo</strong>
+        </div>
+        <div class="replacement-row">
+          <span>AI Crawler Protocols &amp; Anti-Hallucination Governance</span>
+          <strong>$750 / mo</strong>
+        </div>
+        <div class="replacement-row">
+          <span>Developer Time Reviewing &amp; Formatting Pull Requests</span>
+          <strong>$700 / mo</strong>
+        </div>
+        <div class="replacement-row" style="border:none; padding-top:1.25rem; font-size:1.05rem;">
+          <span style="color:var(--c-cobalt); font-weight:800;">Answer Index Pro (Everything Included in 1 Autonomous Loop)</span>
+          <span style="color:var(--c-cobalt); font-weight:800;">From $199 / mo</span>
+        </div>
+      </div>
+
+      <!-- Frequently Asked Questions -->
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <h2 style="font-size: 2rem; font-weight: 800;">Frequently Asked Questions</h2>
+        <p style="color: #666; font-size: 0.95rem;">Transparent answers before you start.</p>
+      </div>
+
+      <div class="faq-accordion-box">
+        <div class="faq-card open">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>Can Answer Index publish without my explicit approval?</span>
+            <span>▾</span>
+          </div>
+          <div class="faq-a">
+            Never. Answer Index operates on a strict human-in-the-loop philosophy. Every piece of work is delivered as a 1-click review draft in your chosen platform—WordPress draft queue, Shopify article, Web Portal, or GitHub Pull Request. You inspect the copy, check the Schema validator score, and choose when to approve.
+          </div>
+        </div>
+
+        <div class="faq-card">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>What is the Brand Truth Wiki and how does it prevent AI hallucinations?</span>
+            <span>▾</span>
+          </div>
+          <div class="faq-a">
+            We store an immutable ground-truth fact document directly in Cloudflare D1 per project. Before drafting any asset, our pre-flight Anti-Hallucination Gate checks all claims against your official wiki. Outdated pricing or false feature claims are deterministically filtered out before staging.
+          </div>
+        </div>
+
+        <div class="faq-card">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>Are there contracts, setup fees, or cancellation penalties?</span>
+            <span>▾</span>
+          </div>
+          <div class="faq-a">
+            None. All plans are billed month-to-month with zero setup fees. You can cancel at any time with a single click inside your Client Dashboard. Every subscription is backed by our 14-day money-back guarantee.
+          </div>
+        </div>
+
+        <div class="faq-card">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>Do I get access to founder strategy support?</span>
+            <span>▾</span>
+          </div>
+          <div class="faq-a">
+            Yes! Pro Autonomous and Enterprise DFY subscriptions include direct strategy reviews with Sameer Sharma (creator of Answer Index). We review your citation growth across Perplexity and ChatGPT, analyze Google Search Console trends, and tune your entity graph roadmap together.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    let isAnnual = false;
+
+    function toggleCycle(checked) {
+      setCycle(checked ? 'annual' : 'monthly');
+    }
+
+    function setCycle(cycle) {
+      isAnnual = cycle === 'annual';
+      document.getElementById('cycleCheckbox').checked = isAnnual;
+      
+      const lblM = document.getElementById('lblMonthly');
+      const lblA = document.getElementById('lblAnnual');
+
+      if (isAnnual) {
+        lblM.style.fontWeight = '600'; lblM.style.color = '#666';
+        lblA.style.fontWeight = '800'; lblA.style.color = '#111';
+
+        document.getElementById('growthPrice').innerHTML = '$159<span>/mo</span>';
+        document.getElementById('growthSub').textContent = '⚡ Billed $1,908/yr (Save $480)';
+        document.getElementById('growthBtnText').textContent = 'Start Growth Annual ($1,908/yr) →';
+
+        document.getElementById('proPrice').innerHTML = '$399<span>/mo</span>';
+        document.getElementById('proSub').textContent = '⚡ Billed $4,788/yr (Save $1,200)';
+        document.getElementById('proBtnText').textContent = 'Claim Pro Annual ($4,788/yr) →';
+
+        document.getElementById('enterprisePrice').innerHTML = '$1,199<span>/mo</span>';
+        document.getElementById('enterpriseSub').textContent = '⚡ Billed $14,388/yr (Save $3,600)';
+        document.getElementById('enterpriseBtnText').textContent = 'Join Partner Annual ($14,388/yr) →';
+      } else {
+        lblM.style.fontWeight = '800'; lblM.style.color = '#111';
+        lblA.style.fontWeight = '600'; lblA.style.color = '#666';
+
+        document.getElementById('growthPrice').innerHTML = '$199<span>/mo</span>';
+        document.getElementById('growthSub').textContent = 'Or $159/mo billed annually';
+        document.getElementById('growthBtnText').textContent = 'Start Growth ($199/mo) →';
+
+        document.getElementById('proPrice').innerHTML = '$499<span>/mo</span>';
+        document.getElementById('proSub').textContent = '⚡ $399/mo billed annually (Save $1,200)';
+        document.getElementById('proBtnText').textContent = 'Claim Pro Access ($499/mo) →';
+
+        document.getElementById('enterprisePrice').innerHTML = '$1,499<span>/mo</span>';
+        document.getElementById('enterpriseSub').textContent = '⚡ $1,199/mo billed annually (Save $3,600)';
+        document.getElementById('enterpriseBtnText').textContent = 'Join Partner ($1,499/mo) →';
+      }
+    }
+
+    function toggleFaq(el) {
+      const card = el.closest('.faq-card');
+      card.classList.toggle('open');
+    }
+  </script>
+
+  <!-- Core Portal & Site Navigation Scripts -->
+  <script src="assets/client-portal.js"></script>
+  <script src="assets/site-nav.js"></script>
+</body>
+</html>

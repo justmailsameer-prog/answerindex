@@ -1,7 +1,7 @@
 # Answer Index — Product Requirements Document (PRD)
 
-**Document Version:** 3.1.0  
-**Status:** Production Active (v3.1.0) — Frozen Milestone  
+**Document Version:** 3.2.0  
+**Status:** Production Active (v3.2.0)  
 **Product Name:** Answer Index (Open Source Core & Commercial Pro Autonomous)  
 **Live Production Portals:**
 - **Commercial Pro Engine:** [https://answerindex-pro.pages.dev](https://answerindex-pro.pages.dev)
@@ -339,21 +339,15 @@ For internal demonstration, staging, personal websites, and complimentary provis
 | **v2.5.0** | Oct 2026 | **Client Portal & Multi-Platform CMS Delivery:**<br>• Added `🔑 Client Portal` button and responsive auth modal across all pages.<br>• Built 5-Platform Selector (`WordPress`, `Shopify`, `GitHub`, `Magento`, `Web Portal`).<br>• Migration 0003 adding CMS columns and seed data to Cloudflare D1.<br>• Upgraded `dashboard.html` with platform indicator badges, content preview drawers, and tailored 1-click publishing actions.<br>• Automated browser verification video recorded and committed to GitHub `main`. |
 | **v2.5.1** | Oct 2026 | **Landing Page Architecture & Headline Harmonization:**<br>• Unified primary landing page on `answerindex-pro.pages.dev` to eliminate duplicate legacy single-color UI.<br>• Synchronized latest 5-brand color palette (#3a57fc Cobalt, #333333 Charcoal, #000000 Obsidian, #f5f4f0 Warm Cream, #a7c75d Lime) across root index and `/pro`.<br>• Applied canonical banner tagline *"Make your content indexable as authoritative answers across Search & AI Engines"* with `text-wrap: balance;` to eliminate orphaned line breaks.<br>• Preserved legacy CLI open-source layout as `index-oss.html`.<br>• Deployed live to Cloudflare Pages and verified production HTTP 200 responses. |
 | **v3.0.0** | Oct 2026 | **Brand Truth Engine, High-Impact Asset Types & 3-Tier Value Ladder:**<br>• Built Ground-Truth Anti-Hallucination Brand Wiki in Client Portal & D1 (`projects.truth_document`) with deterministic invariant validation (`daily_jobs.is_truth_verified`).<br>• Expanded autonomous daily dispatch queue beyond blog posts to include **Interactive Mini-Tools (live embeddable JS Calculators)**, **AEO Comparison Guides ("Brand vs Competitor")**, and **Digital PR Citation Corrections**.<br>• Established the commercial **3-Tier Value Ladder** ($199/mo Growth, $499/mo Pro Autonomous, $1,499/mo Enterprise DFY Partner) with interactive annual billing toggle.<br>• Updated all landing pages, instant audit PDF generator, and Dodo Payments routing (`/api/create-checkout`) to support all 3 tiers.<br>• Applied migration 0004 to Cloudflare D1 database. |
-| **v3.1.0** | Oct 2026 | **Enterprise SLA Refinement, Sample Brand Tagging & Founder VIP Bypass Engine (Current Stable Release):**<br>• Strict removal of personal Slack/Discord commitments from landing pages, pricing cards, FAQs, and generated audit PDFs in favor of *"Priority Enterprise Strategy SLA & Dedicated White-Glove Support"*.<br>• Added `⚠️ Sample Brand · Dummy Data` navbar badge and top explanatory ribbon to `dashboard.html` for unauthenticated demonstration clarity.<br>• Built and verified **Option A: 5-Click Secret Easter Egg on "PRO" Badge** with permanent secret passcode **`88888888`** (8 times 8).<br>• Enabled complete paywall bypass ($0 complimentary Enterprise tier provisioning) and session persistence in `localStorage`.<br>• Compiled and deployed production build to Cloudflare Pages (`answerindex-pro.pages.dev`). |
+| **v3.1.0** | Oct 2026 | **Enterprise SLA Refinement, Sample Brand Tagging & Founder VIP Bypass Engine:**<br>• Strict removal of personal Slack/Discord commitments from landing pages, pricing cards, FAQs, and generated audit PDFs in favor of *"Priority Enterprise Strategy SLA & Dedicated White-Glove Support"*.<br>• Added `⚠️ Sample Brand · Dummy Data` navbar badge and top explanatory ribbon to `dashboard.html` for unauthenticated demonstration clarity.<br>• Built and verified **Option A: 5-Click Secret Easter Egg on "PRO" Badge** with permanent secret passcode **`88888888`** (8 times 8).<br>• Enabled complete paywall bypass ($0 complimentary Enterprise tier provisioning) and session persistence in `localStorage`.<br>• Compiled and deployed production build to Cloudflare Pages (`answerindex-pro.pages.dev`). |
+| **v3.2.0** | Oct 2026 | **Mobile-First Multi-Page Architecture & CRO Overhaul (Current Stable Release):**<br>• Deconstructed the 16,800px single-page monolith into 5 discrete high-conversion pages (`index.html`, `how-it-works.html`, `audit.html`, `pricing.html`, `about.html`).<br>• Implemented **Apple HIG & Google Material compliant design system** with minimum 48x48px tap targets, responsive fluid typography (`clamp()`), and clean card padding.<br>• Built slide-over thumb-friendly mobile navigation drawer (`assets/site-nav.js`, `assets/site-nav.css`).<br>• Added high-conversion persistent sticky mobile bottom bar on screens < 768px with dual micro-actions (*"🔍 Free AI Audit"* &amp; *"Pricing →"*) with scroll-aware auto-hide.<br>• Preserved the 5-Click Secret Easter Egg (Passcode `88888888`) across all desktop and mobile navigation headers.<br>• Deployed production build to Cloudflare Pages. |
 
 ---
 
 ## 9. Future Roadmap
 
-1. **v3.2.0: Mobile-First Multi-Page Architecture & CRO Overhaul (Immediate Next Milestone):**
-   - Deconstruct the monolithic single-page experience into a clean 5-page structure:
-     - Page 1: Homepage / High-Conversion Product Overview
-     - Page 2: Autonomous Engine & 09:00 AM Dispatch Mechanics (GitHub PRs, CMS Connectors, `/llms.txt`, Schema JSON-LD)
-     - Page 3: Instant AI Citation Audit & Diagnostic Tool (Single-screen mobile probe, score gauge, PDF download)
-     - Page 4: Transparent Pricing & Value Economics (Starter $199, Pro $499, Enterprise $1,499, FAQ, ROI calculator)
-     - Page 5: Executive About, Anti-Hallucination Philosophy & Founder Channel
-   - Mobile design systems optimization (390px–430px base viewport): minimum 48x48px tap targets, thumb-friendly slide-over drawer, sticky mobile bottom CTA bar, horizontal swipeable cards instead of wide desktop comparison tables.
-2. **Merchant KYC Activation:** Complete business profile and payout bank account details in Dodo Payments Dashboard under Settings > Business Profile for Answer Index to enable live card charges.
-3. **GitHub App Webhook Integration:** Bi-directional webhook reconciliation syncing PR merge events with D1 daily job statuses.
-4. **Automated WP & Shopify Direct Draft Ingestion:** Native OAuth application endpoints enabling zero-configuration draft injection into WordPress and Shopify stores.
+1. **Merchant KYC Activation:** Complete business profile and payout bank account details in Dodo Payments Dashboard under Settings > Business Profile for Answer Index to enable live card charges.
+2. **GitHub App Webhook Integration:** Bi-directional webhook reconciliation syncing PR merge events with D1 daily job statuses.
+3. **Automated WP & Shopify Direct Draft Ingestion:** Native OAuth application endpoints enabling zero-configuration draft injection into WordPress and Shopify stores.
+
 

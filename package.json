@@ -1,6 +1,6 @@
 {
   "name": "answerindex",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "description": "Make your content indexable as authoritative answers across Search & AI Engines (AEO, GEO & SEO).",
   "main": "test-aeo-models.mjs",
   "bin": {

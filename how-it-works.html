@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How Answer Index Works — The 09:00 AM Autonomous Growth Engine</title>
+  <meta name="description" content="Discover how Answer Index Pro delivers 1 new AEO answer asset and 1 technical SEO refactor every single business day to WordPress, Shopify, Magento, or GitHub." />
+  <link rel="icon" type="image/png" href="assets/AnswerIndex_Logo.png" />
+
+  <!-- Fonts & Core CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/client-portal.css" />
+  <link rel="stylesheet" href="assets/site-nav.css" />
+
+  <style>
+    :root {
+      --bg-cream: #f5f4f0;
+      --bg-card: #ffffff;
+      --border-color: #e2dfd5;
+      --c-black: #0c0f17;
+      --c-cobalt: #3a57fc;
+      --c-cobalt-hover: #2944e8;
+      --c-lime: #a7c75d;
+      --c-lime-dark: #3f5518;
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg-cream);
+      color: #222222;
+      font-family: var(--font-sans);
+      line-height: 1.65;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    .page-hero {
+      padding: 4.5rem 0 3rem;
+      text-align: center;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(58, 87, 252, 0.12);
+      border: 1px solid rgba(58, 87, 252, 0.35);
+      color: var(--c-cobalt);
+      padding: 0.35rem 0.95rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+
+    .page-title {
+      font-size: clamp(2.1rem, 5.5vw, 3.4rem);
+      font-weight: 800;
+      line-height: 1.18;
+      letter-spacing: -0.03em;
+      color: #111111;
+      margin-bottom: 1.15rem;
+    }
+
+    .page-subtitle {
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      color: #555555;
+      max-width: 720px;
+      margin: 0 auto 2.5rem;
+    }
+
+    /* Step Timeline */
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+      margin: 2.5rem 0 4rem;
+    }
+
+    .step-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-color);
+      border-radius: 18px;
+      padding: 1.75rem 1.4rem;
+      position: relative;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+      transition: all 0.25s ease;
+    }
+
+    .step-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .step-time-badge {
+      display: inline-block;
+      background: rgba(58, 87, 252, 0.08);
+      color: var(--c-cobalt);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      margin-bottom: 0.75rem;
+    }
+
+    .step-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #111111;
+      margin-bottom: 0.5rem;
+    }
+
+    .step-desc {
+      font-size: 0.9rem;
+      color: #666666;
+      line-height: 1.6;
+    }
+
+    /* Platform Showcase */
+    .platform-section {
+      background: #0c0f17;
+      color: #ffffff;
+      border-radius: 24px;
+      padding: 3.5rem 2rem;
+      margin-bottom: 4rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+    }
+
+    .platform-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin: 2rem 0;
+    }
+
+    .platform-tab-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #ffffff;
+      padding: 0.65rem 1.25rem;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .platform-tab-btn.active, .platform-tab-btn:hover {
+      background: var(--c-cobalt);
+      border-color: var(--c-cobalt);
+    }
+
+    .platform-display-card {
+      background: #141a29;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      padding: 1.75rem;
+      max-width: 800px;
+      margin: 0 auto;
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+    }
+
+    .cta-banner {
+      background: linear-gradient(135deg, var(--c-cobalt), #2563eb);
+      color: #ffffff;
+      border-radius: 20px;
+      padding: 3rem 2rem;
+      text-align: center;
+      margin-bottom: 4rem;
+      box-shadow: 0 15px 40px rgba(58, 87, 252, 0.35);
+    }
+
+    .cta-banner h2 {
+      font-size: clamp(1.6rem, 4vw, 2.3rem);
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Site Navigation Bar -->
+  <header class="site-navbar light-theme">
+    <div class="site-nav-container">
+      <a href="pro.html" class="site-brand">
+        <img src="assets/AnswerIndex_Logo.png" alt="Answer Index Logo" />
+        <span>Answer Index</span>
+        <span class="site-badge-pro" id="easterEggProBadge" onclick="handleProBadgeEasterEggClick(event)" title="Click 5 times for VIP Access">PRO</span>
+      </a>
+
+      <nav class="site-nav-links">
+        <a href="pro.html">Overview</a>
+        <a href="how-it-works.html" class="active">How It Works</a>
+        <a href="audit.html">Free AI Audit</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html">About</a>
+      </nav>
+
+      <div class="site-nav-actions">
+        <button onclick="openClientAuthModal('login')" class="site-nav-btn site-nav-btn-secondary">
+          🔑 Client Portal
+        </button>
+        <a href="pricing.html" class="site-nav-btn site-nav-btn-cobalt">
+          View Plans →
+        </a>
+        <button class="mobile-hamburger-btn" onclick="openMobileDrawer()" aria-label="Open Navigation Menu">
+          ☰
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="page-hero">
+      <div class="badge-pill">⚙️ Complete Engineering &amp; Operational Spec</div>
+      <h1 class="page-title">
+        How Answer Index Pro Runs On Autonomous Autopilot
+      </h1>
+      <p class="page-subtitle">
+        Zero terminal commands. Zero manual copywriting. From 06:00 AM Search Console drift detection to 09:00 AM staged draft delivery in your CMS or Git repository.
+      </p>
+
+      <!-- 4-Step Daily Timeline -->
+      <div class="timeline-grid">
+        <div class="step-card">
+          <span class="step-time-badge">06:00 AM · SCAN &amp; AUDIT</span>
+          <h3 class="step-title">1. Search &amp; AI Drift Discovery</h3>
+          <p class="step-desc">
+            The autonomous engine checks Google Search Console and simulates queries across ChatGPT Search and Perplexity to identify slipping rankings and unanswered buying prompts.
+          </p>
+        </div>
+
+        <div class="step-card">
+          <span class="step-time-badge">07:30 AM · VERIFICATION</span>
+          <h3 class="step-title">2. Brand Truth Invariant Gate</h3>
+          <p class="step-desc">
+            Before drafting any text, the engine checks candidate claims against your Ground-Truth Wiki stored in Cloudflare D1. Zero hallucinated pricing or fabricated features are allowed.
+          </p>
+        </div>
+
+        <div class="step-card">
+          <span class="step-time-badge">09:00 AM · DISPATCH</span>
+          <h3 class="step-title">3. Dual-Job Staged Delivery</h3>
+          <p class="step-desc">
+            Two precision jobs are staged for review: <strong>Job 1 (New Answer Piece)</strong> and <strong>Job 2 (Technical SEO &amp; Schema Patch)</strong> delivered directly to your platform.
+          </p>
+        </div>
+
+        <div class="step-card">
+          <span class="step-time-badge">YOUR TIME · APPROVAL</span>
+          <h3 class="step-title">4. 1-Click Human Verification</h3>
+          <p class="step-desc">
+            Review live interactive previews in your WordPress draft queue, Web Portal, or GitHub Pull Request. One click publishes to live production with zero coding.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Multi-Platform Showcase -->
+    <section class="platform-section">
+      <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+        <span style="color: var(--c-lime); font-family: var(--font-mono); font-size: 0.8rem; font-weight: 800; text-transform: uppercase;">Universal CMS Connectors</span>
+        <h2 style="font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; margin-top: 0.5rem;">Where Does Your Content Get Staged?</h2>
+        <p style="color: #94a3b8; font-size: 0.95rem; margin-top: 0.5rem;">
+          Select your tech stack below to preview how Answer Index Pro delivers drafts without requiring engineering bandwidth:
+        </p>
+      </div>
+
+      <div class="platform-tabs">
+        <button class="platform-tab-btn active" onclick="switchPlatform('wp')">🌐 WordPress</button>
+        <button class="platform-tab-btn" onclick="switchPlatform('shopify')">🛍️ Shopify</button>
+        <button class="platform-tab-btn" onclick="switchPlatform('github')">🐙 GitHub (Git)</button>
+        <button class="platform-tab-btn" onclick="switchPlatform('magento')">📦 Magento</button>
+        <button class="platform-tab-btn" onclick="switchPlatform('portal')">⚡ Web Portal</button>
+      </div>
+
+      <div class="platform-display-card" id="platformDisplay">
+        <div style="color: #60a5fa; margin-bottom: 0.5rem;">// WordPress REST API Staging</div>
+        <div style="color: #fff;">Status: Draft Post Staged in WP Admin</div>
+        <div style="color: #a7c75d; margin-top: 0.5rem;">✓ Gutenberg Blocks injected with pre-styled FAQ &amp; JSON-LD Schema</div>
+        <div style="color: #94a3b8; margin-top: 0.5rem;">Ready for 1-click publishing by your editorial team. Zero coding.</div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-banner">
+      <h2>Ready to Put Your Search &amp; AI Citations on Autopilot?</h2>
+      <p style="font-size: 1.05rem; opacity: 0.9; max-width: 620px; margin: 0 auto 1.75rem;">
+        Start with the 14-day money-back guarantee. One authoritative answer piece and one technical patch delivered every business day.
+      </p>
+      <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+        <a href="pricing.html" class="site-nav-btn" style="background:#ffffff; color:#0c0f17; font-weight:800; padding:0.75rem 1.75rem; font-size:1rem;">
+          View Pricing Plans (From $199/mo) →
+        </a>
+        <a href="audit.html" class="site-nav-btn site-nav-btn-secondary" style="border-color:#fff; color:#fff; padding:0.75rem 1.5rem; font-size:1rem;">
+          Run Free Instant Audit
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function switchPlatform(p) {
+      const btns = document.querySelectorAll('.platform-tab-btn');
+      btns.forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+
+      const card = document.getElementById('platformDisplay');
+      if (p === 'wp') {
+        card.innerHTML = `
+          <div style="color: #60a5fa; margin-bottom: 0.5rem;">// WordPress REST API Staging</div>
+          <div style="color: #fff;">Status: Draft Post Staged in WP Admin</div>
+          <div style="color: #a7c75d; margin-top: 0.5rem;">✓ Gutenberg Blocks injected with pre-styled FAQ &amp; JSON-LD Schema</div>
+          <div style="color: #94a3b8; margin-top: 0.5rem;">Ready for 1-click publishing by your marketing editor. Zero coding.</div>
+        `;
+      } else if (p === 'shopify') {
+        card.innerHTML = `
+          <div style="color: #60a5fa; margin-bottom: 0.5rem;">// Shopify Admin GraphQL Staging</div>
+          <div style="color: #fff;">Status: Article Draft &amp; Product Metafields Ready</div>
+          <div style="color: #a7c75d; margin-top: 0.5rem;">✓ Structured Q&amp;A Metafields &amp; Collection schema pre-populated</div>
+          <div style="color: #94a3b8; margin-top: 0.5rem;">Approve via Shopify Merchant Admin with 1 tap.</div>
+        `;
+      } else if (p === 'github') {
+        card.innerHTML = `
+          <div style="color: #60a5fa; margin-bottom: 0.5rem;">// GitHub Pull Request Staging</div>
+          <div style="color: #fff;">Status: Branch 'answerindex/daily-2026-10-21' Created</div>
+          <div style="color: #a7c75d; margin-top: 0.5rem;">✓ Code diff &amp; markdown preview verified. All CI schema checks passed.</div>
+          <div style="color: #94a3b8; margin-top: 0.5rem;">Click 'Merge pull request' to deploy via your existing CI/CD.</div>
+        `;
+      } else if (p === 'magento') {
+        card.innerHTML = `
+          <div style="color: #60a5fa; margin-bottom: 0.5rem;">// Magento Commerce PageBuilder Staging</div>
+          <div style="color: #fff;">Status: XML Block Staged in Catalog Staging</div>
+          <div style="color: #a7c75d; margin-top: 0.5rem;">✓ Schema-injected product answer blocks pre-rendered for fast caching.</div>
+          <div style="color: #94a3b8; margin-top: 0.5rem;">Synchronize across multi-store views with 1 click.</div>
+        `;
+      } else {
+        card.innerHTML = `
+          <div style="color: #60a5fa; margin-bottom: 0.5rem;">// Web Client Portal Visual Staging</div>
+          <div style="color: #fff;">Status: Live Interactive Preview Available</div>
+          <div style="color: #a7c75d; margin-top: 0.5rem;">✓ Inspect live JS calculators, copy diffs, and review Brand Truth validation.</div>
+          <div style="color: #94a3b8; margin-top: 0.5rem;">Click 'Approve' inside your Client Dashboard. No dev setup needed.</div>
+        `;
+      }
+    }
+  </script>
+
+  <!-- Core Portal & Site Navigation Scripts -->
+  <script src="assets/client-portal.js"></script>
+  <script src="assets/site-nav.js"></script>
+</body>
+</html>

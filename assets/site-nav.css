@@ -1,0 +1,454 @@
+/* =========================================================================
+   ANSWER INDEX PRO — SITE NAVIGATION & MOBILE DESIGN SYSTEM
+   Supports: 390px - 430px base mobile viewports, Apple HIG / Material 48px tap targets,
+   slide-over mobile drawer, and high-conversion sticky bottom bar.
+   ========================================================================= */
+
+:root {
+  --nav-height: 72px;
+  --bottom-bar-height: 64px;
+  --touch-target-min: 48px;
+  --touch-target-primary: 52px;
+
+  /* Typography Scale */
+  --text-hero: clamp(2rem, 6.5vw, 3.4rem);
+  --text-h2: clamp(1.45rem, 4.5vw, 2.1rem);
+  --text-h3: clamp(1.15rem, 3.5vw, 1.45rem);
+  --text-body: 0.95rem;
+  --text-body-line-height: 1.6;
+
+  /* Brand Colors */
+  --c-cobalt: #3a57fc;
+  --c-cobalt-hover: #2944e8;
+  --c-lime: #a7c75d;
+  --c-lime-dark: #3f5518;
+  --c-charcoal: #222222;
+  --c-obsidian: #0c0f17;
+  --c-cream: #f5f4f0;
+}
+
+/* Global Navbar Styles */
+.site-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: rgba(12, 15, 23, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.75rem 1.25rem;
+  transition: transform 0.25s ease;
+}
+
+.site-navbar.light-theme {
+  background: rgba(245, 244, 240, 0.95);
+  border-bottom: 1px solid #e2dfd5;
+}
+
+.site-nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.site-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
+  user-select: none;
+}
+
+.site-navbar.light-theme .site-brand {
+  color: #111111;
+}
+
+.site-brand img {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: block;
+}
+
+/* Easter Egg PRO Badge */
+.site-badge-pro {
+  background: rgba(58, 87, 252, 0.18);
+  border: 1px solid rgba(58, 87, 252, 0.45);
+  color: #9cb1ff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+  font-family: var(--font-mono, monospace);
+  text-transform: uppercase;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.site-badge-pro:hover {
+  background: rgba(58, 87, 252, 0.35);
+  transform: translateY(-1px);
+}
+
+.site-navbar.light-theme .site-badge-pro {
+  background: #111111;
+  color: #ffffff;
+  border-color: #111111;
+}
+
+/* Desktop Navigation Links */
+.site-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.site-nav-links a {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: color 0.15s ease;
+  padding: 0.35rem 0.2rem;
+}
+
+.site-nav-links a:hover,
+.site-nav-links a.active {
+  color: #ffffff;
+}
+
+.site-navbar.light-theme .site-nav-links a {
+  color: #555555;
+}
+
+.site-navbar.light-theme .site-nav-links a:hover,
+.site-navbar.light-theme .site-nav-links a.active {
+  color: #111111;
+}
+
+/* Desktop Action Buttons */
+.site-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.site-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.5rem 1rem;
+  border-radius: 9px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 40px;
+  white-space: nowrap;
+}
+
+.site-nav-btn-cobalt {
+  background: var(--c-cobalt);
+  color: #ffffff;
+  border: 1px solid var(--c-cobalt);
+}
+
+.site-nav-btn-cobalt:hover {
+  background: var(--c-cobalt-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(58, 87, 252, 0.4);
+}
+
+.site-nav-btn-secondary {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+}
+
+.site-nav-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.site-navbar.light-theme .site-nav-btn-secondary {
+  background: #ffffff;
+  border-color: #d1cebe;
+  color: #222222;
+}
+
+/* Hamburger Toggle Button (Minimum 48x48px tap area for Apple HIG) */
+.mobile-hamburger-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--touch-target-min);
+  height: var(--touch-target-min);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.site-navbar.light-theme .mobile-hamburger-btn {
+  background: #ffffff;
+  border-color: #d1cebe;
+  color: #111111;
+}
+
+.mobile-hamburger-btn:active {
+  transform: scale(0.95);
+}
+
+/* Slide-Over Mobile Drawer */
+.mobile-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 99999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.mobile-drawer-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-drawer-card {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 86%;
+  max-width: 360px;
+  background: #0f1422;
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: -10px 0 35px rgba(0, 0, 0, 0.8);
+  z-index: 100000;
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 1.25rem calc(1.5rem + env(safe-area-inset-bottom));
+  overflow-y: auto;
+}
+
+.mobile-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 1.25rem;
+}
+
+.mobile-drawer-close {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.mobile-drawer-close:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.mobile-drawer-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex-grow: 1;
+}
+
+.mobile-drawer-link {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  color: #e2e8f0;
+  text-decoration: none;
+  font-size: 1.02rem;
+  font-weight: 700;
+  min-height: var(--touch-target-min);
+  transition: all 0.15s ease;
+}
+
+.mobile-drawer-link:hover,
+.mobile-drawer-link.active {
+  background: rgba(58, 87, 252, 0.15);
+  color: #60a5fa;
+  border-left: 3px solid #3a57fc;
+}
+
+.mobile-drawer-link .icon {
+  font-size: 1.2rem;
+  width: 24px;
+  text-align: center;
+}
+
+.mobile-drawer-footer {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* =========================================================================
+   PERSISTENT STICKY MOBILE BOTTOM BAR (Base Viewport: 390px - 430px)
+   Thumb-zone navigation strictly complying with Apple HIG
+   ========================================================================= */
+.mobile-sticky-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9998;
+  background: rgba(12, 15, 23, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 0.6rem 1rem calc(0.6rem + env(safe-area-inset-bottom));
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-sticky-bar.hidden {
+  transform: translateY(110%);
+}
+
+.sticky-bar-inner {
+  max-width: 460px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+}
+
+.btn-sticky-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  background: linear-gradient(135deg, #3a57fc 0%, #2563eb 100%);
+  color: #ffffff;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  font-weight: 800;
+  text-decoration: none;
+  height: 48px;
+  min-height: 48px;
+  box-shadow: 0 4px 14px rgba(58, 87, 252, 0.35);
+  transition: transform 0.15s ease;
+}
+
+.btn-sticky-primary:active {
+  transform: scale(0.97);
+}
+
+.btn-sticky-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #f1f5f9;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+  height: 48px;
+  min-height: 48px;
+  transition: transform 0.15s ease, background-color 0.2s;
+}
+
+.btn-sticky-secondary:active {
+  transform: scale(0.97);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* =========================================================================
+   RESPONSIVE BREAKPOINTS (Mobile-First 390px - 768px Rules)
+   ========================================================================= */
+@media (max-width: 900px) {
+  .site-nav-links {
+    display: none;
+  }
+  .mobile-hamburger-btn {
+    display: flex;
+  }
+  .site-nav-actions .site-nav-btn-secondary {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-bottom: calc(var(--bottom-bar-height) + 12px) !important;
+  }
+  .mobile-sticky-bar {
+    display: block;
+  }
+  .site-nav-actions .site-nav-btn-cobalt {
+    display: none;
+  }
+  .site-nav-container {
+    padding: 0;
+  }
+}
+
+/* Mobile swipeable card container utility */
+.mobile-swipe-row {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 1rem;
+  margin: 0 -1.25rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  scrollbar-width: none;
+}
+
+.mobile-swipe-row::-webkit-scrollbar {
+  display: none;
+}
+
+.mobile-swipe-card {
+  flex: 0 0 88%;
+  max-width: 340px;
+  scroll-snap-align: center;
+}

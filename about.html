@@ -12,6 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/client-portal.css" />
+  <link rel="stylesheet" href="assets/site-nav.css" />
 
   <style>
     :root {
@@ -376,26 +377,36 @@
 </head>
 <body>
 
-  <!-- Top Navigation -->
-  <nav class="navbar">
-    <div class="nav-container">
-      <a href="index.html" class="brand">
+  <!-- Site Navigation Bar -->
+  <header class="site-navbar light-theme">
+    <div class="site-nav-container">
+      <a href="pro.html" class="site-brand">
         <img src="assets/AnswerIndex_Logo.png" alt="Answer Index Logo" />
         <span>Answer Index</span>
+        <span class="site-badge-pro" id="easterEggProBadge" onclick="handleProBadgeEasterEggClick(event)" title="Click 5 times for VIP Access">PRO</span>
       </a>
 
-      <div class="nav-links">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="pro.html#audit-tool" class="nav-link" style="color: var(--c-cobalt); font-weight: 700;">🔍 Free SEO Audit</a>
-        <a href="pro.html" class="nav-link">Commercial Pro</a>
-        <a href="dashboard.html" class="nav-link">Live Dashboard</a>
-        <button type="button" onclick="openClientAuthModal('login')" class="btn-client-portal" style="cursor: pointer; padding: 0.45rem 0.95rem;">
+      <nav class="site-nav-links">
+        <a href="pro.html">Overview</a>
+        <a href="how-it-works.html">How It Works</a>
+        <a href="audit.html">Free AI Audit</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html" class="active">About</a>
+      </nav>
+
+      <div class="site-nav-actions">
+        <button onclick="openClientAuthModal('login')" class="site-nav-btn site-nav-btn-secondary">
           🔑 Client Portal
         </button>
-        <a href="pro.html#pricing" class="btn-cobalt">Start Pro ($199/mo) →</a>
+        <a href="pricing.html" class="site-nav-btn site-nav-btn-cobalt">
+          View Plans →
+        </a>
+        <button class="mobile-hamburger-btn" onclick="openMobileDrawer()" aria-label="Open Navigation Menu">
+          ☰
+        </button>
       </div>
     </div>
-  </nav>
+  </header>
 
   <!-- Hero Header -->
   <header class="about-hero">
@@ -589,5 +600,6 @@
   </footer>
 
   <script src="assets/client-portal.js"></script>
+  <script src="assets/site-nav.js"></script>
 </body>
 </html>
