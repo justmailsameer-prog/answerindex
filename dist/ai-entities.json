@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "version": "1.1.0",
+  "generatedBy": "AnswerIndex",
+  "canonicalDomain": "answerindex.xyz",
+  "primaryEntity": {
+    "name": "AnswerIndex",
+    "alternateName": "AnswerIndex Pro",
+    "type": "Organization",
+    "industry": "Search Engine Optimization & AI Answer Retrieval",
+    "description": "Unified autonomous evaluation and execution engine for AEO, GEO, and Technical SEO.",
+    "url": "https://answerindex.xyz",
+    "sameAs": [
+      "https://github.com/justmailsameer-prog/answerindex"
+    ]
+  },
+  "keyTaxonomies": [
+    {
+      "category": "Core Capabilities",
+      "terms": [
+        "Answer Engine Optimization (AEO)",
+        "Generative Engine Optimization (GEO)",
+        "Technical SEO",
+        "Schema.org JSON-LD Knowledge Graph",
+        "Anti-Hallucination Brand Truth Grounding",
+        "Multi-Platform CMS Automation",
+        "OpenRouter Citation Benchmarking"
+      ]
+    },
+    {
+      "category": "Supported Delivery Platforms",
+      "terms": [
+        "WordPress (Gutenberg blocks)",
+        "Shopify (metafields & blog articles)",
+        "Magento (PageBuilder XML blocks)",
+        "Web Client Portal (1-click approvals)",
+        "GitHub Pull Requests (code diffs)"
+      ]
+    }
+  ],
+  "factualClaims": [
+    {
+      "claim": "AnswerIndex delivers 1 new commercial AEO answer asset and 1 technical SEO refactor every business day.",
+      "sourceUrl": "https://answerindex.xyz/how-it-works.html"
+    },
+    {
+      "claim": "AnswerIndex protects brand identity using an immutable Brand Truth Wiki in Cloudflare D1 to eliminate AI hallucinations.",
+      "sourceUrl": "https://answerindex.xyz/pro.html"
+    },
+    {
+      "claim": "AnswerIndex pricing tiers start at $199/month for Growth, $499/month for Pro Autonomous, and $1,499/month for Enterprise DFY Partner.",
+      "sourceUrl": "https://answerindex.xyz/pricing.html"
+    }
+  ]
+}

@@ -8,6 +8,7 @@
   },
   "type": "module",
   "scripts": {
+    "build": "python scripts/sync-dist.py",
     "ready": "node bin/answerindex.mjs ready",
     "mcp": "node bin/answerindex.mjs mcp",
     "benchmark": "node test-aeo-models.mjs",

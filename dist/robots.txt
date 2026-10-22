@@ -1,0 +1,53 @@
+# robots.txt - AnswerIndex Search & AI Engine Directives
+# Canonical Domain: https://answerindex.xyz
+# Standard: RFC 9309 / AI Crawler Directives
+
+User-agent: *
+Allow: /
+Disallow: /dashboard.html
+Disallow: /api/
+Disallow: /functions/
+
+# Explicit AI Answer & Search Engine Indexing Directives
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Anthropic-AI
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+# Canonical Sitemaps
+Sitemap: https://answerindex.xyz/sitemap.xml
+Sitemap: https://answerindex.xyz/ai-sitemap.xml

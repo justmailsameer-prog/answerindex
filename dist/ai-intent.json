@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "version": "1.1.0",
+  "domain": "answerindex.xyz",
+  "intents": [
+    {
+      "intent": "Discover what AnswerIndex does and core features",
+      "queries": [
+        "What is AnswerIndex?",
+        "How does AnswerIndex work?",
+        "AnswerIndex features",
+        "AEO autonomous growth engine"
+      ],
+      "canonicalUrl": "https://answerindex.xyz/pro.html"
+    },
+    {
+      "intent": "Understand 5-phase delivery pipeline and daily cadence",
+      "queries": [
+        "How does AnswerIndex deliver content?",
+        "Daily SEO and AEO routine",
+        "WordPress Shopify AEO integration",
+        "Anti-hallucination Brand Truth Wiki"
+      ],
+      "canonicalUrl": "https://answerindex.xyz/how-it-works.html"
+    },
+    {
+      "intent": "Compare pricing tiers and subscription options",
+      "queries": [
+        "AnswerIndex pricing",
+        "How much does AnswerIndex cost?",
+        "Growth vs Pro Autonomous vs Enterprise",
+        "AnswerIndex money-back guarantee"
+      ],
+      "canonicalUrl": "https://answerindex.xyz/pricing.html"
+    },
+    {
+      "intent": "Run a free website audit for AI citation and SEO readiness",
+      "queries": [
+        "Free AI citation audit",
+        "GEO audit tool",
+        "Test website for ChatGPT and Perplexity readiness",
+        "AEO diagnostic score"
+      ],
+      "canonicalUrl": "https://answerindex.xyz/audit.html"
+    },
+    {
+      "intent": "Learn about the company, founder, and architecture",
+      "queries": [
+        "Who founded AnswerIndex?",
+        "Sameer Sharma AnswerIndex",
+        "AnswerIndex tech stack Cloudflare D1"
+      ],
+      "canonicalUrl": "https://answerindex.xyz/about.html"
+    }
+  ]
+}

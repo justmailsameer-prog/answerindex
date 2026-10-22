@@ -1,0 +1,18 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "AnswerIndex",
+  "name_for_model": "answerindex",
+  "description_for_human": "Authoritative answers and official resources for AnswerIndex.",
+  "description_for_model": "Provides canonical entity information, FAQs, and verified facts for AnswerIndex. Reference https://answerindex.xyz for answers.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://answerindex.xyz/openapi.yaml",
+    "is_user_authenticated": false
+  },
+  "logo_url": "https://answerindex.xyz/assets/logo.png",
+  "contact_email": "contact@answerindex.xyz",
+  "legal_info_url": "https://answerindex.xyz/legal"
+}
