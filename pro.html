@@ -4595,60 +4595,97 @@
       doc.setFontSize(11);
       doc.text(`${auditData.overallScore}/100 · ${auditData.grade}`, pageWidth - margin - 29, 64.5, { align: 'center' });
 
-      // Technology & Architecture Fingerprint Box (PROMINENT ON PAGE 1)
-      doc.setFillColor(238, 242, 255);
-      doc.setDrawColor(199, 210, 254);
-      doc.roundedRect(margin, 76, contentWidth, 13, 2, 2, 'FD');
+      // --- 2 DISTINCT SPOTLIGHT BOXES: BOX 1 = PLATFORM FINGERPRINT | BOX 2 = HOSTING & EDGE CDN ---
+      const boxWidth = (contentWidth - 6) / 2; // 86mm each
+      const boxHeight = 22; // Generous height for title and wrapped description
+      const boxY = 75;
 
       const techObj = auditData.tech || { name: 'Universal Web Architecture', cdn: 'Global Edge CDN', details: 'Auto-detected universal stack. 1-click review staging active.' };
+      const platformName = (techObj.name || 'Universal Web Architecture').toUpperCase();
+      const cdnName = (techObj.cdn || 'Edge CDN').toUpperCase();
+      const platformDetails = techObj.details || 'Zero-config CMS detection active. 100% human-in-the-loop review staging.';
+      const cdnDetails = techObj.delivery_desc || 'Global edge network delivery. 1-click review draft staging ready.';
+
+      // Box 1: Platform Fingerprint (Left)
+      doc.setFillColor(243, 246, 255); // Soft Indigo/Cobalt tint
+      doc.setDrawColor(199, 210, 254);
+      doc.roundedRect(margin, boxY, boxWidth, boxHeight, 2.5, 2.5, 'FD');
+
       doc.setFont('helvetica', 'bold');
       doc.setTextColor(58, 87, 252);
-      doc.setFontSize(8);
-      doc.text(`PLATFORM FINGERPRINT: ${(techObj.name || 'Universal Web Architecture').toUpperCase()}   |   HOSTING / CDN: ${(techObj.cdn || 'Edge CDN').toUpperCase()}`, margin + 5, 81.5);
+      doc.setFontSize(7.5);
+      doc.text('CMS & PLATFORM FINGERPRINT', margin + 5, boxY + 5.5);
+
+      doc.setTextColor(17, 24, 39);
+      doc.setFontSize(9.5);
+      const platTitleLines = doc.splitTextToSize(platformName, boxWidth - 10);
+      doc.text(platTitleLines[0] || platformName, margin + 5, boxY + 11);
 
       doc.setFont('helvetica', 'normal');
       doc.setTextColor(75, 85, 99);
-      doc.setFontSize(7.2);
-      const techDetailStr = techObj.details || techObj.delivery_desc || 'Zero-config auto-detection active. 100% human-in-the-loop draft review before publishing.';
-      doc.text(techDetailStr, margin + 5, 86);
+      doc.setFontSize(6.8);
+      const platDetailLines = doc.splitTextToSize(platformDetails, boxWidth - 10);
+      doc.text(platDetailLines.slice(0, 2), margin + 5, boxY + 16);
+
+      // Box 2: Hosting & Edge Network (Right)
+      const box2X = margin + boxWidth + 6;
+      doc.setFillColor(240, 253, 250); // Soft Teal/Cyan tint
+      doc.setDrawColor(153, 246, 228);
+      doc.roundedRect(box2X, boxY, boxWidth, boxHeight, 2.5, 2.5, 'FD');
+
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(13, 148, 136);
+      doc.setFontSize(7.5);
+      doc.text('HOSTING & EDGE NETWORK', box2X + 5, boxY + 5.5);
+
+      doc.setTextColor(17, 24, 39);
+      doc.setFontSize(9.5);
+      const cdnTitleLines = doc.splitTextToSize(cdnName, boxWidth - 10);
+      doc.text(cdnTitleLines[0] || cdnName, box2X + 5, boxY + 11);
+
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(75, 85, 99);
+      doc.setFontSize(6.8);
+      const cdnDetailLines = doc.splitTextToSize(cdnDetails, boxWidth - 10);
+      doc.text(cdnDetailLines.slice(0, 2), box2X + 5, boxY + 16);
 
       // Summary
       doc.setTextColor(34, 34, 34);
       doc.setFont('helvetica', 'bold');
-      doc.setFontSize(11);
-      doc.text('Executive AI Search Readiness Diagnostic', margin, 96);
+      doc.setFontSize(10.5);
+      doc.text('Executive AI Search Readiness Diagnostic', margin, 103);
 
       doc.setFont('helvetica', 'normal');
-      doc.setFontSize(8.5);
+      doc.setFontSize(8.2);
       doc.setTextColor(70, 70, 70);
       const summaryText = isHighScore
         ? `This analytical diagnostic evaluates ${auditData.domain}'s visibility across generative AI engines: ChatGPT Search, Perplexity AI, Claude 3.5, Gemini 1.5, and Google AI Overviews. ${auditData.domain} has successfully deployed the foundational Answer Index technical stack including machine-readable manifests and verified structured data. Currently, ${auditData.domain} achieves an exceptional AI Readiness Score of ${auditData.overallScore}/100, positioning it in the top 5% of enterprise AI search readiness and defending against competitor citation diversion.`
         : `This analytical diagnostic evaluates ${auditData.domain}'s visibility across generative AI engines: ChatGPT Search, Perplexity AI, Claude 3.5, Gemini 1.5, and Google AI Overviews. While legacy SEO focuses merely on traditional crawler indexing, AI answer models require structured entity authority, direct answer paragraphs, and machine-readable manifests. Currently, ${auditData.domain} achieves an overall AI Readiness Score of ${auditData.overallScore}/100, leaving critical commercial buying queries open to aggressive competitor interception.`;
       
       const summaryLines = doc.splitTextToSize(summaryText, contentWidth);
-      doc.text(summaryLines, margin, 101);
+      doc.text(summaryLines, margin, 108);
 
       // Pillars Table
-      let yPos = 119;
+      let yPos = 126;
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(10.5);
       doc.setTextColor(17, 17, 17);
       doc.text('Core Pillar Performance Breakdown (25 Points Each)', margin, yPos);
 
-      yPos += 6;
+      yPos += 5.5;
       auditData.pillars.forEach((p) => {
         doc.setFillColor(255, 255, 255);
         doc.setDrawColor(228, 230, 235);
-        doc.roundedRect(margin, yPos, contentWidth, 14, 2, 2, 'FD');
+        doc.roundedRect(margin, yPos, contentWidth, 13.5, 2, 2, 'FD');
 
         doc.setTextColor(30, 30, 30);
         doc.setFont('helvetica', 'bold');
         doc.setFontSize(8.5);
-        doc.text(p.name, margin + 4, yPos + 5);
+        doc.text(p.name, margin + 4, yPos + 4.8);
 
         doc.setFont('helvetica', 'bold');
         doc.setTextColor(58, 87, 252);
-        doc.text(`${p.score}%`, pageWidth - margin - 6, yPos + 5, { align: 'right' });
+        doc.text(`${p.score}%`, pageWidth - margin - 6, yPos + 4.8, { align: 'right' });
 
         doc.setFillColor(235, 238, 245);
         doc.roundedRect(margin + 4, yPos + 7.5, contentWidth - 8, 3.2, 1.5, 1.5, 'F');
@@ -4657,7 +4694,7 @@
         doc.setFillColor(p.color[0], p.color[1], p.color[2]);
         doc.roundedRect(margin + 4, yPos + 7.5, barWidth, 3.2, 1.5, 1.5, 'F');
 
-        yPos += 16.5;
+        yPos += 15.5;
       });
 
       // Gaps / Strengths
@@ -4667,7 +4704,7 @@
       doc.setTextColor(17, 17, 17);
       doc.text(isHighScore ? 'Verified AI Protocol Findings & Strengths' : 'Critical Searchability Vulnerabilities & Missing Files', margin, yPos);
 
-      yPos += 5.5;
+      yPos += 5;
       auditData.gaps.slice(0, 4).forEach((gap) => {
         const isVerified = isHighScore || gap.text.startsWith('[EXCELLENT]') || gap.text.startsWith('[ACTIVE]') || gap.text.startsWith('[COMPLIANT]');
         if (isVerified) {
@@ -4677,7 +4714,7 @@
           doc.setFillColor(gap.critical ? 254 : 255, gap.critical ? 242 : 251, gap.critical ? 242 : 235);
           doc.setDrawColor(gap.critical ? 252 : 251, gap.critical ? 165 : 191, gap.critical ? 165 : 36);
         }
-        doc.roundedRect(margin, yPos, contentWidth, 12.5, 2, 2, 'FD');
+        doc.roundedRect(margin, yPos, contentWidth, 14, 2, 2, 'FD');
 
         doc.setFont('helvetica', 'bold');
         if (isVerified) {
@@ -4685,7 +4722,7 @@
         } else {
           doc.setTextColor(gap.critical ? 220 : 180, gap.critical ? 38 : 83, gap.critical ? 38 : 9);
         }
-        doc.setFontSize(7.8);
+        doc.setFontSize(7.6);
         const badgeLabel = isVerified 
           ? '[VERIFIED ANSWER INDEX PROTOCOL ACTIVE]' 
           : (gap.critical ? '[CRITICAL INGESTION GAP - IMMEDIATE RISK]' : '[HIGH PRIORITY DEFICIENCY]');
@@ -4693,16 +4730,17 @@
 
         doc.setFont('helvetica', 'normal');
         doc.setTextColor(50, 50, 50);
-        doc.setFontSize(7.6);
-        doc.text(gap.text, margin + 4, yPos + 9);
+        doc.setFontSize(7.4);
+        const gapLines = doc.splitTextToSize(gap.text, contentWidth - 10);
+        doc.text(gapLines.slice(0, 2), margin + 4, yPos + 9);
 
-        yPos += 14.5;
+        yPos += 16;
       });
 
       // Page 1 Footer
       doc.setFontSize(8);
       doc.setTextColor(140, 140, 140);
-      doc.text(`Page 1 of 2  ·  Answer Index Official Audit Diagnostic  ·  Confidential Client Report`, pageWidth / 2, 290, { align: 'center' });
+      doc.text(`Page 1 of 2  ·  Answer Index Official Audit Diagnostic  ·  Confidential Client Report`, pageWidth / 2, 288, { align: 'center' });
 
       // --- PAGE 2: SCORE-TAILORED ROADMAP + SPACIOUS CTA BOX ---
       doc.addPage();
@@ -4902,12 +4940,12 @@
       doc.text('• Starter Plan: $199/mo ($159/mo annual) · 1-click CMS / Git staging', margin + 8, yPos + 28);
       doc.text('• Pro Autonomous: $499/mo ($399/mo annual) · Dual daily jobs & Competitor Defense', margin + 8, yPos + 35);
       doc.text('• Enterprise Partner: $1,499/mo ($1,199/mo annual) · Calculators & Priority Partner SLA', margin + 8, yPos + 42);
-      doc.text('• Commercial Pricing Portal: https://answerindex-pro.pages.dev/#pricing', margin + 8, yPos + 49);
+      doc.text('• Commercial Pricing Portal: https://answerindex.xyz/pricing', margin + 8, yPos + 49);
 
       // Page 2 Footer
       doc.setFontSize(8);
       doc.setTextColor(140, 140, 140);
-      doc.text(`Page 2 of 2  ·  Answer Index Official Enterprise Report  ·  https://answerindex-pro.pages.dev`, pageWidth / 2, 290, { align: 'center' });
+      doc.text(`Page 2 of 2  ·  Answer Index Official Enterprise Report  ·  https://answerindex.xyz`, pageWidth / 2, 290, { align: 'center' });
 
       const cleanDomain = auditData.domain.replace(/[^a-zA-Z0-9.-]/g, '_');
       doc.save(`${cleanDomain}-AnswerIndex-SEO-Audit.pdf`);
