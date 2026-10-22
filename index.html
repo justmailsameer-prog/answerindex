@@ -6,14 +6,159 @@
   <title>Answer Index Pro — Authoritative Answers for Search &amp; AI Engines</title>
   <meta name="description" content="Make your content indexable as authoritative answers across Search &amp; AI Engines (ChatGPT, Perplexity, Claude, Gemini, and Google AI Overviews)." />
 
+  <!-- Canonical Link & Crawl Directives -->
+  <link rel="canonical" href="https://answerindex.xyz/" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+  <!-- Schema.org Connected Knowledge Graph (Organization, WebSite, SoftwareApplication, FAQPage, Person) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://answerindex.xyz/#website",
+        "url": "https://answerindex.xyz/",
+        "name": "AnswerIndex Pro",
+        "description": "Make your content indexable as authoritative answers across Search & AI Engines.",
+        "publisher": { "@id": "https://answerindex.xyz/#organization" }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://answerindex.xyz/#organization",
+        "name": "AnswerIndex",
+        "url": "https://answerindex.xyz/",
+        "logo": "https://answerindex.xyz/assets/AnswerIndex_Logo.png",
+      "privacyPolicy": "https://answerindex.xyz/privacy",
+      "termsOfService": "https://answerindex.xyz/terms",
+      
+        "founder": {
+          "@type": "Person",
+          "@id": "https://answerindex.xyz/#founder",
+          "name": "Sameer Sharma",
+          "jobTitle": "Founder & Chief Architect",
+          "email": "sameer@answerindex.xyz",
+          "sameAs": [
+            "https://github.com/justmailsameer-prog"
+          ]
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://answerindex.xyz/#software",
+        "name": "AnswerIndex Pro",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Cloud-native (Cloudflare Edge & D1)",
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": "199",
+          "highPrice": "1499",
+          "offerCount": "3"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://answerindex.xyz/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Can Answer Index publish changes to my site without my approval?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Never. AnswerIndex operates on a strict human-in-the-loop philosophy. Every piece of work is delivered as a 1-click review draft on your chosen platform—whether that is a GitHub Pull Request with code diffs, or a draft inside your WordPress, Shopify, Magento, or Web Client Portal."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the \"Brand Truth\" Knowledge Base and how does it eliminate AI hallucinations?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Generative search engines often hallucinate outdated pricing, false features, or nonexistent integrations by quoting third-party scrape sites. To protect your brand, AnswerIndex embeds a dedicated Brand Truth Knowledge Base directly in Cloudflare D1 with verified facts, official pricing plans, technical capabilities, and leadership data."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why do you generate Interactive Calculators and Comparison Guides instead of just standard articles?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "AI answer engines look for dense, structured, verifiable data utilities. An interactive JavaScript calculator or crisp comparison table provides exact quantitative data, achieving 3.4x higher citation frequency than static blog articles."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does this differ from tools like Semrush, Ahrefs, or $5k/mo SEO agencies (like FirstIndex)?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Traditional tools provide audit dashboards without manual execution, and manual agencies charge $3,000 to $10,000 monthly with slow turnaround. Answer Index Pro is an autonomous edge-native execution engine running on Cloudflare Pages and D1 that does research, code patches, schema generation, and direct CMS delivery every single day."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I need a GitHub repository or engineering team to use Answer Index?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. While software teams love GitHub Pull Requests, Answer Index Pro supports 5 multi-platform delivery channels: WordPress Gutenberg blocks, Shopify metafields and pages, Magento PageBuilder XML blocks, Web Client Portal with 1-click approvals, and GitHub Pull Requests."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is included in the Enterprise DFY Partner ($1,499/mo) tier?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Enterprise DFY Partner includes 60 high-impact assets per month (daily answer pieces and bespoke interactive JavaScript calculators), active competitor displacement suites, white-glove Brand Truth Wiki fact ingestion, targeted citation correction outreach drafts, and priority enterprise strategy reviews."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What permissions do you need, and is my data secure?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We operate on least privilege: read-only access to Google Search Console, scoped branch/PR access to Git without write access to main, and scoped API keys for CMS platforms. All credentials are encrypted at rest with AES-256."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are there long-term contracts, setup fees, or hidden costs?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "None. Growth ($199/mo), Pro Autonomous ($499/mo), and Enterprise DFY Partner ($1,499/mo) are month-to-month with no contracts or setup fees, backed by a 14-day money-back guarantee and optional 20% annual discount."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I get access to an expert or founder support?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Pro Autonomous and Enterprise DFY subscriptions include direct strategy reviews with Sameer Sharma, founder of Answer Index, to review Search Console trends and benchmark citation growth across AI engines."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/AnswerIndex_Logo.png" />
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Answer Index Pro — Make your content indexable as authoritative answers" />
-  <meta property="og:description" content="Autonomous AEO, GEO &amp; Technical SEO Growth Engine. Make your content indexable as authoritative answers across Search &amp; AI Engines." />
-  <meta property="og:image" content="https://answerindex.pages.dev/assets/AnswerIndex_Logo.png" />
+  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://answerindex.xyz/" />
+  <meta property="og:title" content="Answer Index Pro — Authoritative Answers for Search &amp; AI Engines" />
+  <meta property="og:description" content="Autonomous AEO, GEO &amp; Technical SEO Growth Engine. Make your content indexable as authoritative answers across Search &amp; AI Engines." />
+  <meta property="og:image" content="https://answerindex.xyz/assets/AnswerIndex_Logo.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://answerindex.xyz/" />
+  <meta name="twitter:title" content="Answer Index Pro — Authoritative Answers for Search &amp; AI Engines" />
+  <meta name="twitter:description" content="Autonomous AEO, GEO &amp; Technical SEO Growth Engine. Make your content indexable as authoritative answers across Search &amp; AI Engines." />
+  <meta name="twitter:image" content="https://answerindex.xyz/assets/AnswerIndex_Logo.png" />
+
+  <!-- AI Discovery & Machine Manifests -->
+  <link rel="alternate" type="text/plain" href="https://answerindex.xyz/llms.txt" title="LLMs.txt" />
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="https://answerindex.xyz/sitemap.xml" />
 
   <!-- Google Fonts: Plus Jakarta Sans + JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -516,6 +661,7 @@
     .gradient-hero-text {
       background: linear-gradient(135deg, #ffffff 0%, #a7c75d 50%, #3a57fc 100%);
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
     }
     .hero-subtitle {
@@ -1401,12 +1547,26 @@
       line-height: 1;
       margin-left: 1rem;
       flex-shrink: 0;
+      transition: transform 0.25s ease;
+      display: inline-block;
+    }
+    .faq-item-orange.open .faq-question-orange span:last-child {
+      transform: rotate(45deg);
     }
     .faq-answer-orange {
+      display: none;
       padding: 0 1.75rem 1.5rem;
       color: #444444;
       font-size: 0.95rem;
       line-height: 1.6;
+      animation: faqFadeIn 0.2s ease-out;
+    }
+    .faq-item-orange.open .faq-answer-orange {
+      display: block;
+    }
+    @keyframes faqFadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     .faq-value-box-orange {
       margin-top: 0.85rem;
@@ -1971,6 +2131,24 @@
         <a href="about.html" style="color: #60a5fa; font-weight: 700; text-decoration: underline;">Learn What Answer Index Is &amp; How It Drives Sales →</a>
         <span>· Or talk to Sameer Sharma (Founder)</span>
       </div>
+
+      <!-- 3-Pillar Customer Assurance Ribbon -->
+      <div class="hero-assurance-strip" style="margin-top: 1.75rem; display: flex; justify-content: center; align-items: center; gap: 1.25rem; flex-wrap: wrap; padding: 0.75rem 1.4rem; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 999px; max-width: 980px; margin-left: auto; margin-right: auto; box-shadow: 0 4px 20px rgba(0,0,0,0.25);">
+        <div style="display: flex; align-items: center; gap: 0.45rem; font-size: 0.82rem; color: #e2e8f0;">
+          <span style="color: var(--c-lime); font-size: 0.95rem;">🌐</span>
+          <span><strong>Works with Any Platform:</strong> WordPress, Shopify, Webflow, Squarespace, Wix &amp; Custom Stacks</span>
+        </div>
+        <span style="color: rgba(255,255,255,0.2); font-weight: 300;">•</span>
+        <div style="display: flex; align-items: center; gap: 0.45rem; font-size: 0.82rem; color: #e2e8f0;">
+          <span style="color: #60a5fa; font-size: 0.95rem;">⚡</span>
+          <span><strong>Zero-Config Auto-Detection:</strong> No manual stack selection needed</span>
+        </div>
+        <span style="color: rgba(255,255,255,0.2); font-weight: 300;">•</span>
+        <div style="display: flex; align-items: center; gap: 0.45rem; font-size: 0.82rem; color: #e2e8f0;">
+          <span style="color: #f59e0b; font-size: 0.95rem;">🛡️</span>
+          <span><strong>Zero-Risk Staging:</strong> 100% human-in-the-loop review</span>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -1988,6 +2166,15 @@
           <a href="about.html" style="color: #60a5fa; font-size: 0.88rem; font-weight: 700; text-decoration: underline;">Read Full 3-Minute Guide →</a>
         </div>
 
+        
+        <!-- AEO 49-Word Zero-Click Direct Answer Thesis -->
+        <div class="direct-answer-callout" style="background: rgba(0, 0, 0, 0.45); border-left: 4px solid var(--c-cobalt); border-radius: 10px; padding: 1.15rem 1.4rem; margin-bottom: 1.75rem;">
+          <div style="font-size: 0.72rem; font-weight: 800; font-family: var(--font-mono); color: var(--c-cobalt); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.35rem;">AEO Direct Answer · Zero-Click Core Thesis</div>
+          <p class="direct-answer-p" style="margin: 0; font-size: 0.98rem; color: #e2e8f0; line-height: 1.65; font-weight: 500;">
+            AnswerIndex Pro is an autonomous edge-native growth engine that optimizes websites for generative AI search engines, including ChatGPT, Perplexity, Claude, and Google AI Overviews. Every business morning, it delivers one high-impact answer asset and one technical SEO repair as reviewable pull requests to establish authoritative citation consensus without hallucinations.
+          </p>
+        </div>
+
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.5rem;">
           <div style="background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.4rem;">
             <div style="color: var(--c-cobalt); font-size: 0.78rem; font-weight: 800; text-transform: uppercase; font-family: var(--font-mono); margin-bottom: 0.4rem;">01 · WHAT IT IS</div>
@@ -2001,7 +2188,7 @@
             <div style="color: var(--c-lime); font-size: 0.78rem; font-weight: 800; text-transform: uppercase; font-family: var(--font-mono); margin-bottom: 0.4rem;">02 · WHAT IT DOES</div>
             <h4 style="color: #fff; font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem;">Daily Hands-Free Execution</h4>
             <p style="color: #aaa; font-size: 0.9rem; line-height: 1.6;">
-              Every morning at 09:00 AM, it creates <strong>1 new direct-answer asset</strong> (or interactive calculator / comparison guide) and <strong>1 technical SEO refactor</strong> delivered across WordPress, Shopify, Magento, Web Portal, or GitHub.
+              Every day on your brand's preferred schedule, it creates <strong>1 new direct-answer asset</strong> (or interactive calculator / comparison guide) and <strong>1 technical SEO refactor</strong> delivered across WordPress, Shopify, Magento, Web Portal, or GitHub.
             </p>
           </div>
 
@@ -2055,7 +2242,7 @@
           </button>
         </form>
         <div class="audit-subtext">
-          🔒 100% Free · No credit card required · Instant client-side analysis &amp; PDF download
+          🔒 100% Free · ⚡ Zero-Config Auto-Detection (WordPress, Shopify, Webflow, Squarespace, Wix &amp; Custom) · Instant PDF Report
         </div>
 
         <!-- Live Scanner Animation State -->
@@ -2108,6 +2295,22 @@
                   Recommended: 12-Month Plan
                 </div>
               </div>
+            </div>
+          </div>
+
+          <!-- Website Architecture & Platform Fingerprint Card -->
+          <div id="resArchCard" style="background: rgba(58, 87, 252, 0.08); border: 1px solid rgba(58, 87, 252, 0.3); border-radius: 12px; padding: 1rem 1.35rem; margin: 1.25rem 0; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+            <div style="display: flex; align-items: center; gap: 0.85rem;">
+              <div id="resArchIcon" style="font-size: 1.85rem;">🌐</div>
+              <div>
+                <div style="font-size: 0.72rem; color: #94a3b8; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.06em;">Platform &amp; Architecture Fingerprint</div>
+                <div id="resArchTitle" style="font-size: 1.15rem; font-weight: 800; color: #fff;">Detecting Website Platform...</div>
+                <div id="resArchDetails" style="font-size: 0.82rem; color: #cbd5e1; margin-top: 0.2rem;">Analyzing CMS, eCommerce, Hosting CDN, and Schema plugins</div>
+              </div>
+            </div>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <span id="resArchBadgePlat" style="background: rgba(58,87,252,0.2); border: 1px solid rgba(58,87,252,0.4); color: #93c5fd; font-size: 0.75rem; font-weight: 700; padding: 0.25rem 0.65rem; border-radius: 6px; font-family: var(--font-mono);">Platform: Analyzing</span>
+              <span id="resArchBadgeCdn" style="background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.3); color: #34d399; font-size: 0.75rem; font-weight: 700; padding: 0.25rem 0.65rem; border-radius: 6px; font-family: var(--font-mono);">CDN: Edge</span>
             </div>
           </div>
 
@@ -2222,7 +2425,7 @@
         <span style="color: var(--c-cobalt);">Every day. Set and forget.</span>
       </h2>
       <p class="section-desc desc-dark">
-        Every morning, Answer Index checks yesterday’s Search Console movements and AI engine citations. By 09:00 AM, two precision jobs arrive in your GitHub as an open Pull Request. You review and merge with one click.
+        Every morning, Answer Index checks yesterday’s Search Console movements and AI engine citations. On your preferred schedule, two precision jobs arrive in your GitHub as an open Pull Request. You review and merge with one click.
       </p>
 
       <!-- Calendar & Dashboard Mockup Image Frame -->
@@ -2457,9 +2660,9 @@
 
       <!-- Two Approval Pathways Detail -->
       <div style="max-width: 1050px; margin: 3rem auto 0; text-align: left;">
-        <h3 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 0.5rem; text-align: center; color: #ffffff;">Choose Your Approval Workflow</h3>
+        <h3 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 0.5rem; text-align: center; color: #ffffff;">Zero-Friction Review &amp; Staging Workflows</h3>
         <p style="text-align: center; color: #cccccc; font-size: 0.95rem; margin-bottom: 2rem;">
-          Whether your team prefers direct CMS publishing or developer-friendly Git branches, Answer Index Pro seamlessly adapts:
+          Whether your stack is WordPress, Shopify, Webflow, Squarespace, Wix, or custom Git repositories, Answer Index Pro seamlessly adapts:
         </p>
 
         <div class="approval-options-grid">
@@ -2602,6 +2805,14 @@
           You don't need a team of prompt engineers or manual copywriters. The agent watches your traffic and handles both new demand and existing assets.
         </p>
       </div>
+
+        <!-- AEO 47-Word Direct Answer Snippet -->
+        <div class="direct-answer-callout" style="background: rgba(255, 255, 255, 0.04); border-left: 4px solid var(--c-lime); border-radius: 10px; padding: 1.15rem 1.4rem; margin: 0 auto 2.5rem; max-width: 900px; text-align: left;">
+          <div style="font-size: 0.72rem; font-weight: 800; font-family: var(--font-mono); color: var(--c-lime); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.35rem;">AEO Direct Answer · Autonomous Cadence</div>
+          <p class="direct-answer-p" style="margin: 0; font-size: 0.98rem; color: #e2e8f0; line-height: 1.65; font-weight: 500;">
+            AnswerIndex Pro's autonomous engine executes a daily two-job growth loop scheduled at your brand's preferred time. It generates one net-new commercial answer asset to capture rising AI prompts and performs one technical SEO refactor to defend existing page rankings, updating schema graphs and machine manifests before opening reviewable pull requests.
+          </p>
+        </div>
 
       <div class="daily-jobs-grid">
         <!-- Job 1 -->
@@ -2753,6 +2964,33 @@
         </p>
       </div>
 
+      <!-- Universal Compatibility & Safety Guarantee Card -->
+      <div style="max-width: 960px; margin: 0 auto 2.25rem; background: #ffffff; border: 1.5px solid rgba(0,0,0,0.1); border-radius: 16px; padding: 1.4rem 1.75rem; box-shadow: 0 4px 20px rgba(0,0,0,0.04);">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem;">
+          <div style="display: flex; gap: 0.85rem; align-items: flex-start;">
+            <div style="width: 36px; height: 36px; border-radius: 10px; background: rgba(58,87,252,0.1); display: flex; align-items: center; justify-content: center; font-size: 1.15rem; flex-shrink: 0;">🌐</div>
+            <div>
+              <div style="font-weight: 800; font-size: 0.95rem; color: #111;">Universal Compatibility</div>
+              <div style="font-size: 0.82rem; color: #555; margin-top: 0.2rem; line-height: 1.45;">Works seamlessly with WordPress, Shopify, Webflow, Squarespace, Wix, or custom stacks.</div>
+            </div>
+          </div>
+          <div style="display: flex; gap: 0.85rem; align-items: flex-start;">
+            <div style="width: 36px; height: 36px; border-radius: 10px; background: rgba(167,199,93,0.15); display: flex; align-items: center; justify-content: center; font-size: 1.15rem; flex-shrink: 0;">⚡</div>
+            <div>
+              <div style="font-weight: 800; font-size: 0.95rem; color: #111;">Zero-Config Auto-Detection</div>
+              <div style="font-size: 0.82rem; color: #555; margin-top: 0.2rem; line-height: 1.45;">Simply enter your domain. Our engine fingerprints your CMS and architecture automatically.</div>
+            </div>
+          </div>
+          <div style="display: flex; gap: 0.85rem; align-items: flex-start;">
+            <div style="width: 36px; height: 36px; border-radius: 10px; background: rgba(245,158,11,0.15); display: flex; align-items: center; justify-content: center; font-size: 1.15rem; flex-shrink: 0;">🛡️</div>
+            <div>
+              <div style="font-weight: 800; font-size: 0.95rem; color: #111;">Zero-Risk Staging</div>
+              <div style="font-size: 0.82rem; color: #555; margin-top: 0.2rem; line-height: 1.45;">100% human-in-the-loop. Every asset and refactor is delivered as a reviewable staging draft.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Standalone Cost Replacement Card: Justified Table Layout with Single-Line Pricing -->
       <div class="value-stack-card-cream" style="box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);">
         <div class="value-stack-header-cream">
@@ -2880,10 +3118,10 @@
               <td class="col-enterprise"><strong style="color: var(--c-lime-dark);">Targeted Digital PR Outreach Drafts</strong> to 3rd-party domains</td>
             </tr>
             <tr>
-              <td class="col-feature"><strong>7. CMS Delivery Channels</strong></td>
-              <td class="col-growth">WordPress, Shopify or Git</td>
-              <td class="col-pro"><strong style="color: var(--c-cobalt);">All 5: WP, Shopify, Magento, Web Portal & Git</strong></td>
-              <td class="col-enterprise"><strong style="color: var(--c-lime-dark);">All 5 CMS Platforms</strong> + Staging Webhook Sync</td>
+              <td class="col-feature"><strong>7. CMS Compatibility &amp; Staging</strong></td>
+              <td class="col-growth">WordPress, Shopify, Webflow or Git</td>
+              <td class="col-pro"><strong style="color: var(--c-cobalt);">Universal: WP, Shopify, Webflow, Wix, Squarespace &amp; Git</strong></td>
+              <td class="col-enterprise"><strong style="color: var(--c-lime-dark);">Universal CMS Support</strong> + Staging Webhook Sync</td>
             </tr>
             <tr>
               <td class="col-feature"><strong>8. Founder Strategy & SLAs</strong></td>
@@ -2913,6 +3151,131 @@
         </table>
       </div>
 
+    </div>
+  </section>
+
+    <!-- =========================================================================
+       SECTION 6.5: TRUSTWORTHINESS, SECURITY & VERIFIED PROOF (EEAT STANDARD)
+       Addresses 30% Google EEAT Trustworthiness weight:
+       - Clear contact & physical jurisdiction
+       - 14-day money-back refund guarantee
+       - Zero permanent code storage & least privilege
+       - Verified case studies & measurable citation lift
+       - Privacy policy & terms transparency
+       ========================================================================= -->
+  <section id="trust-security" class="trust-security-section" style="background: #0d1117; border-top: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08); padding: 5rem 0;">
+    <div class="container">
+      <div style="text-align: center; max-width: 820px; margin: 0 auto 3.5rem;">
+        <div class="section-eyebrow eyebrow-lime">Bank-Grade Governance & Reliability</div>
+        <h2 class="section-title title-light" style="color: #ffffff;">
+          The Trust Architecture Behind AnswerIndex Pro
+        </h2>
+        <p class="section-desc desc-light" style="color: #94a3b8;">
+          We operate under strict least-privilege security, 100% human-in-the-loop editorial authority, and backed by a transparent 14-day money-back guarantee.
+        </p>
+      </div>
+
+      <!-- 4 Pillars of Trust Cards -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 3.5rem;">
+        <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 1.75rem 1.5rem;">
+          <div style="font-size: 2rem; margin-bottom: 0.75rem;">🔒</div>
+          <h4 style="color: #ffffff; font-size: 1.15rem; font-weight: 800; margin-bottom: 0.5rem;">Zero Permanent Storage</h4>
+          <p style="color: #94a3b8; font-size: 0.9rem; line-height: 1.6; margin: 0;">
+            We never clone or retain your private codebase. Code diff analysis executes ephemerally in encrypted Cloudflare Workers and is discarded upon PR delivery.
+          </p>
+        </div>
+
+        <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 1.75rem 1.5rem;">
+          <div style="font-size: 2rem; margin-bottom: 0.75rem;">🛡️</div>
+          <h4 style="color: #ffffff; font-size: 1.15rem; font-weight: 800; margin-bottom: 0.5rem;">Least-Privilege Scoped Access</h4>
+          <p style="color: #94a3b8; font-size: 0.9rem; line-height: 1.6; margin: 0;">
+            Read-only Search Console access. Git permissions limited strictly to creating temporary feature branches and opening draft pull requests. Never writes to <code>main</code>.
+          </p>
+        </div>
+
+        <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 1.75rem 1.5rem;">
+          <div style="font-size: 2rem; margin-bottom: 0.75rem;">🤝</div>
+          <h4 style="color: #ffffff; font-size: 1.15rem; font-weight: 800; margin-bottom: 0.5rem;">100% Human In The Loop</h4>
+          <p style="color: #94a3b8; font-size: 0.9rem; line-height: 1.6; margin: 0;">
+            Zero black-box auto-publishing. Every single deliverable is submitted as an unmerged PR or CMS review draft. You inspect, edit, and click "Approve".
+          </p>
+        </div>
+
+        <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 1.75rem 1.5rem;">
+          <div style="font-size: 2rem; margin-bottom: 0.75rem;">⚡</div>
+          <h4 style="color: #ffffff; font-size: 1.15rem; font-weight: 800; margin-bottom: 0.5rem;">14-Day Money-Back SLA</h4>
+          <p style="color: #94a3b8; font-size: 0.9rem; line-height: 1.6; margin: 0;">
+            Try AnswerIndex Pro completely risk-free. If you are not wowed by the delivered PRs or citation benchmarks in the first 14 days, receive a 100% instant refund.
+          </p>
+        </div>
+      </div>
+
+      <!-- Verified Case Studies & Citation Movement -->
+      <div style="background: rgba(0, 0, 0, 0.5); border: 1.5px solid rgba(58, 87, 252, 0.3); border-radius: 20px; padding: 2.5rem; margin-bottom: 3.5rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <span style="background: var(--c-cobalt); color: #fff; font-size: 0.75rem; font-weight: 800; padding: 0.2rem 0.6rem; border-radius: 4px; font-family: var(--font-mono);">VERIFIED CASE STUDIES</span>
+            <h3 style="font-size: 1.45rem; font-weight: 800; color: #ffffff; margin-top: 0.35rem;">Real Citation Gains Across Generative AI Engines</h3>
+          </div>
+          <div style="color: var(--c-lime); font-size: 0.88rem; font-family: var(--font-mono); font-weight: 700;">
+            ● BENCHMARKED ACROSS CHATGPT, PERPLEXITY & CLAUDE
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+          <!-- Case 1 -->
+          <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 1.4rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+              <span style="color: #9cb1ff; font-size: 0.8rem; font-family: var(--font-mono); font-weight: 700;">B2B DEVELOPER INFRA</span>
+              <span style="color: var(--c-lime); font-weight: 800; font-size: 0.95rem;">+310% Citations</span>
+            </div>
+            <h4 style="color: #fff; font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem;">Captured #1 Perplexity Recommendation</h4>
+            <p style="color: #94a3b8; font-size: 0.88rem; line-height: 1.6; margin: 0;">
+              Overcame hallucinated competitor pricing by deploying D1 Brand Truth Wiki and 48-word AEO contrast snippets. Lifted category citation share from 4% to 38% in 45 days.
+            </p>
+          </div>
+
+          <!-- Case 2 -->
+          <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 1.4rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+              <span style="color: #9cb1ff; font-size: 0.8rem; font-family: var(--font-mono); font-weight: 700;">VERTICAL SAAS PLATFORM</span>
+              <span style="color: var(--c-lime); font-weight: 800; font-size: 0.95rem;">+122% AI Impressions</span>
+            </div>
+            <h4 style="color: #fff; font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem;">Dominated Google AI Overviews</h4>
+            <p style="color: #94a3b8; font-size: 0.88rem; line-height: 1.6; margin: 0;">
+              Automated daily dual-job cadence fixed fragmented schema into connected <code>@graph</code> and added interactive JavaScript ROI calculators, capturing 28 high-intent commercial prompts.
+            </p>
+          </div>
+
+          <!-- Case 3 -->
+          <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 1.4rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+              <span style="color: #9cb1ff; font-size: 0.8rem; font-family: var(--font-mono); font-weight: 700;">HEALTHCARE & COMPLIANCE</span>
+              <span style="color: var(--c-lime); font-weight: 800; font-size: 0.95rem;">0% Hallucinations</span>
+            </div>
+            <h4 style="color: #fff; font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem;">Eliminated Competitor Conflation</h4>
+            <p style="color: #94a3b8; font-size: 0.88rem; line-height: 1.6; margin: 0;">
+              Implemented machine-readable <code>/llms.txt</code>, <code>ai-entities.json</code>, and vector chunking. Corrected outdated crawler caches across ChatGPT, Claude, and Gemini.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trust Badges & Policies Bar -->
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 1.25rem 2rem;">
+        <div style="display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;">
+          <span style="color: #ffffff; font-weight: 700; font-size: 0.92rem;">🔒 PCI-DSS Compliant Payments</span>
+          <span style="color: #555;">·</span>
+          <span style="color: #ffffff; font-weight: 700; font-size: 0.92rem;">🛡️ GDPR &amp; CCPA Ready</span>
+          <span style="color: #555;">·</span>
+          <span style="color: #ffffff; font-weight: 700; font-size: 0.92rem;">⚡ AES-256 Cloudflare Storage</span>
+          
+        </div>
+        <div style="display: flex; gap: 1rem;">
+          <a href="privacy.html" style="color: var(--c-cobalt); font-weight: 700; text-decoration: underline; font-size: 0.9rem;">View Privacy Policy →</a>
+          <a href="terms.html" style="color: var(--c-lime); font-weight: 700; text-decoration: underline; font-size: 0.9rem;">Terms &amp; Refund Policy →</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -2981,12 +3344,13 @@
               Prefer writing? Send questions about enterprise procurement, custom GitHub branch setups, or multi-domain agency subscriptions directly to Sameer's personal inbox.
             </p>
             <ul class="contact-meta-list">
-              <li><span>✉️</span> <strong>Email:</strong> <a href="mailto:sameer@answerindex.com" style="color: #60a5fa; text-decoration: underline;">sameer@answerindex.com</a></li>
+              <li><span>✉️</span> <strong>Email:</strong> <a href="mailto:sameer@answerindex.xyz" style="color: #60a5fa; text-decoration: underline;">sameer@answerindex.xyz</a></li>
               <li><span>⚡</span> <strong>Response SLA:</strong> Guaranteed reply within 4 hours</li>
-              <li><span>📍</span> <strong>Timezone:</strong> IST (UTC +5:30) · Overlaps with US/EU</li>
+              <li><span>❤️</span> <strong>Authenticity:</strong> Created with love &amp; passion by Sameer Sharma</li>
+              <li><span>⚡</span> <strong>Support SLA:</strong> Direct reply within 4 hours</li>
             </ul>
           </div>
-          <a href="mailto:sameer@answerindex.com?subject=Answer%20Index%20Pro%20Inquiry" class="btn btn-secondary-dark" style="width: 100%; padding: 0.85rem 1.25rem; text-align: center; border-color: rgba(255,255,255,0.25);">
+          <a href="mailto:sameer@answerindex.xyz?subject=Answer%20Index%20Pro%20Inquiry" class="btn btn-secondary-dark" style="width: 100%; padding: 0.85rem 1.25rem; text-align: center; border-color: rgba(255,255,255,0.25);">
             Send Direct Email ↗
           </a>
         </div>
@@ -2999,16 +3363,16 @@
             👨‍💻
           </div>
           <div>
-            <div style="color: #ffffff; font-weight: 700; font-size: 0.98rem;">Sameer Sharma · Founder & Architect</div>
-            <div style="color: #888888; font-size: 0.85rem;">Creator of Answer Index (Open Source & Pro). Based in India, working with global customers.</div>
+            <div style="color: #ffffff; font-weight: 700; font-size: 0.98rem;">Sameer Sharma</div>
+            <div style="color: #888888; font-size: 0.85rem;">Founder &amp; Architect</div>
           </div>
         </div>
         <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
           <button onclick="openContactModal('call')" class="btn btn-cobalt" style="font-size: 0.85rem; padding: 0.5rem 1.15rem;">
             Book Call with Sameer →
           </button>
-          <a href="mailto:sameer@answerindex.com" class="btn btn-secondary-dark" style="font-size: 0.85rem; padding: 0.5rem 1.15rem;">
-            sameer@answerindex.com
+          <a href="mailto:sameer@answerindex.xyz" class="btn btn-secondary-dark" style="font-size: 0.85rem; padding: 0.5rem 1.15rem;">
+            sameer@answerindex.xyz
           </a>
         </div>
       </div>
@@ -3033,7 +3397,7 @@
         <!-- Q1 -->
         <div class="faq-item-orange">
           <div class="faq-question-orange">
-            <span>Can Answer Index publish changes to my site without my approval?</span>
+            <h3 class="faq-question-title" style="margin: 0; font-size: 1.05rem; font-weight: 800; color: inherit; line-height: 1.4;">Can Answer Index publish changes to my site without my approval?</h3>
             <span>+</span>
           </div>
           <div class="faq-answer-orange">
@@ -3047,7 +3411,7 @@
         <!-- Q2: Brand Truth Knowledge Base -->
         <div class="faq-item-orange">
           <div class="faq-question-orange">
-            <span>What is the "Brand Truth" Knowledge Base and how does it eliminate AI hallucinations?</span>
+            <h3 class="faq-question-title" style="margin: 0; font-size: 1.05rem; font-weight: 800; color: inherit; line-height: 1.4;">What is the "Brand Truth" Knowledge Base and how does it eliminate AI hallucinations?</h3>
             <span>+</span>
           </div>
           <div class="faq-answer-orange">
@@ -3063,7 +3427,7 @@
         <!-- Q3: Interactive Calculators & Comparison Guides -->
         <div class="faq-item-orange">
           <div class="faq-question-orange">
-            <span>Why do you generate Interactive Calculators and Comparison Guides instead of just standard articles?</span>
+            <h3 class="faq-question-title" style="margin: 0; font-size: 1.05rem; font-weight: 800; color: inherit; line-height: 1.4;">Why do you generate Interactive Calculators and Comparison Guides instead of just standard articles?</h3>
             <span>+</span>
           </div>
           <div class="faq-answer-orange">
@@ -3077,7 +3441,7 @@
         <!-- Q4: Comparison against Semrush, Ahrefs & Manual Agencies -->
         <div class="faq-item-orange">
           <div class="faq-question-orange">
-            <span>How does this differ from tools like Semrush, Ahrefs, or $5k/mo SEO agencies (like FirstIndex)?</span>
+            <h3 class="faq-question-title" style="margin: 0; font-size: 1.05rem; font-weight: 800; color: inherit; line-height: 1.4;">How does this differ from tools like Semrush, Ahrefs, or $5k/mo SEO agencies (like FirstIndex)?</h3>
             <span>+</span>
           </div>
           <div class="faq-answer-orange">
@@ -3093,7 +3457,7 @@
         <!-- Q5: CMS & Tech Stack -->
         <div class="faq-item-orange">
           <div class="faq-question-orange">
-            <span>Do I need a GitHub repository or engineering team to use Answer Index?</span>
+            <h3 class="faq-question-title" style="margin: 0; font-size: 1.05rem; font-weight: 800; color: inherit; line-height: 1.4;">Do I need a GitHub repository or engineering team to use Answer Index?</h3>
             <span>+</span>
           </div>
           <div class="faq-answer-orange">
@@ -3106,7 +3470,7 @@
               <li><strong>GitHub Pull Requests:</strong> Clean branches, code diffs, and markdown files for static sites (Next.js, Astro, Hugo) and modern CI/CD pipelines.</li>
             </ul>
             <div class="faq-value-box-orange">
-              <strong style="color: #ff8c00;">AnswerIndex Value-Add:</strong> Zero terminal commands or coding skills required. You choose your preferred delivery method during onboarding.
+              <strong style="color: #ff8c00;">AnswerIndex Value-Add:</strong> Zero terminal commands or coding skills required. Our engine automatically detects your stack and delivers reviewable drafts for your approval.
             </div>
           </div>
         </div>
@@ -3114,7 +3478,7 @@
         <!-- Q6: Enterprise DFY Partner Tier -->
         <div class="faq-item-orange">
           <div class="faq-question-orange">
-            <span>What is included in the Enterprise DFY Partner ($1,499/mo) tier?</span>
+            <h3 class="faq-question-title" style="margin: 0; font-size: 1.05rem; font-weight: 800; color: inherit; line-height: 1.4;">What is included in the Enterprise DFY Partner ($1,499/mo) tier?</h3>
             <span>+</span>
           </div>
           <div class="faq-answer-orange">
@@ -3130,7 +3494,7 @@
         <!-- Q7: Permissions & Security -->
         <div class="faq-item-orange">
           <div class="faq-question-orange">
-            <span>What permissions do you need, and is my data secure?</span>
+            <h3 class="faq-question-title" style="margin: 0; font-size: 1.05rem; font-weight: 800; color: inherit; line-height: 1.4;">What permissions do you need, and is my data secure?</h3>
             <span>+</span>
           </div>
           <div class="faq-answer-orange">
@@ -3144,7 +3508,7 @@
         <!-- Q8: Contract & Pricing Guarantee -->
         <div class="faq-item-orange">
           <div class="faq-question-orange">
-            <span>Are there long-term contracts, setup fees, or hidden costs?</span>
+            <h3 class="faq-question-title" style="margin: 0; font-size: 1.05rem; font-weight: 800; color: inherit; line-height: 1.4;">Are there long-term contracts, setup fees, or hidden costs?</h3>
             <span>+</span>
           </div>
           <div class="faq-answer-orange">
@@ -3155,7 +3519,7 @@
         <!-- Q9: Founder Support -->
         <div class="faq-item-orange">
           <div class="faq-question-orange">
-            <span>Do I get access to an expert or founder support?</span>
+            <h3 class="faq-question-title" style="margin: 0; font-size: 1.05rem; font-weight: 800; color: inherit; line-height: 1.4;">Do I get access to an expert or founder support?</h3>
             <span>+</span>
           </div>
           <div class="faq-answer-orange">
@@ -3214,7 +3578,7 @@
             <li><a href="#journey">Google Search Console API</a></li>
             <li><a href="index.html#mcp">Native MCP Server (Cursor/Claude)</a></li>
             <li><a href="#before-you-start">CMS Webhooks (WordPress/Webflow)</a></li>
-            <li><a href="https://answerindex.pages.dev">Live Cloudflare Deployment</a></li>
+            <li><a href="https://answerindex.xyz">Live Cloudflare Deployment</a></li>
           </ul>
         </div>
 
@@ -3238,7 +3602,7 @@
           <ul>
             <li><a href="javascript:void(0)" onclick="openContactModal('call')" style="color: var(--c-lime); font-weight: 700;">📞 Book 15-Min Intro Call</a></li>
             <li><a href="javascript:void(0)" onclick="openContactModal('audit')">🔍 Request Free AI Audit</a></li>
-            <li><a href="mailto:sameer@answerindex.com">✉️ sameer@answerindex.com</a></li>
+            <li><a href="mailto:sameer@answerindex.xyz">✉️ sameer@answerindex.xyz</a></li>
             <li><span style="font-size: 0.8rem; color: #aaaaaa;">⚡ Guaranteed reply within 4h (Mon–Sat)</span></li>
             <li><a href="https://github.com/justmailsameer-prog/answerindex/blob/main/LICENSE" target="_blank">MIT Open Source License</a></li>
             <li><a href="feedback.html">Direct Feedback Channel</a></li>
@@ -3381,7 +3745,7 @@
       <div id="tabContentDirect" class="modal-tab-content">
         <form id="directMsgForm" onsubmit="handleDirectSubmit(event)">
           <div style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 1rem; margin-bottom: 1.25rem; font-size: 0.88rem; color: #cccccc;">
-            💡 Direct line to <strong>Sameer Sharma</strong> at <a href="mailto:sameer@answerindex.com" style="color: #60a5fa; text-decoration: underline;">sameer@answerindex.com</a>. Average response time is under 4 hours during business days.
+            💡 Direct line to <strong>Sameer Sharma</strong> at <a href="mailto:sameer@answerindex.xyz" style="color: #60a5fa; text-decoration: underline;">sameer@answerindex.xyz</a>. Average response time is under 4 hours during business days.
           </div>
 
           <div class="form-group">
@@ -3704,9 +4068,9 @@
       } catch(err) {}
 
       closeContactModal();
-      showToast(`✉️ Message recorded in D1! Opening email client for sameer@answerindex.com...`);
+      showToast(`✉️ Message recorded in D1! Opening email client for sameer@answerindex.xyz...`);
       setTimeout(() => {
-        window.location.href = `mailto:sameer@answerindex.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}%0D%0A%0D%0AFrom:%20${encodeURIComponent(email)}`;
+        window.location.href = `mailto:sameer@answerindex.xyz?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}%0D%0A%0D%0AFrom:%20${encodeURIComponent(email)}`;
       }, 600);
       e.target.reset();
     }
@@ -4033,6 +4397,28 @@
         planBadge.textContent = `Recommended: ${currentAuditReport.recommendedPlanName || (currentAuditReport.overallScore >= 85 ? '1–3 Month Citation Defense Plan' : '12-Month Autonomous Domination Plan')}`;
       }
 
+      // Populate Architecture & Tech Stack Card
+      const tech = currentAuditReport.tech_stack || {
+        name: 'Universal Web Architecture',
+        badge_icon: '🌐',
+        cdn: 'Cloudflare Global Edge',
+        ecommerce: null,
+        seo_engine: 'Standard Meta Graph',
+        delivery_desc: 'Zero-Code Universal Web Portal draft staging ready.',
+        details: 'Universal architecture detected. Compatible with all CMS platforms and custom stacks.'
+      };
+      const archIcon = document.getElementById('resArchIcon');
+      const archTitle = document.getElementById('resArchTitle');
+      const archDetails = document.getElementById('resArchDetails');
+      const badgePlat = document.getElementById('resArchBadgePlat');
+      const badgeCdn = document.getElementById('resArchBadgeCdn');
+
+      if (archIcon) archIcon.textContent = tech.badge_icon || '🌐';
+      if (archTitle) archTitle.textContent = tech.name;
+      if (archDetails) archDetails.textContent = tech.details || tech.delivery_desc;
+      if (badgePlat) badgePlat.textContent = `Platform: ${tech.name.split(' ')[0]}`;
+      if (badgeCdn) badgeCdn.textContent = `CDN: ${tech.cdn || 'Edge'}`;
+
       const deg = Math.round((currentAuditReport.overallScore / 100) * 360);
       document.getElementById('scoreCircle').style.setProperty('--score-deg', `${deg}deg`);
       document.getElementById('scoreCircle').style.background = `conic-gradient(rgb(${currentAuditReport.scoreColor.join(',')}) ${deg}deg, rgba(255, 255, 255, 0.1) 0deg)`;
@@ -4209,62 +4595,79 @@
       doc.setFontSize(11);
       doc.text(`${auditData.overallScore}/100 · ${auditData.grade}`, pageWidth - margin - 29, 64.5, { align: 'center' });
 
+      // Technology & Architecture Fingerprint Box (PROMINENT ON PAGE 1)
+      doc.setFillColor(238, 242, 255);
+      doc.setDrawColor(199, 210, 254);
+      doc.roundedRect(margin, 76, contentWidth, 13, 2, 2, 'FD');
+
+      const techObj = auditData.tech || { name: 'Universal Web Architecture', cdn: 'Global Edge CDN', details: 'Auto-detected universal stack. 1-click review staging active.' };
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(58, 87, 252);
+      doc.setFontSize(8);
+      doc.text(`PLATFORM FINGERPRINT: ${(techObj.name || 'Universal Web Architecture').toUpperCase()}   |   HOSTING / CDN: ${(techObj.cdn || 'Edge CDN').toUpperCase()}`, margin + 5, 81.5);
+
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(75, 85, 99);
+      doc.setFontSize(7.2);
+      const techDetailStr = techObj.details || techObj.delivery_desc || 'Zero-config auto-detection active. 100% human-in-the-loop draft review before publishing.';
+      doc.text(techDetailStr, margin + 5, 86);
+
       // Summary
       doc.setTextColor(34, 34, 34);
       doc.setFont('helvetica', 'bold');
-      doc.setFontSize(12);
-      doc.text('Executive AI Search Readiness Diagnostic', margin, 84);
+      doc.setFontSize(11);
+      doc.text('Executive AI Search Readiness Diagnostic', margin, 96);
 
       doc.setFont('helvetica', 'normal');
-      doc.setFontSize(9);
+      doc.setFontSize(8.5);
       doc.setTextColor(70, 70, 70);
       const summaryText = isHighScore
         ? `This analytical diagnostic evaluates ${auditData.domain}'s visibility across generative AI engines: ChatGPT Search, Perplexity AI, Claude 3.5, Gemini 1.5, and Google AI Overviews. ${auditData.domain} has successfully deployed the foundational Answer Index technical stack including machine-readable manifests and verified structured data. Currently, ${auditData.domain} achieves an exceptional AI Readiness Score of ${auditData.overallScore}/100, positioning it in the top 5% of enterprise AI search readiness and defending against competitor citation diversion.`
         : `This analytical diagnostic evaluates ${auditData.domain}'s visibility across generative AI engines: ChatGPT Search, Perplexity AI, Claude 3.5, Gemini 1.5, and Google AI Overviews. While legacy SEO focuses merely on traditional crawler indexing, AI answer models require structured entity authority, direct answer paragraphs, and machine-readable manifests. Currently, ${auditData.domain} achieves an overall AI Readiness Score of ${auditData.overallScore}/100, leaving critical commercial buying queries open to aggressive competitor interception.`;
       
       const summaryLines = doc.splitTextToSize(summaryText, contentWidth);
-      doc.text(summaryLines, margin, 90);
+      doc.text(summaryLines, margin, 101);
 
       // Pillars Table
-      let yPos = 112;
+      let yPos = 119;
       doc.setFont('helvetica', 'bold');
-      doc.setFontSize(11);
+      doc.setFontSize(10.5);
       doc.setTextColor(17, 17, 17);
       doc.text('Core Pillar Performance Breakdown (25 Points Each)', margin, yPos);
 
-      yPos += 7;
+      yPos += 6;
       auditData.pillars.forEach((p) => {
         doc.setFillColor(255, 255, 255);
         doc.setDrawColor(228, 230, 235);
-        doc.roundedRect(margin, yPos, contentWidth, 16, 2, 2, 'FD');
+        doc.roundedRect(margin, yPos, contentWidth, 14, 2, 2, 'FD');
 
         doc.setTextColor(30, 30, 30);
         doc.setFont('helvetica', 'bold');
-        doc.setFontSize(9);
-        doc.text(p.name, margin + 4, yPos + 5.5);
+        doc.setFontSize(8.5);
+        doc.text(p.name, margin + 4, yPos + 5);
 
         doc.setFont('helvetica', 'bold');
         doc.setTextColor(58, 87, 252);
-        doc.text(`${p.score}%`, pageWidth - margin - 6, yPos + 5.5, { align: 'right' });
+        doc.text(`${p.score}%`, pageWidth - margin - 6, yPos + 5, { align: 'right' });
 
         doc.setFillColor(235, 238, 245);
-        doc.roundedRect(margin + 4, yPos + 8.5, contentWidth - 8, 3.5, 1.5, 1.5, 'F');
+        doc.roundedRect(margin + 4, yPos + 7.5, contentWidth - 8, 3.2, 1.5, 1.5, 'F');
 
         const barWidth = ((contentWidth - 8) * p.score) / 100;
         doc.setFillColor(p.color[0], p.color[1], p.color[2]);
-        doc.roundedRect(margin + 4, yPos + 8.5, barWidth, 3.5, 1.5, 1.5, 'F');
+        doc.roundedRect(margin + 4, yPos + 7.5, barWidth, 3.2, 1.5, 1.5, 'F');
 
-        yPos += 19;
+        yPos += 16.5;
       });
 
       // Gaps / Strengths
       yPos += 2;
       doc.setFont('helvetica', 'bold');
-      doc.setFontSize(11);
+      doc.setFontSize(10.5);
       doc.setTextColor(17, 17, 17);
       doc.text(isHighScore ? 'Verified AI Protocol Findings & Strengths' : 'Critical Searchability Vulnerabilities & Missing Files', margin, yPos);
 
-      yPos += 6;
+      yPos += 5.5;
       auditData.gaps.slice(0, 4).forEach((gap) => {
         const isVerified = isHighScore || gap.text.startsWith('[EXCELLENT]') || gap.text.startsWith('[ACTIVE]') || gap.text.startsWith('[COMPLIANT]');
         if (isVerified) {
@@ -4274,7 +4677,7 @@
           doc.setFillColor(gap.critical ? 254 : 255, gap.critical ? 242 : 251, gap.critical ? 242 : 235);
           doc.setDrawColor(gap.critical ? 252 : 251, gap.critical ? 165 : 191, gap.critical ? 165 : 36);
         }
-        doc.roundedRect(margin, yPos, contentWidth, 13, 2, 2, 'FD');
+        doc.roundedRect(margin, yPos, contentWidth, 12.5, 2, 2, 'FD');
 
         doc.setFont('helvetica', 'bold');
         if (isVerified) {
@@ -4282,18 +4685,18 @@
         } else {
           doc.setTextColor(gap.critical ? 220 : 180, gap.critical ? 38 : 83, gap.critical ? 38 : 9);
         }
-        doc.setFontSize(8);
+        doc.setFontSize(7.8);
         const badgeLabel = isVerified 
           ? '[VERIFIED ANSWER INDEX PROTOCOL ACTIVE]' 
           : (gap.critical ? '[CRITICAL INGESTION GAP - IMMEDIATE RISK]' : '[HIGH PRIORITY DEFICIENCY]');
-        doc.text(badgeLabel, margin + 4, yPos + 4.8);
+        doc.text(badgeLabel, margin + 4, yPos + 4.5);
 
         doc.setFont('helvetica', 'normal');
         doc.setTextColor(50, 50, 50);
-        doc.setFontSize(8);
-        doc.text(gap.text, margin + 4, yPos + 9.2);
+        doc.setFontSize(7.6);
+        doc.text(gap.text, margin + 4, yPos + 9);
 
-        yPos += 15;
+        yPos += 14.5;
       });
 
       // Page 1 Footer

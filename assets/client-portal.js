@@ -53,27 +53,6 @@
 
               <div id="loginMsg" class="auth-msg"></div>
             </form>
-
-            <div class="demo-logins-box">
-              <div class="demo-title">
-                <span>Or explore live platform demos:</span>
-                <span style="color: #38bdf8;">1-Click Access</span>
-              </div>
-              <div class="demo-pills">
-                <button type="button" class="demo-pill-btn" onclick="quickDemoLogin('client@shopify-store.com')">
-                  <span class="demo-pill-platform">🛍️ Shopify Merchant · Nordic Style</span>
-                  <span class="demo-pill-email">client@shopify-store.com</span>
-                </button>
-                <button type="button" class="demo-pill-btn" onclick="quickDemoLogin('editor@wordpress-brand.com')">
-                  <span class="demo-pill-platform">🌐 WordPress Publisher · FinTech Weekly</span>
-                  <span class="demo-pill-email">editor@wordpress-brand.com</span>
-                </button>
-                <button type="button" class="demo-pill-btn" onclick="quickDemoLogin('sameer@answerindex.com')">
-                  <span class="demo-pill-platform">🐙 GitHub Developer · Answer Index Core</span>
-                  <span class="demo-pill-email">sameer@answerindex.com</span>
-                </button>
-              </div>
-            </div>
           </div>
 
           <!-- TAB 2: Onboard New Site (Platform Selector) -->
@@ -98,6 +77,8 @@
                     id="regDomain"
                     class="form-input"
                     placeholder="yourdomain.com"
+                    oninput="triggerLiveTechDetect(this, 'regTechBadge', 'regTechIcon', 'regTechTitle', 'regTechDesc')"
+                    onblur="triggerLiveTechDetect(this, 'regTechBadge', 'regTechIcon', 'regTechTitle', 'regTechDesc')"
                     required
                   />
                 </div>
@@ -112,94 +93,18 @@
                 </div>
               </div>
 
-              <!-- Item 2: Platform Selector -->
-              <div class="form-group">
-                <label class="form-label">
-                  Choose Content Delivery Channel <span class="req">*</span>
-                </label>
-                <div class="platform-grid">
-                  
-                  <!-- WordPress -->
-                  <div class="platform-card selected" id="card-wordpress" onclick="selectPlatform('wordpress')">
-                    <div class="platform-card-header">
-                      <div class="platform-icon-title">
-                        <span>🌐</span>
-                        <span>WordPress</span>
-                      </div>
-                      <div class="platform-radio"></div>
-                    </div>
-                    <div class="platform-desc">
-                      Staged as Draft Posts &amp; FAQ blocks in WP Admin via REST API. Zero coding needed.
-                    </div>
-                  </div>
-
-                  <!-- Shopify -->
-                  <div class="platform-card" id="card-shopify" onclick="selectPlatform('shopify')">
-                    <div class="platform-card-header">
-                      <div class="platform-icon-title">
-                        <span>🛍️</span>
-                        <span>Shopify</span>
-                      </div>
-                      <div class="platform-radio"></div>
-                    </div>
-                    <div class="platform-desc">
-                      Draft Blog articles &amp; Product Q&amp;A Metafields via Shopify Admin API.
-                    </div>
-                  </div>
-
-                  <!-- GitHub -->
-                  <div class="platform-card" id="card-github" onclick="selectPlatform('github')">
-                    <div class="platform-card-header">
-                      <div class="platform-icon-title">
-                        <span>🐙</span>
-                        <span>GitHub PRs</span>
-                      </div>
-                      <div class="platform-radio"></div>
-                    </div>
-                    <div class="platform-desc">
-                      Daily automated Pull Requests with markdown &amp; Schema.org to your branch.
-                    </div>
-                  </div>
-
-                  <!-- Magento -->
-                  <div class="platform-card" id="card-magento" onclick="selectPlatform('magento')">
-                    <div class="platform-card-header">
-                      <div class="platform-icon-title">
-                        <span>📦</span>
-                        <span>Magento</span>
-                      </div>
-                      <div class="platform-radio"></div>
-                    </div>
-                    <div class="platform-desc">
-                      Staged PageBuilder CMS blocks &amp; XML via Magento 2 REST API.
-                    </div>
-                  </div>
-
-                  <!-- Web Portal / Email -->
-                  <div class="platform-card" id="card-portal" onclick="selectPlatform('portal')" style="grid-column: 1 / -1;">
-                    <div class="platform-card-header">
-                      <div class="platform-icon-title">
-                        <span>💻</span>
-                        <span>Web Portal &amp; 1-Click Copy</span>
-                      </div>
-                      <div class="platform-radio"></div>
-                    </div>
-                    <div class="platform-desc">
-                      Review directly inside the Answer Index Dashboard. Copy HTML with 1-click or receive daily email digests.
-                    </div>
-                  </div>
-
-                </div>
+              <!-- Zero-Config Auto-Detect Technology Callout -->
+              <div class="auto-detect-note">
+                ⚡ <strong>Zero-Config Auto-Detection:</strong> No technical setup required. Our engine automatically identifies your website platform (WordPress, Shopify, Webflow, Squarespace, Wix, or Custom) and configures the delivery channel.
               </div>
 
-              <div class="form-group" id="groupCmsUrl">
-                <label class="form-label" for="regCmsUrl" id="labelCmsUrl">Admin or Store URL (Optional)</label>
-                <input
-                  type="text"
-                  id="regCmsUrl"
-                  class="form-input"
-                  placeholder="https://yourdomain.com/wp-admin"
-                />
+              <!-- Live Tech Detection Badge -->
+              <div id="regTechBadge" class="auto-tech-pill" style="display: none;">
+                <div class="auto-tech-pill-icon" id="regTechIcon">🔍</div>
+                <div class="auto-tech-pill-body">
+                  <div class="auto-tech-pill-title" id="regTechTitle">Analyzing platform...</div>
+                  <div class="auto-tech-pill-sub" id="regTechDesc">Probing web-root protocols</div>
+                </div>
               </div>
 
               <button type="submit" class="btn-auth-submit" id="btnRegSubmit">
@@ -271,52 +176,6 @@
     }
   };
 
-  // Select platform
-  window.selectPlatform = function (platform) {
-    selectedPlatform = platform;
-    const cards = ['wordpress', 'shopify', 'github', 'magento', 'portal'];
-    cards.forEach(p => {
-      const card = document.getElementById(`card-${p}`);
-      if (card) {
-        if (p === platform) {
-          card.classList.add('selected');
-        } else {
-          card.classList.remove('selected');
-        }
-      }
-    });
-
-    const labelCmsUrl = document.getElementById('labelCmsUrl');
-    const inputCmsUrl = document.getElementById('regCmsUrl');
-    if (labelCmsUrl && inputCmsUrl) {
-      if (platform === 'wordpress') {
-        labelCmsUrl.textContent = 'WordPress Admin URL (Optional)';
-        inputCmsUrl.placeholder = 'https://yourdomain.com/wp-admin';
-      } else if (platform === 'shopify') {
-        labelCmsUrl.textContent = 'Shopify Store Admin URL (Optional)';
-        inputCmsUrl.placeholder = 'https://yourbrand.myshopify.com/admin';
-      } else if (platform === 'github') {
-        labelCmsUrl.textContent = 'GitHub Repository URL (Optional)';
-        inputCmsUrl.placeholder = 'https://github.com/org/repo';
-      } else if (platform === 'magento') {
-        labelCmsUrl.textContent = 'Magento Admin URL (Optional)';
-        inputCmsUrl.placeholder = 'https://yourdomain.com/admin';
-      } else {
-        labelCmsUrl.textContent = 'Reference Website URL (Optional)';
-        inputCmsUrl.placeholder = 'https://yourdomain.com';
-      }
-    }
-  };
-
-  // Quick Demo Login
-  window.quickDemoLogin = function (email) {
-    const input = document.getElementById('loginEmail');
-    if (input) {
-      input.value = email;
-      handleClientLogin(new Event('submit'));
-    }
-  };
-
   // Login handler
   window.handleClientLogin = async function (e) {
     if (e && e.preventDefault) e.preventDefault();
@@ -370,20 +229,75 @@
     }
   };
 
+  // Live Tech Stack Detection Helper
+  let techDetectTimer = null;
+  window.triggerLiveTechDetect = function (inputEl, badgeId, iconId, titleId, descId) {
+    clearTimeout(techDetectTimer);
+    const domain = (inputEl.value || '').trim().toLowerCase().replace(/^https?:\/\//, '').replace(/\/.*$/, '');
+    const badge = document.getElementById(badgeId);
+    if (!domain || !domain.includes('.')) {
+      if (badge) badge.style.display = 'none';
+      return;
+    }
+
+    if (badge) {
+      badge.style.display = 'flex';
+      badge.className = 'auto-tech-pill scanning';
+      const icon = document.getElementById(iconId);
+      const title = document.getElementById(titleId);
+      const desc = document.getElementById(descId);
+      if (icon) icon.textContent = '⏳';
+      if (title) title.textContent = `Analyzing ${domain}...`;
+      if (desc) desc.textContent = 'Probing HTTP headers & web-root CMS fingerprints';
+    }
+
+    techDetectTimer = setTimeout(async () => {
+      try {
+        const res = await fetch('/api/auth/client', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'detect_tech', domain })
+        });
+        const data = await res.json();
+        if (data.success && data.tech) {
+          const tech = data.tech;
+          if (badge) {
+            badge.className = 'auto-tech-pill';
+            const icon = document.getElementById(iconId);
+            const title = document.getElementById(titleId);
+            const desc = document.getElementById(descId);
+            if (icon) icon.textContent = tech.badge_icon || '✓';
+            if (title) title.textContent = `Detected: ${tech.name}`;
+            if (desc) desc.textContent = tech.delivery_desc || tech.details;
+          }
+        }
+      } catch (err) {
+        if (badge) {
+          badge.className = 'auto-tech-pill';
+          const icon = document.getElementById(iconId);
+          const title = document.getElementById(titleId);
+          const desc = document.getElementById(descId);
+          if (icon) icon.textContent = '💻';
+          if (title) title.textContent = 'Universal Web Architecture';
+          if (desc) desc.textContent = 'Configured for Universal Web Portal with 1-Click Copy & daily digests';
+        }
+      }
+    }, 450);
+  };
+
   // Register handler
   window.handleClientRegister = async function (e) {
     if (e && e.preventDefault) e.preventDefault();
     const email = document.getElementById('regEmail')?.value.trim();
     const domain = document.getElementById('regDomain')?.value.trim();
     const brand = document.getElementById('regBrand')?.value.trim();
-    const cmsUrl = document.getElementById('regCmsUrl')?.value.trim();
     const msg = document.getElementById('regMsg');
     const btn = document.getElementById('btnRegSubmit');
 
     if (!email || !domain) return;
 
     btn.disabled = true;
-    btn.textContent = 'Provisioning Autonomous Queue in D1...';
+    btn.textContent = 'Analyzing Site & Provisioning Queue in D1...';
     msg.className = 'auth-msg';
     msg.style.display = 'none';
 
@@ -396,8 +310,7 @@
           email,
           domain,
           brand_name: brand || domain,
-          cms_type: selectedPlatform,
-          cms_url: cmsUrl,
+          cms_type: 'auto',
           plan_tier: 'pro_autonomous'
         })
       });
@@ -405,7 +318,8 @@
       const data = await res.json();
       if (data.success && data.user) {
         msg.className = 'auth-msg success';
-        msg.textContent = `✓ Workspace created! Staging your first daily AEO jobs for ${selectedPlatform.toUpperCase()}...`;
+        const detectedName = data.detected_platform ? data.detected_platform.name : 'your website';
+        msg.textContent = `✓ Workspace created! Detected ${detectedName}. Staging your first daily AEO jobs...`;
         msg.style.display = 'block';
 
         localStorage.setItem('answerindex_user', JSON.stringify(data.user));
@@ -521,8 +435,8 @@
                 type="email"
                 id="vipEmail"
                 class="form-input"
-                placeholder="sameer-vip@answerindex.com"
-                value="sameer-vip@answerindex.com"
+                placeholder="sameer-vip@answerindex.xyz"
+                value="sameer-vip@answerindex.xyz"
                 required
               />
             </div>
@@ -535,6 +449,8 @@
                   id="vipDomain"
                   class="form-input"
                   placeholder="mysite.com"
+                  oninput="triggerLiveTechDetect(this, 'vipTechBadge', 'vipTechIcon', 'vipTechTitle', 'vipTechDesc')"
+                  onblur="triggerLiveTechDetect(this, 'vipTechBadge', 'vipTechIcon', 'vipTechTitle', 'vipTechDesc')"
                   required
                 />
               </div>
@@ -549,21 +465,17 @@
               </div>
             </div>
 
-            <div class="form-group">
-              <label class="form-label">Delivery Channel</label>
-              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 0.5rem;">
-                <label style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 0.6rem; font-size: 0.82rem; text-align: center; cursor: pointer;">
-                  <input type="radio" name="vipPlatform" value="portal" checked style="margin-right: 0.3rem;" /> ⚡ Portal
-                </label>
-                <label style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 0.6rem; font-size: 0.82rem; text-align: center; cursor: pointer;">
-                  <input type="radio" name="vipPlatform" value="wordpress" style="margin-right: 0.3rem;" /> 🌐 WP
-                </label>
-                <label style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 0.6rem; font-size: 0.82rem; text-align: center; cursor: pointer;">
-                  <input type="radio" name="vipPlatform" value="shopify" style="margin-right: 0.3rem;" /> 🛍️ Shopify
-                </label>
-                <label style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 0.6rem; font-size: 0.82rem; text-align: center; cursor: pointer;">
-                  <input type="radio" name="vipPlatform" value="github" style="margin-right: 0.3rem;" /> 🐙 GitHub
-                </label>
+            <!-- Zero-Config Auto-Detect Technology Callout for VIP -->
+            <div class="auto-detect-note" style="margin-bottom: 0.85rem;">
+              ⚡ <strong>Zero-Config Auto-Detect:</strong> Platform detected automatically (WordPress, Shopify, Webflow, Squarespace, Wix, or Web Portal). Zero setup required.
+            </div>
+
+            <!-- Live Tech Detection Badge for VIP -->
+            <div id="vipTechBadge" class="auto-tech-pill" style="display: none; margin-bottom: 1rem;">
+              <div class="auto-tech-pill-icon" id="vipTechIcon">🔍</div>
+              <div class="auto-tech-pill-body">
+                <div class="auto-tech-pill-title" id="vipTechTitle">Analyzing platform...</div>
+                <div class="auto-tech-pill-sub" id="vipTechDesc">Probing web-root protocols</div>
               </div>
             </div>
 
@@ -741,15 +653,13 @@
     const email = document.getElementById('vipEmail')?.value.trim();
     const domain = document.getElementById('vipDomain')?.value.trim();
     const brand = document.getElementById('vipBrand')?.value.trim();
-    const platformInput = document.querySelector('input[name="vipPlatform"]:checked');
-    const platform = platformInput ? platformInput.value : 'portal';
     const msg = document.getElementById('vipProvisionMsg');
     const btn = document.getElementById('btnVipProvisionSubmit');
 
     if (!email || !domain) return;
 
     btn.disabled = true;
-    btn.textContent = '⚡ Provisioning Free Enterprise Workspace in D1...';
+    btn.textContent = '⚡ Analyzing Platform & Provisioning Workspace in D1...';
     msg.className = 'auth-msg';
     msg.style.display = 'none';
 
@@ -763,7 +673,7 @@
           email,
           domain,
           brand_name: brand || domain,
-          cms_type: platform,
+          cms_type: 'auto',
           plan_tier: 'enterprise'
         })
       });
@@ -771,7 +681,8 @@
       const data = await res.json();
       if (data.success && data.user) {
         msg.className = 'auth-msg success';
-        msg.textContent = '✓ VIP Workspace provisioned! Redirecting to your live dashboard...';
+        const detectedName = data.detected_platform ? data.detected_platform.name : 'your website';
+        msg.textContent = `✓ VIP Workspace provisioned! Detected ${detectedName}. Redirecting to your live dashboard...`;
         msg.style.display = 'block';
 
         localStorage.setItem('answerindex_user', JSON.stringify(data.user));

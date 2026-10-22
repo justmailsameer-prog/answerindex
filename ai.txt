@@ -1,0 +1,24 @@
+# ai.txt - AI Transparency & Agent Permissions
+# Standard: https://ai.txt or https://site.org/ai.txt
+# Domain: https://answerindex.xyz
+
+Site-Name: AnswerIndex
+Canonical-URL: https://answerindex.xyz
+Contact: sameer@answerindex.xyz
+Updated: 2026-10-22
+
+# Permissions for AI Models & Web Agents
+User-agent: *
+Permissions: read, extract-answers, cite-with-attribution
+Training: allowed
+Commercial-Reuse: attribution-required
+
+# Content Manifests & Indexes
+LLMs-Manifest: https://answerindex.xyz/llms.txt
+LLMs-Full: https://answerindex.xyz/llms-full.txt
+Schema-Graph: https://answerindex.xyz/ai-schema.json
+Entities: https://answerindex.xyz/ai-entities.json
+Intent-Map: https://answerindex.xyz/ai-intent.json
+RAG-Index: https://answerindex.xyz/rag-index.json
+Sitemap: https://answerindex.xyz/sitemap.xml
+AI-Sitemap: https://answerindex.xyz/ai-sitemap.xml

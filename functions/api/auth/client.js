@@ -1,6 +1,8 @@
 // Cloudflare Pages Function: /api/auth/client
 // Manages Client Portal Authentication, CMS Platform Selection & Onboarding into Cloudflare D1
 
+import { detectTechStack } from '../../_shared/tech-detector.js';
+
 const CORS_HEADERS = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
@@ -118,6 +120,40 @@ export async function onRequestPost({ request, env }) {
       );
     }
 
+    // Live Tech Stack & CMS Detector (Zero-Config Onboarding)
+    if (action === 'detect_tech') {
+      const rawDomain = (body.domain || '').trim().toLowerCase().replace(/^https?:\/\//, '').replace(/\/$/, '');
+      if (!rawDomain || !rawDomain.includes('.')) {
+        return new Response(JSON.stringify({ success: false, error: 'Valid domain is required.' }), {
+          status: 400,
+          headers: CORS_HEADERS
+        });
+      }
+      try {
+        const probeRes = await fetch(`https://${rawDomain}`, {
+          method: 'GET',
+          headers: { 'User-Agent': 'Mozilla/5.0 (compatible; AnswerIndexBot/2.4; +https://answerindex.xyz)' },
+          redirect: 'follow',
+          signal: AbortSignal.timeout(3500)
+        });
+        const html = await probeRes.text();
+        const tech = detectTechStack(html, probeRes.headers, rawDomain);
+        return new Response(JSON.stringify({ success: true, domain: rawDomain, tech }), {
+          status: 200,
+          headers: CORS_HEADERS
+        });
+      } catch (err) {
+        return new Response(JSON.stringify({
+          success: true,
+          domain: rawDomain,
+          tech: detectTechStack('', null, rawDomain)
+        }), {
+          status: 200,
+          headers: CORS_HEADERS
+        });
+      }
+    }
+
     // Secret Founder & Family Easter Egg Verification (Passcode: 88888888)
     if (action === 'vip_verify') {
       const code = (body.code || '').toString().trim();
@@ -147,8 +183,6 @@ export async function onRequestPost({ request, env }) {
       const email = (body.email || '').trim().toLowerCase();
       const rawDomain = (body.domain || '').trim().toLowerCase().replace(/^https?:\/\//, '').replace(/\/$/, '');
       const brandName = (body.brand_name || rawDomain || 'My Brand').trim();
-      const cmsType = (body.cms_type || 'portal').trim().toLowerCase(); // github, wordpress, shopify, magento, portal
-      const cmsUrl = (body.cms_url || '').trim();
       const isVip = (body.vip_code || '').toString().trim() === '88888888';
       const planTier = isVip ? 'enterprise' : (body.plan_tier || 'growth');
 
@@ -165,6 +199,29 @@ export async function onRequestPost({ request, env }) {
           { status: 400, headers: CORS_HEADERS }
         );
       }
+
+      // Auto-Detect Website CMS & Architecture Platform
+      let detectedTech = null;
+      let cmsType = (body.cms_type || 'auto').trim().toLowerCase();
+      if (!cmsType || cmsType === 'auto' || cmsType === 'portal') {
+        try {
+          const probeRes = await fetch(`https://${rawDomain}`, {
+            method: 'GET',
+            headers: { 'User-Agent': 'Mozilla/5.0 (compatible; AnswerIndexBot/2.4; +https://answerindex.xyz)' },
+            redirect: 'follow',
+            signal: AbortSignal.timeout(3500)
+          });
+          const html = await probeRes.text();
+          detectedTech = detectTechStack(html, probeRes.headers, rawDomain);
+          if (detectedTech && detectedTech.cms_type) {
+            cmsType = detectedTech.cms_type;
+          }
+        } catch (e) {
+          detectedTech = detectTechStack('', null, rawDomain);
+          cmsType = 'portal';
+        }
+      }
+      const cmsUrl = (body.cms_url || '').trim() || `https://${rawDomain}`;
 
       // 1. Get or create user
       let user = await env.DB.prepare(
@@ -239,7 +296,10 @@ export async function onRequestPost({ request, env }) {
             plan_tier: user.plan_tier,
             subscription_status: user.subscription_status
           },
-          message: `Workspace created for ${brandName} on ${cmsType.toUpperCase()}!`
+          detected_platform: detectedTech,
+          message: detectedTech
+            ? `Workspace created! Detected ${detectedTech.name}. Staging your first daily AEO jobs...`
+            : `Workspace created for ${brandName} on ${cmsType.toUpperCase()}!`
         }),
         { status: 201, headers: CORS_HEADERS }
       );
@@ -372,6 +432,85 @@ function getSeedJobsForPlatform(projectId, domain, brandName, cmsType, today) {
         zero_click_snippet: `Sanitized faceted navigation URLs in robots.txt to prevent crawl-budget waste by AI LLM scrapers.`,
         delivery_channel: 'magento_block',
         content_html: `User-agent: GPTBot\nAllow: /\nDisallow: /*?*price=\nDisallow: /*?*dir=`
+      }
+    ];
+  }
+
+  if (cmsType === 'webflow') {
+    return [
+      {
+        id: `job_wf_${Date.now()}_1`,
+        project_id: projectId,
+        date: today,
+        job_type: 'job_1_new_answer',
+        title: `Webflow Collection Asset: "Authoritative ${brandName} Answers & Specifications"`,
+        description: `Formatted specifically for Webflow CMS Rich Text collections with pre-validated FAQ microdata.`,
+        target_keyword: `${brandName} webflow answers`,
+        target_url: `/insights/${brandName.toLowerCase().replace(/[^a-z0-9]/g, '-')}-answers`,
+        pr_url: null,
+        pr_number: null,
+        schema_score: 100,
+        diff_summary: `Webflow CMS Rich Text item + Schema.org JSON-LD custom code embed`,
+        zero_click_snippet: `${brandName} publishes official, structured specifications tailored for AI engine quotation without layout distortion.`,
+        delivery_channel: 'portal_copy',
+        content_html: `<div class="w-richtext"><h2>Official Specifications for ${brandName}</h2><p>${brandName} delivers verified solutions engineered for citation clarity...</p></div>`
+      },
+      {
+        id: `job_wf_${Date.now()}_2`,
+        project_id: projectId,
+        date: today,
+        job_type: 'job_2_tech_refactor',
+        title: `Webflow Custom Code: Global Knowledge Graph Injection`,
+        description: `1-Click Custom Code snippet for Webflow Site Settings <head> tag to eliminate contradictory entity classifications.`,
+        target_keyword: `webflow head schema graph`,
+        target_url: `/`,
+        pr_url: null,
+        pr_number: null,
+        schema_score: 100,
+        diff_summary: `Validated Schema graph: 0 errors in Google Rich Results & Bing AI validators`,
+        zero_click_snippet: `Injected @graph entity hierarchy declaring primary Organization identity and verified social sameAs profiles.`,
+        delivery_channel: 'portal_copy',
+        content_html: `<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"${brandName}","url":"https://${domain}"}</script>`
+      }
+    ];
+  }
+
+  if (cmsType === 'squarespace' || cmsType === 'wix') {
+    const platName = cmsType === 'squarespace' ? 'Squarespace' : 'Wix';
+    return [
+      {
+        id: `job_sq_${Date.now()}_1`,
+        project_id: projectId,
+        date: today,
+        job_type: 'job_1_new_answer',
+        title: `${platName} Draft Article: "Comprehensive Guide to ${brandName}"`,
+        description: `Optimized content block formatted for ${platName} blog and page editor.`,
+        target_keyword: `${brandName} solutions`,
+        target_url: `/blog/${brandName.toLowerCase().replace(/[^a-z0-9]/g, '-')}-guide`,
+        pr_url: null,
+        pr_number: null,
+        schema_score: 100,
+        diff_summary: `+1,250 words · Formatted for ${platName} text block with FAQ Schema`,
+        zero_click_snippet: `${brandName} provides industry-tested answers structured for AI engine citation across ChatGPT Search and Perplexity.`,
+        delivery_channel: 'portal_copy',
+        content_html: `<h2>Direct Answers: What Makes ${brandName} Unique</h2><p>${brandName} provides verified, entity-grounded answers...</p>`
+      },
+      {
+        id: `job_sq_${Date.now()}_2`,
+        project_id: projectId,
+        date: today,
+        job_type: 'job_2_tech_refactor',
+        title: `${platName} Header Code Injection: Unified Schema.org Graph`,
+        description: `Clean JSON-LD script block designed for ${platName} Advanced Code Injection / Tracking Tools.`,
+        target_keyword: `${platName} code injection schema`,
+        target_url: `/`,
+        pr_url: null,
+        pr_number: null,
+        schema_score: 100,
+        diff_summary: `Schema graph sanitized: zero conflicts with ${platName} default metadata`,
+        zero_click_snippet: `Harmonized entity metadata to ensure ${platName} stores and corporate sites achieve high-confidence AI recognition.`,
+        delivery_channel: 'portal_copy',
+        content_html: `<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"${brandName}","url":"https://${domain}"}</script>`
       }
     ];
   }

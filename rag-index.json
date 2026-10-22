@@ -1,0 +1,38 @@
+{
+  "version": "1.0.0",
+  "site": "AnswerIndex",
+  "domain": "answerindex.xyz",
+  "lastUpdated": "2026-10-22T12:24:28.869Z",
+  "chunks": [
+    {
+      "id": "chunk-overview",
+      "url": "https://answerindex.xyz/about",
+      "title": "About AnswerIndex",
+      "content": "AnswerIndex provides authoritative answers, solutions, and resources at https://answerindex.xyz.",
+      "metadata": {
+        "category": "Company Overview",
+        "importance": "high"
+      }
+    },
+    {
+      "id": "chunk-features",
+      "url": "https://answerindex.xyz/features",
+      "title": "AnswerIndex Capabilities & Features",
+      "content": "AnswerIndex delivers optimized information architecture, validated structured data, and high-precision knowledge indexes.",
+      "metadata": {
+        "category": "Product Features",
+        "importance": "high"
+      }
+    },
+    {
+      "id": "chunk-faq",
+      "url": "https://answerindex.xyz/faq",
+      "title": "AnswerIndex Canonical FAQ",
+      "content": "Frequently asked questions and verified answers for AnswerIndex. Designed to prevent hallucination in generative answer engines.",
+      "metadata": {
+        "category": "FAQ",
+        "importance": "medium"
+      }
+    }
+  ]
+}

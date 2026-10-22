@@ -12,7 +12,7 @@
           <div class="mobile-drawer-card" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
             <div class="mobile-drawer-header">
               <div style="display:flex; align-items:center; gap:0.6rem;">
-                <img src="assets/AnswerIndex_Logo.png" alt="Answer Index" style="width:28px; height:28px; border-radius:6px;" />
+                <img src="/assets/AnswerIndex_Logo.png" alt="Answer Index" style="width:28px; height:28px; border-radius:6px;" />
                 <span style="font-weight:800; color:#fff; font-size:1.05rem;">Answer Index</span>
                 <span class="site-badge-pro" id="drawerProBadge" onclick="handleProBadgeEasterEggClick(event)" title="Pro Agent (Click 5 times for VIP)">PRO</span>
               </div>
@@ -20,22 +20,22 @@
             </div>
 
             <nav class="mobile-drawer-nav-list">
-              <a href="pro.html" class="mobile-drawer-link" id="navLinkHome">
+              <a href="/pro.html" class="mobile-drawer-link" id="navLinkHome">
                 <span class="icon">🏠</span> <span>Overview</span>
               </a>
-              <a href="how-it-works.html" class="mobile-drawer-link" id="navLinkHow">
+              <a href="/how-it-works.html" class="mobile-drawer-link" id="navLinkHow">
                 <span class="icon">⚙️</span> <span>How It Works</span>
               </a>
-              <a href="audit.html" class="mobile-drawer-link" id="navLinkAudit">
+              <a href="/audit.html" class="mobile-drawer-link" id="navLinkAudit">
                 <span class="icon">🔍</span> <span>Free AI Audit (PDF)</span>
               </a>
-              <a href="pricing.html" class="mobile-drawer-link" id="navLinkPricing">
+              <a href="/pricing.html" class="mobile-drawer-link" id="navLinkPricing">
                 <span class="icon">💳</span> <span>Pricing &amp; Plans</span>
               </a>
-              <a href="about.html" class="mobile-drawer-link" id="navLinkAbout">
+              <a href="/about.html" class="mobile-drawer-link" id="navLinkAbout">
                 <span class="icon">💡</span> <span>About &amp; Founder</span>
               </a>
-              <a href="dashboard.html" class="mobile-drawer-link" id="navLinkDash" style="color: #60a5fa;">
+              <a href="/dashboard.html" class="mobile-drawer-link" id="navLinkDash" style="color: #60a5fa;">
                 <span class="icon">⚡</span> <span>Live Web Dashboard</span>
               </a>
             </nav>
@@ -44,7 +44,7 @@
               <button onclick="closeMobileDrawer(); openClientAuthModal('login');" class="site-nav-btn site-nav-btn-secondary" style="width:100%;">
                 🔑 Client Sign In
               </button>
-              <a href="audit.html" class="site-nav-btn site-nav-btn-cobalt" style="width:100%;">
+              <a href="/audit.html" class="site-nav-btn site-nav-btn-cobalt" style="width:100%;">
                 ⚡ Run Free AI Audit →
               </a>
               <div style="text-align:center; font-size:0.75rem; color:#64748b; margin-top:0.5rem;">
@@ -59,10 +59,10 @@
       const stickyBarHtml = `
         <div id="mobileStickyBar" class="mobile-sticky-bar">
           <div class="sticky-bar-inner">
-            <a href="audit.html" class="btn-sticky-primary">
+            <a href="/audit.html" class="btn-sticky-primary">
               <span>🔍 Free AI Audit</span>
             </a>
-            <a href="pricing.html" class="btn-sticky-secondary">
+            <a href="/pricing.html" class="btn-sticky-secondary">
               <span>Pricing &amp; Plans →</span>
             </a>
           </div>
@@ -138,6 +138,23 @@
     }
   };
 
+  // Universal FAQ Accordion Handler
+  function initFaqAccordion() {
+    document.querySelectorAll('.faq-question-orange').forEach(q => {
+      q.style.cursor = 'pointer';
+      // Prevent duplicate listeners
+      q.removeEventListener('click', handleFaqClick);
+      q.addEventListener('click', handleFaqClick);
+    });
+  }
+
+  function handleFaqClick(e) {
+    const item = this.closest('.faq-item-orange');
+    if (item) {
+      item.classList.toggle('open');
+    }
+  }
+
   // Keyboard shortcut: Escape closes drawer
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') {
@@ -145,9 +162,14 @@
     }
   });
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initMobileNav);
-  } else {
+  function init() {
     initMobileNav();
+    initFaqAccordion();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
   }
 })();

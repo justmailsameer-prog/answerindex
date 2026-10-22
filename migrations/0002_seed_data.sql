@@ -2,10 +2,10 @@
 -- Seed Initial User, Project, Daily Jobs, and Citation Telemetry into Cloudflare D1
 
 INSERT OR IGNORE INTO users (id, email, name, plan_tier, subscription_status)
-VALUES ('usr_sameer_founder', 'sameer@answerindex.com', 'Sameer Sharma', 'pro_autonomous', 'active');
+VALUES ('usr_sameer_founder', 'sameer@answerindex.xyz', 'Sameer Sharma', 'pro_autonomous', 'active');
 
 INSERT OR IGNORE INTO projects (id, user_id, domain, brand_name, repo_owner, repo_name, branch)
-VALUES ('proj_answerindex_core', 'usr_sameer_founder', 'answerindex.pages.dev', 'Answer Index', 'justmailsameer-prog', 'answerindex', 'main');
+VALUES ('proj_answerindex_core', 'usr_sameer_founder', 'answerindex.xyz', 'Answer Index', 'justmailsameer-prog', 'answerindex', 'main');
 
 INSERT OR IGNORE INTO daily_jobs (
   id, project_id, date, job_type, title, target_keyword, target_url,

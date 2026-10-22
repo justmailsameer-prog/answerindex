@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Answer Index Pro — Autonomous Client Dashboard</title>
-  <meta name="description" content="Real-time autonomous daily dispatch queue, 1-click PR approvals, and AI citation velocity telemetry." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="canonical" href="https://answerindex.xyz/dashboard" />
   <link rel="icon" type="image/png" href="assets/AnswerIndex_Logo.png" />
 
   <!-- Google Fonts: Plus Jakarta Sans + JetBrains Mono -->
@@ -793,7 +794,7 @@
             Answer Index <span class="pro-badge" id="easterEggProBadge" onclick="handleProBadgeEasterEggClick(event)" title="Answer Index PRO">PRO</span>
           </div>
           <div class="cadence-badge">
-            <span class="pulse-dot"></span> Autonomous Loop Active · 09:00 AM Dispatch
+            <span class="pulse-dot"></span> Autonomous Loop Active · Custom Scheduled Dispatch
           </div>
         </div>
       </a>
@@ -922,6 +923,7 @@
 
   <!-- Dashboard Container -->
   <main class="dashboard-container">
+    <h1 style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;">Answer Index Pro Client Dashboard</h1>
 
     <!-- KPI / Velocity Row -->
     <section class="kpi-grid">
@@ -1058,7 +1060,7 @@
           <!-- Dispatch Controls Box -->
           <div class="dispatch-box">
             <h4>Trigger On-Demand Cadence</h4>
-            <p>Need an urgent AEO answer piece or emergency schema patch before 09:00 AM? Run a live cadence cycle.</p>
+            <p>Need an urgent AEO answer piece or emergency schema patch before your scheduled dispatch? Run a live cadence cycle.</p>
             <button class="btn-dispatch" id="btnManualDispatch" onclick="triggerManualDispatch()">
               🚀 Dispatch Today's 2-Job Cycle
             </button>
@@ -1089,7 +1091,7 @@
   <script>
     let currentProject = {
       id: 'proj_answerindex_core',
-      domain: 'answerindex.pages.dev',
+      domain: 'answerindex.xyz',
       brand_name: 'Answer Index',
       cms_type: 'github',
       branch: 'main',

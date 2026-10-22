@@ -6,21 +6,76 @@
   <title>Share Your Feedback — Answer Index</title>
   <meta name="description" content="Share your suggestions, feature requests, crawler issues, or feedback directly with Sameer Sharma to shape the future of Answer Index." />
 
+  <!-- Canonical & Crawl Directives -->
+  <link rel="canonical" href="https://answerindex.xyz/feedback" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+  <!-- Schema.org JSON-LD (ContactPage, BreadcrumbList, Organization) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ContactPage",
+        "@id": "https://answerindex.xyz/feedback#webpage",
+        "url": "https://answerindex.xyz/feedback",
+        "name": "Share Your Feedback — Answer Index",
+        "description": "Share suggestions, feature requests, crawler issues, or feedback directly with Sameer Sharma to shape the future of Answer Index.",
+        "isPartOf": { "@id": "https://answerindex.xyz/#website" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://answerindex.xyz/feedback#breadcrumbs",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://answerindex.xyz/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Feedback",
+            "item": "https://answerindex.xyz/feedback"
+          }
+        ]
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://answerindex.xyz/#organization",
+        "name": "AnswerIndex",
+        "url": "https://answerindex.xyz/",
+        "founder": {
+          "@type": "Person",
+          "name": "Sameer Sharma",
+          "email": "sameer@answerindex.xyz"
+        }
+      }
+    ]
+  }
+  </script>
+
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/AnswerIndex_Logo.png" />
 
-  <!-- Open Graph / Social Sharing (Absolute URL ensures logo displays when shared) -->
+  <!-- Open Graph / Social Sharing -->
   <meta property="og:title" content="Share Your Feedback — Answer Index" />
   <meta property="og:description" content="Have an idea for a new AEO metric, AI crawler directive, or MCP capability? Send your thoughts directly to the creator." />
-  <meta property="og:image" content="https://answerindex.pages.dev/assets/AnswerIndex_Logo.png" />
+  <meta property="og:image" content="https://answerindex.xyz/assets/AnswerIndex_Logo.png" />
   <meta property="og:image:width" content="512" />
   <meta property="og:image:height" content="512" />
-  <meta property="og:url" content="https://answerindex.pages.dev/feedback.html" />
+  <meta property="og:url" content="https://answerindex.xyz/feedback" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary" />
+  <meta name="twitter:url" content="https://answerindex.xyz/feedback" />
   <meta name="twitter:title" content="Share Your Feedback — Answer Index" />
   <meta name="twitter:description" content="Share suggestions and feedback directly with the creator of Answer Index." />
-  <meta name="twitter:image" content="https://answerindex.pages.dev/assets/AnswerIndex_Logo.png" />
+  <meta name="twitter:image" content="https://answerindex.xyz/assets/AnswerIndex_Logo.png" />
+
+  <!-- AI Discovery & Machine Manifests -->
+  <link rel="alternate" type="text/plain" href="https://answerindex.xyz/llms.txt" title="LLMs.txt" />
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="https://answerindex.xyz/sitemap.xml" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -520,6 +575,9 @@
       </div>
 
       <div class="feedback-card">
+        <h2 style="font-size: 1.25rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.25rem;">Submit Feature Requests &amp; AI Search Feedback</h2>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.75rem;">Your suggestions directly guide our AEO algorithms, Schema integrations, and crawler directives.</p>
+
         <!-- Topic Selection -->
         <div class="form-group">
           <label class="form-label">Feedback Topic</label>
@@ -703,7 +761,7 @@
       let bodyText = `Topic: ${topic}\n`;
       if (name) bodyText += `Name: ${name}\n`;
       if (senderEmail) bodyText += `Reply Email: ${senderEmail}\n`;
-      bodyText += `\nMessage:\n${message}\n\n---\nSent from answerindex.pages.dev/feedback`;
+      bodyText += `\nMessage:\n${message}\n\n---\nSent from answerindex.xyz/feedback`;
 
       window.location.href = `mailto:justmailsameer@gmail.com?subject=${subject}&body=${encodeURIComponent(bodyText)}`;
       document.getElementById('modalMessage').innerHTML = `A direct email draft has been prepared for <strong>justmailsameer@gmail.com</strong> in your mail app. Click Send to complete delivery!`;

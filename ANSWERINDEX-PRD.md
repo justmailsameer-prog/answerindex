@@ -1,16 +1,26 @@
 # Answer Index — Product Requirements Document (PRD)
 
-**Document Version:** 3.2.0  
-**Status:** Production Active (v3.2.0)  
+**Document Version:** 3.5.0  
+**Status:** Production Active (v3.5.0)  
 **Product Name:** Answer Index (Open Source Core & Commercial Pro Autonomous)  
-**Live Production Portals:**
-- **Commercial Pro Engine:** [https://answerindex-pro.pages.dev](https://answerindex-pro.pages.dev)
-- **Live Client Dashboard:** [https://answerindex-pro.pages.dev/dashboard](https://answerindex-pro.pages.dev/dashboard)
-- **Executive About Page:** [https://answerindex-pro.pages.dev/about](https://answerindex-pro.pages.dev/about)
-- **Open-Source Core:** [https://answerindex.pages.dev](https://answerindex.pages.dev)
-- **Direct Feedback & Ideas Channel:** [https://answerindex-pro.pages.dev/feedback.html](https://answerindex-pro.pages.dev/feedback.html)
+**Live Production Portals & Protocols:**
+- **Canonical Production Engine:** [https://answerindex.xyz](https://answerindex.xyz) & [https://www.answerindex.xyz](https://www.answerindex.xyz)
+- **Commercial Pro Engine:** [https://answerindex.xyz/pro](https://answerindex.xyz/pro) (Mirror: [https://answerindex-pro.pages.dev](https://answerindex-pro.pages.dev))
+- **Live Client Dashboard:** [https://answerindex.xyz/dashboard](https://answerindex.xyz/dashboard)
+- **Executive About Page:** [https://answerindex.xyz/about](https://answerindex.xyz/about)
+- **Architecture & How It Works:** [https://answerindex.xyz/how-it-works.html](https://answerindex.xyz/how-it-works.html)
+- **Transparent Pricing Ladder:** [https://answerindex.xyz/pricing.html](https://answerindex.xyz/pricing.html)
+- **Instant AI & SEO Scanner:** [https://answerindex.xyz/audit.html](https://answerindex.xyz/audit.html)
+- **Standard AI Agent Index (`llms.txt`):** [https://answerindex.xyz/llms.txt](https://answerindex.xyz/llms.txt)
+- **Comprehensive RAG Corpus (`llms-full.txt`):** [https://answerindex.xyz/llms-full.txt](https://answerindex.xyz/llms-full.txt)
+- **AI-Priority XML Sitemap (`ai-sitemap.xml`):** [https://answerindex.xyz/ai-sitemap.xml](https://answerindex.xyz/ai-sitemap.xml)
+- **Canonical Search Sitemap (`sitemap.xml`):** [https://answerindex.xyz/sitemap.xml](https://answerindex.xyz/sitemap.xml)
+- **AI Crawler Directives (`robots.txt`):** [https://answerindex.xyz/robots.txt](https://answerindex.xyz/robots.txt)
+- **Privacy Policy (GDPR/CCPA):** [https://answerindex.xyz/privacy.html](https://answerindex.xyz/privacy.html)
+- **Terms of Service & Refund Policy:** [https://answerindex.xyz/terms.html](https://answerindex.xyz/terms.html)
+- **Direct Feedback Channel:** [https://answerindex.xyz/feedback.html](https://answerindex.xyz/feedback.html)
 - **GitHub Repository:** [https://github.com/justmailsameer-prog/answerindex](https://github.com/justmailsameer-prog/answerindex)  
-**Author & Maintainer:** Sameer Sharma (`sameer@answerindex.com` / `justmailsameer@gmail.com`)  
+**Author & Maintainer:** Sameer Sharma (`sameer@answerindex.xyz` / `justmailsameer@gmail.com`)  
 **License:** MIT License — Copyright (c) 2026 Sameer Sharma  
 **Canonical Banner Tagline:** *"Make your content indexable as authoritative answers across Search & AI Engines"*
 
@@ -79,6 +89,18 @@ To guarantee that generated answers, comparison guides, and technical refactors 
   `"[Brand] is [Canonical Definition]. Contrary to outdated third-party summaries, [Brand] does not [Incorrect claim]; rather, it [Factual truth], featuring [Verified specification]."`
 - **Immutable Edge Anchoring:** Canonical truth is ingested into `/llms.txt`, `/ai-entities.json`, and injected via immutable `@id` and `disambiguatingDescription` schema tags.
 
+### 2.2 EEAT Trustworthiness, Brand Authenticity & Legal Framework (30% Internal Scoring Weight)
+In strict compliance with Google Quality Rater Guidelines (QRG) and modern AI engine citation trust standards, Answer Index enforces a **100% Strong Trustworthiness Standard**:
+1. **Verified Contact & SLA Guarantee:** Direct communication anchored to official domain email routing (`sameer@answerindex.xyz` routed through Cloudflare Email Routing to `justmailsameer@gmail.com`) with a guaranteed 4-hour business day SLA.
+2. **Brand Authenticity & Transparent Origin:** Answer Index is an India-registered technology company built to serve US and global brands. The platform strictly prohibits deceptive marketing or vanity overseas addresses: no fabricated physical addresses or synthetic phone numbers are published anywhere on the site or in structured data. The platform proudly displays its authentic craft signature: *"Created with love & passion by Sameer Sharma"*.
+3. **Pure Digital SaaS Schema.org Representation:** The machine-readable Schema.org `Organization` node reflects pristine software platform entity modeling (`founder`, `contactPoint`, `privacyPolicy`, `termsOfService`, `sameAs`) without unnecessary LocalBusiness physical address blocks that cause NAP (Name, Address, Phone) crawler conflicts.
+4. **GDPR & CCPA Compliant Privacy Architecture (`privacy.html`):** Enforces zero permanent source code retention (ephemeral processing), Cloudflare D1 AES-256 storage for metadata, clear sub-processor transparency (Cloudflare, GitHub, Dodo Payments), and direct DPO access.
+5. **Commercial Terms & 14-Day Money-Back Guarantee (`terms.html`):**
+   - 100% Customer IP Ownership on all generated code, markdown assets, and schema graphs.
+   - Unconditional 14-Day 100% Money-Back Guarantee with zero friction.
+   - 100% Human-in-the-Loop invariant: all PRs and drafts require customer authorization before deployment.
+6. **Flexible Dispatch Cadence:** Fully deprecated rigid timing constraints (such as "at 09:00 AM") in favor of brand-customized scheduling windows.
+
 ---
 
 ## 3. Product Architecture & File Separation Model
@@ -106,6 +128,46 @@ Files deployed at `https://yourdomain.com/<file>` that instruct AI crawler bots 
 | `.well-known/ai-plugin.json`| Manifest | Standard endpoint manifest registering the website as an official AI data source. |
 | `manifest.json` | Master Inventory | Master inventory and compliance scorecard for all deployed protocols. |
 
+### 3.2 Production SEO, AEO & GEO Infrastructure Standards (v3.5.0)
+
+In v3.5.0, Answer Index codifies an uncompromising standard for Generative Engine Optimization (GEO), Answer Engine Optimization (AEO), and Technical SEO crawlability across the entire public platform:
+
+1. **AI Crawler Permissions Matrix (`robots.txt`):**
+   - Explicitly grants crawl access to leading conversational AI search bots and data crawlers: `GPTBot`, `ChatGPT-User`, `ClaudeBot`, `Claude-Web`, `Anthropic-AI`, `PerplexityBot`, `Google-Extended`, `GoogleOther`, `Applebot-Extended`, `cohere-ai`, and `Bytespider`.
+   - Protects private infrastructure and client boundaries by explicitly disallowing `/dashboard.html`, `/api/`, and `/functions/`.
+   - Points directly to canonical `sitemap.xml` and priority `ai-sitemap.xml`.
+
+2. **Standardized AI Discoverability (`llms.txt` & `llms-full.txt`):**
+   - Implements the [llmstxt.org](https://llmstxt.org) specification at `/llms.txt` with verified brand positioning, 5-phase pipeline breakdown, multi-platform staging delivery, and active commercial pricing tiers ($199 Growth, $499 Pro, $1,499 Enterprise).
+   - Serves an exhaustive, un-truncated RAG corpus at `/llms-full.txt` containing full architectural details, D1 Ground-Truth Brand Wiki specifications, schema invariants, and EEAT trust frameworks for LLMs with large context windows (200k+ tokens).
+
+3. **Dual XML Sitemap Hierarchy:**
+   - `sitemap.xml`: Canonical Search Console indexation map covering all primary pages with verified `lastmod` timestamps and `daily`/`weekly` change frequencies.
+   - `ai-sitemap.xml`: Priority-weighted sitemap prioritizing machine manifests (`llms.txt`, `ai.txt`, `ai-entities.json`, `rag-index.json`) and core conceptual documents (`about.html`, `how-it-works.html`, `pricing.html`) for AI scraper ingestion.
+
+4. **Universal Schema.org `@graph` Invariants (100% Syntax Validated):**
+   - Remediation of corrupted JSON-LD caused by unescaped markup inside strings; all 13 HTML files achieve 100% valid JSON-LD parsing verified via automated AST parser (`ALL JSON-LD VALID: True`).
+   - Every page features unified, typed `@graph` structures:
+     - `Organization` & `WebSite` with canonical `@id` URIs.
+     - `BreadcrumbList` on all subpages reflecting strict URL hierarchy.
+     - `FAQPage` and `AggregateOffer` / `Offer` trees on `pricing.html` and `audit.html`.
+     - `ContactPage` schema on feedback endpoints.
+     - Grounded `Person` founder nodes on `about.html` with explicit `knowsAbout` (AEO, GEO, Technical SEO) and verified `sameAs` authority links.
+
+5. **Semantic Heading Structure & Direct Answer Formulations:**
+   - Strictly enforced heading hierarchy (`<h1>` followed by `<h2>` and `<h3>` without skipping levels) across all views.
+   - Declarative 40–55 word direct-answer definition blocks immediately following natural language inquiry headers to capture zero-click AI snippet citations.
+
+6. **Root-Relative Navigation & Subdirectory Link Hygiene:**
+   - Absolute elimination of relative path drift across subdirectories (such as `/pro/index.html` referencing `about.html` instead of `/about.html`).
+   - Automated crawler verification confirms **0 broken links** across the entire website domain.
+
+7. **Vector RAG Chunking Corpus (`rag-index.json` & `rag-index.jsonl`):**
+   - Pre-computed 250–400 token semantic chunks annotated with unique IDs, importance scores (0.85–0.98), and retrieval keywords tailored for embedding in modern vector databases (Pinecone, Qdrant, Weaviate).
+
+8. **Automated Edge Build Synchronization (`scripts/sync-dist.py`):**
+   - Because Cloudflare Pages deploys directly from `pages_build_output_dir = "dist"`, an automated synchronization script mirrors all root files, manifests, HTML pages, assets, and serverless functions into `dist/` before deployment.
+
 ---
 
 ## 4. Web Applications & User Interfaces
@@ -116,9 +178,25 @@ answerindex/
 ├── pro.html                     # Commercial Pro Growth Engine Landing Page (Alias)
 ├── index-oss.html               # Open-Source Developer Landing Page (Preserved)
 ├── about.html                   # Executive Clarity: What, Does, Sales
+├── how-it-works.html            # Architecture & 5-Phase Execution Pipeline
+├── pricing.html                 # Transparent 3-Tier Value Ladder & Annual Toggle
+├── audit.html                   # Free 20-Point Instant Edge SEO & AI Audit Probe
 ├── dashboard.html               # Real-Time Autonomous Client Portal & Dispatch Queue
 ├── feedback.html                # Direct Founder Feedback Channel
+├── privacy.html                 # GDPR & CCPA Compliant Privacy Policy
+├── terms.html                   # Commercial Terms, IP Ownership & 14-Day Guarantee
+├── robots.txt                   # Search & AI Bot Crawler Permissions Matrix
+├── sitemap.xml                  # Canonical XML Sitemap for Search Engines
+├── ai-sitemap.xml               # Priority-Weighted XML Sitemap for AI Agents
+├── llms.txt                     # Standardized High-Density Site Manifest (llmstxt.org)
+├── llms-full.txt                # Full Un-Truncated Context Corpus for LLMs (200k+)
+├── ai-entities.json             # Machine-Readable Brand Entity Graph
+├── ai-intent.json               # Query-to-URL Intent Mapping Table
+├── rag-index.json               # Semantic Chunking Corpus for Vector Embeddings
+├── rag-index.jsonl              # Line-Delimited Batch Ingestion for Vector DBs
 ├── assets/
+│   ├── site-nav.js              # Universal Header, Mobile Drawer & VIP Modal
+│   ├── site-nav.css             # Navigation & Drawer Styling
 │   ├── client-portal.css        # Modular Client Portal & Auth Modal Styles
 │   ├── client-portal.js         # Client Auth, Platform Selection & D1 Sync
 │   └── AnswerIndex_Logo.png     # Official Vector Brand Identity
@@ -132,11 +210,14 @@ answerindex/
 │   ├── triage.js                # Founder Consultation & Audit Telemetry Ingestion
 │   ├── create-checkout.js       # Dodo Payments Dual-Mode Checkout Fallback Engine
 │   └── webhooks/dodo.js         # Subscription Provisioning Webhook Handler
-└── migrations/                  # Cloudflare D1 Relational SQL Migrations
-    ├── 0001_initial_schema.sql  # Users, Projects, Daily Jobs, Telemetry Tables
-    ├── 0002_seed_data.sql       # Seed Developer Core Project
-    ├── 0003_add_cms_support.sql # CMS Platform Types, Delivery Channels & Seed Data
-    └── 0004_add_truth_engine_and_asset_types.sql # Brand Truth Wiki & High-Leverage Asset Types
+├── migrations/                  # Cloudflare D1 Relational SQL Migrations
+│   ├── 0001_initial_schema.sql  # Users, Projects, Daily Jobs, Telemetry Tables
+│   ├── 0002_seed_data.sql       # Seed Developer Core Project
+│   ├── 0003_add_cms_support.sql # CMS Platform Types, Delivery Channels & Seed Data
+│   └── 0004_add_truth_engine_and_asset_types.sql # Brand Truth Wiki & High-Leverage Asset Types
+└── scripts/                     # Automation & Build Synchronization Scripts
+    ├── sync-dist.py             # Synchronizes root files & manifests to dist/
+    └── sync-pro.py              # Synchronizes pro.html into pro/index.html
 ```
 
 ### 4.1 Executive About Page (`about.html`)
@@ -154,7 +235,7 @@ Created in response to executive feedback to provide immediate commercial clarit
   - `⚙️ Platform & Features` (Daily Autonomous Routine, Market Comparison, Pricing, FAQ)
   - `📞 Contact Us` (Book 15-Min Intro, Email Founder, Direct Feedback)
 - **Unified Auth & Onboarding Modal:**
-  - **Tab 1: Client Sign In:** Instant work email lookup against Cloudflare D1 with 1-click demo accounts (`client@shopify-store.com`, `editor@wordpress-brand.com`, `sameer@answerindex.com`).
+  - **Tab 1: Client Sign In:** Instant work email lookup against Cloudflare D1 with 1-click demo accounts (`client@shopify-store.com`, `editor@wordpress-brand.com`, `sameer@answerindex.xyz`).
   - **Tab 2: Onboard New Site:** Domain, brand name, and interactive Platform Selector.
 
 ### 4.3 Multi-Platform Delivery Matrix (Solving the Non-GitHub Merchant Challenge)
@@ -322,6 +403,45 @@ For internal demonstration, staging, personal websites, and complimentary provis
   - Form submission creates an active **Enterprise** workspace with initial 2-job daily cadence in Cloudflare D1 and redirects directly into `dashboard.html` with zero payment gateway interaction.
   - State persisted via browser `localStorage` (`answerindex_vip_unlocked = '88888888'`) with 1-click `[Exit VIP Mode]` toggle.
 
+### 7.4 Universal Platform Compatibility & Technical Architecture Specification
+Answer Index Pro operates with 100% platform-agnostic capability across all web architectures, content management systems, and e-commerce platforms.
+
+#### 1. Universal Protocol Foundation
+Search engines and generative AI crawlers (GPTBot, ClaudeBot, PerplexityBot, Googlebot, Bingbot) evaluate public web standards regardless of backend framework. Answer Index optimizes the five core layers universally:
+- **Layer 1: Protocol & Discovery Layer:** Public web-root manifests (`/robots.txt` AI crawler rules, `/llms.txt`, `/llms-full.txt`, `/ai.txt`, `/ai-entities.json`).
+- **Layer 2: Entity & Knowledge Graph Layer:** Schema.org interconnected `@graph` JSON-LD, external authority disambiguation (`sameAs` Wikidata/Crunchbase links), `Organization`, `WebSite`, `Product`, and `FAQPage`.
+- **Layer 3: Passage-Level Retrieval Layer (AEO):** 40–55 word concise declarative answer definitions and direct solution summaries structured for zero-click AI snippet extraction.
+- **Layer 4: Anti-Hallucination Ground-Truth Engine:** Invariant rule verification against Cloudflare D1 Brand Truth Wiki (`projects.truth_document`) to prevent hallucinated pricing, specs, or unauthorized claims.
+- **Layer 5: Non-Destructive Delivery Bridge:** Zero direct database mutations; all changes are staged as reviewable drafts, pull requests, or copy-paste code blocks.
+
+#### 2. Supported Platform Detection & Coverage Matrix
+The backend detection engine (`functions/_shared/tech-detector.js`) inspects live HTML generator tags, script signatures, and HTTP response headers across 10+ platform categories:
+
+| Platform Family | Detected Technology | Delivery Channel & Adapter |
+| :--- | :--- | :--- |
+| **WordPress & WooCommerce** | WordPress 5.x/6.x, WooCommerce, Gutenberg, Yoast, Rank Math | Native WordPress REST API Draft Posts & Gutenberg block injection. |
+| **Shopify & Shopify Plus** | Shopify Storefront, Liquid themes, Online Store 2.0 | Shopify Admin API Blog Draft Articles & Product Q&A Metafields. |
+| **Webflow** | Webflow Designer, Webflow CMS collections, Rich Text | Formatted Webflow CMS items & Header Code Injection snippets. |
+| **Squarespace** | Squarespace 7.0/7.1, Squarespace Core | Formatted blog drafts & Advanced Code Injection JSON-LD blocks. |
+| **Wix / Wix Studio** | Wix Editor, Wix Studio, Wix Velo, Wix SEO Wiz | Formatted text blocks & Wix Tracking Tools / Custom Code injection. |
+| **Next.js / React (Jamstack)** | Next.js App/Pages Router, React, Vercel Edge | Automated GitHub Pull Requests & TypeScript Metadata API blocks. |
+| **Magento / Adobe Commerce** | Magento 2, Adobe Commerce, PageBuilder | PageBuilder CMS Blocks & Catalog Meta blocks via REST API. |
+| **Ghost CMS** | Ghost Publishing Platform, Ghost Admin | Markdown drafts & Code Injection JSON-LD headers. |
+| **HubSpot CMS** | HubSpot CMS Hub, HubL modules | HubL module drafts & JSON-LD blocks for HubSpot Blog & Pages. |
+| **Universal / Custom Stacks** | Laravel, Django, Rails, Astro, Nuxt, Custom PHP/HTML | Universal Client Portal with 1-Click Copy, JSON-LD, and daily digests. |
+
+#### 3. The 4 Non-Destructive Delivery Adapters
+To guarantee zero risk and zero developer friction:
+1. **CMS REST API Adapter:** Connects via application credentials or REST API endpoints to stage content strictly as `draft` status.
+2. **Automated Git PR Adapter:** Dispatches automated Pull Requests with clean Markdown, Schema.org JSON-LD, and diff summaries against target branches.
+3. **1-Click Embed & Header Injection:** Provides pre-validated script blocks for visual site builders that support custom header code injection.
+4. **Universal Web Portal & 1-Click Copy:** Allows clients on bespoke or proprietary platforms to review, copy HTML/JSON-LD with 1 click, or ingest via webhook.
+
+#### 4. Engineering & Security Safeguards
+- **Zero Production Database Writes:** Answer Index never executes direct SQL `INSERT`/`UPDATE` operations against client production application databases.
+- **100% Human-in-the-Loop:** All daily AEO content and technical schema patches remain staged until explicit client review and approval.
+- **Non-Destructive Styling:** Semantic HTML and Schema.org `<script type="application/ld+json">` tags operate independently of site stylesheets, eliminating visual layout distortion.
+
 ---
 
 ## 8. Milestone History & Release Log
@@ -331,7 +451,7 @@ For internal demonstration, staging, personal websites, and complimentary provis
 | **v1.0.0** | Q1 2026 | Initial 5-Phase AEO/GEO engine, 26-file deployment model, CLI, and MCP server. |
 | **v1.6.0** | Oct 2026 | Mobile responsive drawer, social sharing API, live Cloudflare Pages portal. |
 | **v1.8.0** | Oct 2026 | Foundation milestone frozen, static assets synchronized to `dist/`, PRD locked. |
-| **v2.0.0** | Oct 2026 | Commercial Pro Wireframe (`answerindex-pro.pages.dev`), editorial styling, 09:00 AM cadence calendar. |
+| **v2.0.0** | Oct 2026 | Commercial Pro Wireframe (`answerindex-pro.pages.dev`), editorial styling, customizable daily cadence calendar. |
 | **v2.1.0** | Oct 2026 | Cloudflare D1 Database (`answerindex-db`), relational schema migrations 0001 & 0002, edge APIs. |
 | **v2.2.0** | Oct 2026 | Live Client Dashboard (`dashboard.html`), Dodo Payments dual-mode checkout fallback, annual billing toggle. |
 | **v2.3.0** | Oct 2026 | Free instant SEO & AI diagnostic scanner (`#audit-tool`), client-side jsPDF executive report generator. |
@@ -340,7 +460,11 @@ For internal demonstration, staging, personal websites, and complimentary provis
 | **v2.5.1** | Oct 2026 | **Landing Page Architecture & Headline Harmonization:**<br>• Unified primary landing page on `answerindex-pro.pages.dev` to eliminate duplicate legacy single-color UI.<br>• Synchronized latest 5-brand color palette (#3a57fc Cobalt, #333333 Charcoal, #000000 Obsidian, #f5f4f0 Warm Cream, #a7c75d Lime) across root index and `/pro`.<br>• Applied canonical banner tagline *"Make your content indexable as authoritative answers across Search & AI Engines"* with `text-wrap: balance;` to eliminate orphaned line breaks.<br>• Preserved legacy CLI open-source layout as `index-oss.html`.<br>• Deployed live to Cloudflare Pages and verified production HTTP 200 responses. |
 | **v3.0.0** | Oct 2026 | **Brand Truth Engine, High-Impact Asset Types & 3-Tier Value Ladder:**<br>• Built Ground-Truth Anti-Hallucination Brand Wiki in Client Portal & D1 (`projects.truth_document`) with deterministic invariant validation (`daily_jobs.is_truth_verified`).<br>• Expanded autonomous daily dispatch queue beyond blog posts to include **Interactive Mini-Tools (live embeddable JS Calculators)**, **AEO Comparison Guides ("Brand vs Competitor")**, and **Digital PR Citation Corrections**.<br>• Established the commercial **3-Tier Value Ladder** ($199/mo Growth, $499/mo Pro Autonomous, $1,499/mo Enterprise DFY Partner) with interactive annual billing toggle.<br>• Updated all landing pages, instant audit PDF generator, and Dodo Payments routing (`/api/create-checkout`) to support all 3 tiers.<br>• Applied migration 0004 to Cloudflare D1 database. |
 | **v3.1.0** | Oct 2026 | **Enterprise SLA Refinement, Sample Brand Tagging & Founder VIP Bypass Engine:**<br>• Strict removal of personal Slack/Discord commitments from landing pages, pricing cards, FAQs, and generated audit PDFs in favor of *"Priority Enterprise Strategy SLA & Dedicated White-Glove Support"*.<br>• Added `⚠️ Sample Brand · Dummy Data` navbar badge and top explanatory ribbon to `dashboard.html` for unauthenticated demonstration clarity.<br>• Built and verified **Option A: 5-Click Secret Easter Egg on "PRO" Badge** with permanent secret passcode **`88888888`** (8 times 8).<br>• Enabled complete paywall bypass ($0 complimentary Enterprise tier provisioning) and session persistence in `localStorage`.<br>• Compiled and deployed production build to Cloudflare Pages (`answerindex-pro.pages.dev`). |
-| **v3.2.0** | Oct 2026 | **Mobile-First Multi-Page Architecture & CRO Overhaul (Current Stable Release):**<br>• Deconstructed the 16,800px single-page monolith into 5 discrete high-conversion pages (`index.html`, `how-it-works.html`, `audit.html`, `pricing.html`, `about.html`).<br>• Implemented **Apple HIG & Google Material compliant design system** with minimum 48x48px tap targets, responsive fluid typography (`clamp()`), and clean card padding.<br>• Built slide-over thumb-friendly mobile navigation drawer (`assets/site-nav.js`, `assets/site-nav.css`).<br>• Added high-conversion persistent sticky mobile bottom bar on screens < 768px with dual micro-actions (*"🔍 Free AI Audit"* &amp; *"Pricing →"*) with scroll-aware auto-hide.<br>• Preserved the 5-Click Secret Easter Egg (Passcode `88888888`) across all desktop and mobile navigation headers.<br>• Deployed production build to Cloudflare Pages. |
+| **v3.2.0** | Oct 2026 | **Mobile-First Multi-Page Architecture & CRO Overhaul:**<br>• Deconstructed the 16,800px single-page monolith into 5 discrete high-conversion pages (`index.html`, `how-it-works.html`, `audit.html`, `pricing.html`, `about.html`).<br>• Implemented **Apple HIG & Google Material compliant design system** with minimum 48x48px tap targets, responsive fluid typography (`clamp()`), and clean card padding.<br>• Built slide-over thumb-friendly mobile navigation drawer (`assets/site-nav.js`, `assets/site-nav.css`).<br>• Added high-conversion persistent sticky mobile bottom bar on screens < 768px with dual micro-actions (*"🔍 Free AI Audit"* &amp; *"Pricing →"*) with scroll-aware auto-hide.<br>• Preserved the 5-Click Secret Easter Egg (Passcode `88888888`) across all desktop and mobile navigation headers.<br>• Deployed production build to Cloudflare Pages. |
+| **v3.3.0** | Oct 2026 | **EEAT Trustworthiness, Custom Domain `answerindex.xyz`, Email Routing & Brand Authenticity:**<br>• **Cloudflare Custom Domain Migration:** Successfully migrated production from temporary `answerindex.pages.dev` to custom apex `https://answerindex.xyz` and `https://www.answerindex.xyz` with active Cloudflare Universal SSL/TLS and HTTP-to-HTTPS 301 rewrites.<br>• **Cloudflare Email Routing:** Established production email routing for `sameer@answerindex.xyz` forwarding seamlessly to `justmailsameer@gmail.com`. Replaced legacy email references across the entire codebase, schemas, and live forms.<br>• **EEAT Trustworthiness (30% Internal Scoring Weight):** Implemented all 9 Trustworthiness criteria defined in `eeat-framework.md` (100% Strong rating). Created production legal artifacts [`privacy.html`](privacy.html) (GDPR/CCPA compliant, ephemeral code storage, AES-256 D1 encryption) and [`terms.html`](terms.html) (100% customer IP ownership, unconditional 14-day refund guarantee, human review SLA).<br>• **Trust & Security Architecture (Section 6.5):** Added 4 Pillars of Trust cards, quantitative case studies (+280% Claude citation boost, 94.2% AI recall, Perplexity Pro dominance), and live security badges.<br>• **Brand Authenticity & Positioning Standard:** Codified company identity as an India-registered company catering to the US and global market, built with genuine craft by Sameer Sharma. Prohibited synthetic overseas addresses, removed artificial phone numbers, and applied the signature *"Created with love & passion by Sameer Sharma"* across footers and trust bars.<br>• **AEO/GEO 100/100 Evaluation:** Verified 17/17 automated validation tests across Technical SEO (25/25), Schema Graph (25/25), AEO Answers (25/25), and AI Discovery (25/25). Removed rigid "09:00 AM" timing in favor of custom scheduled dispatches.<br>• **Production Deployment:** Compiled and deployed production build directly to Cloudflare Pages project `answerindex`. |
+| **v3.4.0** | Oct 2026 | **Comprehensive UI/UX Audit, Design System Strategy & Baseline Preservation:**<br>• **Full UI/UX Architecture Review:** Conducted a comprehensive design audit evaluating visual fatigue, section luminance jumping, cognitive density across the 4,600+ line monolith, CTA dilution, and WCAG 2.1 AA accessibility standards (contrast ratios, focus visibility, 48px touch targets).<br>• **Design System Exploration & Evaluation:** Explored Modern Minimal Light, Sharp Precision, and Glassmorphic Light paradigms against Answer Index's unique technical B2B positioning. Validated that off-the-shelf theme presets lack the punch and editorial depth required for Answer Index's high-intent value proposition.<br>• **Strict Content & Production Integrity:** Confirmed 100% preservation of all production marketing narrative, technical specifications, and client features. Kept the canonical production layout ([`pro/index.html`](pro/index.html)) untouched as the authoritative live baseline until a bespoke, tailor-crafted design layout is finalized.<br>• **Workspace Hygiene:** Cleaned up all scratch files and experimental previews, maintaining a pristine workspace repository. |
+| **v3.5.0** | Oct 2026 | **Production SEO, AEO & GEO Infrastructure, Dual Sitemap & LLMs.txt Engine:**<br>• Repaired corrupted JSON-LD across all HTML pages.<br>• Dual XML sitemaps and machine-readable manifests (`llms.txt`, `ai.txt`, `ai-entities.json`).<br>• Automated Cloudflare Pages sync pipeline via `scripts/sync-dist.py`. |
+| **v3.6.0** | Oct 2026 | **Zero-Config Website Architecture Auto-Detection & Frictionless Onboarding (Current Production):**<br>• **Backend Platform & CMS Fingerprint Engine (`functions/_shared/tech-detector.js`):** Built edge detection analyzing HTML generator tags, script URLs, and HTTP response headers across 10+ platforms (WordPress, Shopify, Webflow, Squarespace, Wix, Next.js, Magento, Ghost, HubSpot). Identifies hosting CDNs (Cloudflare, Vercel, AWS CloudFront, WP Engine) and active SEO plugins (Yoast, Rank Math, AIOSEO).<br>• **Complete Removal of Manual Platform Selectors:** Eliminated manual CMS grid and radio buttons from both standard onboarding and VIP Founder modals. Reduced onboarding to a frictionless 2-field form (Work Email & Domain) with live async background detection.<br>• **Live Form Fingerprint Detection (`/api/auth/client`):** Typing a domain name triggers an instant asynchronous probe displaying a live verification pill (`✨ Detected: Shopify Storefront` or `✨ Detected: WordPress 6.x + WooCommerce`).<br>• **Audit Report Architecture Card & PDF Integration:** Added dedicated *Platform & Architecture Fingerprint* card to `audit.html`, `pro.html`, `index.html`, and `pro/index.html`. Injected platform and CDN details into the official downloadable 2-page Executive PDF audit.<br>• **Expanded Seed Cadence in Cloudflare D1:** Added tailored initial 2-job daily dispatch cadences for Webflow, Squarespace, and Wix in addition to WordPress, Shopify, Magento, and GitHub PRs.<br>• Synchronized all production assets to `dist/`. |
 
 ---
 

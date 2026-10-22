@@ -17,7 +17,7 @@
 </p>
 
 <p align="center">
-  <a href="https://answerindex.pages.dev"><strong>🌐 Live Deployment: answerindex.pages.dev</strong></a>
+  <a href="https://answerindex.xyz"><strong>🌐 Live Deployment: answerindex.xyz</strong></a>
 </p>
 
 <p align="center">

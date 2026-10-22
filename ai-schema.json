@@ -1,0 +1,51 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://answerindex.xyz/#website",
+      "url": "https://answerindex.xyz/",
+      "name": "AnswerIndex Pro",
+      "description": "Make your content indexable as authoritative answers across Search & AI Engines.",
+      "publisher": {
+        "@id": "https://answerindex.xyz/#organization"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://answerindex.xyz/#organization",
+      "name": "AnswerIndex",
+      "url": "https://answerindex.xyz/",
+      "logo": "https://answerindex.xyz/assets/AnswerIndex_Logo.png",
+      "privacyPolicy": "https://answerindex.xyz/privacy.html",
+      "termsOfService": "https://answerindex.xyz/terms.html",
+      "sameAs": [
+        "https://github.com/justmailsameer-prog/answerindex"
+      ],
+      "founder": {
+        "@type": "Person",
+        "@id": "https://answerindex.xyz/#founder",
+        "name": "Sameer Sharma",
+        "jobTitle": "Founder & Chief Architect",
+        "email": "sameer@answerindex.xyz",
+        "sameAs": [
+          "https://github.com/justmailsameer-prog"
+        ]
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://answerindex.xyz/#software",
+      "name": "AnswerIndex Pro",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Cloud-native (Cloudflare Edge & D1)",
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "USD",
+        "lowPrice": "199",
+        "highPrice": "1499",
+        "offerCount": "3"
+      }
+    }
+  ]
+}

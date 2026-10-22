@@ -29,12 +29,12 @@ export async function onRequestPost({ env }) {
     await env.DB.prepare(
       `INSERT OR IGNORE INTO users (id, email, name, plan_tier, subscription_status)
        VALUES (?, ?, ?, 'pro_autonomous', 'active')`
-    ).bind(userId, 'sameer@answerindex.com', 'Sameer Sharma').run();
+    ).bind(userId, 'sameer@answerindex.xyz', 'Sameer Sharma').run();
 
     // 2. Seed Project
     await env.DB.prepare(
       `INSERT OR IGNORE INTO projects (id, user_id, domain, brand_name, repo_owner, repo_name, branch)
-       VALUES (?, ?, 'answerindex.pages.dev', 'Answer Index', 'justmailsameer-prog', 'answerindex', 'main')`
+       VALUES (?, ?, 'answerindex.xyz', 'Answer Index', 'justmailsameer-prog', 'answerindex', 'main')`
     ).bind(projectId, userId).run();
 
     // 3. Seed Daily Jobs (The 2-Job Autonomous Cadence)

@@ -1,0 +1,6 @@
+AI INTEGRATION & DISCLOSURE STATEMENT
+Site: AnswerIndex
+
+This web property utilizes structured AEO (Answer Engine Optimization) standards to ensure
+accuracy, prevent hallucination, and facilitate seamless knowledge extraction by automated agents.
+All information presented in llms.txt and semantic schemas is verified by the publishing organization.
