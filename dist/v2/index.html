@@ -7,7 +7,7 @@
   <meta name="description" content="Help AI engines understand, cite, and recommend your brand. Answer Index builds machine-readable manifests, Schema graphs, and passage-level answers for ChatGPT, Claude, Perplexity, and Google.">
   
   <link rel="canonical" href="https://answerindex.xyz/v2/">
-  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" type="image/png" href="/assets/AnswerIndex_Logo.png">
 
   <!-- Google Fonts: Instrument Serif + DM Sans + DM Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -107,18 +107,12 @@
       color: var(--ink);
     }
 
-    .brand-symbol {
+    .brand-logo {
       width: 32px;
       height: 32px;
       border-radius: var(--radius-sm);
-      background-color: var(--ink);
-      color: #FFFFFF;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-serif);
-      font-size: 20px;
-      font-style: italic;
+      object-fit: contain;
+      display: block;
     }
 
     .brand-name {
@@ -791,7 +785,7 @@
   <header class="site-header">
     <div class="container nav-inner">
       <a href="/v2/" class="brand-wrap">
-        <div class="brand-symbol">A</div>
+        <img src="/assets/AnswerIndex_Logo.png" alt="Answer Index Logo" class="brand-logo">
         <span class="brand-name">Answer Index</span>
         <span class="version-tag">Edition 02</span>
       </a>
@@ -1102,7 +1096,10 @@
     <div class="container">
       <div class="footer-inner">
         <div class="footer-meta">
-          <div style="font-family: var(--font-sans); font-weight: 700; font-size: 16px; margin-bottom: 6px;">Answer Index</div>
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+            <img src="/assets/AnswerIndex_Logo.png" alt="Answer Index Logo" style="width: 24px; height: 24px; border-radius: 4px; object-fit: contain;">
+            <span style="font-family: var(--font-sans); font-weight: 700; font-size: 16px;">Answer Index</span>
+          </div>
           <p>© 2026 Answer Index. Verified generative engine visibility & technical AEO infrastructure.</p>
         </div>
 
