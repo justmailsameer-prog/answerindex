@@ -16,22 +16,25 @@
 
   <style>
     :root {
-      /* Warm Paper & Obsidian Ink Palette (Anthropic / Editorial archetype) */
-      --paper: #FAF8F5;
-      --paper-card: #FFFFFF;
-      --paper-subtle: #F3EFEA;
-      --paper-hover: #ECE7DF;
-      --ink: #191B17;
-      --ink-muted: #5E6257;
-      --ink-faint: #919489;
-      --border: #E6E2D8;
-      --border-dark: #D4CEBF;
-      --terracotta: #C84B2F;
-      --terracotta-hover: #B23D23;
-      --terracotta-soft: rgba(200, 75, 47, 0.08);
-      --sage: #2C5E43;
-      --sage-soft: rgba(44, 94, 67, 0.09);
-      --cobalt: #2952A3;
+      /* Alternative Palette: Porcelain White, Alabaster Cream, Architectural Charcoal & Pearl Grey */
+      --canvas: #FAF9F6;          /* Delicate alabaster cream canvas */
+      --surface: #FFFFFF;         /* Crisp pure white for cards */
+      --surface-subtle: #F3F3EE;  /* Light warm pearl grey */
+      --surface-hover: #ECECE6;   /* Subtle hover state */
+      
+      --ink: #18191B;             /* Crisp architectural charcoal (not brown/Claude) */
+      --ink-muted: #5C6068;       /* Studio neutral grey for body text */
+      --ink-faint: #9297A0;       /* Light slate grey for secondary metadata */
+      
+      --border: #E5E5DF;          /* Hairline border */
+      --border-subtle: #EEEEEE;   /* Very soft interior divider */
+      --border-strong: #D0D0CA;   /* Slightly deeper border for emphasis */
+
+      --pill-bg: #EFEFEA;         /* Neutral pearl pill background */
+      --pill-text: #36383D;       /* Neutral pill text */
+
+      --btn-dark-bg: #18191B;     /* Crisp minimal dark button */
+      --btn-dark-hover: #2E3035;
       
       --font-serif: "Instrument Serif", Georgia, serif;
       --font-sans: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -41,7 +44,7 @@
       --radius-sm: 4px;
       --radius-md: 8px;
       --radius-lg: 14px;
-      --shadow-subtle: 0 1px 3px rgba(25, 27, 23, 0.04), 0 6px 16px rgba(25, 27, 23, 0.03);
+      --shadow-subtle: 0 1px 3px rgba(24, 25, 27, 0.03), 0 8px 24px rgba(24, 25, 27, 0.03);
     }
 
     * {
@@ -52,7 +55,7 @@
 
     html {
       scroll-behavior: smooth;
-      background-color: var(--paper);
+      background-color: var(--canvas);
       color: var(--ink);
       font-family: var(--font-sans);
       font-size: 16px;
@@ -62,14 +65,13 @@
     }
 
     body {
-      background-color: var(--paper);
+      background-color: var(--canvas);
       color: var(--ink);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
 
-    /* Container */
     .container {
       width: 100%;
       max-width: var(--container);
@@ -84,11 +86,10 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      background-color: rgba(250, 248, 245, 0.92);
+      background-color: rgba(250, 249, 246, 0.94);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
-      transition: border-color 0.2s ease;
     }
 
     .nav-inner {
@@ -111,7 +112,7 @@
       height: 32px;
       border-radius: var(--radius-sm);
       background-color: var(--ink);
-      color: var(--paper);
+      color: #FFFFFF;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -130,8 +131,9 @@
     .version-tag {
       font-family: var(--font-mono);
       font-size: 11px;
-      color: var(--terracotta);
-      background-color: var(--terracotta-soft);
+      color: var(--pill-text);
+      background-color: var(--pill-bg);
+      border: 1px solid var(--border);
       padding: 2px 7px;
       border-radius: 999px;
       font-weight: 500;
@@ -167,7 +169,7 @@
       justify-content: center;
       gap: 8px;
       font-family: var(--font-sans);
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 600;
       padding: 10px 18px;
       border-radius: var(--radius-sm);
@@ -178,31 +180,31 @@
       line-height: 1;
     }
 
-    .btn-terracotta {
-      background-color: var(--terracotta);
+    .btn-dark {
+      background-color: var(--btn-dark-bg);
       color: #FFFFFF;
     }
 
-    .btn-terracotta:hover {
-      background-color: var(--terracotta-hover);
+    .btn-dark:hover {
+      background-color: var(--btn-dark-hover);
       transform: translateY(-1px);
     }
 
     .btn-outline {
-      background-color: transparent;
-      border-color: var(--border-dark);
+      background-color: var(--surface);
+      border-color: var(--border-strong);
       color: var(--ink);
     }
 
     .btn-outline:hover {
-      background-color: var(--paper-subtle);
+      background-color: var(--surface-subtle);
       border-color: var(--ink);
     }
 
     /* Hero Section */
     section.hero-section {
-      padding-top: 80px;
-      padding-bottom: 70px;
+      padding-top: 88px;
+      padding-bottom: 76px;
       border-bottom: 1px solid var(--border);
     }
 
@@ -223,7 +225,7 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background-color: var(--terracotta);
+      background-color: var(--ink);
     }
 
     .hero-title {
@@ -239,7 +241,7 @@
 
     .hero-title em {
       font-style: italic;
-      color: var(--terracotta);
+      color: #383A40;
     }
 
     .hero-subtitle {
@@ -253,10 +255,10 @@
 
     /* Quick Audit Card */
     .audit-box-wrap {
-      background-color: var(--paper-card);
+      background-color: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
-      padding: 28px;
+      padding: 30px;
       box-shadow: var(--shadow-subtle);
       max-width: 760px;
       margin-bottom: 44px;
@@ -293,9 +295,9 @@
       font-family: var(--font-sans);
       font-size: 15px;
       padding: 14px 16px;
-      border: 1px solid var(--border-dark);
+      border: 1px solid var(--border-strong);
       border-radius: var(--radius-sm);
-      background-color: var(--paper);
+      background-color: var(--canvas);
       color: var(--ink);
       outline: none;
       transition: border-color 0.15s ease, background-color 0.15s ease;
@@ -321,7 +323,7 @@
     }
 
     .sample-pill {
-      background-color: var(--paper-subtle);
+      background-color: var(--surface-subtle);
       border: 1px solid var(--border);
       padding: 3px 8px;
       border-radius: var(--radius-sm);
@@ -334,7 +336,7 @@
     }
 
     .sample-pill:hover {
-      background-color: var(--paper-hover);
+      background-color: var(--surface-hover);
     }
 
     /* Engine Verification Strip */
@@ -374,17 +376,17 @@
       width: 5px;
       height: 5px;
       border-radius: 50%;
-      background-color: var(--sage);
+      background-color: #4A5568;
     }
 
     /* Section Headers */
     .section-eyebrow {
       font-family: var(--font-mono);
       font-size: 11px;
-      font-weight: 500;
+      font-weight: 600;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: var(--terracotta);
+      color: var(--ink-muted);
       margin-bottom: 12px;
     }
 
@@ -407,8 +409,8 @@
 
     /* 3-Step Journey Grid */
     section.method-section {
-      padding-top: 90px;
-      padding-bottom: 90px;
+      padding-top: 96px;
+      padding-bottom: 96px;
       border-bottom: 1px solid var(--border);
     }
 
@@ -416,14 +418,14 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 24px;
-      margin-top: 50px;
+      margin-top: 52px;
     }
 
     .journey-card {
-      background-color: var(--paper-card);
+      background-color: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
-      padding: 36px 30px;
+      padding: 38px 32px;
       display: flex;
       flex-direction: column;
       position: relative;
@@ -432,14 +434,14 @@
 
     .journey-card:hover {
       transform: translateY(-2px);
-      border-color: var(--border-dark);
+      border-color: var(--border-strong);
     }
 
     .journey-num {
       font-family: var(--font-mono);
       font-size: 13px;
       font-weight: 600;
-      color: var(--terracotta);
+      color: var(--ink);
       margin-bottom: 20px;
     }
 
@@ -470,14 +472,14 @@
 
     /* Manifesto / Anti-Hype Card */
     section.manifesto-section {
-      padding-top: 90px;
-      padding-bottom: 90px;
+      padding-top: 96px;
+      padding-bottom: 96px;
       border-bottom: 1px solid var(--border);
     }
 
     .manifesto-card {
-      background-color: #FFFFFF;
-      border: 1px solid var(--border-dark);
+      background-color: var(--surface);
+      border: 1px solid var(--border);
       border-radius: var(--radius-md);
       padding: 56px 48px;
       max-width: 880px;
@@ -491,7 +493,7 @@
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--terracotta);
+      color: var(--ink-muted);
       margin-bottom: 16px;
     }
 
@@ -523,7 +525,7 @@
       width: 44px;
       height: 44px;
       border-radius: 50%;
-      background-color: var(--paper-subtle);
+      background-color: var(--surface-subtle);
       border: 1px solid var(--border);
       display: flex;
       align-items: center;
@@ -548,8 +550,8 @@
 
     /* Comparison Table */
     section.comparison-section {
-      padding-top: 90px;
-      padding-bottom: 90px;
+      padding-top: 96px;
+      padding-bottom: 96px;
       border-bottom: 1px solid var(--border);
     }
 
@@ -557,7 +559,7 @@
       width: 100%;
       border-collapse: collapse;
       margin-top: 40px;
-      background-color: var(--paper-card);
+      background-color: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
       overflow: hidden;
@@ -575,7 +577,7 @@
       font-size: 11px;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      background-color: var(--paper-subtle);
+      background-color: var(--surface-subtle);
       color: var(--ink-muted);
       font-weight: 600;
     }
@@ -585,7 +587,7 @@
     }
 
     .comp-highlight {
-      color: var(--sage);
+      color: var(--ink);
       font-weight: 600;
     }
 
@@ -595,8 +597,8 @@
 
     /* Pricing Section */
     section.pricing-section {
-      padding-top: 90px;
-      padding-bottom: 90px;
+      padding-top: 96px;
+      padding-bottom: 96px;
       border-bottom: 1px solid var(--border);
     }
 
@@ -604,29 +606,29 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 24px;
-      margin-top: 50px;
+      margin-top: 52px;
     }
 
     .pricing-card {
-      background-color: var(--paper-card);
+      background-color: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
-      padding: 36px 30px;
+      padding: 38px 32px;
       display: flex;
       flex-direction: column;
       position: relative;
     }
 
     .pricing-card.featured {
-      border-color: var(--terracotta);
-      box-shadow: 0 4px 20px rgba(200, 75, 47, 0.08);
+      border-color: var(--ink);
+      box-shadow: 0 4px 20px rgba(24, 25, 27, 0.06);
     }
 
     .plan-badge {
       position: absolute;
       top: -12px;
       right: 24px;
-      background-color: var(--terracotta);
+      background-color: var(--ink);
       color: #FFFFFF;
       font-family: var(--font-mono);
       font-size: 10px;
@@ -689,16 +691,16 @@
     }
 
     .plan-features li::before {
-      content: "✓";
-      color: var(--sage);
+      content: "—";
+      color: var(--ink-muted);
       font-weight: 700;
       font-size: 12px;
     }
 
     /* FAQ Section */
     section.faq-section {
-      padding-top: 90px;
-      padding-bottom: 90px;
+      padding-top: 96px;
+      padding-bottom: 96px;
       border-bottom: 1px solid var(--border);
     }
 
@@ -733,7 +735,7 @@
 
     /* Footer */
     footer.site-footer {
-      background-color: var(--paper);
+      background-color: var(--canvas);
       padding-top: 70px;
       padding-bottom: 70px;
       margin-top: auto;
@@ -770,7 +772,6 @@
       color: var(--ink);
     }
 
-    /* Responsive */
     @media (max-width: 900px) {
       .journey-grid, .pricing-grid {
         grid-template-columns: 1fr;
@@ -792,12 +793,12 @@
       <a href="/v2/" class="brand-wrap">
         <div class="brand-symbol">A</div>
         <span class="brand-name">Answer Index</span>
-        <span class="version-tag">System 2.0</span>
+        <span class="version-tag">Edition 02</span>
       </a>
 
       <nav class="nav-links">
         <a href="#method">The Method</a>
-        <a href="#manifesto">Anti-Hype Manifesto</a>
+        <a href="#manifesto">Anti-Hype Principle</a>
         <a href="#comparison">AEO vs. SEO</a>
         <a href="#pricing">Pricing & Staging</a>
         <a href="#faq">FAQ</a>
@@ -805,7 +806,7 @@
 
       <div class="header-actions">
         <a href="/audit.html" class="btn btn-outline" style="font-size: 13px;">Classic Audit</a>
-        <a href="#audit-tool" class="btn btn-terracotta">Run Free Audit ↗</a>
+        <a href="#audit-tool" class="btn btn-dark">Run Free Audit ↗</a>
       </div>
     </div>
   </header>
@@ -834,7 +835,7 @@
         </div>
         <form class="audit-input-form" onsubmit="event.preventDefault(); runV2Audit();">
           <input type="text" id="target-domain" placeholder="Enter domain name (e.g. yourbrand.com)" required>
-          <button type="submit" class="btn btn-terracotta" id="audit-btn">Inspect Domain ↗</button>
+          <button type="submit" class="btn btn-dark" id="audit-btn">Inspect Domain ↗</button>
         </form>
         <div class="audit-samples">
           <span class="label">Try sample:</span>
@@ -847,7 +848,7 @@
         <div id="audit-result-v2" style="display: none; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border);">
           <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px;">
             <div style="font-family: var(--font-serif); font-size: 24px;" id="res-domain-title">Evaluated Domain</div>
-            <div style="font-family: var(--font-mono); font-size: 14px; font-weight: 600; color: var(--terracotta);" id="res-score-pill">88/100 · Strong Foundation</div>
+            <div style="font-family: var(--font-mono); font-size: 14px; font-weight: 600; color: var(--ink);" id="res-score-pill">88/100 · Strong Foundation</div>
           </div>
           <p style="font-size: 14px; color: var(--ink-muted); margin-bottom: 16px;" id="res-summary-text"></p>
           <div style="display: flex; gap: 12px;">
@@ -913,7 +914,7 @@
     </div>
   </section>
 
-  <!-- Anti-Hype Manifesto -->
+  <!-- Anti-Hype Principle -->
   <section class="manifesto-section" id="manifesto">
     <div class="container">
       <div class="manifesto-card">
@@ -1018,7 +1019,7 @@
 
         <!-- Pro Autonomous -->
         <div class="pricing-card featured">
-          <div class="plan-badge">Most Popular</div>
+          <div class="plan-badge">Featured</div>
           <div class="plan-name">Pro Autonomous</div>
           <div class="plan-desc">Continuous daily production to systematically capture and defend AI category recommendations.</div>
           <div class="plan-price">
@@ -1033,7 +1034,7 @@
             <li>Automated WordPress, Shopify, or GitHub staging</li>
             <li>Daily drift sentinel alerts</li>
           </ul>
-          <a href="/pricing.html" class="btn btn-terracotta" style="width: 100%;">Launch Pro Cadence ↗</a>
+          <a href="/pricing.html" class="btn btn-dark" style="width: 100%;">Launch Pro Cadence ↗</a>
         </div>
 
         <!-- Enterprise Partner -->
@@ -1142,7 +1143,6 @@
         document.getElementById('audit-result-v2').style.display = 'block';
         document.getElementById('res-domain-title').innerText = val;
         document.getElementById('res-score-pill').innerText = `${score}/100 · ${grade}`;
-        document.getElementById('res-score-pill').style.color = isAnswerIndex ? 'var(--sage)' : 'var(--terracotta)';
         document.getElementById('res-summary-text').innerText = isAnswerIndex
           ? `${val} has successfully deployed foundational machine-readable manifests and Schema graph nodes, positioning it in the top tier of generative AI search readiness.`
           : `${val} currently lacks machine-readable /llms.txt manifests and cohesive Schema @graph nodes, leaving critical buying recommendations open to competitor citation diversion.`;
