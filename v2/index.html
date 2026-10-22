@@ -16,44 +16,39 @@
 
   <style>
     :root {
-      /* Kitchen365-Inspired Multi-Tone Editorial Palette */
-      --canvas: #F6F4EF;          /* Warm cream / off-white paper canvas */
-      --surface: #FFFFFF;         /* Crisp pure white for cards */
-      --surface-subtle: #ECE8E0;  /* Warm stone pearl for secondary fills */
-      --surface-hover: #E4DFD5;   /* Card hover tone */
+      /* Working Weekends Exact Palette & Typography */
+      --paper: #F5F3ED;          /* Exact Working Weekends warm paper canvas */
+      --surface: #FFFFFF;        /* Crisp pure white for cards */
+      --surface-subtle: #EAE6DC; /* Soft warm stone fill */
+      --surface-hover: #E2DDD2;   /* Subtle hover state */
       
-      --ink: #1A1818;             /* Deep warm charcoal ink */
-      --ink-muted: #5C5854;       /* Warm neutral grey for body text */
-      --ink-faint: #96918A;       /* Subtle slate-stone for metadata */
+      --ink: #1D201C;            /* Exact Working Weekends deep charcoal ink */
+      --ink-muted: #565952;      /* Refined editorial body copy */
+      --ink-faint: #8E9189;      /* Muted metadata */
       
-      --border: #E5E0D8;          /* Hairline border */
-      --border-subtle: #EEEAE2;   /* Soft inner divider */
-      --border-strong: #D2CBBF;   /* Contrast border */
+      --border: #DFDCD3;         /* Clean hairline border */
+      --border-subtle: #EBE8E0;  /* Inner card divider */
+      --border-strong: #C8C4B8;  /* Accent border */
 
-      /* Vibrant Accent Palette from Kitchen365 */
-      --coral: #E25544;           /* Warm persimmon coral (Primary CTA) */
-      --coral-hover: #C94434;
-      --coral-soft: rgba(226, 85, 68, 0.09);
+      --accent: #C94424;         /* Exact Working Weekends primary terracotta burnt red */
+      --accent-hover: #B23A1D;
+      --accent-soft: rgba(201, 68, 36, 0.08);
 
-      --amber: #FCA311;           /* Honey saffron amber (Highlight & featured) */
-      --amber-soft: rgba(252, 163, 17, 0.12);
+      --orange: #EC5836;         /* Exact Working Weekends secondary vibrant orange */
+      --orange-soft: rgba(236, 88, 54, 0.10);
 
-      --jade: #1ABC9C;            /* Turquoise / Jade teal (Verification & active) */
-      --jade-dark: #149177;
-      --jade-soft: rgba(26, 188, 156, 0.10);
-
-      --iris: #575AE0;            /* Royal Iris / Indigo (Technical architecture) */
-      --iris-soft: rgba(87, 90, 224, 0.09);
+      --sage: #4A634E;           /* Subtle natural sage green for verified indicators */
+      --sage-soft: rgba(74, 99, 78, 0.09);
       
       --font-serif: "Instrument Serif", Georgia, serif;
-      --font-sans: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-sans: "DM Sans", Arial, sans-serif;
       --font-mono: "DM Mono", ui-monospace, monospace;
 
       --container: 1140px;
-      --radius-sm: 5px;
-      --radius-md: 10px;
-      --radius-lg: 16px;
-      --shadow-subtle: 0 1px 3px rgba(26, 24, 24, 0.03), 0 8px 24px rgba(26, 24, 24, 0.04);
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 14px;
+      --shadow-subtle: 0 1px 3px rgba(29, 32, 28, 0.03), 0 8px 24px rgba(29, 32, 28, 0.04);
     }
 
     * {
@@ -64,7 +59,7 @@
 
     html {
       scroll-behavior: smooth;
-      background-color: var(--canvas);
+      background-color: var(--paper);
       color: var(--ink);
       font-family: var(--font-sans);
       font-size: 16px;
@@ -74,7 +69,7 @@
     }
 
     body {
-      background-color: var(--canvas);
+      background-color: var(--paper);
       color: var(--ink);
       min-height: 100vh;
       display: flex;
@@ -95,7 +90,7 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      background-color: rgba(246, 244, 239, 0.94);
+      background-color: rgba(245, 243, 237, 0.94);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
@@ -134,9 +129,9 @@
     .version-tag {
       font-family: var(--font-mono);
       font-size: 11px;
-      color: var(--iris);
-      background-color: var(--iris-soft);
-      border: 1px solid rgba(87, 90, 224, 0.2);
+      color: var(--accent);
+      background-color: var(--accent-soft);
+      border: 1px solid rgba(201, 68, 36, 0.2);
       padding: 2px 8px;
       border-radius: 999px;
       font-weight: 500;
@@ -183,15 +178,15 @@
       line-height: 1;
     }
 
-    .btn-coral {
-      background-color: var(--coral);
+    .btn-accent {
+      background-color: var(--accent);
       color: #FFFFFF;
     }
 
-    .btn-coral:hover {
-      background-color: var(--coral-hover);
+    .btn-accent:hover {
+      background-color: var(--accent-hover);
       transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(226, 85, 68, 0.25);
+      box-shadow: 0 4px 14px rgba(201, 68, 36, 0.22);
     }
 
     .btn-outline {
@@ -233,8 +228,8 @@
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background-color: var(--jade);
-      box-shadow: 0 0 0 3px var(--jade-soft);
+      background-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-soft);
     }
 
     .hero-title {
@@ -252,7 +247,7 @@
     .typewriter-container {
       display: inline-block;
       min-width: 260px;
-      color: var(--coral);
+      color: var(--accent);
       font-style: italic;
       white-space: nowrap;
       position: relative;
@@ -262,7 +257,7 @@
       display: inline-block;
       margin-left: 2px;
       font-weight: 300;
-      color: var(--amber);
+      color: var(--orange);
       font-style: normal;
       animation: cursorBlink 0.85s infinite;
     }
@@ -326,16 +321,16 @@
       padding: 14px 16px;
       border: 1px solid var(--border-strong);
       border-radius: var(--radius-sm);
-      background-color: var(--canvas);
+      background-color: var(--paper);
       color: var(--ink);
       outline: none;
       transition: border-color 0.15s ease, background-color 0.15s ease;
     }
 
     .audit-input-form input:focus {
-      border-color: var(--coral);
+      border-color: var(--accent);
       background-color: #FFFFFF;
-      box-shadow: 0 0 0 3px var(--coral-soft);
+      box-shadow: 0 0 0 3px var(--accent-soft);
     }
 
     .audit-samples {
@@ -403,32 +398,11 @@
       gap: 6px;
     }
 
-    .engine-dot.dot-jade {
+    .engine-dot {
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background-color: var(--jade);
-    }
-
-    .engine-dot.dot-amber {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background-color: var(--amber);
-    }
-
-    .engine-dot.dot-iris {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background-color: var(--iris);
-    }
-
-    .engine-dot.dot-coral {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background-color: var(--coral);
+      background-color: var(--accent);
     }
 
     /* Section Headers */
@@ -438,7 +412,7 @@
       font-weight: 600;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: var(--coral);
+      color: var(--accent);
       margin-bottom: 12px;
     }
 
@@ -486,32 +460,18 @@
 
     .journey-card:hover {
       transform: translateY(-2px);
+      border-color: var(--border-strong);
       box-shadow: var(--shadow-subtle);
-    }
-
-    .journey-card.card-jade:hover {
-      border-color: var(--jade);
-    }
-
-    .journey-card.card-iris:hover {
-      border-color: var(--iris);
-    }
-
-    .journey-card.card-coral:hover {
-      border-color: var(--coral);
     }
 
     .journey-num {
       font-family: var(--font-mono);
       font-size: 12px;
       font-weight: 600;
+      color: var(--accent);
       margin-bottom: 20px;
       display: inline-block;
     }
-
-    .journey-num.num-jade { color: var(--jade-dark); }
-    .journey-num.num-iris { color: var(--iris); }
-    .journey-num.num-coral { color: var(--coral); }
 
     .journey-title {
       font-family: var(--font-serif);
@@ -562,7 +522,7 @@
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--amber);
+      color: var(--accent);
       margin-bottom: 16px;
     }
 
@@ -656,7 +616,7 @@
     }
 
     .comp-highlight {
-      color: var(--jade-dark);
+      color: var(--accent);
       font-weight: 600;
     }
 
@@ -689,19 +649,19 @@
     }
 
     .pricing-card.featured {
-      border-color: var(--coral);
-      box-shadow: 0 6px 28px rgba(226, 85, 68, 0.12);
+      border-color: var(--accent);
+      box-shadow: 0 6px 28px rgba(201, 68, 36, 0.10);
     }
 
     .plan-badge {
       position: absolute;
       top: -12px;
       right: 24px;
-      background-color: var(--amber);
-      color: #1A1818;
+      background-color: var(--accent);
+      color: #FFFFFF;
       font-family: var(--font-mono);
-      font-size: 10.5px;
-      font-weight: 700;
+      font-size: 10px;
+      font-weight: 600;
       padding: 3px 10px;
       border-radius: 999px;
       text-transform: uppercase;
@@ -761,7 +721,7 @@
 
     .plan-features li::before {
       content: "✓";
-      color: var(--jade-dark);
+      color: var(--accent);
       font-weight: 700;
       font-size: 12px;
     }
@@ -804,7 +764,7 @@
 
     /* Footer */
     footer.site-footer {
-      background-color: var(--canvas);
+      background-color: var(--paper);
       padding-top: 70px;
       padding-bottom: 70px;
       margin-top: auto;
@@ -866,7 +826,7 @@
       <a href="/v2/" class="brand-wrap">
         <img src="/assets/AnswerIndex_Logo.png" alt="Answer Index Logo" class="brand-logo">
         <span class="brand-name">Answer Index</span>
-        <span class="version-tag">Edition 03</span>
+        <span class="version-tag">Edition 04</span>
       </a>
 
       <nav class="nav-links">
@@ -879,7 +839,7 @@
 
       <div class="header-actions">
         <a href="/audit.html" class="btn btn-outline" style="font-size: 13px;">Classic Audit</a>
-        <a href="#audit-tool" class="btn btn-coral">Run Free Audit ↗</a>
+        <a href="#audit-tool" class="btn btn-accent">Run Free Audit ↗</a>
       </div>
     </div>
   </header>
@@ -908,7 +868,7 @@
         </div>
         <form class="audit-input-form" onsubmit="event.preventDefault(); runV2Audit();">
           <input type="text" id="target-domain" placeholder="Enter domain name (e.g. yourbrand.com)" required>
-          <button type="submit" class="btn btn-coral" id="audit-btn">Inspect Domain ↗</button>
+          <button type="submit" class="btn btn-accent" id="audit-btn">Inspect Domain ↗</button>
         </form>
         <div class="audit-samples">
           <span class="label">Try sample:</span>
@@ -921,7 +881,7 @@
         <div id="audit-result-v2" style="display: none; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border);">
           <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px;">
             <div style="font-family: var(--font-serif); font-size: 24px;" id="res-domain-title">Evaluated Domain</div>
-            <div style="font-family: var(--font-mono); font-size: 14px; font-weight: 600; color: var(--jade-dark);" id="res-score-pill">88/100 · Strong Foundation</div>
+            <div style="font-family: var(--font-mono); font-size: 14px; font-weight: 600; color: var(--accent);" id="res-score-pill">88/100 · Strong Foundation</div>
           </div>
           <p style="font-size: 14px; color: var(--ink-muted); margin-bottom: 16px;" id="res-summary-text"></p>
           <div style="display: flex; gap: 12px;">
@@ -930,15 +890,15 @@
         </div>
       </div>
 
-      <!-- Engine Verification Strip with Multi-Tone Dots -->
+      <!-- Engine Verification Strip -->
       <div class="engine-strip">
         <span class="strip-label">Retrieval Verification Across:</span>
         <div class="engine-list">
-          <div class="engine-item"><span class="engine-dot dot-coral"></span>ChatGPT Search</div>
-          <div class="engine-item"><span class="engine-dot dot-jade"></span>Perplexity AI</div>
-          <div class="engine-item"><span class="engine-dot dot-amber"></span>Claude 3.5</div>
-          <div class="engine-item"><span class="engine-dot dot-iris"></span>Google AI Overviews</div>
-          <div class="engine-item"><span class="engine-dot dot-jade"></span>Gemini 1.5</div>
+          <div class="engine-item"><span class="engine-dot"></span>ChatGPT Search</div>
+          <div class="engine-item"><span class="engine-dot"></span>Perplexity AI</div>
+          <div class="engine-item"><span class="engine-dot"></span>Claude 3.5</div>
+          <div class="engine-item"><span class="engine-dot"></span>Google AI Overviews</div>
+          <div class="engine-item"><span class="engine-dot"></span>Gemini 1.5</div>
         </div>
       </div>
     </div>
@@ -955,8 +915,8 @@
 
       <div class="journey-grid">
         <!-- 01 -->
-        <div class="journey-card card-jade">
-          <div class="journey-num num-jade">01 / DISCOVERY</div>
+        <div class="journey-card">
+          <div class="journey-num">01 / DISCOVERY</div>
           <h3 class="journey-title">Get Retrieved Without Noise</h3>
           <p class="journey-desc">
             AI engines cannot cite what they cannot reliably parse. We publish lightweight machine-readable manifests (<code>/llms.txt</code>, AI crawler directives, and JSON-LD entity graphs) that give bots unambiguous access to your offerings, credentials, and geographic footprint.
@@ -965,8 +925,8 @@
         </div>
 
         <!-- 02 -->
-        <div class="journey-card card-iris">
-          <div class="journey-num num-iris">02 / AUTHORITY</div>
+        <div class="journey-card">
+          <div class="journey-num">02 / AUTHORITY</div>
           <h3 class="journey-title">Earn Direct Answer Citations</h3>
           <p class="journey-desc">
             When buyers ask comparison questions, LLMs pull from succinct, verifiable 40–55 word declarative paragraphs. We engineer passage-level answer architecture and comparative proof matrices that answer engines quote word-for-word.
@@ -975,8 +935,8 @@
         </div>
 
         <!-- 03 -->
-        <div class="journey-card card-coral">
-          <div class="journey-num num-coral">03 / ACQUISITION</div>
+        <div class="journey-card">
+          <div class="journey-num">03 / ACQUISITION</div>
           <h3 class="journey-title">Turn Recommendations Into Leads</h3>
           <p class="journey-desc">
             AI visibility is meaningless if it does not convert. We automate daily staging directly into your existing CMS (WordPress, Shopify, or GitHub repo) with human-in-the-loop review, turning citation momentum into qualified commercial inbound enquiries.
@@ -1107,7 +1067,7 @@
             <li>Automated WordPress, Shopify, or GitHub staging</li>
             <li>Daily drift sentinel alerts</li>
           </ul>
-          <a href="/pricing.html" class="btn btn-coral" style="width: 100%;">Launch Pro Cadence ↗</a>
+          <a href="/pricing.html" class="btn btn-accent" style="width: 100%;">Launch Pro Cadence ↗</a>
         </div>
 
         <!-- Enterprise Partner -->
@@ -1273,7 +1233,7 @@
         document.getElementById('audit-result-v2').style.display = 'block';
         document.getElementById('res-domain-title').innerText = val;
         document.getElementById('res-score-pill').innerText = `${score}/100 · ${grade}`;
-        document.getElementById('res-score-pill').style.color = isAnswerIndex ? 'var(--jade-dark)' : 'var(--coral)';
+        document.getElementById('res-score-pill').style.color = isAnswerIndex ? 'var(--sage)' : 'var(--accent)';
         document.getElementById('res-summary-text').innerText = isAnswerIndex
           ? `${val} has successfully deployed foundational machine-readable manifests and Schema graph nodes, positioning it in the top tier of generative AI search readiness.`
           : `${val} currently lacks machine-readable /llms.txt manifests and cohesive Schema @graph nodes, leaving critical buying recommendations open to competitor citation diversion.`;
