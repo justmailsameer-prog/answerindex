@@ -33,8 +33,8 @@ for m in manifest_files:
         shutil.copy2(src, dst)
         print(f"  [OK] Copied {m} -> dist/{m}")
 
-# 3. Subdirectories: pro, assets, functions, .well-known
-subdirs = ['pro', 'assets', 'functions', '.well-known']
+# 3. Subdirectories: pro, assets, functions, .well-known, v2
+subdirs = ['pro', 'assets', 'functions', '.well-known', 'v2']
 for sd in subdirs:
     src = os.path.join(root_dir, sd)
     dst = os.path.join(dist_dir, sd)
