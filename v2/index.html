@@ -16,35 +16,44 @@
 
   <style>
     :root {
-      /* Alternative Palette: Porcelain White, Alabaster Cream, Architectural Charcoal & Pearl Grey */
-      --canvas: #FAF9F6;          /* Delicate alabaster cream canvas */
+      /* Kitchen365-Inspired Multi-Tone Editorial Palette */
+      --canvas: #F6F4EF;          /* Warm cream / off-white paper canvas */
       --surface: #FFFFFF;         /* Crisp pure white for cards */
-      --surface-subtle: #F3F3EE;  /* Light warm pearl grey */
-      --surface-hover: #ECECE6;   /* Subtle hover state */
+      --surface-subtle: #ECE8E0;  /* Warm stone pearl for secondary fills */
+      --surface-hover: #E4DFD5;   /* Card hover tone */
       
-      --ink: #18191B;             /* Crisp architectural charcoal (not brown/Claude) */
-      --ink-muted: #5C6068;       /* Studio neutral grey for body text */
-      --ink-faint: #9297A0;       /* Light slate grey for secondary metadata */
+      --ink: #1A1818;             /* Deep warm charcoal ink */
+      --ink-muted: #5C5854;       /* Warm neutral grey for body text */
+      --ink-faint: #96918A;       /* Subtle slate-stone for metadata */
       
-      --border: #E5E5DF;          /* Hairline border */
-      --border-subtle: #EEEEEE;   /* Very soft interior divider */
-      --border-strong: #D0D0CA;   /* Slightly deeper border for emphasis */
+      --border: #E5E0D8;          /* Hairline border */
+      --border-subtle: #EEEAE2;   /* Soft inner divider */
+      --border-strong: #D2CBBF;   /* Contrast border */
 
-      --pill-bg: #EFEFEA;         /* Neutral pearl pill background */
-      --pill-text: #36383D;       /* Neutral pill text */
+      /* Vibrant Accent Palette from Kitchen365 */
+      --coral: #E25544;           /* Warm persimmon coral (Primary CTA) */
+      --coral-hover: #C94434;
+      --coral-soft: rgba(226, 85, 68, 0.09);
 
-      --btn-dark-bg: #18191B;     /* Crisp minimal dark button */
-      --btn-dark-hover: #2E3035;
+      --amber: #FCA311;           /* Honey saffron amber (Highlight & featured) */
+      --amber-soft: rgba(252, 163, 17, 0.12);
+
+      --jade: #1ABC9C;            /* Turquoise / Jade teal (Verification & active) */
+      --jade-dark: #149177;
+      --jade-soft: rgba(26, 188, 156, 0.10);
+
+      --iris: #575AE0;            /* Royal Iris / Indigo (Technical architecture) */
+      --iris-soft: rgba(87, 90, 224, 0.09);
       
       --font-serif: "Instrument Serif", Georgia, serif;
       --font-sans: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       --font-mono: "DM Mono", ui-monospace, monospace;
 
       --container: 1140px;
-      --radius-sm: 4px;
-      --radius-md: 8px;
-      --radius-lg: 14px;
-      --shadow-subtle: 0 1px 3px rgba(24, 25, 27, 0.03), 0 8px 24px rgba(24, 25, 27, 0.03);
+      --radius-sm: 5px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --shadow-subtle: 0 1px 3px rgba(26, 24, 24, 0.03), 0 8px 24px rgba(26, 24, 24, 0.04);
     }
 
     * {
@@ -86,9 +95,9 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      background-color: rgba(250, 249, 246, 0.94);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      background-color: rgba(246, 244, 239, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
     }
 
@@ -125,10 +134,10 @@
     .version-tag {
       font-family: var(--font-mono);
       font-size: 11px;
-      color: var(--pill-text);
-      background-color: var(--pill-bg);
-      border: 1px solid var(--border);
-      padding: 2px 7px;
+      color: var(--iris);
+      background-color: var(--iris-soft);
+      border: 1px solid rgba(87, 90, 224, 0.2);
+      padding: 2px 8px;
       border-radius: 999px;
       font-weight: 500;
     }
@@ -174,14 +183,15 @@
       line-height: 1;
     }
 
-    .btn-dark {
-      background-color: var(--btn-dark-bg);
+    .btn-coral {
+      background-color: var(--coral);
       color: #FFFFFF;
     }
 
-    .btn-dark:hover {
-      background-color: var(--btn-dark-hover);
+    .btn-coral:hover {
+      background-color: var(--coral-hover);
       transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(226, 85, 68, 0.25);
     }
 
     .btn-outline {
@@ -213,29 +223,53 @@
       letter-spacing: 0.04em;
       text-transform: uppercase;
       margin-bottom: 24px;
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      padding: 5px 12px;
+      border-radius: 999px;
     }
 
     .hero-eyebrow span.bullet {
-      width: 6px;
-      height: 6px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
-      background-color: var(--ink);
+      background-color: var(--jade);
+      box-shadow: 0 0 0 3px var(--jade-soft);
     }
 
     .hero-title {
       font-family: var(--font-serif);
-      font-size: clamp(44px, 6vw, 76px);
+      font-size: clamp(42px, 5.8vw, 76px);
       font-weight: 400;
-      line-height: 1.05;
+      line-height: 1.08;
       letter-spacing: -0.02em;
       color: var(--ink);
-      max-width: 960px;
+      max-width: 980px;
       margin-bottom: 24px;
     }
 
-    .hero-title em {
+    /* Typewriter Animated Word */
+    .typewriter-container {
+      display: inline-block;
+      min-width: 260px;
+      color: var(--coral);
       font-style: italic;
-      color: #383A40;
+      white-space: nowrap;
+      position: relative;
+    }
+
+    .typewriter-cursor {
+      display: inline-block;
+      margin-left: 2px;
+      font-weight: 300;
+      color: var(--amber);
+      font-style: normal;
+      animation: cursorBlink 0.85s infinite;
+    }
+
+    @keyframes cursorBlink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
     }
 
     .hero-subtitle {
@@ -256,6 +290,7 @@
       box-shadow: var(--shadow-subtle);
       max-width: 760px;
       margin-bottom: 44px;
+      position: relative;
     }
 
     .audit-box-header {
@@ -298,8 +333,9 @@
     }
 
     .audit-input-form input:focus {
-      border-color: var(--ink);
+      border-color: var(--coral);
       background-color: #FFFFFF;
+      box-shadow: 0 0 0 3px var(--coral-soft);
     }
 
     .audit-samples {
@@ -326,11 +362,12 @@
       font-family: var(--font-mono);
       font-size: 11px;
       cursor: pointer;
-      transition: background-color 0.15s ease;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
     }
 
     .sample-pill:hover {
       background-color: var(--surface-hover);
+      border-color: var(--border-strong);
     }
 
     /* Engine Verification Strip */
@@ -366,11 +403,32 @@
       gap: 6px;
     }
 
-    .engine-dot {
-      width: 5px;
-      height: 5px;
+    .engine-dot.dot-jade {
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
-      background-color: #4A5568;
+      background-color: var(--jade);
+    }
+
+    .engine-dot.dot-amber {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--amber);
+    }
+
+    .engine-dot.dot-iris {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--iris);
+    }
+
+    .engine-dot.dot-coral {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--coral);
     }
 
     /* Section Headers */
@@ -380,7 +438,7 @@
       font-weight: 600;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: var(--ink-muted);
+      color: var(--coral);
       margin-bottom: 12px;
     }
 
@@ -423,21 +481,37 @@
       display: flex;
       flex-direction: column;
       position: relative;
-      transition: transform 0.2s ease, border-color 0.2s ease;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
     .journey-card:hover {
       transform: translateY(-2px);
-      border-color: var(--border-strong);
+      box-shadow: var(--shadow-subtle);
+    }
+
+    .journey-card.card-jade:hover {
+      border-color: var(--jade);
+    }
+
+    .journey-card.card-iris:hover {
+      border-color: var(--iris);
+    }
+
+    .journey-card.card-coral:hover {
+      border-color: var(--coral);
     }
 
     .journey-num {
       font-family: var(--font-mono);
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
-      color: var(--ink);
       margin-bottom: 20px;
+      display: inline-block;
     }
+
+    .journey-num.num-jade { color: var(--jade-dark); }
+    .journey-num.num-iris { color: var(--iris); }
+    .journey-num.num-coral { color: var(--coral); }
 
     .journey-title {
       font-family: var(--font-serif);
@@ -479,6 +553,7 @@
       max-width: 880px;
       margin: 0 auto;
       box-shadow: var(--shadow-subtle);
+      position: relative;
     }
 
     .manifesto-header {
@@ -487,7 +562,7 @@
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--ink-muted);
+      color: var(--amber);
       margin-bottom: 16px;
     }
 
@@ -581,7 +656,7 @@
     }
 
     .comp-highlight {
-      color: var(--ink);
+      color: var(--jade-dark);
       font-weight: 600;
     }
 
@@ -614,20 +689,20 @@
     }
 
     .pricing-card.featured {
-      border-color: var(--ink);
-      box-shadow: 0 4px 20px rgba(24, 25, 27, 0.06);
+      border-color: var(--coral);
+      box-shadow: 0 6px 28px rgba(226, 85, 68, 0.12);
     }
 
     .plan-badge {
       position: absolute;
       top: -12px;
       right: 24px;
-      background-color: var(--ink);
-      color: #FFFFFF;
+      background-color: var(--amber);
+      color: #1A1818;
       font-family: var(--font-mono);
-      font-size: 10px;
-      font-weight: 600;
-      padding: 3px 9px;
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 3px 10px;
       border-radius: 999px;
       text-transform: uppercase;
       letter-spacing: 0.05em;
@@ -685,8 +760,8 @@
     }
 
     .plan-features li::before {
-      content: "—";
-      color: var(--ink-muted);
+      content: "✓";
+      color: var(--jade-dark);
       font-weight: 700;
       font-size: 12px;
     }
@@ -776,6 +851,10 @@
       .manifesto-card {
         padding: 36px 24px;
       }
+      .typewriter-container {
+        display: inline;
+        min-width: 0;
+      }
     }
   </style>
 </head>
@@ -787,7 +866,7 @@
       <a href="/v2/" class="brand-wrap">
         <img src="/assets/AnswerIndex_Logo.png" alt="Answer Index Logo" class="brand-logo">
         <span class="brand-name">Answer Index</span>
-        <span class="version-tag">Edition 02</span>
+        <span class="version-tag">Edition 03</span>
       </a>
 
       <nav class="nav-links">
@@ -800,7 +879,7 @@
 
       <div class="header-actions">
         <a href="/audit.html" class="btn btn-outline" style="font-size: 13px;">Classic Audit</a>
-        <a href="#audit-tool" class="btn btn-dark">Run Free Audit ↗</a>
+        <a href="#audit-tool" class="btn btn-coral">Run Free Audit ↗</a>
       </div>
     </div>
   </header>
@@ -814,11 +893,11 @@
       </div>
 
       <h1 class="hero-title">
-        Be the recommendation when your buyers <em>ask AI</em>.
+        Be the recommendation when your buyers ask <span class="typewriter-container"><span id="typewriter-target">ChatGPT.</span><span class="typewriter-cursor" aria-hidden="true">|</span></span>
       </h1>
 
       <p class="hero-subtitle">
-        Prospective clients no longer browse pages of blue links. They ask ChatGPT, Perplexity, Claude, and Gemini for verified solutions. Answer Index structures your facts, proof matrices, and entity graphs so AI engines cite your brand with confidence.
+        Prospective clients no longer browse pages of blue links. They ask conversational AI engines for verified solutions. Answer Index structures your facts, proof matrices, and entity graphs so AI models cite your brand with confidence.
       </p>
 
       <!-- Live Audit Box -->
@@ -829,7 +908,7 @@
         </div>
         <form class="audit-input-form" onsubmit="event.preventDefault(); runV2Audit();">
           <input type="text" id="target-domain" placeholder="Enter domain name (e.g. yourbrand.com)" required>
-          <button type="submit" class="btn btn-dark" id="audit-btn">Inspect Domain ↗</button>
+          <button type="submit" class="btn btn-coral" id="audit-btn">Inspect Domain ↗</button>
         </form>
         <div class="audit-samples">
           <span class="label">Try sample:</span>
@@ -842,7 +921,7 @@
         <div id="audit-result-v2" style="display: none; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border);">
           <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px;">
             <div style="font-family: var(--font-serif); font-size: 24px;" id="res-domain-title">Evaluated Domain</div>
-            <div style="font-family: var(--font-mono); font-size: 14px; font-weight: 600; color: var(--ink);" id="res-score-pill">88/100 · Strong Foundation</div>
+            <div style="font-family: var(--font-mono); font-size: 14px; font-weight: 600; color: var(--jade-dark);" id="res-score-pill">88/100 · Strong Foundation</div>
           </div>
           <p style="font-size: 14px; color: var(--ink-muted); margin-bottom: 16px;" id="res-summary-text"></p>
           <div style="display: flex; gap: 12px;">
@@ -851,15 +930,15 @@
         </div>
       </div>
 
-      <!-- Engine Verification Strip -->
+      <!-- Engine Verification Strip with Multi-Tone Dots -->
       <div class="engine-strip">
         <span class="strip-label">Retrieval Verification Across:</span>
         <div class="engine-list">
-          <div class="engine-item"><span class="engine-dot"></span>ChatGPT Search</div>
-          <div class="engine-item"><span class="engine-dot"></span>Perplexity AI</div>
-          <div class="engine-item"><span class="engine-dot"></span>Claude 3.5</div>
-          <div class="engine-item"><span class="engine-dot"></span>Google AI Overviews</div>
-          <div class="engine-item"><span class="engine-dot"></span>Gemini 1.5</div>
+          <div class="engine-item"><span class="engine-dot dot-coral"></span>ChatGPT Search</div>
+          <div class="engine-item"><span class="engine-dot dot-jade"></span>Perplexity AI</div>
+          <div class="engine-item"><span class="engine-dot dot-amber"></span>Claude 3.5</div>
+          <div class="engine-item"><span class="engine-dot dot-iris"></span>Google AI Overviews</div>
+          <div class="engine-item"><span class="engine-dot dot-jade"></span>Gemini 1.5</div>
         </div>
       </div>
     </div>
@@ -876,8 +955,8 @@
 
       <div class="journey-grid">
         <!-- 01 -->
-        <div class="journey-card">
-          <div class="journey-num">01 / DISCOVERY</div>
+        <div class="journey-card card-jade">
+          <div class="journey-num num-jade">01 / DISCOVERY</div>
           <h3 class="journey-title">Get Retrieved Without Noise</h3>
           <p class="journey-desc">
             AI engines cannot cite what they cannot reliably parse. We publish lightweight machine-readable manifests (<code>/llms.txt</code>, AI crawler directives, and JSON-LD entity graphs) that give bots unambiguous access to your offerings, credentials, and geographic footprint.
@@ -886,8 +965,8 @@
         </div>
 
         <!-- 02 -->
-        <div class="journey-card">
-          <div class="journey-num">02 / AUTHORITY</div>
+        <div class="journey-card card-iris">
+          <div class="journey-num num-iris">02 / AUTHORITY</div>
           <h3 class="journey-title">Earn Direct Answer Citations</h3>
           <p class="journey-desc">
             When buyers ask comparison questions, LLMs pull from succinct, verifiable 40–55 word declarative paragraphs. We engineer passage-level answer architecture and comparative proof matrices that answer engines quote word-for-word.
@@ -896,8 +975,8 @@
         </div>
 
         <!-- 03 -->
-        <div class="journey-card">
-          <div class="journey-num">03 / ACQUISITION</div>
+        <div class="journey-card card-coral">
+          <div class="journey-num num-coral">03 / ACQUISITION</div>
           <h3 class="journey-title">Turn Recommendations Into Leads</h3>
           <p class="journey-desc">
             AI visibility is meaningless if it does not convert. We automate daily staging directly into your existing CMS (WordPress, Shopify, or GitHub repo) with human-in-the-loop review, turning citation momentum into qualified commercial inbound enquiries.
@@ -1028,7 +1107,7 @@
             <li>Automated WordPress, Shopify, or GitHub staging</li>
             <li>Daily drift sentinel alerts</li>
           </ul>
-          <a href="/pricing.html" class="btn btn-dark" style="width: 100%;">Launch Pro Cadence ↗</a>
+          <a href="/pricing.html" class="btn btn-coral" style="width: 100%;">Launch Pro Cadence ↗</a>
         </div>
 
         <!-- Enterprise Partner -->
@@ -1115,6 +1194,60 @@
   </footer>
 
   <script>
+    // --- TYPEWRITER ANIMATION FOR HERO HEADLINE ---
+    const aiModels = [
+      'ChatGPT.',
+      'Perplexity.',
+      'Claude.',
+      'Google AI.',
+      'Gemini.',
+      'AI.'
+    ];
+
+    let currentModelIndex = 0;
+    let currentCharIndex = 0;
+    let isDeleting = false;
+    const typewriterTarget = document.getElementById('typewriter-target');
+
+    function typeWriterLoop() {
+      const currentWord = aiModels[currentModelIndex];
+
+      if (isDeleting) {
+        // Remove characters
+        typewriterTarget.textContent = currentWord.substring(0, currentCharIndex - 1);
+        currentCharIndex--;
+      } else {
+        // Add characters
+        typewriterTarget.textContent = currentWord.substring(0, currentCharIndex + 1);
+        currentCharIndex++;
+      }
+
+      // Timing dynamics
+      let typingSpeed = isDeleting ? 40 : 85;
+
+      // When word is fully typed
+      if (!isDeleting && currentCharIndex === currentWord.length) {
+        // Pause at the complete word
+        typingSpeed = 1900;
+        isDeleting = true;
+      } else if (isDeleting && currentCharIndex === 0) {
+        // Switch to next word
+        isDeleting = false;
+        currentModelIndex = (currentModelIndex + 1) % aiModels.length;
+        typingSpeed = 350;
+      }
+
+      setTimeout(typeWriterLoop, typingSpeed);
+    }
+
+    // Start typewriter when DOM loads
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typewriterTarget) {
+        typeWriterLoop();
+      }
+    });
+
+    // --- DOMAIN AUDIT EVALUATOR ---
     function setDomain(d) {
       document.getElementById('target-domain').value = d;
       runV2Audit();
@@ -1140,6 +1273,7 @@
         document.getElementById('audit-result-v2').style.display = 'block';
         document.getElementById('res-domain-title').innerText = val;
         document.getElementById('res-score-pill').innerText = `${score}/100 · ${grade}`;
+        document.getElementById('res-score-pill').style.color = isAnswerIndex ? 'var(--jade-dark)' : 'var(--coral)';
         document.getElementById('res-summary-text').innerText = isAnswerIndex
           ? `${val} has successfully deployed foundational machine-readable manifests and Schema graph nodes, positioning it in the top tier of generative AI search readiness.`
           : `${val} currently lacks machine-readable /llms.txt manifests and cohesive Schema @graph nodes, leaving critical buying recommendations open to competitor citation diversion.`;
