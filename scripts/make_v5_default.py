@@ -34,3 +34,4 @@ index_text = index_text.replace('href="about.html"', 'href="/about.html"')
 with open('index.html', 'w', encoding='utf-8') as f:
     f.write(index_text)
 print("Updated root index.html with v5 content!")
+
