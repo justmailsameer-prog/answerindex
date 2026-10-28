@@ -2050,36 +2050,102 @@
     <div class="blob blob-2"></div>
   </div>
 
-  <!-- Navigation Bar (Pure Black #000000) -->
-  <header class="site-navbar">
-    <div class="site-nav-container">
-      <a href="pro.html" class="site-brand">
-        <img src="assets/AnswerIndex_Logo.png" alt="Answer Index Logo" />
-        <span>Answer Index</span>
-        <span class="site-badge-pro" id="easterEggProBadge" onclick="handleProBadgeEasterEggClick(event)" title="Answer Index Pro Agent (Click 5 times for VIP)">PRO</span>
-      </a>
-
-      <nav class="site-nav-links">
-        <a href="pro.html" class="active">Overview</a>
-        <a href="how-it-works.html">How It Works</a>
-        <a href="audit.html">Free AI Audit</a>
-        <a href="pricing.html">Pricing</a>
-        <a href="about.html">About</a>
-      </nav>
-
-      <div class="site-nav-actions">
-        <button onclick="openClientAuthModal('login')" class="site-nav-btn site-nav-btn-secondary">
-          🔑 Client Portal
-        </button>
-        <a href="audit.html" class="site-nav-btn site-nav-btn-cobalt">
-          ⚡ Free AI Audit
+  <!-- Clean Floating Header with Client Portal & Hamburger Button -->
+  <header class="site-header">
+    <div class="container">
+      <div class="nav-floating-card">
+        <a href="/" class="brand-wrap">
+          <div class="brand-logo-wrap">
+            <span class="brand-logo-glow" aria-hidden="true"></span>
+            <img src="/assets/AnswerIndex_Logo.png?v=2026" 
+                 onerror="this.onerror=null; this.src='assets/AnswerIndex_Logo.png?v=2026';" 
+                 alt="Answer Index Logo" class="brand-logo">
+          </div>
+          <div class="brand-text-group">
+            <span class="brand-name">Answer Index</span>
+            <span class="version-tag" id="easterEggProBadge" onclick="handleProBadgeEasterEggClick(event)" title="Answer Index Pro Agent (Click 5 times for VIP)" style="cursor: pointer;">PRO VIP</span>
+          </div>
         </a>
-        <button class="mobile-hamburger-btn" onclick="openMobileDrawer()" aria-label="Open Navigation Menu">
-          ☰
-        </button>
+
+        <!-- Right Side: Portal + Audit CTA + Hamburger Button -->
+        <div class="header-actions">
+          <button type="button" onclick="openClientAuthModal('login')" class="btn btn-portal" title="Open Client Portal Sign In">Client Sign In 🔑</button>
+          <a href="/#audit-tool" class="btn btn-accent">Inspect Domain ↗</a>
+          <button type="button" class="hamburger-btn" onclick="toggleDrawer(true)" aria-label="Open Navigation Menu">
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+          </button>
+        </div>
       </div>
     </div>
   </header>
+
+  <!-- Categorized Slide-Out Hamburger Drawer Menu -->
+  <div id="drawerMenu" class="drawer-overlay" onclick="handleOverlayClick(event)">
+    <div class="drawer-panel">
+      <div class="drawer-header">
+        <span>Navigation &amp; Directory</span>
+        <button type="button" class="drawer-close-btn" onclick="toggleDrawer(false)" aria-label="Close Navigation Menu">&times;</button>
+      </div>
+
+      <div class="drawer-nav-sections">
+        <!-- 01 · Product & Delivery -->
+        <div class="drawer-group">
+          <h4>01 · Product &amp; Delivery</h4>
+          <ul>
+            <li><a href="/#summary" onclick="toggleDrawer(false)">Overview &amp; Thesis</a></li>
+            <li><a href="/#daily-loop" onclick="toggleDrawer(false)">The Daily 2-Job Cadence</a></li>
+            <li><a href="/#how-it-works" onclick="toggleDrawer(false)">How Staging &amp; Merges Work</a></li>
+            <li><a href="/how-it-works.html">Customer Lifecycle Map</a></li>
+          </ul>
+        </div>
+
+        <!-- 02 · Architecture & Trust -->
+        <div class="drawer-group">
+          <h4>02 · Architecture &amp; Trust</h4>
+          <ul>
+            <li><a href="/#brand-truth" onclick="toggleDrawer(false)">D1 Brand Truth Wiki</a></li>
+            <li><a href="/#comparison" onclick="toggleDrawer(false)">AEO vs Legacy SEO Matrix</a></li>
+            <li><a href="/llms.txt" target="_blank">Machine Manifest (/llms.txt) <span class="tag">Live</span></a></li>
+            <li><a href="/about.html">About Answer Index</a></li>
+          </ul>
+        </div>
+
+        <!-- 03 · Commercial & Audits -->
+        <div class="drawer-group">
+          <h4>03 · Commercial &amp; Audits</h4>
+          <ul>
+            <li><a href="/#pricing" onclick="toggleDrawer(false)">Autonomous Growth Plans</a></li>
+            <li><a href="/#audit-tool" onclick="toggleDrawer(false)">Instant AI Readiness Diagnostic</a></li>
+            <li><a href="/audit.html">Full Technical Audit Tool</a></li>
+            <li><a href="/#faq" onclick="toggleDrawer(false)">Frequently Asked Questions</a></li>
+          </ul>
+        </div>
+
+        <!-- 04 · Client Access -->
+        <div class="drawer-group">
+          <h4>04 · Client Access</h4>
+          <ul>
+            <li><a href="/pro.html" class="active" style="color: var(--accent); font-weight: 700;">Client Portal &amp; Pro →</a></li>
+            <li><a href="https://github.com/justmailsameer-prog/answerindex" target="_blank">GitHub Repository &amp; PRs</a></li>
+            <li><a href="/feedback.html">Direct Feedback Channel</a></li>
+          </ul>
+        </div>
+
+        <!-- 05 · Legal & Policies -->
+        <div class="drawer-group">
+          <h4>05 · Legal &amp; Policies</h4>
+          <ul>
+            <li><a href="/terms.html">Terms of Service</a></li>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+            <li><a href="/ai-disclosure.txt" target="_blank">AI Disclosure Manifest</a></li>
+            <li><a href="/training-data-policy.txt" target="_blank">Training Data Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- =========================================================================
        SECTION 0: HERO (PURE BLACK #000000)
@@ -2628,7 +2694,7 @@
           <div class="flow-step-badge-lime">02</div>
           <h4 style="font-size: 1.18rem; font-weight: 800; margin-bottom: 0.5rem; color: #ffffff;">Agent Runs in Background</h4>
           <p style="font-size: 0.9rem; color: #cccccc; line-height: 1.6;">
-            Every morning at 06:00 AM, the agent analyzes Search Console shifts and AI citations, grounding all content against your D1 Brand Truth Knowledge Base.
+            Through automated daily agent runs, the agent analyzes Search Console shifts and AI citations, grounding all content against your D1 Brand Truth Knowledge Base.
           </p>
           <div style="margin-top: 1.25rem; font-size: 0.78rem; color: #9cb1ff; font-family: var(--font-mono); font-weight: 700;">
             ⚡ Zero Hallucinations: Pre-validated against your Brand Truth Wiki.
@@ -3533,96 +3599,100 @@
   <!-- =========================================================================
        FOOTER (PURE BLACK #000000)
        ========================================================================= -->
-  <footer class="detailed-footer section-black">
+  <!-- 8. Detailed Multi-Column Editorial Footer -->
+  <footer class="site-footer-detailed">
     <div class="container">
-      <div class="footer-grid">
+      <div class="footer-top-grid">
         <!-- Brand & Mission Column -->
-        <div class="footer-col" style="padding-right: 1.5rem;">
-          <div class="footer-brand-title">
-            <img src="assets/AnswerIndex_Logo.png" alt="Answer Index Logo" style="width: 32px; height: 32px; border-radius: 6px;" />
+        <div class="footer-brand-col">
+          <div class="footer-brand-header">
+            <img src="assets/AnswerIndex_Logo.png?v=2026" 
+                 onerror="this.onerror=null; this.src='../assets/AnswerIndex_Logo.png?v=2026';" 
+                 alt="Answer Index Logo" class="footer-logo">
             <span>Answer Index Pro</span>
           </div>
-          <p class="footer-brand-desc">
-            The autonomous growth engine built for the post-search generative AI era. One authoritative AEO answer piece and one technical optimization every single day, shipped as Pull Requests you approve.
+          <p class="footer-desc">
+            The autonomous growth engine built for the post-search generative AI era. One authoritative AEO answer asset and one technical optimization every single day, shipped as reviewable Pull Requests or CMS drafts you approve.
           </p>
-          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-            <a href="https://github.com/justmailsameer-prog/answerindex" target="_blank" class="btn btn-secondary-dark" style="font-size: 0.8rem; padding: 0.4rem 0.85rem;">
+          <div class="footer-action-links">
+            <a href="https://github.com/justmailsameer-prog/answerindex" target="_blank" class="footer-btn-sm">
               ⭐ Star on GitHub
             </a>
-            <a href="feedback.html" class="btn btn-secondary-dark" style="font-size: 0.8rem; padding: 0.4rem 0.85rem;">
+            <a href="/feedback.html" class="footer-btn-sm">
               Direct Feedback
+            </a>
+            <a href="/pro.html" class="footer-btn-sm" style="color: #ec5836; border-color: rgba(236, 88, 54, 0.4);">
+              Client Portal →
             </a>
           </div>
         </div>
 
         <!-- Col 1: Platform & Engine -->
-        <div class="footer-col">
-          <h5>Platform & Engine</h5>
+        <div class="footer-nav-col">
+          <h5>Platform &amp; Engine</h5>
           <ul>
-            <li><a href="about.html" style="color: #60a5fa; font-weight: 700;">💡 About Answer Index</a></li>
-            <li><a href="#calendar-loop">Daily Routine & Calendar</a></li>
-            <li><a href="#how-approvals-work">How Approvals Work</a></li>
-            <li><a href="#daily-loop">The 2-Job Daily Cadence</a></li>
-            <li><a href="#journey">Customer Flow & Lifecycle</a></li>
-            <li><a href="index.html#features">26-File Protocol Engine</a></li>
-            <li><a href="index.html#anti-hallucination">Anti-Hallucination Gate</a></li>
+            <li><a href="/about.html">About Answer Index</a></li>
+            <li><a href="/#daily-loop">The 2-Job Daily Cadence</a></li>
+            <li><a href="/#how-it-works">Staging &amp; Approvals Flow</a></li>
+            <li><a href="/how-it-works.html">Customer Lifecycle Map</a></li>
+            <li><a href="/llms.txt" target="_blank">26-File Protocol Engine</a></li>
+            <li><a href="/#brand-truth">Anti-Hallucination Gate</a></li>
           </ul>
         </div>
 
         <!-- Col 2: Integrations & Delivery -->
-        <div class="footer-col">
-          <h5>Integrations & Git</h5>
+        <div class="footer-nav-col">
+          <h5>Integrations &amp; Portal</h5>
           <ul>
-            <li><a href="#how-approvals-work">GitHub App & Scoped PRs</a></li>
-            <li><a href="#how-approvals-work">Answer Index Web Dashboard</a></li>
-            <li><a href="#journey">Google Search Console API</a></li>
-            <li><a href="index.html#mcp">Native MCP Server (Cursor/Claude)</a></li>
-            <li><a href="#before-you-start">CMS Webhooks (WordPress/Webflow)</a></li>
-            <li><a href="https://answerindex.xyz">Live Cloudflare Deployment</a></li>
+            <li><a href="/pro.html" style="color: #c94424; font-weight: 600;">⚡ Live Client Portal (/pro)</a></li>
+            <li><a href="/#how-it-works">GitHub App &amp; Scoped PRs</a></li>
+            <li><a href="/#summary">Google Search Console API</a></li>
+            <li><a href="/llms.txt" target="_blank">Native MCP Server (Claude/Cursor)</a></li>
+            <li><a href="/#how-it-works">WordPress &amp; Shopify Plugins</a></li>
+            <li><a href="https://answerindex.xyz" target="_blank">Cloudflare Edge Deployment</a></li>
           </ul>
         </div>
 
         <!-- Col 3: Compare & Economics -->
-        <div class="footer-col">
-          <h5>Compare & Pricing</h5>
+        <div class="footer-nav-col">
+          <h5>Compare &amp; Pricing</h5>
           <ul>
-            <li><a href="#comparison">Market Comparison Matrix</a></li>
-            <li><a href="#pricing">Value Replacement ($4,249/mo)</a></li>
-            <li><a href="#pricing">Growth Plan ($199/mo)</a></li>
-            <li><a href="#pricing">Pro Autonomous ($499/mo)</a></li>
-            <li><a href="#pricing">Enterprise Partner ($1,499/mo)</a></li>
-            <li><a href="index.html">Free Open Source vs Pro</a></li>
-            <li><a href="#before-you-start">FAQ: Before You Start</a></li>
+            <li><a href="/#comparison">Market Comparison Matrix</a></li>
+            <li><a href="/#pricing">Starter Plan ($199/mo)</a></li>
+            <li><a href="/#pricing">Pro Autonomous ($499/mo)</a></li>
+            <li><a href="/#pricing">Enterprise Partner ($1,499/mo)</a></li>
+            <li><a href="/index-oss.html">Open Source vs. Pro</a></li>
+            <li><a href="/#faq">Frequently Asked Questions</a></li>
           </ul>
         </div>
 
-        <!-- Col 4: Founder & Direct Contact -->
-        <div class="footer-col">
-          <h5>Founder & Contact</h5>
+        <!-- Col 4: Mandatory Policies & Direct Contact -->
+        <div class="footer-nav-col">
+          <h5>Legal, Trust &amp; Contact</h5>
           <ul>
-            <li><a href="javascript:void(0)" onclick="openContactModal('call')" style="color: var(--c-lime); font-weight: 700;">📞 Book 15-Min Intro Call</a></li>
-            <li><a href="javascript:void(0)" onclick="openContactModal('audit')">🔍 Request Free AI Audit</a></li>
-            <li><a href="mailto:sameer@answerindex.xyz">✉️ sameer@answerindex.xyz</a></li>
-            <li><span style="font-size: 0.8rem; color: #aaaaaa;">⚡ Guaranteed reply within 4h (Mon–Sat)</span></li>
+            <li><a href="/terms.html">Terms of Service</a></li>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+            <li><a href="/ai-disclosure.txt" target="_blank">AI Disclosure Manifest</a></li>
+            <li><a href="/training-data-policy.txt" target="_blank">Training Data Policy</a></li>
+            <li><a href="mailto:sameer@answerindex.xyz" style="color: #FFFFFF; font-weight: 600;">✉️ sameer@answerindex.xyz</a></li>
             <li><a href="https://github.com/justmailsameer-prog/answerindex/blob/main/LICENSE" target="_blank">MIT Open Source License</a></li>
-            <li><a href="feedback.html">Direct Feedback Channel</a></li>
           </ul>
         </div>
       </div>
 
-      <!-- Bottom Bar -->
-      <div class="footer-bottom-bar">
+      <!-- Bottom Strip -->
+      <div class="footer-bottom-strip">
         <div>
-          Copyright © 2026 Sameer Sharma. All rights reserved. Free for open source & commercial use under MIT.
+          Copyright © 2026 Sameer Sharma. All rights reserved.
         </div>
-        <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
-          <div class="status-indicator">
-            <span class="status-dot"></span>
+        <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+          <div class="footer-status-tag">
+            <span class="footer-status-dot"></span>
             <span>Autonomous Engine Active · v2.0 Pro</span>
           </div>
-          <a href="javascript:void(0)" id="footerShareBtn" style="color: var(--c-lime); text-decoration: none; font-size: 0.85rem; font-weight: 700;">
-            🔗 Share with Friends
-          </a>
+          <a href="/terms.html" style="color: #a49f91; text-decoration: none;">Terms</a>
+          <a href="/privacy.html" style="color: #a49f91; text-decoration: none;">Privacy</a>
+          <a href="/ai-disclosure.txt" style="color: #a49f91; text-decoration: none;">AI Disclosure</a>
         </div>
       </div>
     </div>

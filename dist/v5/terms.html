@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Answer Index - What We Do & How We Drive Sales (V5 Narwhal)</title>
+  <meta name="description" content="Answer Index gets your brand cited as the #1 recommendation when prospective buyers ask ChatGPT, Perplexity, and Google AI for solutions. Discover how our autonomous daily growth engine drives revenue." />
+
+  <!-- Canonical & Crawl Directives -->
+  <link rel="canonical" href="https://answerindex.xyz/v5/about.html" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono (Narwhal Theme) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Client Portal Auth CSS & JS -->
+  <link rel="stylesheet" href="../assets/client-portal.css">
+  <script src="../assets/client-portal.js"></script>
+
+  <style>
+    :root {
+      /* Narwhal Light Mode Theme Colors */
+      --bg-canvas: #F8F8F6;
+      --bg-card: #FFFFFF;
+      --bg-card-subtle: #FDFDFD;
+      --border-subtle: #E5E6DE;
+      --border-hover: #D1D2C7;
+      --border-active: #B8B9AD;
+
+      --text-primary: #1C1D21;
+      --text-secondary: #5A5D66;
+      --text-muted: #8E929E;
+
+      --honey-primary: #F9BC38;
+      --honey-hover: #F8B31F;
+      --honey-light: #FEF9EE;
+      --honey-border: #FDE68A;
+
+      --emerald-bg: #ECFDF5;
+      --emerald-text: #059669;
+      --sky-bg: #F0F9FF;
+      --sky-text: #0284C7;
+
+      --radius-pill: 9999px;
+      --radius-card: 16px;
+      --radius-inner: 10px;
+
+      --shadow-card: 0 4px 20px -2px rgba(28, 29, 33, 0.04), 0 2px 6px -1px rgba(28, 29, 33, 0.02);
+      --shadow-hover: 0 12px 28px -4px rgba(28, 29, 33, 0.08), 0 4px 10px -2px rgba(28, 29, 33, 0.03);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      line-height: 1.5;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    /* Narwhal Subtle Background Grid */
+    .bg-grid { display: none !important; }
+
+    .app-container {
+      position: relative;
+      z-index: 1;
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 24px 24px 80px;
+    }
+
+    /* Common Buttons */
+    .btn-honey-primary {
+      background: var(--honey-primary);
+      color: #1C1D21;
+      border: 1px solid var(--honey-border);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600;
+      font-size: 13.5px;
+      padding: 9px 18px;
+      border-radius: var(--radius-pill);
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(249, 188, 56, 0.35);
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      white-space: nowrap;
+    }
+    .btn-honey-primary:hover {
+      background: var(--honey-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(249, 188, 56, 0.45);
+      color: #1C1D21;
+    }
+
+    .btn-secondary {
+      background: var(--bg-card);
+      color: var(--text-primary);
+      border: 1px solid var(--border-subtle);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600;
+      font-size: 13.5px;
+      padding: 9px 18px;
+      border-radius: var(--radius-pill);
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .btn-secondary:hover {
+      background: #FFFFFF;
+      border-color: var(--border-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Sticky Pill Header */
+    header {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-pill);
+      padding: 10px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+      position: sticky;
+      top: 16px;
+      z-index: 100;
+      box-shadow: 0 4px 20px -2px rgba(28, 29, 33, 0.04);
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .logo-badge {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }
+    .logo-badge:hover {
+      transform: scale(1.06);
+    }
+    .logo-badge img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 10px rgba(249, 188, 56, 0.25));
+    }
+
+    .brand-title h1 {
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      line-height: 1.2;
+    }
+
+    .brand-title p {
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .header-ctas {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hamburger-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-pill);
+      padding: 8px 12px;
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+    .hamburger-bar {
+      width: 18px;
+      height: 2px;
+      background: var(--text-primary);
+      border-radius: 2px;
+    }
+
+    /* Drawer Menu Overlay */
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(28, 29, 33, 0.4);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .drawer-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .drawer-panel {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 380px;
+      max-width: 90vw;
+      background: #FFFFFF;
+      box-shadow: -8px 0 32px rgba(0, 0, 0, 0.12);
+      transform: translateX(100%);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      padding: 24px;
+      overflow-y: auto;
+    }
+    .drawer-overlay.open .drawer-panel {
+      transform: translateX(0);
+    }
+    .drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-subtle);
+      font-weight: 800;
+      font-size: 15px;
+    }
+    .drawer-close-btn {
+      background: var(--bg-canvas);
+      border: 1px solid var(--border-subtle);
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .drawer-group {
+      margin-top: 20px;
+    }
+    .drawer-group h4 {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .drawer-group ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .drawer-group a {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      padding: 6px 10px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+    }
+    .drawer-group a:hover {
+      background: var(--honey-light);
+      color: var(--text-primary);
+    }
+
+    /* Unified Capsules & Badges (Matching Instant Analytical Diagnostic Theme) */
+    .badge-pill-featured {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background-color: var(--honey-light);
+      border: 1px solid var(--honey-border);
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 16px;
+    }
+
+    /* About Hero Banner */
+    .about-hero {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card);
+      padding: 56px 48px 44px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow-card);
+    }
+    .about-hero h2 {
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.18;
+      margin-bottom: 16px;
+      color: var(--text-primary);
+    }
+    .about-hero p.lead {
+      font-size: 17px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 860px;
+      margin-bottom: 28px;
+    }
+
+    /* 3-Point At-A-Glance Callout */
+    .at-a-glance-box {
+      background: var(--honey-light);
+      border: 1px solid var(--honey-border);
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin-top: 24px;
+    }
+    .at-a-glance-header {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: #B45309;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .at-a-glance-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .glance-item {
+      background: #FFFFFF;
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 16px;
+    }
+    .glance-item .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: var(--honey-light);
+      border: 1px solid var(--honey-border);
+      padding: 2px 7px;
+      border-radius: var(--radius-pill);
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+    .glance-item p {
+      font-size: 13.5px;
+      color: var(--text-primary);
+      line-height: 1.5;
+    }
+
+    /* 3 Deep Dive Pillar Cards */
+    .pillar-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-bottom: 36px;
+    }
+    .about-pillar-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card);
+      padding: 36px;
+      box-shadow: var(--shadow-card);
+    }
+    .about-pillar-card h3 {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin: 8px 0 14px;
+      color: var(--text-primary);
+    }
+    .about-pillar-card p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+    .highlight-card {
+      background: var(--bg-canvas);
+      border-left: 4px solid var(--honey-primary);
+      border-radius: 8px;
+      padding: 14px 18px;
+      font-size: 14px;
+      color: var(--text-primary);
+      margin-top: 14px;
+    }
+
+    /* Search Shift Comparison Matrix */
+    .comp-container {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card);
+      padding: 36px;
+      margin-bottom: 36px;
+      box-shadow: var(--shadow-card);
+    }
+    .comp-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .comp-box-col {
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .comp-box-col.old {
+      background: var(--bg-canvas);
+    }
+    .comp-box-col.new {
+      background: var(--honey-light);
+      border-color: var(--honey-border);
+    }
+    .comp-box-col h4 {
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .comp-box-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .comp-box-col li {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      display: flex;
+      gap: 8px;
+    }
+
+    /* Founder Note */
+    .founder-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card);
+      padding: 36px;
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      margin-bottom: 36px;
+      box-shadow: var(--shadow-card);
+    }
+    .founder-avatar {
+      font-size: 48px;
+      width: 72px;
+      height: 72px;
+      background: var(--honey-light);
+      border: 1px solid var(--honey-border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* CTA Banner */
+    .cta-card {
+      background: var(--honey-light);
+      border: 1px solid var(--honey-border);
+      border-radius: var(--radius-card);
+      padding: 44px;
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .cta-card h3 {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .cta-card p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 24px;
+    }
+
+    /* Narwhal Footer */
+    .narwhal-footer {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card);
+      padding: 48px 40px 32px;
+      box-shadow: var(--shadow-card);
+    }
+    .footer-grid-5 {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr;
+      gap: 28px;
+      margin-bottom: 36px;
+    }
+    .footer-brand p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .footer-links-col h5 {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 14px;
+      letter-spacing: -0.01em;
+    }
+    .footer-links-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .footer-links-col a {
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .footer-links-col a:hover {
+      color: var(--text-primary);
+    }
+    .footer-bottom-bar {
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    @media (max-width: 768px) {
+      .at-a-glance-grid { grid-template-columns: 1fr; }
+      .comp-grid-2 { grid-template-columns: 1fr; }
+      .footer-grid-5 { grid-template-columns: 1fr; }
+      .founder-panel { flex-direction: column; text-align: center; }
+      .about-hero { padding: 36px 20px 32px; }
+      .about-hero h2 { font-size: 28px; }
+    }
+  
+    /* Legal Specific Styles */
+    .legal-hero {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .legal-title {
+      font-size: clamp(32px, 5vw, 44px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin: 16px 0 8px;
+      color: var(--text-primary);
+    }
+    .legal-updated {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .legal-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card);
+      padding: 44px;
+      box-shadow: var(--shadow-card);
+      margin-bottom: 50px;
+    }
+    @media (max-width: 768px) {
+      .legal-card {
+        padding: 24px;
+      }
+    }
+    .legal-section {
+      margin-bottom: 36px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .legal-section:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    .legal-section h2 {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .legal-section p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      margin-bottom: 14px;
+    }
+    .legal-section p:last-child {
+      margin-bottom: 0;
+    }
+    .legal-section ul {
+      margin: 12px 0 16px 20px;
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .legal-section li {
+      margin-bottom: 8px;
+    }
+    .legal-section code {
+      background: var(--honey-light);
+      border: 1px solid var(--honey-border);
+      color: #92400E;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    .callout-box {
+      background: var(--honey-light);
+      border-left: 4px solid var(--honey-primary);
+      border-radius: 8px;
+      padding: 16px 20px;
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--text-primary);
+      margin: 16px 0;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Top Sticky Pill Header -->
+    <header>
+      <a href="index.html" class="brand-group">
+        <div class="logo-badge">
+          <img src="assets/AnswerIndex_Logo_v5.png" alt="Answer Index Logo" width="48" height="48" onerror="this.onerror=null; this.src='/assets/AnswerIndex_Logo_v5.png';">
+        </div>
+        <div class="brand-title">
+          <h1>Answer Index <span class="badge-pill-featured" style="margin: 0; padding: 2px 8px; font-size: 11px;">V5 OS</span></h1>
+          <p>The Autonomous AEO &amp; Technical SEO Growth Engine</p>
+        </div>
+      </a>
+
+      <!-- Right Side Actions: Single Sign In Button + Inspect Domain + Hamburger Menu -->
+      <div class="header-ctas">
+        <button type="button" onclick="openClientAuthModal('login')" class="btn-secondary" style="cursor: pointer;">Sign In</button>
+        <a href="index.html#audit-tool" class="btn-honey-primary">Inspect Domain ↗</a>
+        <button type="button" class="hamburger-btn" onclick="toggleDrawer(true)" aria-label="Open Navigation Menu">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Slide-Out Hamburger Drawer Menu -->
+    <div id="drawerMenu" class="drawer-overlay" onclick="handleOverlayClick(event)">
+      <div class="drawer-panel">
+        <div class="drawer-header">
+          <span>Navigation &amp; Directory</span>
+          <button type="button" class="drawer-close-btn" onclick="toggleDrawer(false)" aria-label="Close Navigation Menu">✕</button>
+        </div>
+
+        <div class="drawer-nav-sections">
+          <!-- 01 · Product & Architecture -->
+          <div class="drawer-group">
+            <h4>01 · Core Architecture</h4>
+            <ul>
+              <li><a href="about.html" style="color: #B45309; font-weight: 700;">About Answer Index (Active)</a></li>
+              <li><a href="index.html#summary">Executive Summary</a></li>
+              <li><a href="index.html#daily-loop">The Daily 2-Job Pipeline <span class="tag">Automated</span></a></li>
+              <li><a href="index.html#how-it-works">Safe Staging Flow</a></li>
+              <li><a href="index.html#brand-truth">Brand Truth Wiki</a></li>
+            </ul>
+          </div>
+
+          <!-- 02 · Comparison & Pricing -->
+          <div class="drawer-group">
+            <h4>02 · Pricing &amp; Comparison</h4>
+            <ul>
+              <li><a href="index.html#comparison">Market Comparison</a></li>
+              <li><a href="index.html#pricing">Growth Plans &amp; Pricing</a></li>
+              <li><a href="index.html#faq">Frequently Asked Questions</a></li>
+            </ul>
+          </div>
+
+          <!-- 03 · Portals & Machine Feeds -->
+          <div class="drawer-group">
+            <h4>03 · Portals &amp; Machine Feeds</h4>
+            <ul>
+              <li><a href="javascript:void(0)" onclick="toggleDrawer(false); openClientAuthModal('login');" style="color: #B45309; font-weight: 700;">Sign In to Account →</a></li>
+              <li><a href="dashboard.html" target="_blank" style="color: #059669; font-weight: 700;">Client Dashboard ↗</a></li>
+              <li><a href="../audit.html">Deep Technical Audit Suite ↗</a></li>
+              <li><a href="../llms.txt" target="_blank">Machine Manifest (/llms.txt)</a></li>
+              <li><a href="https://github.com/justmailsameer-prog/answerindex" target="_blank">GitHub Repository (Open Source) ↗</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="drawer-cta-bottom" style="margin-top: auto; padding-top: 24px; border-top: 1px solid var(--border-subtle);">
+          <button type="button" onclick="toggleDrawer(false); openClientAuthModal('login');" class="btn-honey-primary" style="width: 100%; justify-content: center; cursor: pointer; margin-bottom: 8px;">Sign In →</button>
+          <a href="mailto:sameer@answerindex.xyz" class="btn-secondary" style="width: 100%; justify-content: center; font-size: 12.5px;">✉️ sameer@answerindex.xyz</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    
+<main class="container">
+    <div class="legal-hero">
+      <div class="badge-pill">🤝 Fair-Use SaaS Agreement</div>
+      <h1 class="legal-title">Terms of Service &amp; Guarantee</h1>
+      <div class="legal-updated">Last Updated: October 22, 2026 · Canonical Version 2.4.0</div>
+    </div>
+
+    <div class="legal-card">
+
+      <section class="legal-section">
+        <h2>1. Acceptance of Terms</h2>
+        <p>
+          By accessing, subscribing to, or integrating <strong>AnswerIndex Pro</strong> (provided via <code>https://answerindex.xyz</code>), you enter into a binding agreement with AnswerIndex. If you subscribe on behalf of a company or entity, you represent that you possess the authority to bind that entity.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>2. Human-in-the-Loop Operational SLA</h2>
+        <p>
+          AnswerIndex Pro operates strictly on a <strong>Human-in-the-Loop</strong> architecture. We reject unsafe auto-publishing onto live customer websites:
+        </p>
+        <div class="callout-box">
+          <strong>The Non-Interference Guarantee:</strong> AnswerIndex Pro will never write directly to your production <code>main</code> branch or publish live CMS posts without your explicit review. Every deliverable is staged as an open Pull Request on GitHub, or as an unlisted draft in your WordPress, Shopify, Magento, or Web Client Portal. You retain 100% editorial authority and decision-making over what merges into production.
+        </div>
+      </section>
+
+      <section class="legal-section">
+        <h2>3. 100% Intellectual Property Ownership</h2>
+        <p>
+          All content, code diffs, interactive JavaScript calculators, comparison tables, schema markup, and machine manifests (<code>/llms.txt</code>, <code>ai-entities.json</code>, etc.) generated by AnswerIndex Pro for your brand become <strong>100% your exclusive intellectual property upon delivery</strong>.
+        </p>
+        <p>
+          You are free to edit, publish, copyright, repurpose, or keep all assets forever, even if you subsequently pause or cancel your subscription.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>4. Pricing, Billing & Payment Processing</h2>
+        <p>
+          AnswerIndex Pro offers transparent, tiered subscription packages:
+        </p>
+        <ul>
+          <li><strong>Growth ($199/month):</strong> 1 daily AEO answer piece, weekly schema validation, 1-click GitHub PR or CMS reviews.</li>
+          <li><strong>Pro Autonomous ($499/month):</strong> The complete dual-job daily loop (1 new answer piece + 1 technical SEO/Brand Truth fix daily), interactive calculators, competitor comparison guides, and monthly founder reviews.</li>
+          <li><strong>Enterprise DFY Partner ($1,499/month):</strong> 60 high-impact assets per month, active competitor displacement, custom PR citation correction outreach, and priority SLA reviews.</li>
+        </ul>
+        <p>
+          Payments are securely handled by our merchant of record, <strong>Dodo Payments</strong>. All prices are listed in USD. Optional annual billing provides an automatic 20% savings. Subscriptions renew automatically every 30 days unless cancelled before the renewal date.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>5. 14-Day Money-Back Guarantee & Refund Policy</h2>
+        <div class="callout-box callout-green">
+          <strong>14-Day Money-Back Guarantee:</strong> We stand fully behind the engineering quality of AnswerIndex Pro. If within the first 14 days of your initial subscription you are unsatisfied with the delivered pull requests, content quality, or citation benchmarking, email <a href="mailto:sameer@answerindex.xyz" style="color: var(--c-lime-dark); font-weight: 700;">sameer@answerindex.xyz</a> requesting a refund. We will refund 100% of your initial subscription fee within 3 business days—no questions asked and no awkward cancellation calls.
+        </div>
+      </section>
+
+      <section class="legal-section">
+        <h2>6. Cancellation & Account Termination</h2>
+        <p>
+          You may cancel your subscription at any time with a single click inside your Client Dashboard (**Settings > Manage Subscription > Cancel**). There are no cancellation penalties, minimum lock-in periods, or hidden exit fees.
+        </p>
+        <p>
+          Upon cancellation, your access to the autonomous daily cadence continues through the end of your current paid billing period. You retain permanent ownership of all previously merged PRs and generated assets.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>7. Client Responsibilities & Fair Usage</h2>
+        <ul>
+          <li>You are responsible for maintaining the accuracy of your Brand Truth Wiki documents.</li>
+          <li>You agree not to use AnswerIndex Pro to generate unlawful, deceptive, defamatory, or harmful content.</li>
+          <li>You warrant that you own or possess authorized administrative rights to the websites, repositories, and Google Search Console accounts you link to our platform.</li>
+        </ul>
+      </section>
+
+      <section class="legal-section">
+        <h2>8. Limitation of Liability</h2>
+        <p>
+          AnswerIndex Pro provides automated search intelligence, technical optimizations, and content drafts designed to maximize search engine and AI model discoverability. Because search and generative answer algorithms (Google, OpenAI, Anthropic, Perplexity) operate independently, AnswerIndex does not guarantee specific ranking positions or financial returns. In no event shall AnswerIndex's aggregate liability exceed the total amount paid by you during the twelve (12) months preceding the claim.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>9. Governing Law & Contact</h2>
+        <p>
+          These Terms are governed by and construed in accordance with the laws of India, with applicable governing laws and standard commercial software-as-a-service principles.
+        </p>
+        <p>
+          For contract inquiries, enterprise MSAs, or custom billing arrangements, contact our founder directly:
+        </p>
+        <div style="background: #ffffff; border: 1px solid var(--border-color); border-radius: 12px; padding: 1.25rem 1.5rem; margin-top: 1rem;">
+          <div style="font-weight: 800; color: #111; font-size: 1.05rem;">Sameer Sharma · Founder & Architect</div>
+          <div style="color: #666; font-size: 0.9rem; margin-top: 0.25rem;">AnswerIndex Legal & Enterprise Services</div>
+          <div style="color: #444; font-size: 0.9rem; margin-top: 0.5rem;">
+            ✉️ Email: <a href="mailto:sameer@answerindex.xyz" style="color: var(--c-cobalt); font-weight: 700;">sameer@answerindex.xyz</a>
+          </div>
+          <div style="color: #444; font-size: 0.9rem; margin-top: 0.25rem;">
+            
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+<footer class="narwhal-footer">
+      <div class="footer-grid-5">
+        <div class="footer-brand">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+            <img src="assets/AnswerIndex_Logo_v5.png" alt="Logo" width="40" height="40" style="width: 40px; height: 40px; object-fit: contain; filter: drop-shadow(0 2px 6px rgba(249, 188, 56, 0.25));" onerror="this.onerror=null; this.src='/assets/AnswerIndex_Logo_v5.png';">
+            <h4 style="margin: 0; font-size: 19px; font-weight: 800;">Answer Index <span class="badge-pill-featured" style="margin: 0; padding: 1px 7px; font-size: 10px;">V5 OS</span></h4>
+          </div>
+          <p>
+            The autonomous growth engine built for the post-search generative AI era. Daily dual production shipped directly to your CMS or GitHub as reviewable 1-click drafts.
+          </p>
+          <div style="display: flex; gap: 8px;">
+            <a href="https://github.com/justmailsameer-prog/answerindex" target="_blank" class="btn-secondary" style="font-size: 12px; padding: 6px 14px;">⭐ Star on GitHub</a>
+            <a href="feedback.html" class="btn-secondary" style="font-size: 12px; padding: 6px 14px;">Feedback</a>
+          </div>
+        </div>
+
+        <div class="footer-links-col">
+          <h5>Platform</h5>
+          <ul>
+            <li><a href="about.html" style="color: #B45309; font-weight: 700;">About Answer Index</a></li>
+            <li><a href="index.html#daily-loop">Daily 2-Job Pipeline</a></li>
+            <li><a href="index.html#how-it-works">Staging &amp; Approvals</a></li>
+            <li><a href="index.html#brand-truth">Anti-Hallucination Gate</a></li>
+            <li><a href="index.html#audit-tool">Domain Audit Tool</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-col">
+          <h5>Client Access</h5>
+          <ul>
+            <li><a href="javascript:void(0)" onclick="openClientAuthModal('login')" style="color: #B45309; font-weight: 700;">Client Sign In ↗</a></li>
+            <li><a href="dashboard.html" target="_blank" style="color: #059669; font-weight: 700;">Client Dashboard ↗</a></li>
+            <li><a href="index.html#pricing">Growth Plans &amp; Pricing</a></li>
+            <li><a href="index.html#comparison">Market Comparison Matrix</a></li>
+            <li><a href="index-oss.html">Open Source vs. Pro</a></li>
+            <li><a href="index.html#faq">Frequently Asked Questions</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-col">
+          <h5>Machine Protocols</h5>
+          <ul>
+            <li><a href="llms.txt" target="_blank">Machine Manifest (/llms.txt)</a></li>
+            <li><a href="llms-full.txt" target="_blank">Extended Manifest (/llms-full.txt)</a></li>
+            <li><a href="ai-sitemap.xml" target="_blank">AI Sitemap XML</a></li>
+            <li><a href="ai-entities.json" target="_blank">Entity Knowledge Graph</a></li>
+            <li><a href="rag-index.json" target="_blank">RAG Vector Index</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-col">
+          <h5>Legal &amp; Trust</h5>
+          <ul>
+            <li><a href="terms.html">Terms of Service</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="ai-disclosure.txt" target="_blank">AI Disclosure Manifest</a></li>
+            <li><a href="training-data-policy.txt" target="_blank">Training Data Policy</a></li>
+            <li><a href="mailto:sameer@answerindex.xyz" style="color: var(--text-primary); font-weight: 600;">✉️ sameer@answerindex.xyz</a></li>
+            <li><a href="https://github.com/justmailsameer-prog/answerindex/blob/main/LICENSE" target="_blank">MIT Open Source License</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>Copyright © 2026 Sameer Sharma. All rights reserved.</div>
+        <div style="display: flex; gap: 16px; align-items: center;">
+          <span class="badge-pill-emerald" style="font-size: 11px;">● Autonomous Engine Active · Narwhal UI</span>
+          <a href="terms.html" style="color: var(--text-muted); text-decoration: none;">Terms</a>
+          <a href="privacy.html" style="color: var(--text-muted); text-decoration: none;">Privacy</a>
+          <a href="ai-disclosure.txt" style="color: var(--text-muted); text-decoration: none;">AI Disclosure</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    function toggleDrawer(open) {
+      const drawer = document.getElementById('drawerMenu');
+      if (!drawer) return;
+      if (open) {
+        drawer.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      } else {
+        drawer.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function handleOverlayClick(event) {
+      if (event.target.id === 'drawerMenu') {
+        toggleDrawer(false);
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') toggleDrawer(false);
+    });
+
+    async function startCheckout(plan = 'pro_autonomous') {
+      try {
+        const res = await fetch('/api/create-checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ plan, billing: 'monthly' })
+        });
+        const data = await res.json();
+        if (data.success && data.checkout_url) {
+          window.location.href = data.checkout_url;
+        } else {
+          alert('Checkout initiation error: ' + (data.error || 'Please try again.'));
+        }
+      } catch (err) {
+        window.location.href = '/pricing.html';
+      }
+    }
+  </script>
+</body>
+</html>

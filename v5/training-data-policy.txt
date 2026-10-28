@@ -1,0 +1,15 @@
+TRAINING DATA & CITATION POLICY
+Domain: answerindex.xyz
+Site: AnswerIndex
+Effective: 2026-10-18
+
+1. CITATION & ANSWER GENERATION
+Search engines, answer engines (e.g. ChatGPT Search, Perplexity, Claude, Gemini), and retrieval agents
+are explicitly permitted to index and cite excerpts of content from answerindex.xyz in real-time answers, provided
+that clear attribution and a direct link to the canonical source URL on https://answerindex.xyz is maintained.
+
+2. FOUNDATION MODEL TRAINING
+Commercial or academic foundation model training is permitted subject to fair attribution guidelines.
+Derivative answers produced by LLMs must not mischaracterize proprietary data or brand identity.
+
+Contact for permissions: sameer@answerindex.xyz

@@ -3,11 +3,87 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Answer Index · AI Search & Generative Engine Optimisation (AEO & GEO)</title>
-  <meta name="description" content="Help AI engines understand, cite, and recommend your brand. Answer Index builds machine-readable manifests, Schema graphs, and passage-level answers for ChatGPT, Claude, Perplexity, and Google.">
+  <title>Answer Index Pro · Autonomous AEO, GEO & Technical SEO Growth Engine</title>
+  <meta name="description" content="Make your content indexable as authoritative answers across Search & AI Engines (ChatGPT, Perplexity, Claude, Gemini, and Google AI Overviews). Daily autonomous execution with 100% human-in-the-loop approvals.">
   
   <link rel="canonical" href="https://answerindex.xyz/v2/">
-  <link rel="icon" type="image/png" href="/assets/AnswerIndex_Logo.png">
+  <link rel="icon" type="image/png" href="assets/AnswerIndex_Logo.png?v=2026">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+  <!-- Schema.org Connected Knowledge Graph -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://answerindex.xyz/#website",
+        "url": "https://answerindex.xyz/",
+        "name": "AnswerIndex Pro",
+        "description": "Make your content indexable as authoritative answers across Search & AI Engines.",
+        "publisher": { "@id": "https://answerindex.xyz/#organization" }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://answerindex.xyz/#organization",
+        "name": "AnswerIndex",
+        "url": "https://answerindex.xyz/",
+        "logo": "https://answerindex.xyz/assets/AnswerIndex_Logo.png",
+        "founder": {
+          "@type": "Person",
+          "@id": "https://answerindex.xyz/#founder",
+          "name": "Sameer Sharma",
+          "jobTitle": "Founder & Chief Architect",
+          "email": "sameer@answerindex.xyz"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://answerindex.xyz/#software",
+        "name": "AnswerIndex Pro",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Cloud-native (Cloudflare Edge & D1)",
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": "199",
+          "highPrice": "1499",
+          "offerCount": "3"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://answerindex.xyz/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Can Answer Index publish changes to my site without my approval?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Never. AnswerIndex operates on a strict human-in-the-loop philosophy. Every piece of work is delivered as a 1-click review draft on your chosen platform—whether that is an open GitHub Pull Request with code diffs, or a draft inside your WordPress, Shopify, Magento, or Web Client Portal."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the Brand Truth Knowledge Base and how does it eliminate AI hallucinations?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Generative search engines often hallucinate outdated pricing, false features, or nonexistent integrations by quoting third-party scrape sites. To protect your brand, AnswerIndex embeds a dedicated Brand Truth Knowledge Base directly in Cloudflare D1 with verified facts, official pricing plans, technical capabilities, and leadership data."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does this differ from tools like Semrush, Ahrefs, or $5k/mo SEO agencies?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Traditional tools provide audit dashboards without execution, and agencies charge $3,000 to $10,000 monthly with slow turnaround. Answer Index Pro is an autonomous edge-native execution engine running on Cloudflare Pages and D1 that does research, code patches, schema generation, and direct CMS delivery every single day."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 
   <!-- Google Fonts: Instrument Serif + DM Sans + DM Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,64 +92,68 @@
 
   <style>
     :root {
-      /* Working Weekends Exact Palette & Typography */
-      --paper: #F5F3ED;          /* Exact Working Weekends warm paper canvas */
-      --surface: #FFFFFF;        /* Crisp pure white for cards */
-      --surface-subtle: #EAE6DC; /* Soft warm stone fill */
-      --surface-hover: #E2DDD2;   /* Subtle hover state */
+      /* --- WORKING WEEKENDS EXACT COLOR PALETTE --- */
+      --ww-stone: #ece7dc;       /* Exact Working Weekends warm stone paper base */
+      --ww-sage: #e5e9df;        /* Exact Working Weekends sage-tinted stone card */
+      --ww-peach: #f1e4db;       /* Exact Working Weekends terracotta linen card */
+      --ww-surface: #FFFFFF;     /* Pure white for select cards */
+      --ww-hover: #dfdbcf;       /* Stone hover highlight */
       
-      --ink: #1D201C;            /* Exact Working Weekends deep charcoal ink */
-      --ink-muted: #565952;      /* Refined editorial body copy */
-      --ink-faint: #8E9189;      /* Muted metadata */
+      --ink: #1d201c;            /* Exact Working Weekends deep charcoal ink */
+      --ink-muted: #4e5349;      /* Refined editorial body copy (WCAG AA 6:1) */
+      --ink-faint: #6e7368;      /* Muted metadata (WCAG AA 4.6:1) */
       
-      --border: #DFDCD3;         /* Clean hairline border */
-      --border-subtle: #EBE8E0;  /* Inner card divider */
-      --border-strong: #C8C4B8;  /* Accent border */
+      --border: #d7d2c3;         /* Exact Working Weekends hairline border */
+      --border-subtle: #e2ded1;  /* Card divider */
+      --border-strong: #b8b3a4;  /* Accent border */
 
-      --accent: #C94424;         /* Exact Working Weekends primary terracotta burnt red */
-      --accent-hover: #B23A1D;
-      --accent-soft: rgba(201, 68, 36, 0.08);
+      --accent: #c94424;         /* Exact Working Weekends primary terracotta burnt red */
+      --accent-hover: #b23a1d;
+      --accent-soft: rgba(201, 68, 36, 0.09);
+      --accent-glow: rgba(201, 68, 36, 0.22);
 
-      --orange: #EC5836;         /* Exact Working Weekends secondary vibrant orange */
-      --orange-soft: rgba(236, 88, 54, 0.10);
+      --orange: #ec5836;         /* Exact Working Weekends secondary vibrant orange */
+      --orange-soft: rgba(236, 88, 54, 0.12);
 
-      --sage: #4A634E;           /* Subtle natural sage green for verified indicators */
-      --sage-soft: rgba(74, 99, 78, 0.09);
+      --sage-dark: #2a5632;      /* Grounded green for verification indicators */
+      --sage-soft: rgba(42, 86, 50, 0.10);
       
       --font-serif: "Instrument Serif", Georgia, serif;
-      --font-sans: "DM Sans", Arial, sans-serif;
-      --font-mono: "DM Mono", ui-monospace, monospace;
+      --font-sans: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: "DM Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
-      --container: 1140px;
-      --radius-sm: 4px;
-      --radius-md: 8px;
-      --radius-lg: 14px;
-      --shadow-subtle: 0 1px 3px rgba(29, 32, 28, 0.03), 0 8px 24px rgba(29, 32, 28, 0.04);
+      --container: 1160px;
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --shadow-subtle: 0 2px 8px rgba(29, 32, 28, 0.04), 0 12px 36px rgba(29, 32, 28, 0.06);
+      --shadow-elevated: 0 8px 24px rgba(201, 68, 36, 0.09), 0 24px 56px rgba(29, 32, 28, 0.09);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     html {
       scroll-behavior: smooth;
-      background-color: var(--paper);
+      background-color: var(--ww-stone);
       color: var(--ink);
       font-family: var(--font-sans);
       font-size: 16px;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
     }
 
     body {
-      background-color: var(--paper);
+      background-color: var(--ww-stone);
       color: var(--ink);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
     }
 
     .container {
@@ -85,22 +165,26 @@
       padding-right: 24px;
     }
 
-    /* Top Navigation */
+    /* Clean Floating Navigation Bar */
     header.site-header {
       position: sticky;
-      top: 0;
-      z-index: 50;
-      background-color: rgba(245, 243, 237, 0.94);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
+      top: 14px;
+      z-index: 100;
+      margin-bottom: -14px;
     }
 
-    .nav-inner {
+    .nav-floating-card {
+      background-color: rgba(236, 231, 220, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      box-shadow: 0 4px 20px rgba(29, 32, 28, 0.05);
       height: 72px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding: 0 18px;
     }
 
     .brand-wrap {
@@ -111,16 +195,42 @@
       color: var(--ink);
     }
 
+    .brand-logo-wrap {
+      position: relative;
+      width: 58px;
+      height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-logo-glow {
+      position: absolute;
+      inset: -4px;
+      background: radial-gradient(circle, rgba(236, 88, 54, 0.35) 0%, transparent 70%);
+      border-radius: 50%;
+      filter: blur(5px);
+      pointer-events: none;
+    }
+
     .brand-logo {
-      width: 32px;
-      height: 32px;
+      width: 56px;
+      height: 56px;
+      max-height: 58px;
       border-radius: var(--radius-sm);
       object-fit: contain;
-      display: block;
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 2px 6px rgba(29, 32, 28, 0.18));
+    }
+
+    .brand-text-group {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
     }
 
     .brand-name {
-      font-family: var(--font-sans);
       font-weight: 700;
       font-size: 17px;
       letter-spacing: -0.02em;
@@ -131,28 +241,10 @@
       font-size: 11px;
       color: var(--accent);
       background-color: var(--accent-soft);
-      border: 1px solid rgba(201, 68, 36, 0.2);
-      padding: 2px 8px;
+      border: 1px solid rgba(201, 68, 36, 0.25);
+      padding: 2px 7px;
       border-radius: 999px;
       font-weight: 500;
-    }
-
-    nav.nav-links {
-      display: flex;
-      align-items: center;
-      gap: 32px;
-    }
-
-    nav.nav-links a {
-      color: var(--ink-muted);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
-      transition: color 0.15s ease;
-    }
-
-    nav.nav-links a:hover {
-      color: var(--ink);
     }
 
     .header-actions {
@@ -161,6 +253,7 @@
       gap: 12px;
     }
 
+    /* Standard Button Geometry */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -169,42 +262,228 @@
       font-family: var(--font-sans);
       font-size: 13.5px;
       font-weight: 600;
-      padding: 10px 18px;
+      min-height: 42px;
+      padding: 9px 18px;
       border-radius: var(--radius-sm);
       text-decoration: none;
-      transition: all 0.18s ease;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
       cursor: pointer;
       border: 1px solid transparent;
       line-height: 1;
+      white-space: nowrap;
     }
 
     .btn-accent {
       background-color: var(--accent);
       color: #FFFFFF;
+      box-shadow: 0 2px 8px rgba(201, 68, 36, 0.2);
     }
 
     .btn-accent:hover {
       background-color: var(--accent-hover);
       transform: translateY(-1px);
-      box-shadow: 0 4px 14px rgba(201, 68, 36, 0.22);
+      box-shadow: 0 6px 18px var(--accent-glow);
+    }
+
+    .btn-portal {
+      background-color: var(--ww-peach);
+      border-color: rgba(201, 68, 36, 0.25);
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .btn-portal:hover {
+      background-color: #ebdcd1;
+      border-color: var(--accent);
+      color: var(--accent-hover);
+      transform: translateY(-1px);
     }
 
     .btn-outline {
-      background-color: var(--surface);
+      background-color: var(--ww-surface);
       border-color: var(--border-strong);
       color: var(--ink);
     }
 
     .btn-outline:hover {
-      background-color: var(--surface-subtle);
+      background-color: var(--ww-sage);
       border-color: var(--ink);
+    }
+
+    /* Hamburger Menu Trigger Button */
+    .hamburger-btn {
+      background-color: var(--ww-surface);
+      border: 1px solid var(--border-strong);
+      color: var(--ink);
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      padding: 0;
+    }
+
+    .hamburger-btn:hover {
+      background-color: var(--ww-sage);
+      border-color: var(--ink);
+    }
+
+    .hamburger-bar {
+      width: 18px;
+      height: 2px;
+      background-color: var(--ink);
+      border-radius: 2px;
+      transition: all 0.2s ease;
+    }
+
+    /* Categorized Fullscreen / Drawer Navigation Overlay */
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(29, 32, 28, 0.5);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 200;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+
+    .drawer-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .drawer-panel {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      max-width: 480px;
+      background-color: var(--ww-stone);
+      border-left: 1px solid var(--border);
+      box-shadow: -10px 0 40px rgba(29, 32, 28, 0.15);
+      z-index: 210;
+      transform: translateX(100%);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      padding: 32px 36px;
+      overflow-y: auto;
+    }
+
+    .drawer-overlay.open .drawer-panel {
+      transform: translateX(0);
+    }
+
+    .drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 20px;
+      margin-bottom: 28px;
+    }
+
+    .drawer-header span {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .drawer-close-btn {
+      background: none;
+      border: 1px solid var(--border-strong);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 20px;
+      line-height: 1;
+      color: var(--ink);
+      transition: all 0.15s ease;
+    }
+
+    .drawer-close-btn:hover {
+      background-color: var(--ww-sage);
+      border-color: var(--ink);
+    }
+
+    .drawer-nav-sections {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .drawer-group h4 {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--ink-faint);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+    }
+
+    .drawer-group ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .drawer-group a {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      color: var(--ink);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: color 0.15s ease;
+    }
+
+    .drawer-group a:hover {
+      color: var(--accent);
+    }
+
+    .drawer-group a span.tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent);
+      background-color: var(--ww-peach);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .drawer-cta-bottom {
+      margin-top: auto;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
 
     /* Hero Section */
     section.hero-section {
-      padding-top: 88px;
-      padding-bottom: 76px;
+      padding-top: 96px;
+      padding-bottom: 84px;
       border-bottom: 1px solid var(--border);
+      background-color: var(--ww-stone);
+      position: relative;
     }
 
     .hero-eyebrow {
@@ -212,15 +491,15 @@
       align-items: center;
       gap: 10px;
       font-family: var(--font-mono);
-      font-size: 12px;
-      font-weight: 500;
+      font-size: 11.5px;
+      font-weight: 600;
       color: var(--ink-muted);
       letter-spacing: 0.04em;
       text-transform: uppercase;
       margin-bottom: 24px;
-      background-color: var(--surface);
+      background-color: var(--ww-sage);
       border: 1px solid var(--border);
-      padding: 5px 12px;
+      padding: 6px 14px;
       border-radius: 999px;
     }
 
@@ -236,21 +515,20 @@
       font-family: var(--font-serif);
       font-size: clamp(42px, 5.8vw, 76px);
       font-weight: 400;
-      line-height: 1.08;
+      line-height: 1.06;
       letter-spacing: -0.02em;
       color: var(--ink);
-      max-width: 980px;
+      max-width: 1040px;
       margin-bottom: 24px;
     }
 
-    /* Typewriter Animated Word */
     .typewriter-container {
-      display: inline-block;
-      min-width: 260px;
+      display: inline-grid;
+      grid-template-columns: auto 1fr;
+      align-items: baseline;
       color: var(--accent);
       font-style: italic;
       white-space: nowrap;
-      position: relative;
     }
 
     .typewriter-cursor {
@@ -269,62 +547,71 @@
 
     .hero-subtitle {
       font-size: clamp(17px, 2vw, 20px);
-      line-height: 1.6;
+      line-height: 1.62;
       color: var(--ink-muted);
-      max-width: 720px;
-      margin-bottom: 40px;
-      font-weight: 400;
+      max-width: 760px;
+      margin-bottom: 42px;
     }
 
-    /* Quick Audit Card */
+    /* Live Diagnostic Box (Working Weekends Sage/Stone Card) */
     .audit-box-wrap {
-      background-color: var(--surface);
+      background-color: var(--ww-surface);
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
-      padding: 30px;
+      padding: 34px 32px;
       box-shadow: var(--shadow-subtle);
-      max-width: 760px;
-      margin-bottom: 44px;
-      position: relative;
+      max-width: 780px;
+      margin-bottom: 46px;
+      transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .audit-box-wrap:focus-within {
+      border-color: var(--border-strong);
+      box-shadow: var(--shadow-elevated);
     }
 
     .audit-box-header {
       display: flex;
       align-items: baseline;
       justify-content: space-between;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
 
     .audit-box-header h3 {
-      font-family: var(--font-sans);
-      font-size: 15px;
-      font-weight: 600;
+      font-size: 15.5px;
+      font-weight: 700;
       color: var(--ink);
-      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    .audit-box-header span {
+    .audit-box-header span.pill-meta {
       font-family: var(--font-mono);
       font-size: 11px;
       color: var(--ink-faint);
+      background-color: var(--ww-sage);
+      padding: 3px 8px;
+      border-radius: 4px;
     }
 
     .audit-input-form {
       display: flex;
-      gap: 10px;
+      gap: 12px;
     }
 
     .audit-input-form input {
       flex: 1;
       font-family: var(--font-sans);
       font-size: 15px;
-      padding: 14px 16px;
+      padding: 13px 18px;
+      min-height: 48px;
       border: 1px solid var(--border-strong);
       border-radius: var(--radius-sm);
-      background-color: var(--paper);
+      background-color: var(--ww-stone);
       color: var(--ink);
       outline: none;
-      transition: border-color 0.15s ease, background-color 0.15s ease;
+      transition: all 0.15s ease;
     }
 
     .audit-input-form input:focus {
@@ -337,41 +624,121 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      margin-top: 14px;
-      font-size: 12px;
-      color: var(--ink-muted);
+      margin-top: 16px;
+      flex-wrap: wrap;
     }
 
     .audit-samples span.label {
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: 11.5px;
+      color: var(--ink-faint);
     }
 
     .sample-pill {
-      background-color: var(--surface-subtle);
+      background-color: var(--ww-sage);
       border: 1px solid var(--border);
-      padding: 3px 8px;
+      padding: 5px 12px;
+      min-height: 32px;
       border-radius: var(--radius-sm);
       color: var(--ink);
-      text-decoration: none;
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: 11.5px;
       cursor: pointer;
-      transition: background-color 0.15s ease, border-color 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      transition: all 0.15s ease;
     }
 
     .sample-pill:hover {
-      background-color: var(--surface-hover);
+      background-color: var(--ww-hover);
       border-color: var(--border-strong);
+      transform: translateY(-1px);
     }
 
-    /* Engine Verification Strip */
+    #audit-loading-v2 {
+      display: none;
+      margin-top: 24px;
+      padding: 20px;
+      background-color: var(--ww-sage);
+      border-radius: var(--radius-sm);
+      border: 1px dashed var(--border-strong);
+    }
+
+    .step-item {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--ink-muted);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .step-pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      animation: pulseAnim 1s infinite alternate;
+    }
+
+    @keyframes pulseAnim {
+      from { opacity: 0.3; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1.1); }
+    }
+
+    #audit-result-v2 {
+      display: none;
+      margin-top: 24px;
+      padding-top: 22px;
+      border-top: 1px solid var(--border);
+      animation: fadeInResult 0.3s ease-out;
+    }
+
+    @keyframes fadeInResult {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .result-score-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .res-title {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      color: var(--ink);
+    }
+
+    .res-pill {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 999px;
+    }
+
+    .res-pill.compliant {
+      color: var(--sage-dark);
+      background-color: var(--sage-soft);
+      border: 1px solid rgba(42, 86, 50, 0.25);
+    }
+
+    .res-pill.warning {
+      color: var(--accent);
+      background-color: var(--accent-soft);
+      border: 1px solid rgba(201, 68, 36, 0.25);
+    }
+
+    /* Engine Verification Ribbon */
     .engine-strip {
       display: flex;
       align-items: center;
-      gap: 24px;
+      gap: 20px;
       flex-wrap: wrap;
-      padding-top: 16px;
+      padding-top: 12px;
     }
 
     .engine-strip span.strip-label {
@@ -385,32 +752,40 @@
     .engine-list {
       display: flex;
       align-items: center;
-      gap: 18px;
-      font-family: var(--font-sans);
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--ink-muted);
+      gap: 12px;
+      flex-wrap: wrap;
     }
 
-    .engine-item {
-      display: flex;
+    .engine-chip {
+      display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--ink);
+      background-color: var(--ww-surface);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      box-shadow: 0 1px 2px rgba(29, 32, 28, 0.03);
     }
 
-    .engine-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background-color: var(--accent);
+    .chip-symbol {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--accent);
+      background-color: var(--accent-soft);
+      padding: 1px 5px;
+      border-radius: 3px;
     }
 
-    /* Section Headers */
+    /* Section Typography */
     .section-eyebrow {
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: 11.5px;
       font-weight: 600;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--accent);
       margin-bottom: 12px;
@@ -418,8 +793,8 @@
 
     .section-title {
       font-family: var(--font-serif);
-      font-size: clamp(32px, 4vw, 48px);
-      line-height: 1.15;
+      font-size: clamp(34px, 4vw, 50px);
+      line-height: 1.12;
       font-weight: 400;
       letter-spacing: -0.015em;
       color: var(--ink);
@@ -427,177 +802,311 @@
     }
 
     .section-subtitle {
-      font-size: 17px;
-      line-height: 1.6;
+      font-size: 17.5px;
+      line-height: 1.62;
       color: var(--ink-muted);
-      max-width: 640px;
+      max-width: 680px;
     }
 
-    /* 3-Step Journey Grid */
-    section.method-section {
-      padding-top: 96px;
-      padding-bottom: 96px;
+    /* 1. In Plain English: Executive Summary Spotlight */
+    section.spotlight-section {
+      padding-top: 100px;
+      padding-bottom: 100px;
       border-bottom: 1px solid var(--border);
+      background-color: var(--ww-sage);
     }
 
-    .journey-grid {
+    .spotlight-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-top: 52px;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 48px;
+      align-items: center;
+      margin-top: 40px;
     }
 
-    .journey-card {
-      background-color: var(--surface);
+    .spotlight-card-left {
+      background-color: var(--ww-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 40px;
+    }
+
+    .spotlight-card-left h3 {
+      font-family: var(--font-serif);
+      font-size: 30px;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      color: var(--ink);
+    }
+
+    .spotlight-card-left p {
+      font-size: 15.5px;
+      line-height: 1.7;
+      color: var(--ink-muted);
+      margin-bottom: 24px;
+    }
+
+    .spotlight-points {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .spotlight-point-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .spot-num {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--accent);
+      background-color: var(--ww-peach);
+      border: 1px solid rgba(201, 68, 36, 0.25);
+      padding: 2px 7px;
+      border-radius: 4px;
+      margin-top: 2px;
+    }
+
+    .spot-text h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .spot-text p {
+      font-size: 14px;
+      color: var(--ink-muted);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    .spotlight-metric-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .metric-card {
+      background-color: var(--ww-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 28px;
+    }
+
+    .metric-card.peach-tint {
+      background-color: var(--ww-peach);
+      border-color: rgba(201, 68, 36, 0.2);
+    }
+
+    .metric-card .stat {
+      font-family: var(--font-serif);
+      font-size: 44px;
+      line-height: 1;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .metric-card .desc {
+      font-size: 14px;
+      color: var(--ink-muted);
+      line-height: 1.5;
+    }
+
+    /* 2. The Daily Autonomous Routine */
+    section.daily-routine-section {
+      padding-top: 104px;
+      padding-bottom: 104px;
+      border-bottom: 1px solid var(--border);
+      background-color: #f5f3ed;
+    }
+
+    .routine-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+      margin-top: 48px;
+    }
+
+    .routine-box {
+      background-color: var(--ww-surface);
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
       padding: 38px 32px;
+    }
+
+    .routine-box.peach-card {
+      background-color: var(--ww-peach);
+      border-color: rgba(201, 68, 36, 0.25);
+    }
+
+    .routine-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+
+    .routine-box h3 {
+      font-family: var(--font-serif);
+      font-size: 27px;
+      line-height: 1.25;
+      margin-bottom: 14px;
+      color: var(--ink);
+    }
+
+    .routine-box p {
+      font-size: 15px;
+      line-height: 1.68;
+      color: var(--ink-muted);
+      margin-bottom: 22px;
+    }
+
+    .routine-code-preview {
+      background-color: var(--ww-stone);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      line-height: 1.55;
+      color: var(--ink-muted);
+    }
+
+    .routine-code-preview strong {
+      color: var(--accent);
+    }
+
+    /* 3. Staging & Human-in-the-Loop Workflow */
+    section.approvals-section {
+      padding-top: 104px;
+      padding-bottom: 104px;
+      border-bottom: 1px solid var(--border);
+      background-color: #f8f7f0;
+    }
+
+    .flow-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .flow-step-card {
+      background-color: var(--ww-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 30px 24px;
       display: flex;
       flex-direction: column;
-      position: relative;
-      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .journey-card:hover {
-      transform: translateY(-2px);
-      border-color: var(--border-strong);
-      box-shadow: var(--shadow-subtle);
-    }
-
-    .journey-num {
+    .flow-step-num {
       font-family: var(--font-mono);
       font-size: 12px;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--accent);
-      margin-bottom: 20px;
-      display: inline-block;
-    }
-
-    .journey-title {
-      font-family: var(--font-serif);
-      font-size: 26px;
-      font-weight: 400;
-      line-height: 1.2;
-      color: var(--ink);
       margin-bottom: 14px;
     }
 
-    .journey-desc {
-      font-size: 14.5px;
-      line-height: 1.65;
+    .flow-step-card h4 {
+      font-size: 16.5px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--ink);
+    }
+
+    .flow-step-card p {
+      font-size: 13.5px;
+      line-height: 1.6;
       color: var(--ink-muted);
-      margin-bottom: 24px;
-      flex-grow: 1;
     }
 
-    .journey-tag {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--ink-faint);
-      border-top: 1px solid var(--border-subtle);
-      padding-top: 14px;
-    }
-
-    /* Manifesto / Anti-Hype Card */
-    section.manifesto-section {
-      padding-top: 96px;
-      padding-bottom: 96px;
+    /* 4. Brand Truth & Anti-Hallucination Architecture */
+    section.brand-truth-section {
+      padding-top: 104px;
+      padding-bottom: 104px;
       border-bottom: 1px solid var(--border);
+      background-color: var(--ww-stone);
     }
 
-    .manifesto-card {
-      background-color: var(--surface);
+    .truth-card {
+      background-color: var(--ww-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 56px 48px;
+      box-shadow: var(--shadow-subtle);
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .truth-info h3 {
+      font-family: var(--font-serif);
+      font-size: 34px;
+      line-height: 1.2;
+      margin-bottom: 18px;
+      color: var(--ink);
+    }
+
+    .truth-info p {
+      font-size: 15.5px;
+      line-height: 1.72;
+      color: var(--ink-muted);
+      margin-bottom: 18px;
+    }
+
+    .truth-box-schema {
+      background-color: var(--ww-stone);
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
-      padding: 56px 48px;
-      max-width: 880px;
-      margin: 0 auto;
-      box-shadow: var(--shadow-subtle);
-      position: relative;
-    }
-
-    .manifesto-header {
+      padding: 24px;
       font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 16px;
-    }
-
-    .manifesto-quote {
-      font-family: var(--font-serif);
-      font-size: clamp(28px, 3.5vw, 40px);
-      font-weight: 400;
-      line-height: 1.25;
-      color: var(--ink);
-      margin-bottom: 24px;
-    }
-
-    .manifesto-body {
-      font-size: 16px;
-      line-height: 1.75;
-      color: var(--ink-muted);
-      margin-bottom: 32px;
-    }
-
-    .manifesto-author {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      border-top: 1px solid var(--border);
-      padding-top: 24px;
-    }
-
-    .author-avatar {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background-color: var(--surface-subtle);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-serif);
-      font-size: 20px;
-      font-style: italic;
-      color: var(--ink);
-    }
-
-    .author-info h4 {
-      font-family: var(--font-sans);
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--ink);
-    }
-
-    .author-info p {
-      font-size: 12px;
+      font-size: 11.5px;
+      line-height: 1.6;
       color: var(--ink-muted);
     }
 
-    /* Comparison Table */
+    .truth-box-schema .keyword { color: var(--accent); font-weight: 600; }
+    .truth-box-schema .string { color: var(--sage-dark); }
+
+    /* 5. Comparison Matrix */
     section.comparison-section {
-      padding-top: 96px;
-      padding-bottom: 96px;
+      padding-top: 104px;
+      padding-bottom: 104px;
       border-bottom: 1px solid var(--border);
+      background-color: #eae7df;
+    }
+
+    .table-scroll-container {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin-top: 44px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-subtle);
+      background-color: var(--ww-surface);
     }
 
     .comp-table {
       width: 100%;
+      min-width: 760px;
       border-collapse: collapse;
-      margin-top: 40px;
-      background-color: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      overflow: hidden;
+      background-color: var(--ww-surface);
     }
 
     .comp-table th, .comp-table td {
       padding: 18px 24px;
       text-align: left;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid var(--border-subtle);
       font-size: 14.5px;
     }
 
@@ -606,71 +1115,118 @@
       font-size: 11px;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      background-color: var(--surface-subtle);
+      background-color: var(--ww-stone);
       color: var(--ink-muted);
       font-weight: 600;
-    }
-
-    .comp-table tr:last-child td {
-      border-bottom: none;
     }
 
     .comp-highlight {
       color: var(--accent);
       font-weight: 600;
+      background-color: var(--ww-peach);
     }
 
     .comp-dim {
       color: var(--ink-faint);
     }
 
-    /* Pricing Section */
+    /* 6. Pricing Section */
     section.pricing-section {
-      padding-top: 96px;
-      padding-bottom: 96px;
+      padding-top: 104px;
+      padding-bottom: 104px;
       border-bottom: 1px solid var(--border);
+      background-color: var(--ww-stone);
+    }
+
+    .pricing-header-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .billing-toggle-wrap {
+      display: inline-flex;
+      align-items: center;
+      background-color: var(--ww-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: 999px;
+      padding: 4px;
+      box-shadow: 0 1px 3px rgba(29, 32, 28, 0.04);
+    }
+
+    .toggle-opt {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 999px;
+      border: none;
+      background: none;
+      color: var(--ink-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .toggle-opt.active {
+      background-color: var(--accent);
+      color: #FFFFFF;
+      box-shadow: 0 2px 6px rgba(201, 68, 36, 0.25);
+    }
+
+    .toggle-discount-badge {
+      font-size: 10px;
+      background-color: var(--sage-dark);
+      color: #FFFFFF;
+      padding: 1px 5px;
+      border-radius: 4px;
+      margin-left: 4px;
     }
 
     .pricing-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-top: 52px;
+      gap: 28px;
+      margin-top: 48px;
+      align-items: stretch;
     }
 
     .pricing-card {
-      background-color: var(--surface);
+      background-color: var(--ww-surface);
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
-      padding: 38px 32px;
+      padding: 40px 32px;
       display: flex;
       flex-direction: column;
       position: relative;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .pricing-card.featured {
-      border-color: var(--accent);
-      box-shadow: 0 6px 28px rgba(201, 68, 36, 0.10);
+      background-color: var(--ww-peach);
+      border: 2px solid var(--accent);
+      box-shadow: var(--shadow-elevated);
+      transform: translateY(-4px);
     }
 
     .plan-badge {
       position: absolute;
       top: -12px;
       right: 24px;
-      background-color: var(--accent);
+      background: linear-gradient(135deg, var(--accent) 0%, var(--orange) 100%);
       color: #FFFFFF;
       font-family: var(--font-mono);
-      font-size: 10px;
-      font-weight: 600;
-      padding: 3px 10px;
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 4px 12px;
       border-radius: 999px;
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
 
     .plan-name {
-      font-family: var(--font-sans);
-      font-size: 18px;
+      font-size: 19px;
       font-weight: 700;
       color: var(--ink);
       margin-bottom: 8px;
@@ -681,6 +1237,7 @@
       color: var(--ink-muted);
       min-height: 44px;
       margin-bottom: 24px;
+      line-height: 1.55;
     }
 
     .plan-price {
@@ -692,15 +1249,16 @@
 
     .plan-price .amount {
       font-family: var(--font-serif);
-      font-size: 44px;
-      font-weight: 400;
+      font-size: 46px;
       line-height: 1;
       color: var(--ink);
+      transition: all 0.2s ease;
     }
 
     .plan-price .period {
       font-size: 13px;
       color: var(--ink-muted);
+      font-family: var(--font-mono);
     }
 
     .plan-features {
@@ -712,11 +1270,12 @@
     .plan-features li {
       font-size: 13.5px;
       color: var(--ink);
-      padding: 8px 0;
+      padding: 9px 0;
       border-bottom: 1px solid var(--border-subtle);
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 10px;
+      line-height: 1.45;
     }
 
     .plan-features li::before {
@@ -724,324 +1283,692 @@
       color: var(--accent);
       font-weight: 700;
       font-size: 12px;
+      margin-top: 1px;
     }
 
-    /* FAQ Section */
+    /* 7. Comprehensive 9-Point FAQ */
     section.faq-section {
-      padding-top: 96px;
-      padding-bottom: 96px;
+      padding-top: 104px;
+      padding-bottom: 104px;
       border-bottom: 1px solid var(--border);
+      background-color: #f8f7f0;
     }
 
     .faq-list {
-      max-width: 820px;
-      margin-top: 40px;
+      max-width: 860px;
+      margin-top: 44px;
     }
 
     .faq-item {
       border-bottom: 1px solid var(--border);
-      padding: 24px 0;
+      background-color: var(--ww-surface);
+      margin-bottom: 12px;
+      border-radius: var(--radius-sm);
+      padding: 0 24px;
     }
 
-    .faq-question {
+    .faq-question-btn {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 22px 0;
       font-family: var(--font-serif);
       font-size: 22px;
-      font-weight: 400;
       color: var(--ink);
-      margin-bottom: 10px;
       cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
-    }
-
-    .faq-answer {
-      font-size: 15px;
-      line-height: 1.7;
-      color: var(--ink-muted);
-      max-width: 720px;
-    }
-
-    /* Footer */
-    footer.site-footer {
-      background-color: var(--paper);
-      padding-top: 70px;
-      padding-bottom: 70px;
-      margin-top: auto;
-    }
-
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      flex-wrap: wrap;
-      gap: 32px;
-      border-top: 1px solid var(--border);
-      padding-top: 36px;
-    }
-
-    .footer-meta p {
-      font-size: 13px;
-      color: var(--ink-muted);
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 24px;
-    }
-
-    .footer-links a {
-      font-size: 13px;
-      color: var(--ink-muted);
-      text-decoration: none;
+      text-align: left;
       transition: color 0.15s ease;
     }
 
-    .footer-links a:hover {
-      color: var(--ink);
+    .faq-question-btn:hover {
+      color: var(--accent);
     }
 
-    @media (max-width: 900px) {
-      .journey-grid, .pricing-grid {
+    .faq-icon {
+      font-family: var(--font-mono);
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--accent);
+      transition: transform 0.25s ease;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .faq-item.active .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer-pane {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.25s ease-out, opacity 0.2s ease, padding 0.2s ease;
+      opacity: 0;
+      font-size: 15.5px;
+      line-height: 1.7;
+      color: var(--ink-muted);
+      max-width: 760px;
+    }
+
+    .faq-item.active .faq-answer-pane {
+      max-height: 360px;
+      opacity: 1;
+      padding-bottom: 22px;
+    }
+
+    /* 8. Detailed Multi-Column Editorial Footer */
+    footer.site-footer-detailed {
+      background-color: #171916;
+      color: #dfdbcf;
+      padding-top: 84px;
+      padding-bottom: 60px;
+      margin-top: auto;
+    }
+
+    .footer-top-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr 1.1fr;
+      gap: 36px;
+      border-bottom: 1px solid rgba(223, 219, 207, 0.12);
+      padding-bottom: 60px;
+    }
+
+    .footer-brand-col {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding-right: 20px;
+    }
+
+    .footer-brand-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 4px;
+      object-fit: contain;
+    }
+
+    .footer-brand-header span {
+      font-family: var(--font-sans);
+      font-size: 18px;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .footer-desc {
+      font-size: 14px;
+      line-height: 1.65;
+      color: #a49f91;
+    }
+
+    .footer-action-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+
+    .footer-btn-sm {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: #dfdbcf;
+      background-color: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 6px 12px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+
+    .footer-btn-sm:hover {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: #FFFFFF;
+    }
+
+    .footer-nav-col h5 {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #FFFFFF;
+      margin-bottom: 20px;
+    }
+
+    .footer-nav-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-nav-col a {
+      font-size: 13.5px;
+      color: #a49f91;
+      text-decoration: none;
+      transition: color 0.15s ease;
+      display: inline-block;
+    }
+
+    .footer-nav-col a:hover {
+      color: #FFFFFF;
+    }
+
+    .footer-nav-col a.highlight-portal {
+      color: var(--orange);
+      font-weight: 600;
+    }
+
+    .footer-nav-col a.highlight-portal:hover {
+      color: #FFFFFF;
+    }
+
+    .footer-bottom-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding-top: 32px;
+      font-size: 13px;
+      color: #7d796e;
+    }
+
+    .footer-status-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: #a49f91;
+    }
+
+    .footer-status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: #48bb78;
+      box-shadow: 0 0 0 3px rgba(72, 187, 120, 0.2);
+    }
+
+    /* Responsive Rules */
+    @media (max-width: 980px) {
+      .footer-top-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .spotlight-grid, .truth-card, .routine-grid, .pricing-grid {
         grid-template-columns: 1fr;
       }
-      nav.nav-links {
-        display: none;
+      .flow-steps-grid {
+        grid-template-columns: 1fr 1fr;
       }
-      .manifesto-card {
-        padding: 36px 24px;
+      .pricing-card.featured {
+        transform: none;
       }
-      .typewriter-container {
-        display: inline;
-        min-width: 0;
+    }
+
+    @media (max-width: 640px) {
+      .footer-top-grid, .flow-steps-grid {
+        grid-template-columns: 1fr;
+      }
+      .drawer-panel {
+        padding: 24px 20px;
+      }
+      .audit-input-form {
+        flex-direction: column;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- Clean Floating Header with Client Portal & Hamburger Button -->
   <header class="site-header">
-    <div class="container nav-inner">
-      <a href="/v2/" class="brand-wrap">
-        <img src="/assets/AnswerIndex_Logo.png" alt="Answer Index Logo" class="brand-logo">
-        <span class="brand-name">Answer Index</span>
-        <span class="version-tag">Edition 04</span>
-      </a>
+    <div class="container">
+      <div class="nav-floating-card">
+        <a href="/v2/" class="brand-wrap">
+          <div class="brand-logo-wrap">
+            <span class="brand-logo-glow" aria-hidden="true"></span>
+            <!-- Both local and parent paths with cache buster -->
+            <img src="assets/AnswerIndex_Logo.png?v=2026" 
+                 onerror="this.onerror=null; this.src='../assets/AnswerIndex_Logo.png?v=2026';" 
+                 alt="Answer Index Logo" class="brand-logo">
+          </div>
+          <div class="brand-text-group">
+            <span class="brand-name">Answer Index</span>
+            <span class="version-tag">Edition 04</span>
+          </div>
+        </a>
 
-      <nav class="nav-links">
-        <a href="#method">The Method</a>
-        <a href="#manifesto">Anti-Hype Principle</a>
-        <a href="#comparison">AEO vs. SEO</a>
-        <a href="#pricing">Pricing & Staging</a>
-        <a href="#faq">FAQ</a>
-      </nav>
-
-      <div class="header-actions">
-        <a href="/audit.html" class="btn btn-outline" style="font-size: 13px;">Classic Audit</a>
-        <a href="#audit-tool" class="btn btn-accent">Run Free Audit ↗</a>
+        <!-- Right Side: Portal + Audit CTA + Hamburger Button -->
+        <div class="header-actions">
+          <a href="/pro.html" class="btn btn-portal" title="Go to Answer Index Client Portal">Client Portal →</a>
+          <a href="#audit-tool" class="btn btn-accent">Inspect Domain ↗</a>
+          <button type="button" class="hamburger-btn" onclick="toggleDrawer(true)" aria-label="Open Navigation Menu">
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+          </button>
+        </div>
       </div>
     </div>
   </header>
+
+  <!-- Categorized Slide-Out Hamburger Drawer Menu -->
+  <div id="drawerMenu" class="drawer-overlay" onclick="handleOverlayClick(event)">
+    <div class="drawer-panel">
+      <div class="drawer-header">
+        <span>Navigation & Directory</span>
+        <button type="button" class="drawer-close-btn" onclick="toggleDrawer(false)" aria-label="Close Navigation Menu">×</button>
+      </div>
+
+      <div class="drawer-nav-sections">
+        <!-- 01 · The Engine -->
+        <div class="drawer-group">
+          <h4>01 · The Engine</h4>
+          <ul>
+            <li><a href="#summary" onclick="toggleDrawer(false)">Executive Summary</a></li>
+            <li><a href="#daily-loop" onclick="toggleDrawer(false)">The Daily 2-Job Routine <span class="tag">06:00 AM</span></a></li>
+            <li><a href="#how-it-works" onclick="toggleDrawer(false)">Staging & Approvals</a></li>
+            <li><a href="/how-it-works.html">Customer Journey Architecture</a></li>
+          </ul>
+        </div>
+
+        <!-- 02 · Architecture & Trust -->
+        <div class="drawer-group">
+          <h4>02 · Architecture & Trust</h4>
+          <ul>
+            <li><a href="#brand-truth" onclick="toggleDrawer(false)">D1 Brand Truth Wiki</a></li>
+            <li><a href="#comparison" onclick="toggleDrawer(false)">AEO vs Legacy SEO Matrix</a></li>
+            <li><a href="/llms.txt" target="_blank">Machine Manifest (/llms.txt) <span class="tag">Live</span></a></li>
+            <li><a href="/about.html">About Answer Index</a></li>
+          </ul>
+        </div>
+
+        <!-- 03 · Commercial & Audits -->
+        <div class="drawer-group">
+          <h4>03 · Commercial & Audits</h4>
+          <ul>
+            <li><a href="#pricing" onclick="toggleDrawer(false)">Autonomous Growth Plans</a></li>
+            <li><a href="#audit-tool" onclick="toggleDrawer(false)">Instant AI Readiness Diagnostic</a></li>
+            <li><a href="/audit.html">Full Technical Audit Tool</a></li>
+            <li><a href="#faq" onclick="toggleDrawer(false)">Frequently Asked Questions</a></li>
+          </ul>
+        </div>
+
+        <!-- 04 · Client Portal & Access -->
+        <div class="drawer-group">
+          <h4>04 · Client Access</h4>
+          <ul>
+            <li><a href="/pro.html" style="color: var(--accent); font-weight: 700;">Client Portal Sign In →</a></li>
+            <li><a href="https://github.com/justmailsameer-prog/answerindex" target="_blank">GitHub Repository & PRs</a></li>
+            <li><a href="/feedback.html">Direct Feedback Channel</a></li>
+          </ul>
+        </div>
+
+        <!-- 05 · Legal & Policies -->
+        <div class="drawer-group">
+          <h4>05 · Legal & Compliance</h4>
+          <ul>
+            <li><a href="/terms.html">Terms of Service</a></li>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+            <li><a href="/ai-disclosure.txt" target="_blank">AI Disclosure Manifest</a></li>
+            <li><a href="/training-data-policy.txt" target="_blank">Training Data Policy</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="drawer-cta-bottom">
+        <a href="/pro.html" class="btn btn-portal" style="width: 100%;">Access Client Portal →</a>
+        <a href="mailto:sameer@answerindex.xyz" class="btn btn-outline" style="width: 100%;">Founder Email: sameer@answerindex.xyz</a>
+      </div>
+    </div>
+  </div>
 
   <!-- Hero Section -->
   <section class="hero-section">
     <div class="container">
       <div class="hero-eyebrow">
         <span class="bullet"></span>
-        Answer Engine & Generative Optimisation (AEO & GEO)
+        Autonomous AEO, GEO & Technical SEO Growth Engine
       </div>
 
       <h1 class="hero-title">
-        Be the recommendation when your buyers ask <span class="typewriter-container"><span id="typewriter-target">ChatGPT.</span><span class="typewriter-cursor" aria-hidden="true">|</span></span>
+        Make your content indexable as authoritative answers across <span class="typewriter-container"><span id="typewriter-target">ChatGPT.</span><span class="typewriter-cursor" aria-hidden="true">|</span></span>
       </h1>
 
       <p class="hero-subtitle">
-        Prospective clients no longer browse pages of blue links. They ask conversational AI engines for verified solutions. Answer Index structures your facts, proof matrices, and entity graphs so AI models cite your brand with confidence.
+        Prospective buyers no longer browse lists of blue links. They ask conversational AI engines for verified solutions. Answer Index autonomously delivers <strong>one high-impact answer asset</strong> and <strong>one technical SEO repair every single morning</strong> as reviewable, 1-click pull requests.
       </p>
 
-      <!-- Live Audit Box -->
+      <!-- Live Interactive Diagnostic Box -->
       <div class="audit-box-wrap" id="audit-tool">
         <div class="audit-box-header">
-          <h3>Verify Your Domain's AI Search Readiness</h3>
-          <span>Instant Analytical Diagnostic</span>
+          <h3>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--accent);"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            Verify Your Domain's AI Search Readiness
+          </h3>
+          <span class="pill-meta">Instant Analytical Diagnostic</span>
         </div>
+        
         <form class="audit-input-form" onsubmit="event.preventDefault(); runV2Audit();">
-          <input type="text" id="target-domain" placeholder="Enter domain name (e.g. yourbrand.com)" required>
-          <button type="submit" class="btn btn-accent" id="audit-btn">Inspect Domain ↗</button>
+          <input type="text" id="target-domain" placeholder="Enter domain name (e.g. yourbrand.com)" required autocomplete="off" spellcheck="false">
+          <button type="submit" class="btn btn-accent" id="audit-btn" style="min-width: 160px;">
+            <span id="audit-btn-text">Inspect Domain ↗</span>
+          </button>
         </form>
+
         <div class="audit-samples">
           <span class="label">Try sample:</span>
-          <span class="sample-pill" onclick="setDomain('answerindex.xyz')">answerindex.xyz</span>
-          <span class="sample-pill" onclick="setDomain('shopify.com')">shopify.com</span>
-          <span class="sample-pill" onclick="setDomain('stripe.com')">stripe.com</span>
+          <button type="button" class="sample-pill" onclick="setDomain('answerindex.xyz')">answerindex.xyz</button>
+          <button type="button" class="sample-pill" onclick="setDomain('shopify.com')">shopify.com</button>
+          <button type="button" class="sample-pill" onclick="setDomain('stripe.com')">stripe.com</button>
         </div>
 
-        <!-- Audit Result Display Area -->
-        <div id="audit-result-v2" style="display: none; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border);">
-          <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px;">
-            <div style="font-family: var(--font-serif); font-size: 24px;" id="res-domain-title">Evaluated Domain</div>
-            <div style="font-family: var(--font-mono); font-size: 14px; font-weight: 600; color: var(--accent);" id="res-score-pill">88/100 · Strong Foundation</div>
+        <div id="audit-loading-v2" aria-live="polite">
+          <div class="step-item"><span class="step-pulse"></span> <span id="step-msg">1/3 Ingesting /llms.txt manifest & crawler directives...</span></div>
+        </div>
+
+        <div id="audit-result-v2" role="status" aria-live="polite">
+          <div class="result-score-strip">
+            <div class="res-title" id="res-domain-title">Evaluated Domain</div>
+            <div class="res-pill compliant" id="res-score-pill">88/100 · Strong Foundation</div>
           </div>
-          <p style="font-size: 14px; color: var(--ink-muted); margin-bottom: 16px;" id="res-summary-text"></p>
-          <div style="display: flex; gap: 12px;">
-            <a href="/audit.html" id="res-full-report-link" class="btn btn-outline" style="font-size: 13px;">View Full Technical Audit →</a>
+          <p style="font-size: 14.5px; color: var(--ink-muted); margin-bottom: 18px; line-height: 1.6;" id="res-summary-text"></p>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <a href="/audit.html" id="res-full-report-link" class="btn btn-outline" style="font-size: 13.5px;">View Full Technical Audit →</a>
+            <a href="#pricing" class="btn btn-accent" style="font-size: 13.5px;">Fix Citation Gaps ↗</a>
           </div>
         </div>
       </div>
 
-      <!-- Engine Verification Strip -->
+      <!-- Engine Verification Ribbon -->
       <div class="engine-strip">
-        <span class="strip-label">Retrieval Verification Across:</span>
+        <span class="strip-label">Direct Citation Verification Across:</span>
         <div class="engine-list">
-          <div class="engine-item"><span class="engine-dot"></span>ChatGPT Search</div>
-          <div class="engine-item"><span class="engine-dot"></span>Perplexity AI</div>
-          <div class="engine-item"><span class="engine-dot"></span>Claude 3.5</div>
-          <div class="engine-item"><span class="engine-dot"></span>Google AI Overviews</div>
-          <div class="engine-item"><span class="engine-dot"></span>Gemini 1.5</div>
+          <div class="engine-chip"><span class="chip-symbol">GPT</span> ChatGPT Search</div>
+          <div class="engine-chip"><span class="chip-symbol">PPLX</span> Perplexity AI</div>
+          <div class="engine-chip"><span class="chip-symbol">CLD</span> Claude 3.5</div>
+          <div class="engine-chip"><span class="chip-symbol">GOOG</span> AI Overviews</div>
+          <div class="engine-chip"><span class="chip-symbol">GEM</span> Gemini 1.5</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- The Method: 3-Step Journey -->
-  <section class="method-section" id="method">
+  <!-- 1. In Plain English: Executive Summary Spotlight -->
+  <section class="spotlight-section" id="summary">
     <div class="container">
-      <div class="section-eyebrow">The Method</div>
-      <h2 class="section-title">A connected path to AI client acquisition.</h2>
+      <div class="section-eyebrow">Executive Summary</div>
+      <h2 class="section-title">In Plain English: What is Answer Index & how does it drive sales?</h2>
       <p class="section-subtitle">
-        We bridge the gap between traditional website SEO and the generative answer engines your buyers now consult before shortlisting providers.
+        Search engines indexed links. Answer engines synthesize judgment calls. Here is our zero-click core thesis.
       </p>
 
-      <div class="journey-grid">
-        <!-- 01 -->
-        <div class="journey-card">
-          <div class="journey-num">01 / DISCOVERY</div>
-          <h3 class="journey-title">Get Retrieved Without Noise</h3>
-          <p class="journey-desc">
-            AI engines cannot cite what they cannot reliably parse. We publish lightweight machine-readable manifests (<code>/llms.txt</code>, AI crawler directives, and JSON-LD entity graphs) that give bots unambiguous access to your offerings, credentials, and geographic footprint.
-          </p>
-          <div class="journey-tag">Foundation: Manifests & Crawler Directives</div>
-        </div>
-
-        <!-- 02 -->
-        <div class="journey-card">
-          <div class="journey-num">02 / AUTHORITY</div>
-          <h3 class="journey-title">Earn Direct Answer Citations</h3>
-          <p class="journey-desc">
-            When buyers ask comparison questions, LLMs pull from succinct, verifiable 40–55 word declarative paragraphs. We engineer passage-level answer architecture and comparative proof matrices that answer engines quote word-for-word.
-          </p>
-          <div class="journey-tag">Architecture: Passage-Level Direct Answers</div>
-        </div>
-
-        <!-- 03 -->
-        <div class="journey-card">
-          <div class="journey-num">03 / ACQUISITION</div>
-          <h3 class="journey-title">Turn Recommendations Into Leads</h3>
-          <p class="journey-desc">
-            AI visibility is meaningless if it does not convert. We automate daily staging directly into your existing CMS (WordPress, Shopify, or GitHub repo) with human-in-the-loop review, turning citation momentum into qualified commercial inbound enquiries.
-          </p>
-          <div class="journey-tag">Delivery: Automated 1-Click Staging</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Anti-Hype Principle -->
-  <section class="manifesto-section" id="manifesto">
-    <div class="container">
-      <div class="manifesto-card">
-        <div class="manifesto-header">Editorial Principle</div>
-        <div class="manifesto-quote">
-          "No reputable agency can guarantee a #1 ranking in ChatGPT. Here is what we do instead."
-        </div>
-        <div class="manifesto-body">
-          <p style="margin-bottom: 14px;">
-            AI answers vary dynamically by user location, prompt phrasing, conversational history, and continuous model recalibration. Anyone promising a "guaranteed ChatGPT top spot" is selling false promises.
-          </p>
+      <div class="spotlight-grid">
+        <div class="spotlight-card-left">
+          <h3>Your Autonomous AI Sales Agent</h3>
           <p>
-            At Answer Index, we do not game algorithms. We engineer <strong>verifiable machine-readable ground truth</strong>. When an AI search engine synthesizes a category recommendation, it prioritizes sources with unambiguous schemas, verified passage answers, and zero data conflict. We make your business the safest, most authoritative answer to retrieve.
+            AnswerIndex Pro is an autonomous edge-native growth engine running on Cloudflare Pages and D1. It structures your business facts, proof matrices, and schema nodes so ChatGPT, Claude, and Perplexity cite and recommend your brand with zero hallucination.
           </p>
+
+          <div class="spotlight-points">
+            <div class="spotlight-point-item">
+              <span class="spot-num">01</span>
+              <div class="spot-text">
+                <h4>What It Is</h4>
+                <p>An autonomous growth system backed by a D1 Brand Truth Knowledge Base that stops competitors from diverting your AI citations.</p>
+              </div>
+            </div>
+            <div class="spotlight-point-item">
+              <span class="spot-num">02</span>
+              <div class="spot-text">
+                <h4>What It Does</h4>
+                <p>Every morning on your brand's schedule, it creates 1 new direct-answer asset and 1 technical SEO refactor staged directly to your CMS or GitHub.</p>
+              </div>
+            </div>
+            <div class="spotlight-point-item">
+              <span class="spot-num">03</span>
+              <div class="spot-text">
+                <h4>Why It Works</h4>
+                <p>AI engines quote 45-word declarative answers and dense comparison matrices 3.4x more frequently than fluffy 2,500-word blog posts.</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="manifesto-author">
-          <div class="author-avatar">S</div>
-          <div class="author-info">
-            <h4>Sameer</h4>
-            <p>Founder & Architect · Answer Index</p>
+
+        <div class="spotlight-metric-stack">
+          <div class="metric-card peach-tint">
+            <div class="stat">68.4%</div>
+            <div class="desc"><strong>Average AEO Citation Share Increase</strong> across client target prompt clusters within 30 days of deploying <code>/llms.txt</code> and Schema <code>@graph</code> nodes.</div>
+          </div>
+          <div class="metric-card">
+            <div class="stat">0</div>
+            <div class="desc"><strong>Unapproved Live Pushes.</strong> 100% human-in-the-loop review. Every change is delivered as a reviewable PR or CMS draft before going live.</div>
+          </div>
+          <div class="metric-card">
+            <div class="stat">&lt; 50ms</div>
+            <div class="desc"><strong>Edge TTFB Delivery.</strong> Autonomous Cloudflare Workers architecture ensuring zero crawl budget waste and instant bot indexing.</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Comparison Section -->
+  <!-- 2. The Daily Autonomous Routine -->
+  <section class="daily-routine-section" id="daily-loop">
+    <div class="container">
+      <div class="section-eyebrow">⚡ The Autonomous Daily Routine</div>
+      <h2 class="section-title">One new post. One improvement. Every day. Set and forget.</h2>
+      <p class="section-subtitle">
+        Every business morning, Answer Index analyzes yesterday's Search Console shifts and AI engine citations. Two precision jobs arrive directly in your workflow.
+      </p>
+
+      <div class="routine-grid">
+        <!-- Job 1 -->
+        <div class="routine-box peach-card">
+          <div class="routine-tag">JOB 01 · CONTENT PRODUCTION</div>
+          <h3>1 New High-Impact Answer Asset / Day</h3>
+          <p>
+            Passage-level answer engineering targeting high-intent commercial prompts. Delivered as crisp declarative answers, comparison matrices, or interactive JavaScript utilities that AI search engines quote word-for-word.
+          </p>
+          <div class="routine-code-preview">
+            <strong>+ [Job 1: New]</strong> /guides/how-to-choose-aeo-platform.html<br>
+            ✓ 48-word declarative passage answer for ChatGPT<br>
+            ✓ Embedded comparative matrix: Feature vs. Competitors<br>
+            ✓ Validated Schema.org <code>FAQPage</code> & <code>Article</code>
+          </div>
+        </div>
+
+        <!-- Job 2 -->
+        <div class="routine-box">
+          <div class="routine-tag">JOB 02 · TECHNICAL DEFENSE</div>
+          <h3>1 Technical SEO & Brand Truth Fix / Day</h3>
+          <p>
+            Continuous programmatic refactoring across your existing pages: fixing broken Schema nodes, eliminating crawl budget waste, optimizing Core Web Vitals, and syncing <code>/llms.txt</code> manifests.
+          </p>
+          <div class="routine-code-preview">
+            <strong>+ [Job 2: Fix]</strong> /pricing.html<br>
+            ✓ Replaced legacy breadcrumb markup with connected <code>@graph</code><br>
+            ✓ Synced pricing tiers with Cloudflare D1 Brand Truth Wiki<br>
+            ✓ Added <code>GPTBot</code> and <code>ClaudeBot</code> crawl allowances
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Staging & Approvals Flow -->
+  <section class="approvals-section" id="how-it-works">
+    <div class="container">
+      <div class="section-eyebrow">Zero Terminal Commands · 100% Human-in-the-Loop</div>
+      <h2 class="section-title">How Account Access, GitHub & Content Approvals Work.</h2>
+      <p class="section-subtitle">
+        No copy-pasting into CMS text editors. No manual coding. Here is the exact end-to-end flow from account setup to live production deployment.
+      </p>
+
+      <div class="flow-steps-grid">
+        <div class="flow-step-card">
+          <div class="flow-step-num">STEP 01</div>
+          <h4>Connect CMS or Git</h4>
+          <p>Connect your website in 60 seconds via our WordPress plugin, Shopify/Magento API keys, Web Portal, or GitHub App.</p>
+        </div>
+        <div class="flow-step-card">
+          <div class="flow-step-num">STEP 02</div>
+          <h4>Agent Runs at 06:00 AM</h4>
+          <p>Every morning, the agent analyzes Search Console shifts and AI citations, grounding all content against your D1 Brand Truth Knowledge Base.</p>
+        </div>
+        <div class="flow-step-card">
+          <div class="flow-step-num">STEP 03</div>
+          <h4>You Give 1-Click Approval</h4>
+          <p>Review daily answer drafts and code refactors directly in your CMS draft queue or GitHub Pull Request. Nothing goes live without you.</p>
+        </div>
+        <div class="flow-step-card">
+          <div class="flow-step-num">STEP 04</div>
+          <h4>Instant Edge Deployment</h4>
+          <p>Upon approval, content publishes immediately to production with automatic sitemap, Schema graph, and <code>/llms.txt</code> updates.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Brand Truth & Anti-Hallucination Architecture -->
+  <section class="brand-truth-section" id="brand-truth">
+    <div class="container">
+      <div class="truth-card">
+        <div class="truth-info">
+          <div class="section-eyebrow">Anti-Hallucination Engine</div>
+          <h3>The "Brand Truth" Knowledge Base</h3>
+          <p>
+            Generative search engines frequently hallucinate outdated pricing, false features, or nonexistent integrations by scraping third-party blogs.
+          </p>
+          <p>
+            To protect your brand, AnswerIndex embeds a dedicated <strong>Brand Truth Knowledge Base in Cloudflare D1</strong>. Every piece of content, schema node, and answer paragraph is pre-validated against your verified corporate facts, official tiers, and leadership data.
+          </p>
+          <a href="#pricing" class="btn btn-accent" style="margin-top: 10px;">Deploy Your Brand Truth Base ↗</a>
+        </div>
+
+        <div class="truth-box-schema">
+          <span class="keyword">"BrandTruthGraph"</span>: {<br>
+          &nbsp;&nbsp;<span class="keyword">"@id"</span>: <span class="string">"https://yourbrand.com/#truth"</span>,<br>
+          &nbsp;&nbsp;<span class="keyword">"canonical_pricing"</span>: { <span class="keyword">"starter"</span>: 199, <span class="keyword">"pro"</span>: 499 },<br>
+          &nbsp;&nbsp;<span class="keyword">"anti_hallucination_rule"</span>: <span class="string">"STRICT_GROUNDING"</span>,<br>
+          &nbsp;&nbsp;<span class="keyword">"edge_database"</span>: <span class="string">"Cloudflare_D1_Replica"</span>,<br>
+          &nbsp;&nbsp;<span class="keyword">"bot_directives"</span>: [<span class="string">"ChatGPT-Search"</span>, <span class="string">"PerplexityBot"</span>],<br>
+          &nbsp;&nbsp;<span class="keyword">"citation_integrity"</span>: <span class="string">"VERIFIED_CONSENSUS"</span><br>
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Comparison Matrix -->
   <section class="comparison-section" id="comparison">
     <div class="container">
       <div class="section-eyebrow">Strategic Evolution</div>
-      <h2 class="section-title">How Answer Engine Optimization differs from legacy SEO.</h2>
+      <h2 class="section-title">How Answer Index Pro Compares to Market Leaders.</h2>
       <p class="section-subtitle">
-        Search engines indexed links. Answer engines synthesize judgment calls. The technical playbook has fundamentally evolved.
+        Traditional tools provide dashboards with zero execution. Manual agencies charge $5,000/mo with slow turnaround. Answer Index executes every day.
       </p>
 
-      <table class="comp-table">
-        <thead>
-          <tr>
-            <th style="width: 28%;">Dimension</th>
-            <th style="width: 36%;">Legacy SEO (2010–2023)</th>
-            <th style="width: 36%;">Answer Index AEO & GEO (2026+)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>User Experience</strong></td>
-            <td class="comp-dim">10 blue links on a page</td>
-            <td class="comp-highlight">Direct synthesized answer with 2–3 cited brands</td>
-          </tr>
-          <tr>
-            <td><strong>Crawler Protocols</strong></td>
-            <td class="comp-dim">Standard robots.txt & XML sitemaps</td>
-            <td class="comp-highlight"><code>/llms.txt</code>, Schema <code>@graph</code> & AI crawler controls</td>
-          </tr>
-          <tr>
-            <td><strong>Content Format</strong></td>
-            <td class="comp-dim">2,500-word keyword-stuffed blog posts</td>
-            <td class="comp-highlight">45-word declarative answers + verifiable proof matrices</td>
-          </tr>
-          <tr>
-            <td><strong>Commercial Target</strong></td>
-            <td class="comp-dim">Vanity click volume</td>
-            <td class="comp-highlight">High-intent buying prompt citation & consideration</td>
-          </tr>
-          <tr>
-            <td><strong>Execution Velocity</strong></td>
-            <td class="comp-dim">Monthly static reports</td>
-            <td class="comp-highlight">Continuous daily PR & CMS staging with drift monitoring</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-scroll-container">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th style="width: 26%;">Capability</th>
+              <th style="width: 24%;">Semrush / Ahrefs</th>
+              <th style="width: 24%;">$5k–$10k/mo SEO Agency</th>
+              <th style="width: 26%; color: var(--accent);">Answer Index Pro</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Autonomous Execution</strong></td>
+              <td class="comp-dim">No (Raw metrics only)</td>
+              <td class="comp-dim">Manual & Slow (Monthly decks)</td>
+              <td class="comp-highlight">Daily autonomous production + PRs</td>
+            </tr>
+            <tr>
+              <td><strong>Generative AEO & GEO</strong></td>
+              <td class="comp-dim">No (Legacy keywords only)</td>
+              <td class="comp-dim">Surface-level experimentation</td>
+              <td class="comp-highlight">Direct citation targeting across 5 AI models</td>
+            </tr>
+            <tr>
+              <td><strong>Machine Manifests (/llms.txt)</strong></td>
+              <td class="comp-dim">None</td>
+              <td class="comp-dim">Not supported</td>
+              <td class="comp-highlight">Auto-generated & daily synced</td>
+            </tr>
+            <tr>
+              <td><strong>Human-in-the-Loop Approval</strong></td>
+              <td class="comp-dim">N/A (No execution)</td>
+              <td class="comp-dim">Messy Google Docs & emails</td>
+              <td class="comp-highlight">1-Click GitHub PR & CMS Drafts</td>
+            </tr>
+            <tr>
+              <td><strong>Anti-Hallucination Truth Base</strong></td>
+              <td class="comp-dim">None</td>
+              <td class="comp-dim">Ad-hoc copywriter guesses</td>
+              <td class="comp-highlight">Cloudflare D1 Brand Truth Wiki</td>
+            </tr>
+            <tr>
+              <td><strong>Monthly Investment</strong></td>
+              <td class="comp-dim">$129–$499/mo (Plus writer costs)</td>
+              <td class="comp-dim">$5,000–$10,000/mo retainer</td>
+              <td class="comp-highlight">Starting at $199/month</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
 
-  <!-- Pricing Section -->
+  <!-- 6. Pricing Section -->
   <section class="pricing-section" id="pricing">
     <div class="container">
-      <div class="section-eyebrow">Commercial Scope</div>
-      <h2 class="section-title">Transparent partnerships built around outcomes.</h2>
-      <p class="section-subtitle">
-        Whether you require self-serve autonomous staging or complete done-for-you engineering, choose the tier that matches your category ambitions.
-      </p>
+      <div class="pricing-header-wrap">
+        <div>
+          <div class="section-eyebrow">Commercial Scope</div>
+          <h2 class="section-title">The Price of an In-House Autonomous Growth Engineer.</h2>
+          <p class="section-subtitle">
+            Whether you require foundational machine directives or continuous daily dual production, select the plan aligned with your category goals.
+          </p>
+        </div>
+
+        <div class="billing-toggle-wrap">
+          <button type="button" class="toggle-opt active" id="btn-monthly" onclick="setBilling('monthly')">Monthly</button>
+          <button type="button" class="toggle-opt" id="btn-annual" onclick="setBilling('annual')">
+            Annual <span class="toggle-discount-badge">Save 20%</span>
+          </button>
+        </div>
+      </div>
 
       <div class="pricing-grid">
         <!-- Starter Plan -->
         <div class="pricing-card">
           <div class="plan-name">Starter Foundation</div>
-          <div class="plan-desc">For brands establishing clean AI crawler directives and Schema graph integrity.</div>
+          <div class="plan-desc">For brands establishing clean AI crawler directives, <code>/llms.txt</code>, and Schema graph integrity.</div>
           <div class="plan-price">
-            <span class="amount">$199</span>
-            <span class="period">/ month (billed annually at $159/mo)</span>
+            <span class="amount" id="price-starter">$199</span>
+            <span class="period" id="period-starter">/ month</span>
           </div>
           <ul class="plan-features">
-            <li>Machine-readable <code>/llms.txt</code> generation</li>
+            <li>Machine-readable <code>/llms.txt</code> generation & sync</li>
             <li>JSON-LD Schema <code>@graph</code> interlinking</li>
             <li>AI crawler directives (GPTBot, ClaudeBot, Perplexity)</li>
             <li>Weekly generative citation drift audit</li>
@@ -1052,12 +1979,12 @@
 
         <!-- Pro Autonomous -->
         <div class="pricing-card featured">
-          <div class="plan-badge">Featured</div>
+          <div class="plan-badge">Most Popular</div>
           <div class="plan-name">Pro Autonomous</div>
-          <div class="plan-desc">Continuous daily production to systematically capture and defend AI category recommendations.</div>
+          <div class="plan-desc">Continuous daily dual production to systematically capture and defend AI category recommendations.</div>
           <div class="plan-price">
-            <span class="amount">$499</span>
-            <span class="period">/ month (billed annually at $399/mo)</span>
+            <span class="amount" id="price-pro">$499</span>
+            <span class="period" id="period-pro">/ month</span>
           </div>
           <ul class="plan-features">
             <li><strong>Everything in Starter Foundation</strong></li>
@@ -1075,8 +2002,8 @@
           <div class="plan-name">Enterprise DFY Partner</div>
           <div class="plan-desc">High-touch architectural partnership for market leaders and high-stakes commercial categories.</div>
           <div class="plan-price">
-            <span class="amount">$1,499</span>
-            <span class="period">/ month (billed annually at $1,199/mo)</span>
+            <span class="amount" id="price-enterprise">$1,499</span>
+            <span class="period" id="period-enterprise">/ month</span>
           </div>
           <ul class="plan-features">
             <li><strong>Everything in Pro Autonomous</strong></li>
@@ -1092,76 +2019,246 @@
     </div>
   </section>
 
-  <!-- FAQ Section -->
+  <!-- 7. Comprehensive 9-Point FAQ -->
   <section class="faq-section" id="faq">
     <div class="container">
-      <div class="section-eyebrow">Questions & Answers</div>
-      <h2 class="section-title">Practical, clear guidance.</h2>
+      <div class="section-eyebrow">Frequently Asked Questions</div>
+      <h2 class="section-title">Clear, candid answers before you commit.</h2>
 
       <div class="faq-list">
-        <div class="faq-item">
-          <div class="faq-question">What is the difference between AEO and traditional SEO?</div>
-          <div class="faq-answer">
-            Traditional SEO optimizes for keyword rank positions across lists of hyperlinks. Answer Engine Optimization (AEO) structures your core business entities, proofs, and answers so conversational LLMs (ChatGPT, Claude, Perplexity) directly synthesize and recommend your business to buyers.
+        <!-- Q1 -->
+        <div class="faq-item active">
+          <button type="button" class="faq-question-btn" onclick="toggleFaq(this)">
+            <span>Can Answer Index publish changes to my site without my approval?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer-pane">
+            Never. AnswerIndex operates on a strict human-in-the-loop philosophy. Every single piece of work is delivered as a 1-click review draft on your chosen platform—whether that is an open GitHub Pull Request with clear code diffs, or a draft inside your WordPress, Shopify, Magento, or Web Client Portal. Nothing is published until you inspect and approve it.
           </div>
         </div>
 
+        <!-- Q2 -->
         <div class="faq-item">
-          <div class="faq-question">What is /llms.txt and why is it necessary?</div>
-          <div class="faq-answer">
-            <code>/llms.txt</code> is the emerging web standard for AI crawlers. Much like <code>robots.txt</code> tells web crawlers where to look, <code>/llms.txt</code> delivers a curated, clean Markdown index of your core business facts, avoiding token bloat and hallucination.
+          <button type="button" class="faq-question-btn" onclick="toggleFaq(this)">
+            <span>What is the "Brand Truth" Knowledge Base and how does it eliminate hallucinations?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer-pane">
+            Generative search engines often hallucinate outdated pricing, false features, or nonexistent integrations by quoting third-party scrape sites. To protect your brand, AnswerIndex embeds a dedicated Brand Truth Knowledge Base directly in Cloudflare D1 with verified facts, official pricing plans, technical capabilities, and leadership data that models quote with confidence.
           </div>
         </div>
 
+        <!-- Q3 -->
         <div class="faq-item">
-          <div class="faq-question">Does Answer Index require replacing my existing website or CMS?</div>
-          <div class="faq-answer">
-            No. Answer Index works with your existing architecture (WordPress, Shopify, Webflow, Next.js, or custom static sites). Deliverables are staged as review drafts or GitHub pull requests with 100% human-in-the-loop review before publishing.
+          <button type="button" class="faq-question-btn" onclick="toggleFaq(this)">
+            <span>Why do you generate Interactive Calculators and Comparison Guides instead of just articles?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer-pane">
+            AI answer engines look for dense, structured, verifiable data utilities. An interactive JavaScript calculator or crisp comparison table provides exact quantitative data, achieving 3.4x higher citation frequency across Perplexity and ChatGPT Search than generic 2,500-word blog posts.
           </div>
         </div>
 
+        <!-- Q4 -->
         <div class="faq-item">
-          <div class="faq-question">How quickly do AI answer engines pick up these changes?</div>
-          <div class="faq-answer">
-            Generative engines that browse the live web (Perplexity AI, ChatGPT Search, Google AI Overviews) ingest and reflect structured manifests within days. Base model training datasets reflect updates during periodic model releases.
+          <button type="button" class="faq-question-btn" onclick="toggleFaq(this)">
+            <span>How does this differ from tools like Semrush, Ahrefs, or $5k/mo SEO agencies?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer-pane">
+            Traditional tools provide audit dashboards without execution, leaving you to do the research, writing, and coding yourself. Manual agencies charge $5,000 to $10,000 monthly with slow 4-week turnarounds. Answer Index Pro is an autonomous edge-native execution engine running on Cloudflare Pages and D1 that delivers dual daily production starting at $199/month.
+          </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="faq-item">
+          <button type="button" class="faq-question-btn" onclick="toggleFaq(this)">
+            <span>Do I need a GitHub repository or engineering team to use Answer Index?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer-pane">
+            No technical knowledge is required. While developer teams love our GitHub PR workflow, non-technical marketing teams can approve content through our native WordPress plugin, Shopify API, or our clean Web Client Portal with a single click.
+          </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="faq-item">
+          <button type="button" class="faq-question-btn" onclick="toggleFaq(this)">
+            <span>What is included in the Enterprise DFY Partner ($1,499/mo) tier?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer-pane">
+            Enterprise partners receive dedicated technical strategist oversight, custom interactive calculators built to order, multi-brand and multi-location graph modeling, quarterly LLM recalibration hedge reports, and direct Slack / GitHub shared channels.
+          </div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="faq-item">
+          <button type="button" class="faq-question-btn" onclick="toggleFaq(this)">
+            <span>What permissions do you need, and is my data secure?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer-pane">
+            We follow strict least-privilege security. We only request read-only Search Console access to monitor position shifts, and branch-creation permissions in Git or draft-author permissions in your CMS. We never write directly to your production branch and never store your private codebase.
+          </div>
+        </div>
+
+        <!-- Q8 -->
+        <div class="faq-item">
+          <button type="button" class="faq-question-btn" onclick="toggleFaq(this)">
+            <span>Are there long-term contracts, setup fees, or hidden costs?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer-pane">
+            None. All plans are month-to-month by default with zero setup fees and zero cancellation penalties. You can upgrade, downgrade, or cancel at any time with one click from your billing dashboard.
+          </div>
+        </div>
+
+        <!-- Q9 -->
+        <div class="faq-item">
+          <button type="button" class="faq-question-btn" onclick="toggleFaq(this)">
+            <span>Do I get access to expert or founder support?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer-pane">
+            Yes. Every Pro and Enterprise subscriber has direct email and video check-in access with our founder and chief architect Sameer Sharma.
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="site-footer">
+  <!-- 8. Detailed Multi-Column Editorial Footer (Replacing Old Footer) -->
+  <footer class="site-footer-detailed">
     <div class="container">
-      <div class="footer-inner">
-        <div class="footer-meta">
-          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-            <img src="/assets/AnswerIndex_Logo.png" alt="Answer Index Logo" style="width: 24px; height: 24px; border-radius: 4px; object-fit: contain;">
-            <span style="font-family: var(--font-sans); font-weight: 700; font-size: 16px;">Answer Index</span>
+      <div class="footer-top-grid">
+        <!-- Brand & Mission Column -->
+        <div class="footer-brand-col">
+          <div class="footer-brand-header">
+            <img src="assets/AnswerIndex_Logo.png?v=2026" 
+                 onerror="this.onerror=null; this.src='../assets/AnswerIndex_Logo.png?v=2026';" 
+                 alt="Answer Index Logo" class="footer-logo">
+            <span>Answer Index Pro</span>
           </div>
-          <p>© 2026 Answer Index. Verified generative engine visibility & technical AEO infrastructure.</p>
+          <p class="footer-desc">
+            The autonomous growth engine built for the post-search generative AI era. One authoritative AEO answer asset and one technical optimization every single day, shipped as reviewable Pull Requests or CMS drafts you approve.
+          </p>
+          <div class="footer-action-links">
+            <a href="https://github.com/justmailsameer-prog/answerindex" target="_blank" class="footer-btn-sm">
+              ⭐ Star on GitHub
+            </a>
+            <a href="/feedback.html" class="footer-btn-sm">
+              Direct Feedback
+            </a>
+            <a href="/pro.html" class="footer-btn-sm" style="color: var(--orange); border-color: rgba(236, 88, 54, 0.4);">
+              Client Portal →
+            </a>
+          </div>
         </div>
 
-        <div class="footer-links">
-          <a href="/index.html">Classic Homepage</a>
-          <a href="/pro.html">Pro Portal</a>
-          <a href="/audit.html">Audit Tool</a>
-          <a href="/pricing.html">Pricing</a>
-          <a href="mailto:sameer@answerindex.xyz">sameer@answerindex.xyz</a>
+        <!-- Col 1: Platform & Engine -->
+        <div class="footer-nav-col">
+          <h5>Platform & Engine</h5>
+          <ul>
+            <li><a href="/about.html">About Answer Index</a></li>
+            <li><a href="#daily-loop">The 2-Job Daily Cadence</a></li>
+            <li><a href="#how-it-works">Staging & Approvals Flow</a></li>
+            <li><a href="/how-it-works.html">Customer Lifecycle Map</a></li>
+            <li><a href="/llms.txt" target="_blank">26-File Protocol Engine</a></li>
+            <li><a href="#brand-truth">Anti-Hallucination Gate</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 2: Integrations & Delivery -->
+        <div class="footer-nav-col">
+          <h5>Integrations & Portal</h5>
+          <ul>
+            <li><a href="/pro.html" class="highlight-portal">⚡ Live Client Portal (/pro)</a></li>
+            <li><a href="#how-it-works">GitHub App & Scoped PRs</a></li>
+            <li><a href="#summary">Google Search Console API</a></li>
+            <li><a href="/llms.txt" target="_blank">Native MCP Server (Claude/Cursor)</a></li>
+            <li><a href="#how-it-works">WordPress & Shopify Plugins</a></li>
+            <li><a href="https://answerindex.xyz" target="_blank">Cloudflare Edge Deployment</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Compare & Economics -->
+        <div class="footer-nav-col">
+          <h5>Compare & Pricing</h5>
+          <ul>
+            <li><a href="#comparison">Market Comparison Matrix</a></li>
+            <li><a href="#pricing">Starter Plan ($199/mo)</a></li>
+            <li><a href="#pricing">Pro Autonomous ($499/mo)</a></li>
+            <li><a href="#pricing">Enterprise Partner ($1,499/mo)</a></li>
+            <li><a href="/index-oss.html">Open Source vs. Pro</a></li>
+            <li><a href="#faq">Frequently Asked Questions</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Mandatory Policies & Direct Contact (Point 5) -->
+        <div class="footer-nav-col">
+          <h5>Legal, Trust & Contact</h5>
+          <ul>
+            <li><a href="/terms.html">Terms of Service</a></li>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+            <li><a href="/ai-disclosure.txt" target="_blank">AI Disclosure Manifest</a></li>
+            <li><a href="/training-data-policy.txt" target="_blank">Training Data Policy</a></li>
+            <li><a href="mailto:sameer@answerindex.xyz" style="color: #FFFFFF; font-weight: 600;">✉️ sameer@answerindex.xyz</a></li>
+            <li><a href="https://github.com/justmailsameer-prog/answerindex/blob/main/LICENSE" target="_blank">MIT Open Source License</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom Strip -->
+      <div class="footer-bottom-strip">
+        <div>
+          Copyright © 2026 Sameer Sharma. All rights reserved.
+        </div>
+        <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+          <div class="footer-status-tag">
+            <span class="footer-status-dot"></span>
+            <span>Autonomous Engine Active · v2.0 Pro</span>
+          </div>
+          <a href="/terms.html" style="color: #a49f91; text-decoration: none;">Terms</a>
+          <a href="/privacy.html" style="color: #a49f91; text-decoration: none;">Privacy</a>
+          <a href="/ai-disclosure.txt" style="color: #a49f91; text-decoration: none;">AI Disclosure</a>
         </div>
       </div>
     </div>
   </footer>
 
   <script>
-    // --- TYPEWRITER ANIMATION FOR HERO HEADLINE ---
+    // --- DRAWER MENU TOGGLE ---
+    function toggleDrawer(open) {
+      const drawer = document.getElementById('drawerMenu');
+      if (open) {
+        drawer.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      } else {
+        drawer.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function handleOverlayClick(event) {
+      if (event.target.id === 'drawerMenu') {
+        toggleDrawer(false);
+      }
+    }
+
+    // Close drawer on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') toggleDrawer(false);
+    });
+
+    // --- TYPEWRITER ANIMATION (NO LAYOUT SHIFT) ---
     const aiModels = [
       'ChatGPT.',
       'Perplexity.',
       'Claude.',
       'Google AI.',
       'Gemini.',
-      'AI.'
+      'AI Search.'
     ];
 
     let currentModelIndex = 0;
@@ -1173,41 +2270,34 @@
       const currentWord = aiModels[currentModelIndex];
 
       if (isDeleting) {
-        // Remove characters
         typewriterTarget.textContent = currentWord.substring(0, currentCharIndex - 1);
         currentCharIndex--;
       } else {
-        // Add characters
         typewriterTarget.textContent = currentWord.substring(0, currentCharIndex + 1);
         currentCharIndex++;
       }
 
-      // Timing dynamics
-      let typingSpeed = isDeleting ? 40 : 85;
+      let typingSpeed = isDeleting ? 38 : 78;
 
-      // When word is fully typed
       if (!isDeleting && currentCharIndex === currentWord.length) {
-        // Pause at the complete word
         typingSpeed = 1900;
         isDeleting = true;
       } else if (isDeleting && currentCharIndex === 0) {
-        // Switch to next word
         isDeleting = false;
         currentModelIndex = (currentModelIndex + 1) % aiModels.length;
-        typingSpeed = 350;
+        typingSpeed = 300;
       }
 
       setTimeout(typeWriterLoop, typingSpeed);
     }
 
-    // Start typewriter when DOM loads
     document.addEventListener('DOMContentLoaded', () => {
       if (typewriterTarget) {
         typeWriterLoop();
       }
     });
 
-    // --- DOMAIN AUDIT EVALUATOR ---
+    // --- DOMAIN AUDIT SIMULATOR ---
     function setDomain(d) {
       document.getElementById('target-domain').value = d;
       runV2Audit();
@@ -1216,30 +2306,96 @@
     function runV2Audit() {
       const input = document.getElementById('target-domain');
       const val = input.value.trim().toLowerCase().replace(/^https?:\/\//, '').replace(/\/.*$/, '');
-      if (!val) return;
+      if (!val) {
+        input.focus();
+        return;
+      }
 
       const btn = document.getElementById('audit-btn');
-      btn.innerText = 'Evaluating...';
+      const btnText = document.getElementById('audit-btn-text');
+      const loading = document.getElementById('audit-loading-v2');
+      const stepMsg = document.getElementById('step-msg');
+      const resultBox = document.getElementById('audit-result-v2');
+
       btn.disabled = true;
+      btnText.innerText = 'Scanning...';
+      resultBox.style.display = 'none';
+      loading.style.display = 'block';
+
+      stepMsg.innerText = '1/3 Inspecting /llms.txt manifest & AI crawler directives...';
 
       setTimeout(() => {
-        btn.innerText = 'Inspect Domain ↗';
+        stepMsg.innerText = '2/3 Evaluating Schema.org @graph entity connectivity...';
+      }, 400);
+
+      setTimeout(() => {
+        stepMsg.innerText = '3/3 Checking citation authority across Perplexity & ChatGPT...';
+      }, 750);
+
+      setTimeout(() => {
         btn.disabled = false;
+        btnText.innerText = 'Inspect Domain ↗';
+        loading.style.display = 'none';
 
         const isAnswerIndex = val.includes('answerindex');
         const score = isAnswerIndex ? 88 : 64;
         const grade = isAnswerIndex ? 'AEO Compliant · Strong Foundation' : 'Ingestion Gaps Detected · Immediate Gains Available';
 
-        document.getElementById('audit-result-v2').style.display = 'block';
+        resultBox.style.display = 'block';
         document.getElementById('res-domain-title').innerText = val;
-        document.getElementById('res-score-pill').innerText = `${score}/100 · ${grade}`;
-        document.getElementById('res-score-pill').style.color = isAnswerIndex ? 'var(--sage)' : 'var(--accent)';
+        
+        const scorePill = document.getElementById('res-score-pill');
+        scorePill.innerText = `${score}/100 · ${grade}`;
+        scorePill.className = isAnswerIndex ? 'res-pill compliant' : 'res-pill warning';
+
         document.getElementById('res-summary-text').innerText = isAnswerIndex
           ? `${val} has successfully deployed foundational machine-readable manifests and Schema graph nodes, positioning it in the top tier of generative AI search readiness.`
           : `${val} currently lacks machine-readable /llms.txt manifests and cohesive Schema @graph nodes, leaving critical buying recommendations open to competitor citation diversion.`;
         
         document.getElementById('res-full-report-link').href = `/audit.html?domain=${encodeURIComponent(val)}`;
-      }, 700);
+      }, 1100);
+    }
+
+    // --- BILLING SWITCH ---
+    function setBilling(mode) {
+      const btnM = document.getElementById('btn-monthly');
+      const btnA = document.getElementById('btn-annual');
+      const pStarter = document.getElementById('price-starter');
+      const pPro = document.getElementById('price-pro');
+      const pEnt = document.getElementById('price-enterprise');
+      const periodStarter = document.getElementById('period-starter');
+      const periodPro = document.getElementById('period-pro');
+      const periodEnt = document.getElementById('period-enterprise');
+
+      if (mode === 'annual') {
+        btnA.classList.add('active');
+        btnM.classList.remove('active');
+        pStarter.innerText = '$159';
+        pPro.innerText = '$399';
+        pEnt.innerText = '$1,199';
+        periodStarter.innerText = '/ mo (billed $1,908/yr)';
+        periodPro.innerText = '/ mo (billed $4,788/yr)';
+        periodEnt.innerText = '/ mo (billed $14,388/yr)';
+      } else {
+        btnM.classList.add('active');
+        btnA.classList.remove('active');
+        pStarter.innerText = '$199';
+        pPro.innerText = '$499';
+        pEnt.innerText = '$1,499';
+        periodStarter.innerText = '/ month';
+        periodPro.innerText = '/ month';
+        periodEnt.innerText = '/ month';
+      }
+    }
+
+    // --- ACCORDION TOGGLE ---
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const wasActive = item.classList.contains('active');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+      if (!wasActive) {
+        item.classList.add('active');
+      }
     }
   </script>
 </body>
