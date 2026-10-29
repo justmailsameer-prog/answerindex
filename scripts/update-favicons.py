@@ -36,3 +36,4 @@ for path in html_files:
         print(f"Updated: {path}")
 
 print("Done updating HTML favicon tags.")
+

@@ -21,6 +21,12 @@
 </p>
 
 <p align="center">
+  <a href="https://www.producthunt.com/products/answer-index?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-answer-index" target="_blank" rel="noopener noreferrer">
+    <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1297667&theme=light&t=1793306353907" alt="Answer Index - Be the Answer AI Recommends | Product Hunt" width="250" height="54" />
+  </a>
+</p>
+
+<p align="center">
   <img src="https://img.shields.io/badge/Release-v1.3.0-blue.svg" alt="Release: v1.3.0" />
   <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License: MIT" />
   <img src="https://img.shields.io/badge/AEO-Answer%20Engine%20Optimization-06B6D4.svg" alt="AEO" />
@@ -263,6 +269,13 @@ This is expected behavior! The AnswerIndex MCP server uses standard input/output
 | `run-*.sh` | Script Runners | Portable runners for cross-platform automation |
 
 ---
+
+## Community, Launch & Live Deployment
+
+- 🌐 **Live Web Application:** [answerindex.xyz](https://answerindex.xyz)
+- 🚀 **Product Hunt:** [Support Answer Index on Product Hunt](https://www.producthunt.com/products/answer-index)
+- 💼 **LinkedIn / Author:** [Sameer Sharma](https://www.linkedin.com/in/saameer-sharma/)
+- 📖 **Documentation & Manifests:** [/llms.txt](https://answerindex.xyz/llms.txt) • [Execution Spec](EXECUTION-ENGINE-SPEC.md)
 
 ## Disclaimer, Terms & License
 
