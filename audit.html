@@ -1063,20 +1063,22 @@
       const isHighScore = auditData.overallScore >= 85;
       const isMidScore = auditData.overallScore >= 65 && auditData.overallScore < 85;
 
-      // Helper to extract logo data URL from DOM image
-      let logoDataUrl = null;
-      try {
-        const logoImg = document.querySelector('header .site-brand img') || document.querySelector('img[src*="AnswerIndex_Logo"]');
-        if (logoImg && logoImg.complete && logoImg.naturalWidth > 0) {
-          const canvas = document.createElement('canvas');
-          canvas.width = logoImg.naturalWidth || 80;
-          canvas.height = logoImg.naturalHeight || 80;
-          const ctx = canvas.getContext('2d');
-          ctx.drawImage(logoImg, 0, 0, canvas.width, canvas.height);
-          logoDataUrl = canvas.toDataURL('image/png');
+      // Helper to extract logo data URL from DOM image or pre-encoded base64
+      let logoDataUrl = window.ANSWER_INDEX_LOGO_B64 || null;
+      if (!logoDataUrl) {
+        try {
+          const logoImg = document.querySelector('header .site-brand img') || document.querySelector('img[src*="AnswerIndex_Logo"]');
+          if (logoImg && logoImg.complete && logoImg.naturalWidth > 0) {
+            const canvas = document.createElement('canvas');
+            canvas.width = logoImg.naturalWidth || 80;
+            canvas.height = logoImg.naturalHeight || 80;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(logoImg, 0, 0, canvas.width, canvas.height);
+            logoDataUrl = canvas.toDataURL('image/png');
+          }
+        } catch (e) {
+          console.warn("Logo extraction error:", e);
         }
-      } catch (e) {
-        console.warn("Logo extraction error:", e);
       }
 
       // --- PAGE 1: EXECUTIVE SCORECARD & DETERMINISTIC FINDINGS ---
@@ -1084,31 +1086,38 @@
       doc.setFillColor(15, 23, 42); // Obsidian Slate
       doc.rect(0, 0, pageWidth, 42, 'F');
 
-      let textStartX = margin;
+      // Render Official Logo (aspect ratio preserved ~4.86:1, no overlapping text)
       if (logoDataUrl) {
         try {
-          doc.addImage(logoDataUrl, 'PNG', margin, 9, 14, 14);
-          textStartX = margin + 18;
+          doc.addImage(logoDataUrl, 'PNG', margin, 8, 54, 11.1);
         } catch (e) {
-          textStartX = margin;
+          console.warn('PDF logo render warning:', e);
         }
       }
 
-      doc.setTextColor(255, 255, 255);
+      // Subtitle below logo
       doc.setFont('helvetica', 'bold');
-      doc.setFontSize(18);
-      doc.text('ANSWER INDEX', textStartX, 18);
-
-      doc.setFont('helvetica', 'bold');
-      doc.setFontSize(8.5);
+      doc.setFontSize(9);
       doc.setTextColor(56, 189, 248);
-      doc.text('ENTERPRISE AEO, GEO & SEARCH ENGINE READINESS AUDIT', textStartX, 25);
+      doc.text('ENTERPRISE AEO, GEO & SEARCH ENGINE READINESS AUDIT', margin, 26);
 
+      // Report Meta below subtitle
       doc.setTextColor(180, 190, 205);
       doc.setFont('helvetica', 'normal');
       doc.setFontSize(8);
       const auditDateStr = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-      doc.text(`REPORT #${auditData.reportId || 'AI-1001'}  |  ISSUED FOR: ${auditData.domain.toUpperCase()}  |  DATE: ${auditDateStr}`, textStartX, 32);
+      doc.text(`REPORT #${auditData.reportId || 'AI-1001'}  |  ISSUED FOR: ${auditData.domain.toUpperCase()}  |  DATE: ${auditDateStr}`, margin, 34);
+
+      // Right-aligned header badge
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(9);
+      doc.setTextColor(242, 79, 30);
+      doc.text('BE THE ANSWER AI RECOMMENDS', pageWidth - margin, 15, { align: 'right' });
+
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(8);
+      doc.setTextColor(180, 190, 205);
+      doc.text('CONFIDENTIAL AUDIT SPECIFICATION', pageWidth - margin, 21, { align: 'right' });
 
       // Target Domain Spotlight Box
       doc.setFillColor(245, 244, 240);
@@ -1289,31 +1298,30 @@
       doc.setFillColor(15, 23, 42); // Obsidian Slate
       doc.rect(0, 0, pageWidth, 32, 'F');
 
-      let page2TextX = margin;
+      // Render Official Logo on Page 2 (aspect ratio preserved ~4.86:1, no overlapping text)
       if (logoDataUrl) {
         try {
-          doc.addImage(logoDataUrl, 'PNG', margin, 7, 13, 13);
-          page2TextX = margin + 17;
+          doc.addImage(logoDataUrl, 'PNG', margin, 6.5, 48, 9.87);
         } catch (e) {
-          page2TextX = margin;
+          console.warn('PDF logo render warning (p2):', e);
         }
       }
-
-      doc.setTextColor(255, 255, 255);
-      doc.setFont('helvetica', 'bold');
-      doc.setFontSize(14);
-      doc.text('ANSWER INDEX', page2TextX, 15);
-
-      doc.setFont('helvetica', 'bold');
-      doc.setFontSize(8.5);
-      doc.setTextColor(56, 189, 248);
 
       const roadmapTitle = isHighScore 
         ? '1–3 MONTH AI CITATION DEFENSE & DRIFT MONITORING ROADMAP'
         : (isMidScore 
             ? '3–6 MONTH AEO & KNOWLEDGE GRAPH ACCELERATION ROADMAP'
             : '12-MONTH AUTONOMOUS AI & SEARCH DOMINANCE ROADMAP');
-      doc.text(roadmapTitle, page2TextX, 22);
+
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(9);
+      doc.setTextColor(56, 189, 248);
+      doc.text(roadmapTitle, margin, 23);
+
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(8);
+      doc.setTextColor(180, 190, 205);
+      doc.text(`AUDIT SPECIFICATION  |  ${auditData.domain.toUpperCase()}`, pageWidth - margin, 13.5, { align: 'right' });
 
       // Section 1: Alert / Status Banner Tailored to Score
       yPos = 38;
@@ -1448,37 +1456,66 @@
         yPos += phaseSpacing;
       });
 
-      // Section 3: High-Conversion Call-to-Action
-      yPos += 6;
-      const ctaBoxHeight = 56;
-      doc.setFillColor(245, 244, 240);
-      doc.setDrawColor(58, 87, 252);
-      doc.roundedRect(margin, yPos, contentWidth, ctaBoxHeight, 3, 3, 'FD');
+      // Section 3: High-Conversion Call-to-Action (Dynamic Justified Spacing)
+      yPos += 5;
+      const boxStartY = yPos;
+      const boxPadX = 8;
+      const innerWidth = contentWidth - (boxPadX * 2);
 
-      doc.setFont('helvetica', 'bold');
-      doc.setTextColor(17, 17, 17);
-      doc.setFontSize(10.5);
-      doc.text('Put Your Search & AI Growth on Autonomous Autopilot', margin + 8, yPos + 8.5);
+      const titleY = boxStartY + 8.5;
 
-      doc.setFont('helvetica', 'normal');
-      doc.setTextColor(70, 70, 70);
-      doc.setFontSize(7.8);
       const ctaDescText = isHighScore
         ? `Answer Index Pro delivers automated daily deliverables directly to your CMS or repository (1 new answer piece + 1 technical SEO fix daily). Because ${auditData.domain} has an elite foundation, choose the Starter Plan ($199/mo) for drift defense, or accelerate category domination with Pro Autonomous ($499/mo) or Enterprise DFY Partner ($1,499/mo).`
         : 'Answer Index Pro delivers automated daily pull requests and CMS drafts directly to your website (1 new answer piece + 1 technical SEO fix daily). Start with the Starter Plan ($199/mo), the complete Pro Autonomous Cadence ($499/mo), or our high-impact Enterprise DFY Partner ($1,499/mo with priority support).';
       
-      const ctaDesc = doc.splitTextToSize(ctaDescText, contentWidth - 16);
-      doc.text(ctaDesc, margin + 8, yPos + 15.5);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(9);
+      const ctaDescLines = doc.splitTextToSize(ctaDescText, innerWidth);
+      
+      const descStartY = titleY + 6;
+      const descHeight = (ctaDescLines.length * 4.3);
+      
+      let bulletCursorY = descStartY + descHeight + 3;
+      const bulletSpacing = 5.8;
+      const bullet1Y = bulletCursorY;
+      const bullet2Y = bullet1Y + bulletSpacing;
+      const bullet3Y = bullet2Y + bulletSpacing;
+      const portalY = bullet3Y + bulletSpacing + 2.5;
 
+      const ctaBoxHeight = (portalY - boxStartY) + 8;
+
+      // Draw Container Box First with exact computed height
+      doc.setFillColor(245, 244, 240);
+      doc.setDrawColor(58, 87, 252);
+      doc.setLineWidth(0.4);
+      doc.roundedRect(margin, boxStartY, contentWidth, ctaBoxHeight, 3, 3, 'FD');
+
+      // Title
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(17, 17, 17);
+      doc.setFontSize(12.5);
+      doc.text('Put Your Search & AI Growth on Autonomous Autopilot', margin + boxPadX, titleY);
+
+      // Description
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(70, 70, 70);
+      doc.setFontSize(9);
+      doc.text(ctaDescLines, margin + boxPadX, descStartY);
+
+      // Bullets
       doc.setFont('helvetica', 'bold');
       doc.setTextColor(58, 87, 252);
-      doc.setFontSize(8.2);
-      doc.text('• Starter Plan: $199/mo ($159/mo annual) · 1-click CMS / Git staging', margin + 8, yPos + 28);
-      doc.text('• Pro Autonomous: $499/mo ($399/mo annual) · Dual daily jobs & Competitor Defense', margin + 8, yPos + 35);
-      doc.text('• Enterprise Partner: $1,499/mo ($1,199/mo annual) · Calculators & Priority Partner SLA', margin + 8, yPos + 42);
-      doc.text('• Commercial Pricing Portal: https://answerindex.xyz/pricing', margin + 8, yPos + 49);
+      doc.setFontSize(9);
+      doc.text('• Starter Plan: $199/mo ($159/mo annual) — 1-click CMS / Git staging', margin + boxPadX, bullet1Y);
+      doc.text('• Pro Autonomous: $499/mo ($399/mo annual) — Dual daily jobs & Competitor Defense', margin + boxPadX, bullet2Y);
+      doc.text('• Enterprise Partner: $1,499/mo ($1,199/mo annual) — Calculators & Priority Partner SLA', margin + boxPadX, bullet3Y);
+      
+      // Portal link
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(242, 79, 30);
+      doc.setFontSize(9.5);
+      doc.text('• Commercial Pricing Portal: https://answerindex.xyz/pricing', margin + boxPadX, portalY);
 
-      // Page 2 Footer
       doc.setFontSize(8);
       doc.setTextColor(140, 140, 140);
       doc.text(`Page 2 of 2  ·  Answer Index Official Enterprise Report  ·  https://answerindex.xyz`, pageWidth / 2, 290, { align: 'center' });

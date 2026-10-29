@@ -4639,10 +4639,12 @@
         }
       }
 
-      doc.setTextColor(255, 255, 255);
-      doc.setFont('helvetica', 'bold');
-      doc.setFontSize(18);
-      doc.text('ANSWER INDEX', textStartX, 18);
+      // Render Official Logo without text overlap
+      if (logoDataUrl) {
+        try {
+          doc.addImage(logoDataUrl, 'PNG', margin, 8, 54, 11.1);
+        } catch (e) {}
+      }
 
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(8.5);
@@ -4842,10 +4844,12 @@
         }
       }
 
-      doc.setTextColor(255, 255, 255);
-      doc.setFont('helvetica', 'bold');
-      doc.setFontSize(14);
-      doc.text('ANSWER INDEX', page2TextX, 15);
+      // Render Official Logo on Page 2 without text overlap
+      if (logoDataUrl) {
+        try {
+          doc.addImage(logoDataUrl, 'PNG', margin, 6.5, 48, 9.87);
+        } catch (e) {}
+      }
 
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(8.5);
