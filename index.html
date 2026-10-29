@@ -1868,7 +1868,7 @@
           </div>
 
           <h2>
-            Get Cited and Recommended Across Google, ChatGPT, and Perplexity. Hands-Free.
+            Get Cited and Recommended Across <span class="typewriter-word"><span id="typewriter-target">ChatGPT</span><span class="typewriter-cursor">|</span></span>. Hands-Free.
           </h2>
 
           <p class="hero-subtitle">
@@ -1940,76 +1940,87 @@
                 <span id="scannerStatusText" style="color:#B45309;">Probing robots.txt &amp; AI crawler directives...</span>
                 <span id="scannerPercent" style="font-weight:700; color:var(--text-primary);">0%</span>
               </div>
-              <div class="progress-bar-wrap">
-                <div id="scannerBar" class="progress-bar-fill"></div>
+              <div class="scanner-progress-bar">
+                <div id="scannerBarFill" class="scanner-progress-fill"></div>
+              </div>
+              <div class="scanner-steps">
+                <div class="scanner-step active" id="s1">1. Probing robots.txt (GPTBot, ClaudeBot, PerplexityBot)</div>
+                <div class="scanner-step" id="s2">2. Parsing Schema.org JSON-LD Entity Graph (@graph, sameAs)</div>
+                <div class="scanner-step" id="s3">3. Evaluating 40–55 word zero-click answer snippets</div>
+                <div class="scanner-step" id="s4">4. Compiling Executive PDF Audit &amp; 12-Month Roadmap</div>
               </div>
             </div>
 
-            <!-- Live Diagnostic Results Container Matching audit.html -->
-            <div id="resultsCard" class="results-card">
-              <div class="results-top-header">
+            <!-- Full Rich Results Display Matching audit.html -->
+            <div id="resultsBox" class="results-box">
+              <div class="score-banner">
                 <div>
-                  <span class="badge-pill-emerald" style="font-size:0.75rem; font-weight:700; letter-spacing:0.04em;">DETERMINISTIC VERIFICATION COMPLETE</span>
+                  <div style="margin-bottom: 0.45rem;">
+                    <span class="badge-pill-emerald" style="font-size:0.75rem; font-weight:700; letter-spacing:0.04em; background: rgba(16, 185, 129, 0.12); color: #047857; border: 1px solid rgba(16, 185, 129, 0.25);">✓ DETERMINISTIC VERIFICATION COMPLETE</span>
+                  </div>
+                  <div style="font-size:0.75rem; color:var(--text-muted); font-family:'JetBrains Mono', monospace; text-transform:uppercase;">Evaluated Domain</div>
                   <h3 id="resDomain" style="font-size:1.45rem; font-weight:800; color:var(--text-primary); margin: 2px 0 4px;">yoursite.com</h3>
-                  <div id="resSummary" style="font-size:0.9rem; color:var(--text-secondary);">Audit completed successfully.</div>
+                  <div id="resSummary" style="font-size:0.85rem; color:var(--emerald-text); font-weight: 600;">✓ Moderate Foundation · Immediate AEO Gains Available</div>
                 </div>
-                <div class="score-dial">
-                  <div id="resScoreDial" class="score-circle">--</div>
-                  <div style="font-size:0.75rem; text-transform:uppercase; font-weight:700; color:var(--text-muted); margin-top:0.35rem; font-family:'JetBrains Mono', monospace;">AEO Readiness Score</div>
-                </div>
-              </div>
-
-              <!-- Diagnostic Sub-Scores Grid -->
-              <div class="audit-subscores-grid">
-                <div class="subscore-box">
-                  <div class="subscore-num" id="scoreTech">--/25</div>
-                  <div class="subscore-label">Technical SEO &amp; Directives</div>
-                  <div class="subscore-desc">Robots, TTFB &amp; sitemaps</div>
-                </div>
-                <div class="subscore-box">
-                  <div class="subscore-num" id="scoreSchema">--/25</div>
-                  <div class="subscore-label">Schema &amp; Entity Graph</div>
-                  <div class="subscore-desc">JSON-LD &amp; SameAs links</div>
-                </div>
-                <div class="subscore-box">
-                  <div class="subscore-num" id="scoreAeo">--/25</div>
-                  <div class="subscore-label">AEO Answer Readiness</div>
-                  <div class="subscore-desc">45-word snippet parsing</div>
-                </div>
-                <div class="subscore-box">
-                  <div class="subscore-num" id="scoreAi">--/25</div>
-                  <div class="subscore-label">AI Machine Ingestion</div>
-                  <div class="subscore-desc">/llms.txt &amp; crawler access</div>
+                <div style="text-align:right;">
+                  <div style="font-size:2.5rem; font-weight:800; color:#B45309; line-height:1;" id="resScore">68<span style="font-size:1.1rem; color:var(--text-muted);">/100</span></div>
+                  <div style="font-size:0.75rem; color:var(--text-muted); font-family:'JetBrains Mono', monospace; text-transform:uppercase;">AEO Readiness Score</div>
                 </div>
               </div>
 
-              <!-- Executive Synthesis Callout Box -->
-              <div id="executiveCalloutBox" class="exec-callout">
-                <div style="font-weight:700; color:#B45309; margin-bottom:0.25rem; font-family:'JetBrains Mono', monospace; font-size:0.85rem;">EXECUTIVE ACTION SUMMARY</div>
-                <div id="executiveCalloutText">Analyzing diagnostic indicators...</div>
+              <!-- Website Architecture & Platform Fingerprint Card -->
+              <div id="resTechCard" style="background: var(--honey-light); border: 1px solid var(--honey-border); border-radius: 14px; padding: 1.1rem 1.35rem; margin-bottom: 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+                <div style="display: flex; align-items: center; gap: 0.85rem;">
+                  <div id="resTechIcon" style="font-size: 2rem;">🌐</div>
+                  <div>
+                    <div style="font-size: 0.72rem; color: #B45309; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700;">Platform &amp; Architecture Fingerprint</div>
+                    <div id="resTechTitle" style="font-size: 1.15rem; font-weight: 800; color: var(--text-primary);">Detecting Architecture...</div>
+                    <div id="resTechDetails" style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.2rem;">Analyzing CMS, eCommerce, Hosting CDN, and Schema plugins</div>
+                  </div>
+                </div>
+                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                  <span id="resTechBadgePlat" style="background: #FFFFFF; border: 1px solid var(--honey-border); color: #B45309; font-size: 0.75rem; font-weight: 700; padding: 0.25rem 0.65rem; border-radius: 6px; font-family: 'JetBrains Mono', monospace;">Platform: Analyzing</span>
+                  <span id="resTechBadgeCdn" style="background: var(--emerald-bg); border: 1px solid rgba(16,185,129,0.3); color: var(--emerald-text); font-size: 0.75rem; font-weight: 700; padding: 0.25rem 0.65rem; border-radius: 6px; font-family: 'JetBrains Mono', monospace;">CDN: Edge</span>
+                </div>
               </div>
 
-              <!-- Action Footer: Download PDF & Next Steps -->
-              <div class="audit-action-footer">
-                <button type="button" class="btn-honey-primary" id="downloadPdfBtn" onclick="downloadCurrentAuditPdf()" style="font-size: 13.5px; padding: 10px 22px; font-weight: 500;">
-                  Download AEO GEO SEO Audit Report →
+              <div class="pillars-grid">
+                <div class="pillar-card">
+                  <div style="font-size:0.75rem; color:var(--text-muted); font-family:'JetBrains Mono', monospace;">01 / CRAWL DIRECTIVES</div>
+                  <div class="pillar-val" id="p1Val">85%</div>
+                  <div style="font-size:0.78rem; color:var(--text-secondary);">AI bots allowed, missing /llms.txt manifest.</div>
+                </div>
+                <div class="pillar-card">
+                  <div style="font-size:0.75rem; color:var(--text-muted); font-family:'JetBrains Mono', monospace;">02 / SCHEMA GRAPH</div>
+                  <div class="pillar-val" id="p2Val">60%</div>
+                  <div style="font-size:0.78rem; color:var(--text-secondary);">Isolated nodes. Needs unified @graph interconnect.</div>
+                </div>
+                <div class="pillar-card">
+                  <div style="font-size:0.75rem; color:var(--text-muted); font-family:'JetBrains Mono', monospace;">03 / AEO SNIPPETS</div>
+                  <div class="pillar-val" id="p3Val">55%</div>
+                  <div style="font-size:0.78rem; color:var(--text-secondary);">Requires 40–55 word direct-answer summaries.</div>
+                </div>
+                <div class="pillar-card">
+                  <div style="font-size:0.75rem; color:var(--text-muted); font-family:'JetBrains Mono', monospace;">04 / DRIFT DEFENSE</div>
+                  <div class="pillar-val" id="p4Val">72%</div>
+                  <div style="font-size:0.78rem; color:var(--text-secondary);">No Brand Truth Wiki grounding detected.</div>
+                </div>
+              </div>
+
+              <!-- Executive Action Summary Callout -->
+              <div id="executiveCalloutBox" style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-left: 4px solid #B45309; border-radius: 12px; padding: 1.1rem 1.25rem; margin-bottom: 1.25rem;">
+                <div style="font-weight:700; color:#B45309; margin-bottom:0.35rem; font-family:'JetBrains Mono', monospace; font-size:0.8rem; letter-spacing:0.04em;">EXECUTIVE ACTION SUMMARY</div>
+                <div id="executiveCalloutText" style="font-size:0.88rem; color:var(--text-secondary); line-height:1.5;">Direct citation readiness requires closing crawl directive gaps and deploying unified entity graphs. Two automated deliverables daily stage these fixes directly to your queue.</div>
+              </div>
+
+              <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center; justify-content: space-between;">
+                <button type="button" onclick="downloadPdfReport()" class="btn-download-pdf" style="flex: 1; min-width: 260px;">
+                  📄 Download AEO GEO SEO Audit Report (PDF) →
                 </button>
-                <div style="font-size:0.85rem; color:var(--text-secondary);">
-                  Need automatic daily implementation? <a href="#pricing" style="color:#B45309; font-weight:700; text-decoration:underline;">Explore Answer Index Pro →</a>
-                </div>
+                <a href="#pricing" class="btn-secondary" style="padding: 10px 18px; font-size: 13.5px; text-decoration: none; display: inline-flex; align-items: center;">
+                  Explore Automated Daily Fixes →
+                </a>
               </div>
-            </div>
-          </div>
-
-          <!-- Bottom Verification Strip: Frontier Models -->
-          <div class="engine-strip">
-            <span class="label">Direct Citation Verification Across:</span>
-            <div class="engine-logos">
-              <span class="engine-tag"><span class="engine-dot"></span> ChatGPT Search</span>
-              <span class="engine-tag"><span class="engine-dot"></span> Perplexity AI</span>
-              <span class="engine-tag"><span class="engine-dot"></span> Claude 3.7 Sonnet</span>
-              <span class="engine-tag"><span class="engine-dot"></span> Google AI Overviews</span>
-              <span class="engine-tag"><span class="engine-dot"></span> Microsoft Copilot</span>
             </div>
           </div>
         </div>
@@ -2568,20 +2579,21 @@
 
     // --- TYPEWRITER ANIMATION ---
     const aiModels = [
-      'ChatGPT.',
-      'Perplexity.',
-      'Claude.',
-      'Google AI.',
-      'Gemini.',
-      'AI Search.'
+      'ChatGPT',
+      'Perplexity',
+      'Claude 3.7',
+      'Google AI',
+      'Gemini',
+      'Microsoft Copilot',
+      'AI Search'
     ];
 
     let currentModelIndex = 0;
     let currentCharIndex = 0;
     let isDeleting = false;
-    const typewriterTarget = document.getElementById('typewriter-target');
 
     function typeWriterLoop() {
+      const typewriterTarget = document.getElementById('typewriter-target');
       if (!typewriterTarget) return;
       const currentWord = aiModels[currentModelIndex];
 
@@ -2607,9 +2619,11 @@
       setTimeout(typeWriterLoop, typingSpeed);
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', typeWriterLoop);
+    } else {
       typeWriterLoop();
-    });
+    }
 
     // --- DOMAIN AUDIT ENGINE (IDENTICAL TO AUDIT.HTML) ---
     let currentAuditReport = null;
@@ -2900,6 +2914,7 @@
     }
 
     // --- PDF REPORT EXPORT (IDENTICAL TO AUDIT.HTML) ---
+    function downloadCurrentAuditPdf() { downloadPdfReport(); }
     function downloadPdfReport() {
       if (!currentAuditReport) {
         alert('Please run an audit first.');
