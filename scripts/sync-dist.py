@@ -21,6 +21,7 @@ for h in html_files:
 
 # 2. Manifests & Root files
 manifest_files = [
+    'favicon.ico',
     'robots.txt', 'sitemap.xml', 'ai-sitemap.xml', 'sitemap.md',
     'llms.txt', 'llms-full.txt', 'ai.txt', 'ai-disclosure.txt',
     'training-data-policy.txt', 'ai-schema.json', 'ai-entities.json',
