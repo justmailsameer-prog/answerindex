@@ -1,5 +1,9 @@
 <p align="center">
-  <img src="assets/AnswerIndex_Logo.png" alt="AnswerIndex Logo" width="140" height="140" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/AnswerIndex_Logo_Dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="assets/AnswerIndex_Logo.png">
+    <img src="assets/AnswerIndex_Logo_Dark.png" alt="Answer Index Logo" width="460" />
+  </picture>
 </p>
 
 <h1 align="center">Answer Index</h1>
