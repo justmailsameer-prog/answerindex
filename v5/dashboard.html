@@ -840,45 +840,225 @@
       border-color: #EF4444;
     }
 
-    /* Mobile Responsive Optimizations */
-    @media (max-width: 900px) {
+    /* Mobile Responsive Optimizations (mobile-design touch-first doctrine) */
+    @media (max-width: 992px) {
       .cause-effect-banner {
         grid-template-columns: 1fr;
-        gap: 14px;
+        gap: 16px;
+        padding: 20px 22px;
       }
       .flow-step-arrow {
         transform: rotate(90deg);
-        margin: 4px 0;
+        margin: 2px 0;
+        font-size: 16px;
       }
       .kpi-row {
         grid-template-columns: 1fr 1fr;
+        gap: 14px;
       }
       .dashboard-layout {
         grid-template-columns: 1fr;
+        gap: 20px;
       }
     }
-    @media (max-width: 600px) {
+
+    @media (max-width: 640px) {
       .app-container {
-        padding: 12px 12px 60px;
+        padding: 12px 12px 70px;
       }
+      
+      /* Header & Branding Touch Ergonomics */
       header {
         padding: 10px 14px;
-        border-radius: 16px;
+        border-radius: 18px;
+        margin-bottom: 18px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        position: static; /* Prevent sticky header taking up valuable vertical mobile space */
+      }
+      .brand-group {
+        justify-content: space-between;
+        width: 100%;
+      }
+      .logo-badge {
+        width: 40px;
+        height: 40px;
+      }
+      .logo-badge img {
+        width: 40px;
+        height: 40px;
+      }
+      .brand-title h1 {
+        font-size: 15px;
       }
       .brand-title p {
-        display: none;
+        display: none; /* Hide subtitle to avoid vertical crowding */
       }
+      
+      .nav-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        width: 100%;
+      }
+      .nav-actions #projectDomainPill {
+        grid-column: 1 / -1;
+        justify-content: center;
+        font-size: 11.5px;
+        padding: 6px 10px;
+      }
+      .nav-actions .btn-secondary {
+        min-height: 44px; /* Apple HIG & Material min touch target */
+        justify-content: center;
+        padding: 8px 12px;
+        font-size: 12.5px;
+      }
+
+      /* KPI Cards */
       .kpi-row {
         grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 20px;
       }
+      .kpi-stat-card {
+        padding: 18px 20px;
+      }
+      .kpi-value {
+        font-size: 26px;
+      }
+
+      /* Workspace Hub */
+      .workspace-card {
+        padding: 20px 16px;
+        border-radius: 18px;
+      }
+      .workspace-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding-bottom: 14px;
+        margin-bottom: 16px;
+      }
+      .workspace-title-group h2 {
+        font-size: 18px;
+      }
+
+      /* View Switcher Touch Targets */
+      .view-switcher {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+      .view-tab-btn {
+        min-height: 44px;
+        justify-content: center;
+        font-size: 13px;
+      }
+
+      /* Filter Pills Row */
+      .filter-pills-row {
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 16px;
+      }
+      .filter-pill {
+        min-height: 38px;
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 14px;
+        font-size: 12px;
+      }
+
+      /* Deliverable Job Card */
+      .job-card {
+        padding: 16px 14px;
+        border-radius: 14px;
+      }
+      .job-header-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      .job-title {
+        font-size: 15px;
+        line-height: 1.35;
+      }
+      .job-details-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 10px 12px;
+      }
+      .job-actions-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+      }
+      .job-actions-row > div {
+        width: 100%;
+      }
+      .job-actions-row button, .job-actions-row a {
+        min-height: 44px; /* Touch target */
+        width: 100%;
+        justify-content: center;
+        font-size: 13px !important;
+      }
+      .job-actions-row div:first-child {
+        display: grid !important;
+        grid-template-columns: 1.5fr 1fr;
+      }
+
+      /* 30-Day Calendar Mobile Grid */
       .calendar-grid-header {
         display: none;
       }
       .calendar-days-grid {
         grid-template-columns: 1fr;
+        gap: 8px;
       }
-      .job-details-grid {
-        grid-template-columns: 1fr;
+      .cal-day-card {
+        min-height: auto;
+        padding: 12px 14px;
+      }
+      .cal-day-task {
+        -webkit-line-clamp: 3;
+        font-size: 12px;
+        margin-top: 6px;
+      }
+
+      /* Telemetry Card & On-Demand Dispatch Button */
+      .telemetry-card {
+        padding: 20px 16px;
+        border-radius: 18px;
+      }
+      .impact-simulator-card {
+        padding: 18px 16px;
+        border-radius: 18px;
+      }
+      #btnManualDispatch {
+        min-height: 48px;
+      }
+
+      /* Modal Optimization for Mobile Viewport */
+      .modal-card {
+        padding: 22px 16px;
+        border-radius: 18px;
+        max-height: 94vh;
+        margin: 10px;
+      }
+      .modal-close-btn {
+        width: 44px;
+        height: 44px;
+        top: 14px;
+        right: 14px;
+      }
+      #truthDocTextarea {
+        font-size: 13px !important; /* Prevents auto zoom */
+      }
+      #btnSaveTruth {
+        min-height: 44px;
+        width: 100%;
+        justify-content: center;
       }
     }
   </style>
