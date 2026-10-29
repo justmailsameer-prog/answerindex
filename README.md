@@ -6,8 +6,6 @@
   </picture>
 </p>
 
-<h1 align="center">Answer Index</h1>
-
 <p align="center">
   <strong>Make your Content Indexable as Authoritative Answers across Search & AI Engines.</strong>
 </p>
