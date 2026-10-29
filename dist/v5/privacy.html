@@ -8,6 +8,8 @@
 
   <!-- Canonical & Crawl Directives -->
   <link rel="canonical" href="https://answerindex.xyz/v5/about.html" />
+  <link rel="icon" type="image/png" href="/assets/favicon.png?v=2026">
+  <link rel="apple-touch-icon" href="/assets/AnswerIndex_Logo_Icon.png?v=2026">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 
   <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono (Narwhal Theme) -->
@@ -148,11 +150,13 @@
     }
 
     .brand-group {
-      display: flex;
-      align-items: center;
-      gap: 14px;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 3px;
       text-decoration: none;
       color: inherit;
+      line-height: 1;
     }
 
     .logo-badge {
@@ -231,20 +235,35 @@
       pointer-events: auto;
     }
     .drawer-panel {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      width: 380px;
-      max-width: 90vw;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      bottom: auto;
+      width: calc(100% - 40px);
+      max-width: 380px;
+      max-height: calc(100vh - 40px);
       background: #FFFFFF;
-      box-shadow: -8px 0 32px rgba(0, 0, 0, 0.12);
-      transform: translateX(100%);
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.16);
+      transform: translateX(calc(100% + 30px));
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
       display: flex;
       flex-direction: column;
-      padding: 24px;
+      padding: 20px 22px;
       overflow-y: auto;
+    }
+    @media (max-width: 640px) {
+      .drawer-panel {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        width: auto;
+        max-width: 100%;
+        max-height: calc(100vh - 20px);
+        padding: 16px 18px;
+        border-radius: 16px;
+      }
     }
     .drawer-overlay.open .drawer-panel {
       transform: translateX(0);
@@ -782,13 +801,9 @@
   <div class="app-container">
     <!-- Top Sticky Pill Header -->
     <header>
-      <a href="/" class="brand-group">
-        <div class="logo-badge" style="width: auto; height: auto;">
-          <img src="assets/AnswerIndex_Logo.png" alt="Answer Index Logo" class="brand-logo-img" width="168" height="56" onerror="this.onerror=null; this.src='/assets/AnswerIndex_Logo.png';">
-        </div>
-        <div class="brand-title">
-          <p class="brand-tagline">Be the Answer AI Recommends</p>
-        </div>
+      <a href="/" class="brand-group" aria-label="Answer Index Home">
+        <img src="assets/AnswerIndex_Logo.png" alt="Answer Index Logo" class="brand-logo-img" width="220" height="44" onerror="this.onerror=null; this.src='/assets/AnswerIndex_Logo.png';">
+        <span class="brand-tagline">Be the Answer AI Recommends</span>
       </a>
 
       <!-- Right Side Actions: Sign In (#f24f1e) + Inspect Domain + Hamburger Menu -->
@@ -983,9 +998,9 @@
 <footer class="narwhal-footer">
       <div class="footer-grid-5">
         <div class="footer-brand">
-          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-            <img src="assets/AnswerIndex_Logo_v5.png" alt="Logo" width="40" height="40" style="width: 40px; height: 40px; object-fit: contain; filter: drop-shadow(0 2px 6px rgba(249, 188, 56, 0.25));" onerror="this.onerror=null; this.src='/assets/AnswerIndex_Logo_v5.png';">
-            <h4 style="margin: 0; font-size: 19px; font-weight: 800;">Answer Index</h4>
+          <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 4px; margin-bottom: 14px;">
+            <img src="assets/AnswerIndex_Logo.png" alt="Answer Index" style="height: 42px; width: auto; max-width: 220px; object-fit: contain; display: block;" onerror="this.onerror=null; this.src='/assets/AnswerIndex_Logo.png';">
+            <span class="footer-tagline" style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 700; color: #f24f1e; letter-spacing: 0.04em; text-transform: uppercase; margin: 4px 0 0; display: block;">Be the Answer AI Recommends</span>
           </div>
           <p>
             The autonomous growth engine built for the post-search generative AI era. Daily dual production shipped directly to your CMS or GitHub as reviewable 1-click drafts.
