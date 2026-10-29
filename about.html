@@ -832,13 +832,30 @@
       max-width: 175px;
       object-fit: contain;
     }
-    .brand-title p.brand-tagline {
-      font-size: 12px;
+    .brand-tagline {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
       font-weight: 700;
       color: var(--text-secondary);
-      line-height: 1.25;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      line-height: 1;
+      display: block;
       margin: 0;
-      letter-spacing: 0.01em;
+      white-space: nowrap;
+      align-self: flex-end;
+      text-align: right;
+    }
+    .brand-title p.brand-tagline {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      line-height: 1;
+      margin: 0;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      align-self: flex-end;
+      text-align: right;
     }
     .drawer-accordion {
       border: 1px solid var(--border-subtle);
@@ -1153,9 +1170,9 @@
     <footer class="narwhal-footer">
       <div class="footer-grid-5">
         <div class="footer-brand">
-          <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 4px; margin-bottom: 14px;">
+          <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 4px; margin-bottom: 14px; width: fit-content;">
             <img src="assets/AnswerIndex_Logo.png" alt="Answer Index" style="height: 42px; width: auto; max-width: 220px; object-fit: contain; display: block;" onerror="this.onerror=null; this.src='/assets/AnswerIndex_Logo.png';">
-            <span class="footer-tagline" style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 700; color: #f24f1e; letter-spacing: 0.04em; text-transform: uppercase; margin: 4px 0 0; display: block;">Be the Answer AI Recommends</span>
+            <span class="footer-tagline" style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 700; color: #f24f1e; letter-spacing: 0.04em; text-transform: uppercase; margin: 4px 0 0; display: block; align-self: flex-end; text-align: right;">Be the Answer AI Recommends</span>
           </div>
           <p>
             The autonomous growth engine built for the post-search generative AI era. Daily dual production shipped directly to your CMS or GitHub as reviewable 1-click drafts.
