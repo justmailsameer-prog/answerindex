@@ -18,8 +18,8 @@
   --ink-faint: #727a6e;
   --border: #dcd6c8;
   --border-strong: #cac1ae;
-  --accent: #c94424;
-  --accent-hover: #b0381b;
+  --accent: #f24f1e;
+  --accent-hover: #d94214;
   --accent-soft: rgba(201, 68, 36, 0.08);
   --accent-glow: rgba(201, 68, 36, 0.22);
   --orange: #ec5836;
@@ -183,11 +183,19 @@ header.site-header .container {
   text-decoration: none;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
-  border: 1px solid rgba(201, 68, 36, 0.25);
+  border: 1px solid #f24f1e;
   line-height: 1;
   white-space: nowrap;
-  background-color: var(--ww-peach);
-  color: var(--accent) !important;
+  background-color: #f24f1e;
+  color: #FFFFFF !important;
+  box-shadow: 0 3px 12px rgba(242, 79, 30, 0.28);
+}
+.btn-portal:hover {
+  background-color: #d94214;
+  border-color: #d94214;
+  color: #FFFFFF !important;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 16px rgba(242, 79, 30, 0.38);
 }
 
 .btn-portal:hover {
@@ -701,3 +709,66 @@ footer.site-footer-detailed .container {
   }
 }
 
+
+/* Collapsible Drawer Accordion Submenus */
+.drawer-accordion {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--ww-surface);
+  margin-top: 10px;
+  transition: all 0.2s ease;
+}
+.drawer-accordion[open] {
+  border-color: rgba(242, 79, 30, 0.35);
+  background: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+}
+.drawer-accordion-summary {
+  padding: 12px 14px;
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--ink);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+  list-style: none;
+}
+.drawer-accordion-summary::-webkit-details-marker {
+  display: none;
+}
+.drawer-accordion-summary .chevron-icon {
+  transition: transform 0.25s ease;
+  color: var(--ink-faint);
+}
+.drawer-accordion[open] .chevron-icon {
+  transform: rotate(180deg);
+  color: #f24f1e;
+}
+.drawer-accordion .drawer-sublink-list {
+  padding: 6px 14px 12px 14px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  border-left: none;
+}
+.drawer-accordion .drawer-sublink-list a {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-muted);
+  text-decoration: none;
+  padding: 4px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: color 0.15s ease;
+}
+.drawer-accordion .drawer-sublink-list a:hover {
+  color: #f24f1e;
+}

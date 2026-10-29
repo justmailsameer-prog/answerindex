@@ -677,26 +677,124 @@
       margin: 16px 0;
     }
 
+  
+    /* Header Sign In Button (#f24f1e Accent) */
+    .btn-header-signin {
+      background-color: #f24f1e;
+      color: #FFFFFF;
+      border: 1px solid #f24f1e;
+      border-radius: var(--radius-pill);
+      padding: 8px 18px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 3px 12px rgba(242, 79, 30, 0.28);
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+    .btn-header-signin:hover {
+      background-color: #d94214;
+      border-color: #d94214;
+      transform: translateY(-1px);
+      box-shadow: 0 5px 16px rgba(242, 79, 30, 0.4);
+    }
+    .brand-logo-img {
+      height: 44px;
+      width: auto;
+      max-width: 175px;
+      object-fit: contain;
+    }
+    .brand-title p.brand-tagline {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      line-height: 1.25;
+      margin: 0;
+      letter-spacing: 0.01em;
+    }
+    .drawer-accordion {
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--bg-canvas);
+      margin-top: 12px;
+      transition: all 0.2s ease;
+    }
+    .drawer-accordion[open] {
+      border-color: rgba(242, 79, 30, 0.35);
+      background: #FFFFFF;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+    }
+    .drawer-accordion-summary {
+      padding: 12px 14px;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text-primary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+      list-style: none;
+    }
+    .drawer-accordion-summary::-webkit-details-marker {
+      display: none;
+    }
+    .drawer-accordion-summary .chevron-icon {
+      transition: transform 0.25s ease;
+      color: var(--text-muted);
+    }
+    .drawer-accordion[open] .chevron-icon {
+      transform: rotate(180deg);
+      color: #f24f1e;
+    }
+    .drawer-accordion .drawer-sublink-list {
+      padding: 6px 14px 12px 14px;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin: 0;
+      border-left: none;
+    }
+    .drawer-accordion .drawer-sublink-list a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      padding: 4px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: color 0.15s ease;
+    }
+    .drawer-accordion .drawer-sublink-list a:hover {
+      color: #f24f1e;
+    }
+        
   </style>
 </head>
 <body>
   <div class="app-container">
     <!-- Top Sticky Pill Header -->
     <header>
-      <a href="index.html" class="brand-group">
-        <div class="logo-badge">
-          <img src="assets/AnswerIndex_Logo_v5.png" alt="Answer Index Logo" width="48" height="48" onerror="this.onerror=null; this.src='/assets/AnswerIndex_Logo_v5.png';">
+      <a href="/" class="brand-group">
+        <div class="logo-badge" style="width: auto; height: auto;">
+          <img src="assets/AnswerIndex_Logo.png" alt="Answer Index Logo" class="brand-logo-img" width="168" height="56" onerror="this.onerror=null; this.src='/assets/AnswerIndex_Logo.png';">
         </div>
         <div class="brand-title">
-          <h1>Answer Index</h1>
-          <p>The Autonomous AEO &amp; Technical SEO Growth Engine</p>
+          <p class="brand-tagline">Be the Answer AI Recommends</p>
         </div>
       </a>
 
-      <!-- Right Side Actions: Single Sign In Button + Inspect Domain + Hamburger Menu -->
+      <!-- Right Side Actions: Sign In (#f24f1e) + Inspect Domain + Hamburger Menu -->
       <div class="header-ctas">
-        <button type="button" onclick="openClientAuthModal('login')" class="btn-secondary" style="cursor: pointer;">Sign In</button>
-        <a href="index.html#audit-tool" class="btn-honey-primary">Inspect Domain ↗</a>
+        <button type="button" onclick="openClientAuthModal('login')" class="btn-header-signin">Sign In</button>
+        <a href="/#audit-tool" class="btn-honey-primary">Inspect Domain ↗</a>
         <button type="button" class="hamburger-btn" onclick="toggleDrawer(true)" aria-label="Open Navigation Menu">
           <span class="hamburger-bar"></span>
           <span class="hamburger-bar"></span>
@@ -709,49 +807,80 @@
     <div id="drawerMenu" class="drawer-overlay" onclick="handleOverlayClick(event)">
       <div class="drawer-panel">
         <div class="drawer-header">
-          <span>Navigation &amp; Directory</span>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #f24f1e;">Navigation</span>
+          </div>
           <button type="button" class="drawer-close-btn" onclick="toggleDrawer(false)" aria-label="Close Navigation Menu">✕</button>
         </div>
 
         <div class="drawer-nav-sections">
-          <!-- 01 · Product & Architecture -->
+          <!-- Primary Direct Links -->
           <div class="drawer-group">
-            <h4>01 · Core Architecture</h4>
-            <ul>
-              <li><a href="about.html" style="color: #B45309; font-weight: 700;">About Answer Index (Active)</a></li>
-              <li><a href="index.html#summary">Executive Summary</a></li>
-              <li><a href="index.html#daily-loop">The Daily 2-Job Pipeline <span class="tag">Automated</span></a></li>
-              <li><a href="index.html#how-it-works">Safe Staging Flow</a></li>
-              <li><a href="index.html#brand-truth">Brand Truth Wiki</a></li>
+            <h4 style="font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Primary Actions</h4>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; padding: 0; margin: 0;">
+              <li>
+                <a href="/#audit-tool" onclick="toggleDrawer(false)" style="display: flex; align-items: center; justify-content: space-between; font-size: 15px; font-weight: 700; color: var(--text-primary); text-decoration: none; padding: 6px 0;">
+                  <span style="display: flex; align-items: center; gap: 8px;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f24f1e" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    Start Free AI Citation Audit
+                  </span>
+                  <span class="tag" style="background: rgba(242, 79, 30, 0.1); color: #f24f1e; border: 1px solid rgba(242, 79, 30, 0.25); font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 999px;">Live Probe</span>
+                </a>
+              </li>
+              <li>
+                <a href="/#daily-loop" onclick="toggleDrawer(false)" style="display: flex; align-items: center; justify-content: space-between; font-size: 15px; font-weight: 700; color: var(--text-primary); text-decoration: none; padding: 6px 0;">
+                  <span>The Daily 2-Job Pipeline</span>
+                  <span class="tag" style="background: var(--honey-light); color: #B45309; border: 1px solid var(--honey-border); font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 999px;">06:00 AM</span>
+                </a>
+              </li>
+              <li>
+                <a href="/#pricing" onclick="toggleDrawer(false)" style="display: flex; align-items: center; justify-content: space-between; font-size: 15px; font-weight: 700; color: var(--text-primary); text-decoration: none; padding: 6px 0;">
+                  <span>Growth Plans &amp; Pricing</span>
+                  <span class="tag" style="background: var(--honey-light); color: #B45309; border: 1px solid var(--honey-border); font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 999px;">From $199</span>
+                </a>
+              </li>
+              <li>
+                <a href="/dashboard.html" target="_blank" style="display: flex; align-items: center; justify-content: space-between; font-size: 15px; font-weight: 700; color: #059669; text-decoration: none; padding: 6px 0;">
+                  <span>Client Dashboard ↗</span>
+                  <span class="tag" style="background: var(--emerald-bg); color: var(--emerald-text); border: 1px solid rgba(16, 185, 129, 0.3); font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 999px;">Queue</span>
+                </a>
+              </li>
             </ul>
           </div>
 
-          <!-- 02 · Comparison & Pricing -->
-          <div class="drawer-group">
-            <h4>02 · Pricing &amp; Comparison</h4>
-            <ul>
-              <li><a href="index.html#comparison">Market Comparison</a></li>
-              <li><a href="index.html#pricing">Growth Plans &amp; Pricing</a></li>
-              <li><a href="index.html#faq">Frequently Asked Questions</a></li>
-            </ul>
-          </div>
+          <!-- Collapsible Submenu 1: Architecture & Safe Execution -->
+          <details class="drawer-accordion">
+            <summary class="drawer-accordion-summary">
+              <span>Platform &amp; Architecture</span>
+              <svg class="chevron-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </summary>
+            <div class="drawer-sublink-list">
+              <a href="/#summary" onclick="toggleDrawer(false)">The New Search Paradigm</a>
+              <a href="/#how-it-works" onclick="toggleDrawer(false)">Safe Staging Flow (CMS &amp; PR)</a>
+              <a href="/#brand-truth" onclick="toggleDrawer(false)">Brand Truth Wiki (D1 Grounding)</a>
+              <a href="/#comparison" onclick="toggleDrawer(false)">Agency &amp; Tool Comparison</a>
+              <a href="/how-it-works.html">Full Technical Architecture ↗</a>
+            </div>
+          </details>
 
-          <!-- 03 · Portals & Machine Feeds -->
-          <div class="drawer-group">
-            <h4>03 · Portals &amp; Machine Feeds</h4>
-            <ul>
-              <li><a href="javascript:void(0)" onclick="toggleDrawer(false); openClientAuthModal('login');" style="color: #B45309; font-weight: 700;">Sign In to Account →</a></li>
-              <li><a href="/dashboard.html" target="_blank" style="color: #059669; font-weight: 700;">Client Dashboard ↗</a></li>
-              <li><a href="../audit.html">Deep Technical Audit Suite ↗</a></li>
-              <li><a href="../llms.txt" target="_blank">Machine Manifest (/llms.txt)</a></li>
-              <li><a href="https://github.com/justmailsameer-prog/answerindex" target="_blank">GitHub Repository (Open Source) ↗</a></li>
-            </ul>
-          </div>
+          <!-- Collapsible Submenu 2: Company & Support -->
+          <details class="drawer-accordion">
+            <summary class="drawer-accordion-summary">
+              <span>Company &amp; Resources</span>
+              <svg class="chevron-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </summary>
+            <div class="drawer-sublink-list">
+              <a href="/about.html">About Answer Index</a>
+              <a href="/#faq" onclick="toggleDrawer(false)">Frequently Asked Questions</a>
+              <a href="/feedback.html">Direct Feedback Channel</a>
+              <a href="mailto:sameer@answerindex.xyz">Founder &amp; Support Contact</a>
+            </div>
+          </details>
         </div>
 
-        <div class="drawer-cta-bottom" style="margin-top: auto; padding-top: 24px; border-top: 1px solid var(--border-subtle);">
-          <button type="button" onclick="toggleDrawer(false); openClientAuthModal('login');" class="btn-honey-primary" style="width: 100%; justify-content: center; cursor: pointer; margin-bottom: 8px;">Sign In →</button>
-          <a href="mailto:sameer@answerindex.xyz" class="btn-secondary" style="width: 100%; justify-content: center; font-size: 12.5px;">✉️ sameer@answerindex.xyz</a>
+        <div class="drawer-cta-bottom">
+          <button type="button" onclick="toggleDrawer(false); openClientAuthModal('login');" class="btn-drawer-signin" style="width: 100%; justify-content: center; cursor: pointer; background: #f24f1e; color: #ffffff; border: 1px solid #f24f1e; border-radius: var(--radius-pill); padding: 12px; font-weight: 700; font-size: 14.5px; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 14px rgba(242, 79, 30, 0.35);">Sign In to Account →</button>
+          <a href="mailto:sameer@answerindex.xyz" class="btn-secondary" style="width: 100%; justify-content: center; font-size: 12.5px; text-decoration: none;">✉️ sameer@answerindex.xyz</a>
         </div>
       </div>
     </div>

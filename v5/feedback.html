@@ -534,6 +534,20 @@
         padding: 28px 20px;
       }
     }
+
+    @media (max-width: 640px) {
+      .feedback-card {
+        padding: 22px 16px;
+        border-radius: 14px;
+      }
+      .container {
+        padding: 0 16px;
+      }
+      .btn-submit {
+        min-height: 48px;
+        width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -551,7 +565,7 @@
           </div>
           <div class="brand-text-group">
             <span class="brand-name">Answer Index</span>
-            <span class="version-tag">Edition 04</span>
+            <span class="version-tag" style="font-size: 11px; color: var(--ink-faint); font-weight: 600;">Be the Answer AI Recommends</span>
           </div>
         </a>
 
@@ -570,69 +584,84 @@
   </header>
 
   <!-- Categorized Slide-Out Hamburger Drawer Menu -->
-  <div id="drawerMenu" class="drawer-overlay" onclick="handleOverlayClick(event)">
+    <div id="drawerMenu" class="drawer-overlay" onclick="handleOverlayClick(event)">
     <div class="drawer-panel">
       <div class="drawer-header">
-        <span>Navigation &amp; Directory</span>
+        <span style="color: #f24f1e;">Navigation</span>
         <button type="button" class="drawer-close-btn" onclick="toggleDrawer(false)" aria-label="Close Navigation Menu">&times;</button>
       </div>
 
       <div class="drawer-nav-sections">
-        <!-- 01 · Product & Delivery -->
+        <!-- Primary Direct Links -->
         <div class="drawer-group">
-          <h4>01 · Product &amp; Delivery</h4>
+          <h4>Primary Actions</h4>
           <ul>
-            <li><a href="/#summary" onclick="toggleDrawer(false)">Overview &amp; Thesis</a></li>
-            <li><a href="/#daily-loop" onclick="toggleDrawer(false)">The Daily 2-Job Cadence</a></li>
-            <li><a href="/#how-it-works" onclick="toggleDrawer(false)">How Staging &amp; Merges Work</a></li>
-            <li><a href="/how-it-works.html">Customer Lifecycle Map</a></li>
+            <li>
+              <a href="/#audit-tool" onclick="toggleDrawer(false)" style="display: flex; align-items: center; justify-content: space-between; font-size: 15px; font-weight: 700;">
+                <span style="display: flex; align-items: center; gap: 8px;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f24f1e" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                  Start Free AI Citation Audit
+                </span>
+                <span class="tag" style="background: rgba(242, 79, 30, 0.1); color: #f24f1e; border: 1px solid rgba(242, 79, 30, 0.25);">Live Probe</span>
+              </a>
+            </li>
+            <li>
+              <a href="/#daily-loop" onclick="toggleDrawer(false)" style="display: flex; align-items: center; justify-content: space-between; font-size: 15px; font-weight: 700;">
+                <span>The Daily 2-Job Pipeline</span>
+                <span class="tag">06:00 AM</span>
+              </a>
+            </li>
+            <li>
+              <a href="/#pricing" onclick="toggleDrawer(false)" style="display: flex; align-items: center; justify-content: space-between; font-size: 15px; font-weight: 700;">
+                <span>Growth Plans &amp; Pricing</span>
+                <span class="tag">From $199</span>
+              </a>
+            </li>
+            <li>
+              <a href="/dashboard.html" target="_blank" style="display: flex; align-items: center; justify-content: space-between; font-size: 15px; font-weight: 700; color: #059669;">
+                <span>Client Dashboard ↗</span>
+                <span class="tag" style="background: rgba(16, 185, 129, 0.12); color: #059669; border: 1px solid rgba(16, 185, 129, 0.3);">Queue</span>
+              </a>
+            </li>
           </ul>
         </div>
 
-        <!-- 02 · Architecture & Trust -->
-        <div class="drawer-group">
-          <h4>02 · Architecture &amp; Trust</h4>
-          <ul>
-            <li><a href="/#brand-truth" onclick="toggleDrawer(false)">D1 Brand Truth Wiki</a></li>
-            <li><a href="/#comparison" onclick="toggleDrawer(false)">AEO vs Legacy SEO Matrix</a></li>
-            <li><a href="/llms.txt" target="_blank">Machine Manifest (/llms.txt) <span class="tag">Live</span></a></li>
-            <li><a href="/about.html">About Answer Index</a></li>
-          </ul>
-        </div>
+        <!-- Collapsible Submenu 1: Architecture & Safe Execution -->
+        <details class="drawer-accordion">
+          <summary class="drawer-accordion-summary">
+            <span>Platform &amp; Architecture</span>
+            <svg class="chevron-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </summary>
+          <div class="drawer-sublink-list">
+            <a href="/#summary" onclick="toggleDrawer(false)">The New Search Paradigm</a>
+            <a href="/#how-it-works" onclick="toggleDrawer(false)">Safe Staging Flow (CMS &amp; PR)</a>
+            <a href="/#brand-truth" onclick="toggleDrawer(false)">Brand Truth Wiki (D1 Grounding)</a>
+            <a href="/#comparison" onclick="toggleDrawer(false)">Agency &amp; Tool Comparison</a>
+            <a href="/how-it-works.html">Full Technical Architecture ↗</a>
+          </div>
+        </details>
 
-        <!-- 03 · Commercial & Audits -->
-        <div class="drawer-group">
-          <h4>03 · Commercial &amp; Audits</h4>
-          <ul>
-            <li><a href="/#pricing" onclick="toggleDrawer(false)">Autonomous Growth Plans</a></li>
-            <li><a href="/#audit-tool" onclick="toggleDrawer(false)">Instant AI Readiness Diagnostic</a></li>
-            <li><a href="/audit.html">Full Technical Audit Tool</a></li>
-            <li><a href="/#faq" onclick="toggleDrawer(false)">Frequently Asked Questions</a></li>
-          </ul>
-        </div>
+        <!-- Collapsible Submenu 2: Company & Support -->
+        <details class="drawer-accordion">
+          <summary class="drawer-accordion-summary">
+            <span>Company &amp; Resources</span>
+            <svg class="chevron-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </summary>
+          <div class="drawer-sublink-list">
+            <a href="/about.html">About Answer Index</a>
+            <a href="/#faq" onclick="toggleDrawer(false)">Frequently Asked Questions</a>
+            <a href="/feedback.html">Direct Feedback Channel</a>
+            <a href="mailto:sameer@answerindex.xyz">Founder &amp; Support Contact</a>
+          </div>
+        </details>
+      </div>
 
-        <!-- 04 · Client Access -->
-        <div class="drawer-group">
-          <h4>04 · Client Access</h4>
-          <ul>
-            <li><a href="/pro.html" style="color: var(--accent); font-weight: 700;">Client Portal Sign In →</a></li>
-            <li><a href="https://github.com/justmailsameer-prog/answerindex" target="_blank">GitHub Repository &amp; PRs</a></li>
-            <li><a href="/feedback.html" class="active">Direct Feedback Channel</a></li>
-          </ul>
-        </div>
-
-        <!-- 05 · Legal & Policies -->
-        <div class="drawer-group">
-          <h4>05 · Legal &amp; Policies</h4>
-          <ul>
-            <li><a href="/terms.html">Terms of Service</a></li>
-            <li><a href="/privacy.html">Privacy Policy</a></li>
-            <li><a href="/ai-disclosure.txt" target="_blank">AI Disclosure Manifest</a></li>
-            <li><a href="/training-data-policy.txt" target="_blank">Training Data Policy</a></li>
-          </ul>
-        </div>
+      <div class="drawer-cta-bottom">
+        <a href="/pro.html" class="btn btn-portal" style="width: 100%; justify-content: center; text-align: center; background: #f24f1e; color: #FFFFFF !important; border-color: #f24f1e; box-shadow: 0 4px 14px rgba(242, 79, 30, 0.35);">Client Portal Sign In →</a>
+        <a href="mailto:sameer@answerindex.xyz" class="btn btn-outline" style="width: 100%; justify-content: center; font-size: 12.5px; text-decoration: none;">✉️ sameer@answerindex.xyz</a>
       </div>
     </div>
+  </div>
   </div>
 
   <!-- Feedback Page Content -->
