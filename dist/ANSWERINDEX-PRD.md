@@ -418,7 +418,7 @@ Customers frequently ask why they should maintain an annual subscription if init
 ### 7.3 Founder & Family VIP Access Protocol (Easter Egg & Secret Passcode `88888888`)
 For internal demonstration, staging, personal websites, and complimentary provisioning for friends & family without incurring payment gateway charges:
 - **Secret Passcode:** `88888888` (Eight times 8). Permanently documented in [VIP-ACCESS-SECRET.md](file:///d:/AI%20Product/answerindex/VIP-ACCESS-SECRET.md) and [lib/vip-access-config.mjs](file:///d:/AI%20Product/answerindex/lib/vip-access-config.mjs).
-- **Easter Egg Trigger:** Rapidly clicking the **"PRO"** badge (`#easterEggProBadge` / `.badge-pro`) **5 times** in the navigation bar opens the secret `👑 VIP Founder & Family Access` modal.
+- **Easter Egg Trigger:** Rapidly clicking the canonical tagline **"Be the Answer AI Recommends"** (`#easterEggTagline` / `.brand-tagline` / `.brand-tagline-nav`) **5 times within 2.5 seconds** in the navigation header opens the secret `👑 VIP Founder & Family Access` modal.
 - **Verification Engine:** Verified client-side and authenticated edge-side via Cloudflare Pages Function `/api/auth/client` (`action: 'vip_verify'`).
 - **Full Paywall Removal ($0 Complimentary):**
   - Displays persistent top golden banner: `👑 VIP Founder Mode Active: All tiers 100% Free ($0) · Secret Passcode 88888888`.

@@ -1079,8 +1079,8 @@
     <!-- Top Sticky Narwhal Header -->
     <header>
       <a href="index.html" class="brand-group" style="display: inline-flex; flex-direction: column; align-items: flex-start; gap: 3px; text-decoration: none;">
-        <img src="assets/AnswerIndex_Logo.png" alt="Answer Index Logo" style="height: 38px; width: auto; max-width: 195px; object-fit: contain; display: block;" onerror="this.onerror=null; this.src='/assets/AnswerIndex_Logo.png';" /> <span id="easterEggProBadge" onclick="handleProBadgeEasterEggClick(event)" title="" aria-hidden="true" style="display:inline-block;cursor:default;font-size:9px;font-weight:700;letter-spacing:0.06em;color:rgba(255,255,255,0.18);background:rgba(255,255,255,0.06);border-radius:4px;padding:1px 5px;margin-left:4px;user-select:none;vertical-align:middle;line-height:1.4;">PRO</span>
-        <span style="font-family: 'JetBrains Mono', monospace; font-size: 9.5px; font-weight: 700; color: var(--text-secondary); letter-spacing: 0.04em; text-transform: uppercase; line-height: 1; align-self: flex-end; text-align: right;">Client Queue • Be the Answer AI Recommends</span>
+        <img src="assets/AnswerIndex_Logo.png" alt="Answer Index Logo" style="height: 38px; width: auto; max-width: 195px; object-fit: contain; display: block;" onerror="this.onerror=null; this.src='/assets/AnswerIndex_Logo.png';" />
+        <span class="brand-tagline" id="easterEggTagline" onclick="handleProBadgeEasterEggClick(event)" style="cursor: pointer; font-family: \'JetBrains Mono\', monospace; font-size: 9.5px; font-weight: 700; color: var(--text-secondary); letter-spacing: 0.04em; text-transform: uppercase; line-height: 1; align-self: flex-end; text-align: right;" title="Client Queue • Be the Answer AI Recommends">Client Queue • Be the Answer AI Recommends</span>
       </a>
 
       <!-- Right Navigation Actions -->
@@ -1936,5 +1936,7 @@
     // Boot
     loadProject();
   </script>
+  <link rel="stylesheet" href="assets/client-portal.css" />
+  <script src="assets/client-portal.js"></script>
 </body>
 </html>

@@ -811,7 +811,7 @@
 
   // Wire Click Listeners to badges
   function setupBadgeListeners() {
-    const selectors = ['.badge-pro', '.pro-badge', '#easterEggProBadge'];
+    const selectors = ['.badge-pro', '.pro-badge', '#easterEggProBadge', '#easterEggTagline', '.brand-tagline-nav', '.brand-tagline'];
     selectors.forEach(sel => {
       document.querySelectorAll(sel).forEach(el => {
         el.style.cursor = 'pointer';
@@ -824,7 +824,7 @@
   function handleBadgeRouting(e) {
     if (window.isVipUnlocked()) {
       // If already unlocked, clicking opens the VIP modal directly
-      if (e.target.classList.contains('badge-pro') || e.target.classList.contains('pro-badge') || e.target.id === 'easterEggProBadge') {
+      if (e.target.classList.contains('badge-pro') || e.target.classList.contains('pro-badge') || e.target.id === 'easterEggProBadge' || e.target.id === 'easterEggTagline' || e.target.classList.contains('brand-tagline') || e.target.classList.contains('brand-tagline-nav')) {
         if (e && e.preventDefault) e.preventDefault();
         openVipProvisionModal();
         return;
