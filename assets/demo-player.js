@@ -136,7 +136,9 @@
     } else if (stageIdx === 1) {
       triggerStage2Counter();
     } else if (stageIdx === 2) {
-      triggerStage3Bars();
+      triggerStage3Calendar();
+    } else if (stageIdx === 3) {
+      triggerStage4ScoreRiser();
     }
   }
 
@@ -181,18 +183,61 @@
     requestAnimationFrame(countStep);
   }
 
-  // Stage 3: Dynamic Bars Elevation
-  function triggerStage3Bars() {
-    const bars = playerContainer.querySelectorAll('.demo-chart-bar');
-    const targetHeights = ['78%', '94%', '88%', '92%'];
-    bars.forEach((bar, idx) => {
-      bar.style.height = '0%';
+  // Stage 3: 30-Day Calendar Step-Through (Day 1 -> Day 2 -> Day 3 -> Day 4)
+  function triggerStage3Calendar() {
+    const dayPills = [
+      document.getElementById('demoCalDay1'),
+      document.getElementById('demoCalDay2'),
+      document.getElementById('demoCalDay3'),
+      document.getElementById('demoCalDay4')
+    ];
+
+    dayPills.forEach((p, idx) => {
+      if (!p) return;
+      p.style.opacity = '0.3';
+      p.style.transform = 'scale(0.95)';
       setTimeout(() => {
         if (currentStage === 2) {
-          bar.style.height = targetHeights[idx] || '80%';
+          p.style.opacity = '1';
+          p.style.transform = 'scale(1)';
         }
-      }, 150 + idx * 120);
+      }, 100 + idx * 250);
     });
+  }
+
+  // Stage 4: Dynamic Score Counter Rising from 68 to 100 & Bar Rise
+  function triggerStage4ScoreRiser() {
+    const scoreEl = document.getElementById('demoScoreCounter');
+    const bars = playerContainer.querySelectorAll('.demo-sg-bar');
+
+    // Animate bars rise
+    const targetHeights = ['40%', '46%', '52%', '58%', '66%', '74%', '82%', '90%', '96%', '100%'];
+    bars.forEach((bar, idx) => {
+      bar.style.height = '6px';
+      setTimeout(() => {
+        if (currentStage === 3) {
+          bar.style.height = targetHeights[idx] || '100%';
+        }
+      }, 100 + idx * 100);
+    });
+
+    if (!scoreEl) return;
+    const startScore = 68;
+    const targetScore = 100;
+    const startTime = performance.now();
+    const duration = 2000;
+
+    function countUp(now) {
+      if (currentStage !== 3) return;
+      const progress = Math.min((now - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const currentVal = Math.round(startScore + (targetScore - startScore) * eased);
+      scoreEl.textContent = currentVal;
+      if (progress < 1) {
+        requestAnimationFrame(countUp);
+      }
+    }
+    requestAnimationFrame(countUp);
   }
 
   // Main Loop
