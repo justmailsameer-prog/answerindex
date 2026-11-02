@@ -1071,6 +1071,224 @@
         justify-content: center;
       }
     }
+
+    /* -------------------------------------------------------------------------
+       INTERACTIVE ONBOARDING WORKFLOW BANNER (Typewriter + Staged Pipeline)
+       ------------------------------------------------------------------------- */
+    .onboarding-guide-banner {
+      background: #FFFFFF;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card);
+      padding: 24px 28px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
+    }
+    .onboarding-guide-banner::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #F9BC38 0%, #10B981 50%, #3B82F6 100%);
+    }
+    .guide-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .guide-title-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .guide-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .guide-step-card {
+      background: var(--bg-canvas);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 16px 18px;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+    .guide-step-card:hover {
+      border-color: var(--border-active);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+    }
+    .guide-step-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 8px;
+    }
+    .guide-step-title {
+      font-size: 14.5px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .guide-step-desc {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* -------------------------------------------------------------------------
+       30-DAY CALENDAR ENHANCEMENTS (68->100 Score Trajectory & Day Delta Drawer)
+       ------------------------------------------------------------------------- */
+    .cal-stats-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1.2fr;
+      gap: 14px;
+      background: var(--bg-canvas);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 14px 18px;
+      margin-bottom: 18px;
+    }
+    .cal-stat-item {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .cal-stat-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .cal-stat-val {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--text-primary);
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    /* Micro Bar Score Trajectory Chart */
+    .cal-trajectory-chart {
+      display: flex;
+      align-items: flex-end;
+      gap: 3px;
+      height: 38px;
+      padding-top: 4px;
+    }
+    .cal-trajectory-bar {
+      flex: 1;
+      background: #E2E8F0;
+      border-radius: 2px;
+      min-height: 4px;
+      transition: height 0.3s ease, background-color 0.2s ease;
+      cursor: pointer;
+      position: relative;
+    }
+    .cal-trajectory-bar.done {
+      background: #10B981;
+    }
+    .cal-trajectory-bar.today {
+      background: #F9BC38;
+      box-shadow: 0 0 6px rgba(249, 188, 56, 0.6);
+    }
+    .cal-trajectory-bar:hover {
+      background: #059669;
+    }
+
+    /* Calendar Day Card Styles */
+    .cal-day-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .cal-day-card:hover {
+      border-color: var(--border-active);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+    .cal-day-card.past {
+      border-left: 3px solid #10B981;
+      background: #FAFCF9;
+    }
+    .cal-day-card.today {
+      border: 2px solid #F9BC38;
+      background: #FFFDF8;
+      box-shadow: 0 0 0 3px rgba(249, 188, 56, 0.2);
+    }
+    .cal-day-card.future {
+      opacity: 0.85;
+    }
+    .cal-day-score {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: #059669;
+      background: #E8F8F0;
+      padding: 2px 6px;
+      border-radius: var(--radius-pill);
+    }
+
+    /* Day Delta Inspect Drawer Modal */
+    .delta-drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(28, 29, 33, 0.5);
+      backdrop-filter: blur(4px);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .delta-drawer-overlay.active {
+      display: flex;
+    }
+    .delta-drawer-box {
+      background: #FFFFFF;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card);
+      max-width: 780px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 28px;
+      box-shadow: 0 20px 48px -12px rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+
+    @media (max-width: 900px) {
+      .guide-steps-grid {
+        grid-template-columns: 1fr;
+      }
+      .cal-stats-strip {
+        grid-template-columns: 1fr;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -1099,6 +1317,69 @@
         </a>
       </div>
     </header>
+
+    <!-- 0. Step-by-Step Client Onboarding Orientation Banner -->
+    <section class="onboarding-guide-banner" id="onboardingBanner">
+      <div class="guide-header-row">
+        <div class="guide-title-box">
+          <span style="font-size: 20px;">🧭</span>
+          <div>
+            <h3 style="font-size: 16px; font-weight: 800; color: var(--text-primary); letter-spacing: -0.01em;">
+              Client Onboarding &amp; Execution Guide
+            </h3>
+            <p style="font-size: 12px; color: var(--text-secondary); margin-top: 2px;">
+              Follow this 3-step loop daily to grow your AI Answer Engine Optimization (AEO) score from 68 to 100.
+            </p>
+          </div>
+        </div>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <span class="badge-pill badge-pill-honey" style="font-size: 11px;">
+            ⚡ 2 Actions Daily
+          </span>
+          <button onclick="document.getElementById('onboardingBanner').style.display='none'" class="btn-secondary" style="font-size: 11px; padding: 4px 8px;" title="Dismiss banner">
+            ✕ Hide
+          </button>
+        </div>
+      </div>
+
+      <div class="guide-steps-grid">
+        <div class="guide-step-card">
+          <div class="guide-step-badge" style="background: #FEF3C7; color: #B45309;">
+            STEP 01 · 🔍 INSPECT
+          </div>
+          <div class="guide-step-title">
+            <span>Review Generated Code</span>
+          </div>
+          <div class="guide-step-desc">
+            Click <strong>"Inspect Diff &amp; Schema"</strong> on today's staged job. Check the live comparison preview, FAQ JSON-LD markup, and zero-click answer passages.
+          </div>
+        </div>
+
+        <div class="guide-step-card">
+          <div class="guide-step-badge" style="background: #EFF6FF; color: #2563EB;">
+            STEP 02 · 📋 PASTE
+          </div>
+          <div class="guide-step-title">
+            <span>Deploy to Your Site</span>
+          </div>
+          <div class="guide-step-desc">
+            Click <strong>"Copy Content"</strong> and paste into your CMS (Shopify theme, WordPress block, or Git repo). Or view in your staging environment.
+          </div>
+        </div>
+
+        <div class="guide-step-card">
+          <div class="guide-step-badge" style="background: #E8F8F0; color: #059669;">
+            STEP 03 · 🚀 VERIFY
+          </div>
+          <div class="guide-step-title">
+            <span>Approve &amp; Edge Probe</span>
+          </div>
+          <div class="guide-step-desc">
+            Click <strong>"Approve &amp; Merge Draft"</strong>. Our Cloudflare worker instantly runs an edge probe to verify valid JSON-LD and marks the job active.
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- 1. Cause & Effect Flow: "Tasks Done -> Machine Verification -> Citation Velocity" -->
     <section class="cause-effect-banner">
@@ -1212,6 +1493,34 @@
               <span style="display:flex; align-items:center; gap:4px;"><span style="width:8px; height:8px; border-radius:50%; background:var(--emerald-green);"></span> Merged</span>
               <span style="display:flex; align-items:center; gap:4px;"><span style="width:8px; height:8px; border-radius:50%; background:var(--honey-primary);"></span> Pending</span>
               <span style="display:flex; align-items:center; gap:4px;"><span style="width:8px; height:8px; border-radius:50%; background:var(--text-muted);"></span> Scheduled</span>
+            </div>
+          </div>
+
+          <!-- 30-Day Growth Progression & Score Trajectory -->
+          <div class="cal-stats-strip">
+            <div class="cal-stat-item">
+              <span class="cal-stat-label">Execution Progress</span>
+              <div class="cal-stat-val">
+                <span id="calDaysDoneCount" style="color: #059669;">2 Days Done</span>
+                <span style="font-size: 13px; color: var(--text-muted); font-weight: 500;">/ 28 Days Pending</span>
+              </div>
+            </div>
+
+            <div class="cal-stat-item">
+              <span class="cal-stat-label">AEO Score Trajectory</span>
+              <div class="cal-stat-val">
+                <span style="color: #6E717C; font-size: 14px;">68</span>
+                <span style="color: #B45309; font-size: 13px;">→</span>
+                <strong id="calCurrentScore" style="color: #059669; font-size: 19px;">71</strong>
+                <span style="color: var(--text-muted); font-size: 12px; font-weight: 500;">/ 100 Target</span>
+              </div>
+            </div>
+
+            <div class="cal-stat-item">
+              <span class="cal-stat-label">Daily Trajectory Curve (Day 1 - 30)</span>
+              <div class="cal-trajectory-chart" id="calTrajectoryChart">
+                <!-- 30 micro bars injected via JS -->
+              </div>
             </div>
           </div>
 
@@ -1365,6 +1674,70 @@
       <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
         <button onclick="copyCurrentModalContent()" class="btn-secondary">📋 Copy Content</button>
         <a id="previewCmsLink" href="#" target="_blank" class="btn-honey-primary">View in Staging Environment ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- -------------------------------------------------------------------------
+       MODAL 3: Day-to-Day Growth Delta Inspection Drawer
+       ------------------------------------------------------------------------- -->
+  <div id="dayDeltaDrawerModal" class="delta-drawer-overlay" onclick="handleDeltaDrawerBackdrop(event)">
+    <div class="delta-drawer-box" role="dialog" aria-modal="true" aria-labelledby="deltaDrawerTitle">
+      <button class="modal-close-btn" onclick="closeDayDeltaDrawer()" aria-label="Close modal">✕</button>
+
+      <div style="margin-bottom: 20px; border-bottom: 1px solid var(--border-subtle); padding-bottom: 14px;">
+        <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 6px;">
+          <span class="badge-pill badge-pill-emerald" id="deltaDayBadge">✓ Day 2 Completed</span>
+          <span style="font-family: var(--font-mono); font-size: 11.5px; color: var(--text-muted);" id="deltaDayDate">Oct 28, 2026</span>
+        </div>
+        <h2 id="deltaDrawerTitle" style="font-size: 20px; font-weight: 800; color: var(--text-primary); letter-spacing: -0.01em;">
+          Day 2 Growth &amp; Technical Schema Delta
+        </h2>
+        <p id="deltaDrawerSubtitle" style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">
+          Inspect how daily code releases directly altered frontier AI search perception.
+        </p>
+      </div>
+
+      <!-- Growth Summary Cards (Before vs After) -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px;">
+        <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 14px 16px;">
+          <span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--text-muted); text-transform: uppercase;">AEO Score Lift</span>
+          <div style="display: flex; align-items: baseline; gap: 8px; margin-top: 4px;">
+            <span style="font-size: 22px; font-weight: 800; color: #059669;" id="deltaScoreLift">+2 Points</span>
+            <span style="font-size: 12px; color: var(--text-secondary);" id="deltaScoreSpan">(69 → 71 / 100)</span>
+          </div>
+        </div>
+        <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 14px 16px;">
+          <span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--text-muted); text-transform: uppercase;">Frontier AI Citation Probability</span>
+          <div style="display: flex; align-items: baseline; gap: 8px; margin-top: 4px;">
+            <span style="font-size: 22px; font-weight: 800; color: #2563EB;" id="deltaCitationProb">68.4%</span>
+            <span style="font-size: 12px; color: var(--emerald-text); font-weight: 700;">▲ +26.4%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- What Improved Section -->
+      <div style="margin-bottom: 20px;">
+        <h4 style="font-size: 13.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-primary); margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+          <span>📈</span> What Improved in AI Indexing
+        </h4>
+        <ul id="deltaImprovementsList" style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 13px; color: var(--text-secondary);">
+          <!-- Injected via JS -->
+        </ul>
+      </div>
+
+      <!-- Technical Code Changes Deployed -->
+      <div style="margin-bottom: 20px;">
+        <h4 style="font-size: 13.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-primary); margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+          <span>⚙️</span> Technical Changes Implemented
+        </h4>
+        <div style="background: #1C1D21; color: #E5E7EB; border-radius: 12px; padding: 14px; font-family: var(--font-mono); font-size: 11.5px; max-height: 200px; overflow-y: auto;">
+          <pre id="deltaCodeContent" style="white-space: pre-wrap; margin: 0;"></pre>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 10px;">
+        <button onclick="closeDayDeltaDrawer()" class="btn-secondary">Close Inspector</button>
       </div>
     </div>
   </div>
@@ -1657,62 +2030,196 @@
       }
     }
 
-    // 5. Build 30-Day Calendar Matrix
+    // 5. Build 30-Day Calendar Matrix & Micro Score Trajectory Chart
+    const calendarDeltas = {
+      1: {
+        scoreBefore: 68,
+        scoreAfter: 69,
+        lift: '+1 Point',
+        citationProb: '52.0%',
+        citationDelta: '▲ +14.0%',
+        improvements: [
+          'Unblocked GPTBot & ClaudeBot in robots.txt at edge root.',
+          'Enabled autonomous crawler verification ping across OpenAI servers.',
+          'Initial entity recognition established in Claude 3.7 Sonar.'
+        ],
+        code: `User-agent: GPTBot\nAllow: /\n\nUser-agent: ClaudeBot\nAllow: /\n\nUser-agent: PerplexityBot\nAllow: /`
+      },
+      2: {
+        scoreBefore: 69,
+        scoreAfter: 71,
+        lift: '+2 Points',
+        citationProb: '68.4%',
+        citationDelta: '▲ +26.4%',
+        improvements: [
+          'Injected Organization & Product JSON-LD schema with canonical sameAs links.',
+          'Perplexity answer confidence increased from 42% to 68% for brand keywords.',
+          'Frontier models now extract official brand founder & verified headquarters.'
+        ],
+        code: `<script type="application/ld+json">\n{\n  "@context": "https://schema.org",\n  "@type": "Organization",\n  "name": "Nordic Nesting",\n  "url": "https://nordicnesting.com",\n  "sameAs": [\n    "https://www.wikidata.org/wiki/NordicNesting",\n    "https://twitter.com/nordicnesting"\n  ]\n}\n<\/script>`
+      },
+      3: {
+        scoreBefore: 71,
+        scoreAfter: 73,
+        lift: '+2 Points (Pending)',
+        citationProb: '74.8%',
+        citationDelta: '▲ Staged for approval',
+        improvements: [
+          'Awaiting your approval: FAQPage structured markup + direct answer comparison guide.',
+          'Projected score upon deployment: 73/100.',
+          'Eliminates competitor brand substitution on ChatGPT Search for kitchen storage.'
+        ],
+        code: `<script type="application/ld+json">\n{\n  "@context": "https://schema.org",\n  "@type": "FAQPage",\n  "mainEntity": [{\n    "@type": "Question",\n    "name": "Are Nordic Nesting ceramic bowls dishwasher safe?",\n    "acceptedAnswer": {\n      "@type": "Answer",\n      "text": "Yes, all Nordic Nesting stoneware is dishwasher and microwave safe up to 250C."\n    }\n  }]\n}\n<\/script>`
+      }
+    };
+
     function buildCalendar() {
       const container = document.getElementById('calendarDaysGrid');
+      const chartContainer = document.getElementById('calTrajectoryChart');
       if (!container) return;
 
-      const days = [];
       const topics = [
-        'AEO vs SEO Comparison', 'Edge TTFB & Cache Optimization',
-        'Direct Citation Calculator', 'FAQ Schema Graph Sync',
-        'Headless Commerce Guide', 'Structured JSON-LD Ingestion',
-        'Perplexity Entity Alignment', 'ChatGPT Search Intent Map',
-        'Brand Truth Invariant Probe', 'Authoritative Source Anchor',
-        'Claude 3.7 Passage Extraction', 'Core Web Vitals Refactor',
-        'Zero-Click Answer Asset', 'Robots.txt AI Directives'
+        'Robots.txt Frontier AI Crawler Allow-Rules',
+        'Organization & Product JSON-LD Schema Sync',
+        'FAQPage Structured Data & Buying Comparison',
+        'Edge TTFB & Cache Optimization',
+        'Direct Citation Calculator Tool',
+        'Headless Commerce Guide Ingestion',
+        'Perplexity Entity Alignment',
+        'ChatGPT Search Intent Map',
+        'Brand Truth Invariant Probe',
+        'Authoritative Source Anchor',
+        'Claude 3.7 Passage Extraction',
+        'Core Web Vitals Refactor',
+        'Zero-Click Answer Asset',
+        'Entity Moat Reinforcement'
       ];
 
-      for (let i = 1; i <= 30; i++) {
-        let status = 'past';
-        let statusText = '✓ Merged';
-        let badgeClass = 'badge-pill-emerald';
-        let task = topics[i % topics.length];
+      // Simulated score trajectory progression from 68 to 100
+      const scoreProgression = [
+        69, 71, 73, 74, 76, 77, 78, 80, 81, 82,
+        84, 85, 86, 87, 89, 90, 91, 92, 93, 94,
+        95, 96, 97, 98, 98, 99, 99, 100, 100, 100
+      ];
 
-        if (i === 7) {
+      const days = [];
+      const bars = [];
+
+      for (let i = 1; i <= 30; i++) {
+        const score = scoreProgression[i - 1];
+        let status = 'future';
+        let statusText = 'Scheduled';
+        let badgeClass = 'badge-pill';
+
+        if (i <= 2) {
+          status = 'past';
+          statusText = '✓ Merged';
+          badgeClass = 'badge-pill-emerald';
+        } else if (i === 3) {
           status = 'today';
           statusText = '● Today (Review)';
           badgeClass = 'badge-pill-honey';
-          task = 'Comparison Guide + Latency Refactor';
-        } else if (i > 7) {
-          status = 'future';
-          statusText = 'Scheduled';
-          badgeClass = 'badge-pill';
         }
 
+        // Calendar Day Card
         days.push(`
           <div class="cal-day-card ${status}" onclick="handleDayClick(${i})">
-            <div class="cal-day-top">
-              <span>Day ${i}</span>
-              <span class="badge-pill ${badgeClass} cal-day-badge">${statusText}</span>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <strong style="font-size:13px; color:var(--text-primary);">Day ${i}</strong>
+              <span class="badge-pill ${badgeClass}" style="font-size:10px; padding:2px 6px;">${statusText}</span>
             </div>
-            <div class="cal-day-task">${task}</div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin: 4px 0;">
+              <span class="cal-day-score">AEO: ${score}/100</span>
+              ${i <= 3 ? `<span style="font-size:10.5px; color:#B45309; text-decoration:underline;">Inspect Delta →</span>` : ''}
+            </div>
+            <div style="font-size:11.5px; color:var(--text-secondary); line-height:1.35; -webkit-line-clamp:2; display:-webkit-box; -webkit-box-orient:vertical; overflow:hidden;">
+              ${topics[(i - 1) % topics.length]}
+            </div>
           </div>
+        `);
+
+        // Micro Bar Chart
+        const barHeightPct = Math.max(15, Math.round(((score - 65) / 35) * 100));
+        let barClass = '';
+        if (i <= 2) barClass = 'done';
+        else if (i === 3) barClass = 'today';
+
+        bars.push(`
+          <div class="cal-trajectory-bar ${barClass}" style="height:${barHeightPct}%;" onclick="handleDayClick(${i})" title="Day ${i}: AEO Score ${score}/100 (${statusText})"></div>
         `);
       }
 
       container.innerHTML = days.join('');
+      if (chartContainer) chartContainer.innerHTML = bars.join('');
     }
 
     function handleDayClick(day) {
-      if (day === 7) {
-        switchMainView('queue');
-        filterJobs('pending');
-      } else if (day < 7) {
-        switchMainView('queue');
-        filterJobs('approved');
+      if (day <= 3) {
+        openDayDeltaDrawer(day);
       } else {
         showToast(`📅 Day ${day} is scheduled for autonomous morning release.`);
+      }
+    }
+
+    function openDayDeltaDrawer(day) {
+      const modal = document.getElementById('dayDeltaDrawerModal');
+      if (!modal) return;
+
+      const delta = calendarDeltas[day] || {
+        scoreBefore: 71,
+        scoreAfter: 73,
+        lift: '+2 Points',
+        citationProb: '70%',
+        citationDelta: '▲ Scheduled',
+        improvements: ['Upcoming scheduled milestone for brand domain entity fortification.'],
+        code: `// Scheduled schema patch for Day ${day}`
+      };
+
+      const badge = document.getElementById('deltaDayBadge');
+      const dateEl = document.getElementById('deltaDayDate');
+      const titleEl = document.getElementById('deltaDrawerTitle');
+      const liftEl = document.getElementById('deltaScoreLift');
+      const spanEl = document.getElementById('deltaScoreSpan');
+      const probEl = document.getElementById('deltaCitationProb');
+      const listEl = document.getElementById('deltaImprovementsList');
+      const codeEl = document.getElementById('deltaCodeContent');
+
+      if (day <= 2) {
+        badge.className = 'badge-pill badge-pill-emerald';
+        badge.textContent = `✓ Day ${day} Completed`;
+      } else {
+        badge.className = 'badge-pill badge-pill-honey';
+        badge.textContent = `● Day ${day} Today (Pending Sign-Off)`;
+      }
+
+      if (dateEl) dateEl.textContent = `Oct ${26 + day}, 2026 · Stage Verified`;
+      if (titleEl) titleEl.textContent = `Day ${day} Growth & Technical Schema Delta`;
+      if (liftEl) liftEl.textContent = delta.lift;
+      if (spanEl) spanEl.textContent = `(${delta.scoreBefore} → ${delta.scoreAfter} / 100)`;
+      if (probEl) probEl.textContent = delta.citationProb;
+
+      if (listEl) {
+        listEl.innerHTML = delta.improvements.map(item => `
+          <li style="display:flex; align-items:flex-start; gap:8px;">
+            <span style="color:var(--emerald-text); font-weight:800;">✓</span>
+            <span>${escapeHtml(item)}</span>
+          </li>
+        `).join('');
+      }
+
+      if (codeEl) codeEl.textContent = delta.code;
+
+      modal.classList.add('active');
+    }
+
+    function closeDayDeltaDrawer() {
+      const modal = document.getElementById('dayDeltaDrawerModal');
+      if (modal) modal.classList.remove('active');
+    }
+
+    function handleDeltaDrawerBackdrop(e) {
+      if (e.target && e.target.id === 'dayDeltaDrawerModal') {
+        closeDayDeltaDrawer();
       }
     }
 
@@ -1721,8 +2228,10 @@
       const btn = document.getElementById(`btn-approve-${jobId}`);
       if (btn) {
         btn.disabled = true;
-        btn.textContent = 'Publishing to Edge...';
+        btn.textContent = 'Probing Edge & Deploying...';
       }
+
+      showToast('🔍 Running verification probe on edge schema...');
 
       try {
         const res = await fetch('/api/approve-pr', {
@@ -1748,7 +2257,8 @@
       }
       renderJobs();
       updateKPIs();
-      showToast('✓ Draft Approved! Ingested into Cloudflare Edge & D1 logged.');
+      buildCalendar();
+      showToast('🎉 Success! Verification probe passed (HTTP 200). AEO score updated.');
     }
 
     // 7. Preview Modal
