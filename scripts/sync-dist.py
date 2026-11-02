@@ -10,7 +10,7 @@ print(f"Syncing from {root_dir} to {dist_dir}...")
 html_files = [
     'index.html', 'pro.html', 'about.html', 'how-it-works.html',
     'pricing.html', 'audit.html', 'dashboard.html', 'privacy.html',
-    'terms.html', 'feedback.html', 'index-oss.html', 'v1.html'
+    'terms.html', 'feedback.html', 'index-oss.html', 'v1.html', 'onboarding-wireframe.html'
 ]
 for h in html_files:
     src = os.path.join(root_dir, h)

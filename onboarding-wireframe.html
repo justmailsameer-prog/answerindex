@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Answer Index — Interactive Onboarding & Workspace Flow Wireframe</title>
+  
+  <!-- Fonts matching Narwhal Design System -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-canvas: #F8F8F6;
+      --bg-card: #FFFFFF;
+      --border-subtle: #ECEBE6;
+      --border-hover: #DFDDD5;
+      
+      --text-primary: #1C1D21;
+      --text-secondary: #6E717C;
+      --text-muted: #9A9DA8;
+      
+      /* Honey Amber & Accents */
+      --honey-primary: #F9BC38;
+      --honey-hover: #EAA023;
+      --honey-light: #FFF8E7;
+      --honey-border: #F3CA68;
+      
+      --emerald-green: #10B981;
+      --emerald-bg: #E8F8F0;
+      --emerald-text: #059669;
+      
+      --sky-blue: #3B82F6;
+      --sky-bg: #EFF6FF;
+      --sky-text: #2563EB;
+      
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --radius-card: 20px;
+      --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.04);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      line-height: 1.5;
+      padding: 32px 20px 80px;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    /* Top Wireframe Banner */
+    .wireframe-header {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-subtle);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-card);
+      padding: 28px 32px;
+      margin-bottom: 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .wireframe-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      background: var(--honey-light);
+      border: 1px solid var(--honey-border);
+      color: #B45309;
+      padding: 4px 10px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Stepper Navigation Bar */
+    .flow-stepper-nav {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    @media (max-width: 860px) {
+      .flow-stepper-nav {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .step-nav-btn {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 16px 14px;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .step-nav-btn:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+
+    .step-nav-btn.active {
+      border-color: #F59E0B;
+      background: #FFFFFF;
+      box-shadow: 0 4px 20px rgba(245, 158, 11, 0.15);
+    }
+
+    .step-nav-btn .num {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      color: #B45309;
+      margin-bottom: 4px;
+    }
+
+    .step-nav-btn .title {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.25;
+    }
+
+    .step-nav-btn.completed {
+      border-color: var(--emerald-green);
+      background: rgba(16, 185, 129, 0.03);
+    }
+
+    .step-nav-btn.completed .num {
+      color: var(--emerald-text);
+    }
+
+    /* Interactive Viewport Stage */
+    .wireframe-stage {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-subtle);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+      margin-bottom: 32px;
+    }
+
+    .stage-browser-bar {
+      background: #11141C;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .browser-dots {
+      display: inline-flex;
+      gap: 6px;
+    }
+
+    .browser-dots span {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .browser-dots span:nth-child(1) { background: #FF5F56; }
+    .browser-dots span:nth-child(2) { background: #FFBD2E; }
+    .browser-dots span:nth-child(3) { background: #27C93F; }
+
+    .browser-url-pill {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      padding: 4px 14px;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: #94A3B8;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+      max-width: 380px;
+    }
+
+    .stage-content {
+      padding: 36px 40px;
+      min-height: 520px;
+    }
+
+    @media (max-width: 640px) {
+      .stage-content {
+        padding: 24px 18px;
+      }
+    }
+
+    /* Step Panels */
+    .step-panel {
+      display: none;
+      animation: fadeIn 0.3s ease forwards;
+    }
+
+    .step-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* UI Simulation Components */
+    .sim-navbar {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .sim-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 16px;
+    }
+
+    .sim-banner-guide {
+      background: linear-gradient(135deg, #FFFDF8 0%, #FFF8E7 100%);
+      border: 1.5px solid var(--honey-border);
+      border-radius: 16px;
+      padding: 22px 26px;
+      margin-bottom: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .stepper-mini-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      width: 100%;
+      margin-top: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .stepper-mini-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .stepper-mini-box {
+      background: #FFFFFF;
+      border: 1px solid rgba(243, 202, 104, 0.4);
+      border-radius: 12px;
+      padding: 14px;
+    }
+
+    .stepper-mini-box.current {
+      border: 2px solid #F59E0B;
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.15);
+    }
+
+    /* Job Card Simulation */
+    .sim-job-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02);
+      transition: all 0.2s ease;
+    }
+
+    .sim-job-card.highlight {
+      border-color: #F59E0B;
+      box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
+    }
+
+    .sim-job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .sim-pill {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+      text-transform: uppercase;
+    }
+
+    .sim-pill-honey {
+      background: #FEF3C7;
+      color: #B45309;
+      border: 1px solid #FDE68A;
+    }
+
+    .sim-pill-emerald {
+      background: #D1FAE5;
+      color: #065F46;
+      border: 1px solid #A7F3D0;
+    }
+
+    .sim-pill-sky {
+      background: #DBEAFE;
+      color: #1E40AF;
+      border: 1px solid #BFDBFE;
+    }
+
+    .sim-actions-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+
+    .btn-sim-primary {
+      background: var(--honey-primary);
+      color: #1E293B;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-weight: 800;
+      font-size: 13.5px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-sim-primary:hover {
+      background: var(--honey-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-sim-secondary {
+      background: var(--bg-canvas);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      border-radius: 8px;
+      padding: 10px 16px;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-sim-secondary:hover {
+      background: #FFFFFF;
+      border-color: var(--border-hover);
+    }
+
+    /* Modal / Drawer Overlay Simulation */
+    .sim-drawer-modal {
+      background: #FFFFFF;
+      border: 1.5px solid var(--border-subtle);
+      border-radius: 16px;
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
+      padding: 24px;
+      margin-top: 20px;
+    }
+
+    .sim-tab-header {
+      display: flex;
+      gap: 8px;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+    }
+
+    .sim-tab-btn {
+      background: none;
+      border: none;
+      padding: 6px 14px;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--text-secondary);
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .sim-tab-btn.active {
+      background: var(--bg-canvas);
+      color: var(--text-primary);
+      font-weight: 800;
+    }
+
+    .code-preview-block {
+      background: #0F172A;
+      color: #F8FAFC;
+      border-radius: 8px;
+      padding: 16px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.6;
+      overflow-x: auto;
+      margin-bottom: 16px;
+    }
+
+    /* Bottom Wireframe Controls */
+    .wireframe-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .btn-next-step {
+      background: #11141C;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 24px;
+      font-weight: 800;
+      font-size: 14px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-next-step:hover {
+      background: #000000;
+      transform: translateY(-1px);
+    }
+
+    .callout-box {
+      background: #EFF6FF;
+      border: 1px solid #BFDBFE;
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-size: 13px;
+      color: #1E40AF;
+      margin-top: 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  
+  <!-- Wireframe Header -->
+  <header class="wireframe-header">
+    <div>
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
+        <span class="wireframe-badge">Interactive Architectural Wireframe</span>
+        <span style="font-size: 12px; color: var(--text-muted); font-family: var(--font-mono);">v1.0 &middot; Live Prototype</span>
+      </div>
+      <h1 style="font-size: 26px; font-weight: 800; letter-spacing: -0.02em;">
+        Answer Index &mdash; Post-Registration &amp; Implementation Flow
+      </h1>
+      <p style="font-size: 14px; color: var(--text-secondary); margin-top: 4px;">
+        Click through each stage below to experience exactly what a new client sees, clicks, and verifies upon registering.
+      </p>
+    </div>
+    <div>
+      <a href="/dashboard.html" class="btn-sim-secondary" target="_blank" style="text-decoration: none;">
+        Open Current Live Dashboard &nearr;
+      </a>
+    </div>
+  </header>
+
+  <!-- 5-Step Stepper Navigation -->
+  <nav class="flow-stepper-nav" aria-label="Onboarding Steps">
+    <button type="button" class="step-nav-btn active" onclick="switchStep(0)">
+      <div class="num">STAGE 01</div>
+      <div class="title">Persistent Auth &amp; Return</div>
+    </button>
+    <button type="button" class="step-nav-btn" onclick="switchStep(1)">
+      <div class="num">STAGE 02</div>
+      <div class="title">Onboarding Stepper Banner</div>
+    </button>
+    <button type="button" class="step-nav-btn" onclick="switchStep(2)">
+      <div class="num">STAGE 03</div>
+      <div class="title">Inspect &amp; Copy Asset Diff</div>
+    </button>
+    <button type="button" class="step-nav-btn" onclick="switchStep(3)">
+      <div class="num">STAGE 04</div>
+      <div class="title">Click "Implemented" &amp; Probe</div>
+    </button>
+    <button type="button" class="step-nav-btn" onclick="switchStep(4)">
+      <div class="num">STAGE 05</div>
+      <div class="title">Founder Admin Registry</div>
+    </button>
+  </nav>
+
+  <!-- Interactive Stage Simulator -->
+  <div class="wireframe-stage">
+    <div class="stage-browser-bar">
+      <div class="browser-dots" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="browser-url-pill">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+        <span id="wireframeUrl">answerindex.xyz/</span>
+      </div>
+      <span style="font-family: var(--font-mono); font-size: 11px; color: #FBBF24; margin-left: auto;">
+        Interactive Simulation Mode
+      </span>
+    </div>
+
+    <div class="stage-content">
+      
+      <!-- ===================================================================
+           STAGE 1: PERSISTENT AUTH & RETURN (HOME NAVBAR WIREFRAME)
+           =================================================================== -->
+      <div class="step-panel active" id="stepPanel0">
+        <div style="margin-bottom: 24px;">
+          <h2 style="font-size: 20px; font-weight: 800; margin-bottom: 6px;">
+            Stage 1: Solving "Session Amnesia" Across the Website
+          </h2>
+          <p style="font-size: 14px; color: var(--text-secondary);">
+            Once a client signs in, they should <strong>never see a generic "Client Sign In" button again</strong> when visiting the homepage, about, or pricing page. The navbar dynamically renders their active brand workspace.
+          </p>
+        </div>
+
+        <!-- Simulated Homepage Navbar Before/After -->
+        <div style="background: var(--bg-canvas); border: 1px dashed var(--border-hover); border-radius: 16px; padding: 24px; margin-bottom: 24px;">
+          <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 12px;">
+            Navbar State (Logged-In User)
+          </div>
+          <div class="sim-navbar">
+            <div class="sim-brand">
+              <span style="background: #F24F1E; color: #FFF; padding: 2px 8px; border-radius: 6px; font-size: 14px;">ai</span>
+              <span>Answer Index</span>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <!-- Persistent Workspace Badge Button -->
+              <a href="javascript:void(0)" onclick="switchStep(1)" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px; background: #11141C; color: #FFFFFF; padding: 8px 16px; border-radius: 999px; font-size: 13px; font-weight: 800;">
+                <span style="width: 8px; height: 8px; border-radius: 50%; background: #10B981; display: inline-block;"></span>
+                <span>Workspace: <strong>nordicnesting.com</strong> &rarr;</span>
+              </a>
+
+              <!-- Logout Action -->
+              <button type="button" class="btn-sim-secondary" style="font-size: 12px; padding: 6px 12px;" onclick="alert('Session Cleared: localStorage.removeItem(\'answerindex_user\')')">
+                Log Out
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout-box">
+          <span style="font-size: 18px;">💡</span>
+          <div>
+            <strong>How It Works in Code:</strong> On page load, <code>site-nav.js</code> checks <code>localStorage.getItem('answerindex_user')</code>. If present, it automatically swaps the generic Sign In modal trigger with the direct Workspace link to <code>/dashboard.html</code>.
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================================
+           STAGE 2: ONBOARDING STEPPER BANNER (DASHBOARD FIRST LANDING)
+           =================================================================== -->
+      <div class="step-panel" id="stepPanel1">
+        <div style="margin-bottom: 20px;">
+          <h2 style="font-size: 20px; font-weight: 800; margin-bottom: 6px;">
+            Stage 2: The 3-Step Guided Onboarding Banner
+          </h2>
+          <p style="font-size: 14px; color: var(--text-secondary);">
+            When the user enters <code>dashboard.html</code>, this banner sits right at the top so they immediately know what button to press first.
+          </p>
+        </div>
+
+        <!-- The Banner Component -->
+        <div class="sim-banner-guide">
+          <div style="width: 100%;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+              <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: #B45309; text-transform: uppercase;">
+                Welcome to Your Autonomous Growth Workstation
+              </span>
+              <span style="font-size: 12px; font-weight: 700; color: #B45309;">Step 2 of 3 Active</span>
+            </div>
+            <h3 style="font-size: 18px; font-weight: 800; color: #1E293B;">
+              3 Quick Steps to Complete Today's AI Citation Sync:
+            </h3>
+
+            <div class="stepper-mini-grid">
+              <!-- Step 1 -->
+              <div class="stepper-mini-box">
+                <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: var(--emerald-text); margin-bottom: 4px;">
+                  &check; STEP 1: COMPLETED
+                </div>
+                <strong style="font-size: 13.5px; display: block; margin-bottom: 4px;">Brand Ground Truth</strong>
+                <p style="font-size: 12px; color: var(--text-secondary);">
+                  Domain crawl verified in D1. Anti-hallucination guardrails active.
+                </p>
+              </div>
+
+              <!-- Step 2 (Active) -->
+              <div class="stepper-mini-box current">
+                <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: #B45309; margin-bottom: 4px;">
+                  &bull; STEP 2: ACTION REQUIRED
+                </div>
+                <strong style="font-size: 13.5px; display: block; margin-bottom: 4px;">Inspect Today's 2 Jobs</strong>
+                <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 8px;">
+                  Review Job 1 (AEO Answer) &amp; Job 2 (Schema Patch) below.
+                </p>
+                <button type="button" class="btn-sim-primary" style="font-size: 11.5px; padding: 5px 12px;" onclick="switchStep(2)">
+                  Review Job 1 Now &rarr;
+                </button>
+              </div>
+
+              <!-- Step 3 -->
+              <div class="stepper-mini-box">
+                <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: var(--text-muted); margin-bottom: 4px;">
+                  STEP 3: DEPLOYMENT
+                </div>
+                <strong style="font-size: 13.5px; display: block; margin-bottom: 4px;">1-Click Mark Implemented</strong>
+                <p style="font-size: 12px; color: var(--text-secondary);">
+                  Push to CMS drafts or copy JSON-LD schema into your site head.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- The Target Domain Pill in Header -->
+        <div style="display: flex; align-items: center; justify-content: space-between; background: var(--bg-canvas); border: 1px solid var(--border-subtle); padding: 12px 18px; border-radius: 12px;">
+          <span style="font-size: 13px; color: var(--text-secondary);">
+            Target Workspace: <strong style="color: var(--text-primary);">nordicnesting.com</strong>
+          </span>
+          <span class="sim-pill sim-pill-emerald">&bull; Platform: Shopify API Auto-Detect</span>
+        </div>
+      </div>
+
+      <!-- ===================================================================
+           STAGE 3: INSPECT & COPY ASSET DIFF
+           =================================================================== -->
+      <div class="step-panel" id="stepPanel2">
+        <div style="margin-bottom: 20px;">
+          <h2 style="font-size: 20px; font-weight: 800; margin-bottom: 6px;">
+            Stage 3: Which Button to Press? Reviewing &amp; Copying Content
+          </h2>
+          <p style="font-size: 14px; color: var(--text-secondary);">
+            Users see exactly where the content originated (ChatGPT buyer prompts) and can toggle between formatted text and copyable JSON-LD code.
+          </p>
+        </div>
+
+        <!-- Job Card Component with Buttons -->
+        <div class="sim-job-card highlight">
+          <div class="sim-job-header">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="sim-pill sim-pill-honey">JOB 01 &middot; AEO ANSWER</span>
+              <span class="sim-pill sim-pill-sky">Date: Today (06:00 AM)</span>
+            </div>
+            <span class="sim-pill sim-pill-honey">&bull; Awaiting Your Approval</span>
+          </div>
+
+          <h3 style="font-size: 17px; font-weight: 800; margin-bottom: 6px; color: var(--text-primary);">
+            Scandinavian Ceramic Dinnerware Durability &amp; Dishwasher Safety Guide
+          </h3>
+          <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 14px;">
+            Synthesized to answer high-volume Perplexity and ChatGPT conversational evaluation questions for buyers comparing Nordic Nesting against generic alternatives.
+          </p>
+
+          <div class="sim-actions-row">
+            <button type="button" class="btn-sim-primary" onclick="toggleSimDrawer()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <span>🔍 Inspect Diff &amp; Copy Code</span>
+            </button>
+            <button type="button" class="btn-sim-secondary" onclick="switchStep(3)">
+              <span>🚀 1-Click Approve &amp; Mark Implemented &rarr;</span>
+            </button>
+          </div>
+
+          <!-- Drawer preview simulator -->
+          <div class="sim-drawer-modal" id="simDrawer" style="display: block;">
+            <div class="sim-tab-header">
+              <button type="button" class="sim-tab-btn active" id="tabBtnPreview" onclick="setSimTab('preview')">Formatted Preview</button>
+              <button type="button" class="sim-tab-btn" id="tabBtnCode" onclick="setSimTab('code')">Raw JSON-LD Schema (Copy Code)</button>
+            </div>
+
+            <div id="simTabContentPreview">
+              <div style="font-size: 13px; line-height: 1.6; color: var(--text-primary);">
+                <strong>Direct Answer Passage:</strong> Nordic Nesting ceramic dinnerware is kiln-fired at 1,280&deg;C, making it 100% dishwasher and microwave safe. Unlike standard earthenware, high-fire stoneware resists thermal shock and cutlery scratching.
+              </div>
+            </div>
+
+            <div id="simTabContentCode" style="display: none;">
+              <div class="code-preview-block">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Ceramic Dinnerware Durability & Care",
+  "about": "dish-washer safety and thermal resilience",
+  "author": { "@type": "Organization", "name": "Nordic Nesting" }
+}
+              </div>
+              <button type="button" class="btn-sim-secondary" onclick="alert('Copied 24 lines of JSON-LD Schema to clipboard!')">
+                📋 Copy Full JSON-LD to Clipboard
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================================
+           STAGE 4: CLICK "IMPLEMENTED" & AUTOMATED VERIFICATION PROBE
+           =================================================================== -->
+      <div class="step-panel" id="stepPanel3">
+        <div style="margin-bottom: 20px;">
+          <h2 style="font-size: 20px; font-weight: 800; margin-bottom: 6px;">
+            Stage 4: "Is It Implemented? Is It a Success?" (Verification Feedback Loop)
+          </h2>
+          <p style="font-size: 14px; color: var(--text-secondary);">
+            How the client gains absolute confidence: deterministic status transition + live URL probe + telemetry boost.
+          </p>
+        </div>
+
+        <!-- Post-Approval State Card -->
+        <div class="sim-job-card" style="border-left: 4px solid var(--emerald-green);">
+          <div class="sim-job-header">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="sim-pill sim-pill-emerald">&check; JOB 01 APPROVED &middot; MERGED</span>
+              <span style="font-size: 12px; color: var(--text-secondary); font-family: var(--font-mono);">
+                Published to Shopify Drafts at 09:42 AM
+              </span>
+            </div>
+            <span class="sim-pill sim-pill-emerald">Status: Active on Knowledge Graph</span>
+          </div>
+
+          <h3 style="font-size: 17px; font-weight: 800; margin-bottom: 6px;">
+            Scandinavian Ceramic Dinnerware Durability Guide
+          </h3>
+
+          <!-- The Live Verification Feedback Box -->
+          <div style="background: var(--emerald-bg); border: 1.5px solid rgba(16, 185, 129, 0.3); border-radius: 12px; padding: 16px 20px; margin: 16px 0;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+              <div>
+                <strong style="color: var(--emerald-text); font-size: 14px; display: flex; align-items: center; gap: 6px;">
+                  &check; Deterministic Verification Passed
+                </strong>
+                <p style="font-size: 12.5px; color: #065F46; margin-top: 2px;">
+                  Edge probe detected valid JSON-LD schema on <code>nordicnesting.com/pages/ceramic-guide</code>.
+                </p>
+              </div>
+              <button type="button" class="btn-sim-secondary" style="font-size: 11.5px; border-color: rgba(16, 185, 129, 0.4); background: #FFF;" onclick="alert('Live Edge Probe Status: HTTP 200 OK — Entity ingested by GPTBot and PerplexityBot.')">
+                🔄 Re-run Live Probe
+              </button>
+            </div>
+          </div>
+
+          <!-- AI Citation Velocity Boost Indicator -->
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; text-align: center; margin-top: 14px;">
+            <div style="background: var(--bg-canvas); padding: 12px; border-radius: 8px;">
+              <div style="font-size: 11px; color: var(--text-secondary); font-family: var(--font-mono);">AI READINESS</div>
+              <strong style="font-size: 18px; color: #10B981;">88 &rarr; 92 / 100</strong>
+            </div>
+            <div style="background: var(--bg-canvas); padding: 12px; border-radius: 8px;">
+              <div style="font-size: 11px; color: var(--text-secondary); font-family: var(--font-mono);">PERPLEXITY RECOGNITION</div>
+              <strong style="font-size: 18px; color: #3B82F6;">82% &rarr; 86%</strong>
+            </div>
+            <div style="background: var(--bg-canvas); padding: 12px; border-radius: 8px;">
+              <div style="font-size: 11px; color: var(--text-secondary); font-family: var(--font-mono);">STAGED STATUS</div>
+              <strong style="font-size: 18px; color: #B45309;">100% Ingested</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================================
+           STAGE 5: FOUNDER ADMIN REGISTRY VIEW
+           =================================================================== -->
+      <div class="step-panel" id="stepPanel4">
+        <div style="margin-bottom: 20px;">
+          <h2 style="font-size: 20px; font-weight: 800; margin-bottom: 6px;">
+            Stage 5: "Where in the Backend Do I See Who Is Registered?"
+          </h2>
+          <p style="font-size: 14px; color: var(--text-secondary);">
+            The centralized Founder Admin Dashboard (<code>/api/admin/clients</code>) gives you instant oversight of every registered user across Cloudflare D1.
+          </p>
+        </div>
+
+        <!-- Simulated Admin Client Table -->
+        <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 14px; overflow: hidden; margin-bottom: 20px;">
+          <div style="padding: 14px 18px; background: #11141C; color: #FFFFFF; display: flex; justify-content: space-between; align-items: center;">
+            <strong style="font-family: var(--font-mono); font-size: 13px;">Cloudflare D1: Registered Clients Registry</strong>
+            <span class="sim-pill sim-pill-emerald">&bull; 4 Total Users Online</span>
+          </div>
+
+          <table style="width: 100%; border-collapse: collapse; font-size: 13px; text-align: left;">
+            <thead>
+              <tr style="background: var(--bg-canvas); border-bottom: 1px solid var(--border-subtle); font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary);">
+                <th style="padding: 12px 16px;">USER / EMAIL</th>
+                <th style="padding: 12px 16px;">DOMAIN</th>
+                <th style="padding: 12px 16px;">CMS PLATFORM</th>
+                <th style="padding: 12px 16px;">TIER</th>
+                <th style="padding: 12px 16px;">APPROVED JOBS</th>
+                <th style="padding: 12px 16px;">ACTION</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid var(--border-subtle);">
+                <td style="padding: 12px 16px;"><strong>sameer@brand.com</strong></td>
+                <td style="padding: 12px 16px;"><code>nordicnesting.com</code></td>
+                <td style="padding: 12px 16px;"><span class="sim-pill sim-pill-sky">Shopify</span></td>
+                <td style="padding: 12px 16px;"><span class="sim-pill sim-pill-honey">Enterprise VIP</span></td>
+                <td style="padding: 12px 16px; font-weight: 700; color: #10B981;">2 / 2 Merged</td>
+                <td style="padding: 12px 16px;"><button class="btn-sim-secondary" style="font-size: 11px; padding: 4px 8px;" onclick="alert('Viewing workspace for nordicnesting.com')">Inspect Workspace</button></td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border-subtle);">
+                <td style="padding: 12px 16px;"><strong>alex@zenithapp.io</strong></td>
+                <td style="padding: 12px 16px;"><code>zenithapp.io</code></td>
+                <td style="padding: 12px 16px;"><span class="sim-pill sim-pill-emerald">WordPress</span></td>
+                <td style="padding: 12px 16px;"><span class="sim-pill sim-pill-sky">Pro ($499)</span></td>
+                <td style="padding: 12px 16px; font-weight: 700; color: #10B981;">1 / 2 Merged</td>
+                <td style="padding: 12px 16px;"><button class="btn-sim-secondary" style="font-size: 11px; padding: 4px 8px;" onclick="alert('Viewing workspace for zenithapp.io')">Inspect Workspace</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout-box">
+          <span style="font-size: 18px;">🔒</span>
+          <div>
+            <strong>Admin Access Security:</strong> Protected by your master passcode (<code>88888888</code>) via Cloudflare Pages Functions edge authentication.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom Navigation Buttons -->
+  <div class="wireframe-controls">
+    <button type="button" class="btn-sim-secondary" id="btnPrevStep" onclick="prevStep()">
+      &larr; Previous Stage
+    </button>
+    <button type="button" class="btn-next-step" id="btnNextStep" onclick="nextStep()">
+      Next Stage &rarr;
+    </button>
+  </div>
+
+</div>
+
+<script>
+  let currentStepIdx = 0;
+  const totalSteps = 5;
+  const urls = [
+    "answerindex.xyz/ (Persistent Navbar)",
+    "answerindex.xyz/dashboard (Onboarding Stepper)",
+    "answerindex.xyz/dashboard#queue (Review & Copy)",
+    "answerindex.xyz/dashboard#verified (Live Success)",
+    "answerindex.xyz/api/admin/clients (Founder Registry)"
+  ];
+
+  function switchStep(idx) {
+    currentStepIdx = idx;
+    
+    // Update Stepper Buttons
+    document.querySelectorAll('.step-nav-btn').forEach((btn, i) => {
+      btn.classList.toggle('active', i === idx);
+      if (i < idx) {
+        btn.classList.add('completed');
+      } else {
+        btn.classList.remove('completed');
+      }
+    });
+
+    // Update Panels
+    document.querySelectorAll('.step-panel').forEach((panel, i) => {
+      panel.classList.toggle('active', i === idx);
+    });
+
+    // Update Browser Mock URL
+    document.getElementById('wireframeUrl').textContent = urls[idx] || "answerindex.xyz/";
+
+    // Update Back / Next button text
+    document.getElementById('btnPrevStep').style.visibility = idx === 0 ? 'hidden' : 'visible';
+    document.getElementById('btnNextStep').innerHTML = idx === totalSteps - 1 ? 'Start Implementation &check;' : 'Next Stage &rarr;';
+  }
+
+  function nextStep() {
+    if (currentStepIdx < totalSteps - 1) {
+      switchStep(currentStepIdx + 1);
+    } else {
+      alert("Wireframe Walkthrough Complete! Ready to proceed with Task 1 implementation.");
+    }
+  }
+
+  function prevStep() {
+    if (currentStepIdx > 0) {
+      switchStep(currentStepIdx - 1);
+    }
+  }
+
+  function toggleSimDrawer() {
+    const drawer = document.getElementById('simDrawer');
+    drawer.style.display = drawer.style.display === 'none' ? 'block' : 'none';
+  }
+
+  function setSimTab(tab) {
+    const isPreview = tab === 'preview';
+    document.getElementById('tabBtnPreview').classList.toggle('active', isPreview);
+    document.getElementById('tabBtnCode').classList.toggle('active', !isPreview);
+    document.getElementById('simTabContentPreview').style.display = isPreview ? 'block' : 'none';
+    document.getElementById('simTabContentCode').style.display = isPreview ? 'none' : 'block';
+  }
+
+  // Initial setup
+  switchStep(0);
+</script>
+
+</body>
+</html>
