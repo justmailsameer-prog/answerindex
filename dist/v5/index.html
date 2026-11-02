@@ -20,6 +20,7 @@
 
   <!-- Client Portal Auth CSS & JS -->
   <link rel="stylesheet" href="../assets/client-portal.css">
+  <link rel="stylesheet" href="../assets/demo-player.css">
   <script src="../assets/client-portal.js"></script>
 
   <!-- Schema.org Connected Knowledge Graph -->
@@ -2181,6 +2182,230 @@
         </div>
       </div>
 
+            <!-- INTERACTIVE 4-STAGE WALKTHROUGH DEMO (Inspired by BeyondComments) -->
+      <section class="demo-player-section" id="how-it-works-preview">
+        <div class="demo-player-card" id="demoWalkthroughPlayer">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 24px; flex-wrap: wrap; gap: 12px;">
+            <div>
+              <div class="badge-pill-featured" style="margin: 0 0 6px 0; padding: 4px 10px; font-size: 11px;">
+                THE 4-STAGE AUTONOMOUS PIPELINE
+              </div>
+              <h3 style="font-size: 22px; font-weight: 800; color: var(--text-primary); letter-spacing: -0.02em; margin: 0;">
+                Watch Your Brand Become the Recommended Answer
+              </h3>
+            </div>
+            <span style="font-family: var(--font-mono); font-size: 12px; color: var(--text-secondary); background: var(--bg-canvas); padding: 4px 10px; border-radius: 999px; border: 1px solid var(--border-subtle);">
+              Interactive Flow &middot; No Blind Publishing
+            </span>
+          </div>
+
+          <div class="demo-player-grid">
+            <!-- Left Side: Simulated Dark Browser Canvas -->
+            <div class="demo-browser-frame">
+              <div class="demo-browser-bar">
+                <div class="demo-browser-dots" aria-hidden="true">
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="demo-browser-url">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                  <span>answerindex.xyz/engine/pipeline</span>
+                </div>
+                <span class="demo-browser-badge" id="demoBrowserBadge">&bull; Autonomous Stage</span>
+              </div>
+
+              <div class="demo-stage-screen">
+                <!-- Stage 01: Typewriter Domain Input -->
+                <div class="demo-stage-panel active" id="demoStagePanel0">
+                  <div class="demo-input-card">
+                    <div style="font-family: var(--font-mono); font-size: 11px; color: #94A3B8; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.04em;">
+                      01 &middot; Target Domain Probe
+                    </div>
+                    <div class="demo-sim-input-box">
+                      <span style="color: #64748B;">https://</span>
+                      <strong id="demoSimDomainText" style="color: #F8FAFC;">nordicnesting.com</strong>
+                      <span class="demo-caret"></span>
+                    </div>
+                    <div class="demo-chips-row">
+                      <span class="demo-chip-option selected">Auto-Detect Platform</span>
+                      <span class="demo-chip-option">Robots.txt AI Probe</span>
+                      <span class="demo-chip-option">Entity Graph</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                      <span style="font-size: 11.5px; color: #94A3B8;">&check; Zero login required</span>
+                      <span class="demo-btn-action">Initiating Audit &rarr;</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Stage 02: Real-time Ingestion & Question Extraction -->
+                <div class="demo-stage-panel" id="demoStagePanel1">
+                  <div class="demo-ticker-header">
+                    <div>
+                      <div style="font-family: var(--font-mono); font-size: 10.5px; color: #94A3B8; text-transform: uppercase;">
+                        Ingesting Buyer Search Prompts
+                      </div>
+                      <div class="demo-ticker-number">
+                        <span id="demoTickerNum">0</span> <small style="font-size: 13px; color: #64748B; font-weight: 500;">commercial queries scanned</small>
+                      </div>
+                    </div>
+                    <span style="font-size: 11px; color: #34D399; background: rgba(16,185,129,0.15); padding: 3px 8px; border-radius: 999px; font-weight: 700;">
+                      &bull; Live Stream
+                    </span>
+                  </div>
+
+                  <ul class="demo-stream-list">
+                    <li class="demo-stream-item">
+                      <span class="demo-stream-pill demo-pill-gpt">ChatGPT</span>
+                      <span>"Best scandinavian kitchen organizers under $150"</span>
+                    </li>
+                    <li class="demo-stream-item">
+                      <span class="demo-stream-pill demo-pill-pplx">Perplexity</span>
+                      <span>"Nordic Nesting vs West Elm material durability comparison"</span>
+                    </li>
+                    <li class="demo-stream-item">
+                      <span class="demo-stream-pill demo-pill-cld">Claude</span>
+                      <span>"Are Nordic Nesting ceramic bowls dishwasher safe?"</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <!-- Stage 03: Bar Chart & Sentiment / Authority Gaps -->
+                <div class="demo-stage-panel" id="demoStagePanel2">
+                  <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-family: var(--font-mono); font-size: 11px; color: #94A3B8; text-transform: uppercase;">
+                      03 &middot; Direct Citation Authority Matrix
+                    </span>
+                    <span style="font-size: 11px; color: #FBBF24; font-weight: 700;">AI Consensus Readiness</span>
+                  </div>
+
+                  <div class="demo-bars-chart">
+                    <div class="demo-chart-col">
+                      <strong style="font-size: 11px; color: #F59E0B;">78%</strong>
+                      <div class="demo-chart-bar" style="height: 78%;"></div>
+                      <span class="demo-chart-label">AEO Snippet</span>
+                    </div>
+                    <div class="demo-chart-col">
+                      <strong style="font-size: 11px; color: #60A5FA;">94%</strong>
+                      <div class="demo-chart-bar" style="height: 94%;"></div>
+                      <span class="demo-chart-label">JSON-LD</span>
+                    </div>
+                    <div class="demo-chart-col">
+                      <strong style="font-size: 11px; color: #34D399;">88%</strong>
+                      <div class="demo-chart-bar" style="height: 88%;"></div>
+                      <span class="demo-chart-label">Perplexity</span>
+                    </div>
+                    <div class="demo-chart-col">
+                      <strong style="font-size: 11px; color: #A78BFA;">92%</strong>
+                      <div class="demo-chart-bar" style="height: 92%;"></div>
+                      <span class="demo-chart-label">Entity Moat</span>
+                    </div>
+                  </div>
+
+                  <div style="font-size: 12px; color: #94A3B8; line-height: 1.4; display: flex; align-items: center; gap: 6px;">
+                    <span style="color: #34D399;">&check;</span> Ground-Truth Brand Wiki verified: zero hallucinated specifications.
+                  </div>
+                </div>
+
+                <!-- Stage 04: Production Staging & Daily Deliverable -->
+                <div class="demo-stage-panel" id="demoStagePanel3">
+                  <div style="font-family: var(--font-mono); font-size: 11px; color: #94A3B8; text-transform: uppercase; margin-bottom: 10px;">
+                    04 &middot; Staged Morning Deliverables (06:00 AM)
+                  </div>
+
+                  <div class="demo-report-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                      <span class="demo-job-pill" style="background: rgba(245,158,11,0.2); color: #FBBF24;">Job 1 &middot; AEO Answer</span>
+                      <span style="font-size: 11px; color: #94A3B8;">Staged in Shopify Drafts</span>
+                    </div>
+                    <strong style="font-size: 13.5px; color: #F8FAFC; display: block; margin-bottom: 4px;">
+                      Scandinavian Kitchen Essentials: 2026 Buying Guide
+                    </strong>
+                    <p style="font-size: 11.5px; color: #94A3B8; margin: 0; line-height: 1.4;">
+                      Formatted with direct answer markup, comparison table, and author citation schema.
+                    </p>
+                  </div>
+
+                  <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 10px 14px;">
+                    <div>
+                      <span class="demo-job-pill" style="background: rgba(59,130,246,0.2); color: #60A5FA;">Job 2 &middot; Schema Patch</span>
+                      <div style="font-size: 12px; color: #E2E8F0; margin-top: 2px;">TechArticle + FAQPage JSON-LD</div>
+                    </div>
+                    <span class="demo-btn-action" style="background: #10B981; color: #FFFFFF;">
+                      1-Click Approve &check;
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Side: 4 Chapter Buttons with Synced Progress Fills -->
+            <div style="display: flex; flex-direction: column; justify-content: space-between;">
+              <ol class="demo-chapters-list">
+                <li>
+                  <button type="button" class="demo-chapter-btn active" data-stage="0" aria-label="Step 1: Domain Discovery Probe">
+                    <div class="demo-chapter-header">
+                      <span class="demo-chapter-num">01 &middot; STEP</span>
+                      <span style="font-size: 11px; color: var(--text-muted); font-family: var(--font-mono);">4.2s</span>
+                    </div>
+                    <strong class="demo-chapter-title">Domain Discovery Probe</strong>
+                    <span class="demo-chapter-desc">Scans robots.txt permissions for GPTBot, ClaudeBot, and checks baseline entity markup.</span>
+                    <span class="demo-chapter-progress"></span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="demo-chapter-btn" data-stage="1" aria-label="Step 2: Conversational Demand Mapping">
+                    <div class="demo-chapter-header">
+                      <span class="demo-chapter-num">02 &middot; STEP</span>
+                      <span style="font-size: 11px; color: var(--text-muted); font-family: var(--font-mono);">4.6s</span>
+                    </div>
+                    <strong class="demo-chapter-title">Conversational Demand Mapping</strong>
+                    <span class="demo-chapter-desc">Monitors what prospective buyers ask ChatGPT, Perplexity, and Google AI Overviews in your sector.</span>
+                    <span class="demo-chapter-progress"></span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="demo-chapter-btn" data-stage="2" aria-label="Step 3: Ground-Truth Entity Synthesis">
+                    <div class="demo-chapter-header">
+                      <span class="demo-chapter-num">03 &middot; STEP</span>
+                      <span style="font-size: 11px; color: var(--text-muted); font-family: var(--font-mono);">4.6s</span>
+                    </div>
+                    <strong class="demo-chapter-title">Ground-Truth Entity Synthesis</strong>
+                    <span class="demo-chapter-desc">Synthesizes authoritative answers cross-referenced against your Cloudflare D1 brand wiki.</span>
+                    <span class="demo-chapter-progress"></span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="demo-chapter-btn" data-stage="3" aria-label="Step 4: Safe 1-Click Morning Staging">
+                    <div class="demo-chapter-header">
+                      <span class="demo-chapter-num">04 &middot; STEP</span>
+                      <span style="font-size: 11px; color: var(--text-muted); font-family: var(--font-mono);">5.2s</span>
+                    </div>
+                    <strong class="demo-chapter-title">Safe 1-Click Morning Staging</strong>
+                    <span class="demo-chapter-desc">Delivers two production assets to your CMS drafts or GitHub PR queue every morning at 06:00 AM.</span>
+                    <span class="demo-chapter-progress"></span>
+                  </button>
+                </li>
+              </ol>
+
+              <!-- Bottom Play/Pause Controller -->
+              <div class="demo-player-bottom-bar">
+                <button type="button" class="demo-player-toggle" id="demoPlayerToggleBtn" aria-label="Pause or play walkthrough animation">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                    <rect x="6" y="4" width="4" height="16"></rect>
+                    <rect x="14" y="4" width="4" height="16"></rect>
+                  </svg>
+                  <span id="demoPlayerToggleText">Pause Walkthrough</span>
+                </button>
+                <a href="#audit-tool" class="btn-honey-primary" style="font-size: 12px; padding: 6px 16px; border-radius: 999px; text-decoration: none;">
+                  Audit Your Domain &rarr;
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
       <!-- 01: IN PLAIN ENGLISH (EXECUTIVE SUMMARY) -->
       <section class="spotlight-panel" id="summary">
         <div class="section-headline">
@@ -3733,5 +3958,6 @@
       }
     }
   </script>
+  <script src="../assets/demo-player.js"></script>
 </body>
 </html>

@@ -1,0 +1,441 @@
+/* =========================================================================
+   INTERACTIVE WALKTHROUGH DEMO PLAYER (Narwhal Clean Editorial)
+   Inspired by subtle micro-interactions & progressive report simulation
+   ========================================================================= */
+
+.demo-player-section {
+  margin: 36px 0 44px;
+}
+
+.demo-player-card {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-subtle);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 32px 36px 36px;
+  position: relative;
+  overflow: hidden;
+}
+
+.demo-player-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 32px;
+  align-items: stretch;
+}
+
+@media (max-width: 900px) {
+  .demo-player-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .demo-player-card {
+    padding: 22px 20px 26px;
+  }
+}
+
+/* Simulated Browser Window Frame */
+.demo-browser-frame {
+  background: #0F1117;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 400px;
+}
+
+.demo-browser-bar {
+  background: #181B22;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.demo-browser-dots {
+  display: inline-flex;
+  gap: 6px;
+}
+
+.demo-browser-dots span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.8;
+}
+
+.demo-browser-dots span:nth-child(1) { background: #FF5F56; }
+.demo-browser-dots span:nth-child(2) { background: #FFBD2E; }
+.demo-browser-dots span:nth-child(3) { background: #27C93F; }
+
+.demo-browser-url {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 3px 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #94A3B8;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  max-width: 280px;
+}
+
+.demo-browser-badge {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #FBBF24;
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.28);
+  padding: 2px 8px;
+  border-radius: 999px;
+  margin-left: auto;
+}
+
+/* Stage Screen Viewport */
+.demo-stage-screen {
+  padding: 24px;
+  color: #E2E8F0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+/* Individual Stage Panels */
+.demo-stage-panel {
+  display: none;
+  animation: demoFadeIn 0.35s ease forwards;
+}
+
+.demo-stage-panel.active {
+  display: block;
+}
+
+@keyframes demoFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Stage 1: Typewriter Domain Input */
+.demo-input-card {
+  background: #1E222D;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.demo-sim-input-box {
+  background: #11141C;
+  border: 1.5px solid #F59E0B;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.2);
+  border-radius: 8px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: #FFFFFF;
+  margin-bottom: 14px;
+}
+
+.demo-caret {
+  display: inline-block;
+  width: 2px;
+  height: 16px;
+  background: #F59E0B;
+  vertical-align: middle;
+  animation: demoBlink 0.9s infinite;
+}
+
+@keyframes demoBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.demo-chips-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.demo-chip-option {
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #94A3B8;
+}
+
+.demo-chip-option.selected {
+  background: rgba(245, 158, 11, 0.15);
+  border-color: rgba(245, 158, 11, 0.4);
+  color: #FBBF24;
+  font-weight: 700;
+}
+
+/* Stage 2: Crawl Ticker & Live Ingestion Stream */
+.demo-ticker-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.demo-ticker-number {
+  font-family: var(--font-mono);
+  font-size: 24px;
+  font-weight: 800;
+  color: #FBBF24;
+}
+
+.demo-stream-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.demo-stream-item {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 8px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: #CBD5E1;
+  animation: demoRowSlide 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes demoRowSlide {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.demo-stream-pill {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.demo-pill-gpt { background: rgba(16, 185, 129, 0.18); color: #34D399; }
+.demo-pill-pplx { background: rgba(59, 130, 246, 0.18); color: #60A5FA; }
+.demo-pill-cld { background: rgba(245, 158, 11, 0.18); color: #FBBF24; }
+
+/* Stage 3: Bar & Gap Analysis */
+.demo-bars-chart {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 10px;
+  height: 140px;
+  margin: 18px 0 16px;
+  padding: 0 10px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.demo-chart-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.demo-chart-bar {
+  width: 100%;
+  max-width: 42px;
+  background: linear-gradient(180deg, #F59E0B 0%, #D97706 100%);
+  border-radius: 4px 4px 0 0;
+  transform-origin: bottom;
+  transition: height 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.demo-chart-col:nth-child(2) .demo-chart-bar {
+  background: linear-gradient(180deg, #3B82F6 0%, #2563EB 100%);
+}
+.demo-chart-col:nth-child(3) .demo-chart-bar {
+  background: linear-gradient(180deg, #10B981 0%, #059669 100%);
+}
+.demo-chart-col:nth-child(4) .demo-chart-bar {
+  background: linear-gradient(180deg, #8B5CF6 0%, #7C3AED 100%);
+}
+
+.demo-chart-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: #94A3B8;
+  white-space: nowrap;
+}
+
+/* Stage 4: Morning Deliverables Staged */
+.demo-report-card {
+  background: #181C26;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+.demo-job-pill {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.demo-btn-action {
+  background: #F59E0B;
+  color: #0F172A;
+  border: none;
+  font-weight: 800;
+  font-size: 11.5px;
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Right-Side Chapters (Walkthrough Controls) */
+.demo-chapters-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.demo-chapter-btn {
+  background: var(--bg-canvas);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 14px 18px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.demo-chapter-btn:hover {
+  background: #FFFFFF;
+  border-color: var(--border-hover);
+  transform: translateY(-1px);
+}
+
+.demo-chapter-btn.active {
+  background: #FFFFFF;
+  border-color: #F59E0B;
+  box-shadow: 0 4px 18px rgba(245, 158, 11, 0.12);
+}
+
+.demo-chapter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.demo-chapter-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  color: #B45309;
+}
+
+.demo-chapter-title {
+  font-size: 14.5px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.demo-chapter-desc {
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+/* Chapter Progress Bar at Bottom of Button */
+.demo-chapter-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, #F59E0B 0%, #D97706 100%);
+  transition: width 0.05s linear;
+}
+
+.demo-chapter-btn.active .demo-chapter-progress {
+  /* Dynamic via requestAnimationFrame inline style width */
+}
+
+/* Walkthrough Play / Pause Pill */
+.demo-player-bottom-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.demo-player-toggle {
+  background: var(--bg-canvas);
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  padding: 5px 14px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.demo-player-toggle:hover {
+  color: var(--text-primary);
+  border-color: var(--border-hover);
+  background: #FFFFFF;
+}
+
+/* Reduced Motion Safety */
+@media (prefers-reduced-motion: reduce) {
+  .demo-caret, .demo-stream-item, .demo-stage-panel {
+    animation: none !important;
+  }
+}
