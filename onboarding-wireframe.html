@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Answer Index — Interactive Onboarding & Workspace Flow Wireframe</title>
+  <title>Answer Index — Post-Registration Onboarding, 30-Day Growth & Score Trajectory Wireframe</title>
   
   <!-- Fonts matching Narwhal Design System -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -52,11 +52,11 @@
       color: var(--text-primary);
       font-family: var(--font-sans);
       line-height: 1.5;
-      padding: 32px 20px 80px;
+      padding: 28px 20px 80px;
     }
 
     .container {
-      max-width: 1180px;
+      max-width: 1220px;
       margin: 0 auto;
     }
 
@@ -66,8 +66,8 @@
       border: 1.5px solid var(--border-subtle);
       border-radius: var(--radius-card);
       box-shadow: var(--shadow-card);
-      padding: 28px 32px;
-      margin-bottom: 36px;
+      padding: 24px 30px;
+      margin-bottom: 28px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -88,15 +88,20 @@
       letter-spacing: 0.05em;
     }
 
-    /* Stepper Navigation Bar */
+    /* 6-Step Stepper Navigation Bar */
     .flow-stepper-nav {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 12px;
-      margin-bottom: 32px;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+      margin-bottom: 28px;
     }
 
-    @media (max-width: 860px) {
+    @media (max-width: 990px) {
+      .flow-stepper-nav {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    @media (max-width: 600px) {
       .flow-stepper-nav {
         grid-template-columns: 1fr;
       }
@@ -106,7 +111,7 @@
       background: var(--bg-card);
       border: 1.5px solid var(--border-subtle);
       border-radius: 14px;
-      padding: 16px 14px;
+      padding: 14px 12px;
       text-align: left;
       cursor: pointer;
       transition: all 0.2s ease;
@@ -121,19 +126,19 @@
     .step-nav-btn.active {
       border-color: #F59E0B;
       background: #FFFFFF;
-      box-shadow: 0 4px 20px rgba(245, 158, 11, 0.15);
+      box-shadow: 0 4px 20px rgba(245, 158, 11, 0.16);
     }
 
     .step-nav-btn .num {
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 800;
       color: #B45309;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
 
     .step-nav-btn .title {
-      font-size: 13.5px;
+      font-size: 13px;
       font-weight: 800;
       color: var(--text-primary);
       line-height: 1.25;
@@ -155,7 +160,7 @@
       border-radius: var(--radius-card);
       box-shadow: var(--shadow-card);
       overflow: hidden;
-      margin-bottom: 32px;
+      margin-bottom: 28px;
     }
 
     .stage-browser-bar {
@@ -195,21 +200,20 @@
       align-items: center;
       gap: 8px;
       flex: 1;
-      max-width: 380px;
+      max-width: 420px;
     }
 
     .stage-content {
-      padding: 36px 40px;
-      min-height: 520px;
+      padding: 32px 36px;
+      min-height: 540px;
     }
 
     @media (max-width: 640px) {
       .stage-content {
-        padding: 24px 18px;
+        padding: 20px 16px;
       }
     }
 
-    /* Step Panels */
     .step-panel {
       display: none;
       animation: fadeIn 0.3s ease forwards;
@@ -236,32 +240,18 @@
       margin-bottom: 24px;
     }
 
-    .sim-brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 800;
-      font-size: 16px;
-    }
-
     .sim-banner-guide {
       background: linear-gradient(135deg, #FFFDF8 0%, #FFF8E7 100%);
       border: 1.5px solid var(--honey-border);
       border-radius: 16px;
       padding: 22px 26px;
       margin-bottom: 28px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
     }
 
     .stepper-mini-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 16px;
-      width: 100%;
       margin-top: 14px;
     }
 
@@ -283,29 +273,13 @@
       box-shadow: 0 4px 14px rgba(245, 158, 11, 0.15);
     }
 
-    /* Job Card Simulation */
     .sim-job-card {
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
       border-radius: 16px;
-      padding: 24px;
-      margin-bottom: 20px;
+      padding: 22px;
+      margin-bottom: 18px;
       box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02);
-      transition: all 0.2s ease;
-    }
-
-    .sim-job-card.highlight {
-      border-color: #F59E0B;
-      box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
-    }
-
-    .sim-job-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-      flex-wrap: wrap;
-      gap: 10px;
     }
 
     .sim-pill {
@@ -335,13 +309,6 @@
       border: 1px solid #BFDBFE;
     }
 
-    .sim-actions-row {
-      display: flex;
-      gap: 10px;
-      margin-top: 18px;
-      flex-wrap: wrap;
-    }
-
     .btn-sim-primary {
       background: var(--honey-primary);
       color: #1E293B;
@@ -367,7 +334,7 @@
       border: 1px solid var(--border-subtle);
       color: var(--text-primary);
       border-radius: 8px;
-      padding: 10px 16px;
+      padding: 9px 15px;
       font-weight: 700;
       font-size: 13px;
       cursor: pointer;
@@ -382,54 +349,217 @@
       border-color: var(--border-hover);
     }
 
-    /* Modal / Drawer Overlay Simulation */
-    .sim-drawer-modal {
-      background: #FFFFFF;
-      border: 1.5px solid var(--border-subtle);
-      border-radius: 16px;
-      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
-      padding: 24px;
-      margin-top: 20px;
+    /* -------------------------------------------------------------------------
+       30-DAY CALENDAR & DAILY DELTA GROWTH STYLES
+       ------------------------------------------------------------------------- */
+    .cal-stats-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
     }
 
-    .sim-tab-header {
-      display: flex;
-      gap: 8px;
-      border-bottom: 1px solid var(--border-subtle);
-      padding-bottom: 12px;
-      margin-bottom: 16px;
+    @media (max-width: 860px) {
+      .cal-stats-bar {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
-    .sim-tab-btn {
-      background: none;
-      border: none;
-      padding: 6px 14px;
-      font-weight: 700;
-      font-size: 13px;
-      color: var(--text-secondary);
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    .sim-tab-btn.active {
+    .cal-stat-card {
       background: var(--bg-canvas);
-      color: var(--text-primary);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 14px 18px;
+    }
+
+    .cal-stat-num {
+      font-family: var(--font-mono);
+      font-size: 22px;
+      font-weight: 800;
+      margin-top: 4px;
+    }
+
+    .progress-track-container {
+      background: var(--bg-canvas);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 18px 22px;
+      margin-bottom: 24px;
+    }
+
+    .progress-bar-rail {
+      height: 10px;
+      background: #E2E8F0;
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 10px 0 6px;
+      display: flex;
+    }
+
+    .progress-bar-done {
+      background: linear-gradient(90deg, #10B981 0%, #059669 100%);
+      width: 6.67%; /* 2 of 30 days */
+      transition: width 0.4s ease;
+    }
+
+    .progress-bar-today {
+      background: #F59E0B;
+      width: 3.33%; /* day 3 */
+    }
+
+    /* Calendar Grid */
+    .wireframe-cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 900px) {
+      .wireframe-cal-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+    @media (max-width: 520px) {
+      .wireframe-cal-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .cal-day-cell {
+      background: var(--bg-canvas);
+      border: 1.5px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      min-height: 96px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .cal-day-cell:hover {
+      border-color: #F59E0B;
+      background: #FFFFFF;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+    }
+
+    .cal-day-cell.done {
+      border-color: rgba(16, 185, 129, 0.35);
+      background: #F0FDF4;
+    }
+
+    .cal-day-cell.today {
+      border-color: #F59E0B;
+      background: #FFFBEB;
+      box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2);
+    }
+
+    .cal-day-cell.future {
+      opacity: 0.85;
+    }
+
+    .day-num-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      font-family: var(--font-mono);
+      font-weight: 700;
+    }
+
+    .day-score-pill {
+      font-size: 10px;
+      padding: 1px 5px;
+      border-radius: 4px;
       font-weight: 800;
     }
 
-    .code-preview-block {
-      background: #0F172A;
-      color: #F8FAFC;
-      border-radius: 8px;
-      padding: 16px;
-      font-family: var(--font-mono);
-      font-size: 12px;
-      line-height: 1.6;
-      overflow-x: auto;
-      margin-bottom: 16px;
+    .day-task-summary {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-top: 6px;
+      line-height: 1.35;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
 
-    /* Bottom Wireframe Controls */
+    /* Day-to-Day Inspection Detail Drawer */
+    .day-diff-inspector {
+      background: #FFFFFF;
+      border: 1.5px solid #F59E0B;
+      border-radius: 16px;
+      box-shadow: 0 10px 32px rgba(245, 158, 11, 0.12);
+      padding: 24px;
+      margin-top: 24px;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .delta-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #D1FAE5;
+      color: #065F46;
+      border: 1px solid #A7F3D0;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-family: var(--font-mono);
+    }
+
+    .trajectory-chart {
+      background: #0F172A;
+      color: #F8FAFC;
+      border-radius: 12px;
+      padding: 18px 24px;
+      margin-bottom: 24px;
+    }
+
+    .chart-bars-wrap {
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+      height: 120px;
+      margin-top: 14px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .chart-day-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      height: 100%;
+      justify-content: flex-end;
+    }
+
+    .chart-bar-pillar {
+      width: 100%;
+      border-radius: 3px 3px 0 0;
+      transition: all 0.3s ease;
+    }
+
+    .chart-bar-pillar.past {
+      background: #10B981;
+    }
+    .chart-bar-pillar.today-bar {
+      background: #F59E0B;
+    }
+    .chart-bar-pillar.future-bar {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px dashed rgba(255, 255, 255, 0.3);
+    }
+
+    /* Controls */
     .wireframe-controls {
       display: flex;
       justify-content: space-between;
@@ -455,19 +585,6 @@
       background: #000000;
       transform: translateY(-1px);
     }
-
-    .callout-box {
-      background: #EFF6FF;
-      border: 1px solid #BFDBFE;
-      border-radius: 12px;
-      padding: 14px 18px;
-      font-size: 13px;
-      color: #1E40AF;
-      margin-top: 20px;
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-    }
   </style>
 </head>
 <body>
@@ -478,28 +595,28 @@
   <header class="wireframe-header">
     <div>
       <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
-        <span class="wireframe-badge">Interactive Architectural Wireframe</span>
-        <span style="font-size: 12px; color: var(--text-muted); font-family: var(--font-mono);">v1.0 &middot; Live Prototype</span>
+        <span class="wireframe-badge">Architectural Wireframe Prototype</span>
+        <span style="font-size: 12px; color: var(--text-muted); font-family: var(--font-mono);">v1.2 &middot; 30-Day Growth Engine</span>
       </div>
-      <h1 style="font-size: 26px; font-weight: 800; letter-spacing: -0.02em;">
-        Answer Index &mdash; Post-Registration &amp; Implementation Flow
+      <h1 style="font-size: 24px; font-weight: 800; letter-spacing: -0.02em;">
+        Answer Index &mdash; Post-Registration, 30-Day Calendar &amp; AEO Score Trajectory
       </h1>
-      <p style="font-size: 14px; color: var(--text-secondary); margin-top: 4px;">
-        Click through each stage below to experience exactly what a new client sees, clicks, and verifies upon registering.
+      <p style="font-size: 13.5px; color: var(--text-secondary); margin-top: 4px;">
+        Visualizing <strong>2 Days Done &middot; 28 Days Pending</strong> and how daily indexing increases the AEO Score from <strong>68 &rarr; 100</strong>.
       </p>
     </div>
-    <div>
+    <div style="display: flex; gap: 10px;">
       <a href="/dashboard.html" class="btn-sim-secondary" target="_blank" style="text-decoration: none;">
-        Open Current Live Dashboard &nearr;
+        Open Live Dashboard &nearr;
       </a>
     </div>
   </header>
 
-  <!-- 5-Step Stepper Navigation -->
+  <!-- 6-Step Stepper Navigation -->
   <nav class="flow-stepper-nav" aria-label="Onboarding Steps">
-    <button type="button" class="step-nav-btn active" onclick="switchStep(0)">
+    <button type="button" class="step-nav-btn" onclick="switchStep(0)">
       <div class="num">STAGE 01</div>
-      <div class="title">Persistent Auth &amp; Return</div>
+      <div class="title">Persistent Navbar Auth</div>
     </button>
     <button type="button" class="step-nav-btn" onclick="switchStep(1)">
       <div class="num">STAGE 02</div>
@@ -513,8 +630,12 @@
       <div class="num">STAGE 04</div>
       <div class="title">Click "Implemented" &amp; Probe</div>
     </button>
-    <button type="button" class="step-nav-btn" onclick="switchStep(4)">
-      <div class="num">STAGE 05</div>
+    <button type="button" class="step-nav-btn active" onclick="switchStep(4)" style="border-color: #F59E0B;">
+      <div class="num" style="color: #B45309;">STAGE 05 &bull; 30-DAY VIEW</div>
+      <div class="title">30-Day Calendar &amp; Score (68&rarr;100)</div>
+    </button>
+    <button type="button" class="step-nav-btn" onclick="switchStep(5)">
+      <div class="num">STAGE 06</div>
       <div class="title">Founder Admin Registry</div>
     </button>
   </nav>
@@ -527,156 +648,124 @@
       </div>
       <div class="browser-url-pill">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-        <span id="wireframeUrl">answerindex.xyz/</span>
+        <span id="wireframeUrl">answerindex.xyz/dashboard#calendar-growth</span>
       </div>
       <span style="font-family: var(--font-mono); font-size: 11px; color: #FBBF24; margin-left: auto;">
-        Interactive Simulation Mode
+        Interactive Prototype
       </span>
     </div>
 
     <div class="stage-content">
-      
-      <!-- ===================================================================
-           STAGE 1: PERSISTENT AUTH & RETURN (HOME NAVBAR WIREFRAME)
-           =================================================================== -->
-      <div class="step-panel active" id="stepPanel0">
+
+      <!-- STAGE 1: PERSISTENT NAVBAR -->
+      <div class="step-panel" id="stepPanel0">
         <div style="margin-bottom: 24px;">
           <h2 style="font-size: 20px; font-weight: 800; margin-bottom: 6px;">
             Stage 1: Solving "Session Amnesia" Across the Website
           </h2>
           <p style="font-size: 14px; color: var(--text-secondary);">
-            Once a client signs in, they should <strong>never see a generic "Client Sign In" button again</strong> when visiting the homepage, about, or pricing page. The navbar dynamically renders their active brand workspace.
+            Once a client signs in, they never see "Client Sign In" again. The navbar dynamically renders their active brand workspace.
           </p>
         </div>
 
-        <!-- Simulated Homepage Navbar Before/After -->
         <div style="background: var(--bg-canvas); border: 1px dashed var(--border-hover); border-radius: 16px; padding: 24px; margin-bottom: 24px;">
           <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 12px;">
             Navbar State (Logged-In User)
           </div>
           <div class="sim-navbar">
-            <div class="sim-brand">
+            <div style="display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 16px;">
               <span style="background: #F24F1E; color: #FFF; padding: 2px 8px; border-radius: 6px; font-size: 14px;">ai</span>
               <span>Answer Index</span>
             </div>
             
             <div style="display: flex; align-items: center; gap: 12px;">
-              <!-- Persistent Workspace Badge Button -->
               <a href="javascript:void(0)" onclick="switchStep(1)" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px; background: #11141C; color: #FFFFFF; padding: 8px 16px; border-radius: 999px; font-size: 13px; font-weight: 800;">
                 <span style="width: 8px; height: 8px; border-radius: 50%; background: #10B981; display: inline-block;"></span>
                 <span>Workspace: <strong>nordicnesting.com</strong> &rarr;</span>
               </a>
-
-              <!-- Logout Action -->
               <button type="button" class="btn-sim-secondary" style="font-size: 12px; padding: 6px 12px;" onclick="alert('Session Cleared: localStorage.removeItem(\'answerindex_user\')')">
                 Log Out
               </button>
             </div>
           </div>
         </div>
-
-        <div class="callout-box">
-          <span style="font-size: 18px;">💡</span>
-          <div>
-            <strong>How It Works in Code:</strong> On page load, <code>site-nav.js</code> checks <code>localStorage.getItem('answerindex_user')</code>. If present, it automatically swaps the generic Sign In modal trigger with the direct Workspace link to <code>/dashboard.html</code>.
-          </div>
-        </div>
       </div>
 
-      <!-- ===================================================================
-           STAGE 2: ONBOARDING STEPPER BANNER (DASHBOARD FIRST LANDING)
-           =================================================================== -->
+      <!-- STAGE 2: ONBOARDING BANNER -->
       <div class="step-panel" id="stepPanel1">
         <div style="margin-bottom: 20px;">
           <h2 style="font-size: 20px; font-weight: 800; margin-bottom: 6px;">
             Stage 2: The 3-Step Guided Onboarding Banner
           </h2>
           <p style="font-size: 14px; color: var(--text-secondary);">
-            When the user enters <code>dashboard.html</code>, this banner sits right at the top so they immediately know what button to press first.
+            Banner at top of <code>dashboard.html</code> showing what button to press first.
           </p>
         </div>
 
-        <!-- The Banner Component -->
         <div class="sim-banner-guide">
-          <div style="width: 100%;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-              <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: #B45309; text-transform: uppercase;">
-                Welcome to Your Autonomous Growth Workstation
-              </span>
-              <span style="font-size: 12px; font-weight: 700; color: #B45309;">Step 2 of 3 Active</span>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+            <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: #B45309; text-transform: uppercase;">
+              Welcome to Your Growth Workstation
+            </span>
+            <span style="font-size: 12px; font-weight: 700; color: #B45309;">Day 2 of 30 Production Loop</span>
+          </div>
+          <h3 style="font-size: 18px; font-weight: 800; color: #1E293B;">
+            3 Quick Steps to Complete Today's AI Citation Sync:
+          </h3>
+
+          <div class="stepper-mini-grid">
+            <div class="stepper-mini-box">
+              <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: var(--emerald-text); margin-bottom: 4px;">
+                &check; STEP 1: COMPLETED
+              </div>
+              <strong style="font-size: 13.5px; display: block; margin-bottom: 4px;">Brand Ground Truth</strong>
+              <p style="font-size: 12px; color: var(--text-secondary);">
+                Domain crawl verified in D1. Anti-hallucination guardrails active.
+              </p>
             </div>
-            <h3 style="font-size: 18px; font-weight: 800; color: #1E293B;">
-              3 Quick Steps to Complete Today's AI Citation Sync:
-            </h3>
 
-            <div class="stepper-mini-grid">
-              <!-- Step 1 -->
-              <div class="stepper-mini-box">
-                <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: var(--emerald-text); margin-bottom: 4px;">
-                  &check; STEP 1: COMPLETED
-                </div>
-                <strong style="font-size: 13.5px; display: block; margin-bottom: 4px;">Brand Ground Truth</strong>
-                <p style="font-size: 12px; color: var(--text-secondary);">
-                  Domain crawl verified in D1. Anti-hallucination guardrails active.
-                </p>
+            <div class="stepper-mini-box current">
+              <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: #B45309; margin-bottom: 4px;">
+                &bull; STEP 2: ACTION REQUIRED
               </div>
+              <strong style="font-size: 13.5px; display: block; margin-bottom: 4px;">Inspect Today's 2 Jobs</strong>
+              <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 8px;">
+                Review Job 1 (AEO Answer) &amp; Job 2 (Schema Patch).
+              </p>
+              <button type="button" class="btn-sim-primary" style="font-size: 11.5px; padding: 5px 12px;" onclick="switchStep(2)">
+                Review Job 1 Now &rarr;
+              </button>
+            </div>
 
-              <!-- Step 2 (Active) -->
-              <div class="stepper-mini-box current">
-                <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: #B45309; margin-bottom: 4px;">
-                  &bull; STEP 2: ACTION REQUIRED
-                </div>
-                <strong style="font-size: 13.5px; display: block; margin-bottom: 4px;">Inspect Today's 2 Jobs</strong>
-                <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 8px;">
-                  Review Job 1 (AEO Answer) &amp; Job 2 (Schema Patch) below.
-                </p>
-                <button type="button" class="btn-sim-primary" style="font-size: 11.5px; padding: 5px 12px;" onclick="switchStep(2)">
-                  Review Job 1 Now &rarr;
-                </button>
+            <div class="stepper-mini-box">
+              <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: var(--text-muted); margin-bottom: 4px;">
+                STEP 3: DEPLOYMENT
               </div>
-
-              <!-- Step 3 -->
-              <div class="stepper-mini-box">
-                <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: var(--text-muted); margin-bottom: 4px;">
-                  STEP 3: DEPLOYMENT
-                </div>
-                <strong style="font-size: 13.5px; display: block; margin-bottom: 4px;">1-Click Mark Implemented</strong>
-                <p style="font-size: 12px; color: var(--text-secondary);">
-                  Push to CMS drafts or copy JSON-LD schema into your site head.
-                </p>
-              </div>
+              <strong style="font-size: 13.5px; display: block; margin-bottom: 4px;">1-Click Mark Implemented</strong>
+              <p style="font-size: 12px; color: var(--text-secondary);">
+                Push to CMS drafts or copy JSON-LD schema into your site head.
+              </p>
             </div>
           </div>
         </div>
-
-        <!-- The Target Domain Pill in Header -->
-        <div style="display: flex; align-items: center; justify-content: space-between; background: var(--bg-canvas); border: 1px solid var(--border-subtle); padding: 12px 18px; border-radius: 12px;">
-          <span style="font-size: 13px; color: var(--text-secondary);">
-            Target Workspace: <strong style="color: var(--text-primary);">nordicnesting.com</strong>
-          </span>
-          <span class="sim-pill sim-pill-emerald">&bull; Platform: Shopify API Auto-Detect</span>
-        </div>
       </div>
 
-      <!-- ===================================================================
-           STAGE 3: INSPECT & COPY ASSET DIFF
-           =================================================================== -->
+      <!-- STAGE 3: INSPECT & COPY -->
       <div class="step-panel" id="stepPanel2">
         <div style="margin-bottom: 20px;">
           <h2 style="font-size: 20px; font-weight: 800; margin-bottom: 6px;">
             Stage 3: Which Button to Press? Reviewing &amp; Copying Content
           </h2>
           <p style="font-size: 14px; color: var(--text-secondary);">
-            Users see exactly where the content originated (ChatGPT buyer prompts) and can toggle between formatted text and copyable JSON-LD code.
+            Clear actions to review formatted preview or copy JSON-LD code into your CMS head.
           </p>
         </div>
 
-        <!-- Job Card Component with Buttons -->
-        <div class="sim-job-card highlight">
-          <div class="sim-job-header">
+        <div class="sim-job-card" style="border: 1.5px solid #F59E0B;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
             <div style="display: flex; align-items: center; gap: 8px;">
               <span class="sim-pill sim-pill-honey">JOB 01 &middot; AEO ANSWER</span>
-              <span class="sim-pill sim-pill-sky">Date: Today (06:00 AM)</span>
+              <span class="sim-pill sim-pill-sky">Day 2 (Today)</span>
             </div>
             <span class="sim-pill sim-pill-honey">&bull; Awaiting Your Approval</span>
           </div>
@@ -685,72 +774,34 @@
             Scandinavian Ceramic Dinnerware Durability &amp; Dishwasher Safety Guide
           </h3>
           <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 14px;">
-            Synthesized to answer high-volume Perplexity and ChatGPT conversational evaluation questions for buyers comparing Nordic Nesting against generic alternatives.
+            Synthesized to answer high-volume Perplexity and ChatGPT conversational evaluation questions.
           </p>
 
-          <div class="sim-actions-row">
-            <button type="button" class="btn-sim-primary" onclick="toggleSimDrawer()">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-              <span>🔍 Inspect Diff &amp; Copy Code</span>
+          <div style="display: flex; gap: 10px; margin-top: 14px;">
+            <button type="button" class="btn-sim-primary" onclick="alert('Viewing side-by-side formatted preview and schema diff.')">
+              🔍 Inspect Diff &amp; Preview
             </button>
             <button type="button" class="btn-sim-secondary" onclick="switchStep(3)">
-              <span>🚀 1-Click Approve &amp; Mark Implemented &rarr;</span>
+              🚀 1-Click Approve &amp; Mark Implemented &rarr;
             </button>
-          </div>
-
-          <!-- Drawer preview simulator -->
-          <div class="sim-drawer-modal" id="simDrawer" style="display: block;">
-            <div class="sim-tab-header">
-              <button type="button" class="sim-tab-btn active" id="tabBtnPreview" onclick="setSimTab('preview')">Formatted Preview</button>
-              <button type="button" class="sim-tab-btn" id="tabBtnCode" onclick="setSimTab('code')">Raw JSON-LD Schema (Copy Code)</button>
-            </div>
-
-            <div id="simTabContentPreview">
-              <div style="font-size: 13px; line-height: 1.6; color: var(--text-primary);">
-                <strong>Direct Answer Passage:</strong> Nordic Nesting ceramic dinnerware is kiln-fired at 1,280&deg;C, making it 100% dishwasher and microwave safe. Unlike standard earthenware, high-fire stoneware resists thermal shock and cutlery scratching.
-              </div>
-            </div>
-
-            <div id="simTabContentCode" style="display: none;">
-              <div class="code-preview-block">
-{
-  "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": "Ceramic Dinnerware Durability & Care",
-  "about": "dish-washer safety and thermal resilience",
-  "author": { "@type": "Organization", "name": "Nordic Nesting" }
-}
-              </div>
-              <button type="button" class="btn-sim-secondary" onclick="alert('Copied 24 lines of JSON-LD Schema to clipboard!')">
-                📋 Copy Full JSON-LD to Clipboard
-              </button>
-            </div>
           </div>
         </div>
       </div>
 
-      <!-- ===================================================================
-           STAGE 4: CLICK "IMPLEMENTED" & AUTOMATED VERIFICATION PROBE
-           =================================================================== -->
+      <!-- STAGE 4: DETERMINISTIC VERIFICATION -->
       <div class="step-panel" id="stepPanel3">
         <div style="margin-bottom: 20px;">
           <h2 style="font-size: 20px; font-weight: 800; margin-bottom: 6px;">
             Stage 4: "Is It Implemented? Is It a Success?" (Verification Feedback Loop)
           </h2>
           <p style="font-size: 14px; color: var(--text-secondary);">
-            How the client gains absolute confidence: deterministic status transition + live URL probe + telemetry boost.
+            How the client gains absolute confidence that their asset was successfully deployed and recognized by LLM crawlers.
           </p>
         </div>
 
-        <!-- Post-Approval State Card -->
         <div class="sim-job-card" style="border-left: 4px solid var(--emerald-green);">
-          <div class="sim-job-header">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <span class="sim-pill sim-pill-emerald">&check; JOB 01 APPROVED &middot; MERGED</span>
-              <span style="font-size: 12px; color: var(--text-secondary); font-family: var(--font-mono);">
-                Published to Shopify Drafts at 09:42 AM
-              </span>
-            </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <span class="sim-pill sim-pill-emerald">&check; JOB 01 APPROVED &middot; MERGED</span>
             <span class="sim-pill sim-pill-emerald">Status: Active on Knowledge Graph</span>
           </div>
 
@@ -758,55 +809,194 @@
             Scandinavian Ceramic Dinnerware Durability Guide
           </h3>
 
-          <!-- The Live Verification Feedback Box -->
           <div style="background: var(--emerald-bg); border: 1.5px solid rgba(16, 185, 129, 0.3); border-radius: 12px; padding: 16px 20px; margin: 16px 0;">
-            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-              <div>
-                <strong style="color: var(--emerald-text); font-size: 14px; display: flex; align-items: center; gap: 6px;">
-                  &check; Deterministic Verification Passed
-                </strong>
-                <p style="font-size: 12.5px; color: #065F46; margin-top: 2px;">
-                  Edge probe detected valid JSON-LD schema on <code>nordicnesting.com/pages/ceramic-guide</code>.
-                </p>
-              </div>
-              <button type="button" class="btn-sim-secondary" style="font-size: 11.5px; border-color: rgba(16, 185, 129, 0.4); background: #FFF;" onclick="alert('Live Edge Probe Status: HTTP 200 OK — Entity ingested by GPTBot and PerplexityBot.')">
-                🔄 Re-run Live Probe
-              </button>
-            </div>
+            <strong style="color: var(--emerald-text); font-size: 14px; display: flex; align-items: center; gap: 6px;">
+              &check; Deterministic Verification Passed
+            </strong>
+            <p style="font-size: 12.5px; color: #065F46; margin-top: 2px;">
+              Edge probe detected valid JSON-LD schema on <code>nordicnesting.com/pages/ceramic-guide</code>. Ingested by GPTBot and PerplexityBot.
+            </p>
           </div>
 
-          <!-- AI Citation Velocity Boost Indicator -->
-          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; text-align: center; margin-top: 14px;">
-            <div style="background: var(--bg-canvas); padding: 12px; border-radius: 8px;">
-              <div style="font-size: 11px; color: var(--text-secondary); font-family: var(--font-mono);">AI READINESS</div>
-              <strong style="font-size: 18px; color: #10B981;">88 &rarr; 92 / 100</strong>
-            </div>
-            <div style="background: var(--bg-canvas); padding: 12px; border-radius: 8px;">
-              <div style="font-size: 11px; color: var(--text-secondary); font-family: var(--font-mono);">PERPLEXITY RECOGNITION</div>
-              <strong style="font-size: 18px; color: #3B82F6;">82% &rarr; 86%</strong>
-            </div>
-            <div style="background: var(--bg-canvas); padding: 12px; border-radius: 8px;">
-              <div style="font-size: 11px; color: var(--text-secondary); font-family: var(--font-mono);">STAGED STATUS</div>
-              <strong style="font-size: 18px; color: #B45309;">100% Ingested</strong>
-            </div>
+          <div style="display: flex; justify-content: flex-end; margin-top: 10px;">
+            <button type="button" class="btn-sim-primary" onclick="switchStep(4)">
+              View 30-Day Score Trajectory (Day 2 of 30) &rarr;
+            </button>
           </div>
         </div>
       </div>
 
       <!-- ===================================================================
-           STAGE 5: FOUNDER ADMIN REGISTRY VIEW
+           STAGE 5: 30-DAY CALENDAR VIEW & AEO SCORE TRAJECTORY (68 -> 100)
            =================================================================== -->
-      <div class="step-panel" id="stepPanel4">
+      <div class="step-panel active" id="stepPanel4">
+        <div style="margin-bottom: 22px;">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 10px;">
+            <div>
+              <h2 style="font-size: 22px; font-weight: 800; margin-bottom: 4px; color: var(--text-primary);">
+                Stage 5: 30-Day Dispatch Calendar &amp; Daily AEO Score Growth
+              </h2>
+              <p style="font-size: 14px; color: var(--text-secondary);">
+                Showing the client exactly what has been done, what is pending, and the continuous day-over-day score progression from <strong>68 &rarr; 100</strong>.
+              </p>
+            </div>
+            <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); padding: 6px 14px; border-radius: 999px; font-family: var(--font-mono); font-size: 12px; font-weight: 700;">
+              Target: <strong style="color: #B45309;">nordicnesting.com</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4-Stat Overview Bar (2 Days Done, 28 Days Pending) -->
+        <div class="cal-stats-bar">
+          <div class="cal-stat-card" style="border-top: 3px solid var(--emerald-green);">
+            <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: var(--emerald-text); text-transform: uppercase;">
+              &check; Completed Deliverables
+            </div>
+            <div class="cal-stat-num" style="color: var(--emerald-text);">
+              2 Days Done <span style="font-size: 13px; font-weight: 600; color: var(--text-secondary);">(4 Assets Merged)</span>
+            </div>
+          </div>
+
+          <div class="cal-stat-card" style="border-top: 3px solid var(--honey-primary);">
+            <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: #B45309; text-transform: uppercase;">
+              &bull; Action Required
+            </div>
+            <div class="cal-stat-num" style="color: #B45309;">
+              Today (Day 2) <span style="font-size: 13px; font-weight: 600; color: var(--text-secondary);">(Awaiting Sign-Off)</span>
+            </div>
+          </div>
+
+          <div class="cal-stat-card" style="border-top: 3px solid #94A3B8;">
+            <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: var(--text-muted); text-transform: uppercase;">
+              &bull; Autonomous Pipeline
+            </div>
+            <div class="cal-stat-num" style="color: var(--text-primary);">
+              28 Days Pending <span style="font-size: 13px; font-weight: 600; color: var(--text-secondary);">(56 Scheduled Assets)</span>
+            </div>
+          </div>
+
+          <div class="cal-stat-card" style="border-top: 3px solid var(--sky-blue);">
+            <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: var(--sky-text); text-transform: uppercase;">
+              Cumulative AEO Score
+            </div>
+            <div class="cal-stat-num" style="color: var(--sky-text);">
+              68 &rarr; 72 / 100 <span class="delta-badge">+4 pts today</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 30-Day Pipeline Visual Rail -->
+        <div class="progress-track-container">
+          <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12.5px;">
+            <span><strong>30-Day Month Cadence Progress:</strong> 2 of 30 days active</span>
+            <span style="font-family: var(--font-mono); font-weight: 700; color: var(--emerald-text);">6.7% Complete</span>
+          </div>
+          <div class="progress-bar-rail">
+            <div class="progress-bar-done" title="2 Days Merged"></div>
+            <div class="progress-bar-today" title="Day 2 Reviewing"></div>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); font-family: var(--font-mono);">
+            <span>Day 1 (Baseline: 68)</span>
+            <span>Day 15 (Target: 86)</span>
+            <span>Day 30 (Goal: 100 Perfect AEO Moat)</span>
+          </div>
+        </div>
+
+        <!-- Visual 30-Day Score Trajectory Chart -->
+        <div class="trajectory-chart">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <div>
+              <div style="font-family: var(--font-mono); font-size: 11px; color: #94A3B8; text-transform: uppercase;">
+                Projected Day-over-Day AI Citation Trajectory
+              </div>
+              <strong style="font-size: 17px; color: #FFFFFF;">
+                From Baseline Score 68 &rarr; 100 Authority Consensus
+              </strong>
+            </div>
+            <div style="display: flex; gap: 12px; font-size: 11px; font-family: var(--font-mono);">
+              <span style="display: flex; align-items: center; gap: 4px; color: #34D399;">
+                <span style="width: 8px; height: 8px; background: #10B981; border-radius: 2px;"></span> Merged
+              </span>
+              <span style="display: flex; align-items: center; gap: 4px; color: #FBBF24;">
+                <span style="width: 8px; height: 8px; background: #F59E0B; border-radius: 2px;"></span> Today
+              </span>
+              <span style="display: flex; align-items: center; gap: 4px; color: #94A3B8;">
+                <span style="width: 8px; height: 8px; background: rgba(255,255,255,0.2); border-radius: 2px;"></span> Scheduled
+              </span>
+            </div>
+          </div>
+
+          <!-- Micro Bar Chart of the 30 Days -->
+          <div class="chart-bars-wrap" id="chartPillars">
+            <!-- Dynamically generated 30 days of growth pillars -->
+          </div>
+        </div>
+
+        <!-- 30-Day Interactive Calendar Grid -->
+        <div style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
+          <h3 style="font-size: 16px; font-weight: 800;">
+            30-Day Release Grid (Click Any Day to Inspect What Changed)
+          </h3>
+          <span style="font-size: 12px; color: var(--text-secondary);">
+            Click days to compare growth deltas
+          </span>
+        </div>
+
+        <div class="wireframe-cal-grid" id="wireframeCalGrid">
+          <!-- Populated by JavaScript with real 30-day topics & score jumps -->
+        </div>
+
+        <!-- Detailed Day-to-Day Delta Drawer -->
+        <div class="day-diff-inspector" id="dayDiffInspector">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+            <div>
+              <span class="sim-pill sim-pill-emerald" id="drawerDayBadge">DAY 2 &middot; TODAY</span>
+              <h3 id="drawerDayTitle" style="font-size: 18px; font-weight: 800; color: var(--text-primary); margin-top: 4px;">
+                Scandinavian Ceramic Dinnerware Durability &amp; Dishwasher Guide
+              </h3>
+            </div>
+            <div style="text-align: right;">
+              <span style="font-size: 11px; color: var(--text-muted); font-family: var(--font-mono); text-transform: uppercase;">AEO SCORE IMPACT</span>
+              <div style="font-family: var(--font-mono); font-size: 17px; font-weight: 800; color: #10B981;" id="drawerScoreImpact">
+                68 &rarr; 72 (+4 Points)
+              </div>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 14px;">
+            <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 14px;">
+              <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: #B45309; margin-bottom: 4px;">
+                WHAT IMPROVED TODAY:
+              </div>
+              <p style="font-size: 12.5px; color: var(--text-secondary); line-height: 1.5;" id="drawerWhatImproved">
+                Added high-value comparison snippet resolving thermal resilience queries. Ingested by Perplexity AI for "Nordic Nesting ceramic dishwasher safe".
+              </p>
+            </div>
+
+            <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 14px;">
+              <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: var(--sky-text); margin-bottom: 4px;">
+                TECHNICAL SCHEMA DELTA:
+              </div>
+              <p style="font-size: 12.5px; color: var(--text-secondary); line-height: 1.5;" id="drawerTechDelta">
+                Appended <code>TechArticle</code> and <code>FAQPage</code> structured JSON-LD into client site head. Validated by Google Rich Results test.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- STAGE 6: ADMIN REGISTRY VIEW -->
+      <div class="step-panel" id="stepPanel5">
         <div style="margin-bottom: 20px;">
           <h2 style="font-size: 20px; font-weight: 800; margin-bottom: 6px;">
-            Stage 5: "Where in the Backend Do I See Who Is Registered?"
+            Stage 6: "Where in the Backend Do I See Who Is Registered?"
           </h2>
           <p style="font-size: 14px; color: var(--text-secondary);">
             The centralized Founder Admin Dashboard (<code>/api/admin/clients</code>) gives you instant oversight of every registered user across Cloudflare D1.
           </p>
         </div>
 
-        <!-- Simulated Admin Client Table -->
         <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 14px; overflow: hidden; margin-bottom: 20px;">
           <div style="padding: 14px 18px; background: #11141C; color: #FFFFFF; display: flex; justify-content: space-between; align-items: center;">
             <strong style="font-family: var(--font-mono); font-size: 13px;">Cloudflare D1: Registered Clients Registry</strong>
@@ -820,7 +1010,7 @@
                 <th style="padding: 12px 16px;">DOMAIN</th>
                 <th style="padding: 12px 16px;">CMS PLATFORM</th>
                 <th style="padding: 12px 16px;">TIER</th>
-                <th style="padding: 12px 16px;">APPROVED JOBS</th>
+                <th style="padding: 12px 16px;">PROGRESS</th>
                 <th style="padding: 12px 16px;">ACTION</th>
               </tr>
             </thead>
@@ -830,26 +1020,19 @@
                 <td style="padding: 12px 16px;"><code>nordicnesting.com</code></td>
                 <td style="padding: 12px 16px;"><span class="sim-pill sim-pill-sky">Shopify</span></td>
                 <td style="padding: 12px 16px;"><span class="sim-pill sim-pill-honey">Enterprise VIP</span></td>
-                <td style="padding: 12px 16px; font-weight: 700; color: #10B981;">2 / 2 Merged</td>
-                <td style="padding: 12px 16px;"><button class="btn-sim-secondary" style="font-size: 11px; padding: 4px 8px;" onclick="alert('Viewing workspace for nordicnesting.com')">Inspect Workspace</button></td>
+                <td style="padding: 12px 16px; font-weight: 700; color: #10B981;">2 / 30 Days (Score: 72)</td>
+                <td style="padding: 12px 16px;"><button class="btn-sim-secondary" style="font-size: 11px; padding: 4px 8px;" onclick="switchStep(4)">View 30-Day Grid</button></td>
               </tr>
               <tr style="border-bottom: 1px solid var(--border-subtle);">
                 <td style="padding: 12px 16px;"><strong>alex@zenithapp.io</strong></td>
                 <td style="padding: 12px 16px;"><code>zenithapp.io</code></td>
                 <td style="padding: 12px 16px;"><span class="sim-pill sim-pill-emerald">WordPress</span></td>
                 <td style="padding: 12px 16px;"><span class="sim-pill sim-pill-sky">Pro ($499)</span></td>
-                <td style="padding: 12px 16px; font-weight: 700; color: #10B981;">1 / 2 Merged</td>
-                <td style="padding: 12px 16px;"><button class="btn-sim-secondary" style="font-size: 11px; padding: 4px 8px;" onclick="alert('Viewing workspace for zenithapp.io')">Inspect Workspace</button></td>
+                <td style="padding: 12px 16px; font-weight: 700; color: #10B981;">1 / 30 Days (Score: 70)</td>
+                <td style="padding: 12px 16px;"><button class="btn-sim-secondary" style="font-size: 11px; padding: 4px 8px;" onclick="switchStep(4)">View 30-Day Grid</button></td>
               </tr>
             </tbody>
           </table>
-        </div>
-
-        <div class="callout-box">
-          <span style="font-size: 18px;">🔒</span>
-          <div>
-            <strong>Admin Access Security:</strong> Protected by your master passcode (<code>88888888</code>) via Cloudflare Pages Functions edge authentication.
-          </div>
         </div>
       </div>
 
@@ -869,20 +1052,127 @@
 </div>
 
 <script>
-  let currentStepIdx = 0;
-  const totalSteps = 5;
+  let currentStepIdx = 4; // Default to Stage 5 to show the 30-Day calendar & growth trajectory
+  const totalSteps = 6;
   const urls = [
     "answerindex.xyz/ (Persistent Navbar)",
     "answerindex.xyz/dashboard (Onboarding Stepper)",
     "answerindex.xyz/dashboard#queue (Review & Copy)",
     "answerindex.xyz/dashboard#verified (Live Success)",
+    "answerindex.xyz/dashboard#calendar-growth (30-Day Score 68->100)",
     "answerindex.xyz/api/admin/clients (Founder Registry)"
   ];
+
+  // 30 Days of realistic Growth Data (Score jumping from 68 up to 100)
+  const scheduleData = [
+    { day: 1, title: "Baseline Audit & Crawler Directives", score: 68, delta: "+0", status: "done", improved: "Permitted GPTBot and ClaudeBot in robots.txt.", tech: "Deployed llms.txt & clean robots.txt directives." },
+    { day: 2, title: "Ceramic Dinnerware Durability Guide", score: 72, delta: "+4", status: "today", improved: "Extracted high-intent comparison queries from Perplexity.", tech: "Added TechArticle & FAQPage Schema." },
+    { day: 3, title: "Edge TTFB & Cache Optimization", score: 74, delta: "+2", status: "future", improved: "Decreased edge latency for LLM bot crawlers.", tech: "Cloudflare Cache-Control headers tuned to 86400s." },
+    { day: 4, title: "Brand vs Generic Alternatives Guide", score: 76, delta: "+2", status: "future", improved: "Displaced competitor comparison keywords.", tech: "ComparisonTable semantic HTML markup." },
+    { day: 5, title: "Product Care & Maintenance Snippets", score: 77, delta: "+1", status: "future", improved: "Zero-click answer block for Google AI Overviews.", tech: "HowTo Schema Graph integration." },
+    { day: 6, title: "Perplexity Entity Alignment", score: 79, delta: "+2", status: "future", improved: "Synced entity citations with Wikidata & Crunchbase.", tech: "SameAs organization linked data." },
+    { day: 7, title: "Weekly Production Review #1", score: 80, delta: "+1", status: "future", improved: "Client verified 14 net-new knowledge nodes.", tech: "D1 Ground-Truth Wiki auto-propagation." },
+    { day: 8, title: "Zero-Click Answer Passage Asset", score: 81, delta: "+1", status: "future", improved: "Direct answer format recognized by Claude 3.5 Sonnet.", tech: "Semantic <section> passage markup." },
+    { day: 9, title: "FAQ Schema Graph Sync", score: 83, delta: "+2", status: "future", improved: "Consolidated 18 customer service questions into rich FAQ.", tech: "FAQPage JSON-LD graph." },
+    { day: 10, title: "Headless Commerce Data Ingestion", score: 84, delta: "+1", status: "future", improved: "Enabled automated feed extraction for OpenAI Search.", tech: "Product catalog XML feed directives." },
+    { day: 11, title: "Digital PR Citation Correction", score: 85, delta: "+1", status: "future", improved: "Corrected outdated pricing cited by third-party blogs.", tech: "Authoritative Canonical Header anchors." },
+    { day: 12, title: "Core Web Vitals Refactor", score: 86, delta: "+1", status: "future", improved: "Passed Google LCP & INP thresholds for AI overviews.", tech: "Image fetchpriority='high' patches." },
+    { day: 13, title: "Competitor Displacement: Pricing", score: 87, delta: "+1", status: "future", improved: "Ranked #1 for 'Nordic Nesting pricing vs West Elm'.", tech: "PriceSpecification Schema markup." },
+    { day: 14, title: "Weekly Milestone Review #2", score: 88, delta: "+1", status: "future", improved: "20% increase in referral traffic from AI searches.", tech: "Telemetry analytics logging." },
+    { day: 15, title: "Mid-Month Consensus Consolidation", score: 89, delta: "+1", status: "future", improved: "Brand recognized as category authority by ChatGPT.", tech: "Brand truth negative invariant probe." },
+    { day: 16, title: "Interactive Calculator Mini-Tool", score: 91, delta: "+2", status: "future", improved: "Embeddable dinnerware sizing calculator deployed.", tech: "Vanilla JS embed widget." },
+    { day: 17, title: "Authoritative Source Anchor Patch", score: 92, delta: "+1", status: "future", improved: "High-authority external citation backlinks mapped.", tech: "ItemReviewed schema linkage." },
+    { day: 18, title: "Structured Review Ratings Injection", score: 93, delta: "+1", status: "future", improved: "Star ratings appearing in AI search snippets.", tech: "AggregateRating JSON-LD schema." },
+    { day: 19, title: "Local Store Availability Graph", score: 94, delta: "+1", status: "future", improved: "Stock availability recognized by Perplexity local.", tech: "LocalBusiness location markup." },
+    { day: 20, title: "Warranty & Return Policy Snippet", score: 95, delta: "+1", status: "future", improved: "Zero-click return policy answers for buyers.", tech: "MerchantReturnPolicy schema integration." },
+    { day: 21, title: "Weekly Milestone Review #3", score: 95, delta: "+0", status: "future", improved: "Frontier models referencing site as authoritative source.", tech: "Knowledge Graph validation probe." },
+    { day: 22, title: "Sustainability & Material Provenance", score: 96, delta: "+1", status: "future", improved: "Capturing eco-conscious Nordic buyer queries.", tech: "Certification & Material Schema tags." },
+    { day: 23, title: "B2B Wholesale Inquiry Gateway", score: 97, delta: "+1", status: "future", improved: "Wholesale ordering specs indexed by ChatGPT Search.", tech: "B2B Trade Pricing Schema." },
+    { day: 24, title: "Seasonal Holiday Gift Guide", score: 97, delta: "+0", status: "future", improved: "Pre-indexed ahead of seasonal shopping peaks.", tech: "CollectionPage structured markup." },
+    { day: 25, title: "Customer Video Review Transcription", score: 98, delta: "+1", status: "future", improved: "Transcribed user feedback indexed for video AI.", tech: "VideoObject transcript schema." },
+    { day: 26, title: "High-Speed Micro-Data Caching", score: 98, delta: "+0", status: "future", improved: "Sub-50ms schema responses for frontier bots.", tech: "Cloudflare KV edge caching." },
+    { day: 27, title: "Competitor Defense Patch: Materials", score: 99, delta: "+1", status: "future", improved: "Displaced misinformation regarding ceramic glaze safety.", tech: "ClaimReview schema patch." },
+    { day: 28, title: "Weekly Milestone Review #4", score: 99, delta: "+0", status: "future", improved: "Full 56 production assets merged and active.", tech: "Consolidated LLM corpus verification." },
+    { day: 29, title: "Final Graph Consistency Audit", score: 99, delta: "+0", status: "future", improved: "100% entity alignment across all major LLMs.", tech: "Full sitemap.xml & ai-sitemap.xml sync." },
+    { day: 30, title: "100/100 Perfect AEO Authority Moat", score: 100, delta: "+1", status: "future", improved: "Brand is the #1 recommended answer across all AI engines.", tech: "Autonomous 30-Day Cycle Complete." }
+  ];
+
+  function renderCalendar() {
+    const grid = document.getElementById('wireframeCalGrid');
+    const pillars = document.getElementById('chartPillars');
+    if (!grid || !pillars) return;
+
+    grid.innerHTML = '';
+    pillars.innerHTML = '';
+
+    scheduleData.forEach((item) => {
+      // 1. Calendar Cell
+      const cell = document.createElement('div');
+      cell.className = `cal-day-cell ${item.status}`;
+      cell.setAttribute('onclick', `inspectDay(${item.day})`);
+
+      let statusBadge = '<span style="color:#10B981;">&check; Merged</span>';
+      let scoreBadgeClass = 'background:#D1FAE5; color:#065F46;';
+      if (item.day === 2) {
+        statusBadge = '<span style="color:#B45309; font-weight:800;">&bull; Today</span>';
+        scoreBadgeClass = 'background:#FEF3C7; color:#B45309;';
+      } else if (item.day > 2) {
+        statusBadge = '<span style="color:#94A3B8;">Scheduled</span>';
+        scoreBadgeClass = 'background:#E2E8F0; color:#475569;';
+      }
+
+      cell.innerHTML = `
+        <div>
+          <div class="day-num-row">
+            <span>Day ${item.day}</span>
+            <span class="day-score-pill" style="${scoreBadgeClass}">Score ${item.score}</span>
+          </div>
+          <div class="day-task-summary">${item.title}</div>
+        </div>
+        <div style="font-size:10px; font-family:var(--font-mono); margin-top:8px;">
+          ${statusBadge}
+        </div>
+      `;
+      grid.appendChild(cell);
+
+      // 2. Micro Bar Chart Pillar
+      const col = document.createElement('div');
+      col.className = 'chart-day-col';
+      col.title = `Day ${item.day}: Score ${item.score}`;
+      const heightPercent = ((item.score - 60) / 40) * 100; // scale 60 to 100
+      let barClass = 'past';
+      if (item.day === 2) barClass = 'today-bar';
+      if (item.day > 2) barClass = 'future-bar';
+
+      col.innerHTML = `
+        <div class="chart-bar-pillar ${barClass}" style="height: ${heightPercent}%;"></div>
+        <span style="font-size: 8px; color: #64748B; font-family: var(--font-mono);">${item.day}</span>
+      `;
+      col.onclick = () => inspectDay(item.day);
+      pillars.appendChild(col);
+    });
+  }
+
+  function inspectDay(dayNum) {
+    const data = scheduleData.find(d => d.day === dayNum);
+    if (!data) return;
+
+    let badgeText = `DAY ${data.day} &middot; ` + (data.day < 2 ? "COMPLETED" : (data.day === 2 ? "TODAY (ACTION REQUIRED)" : "SCHEDULED FOR AUTONOMOUS RUN"));
+    document.getElementById('drawerDayBadge').textContent = badgeText;
+    document.getElementById('drawerDayTitle').textContent = data.title;
+    document.getElementById('drawerScoreImpact').textContent = `${data.score - (parseInt(data.delta) || 0)} \u2192 ${data.score} (${data.delta} Points)`;
+    document.getElementById('drawerWhatImproved').textContent = data.improved;
+    document.getElementById('drawerTechDelta').textContent = data.tech;
+
+    // Highlight active cell
+    document.querySelectorAll('.cal-day-cell').forEach((c, idx) => {
+      c.style.borderColor = idx + 1 === dayNum ? '#10B981' : '';
+    });
+  }
 
   function switchStep(idx) {
     currentStepIdx = idx;
     
-    // Update Stepper Buttons
     document.querySelectorAll('.step-nav-btn').forEach((btn, i) => {
       btn.classList.toggle('active', i === idx);
       if (i < idx) {
@@ -892,24 +1182,20 @@
       }
     });
 
-    // Update Panels
     document.querySelectorAll('.step-panel').forEach((panel, i) => {
       panel.classList.toggle('active', i === idx);
     });
 
-    // Update Browser Mock URL
     document.getElementById('wireframeUrl').textContent = urls[idx] || "answerindex.xyz/";
-
-    // Update Back / Next button text
     document.getElementById('btnPrevStep').style.visibility = idx === 0 ? 'hidden' : 'visible';
-    document.getElementById('btnNextStep').innerHTML = idx === totalSteps - 1 ? 'Start Implementation &check;' : 'Next Stage &rarr;';
+    document.getElementById('btnNextStep').innerHTML = idx === totalSteps - 1 ? 'Start Task 1 Implementation &check;' : 'Next Stage &rarr;';
   }
 
   function nextStep() {
     if (currentStepIdx < totalSteps - 1) {
       switchStep(currentStepIdx + 1);
     } else {
-      alert("Wireframe Walkthrough Complete! Ready to proceed with Task 1 implementation.");
+      alert("Wireframe walkthrough approved! Proceeding to Step 1 implementation.");
     }
   }
 
@@ -919,21 +1205,9 @@
     }
   }
 
-  function toggleSimDrawer() {
-    const drawer = document.getElementById('simDrawer');
-    drawer.style.display = drawer.style.display === 'none' ? 'block' : 'none';
-  }
-
-  function setSimTab(tab) {
-    const isPreview = tab === 'preview';
-    document.getElementById('tabBtnPreview').classList.toggle('active', isPreview);
-    document.getElementById('tabBtnCode').classList.toggle('active', !isPreview);
-    document.getElementById('simTabContentPreview').style.display = isPreview ? 'block' : 'none';
-    document.getElementById('simTabContentCode').style.display = isPreview ? 'none' : 'block';
-  }
-
-  // Initial setup
-  switchStep(0);
+  // Initialize
+  renderCalendar();
+  switchStep(4); // Default to Stage 5 so user immediately sees the calendar and growth trajectory
 </script>
 
 </body>
