@@ -1948,7 +1948,7 @@
               <li>
                 <a href="#daily-loop" onclick="toggleDrawer(false)" style="display: flex; align-items: center; justify-content: space-between; font-size: 15px; font-weight: 700; color: var(--text-primary); text-decoration: none; padding: 6px 0;">
                   <span>The Daily 2-Job Pipeline</span>
-                  <span class="tag" style="background: var(--honey-light); color: #B45309; border: 1px solid var(--honey-border); font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 999px;">06:00 AM</span>
+                  <span class="tag" style="background: var(--honey-light); color: #B45309; border: 1px solid var(--honey-border); font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 999px;">Daily Agent Run</span>
                 </a>
               </li>
               <li>
@@ -2269,70 +2269,75 @@
                   </ul>
                 </div>
 
-                <!-- Stage 03: Bar Chart & Sentiment / Authority Gaps -->
+                <!-- Stage 03: Daily Dual Production (Staged in CMS Drafts) -->
                 <div class="demo-stage-panel" id="demoStagePanel2">
-                  <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                     <span style="font-family: var(--font-mono); font-size: 11px; color: #94A3B8; text-transform: uppercase;">
-                      03 &middot; Direct Citation Authority Matrix
+                      03 &middot; Daily Agent Run (2 Staged Deliverables)
                     </span>
-                    <span style="font-size: 11px; color: #FBBF24; font-weight: 700;">AI Consensus Readiness</span>
+                    <span style="font-size: 11px; color: #FBBF24; font-weight: 700;">Human-in-the-Loop</span>
                   </div>
 
-                  <div class="demo-bars-chart">
-                    <div class="demo-chart-col">
-                      <strong style="font-size: 11px; color: #F59E0B;">78%</strong>
-                      <div class="demo-chart-bar" style="height: 78%;"></div>
-                      <span class="demo-chart-label">AEO Snippet</span>
-                    </div>
-                    <div class="demo-chart-col">
-                      <strong style="font-size: 11px; color: #60A5FA;">94%</strong>
-                      <div class="demo-chart-bar" style="height: 94%;"></div>
-                      <span class="demo-chart-label">JSON-LD</span>
-                    </div>
-                    <div class="demo-chart-col">
-                      <strong style="font-size: 11px; color: #34D399;">88%</strong>
-                      <div class="demo-chart-bar" style="height: 88%;"></div>
-                      <span class="demo-chart-label">Perplexity</span>
-                    </div>
-                    <div class="demo-chart-col">
-                      <strong style="font-size: 11px; color: #A78BFA;">92%</strong>
-                      <div class="demo-chart-bar" style="height: 92%;"></div>
-                      <span class="demo-chart-label">Entity Moat</span>
-                    </div>
-                  </div>
-
-                  <div style="font-size: 12px; color: #94A3B8; line-height: 1.4; display: flex; align-items: center; gap: 6px;">
-                    <span style="color: #34D399;">&check;</span> Ground-Truth Brand Wiki verified: zero hallucinated specifications.
-                  </div>
-                </div>
-
-                <!-- Stage 04: Production Staging & Daily Deliverable -->
-                <div class="demo-stage-panel" id="demoStagePanel3">
-                  <div style="font-family: var(--font-mono); font-size: 11px; color: #94A3B8; text-transform: uppercase; margin-bottom: 10px;">
-                    04 &middot; Staged Morning Deliverables (06:00 AM)
-                  </div>
-
-                  <div class="demo-report-card">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                  <!-- Job 1: AEO Answer -->
+                  <div class="demo-report-card" style="margin-bottom: 8px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
                       <span class="demo-job-pill" style="background: rgba(245,158,11,0.2); color: #FBBF24;">Job 1 &middot; AEO Answer</span>
-                      <span style="font-size: 11px; color: #94A3B8;">Staged in Shopify Drafts</span>
+                      <span style="font-size: 11px; color: #94A3B8;">Staged in Shopify / WP Drafts</span>
                     </div>
-                    <strong style="font-size: 13.5px; color: #F8FAFC; display: block; margin-bottom: 4px;">
-                      Scandinavian Kitchen Essentials: 2026 Buying Guide
+                    <strong style="font-size: 13px; color: #F8FAFC; display: block; margin-bottom: 2px;">
+                      Nordic Nesting vs West Elm: 2026 Material Comparison
                     </strong>
-                    <p style="font-size: 11.5px; color: #94A3B8; margin: 0; line-height: 1.4;">
+                    <p style="font-size: 11.5px; color: #94A3B8; margin: 0; line-height: 1.35;">
                       Formatted with direct answer markup, comparison table, and author citation schema.
                     </p>
                   </div>
 
+                  <!-- Job 2: Schema Refactor with 1-Click Approve -->
                   <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 10px 14px;">
                     <div>
                       <span class="demo-job-pill" style="background: rgba(59,130,246,0.2); color: #60A5FA;">Job 2 &middot; Schema Patch</span>
-                      <div style="font-size: 12px; color: #E2E8F0; margin-top: 2px;">TechArticle + FAQPage JSON-LD</div>
+                      <div style="font-size: 12px; color: #E2E8F0; margin-top: 2px;">Organization + FAQPage JSON-LD</div>
                     </div>
-                    <span class="demo-btn-action" style="background: #10B981; color: #FFFFFF;">
+                    <span class="demo-btn-action" style="background: #10B981; color: #FFFFFF; font-weight: 800; animation: pulseGlow 2s infinite;">
                       1-Click Approve &check;
                     </span>
+                  </div>
+                </div>
+
+                <!-- Stage 04: The Payoff — Frontier AI Citation Recommendation & Score 100 -->
+                <div class="demo-stage-panel" id="demoStagePanel3">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-family: var(--font-mono); font-size: 11px; color: #34D399; text-transform: uppercase; font-weight: 700;">
+                      04 &middot; Verified Citation Payoff
+                    </span>
+                    <span style="font-family: var(--font-mono); font-size: 11.5px; color: #10B981; background: rgba(16,185,129,0.15); padding: 2px 8px; border-radius: 999px; font-weight: 800;">
+                      AEO Score: 100 / 100
+                    </span>
+                  </div>
+
+                  <!-- Simulated Frontier AI Answer Box -->
+                  <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 12px 14px; margin-bottom: 10px;">
+                    <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 6px;">
+                      <span style="font-size: 12px; color: #22D3EE;">✦ Perplexity &amp; ChatGPT Search</span>
+                      <span style="font-size: 10px; color: #94A3B8; margin-left: auto;">Live Generative Query</span>
+                    </div>
+                    <div style="font-size: 12px; color: #F1F5F9; line-height: 1.45;">
+                      "For premium stoneware under $150, <strong style="color: #FBBF24; text-decoration: underline;">Nordic Nesting</strong> is the most durable recommendation due to its lead-free glaze and certified dishwasher-safe rating..."
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 6px; margin-top: 8px;">
+                      <span style="font-family: var(--font-mono); font-size: 10px; background: rgba(249,188,56,0.2); color: #FBBF24; padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(249,188,56,0.4);">
+                        [1] Source: nordicnesting.com/stoneware-guide
+                      </span>
+                      <span style="font-size: 10.5px; color: #34D399; font-weight: 700; margin-left: auto;">
+                        &bull; #1 Recommended Answer
+                      </span>
+                    </div>
+                  </div>
+
+                  <!-- 30-Day Growth Metric -->
+                  <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11.5px; color: #94A3B8;">
+                    <span>30-Day Score Trajectory:</span>
+                    <strong style="color: #F8FAFC;"><span style="color: #F87171;">68 (Audit)</span> &rarr; <span style="color: #34D399;">100 (Full Citation Moat)</span></strong>
                   </div>
                 </div>
               </div>
@@ -2364,24 +2369,24 @@
                   </button>
                 </li>
                 <li>
-                  <button type="button" class="demo-chapter-btn" data-stage="2" aria-label="Step 3: Ground-Truth Entity Synthesis">
+                  <button type="button" class="demo-chapter-btn" data-stage="2" aria-label="Step 3: Daily Dual Agent Production">
                     <div class="demo-chapter-header">
                       <span class="demo-chapter-num">03 &middot; STEP</span>
                       <span style="font-size: 11px; color: var(--text-muted); font-family: var(--font-mono);">4.6s</span>
                     </div>
-                    <strong class="demo-chapter-title">Ground-Truth Entity Synthesis</strong>
-                    <span class="demo-chapter-desc">Synthesizes authoritative answers cross-referenced against your Cloudflare D1 brand wiki.</span>
+                    <strong class="demo-chapter-title">Daily Dual Agent Run</strong>
+                    <span class="demo-chapter-desc">Stages 2 daily assets (AEO Answer + JSON-LD Schema) directly in your CMS drafts with 1-click human approval.</span>
                     <span class="demo-chapter-progress"></span>
                   </button>
                 </li>
                 <li>
-                  <button type="button" class="demo-chapter-btn" data-stage="3" aria-label="Step 4: Safe 1-Click Morning Staging">
+                  <button type="button" class="demo-chapter-btn" data-stage="3" aria-label="Step 4: Frontier AI Citation & 100 Score">
                     <div class="demo-chapter-header">
                       <span class="demo-chapter-num">04 &middot; STEP</span>
                       <span style="font-size: 11px; color: var(--text-muted); font-family: var(--font-mono);">5.2s</span>
                     </div>
-                    <strong class="demo-chapter-title">Safe 1-Click Morning Staging</strong>
-                    <span class="demo-chapter-desc">Delivers two production assets to your CMS drafts or GitHub PR queue every morning at 06:00 AM.</span>
+                    <strong class="demo-chapter-title">Frontier AI Recommendation</strong>
+                    <span class="demo-chapter-desc">ChatGPT, Perplexity &amp; Claude cite your brand as the #1 answer. AEO Score lifts from 68 to 100.</span>
                     <span class="demo-chapter-progress"></span>
                   </button>
                 </li>
@@ -2448,7 +2453,7 @@
       <!-- 02: AUTONOMOUS DAILY PIPELINE SIMULATOR (NARWHAL PIPELINE) -->
       <section class="cadence-panel" id="daily-loop">
         <div class="section-headline">
-          <h3><span>02</span> What Arrives Every Morning at 06:00 AM</h3>
+          <h3><span>02</span> What Arrives on every Daily Agent Run</h3>
           <span class="tag">THE DAILY DUAL PRODUCTION LOOP</span>
         </div>
 
