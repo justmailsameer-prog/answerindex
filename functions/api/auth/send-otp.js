@@ -31,7 +31,7 @@ export async function onRequestPost({ request, env }) {
     const otpCode = Math.floor(100000 + Math.random() * 900000).toString();
     const expiresAt = new Date(Date.now() + 15 * 60 * 1000).toISOString(); // 15 minutes validity
 
-    // 2. Persist OTP in Cloudflare D1 (Ensure verification_codes table exists)
+    // 2. Persist OTP in Cloudflare D1
     if (env.DB) {
       try {
         await env.DB.prepare(`
@@ -53,8 +53,7 @@ export async function onRequestPost({ request, env }) {
       }
     }
 
-    // 3. Dispatch Email
-    // If RESEND_API_KEY is configured in env, send real live email via Resend API
+    // 3. Dispatch Email via Resend API
     let emailSent = false;
     let emailError = null;
 
@@ -94,7 +93,6 @@ export async function onRequestPost({ request, env }) {
       </div>
     `;
 
-    // Attempt delivery via Resend API if token available
     const resendKey = env.RESEND_API_KEY || (typeof RESEND_API_KEY !== 'undefined' ? RESEND_API_KEY : null);
     if (resendKey) {
       try {
@@ -127,11 +125,9 @@ export async function onRequestPost({ request, env }) {
         success: true,
         email,
         emailSent,
-        // For development / fallback convenience if SMTP API key is not yet bound to Cloudflare Pages
-        
         message: emailSent 
           ? `Verification code sent to ${email}. Check your inbox!`
-          : `Verification code generated. (Dev Mode OTP: ${otpCode})`
+          : `Verification code generated.`
       }),
       { status: 200, headers: CORS_HEADERS }
     );
@@ -142,4 +138,3 @@ export async function onRequestPost({ request, env }) {
     );
   }
 }
-
