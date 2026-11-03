@@ -53,3 +53,4 @@ with open('assets/client-portal.js', 'w', encoding='utf-8') as f:
     f.write(text)
 
 print("Done updating assets/client-portal.js")
+

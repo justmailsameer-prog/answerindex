@@ -224,3 +224,4 @@ export async function onRequestGet({ request, env }) {
     return Response.redirect(`${redirectBase}/?auth_error=${encodeURIComponent(err.message)}`, 302);
   }
 }
+

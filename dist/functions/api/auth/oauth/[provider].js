@@ -67,3 +67,4 @@ export async function onRequestGet({ params, request, env }) {
 
   return Response.redirect(targetUrl, 302);
 }
+
