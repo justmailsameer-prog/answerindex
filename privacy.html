@@ -7,7 +7,7 @@
   <meta name="description" content="Answer Index gets your brand cited as the #1 recommendation when prospective buyers ask ChatGPT, Perplexity, and Google AI for solutions. Discover how our autonomous daily growth engine drives revenue." />
 
   <!-- Canonical & Crawl Directives -->
-  <link rel="canonical" href="https://answerindex.xyz/v5/about.html" />
+  <link rel="canonical" href="https://answerindex.xyz/about.html" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico?v=20261030">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png?v=20261030">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/AnswerIndex_Logo_Icon.png?v=20261030">
@@ -19,8 +19,8 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Client Portal Auth CSS & JS -->
-  <link rel="stylesheet" href="assets/client-portal.css?v=20261103_v3">
-  <script src="assets/client-portal.js?v=20261103_v3"></script>
+  <link rel="stylesheet" href="assets/client-portal.css?v=20261103_v4">
+  <script src="assets/client-portal.js?v=20261103_v4"></script>
 
   <style>
     :root {
@@ -609,92 +609,197 @@
       .about-hero h2 { font-size: 28px; }
     }
   
-    /* Legal Specific Styles */
-    .legal-hero {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    .legal-title {
-      font-size: clamp(32px, 5vw, 44px);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      margin: 16px 0 8px;
-      color: var(--text-primary);
-    }
-    .legal-updated {
-      font-family: var(--font-mono);
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-    .legal-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-card);
-      padding: 44px;
-      box-shadow: var(--shadow-card);
-      margin-bottom: 50px;
-    }
-    @media (max-width: 768px) {
-      .legal-card {
-        padding: 24px;
+    /* =========================================================================
+       MOBILE-FIRST RESPONSIVE OPTIMIZATIONS (doctrine: touch-first, 44px min targets)
+       ========================================================================= */
+    @media (max-width: 640px) {
+      /* App Container & Header */
+      .app-container {
+        padding: 12px 12px 48px !important;
       }
-    }
-    .legal-section {
-      margin-bottom: 36px;
-      padding-bottom: 32px;
-      border-bottom: 1px solid var(--border-subtle);
-    }
-    .legal-section:last-child {
-      margin-bottom: 0;
-      padding-bottom: 0;
-      border-bottom: none;
-    }
-    .legal-section h2 {
-      font-size: 20px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      margin-bottom: 14px;
-      color: var(--text-primary);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .legal-section p {
-      font-size: 15px;
-      line-height: 1.7;
-      color: var(--text-secondary);
-      margin-bottom: 14px;
-    }
-    .legal-section p:last-child {
-      margin-bottom: 0;
-    }
-    .legal-section ul {
-      margin: 12px 0 16px 20px;
-      color: var(--text-secondary);
-      font-size: 14px;
-      line-height: 1.7;
-    }
-    .legal-section li {
-      margin-bottom: 8px;
-    }
-    .legal-section code {
-      background: var(--honey-light);
-      border: 1px solid var(--honey-border);
-      color: #92400E;
-      font-family: var(--font-mono);
-      font-size: 12px;
-      padding: 2px 6px;
-      border-radius: 4px;
-    }
-    .callout-box {
-      background: var(--honey-light);
-      border-left: 4px solid var(--honey-primary);
-      border-radius: 8px;
-      padding: 16px 20px;
-      font-size: 14px;
-      line-height: 1.65;
-      color: var(--text-primary);
-      margin: 16px 0;
+      header {
+        padding: 10px 14px !important;
+        border-radius: 16px !important;
+        margin-bottom: 24px !important;
+      }
+      .brand-group {
+        gap: 10px !important;
+      }
+      .logo-badge {
+        width: 40px !important;
+        height: 40px !important;
+      }
+      .logo-badge img {
+        width: 40px !important;
+        height: 40px !important;
+      }
+      .brand-title h1 {
+        font-size: 15px !important;
+      }
+      .brand-title p {
+        display: none !important; /* Hide subline on small mobile to give CTAs room */
+      }
+      .header-ctas {
+        gap: 8px !important;
+      }
+      .header-ctas .btn-honey-primary {
+        display: none !important; /* Inspect domain button accessible right in hero on mobile */
+      }
+      .header-ctas .btn-secondary {
+        padding: 8px 14px !important;
+        font-size: 12.5px !important;
+        min-height: 40px !important;
+      }
+      .hamburger-btn {
+        width: 42px !important;
+        height: 42px !important;
+        padding: 9px !important;
+      }
+
+      /* Hero Content & Heading */
+      .hero-content h2 {
+        font-size: 32px !important;
+        line-height: 1.15 !important;
+        letter-spacing: -0.03em !important;
+        margin-bottom: 14px !important;
+      }
+      .hero-content p.hero-subtitle {
+        font-size: 14.5px !important;
+        line-height: 1.55 !important;
+        margin-bottom: 24px !important;
+      }
+      .hero-banner {
+        padding: 24px 14px !important;
+        border-radius: 18px !important;
+      }
+
+      /* Audit Form */
+      .audit-box-wrap {
+        padding: 20px 14px !important;
+        border-radius: 14px !important;
+      }
+      .audit-box-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 8px !important;
+      }
+      .audit-box-header h3 {
+        font-size: 14px !important;
+      }
+      .audit-input-form {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+      }
+      .audit-input-form input {
+        min-height: 48px !important; /* iOS touch target standard */
+        font-size: 15px !important; /* Prevents auto-zoom on iOS */
+      }
+      .audit-input-form button {
+        min-height: 48px !important;
+        width: 100% !important;
+        justify-content: center !important;
+        font-size: 14px !important;
+      }
+      .audit-samples {
+        flex-wrap: wrap !important;
+      }
+      .sample-pill {
+        min-height: 36px !important;
+        padding: 6px 12px !important;
+      }
+
+      /* Engine verification strip */
+      .engine-strip {
+        padding: 10px 14px !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+        align-items: flex-start !important;
+      }
+      .engine-logos {
+        width: 100% !important;
+        justify-content: space-between !important;
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+      }
+
+      /* Sections & Cards */
+      .section-headline {
+        margin-bottom: 20px !important;
+      }
+      .section-headline h3 {
+        font-size: 22px !important;
+      }
+      .spotlight-card {
+        padding: 22px 16px !important;
+        border-radius: 16px !important;
+      }
+      .metrics-rail {
+        grid-template-columns: 1fr !important;
+      }
+      .pipeline-stepper {
+        grid-template-columns: 1fr !important;
+      }
+      .dispatch-split {
+        padding: 20px 16px !important;
+      }
+      .flow-grid-4 {
+        grid-template-columns: 1fr !important;
+      }
+      .truth-grid {
+        grid-template-columns: 1fr !important;
+      }
+      .pricing-grid-3 {
+        grid-template-columns: 1fr !important;
+      }
+      .pricing-card {
+        padding: 24px 18px !important;
+      }
+      .pricing-card button {
+        min-height: 48px !important;
+        width: 100% !important;
+      }
+
+      /* Drawer Menu on Mobile */
+      .drawer-panel {
+        max-width: 100vw !important;
+        padding: 24px 20px !important;
+      }
+      .drawer-header {
+        margin-bottom: 24px !important;
+      }
+      .drawer-close-btn {
+        width: 44px !important;
+        height: 44px !important;
+      }
+      .drawer-group a {
+        min-height: 44px !important;
+        display: flex !important;
+        align-items: center !important;
+        font-size: 15px !important;
+      }
+
+      /* Footer */
+      .footer-grid-5 {
+        grid-template-columns: 1fr !important;
+        gap: 28px !important;
+      }
+      .footer-bottom-bar {
+        flex-direction: column !important;
+        gap: 14px !important;
+        text-align: center !important;
+        align-items: center !important;
+      }
+
+      /* Client Auth Modal on Small Screens */
+      .auth-modal-card {
+        padding: 22px 16px !important;
+        margin: 12px !important;
+        max-height: 94vh !important;
+      }
+      .auth-modal-close {
+        width: 44px !important;
+        height: 44px !important;
+      }
     }
 
   
@@ -919,101 +1024,151 @@
     </div>
 
     <!-- Main Content -->
-    
-<main class="container">
-    <div class="legal-hero">
-      <div class="badge-pill">🛡️ EEAT Trust & Security Standard</div>
-      <h1 class="legal-title">Privacy Policy</h1>
-      <div class="legal-updated">Last Updated: October 22, 2026 · Canonical Version 2.4.0</div>
-    </div>
-
-    <div class="legal-card">
-
-      <section class="legal-section">
-        <h2>1. Commitment to Privacy & Least Privilege</h2>
-        <p>
-          At <strong>AnswerIndex</strong> (accessible via <code>https://answerindex.xyz</code>), we design our autonomous growth systems around the strict principle of least privilege. We operate with radical transparency regarding data collection, storage, and processing.
-        </p>
-        <div class="callout-box">
-          <strong>Core Guarantee:</strong> AnswerIndex Pro never clones, permanently caches, or stores your private repository source code. All code analysis occurs ephemerally in volatile memory on Cloudflare Edge workers during daily dispatch, producing standard Git diffs for your explicit approval.
+    <main>
+      <!-- Hero Banner -->
+      <section class="about-hero">
+        <div class="badge-pill-featured">
+          <span>💡 EXECUTIVE CLARITY · IN PLAIN ENGLISH</span>
         </div>
-      </section>
-
-      <section class="legal-section">
-        <h2>2. Information We Collect</h2>
-        <p>We collect only the minimum operational information required to analyze and deliver authoritative AEO/GEO improvements:</p>
-        <ul>
-          <li><strong>Account & Contact Data:</strong> Name, work email address, company name, and billing details processed securely via our payment processor.</li>
-          <li><strong>Connected Platform Integrations:</strong> Scoped OAuth tokens or API keys for Google Search Console (read-only query impressions and click telemetry), GitHub (scoped to branch creation and pull request submission on target repositories), and CMS credentials (scoped draft generation in WordPress, Shopify, or Magento).</li>
-          <li><strong>Brand Truth Wiki Data:</strong> Ground-truth company facts, official pricing tiers, leadership bios, and product specifications you explicitly input into your D1 Knowledge Base to prevent AI hallucinations.</li>
-          <li><strong>Technical Diagnostics:</strong> Domain name, public HTTP headers, DNS records, robots.txt, sitemaps, and publicly visible Schema.org markup inspected during audit scans.</li>
-        </ul>
-      </section>
-
-      <section class="legal-section">
-        <h2>3. Information We Explicitly Never Collect</h2>
-        <ul>
-          <li>❌ Proprietary intellectual property, unpublished codebase logic, or internal database records outside target documentation/landing pages.</li>
-          <li>❌ Credit card numbers or full bank account details (managed directly by PCI-DSS Level 1 compliant processors).</li>
-          <li>❌ Personal identification numbers, health records, or sensitive personal data.</li>
-        </ul>
-      </section>
-
-      <section class="legal-section">
-        <h2>4. Data Storage & Cryptographic Security</h2>
-        <p>
-          All account information, Brand Truth documents, and integration credentials are encrypted at rest using industry-standard <strong>AES-256 GCM</strong> encryption in Cloudflare D1 distributed databases. All transmission across our edge network enforces <strong>TLS 1.3 / HTTPS</strong> with strict HTTP Strict Transport Security (HSTS) headers.
+        <h2>What is Answer Index &amp; How Does It Drive More Sales?</h2>
+        <p class="lead">
+          The search landscape has permanently shifted: high-intent buyers no longer browse 10 blue links on Google. They ask ChatGPT, Perplexity, and Claude for verified solutions. <strong>Answer Index makes sure your product is the authoritative answer they receive.</strong>
         </p>
-      </section>
 
-      <section class="legal-section">
-        <h2>5. Third-Party Sub-Processors</h2>
-        <p>We work with vetted enterprise infrastructure providers who maintain strict security certifications:</p>
-        <ul>
-          <li><strong>Cloudflare, Inc.:</strong> Global Edge Network, DNS, D1 Relational Storage, and Email Routing. ISO 27001, SOC 2 Type II certified.</li>
-          <li><strong>Dodo Payments Inc.:</strong> Payment processing, merchant of record, automated taxation, and subscription lifecycle management. PCI-DSS Level 1 compliant.</li>
-          <li><strong>GitHub (Microsoft Corp):</strong> Version control integration for pull request dispatch and review workflows.</li>
-        </ul>
-      </section>
-
-      <section class="legal-section">
-        <h2>6. GDPR, CCPA & Global User Rights</h2>
-        <p>Regardless of your geographic location, AnswerIndex affords all users full privacy rights:</p>
-        <ul>
-          <li><strong>Right to Access:</strong> You can request a complete export of your account data, Brand Truth Wiki records, and audit logs at any time.</li>
-          <li><strong>Right to Rectification:</strong> Edit or update your verified facts instantly via the Client Dashboard.</li>
-          <li><strong>Right to Erasure (Be Forgotten):</strong> Upon account cancellation or written request to <code>sameer@answerindex.xyz</code>, all associated tokens, Brand Truth Wiki entries, and audit logs are permanently wiped within 48 hours.</li>
-          <li><strong>No Sale of Data:</strong> We never sell, rent, monetize, or barter your company or user data to third parties, data brokers, or advertising networks.</li>
-        </ul>
-      </section>
-
-      <section class="legal-section">
-        <h2>7. Cookies and Local Storage</h2>
-        <p>
-          We use strictly necessary functional session cookies and local storage tokens solely to maintain authenticated user sessions in the Client Portal and retain client-side audit state. We do not embed third-party retargeting pixels, social tracking widgets, or behavioral advertising cookies.
-        </p>
-      </section>
-
-      <section class="legal-section">
-        <h2>8. Contact Our Data Protection Officer</h2>
-        <p>
-          For privacy inquiries, GDPR data requests, or compliance documentation, contact our founder and chief architect directly:
-        </p>
-        <div style="background: #ffffff; border: 1px solid var(--border-color); border-radius: 12px; padding: 1.25rem 1.5rem; margin-top: 1rem;">
-          <div style="font-weight: 800; color: #111; font-size: 1.05rem;">Sameer Sharma · Founder & Architect</div>
-          <div style="color: #666; font-size: 0.9rem; margin-top: 0.25rem;">AnswerIndex Data Protection & Security Team</div>
-          <div style="color: #444; font-size: 0.9rem; margin-top: 0.5rem;">
-            ✉️ Email: <a href="mailto:sameer@answerindex.xyz" style="color: var(--c-cobalt); font-weight: 700;">sameer@answerindex.xyz</a>
+        <!-- At a Glance 3-Point Callout -->
+        <div class="at-a-glance-box">
+          <div class="at-a-glance-header">
+            ⚡ AT A GLANCE · 3 CORE QUESTIONS ANSWERED IN ONE MINUTE
           </div>
-          <div style="color: #444; font-size: 0.9rem; margin-top: 0.25rem;">
-            ❤️ Created with love & passion by Sameer Sharma · Global Operations
+          <div class="at-a-glance-grid">
+            <div class="glance-item">
+              <span class="tag">01 · WHAT IT IS</span>
+              <p><strong>An autonomous AI optimization agent</strong> that establishes your brand as the #1 verified recommendation across conversational search engines.</p>
+            </div>
+            <div class="glance-item">
+              <span class="tag">02 · WHAT IT DOES</span>
+              <p><strong>Through automated daily agent runs</strong>, it delivers 2 concrete updates: 1 new direct-answer asset and 1 technical SEO/Schema code patch staged for your 1-click review.</p>
+            </div>
+            <div class="glance-item">
+              <span class="tag">03 · HOW IT DRIVES SALES</span>
+              <p><strong>Intercepts ready-to-buy customers.</strong> When buyers ask AI <em>"What is the best tool for [problem]?"</em>, the AI explicitly cites your brand and hyperlinks straight to your checkout.</p>
+            </div>
           </div>
         </div>
       </section>
 
-    </div>
-  </main>
-<footer class="narwhal-footer">
+      <!-- The 3 Deep Dive Pillars -->
+      <section class="pillar-stack">
+        <!-- Pillar 1 -->
+        <article class="about-pillar-card">
+          <span class="badge-pill-featured">01 · IN ONE SENTENCE</span>
+          <h3>What is Answer Index?</h3>
+          <p>
+            <strong>Answer Index is an autonomous edge-native growth engine</strong> that optimizes your website so artificial intelligence engines (ChatGPT Search, Perplexity, Claude, Gemini, and Google AI Overviews) recognize your company as the authoritative, recommended solution in your market.
+          </p>
+          <div class="highlight-card">
+            💬 <strong>Plain English:</strong> If traditional SEO is about ranking for keywords on Google, <strong>Answer Index is about getting ChatGPT and Perplexity to recommend your product when high-intent buyers ask what to buy.</strong>
+          </div>
+        </article>
+
+        <!-- Pillar 2 -->
+        <article class="about-pillar-card">
+          <span class="badge-pill-featured">02 · THE MECHANICS</span>
+          <h3>What Does It Actually Do?</h3>
+          <p>
+            AI crawlers do not read websites like human searchers; they search for dense declarative answers, verified Schema.org graphs, anti-hallucination ground truth, and machine manifests like <code>/llms.txt</code>.
+          </p>
+          <p>
+            Through automated daily agent runs, Answer Index diagnoses what questions buyers are asking AI bots about your industry, and delivers two reviewable deliverables:
+          </p>
+          <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: var(--text-secondary); font-size: 14.5px; display: flex; flex-direction: column; gap: 6px;">
+            <li><strong>Deliverable 1 (New Answer Piece):</strong> Creates one net-new authoritative direct-answer page targeting an uncovered commercial search prompt.</li>
+            <li><strong>Deliverable 2 (Technical Refactor):</strong> Rewrites and optimizes an existing page, injecting JSON-LD schema, anti-hallucination ground truth statements, and latency optimizations.</li>
+          </ul>
+          <div class="highlight-card">
+            🛡️ <strong>Zero Risk / 100% Human-in-the-Loop:</strong> Nothing deploys to your site automatically. You inspect the code diff and zero-click answer excerpt, then click <strong>"1-Click Approve"</strong> on your dashboard or merge on GitHub.
+          </div>
+        </article>
+
+        <!-- Pillar 3 -->
+        <article class="about-pillar-card">
+          <span class="badge-pill-featured">03 · REVENUE IMPACT</span>
+          <h3>How Does It Increase Sales?</h3>
+          <p>
+            Traditional search queries send casual visitors who browse or read articles. In contrast, <strong>people using Perplexity or ChatGPT Search are asking direct buying queries</strong>:
+          </p>
+          <ul style="margin-left: 1.5rem; margin-bottom: 1.25rem; color: var(--text-primary); font-style: italic; display: flex; flex-direction: column; gap: 6px;">
+            <li>"What is the highest-rated headless commerce engine for 2026?"</li>
+            <li>"Who offers the most reliable AEO tool for high-growth SaaS?"</li>
+            <li>"What is the most affordable, trustworthy alternative to [Competitor]?"</li>
+          </ul>
+          <p>
+            When an AI bot answers these queries, it only cites <strong>1 to 3 verified sources</strong>. If your website is not grounded with Answer Index protocols, the AI cites your competitors.
+          </p>
+          <div class="highlight-card">
+            💰 <strong>The Bottom Line:</strong> Answer Index ensures that when ready-to-buy customers ask AI for the top solution, <strong>the AI names your brand, quotes your value proposition, and hyperlinks directly to your checkout.</strong>
+          </div>
+        </article>
+      </section>
+
+      <!-- Traditional SEO vs. Answer Index Comparison -->
+      <section class="comp-container">
+        <div style="text-align: center; max-width: 700px; margin: 0 auto 24px;">
+          <h3 style="font-size: 28px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px;">The Search Landscape Has Permanently Shifted</h3>
+          <p style="font-size: 15px; color: var(--text-secondary);">Why relying solely on traditional SEO is costing brands over 50% of new inbound customers:</p>
+        </div>
+
+        <div class="comp-grid-2">
+          <div class="comp-box-col old">
+            <h4 style="color: #64748B;">✕ The Old Way (Traditional SEO)</h4>
+            <ul>
+              <li>Pays agencies $3,000–$5,000/mo to write 2,000-word keyword-stuffed blog posts.</li>
+              <li>Optimizes solely for Google's blue link search results.</li>
+              <li>Leaves your brand invisible inside ChatGPT, Perplexity, and Claude.</li>
+              <li>Requires weeks of manual writing, editing, and developer coordination.</li>
+              <li>High bounce rates from casual searchers who don't want to read long essays.</li>
+            </ul>
+          </div>
+
+          <div class="comp-box-col new">
+            <h4 style="color: #B45309;">✓ The Answer Index Pro Way</h4>
+            <ul>
+              <li>Starts at $199/mo with zero retainers or manual agency coordination.</li>
+              <li>Optimizes simultaneously for ChatGPT, Perplexity, Claude, Gemini, and Google AI.</li>
+              <li>Delivers exact machine-readable answers and schema code patches daily.</li>
+              <li>Human-in-the-loop: 1-click approvals with zero risk to production code.</li>
+              <li>Directly captures high-intent buyers ready to purchase based on AI recommendations.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Founder Note -->
+      <section class="founder-panel">
+        <div class="founder-avatar">👨‍💻</div>
+        <div>
+          <h3 style="font-size: 20px; font-weight: 800; color: var(--text-primary); margin-bottom: 8px;">A Word from the Founder</h3>
+          <p style="font-size: 15px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 12px;">
+            "I built Answer Index because modern search changed under our feet. Today, your prospective clients don't want to read 10 articles; they want a straight answer from an AI assistant they trust. If that assistant doesn't know who you are, you don't exist. Answer Index solves that forever with zero manual effort."
+          </p>
+          <div style="font-weight: 700; color: var(--text-primary);">Sameer Sharma</div>
+          <div style="font-size: 13px; color: var(--text-muted);">Founder &amp; Architect · <a href="mailto:sameer@answerindex.xyz" style="color: #B45309; text-decoration: none;">sameer@answerindex.xyz</a></div>
+        </div>
+      </section>
+
+      <!-- High-Converting CTA Banner -->
+      <section class="cta-card">
+        <h3>Ready to Make AI Recommend Your Brand?</h3>
+        <p>Deploy the daily autonomous pipeline. Get your first new AEO answer piece and technical refactor delivered directly to your draft queue tomorrow.</p>
+        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+          <button type="button" onclick="startCheckout('growth')" class="btn-secondary" style="cursor: pointer; padding: 11px 22px;">Start Starter Plan ($199/mo) →</button>
+          <button type="button" onclick="startCheckout('pro_autonomous')" class="btn-honey-primary" style="cursor: pointer; padding: 11px 22px;">Claim Pro Autonomous ($499/mo) →</button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Narwhal Footer -->
+    <footer class="narwhal-footer">
       <div class="footer-grid-5">
         <div class="footer-brand">
           <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 4px; margin-bottom: 14px; width: fit-content;">
@@ -1025,7 +1180,7 @@
           </p>
           <div style="display: flex; gap: 8px;">
             <a href="https://github.com/justmailsameer-prog/answerindex" target="_blank" class="btn-secondary" style="font-size: 12px; padding: 6px 14px;">⭐ Star on GitHub</a>
-            <a href="/feedback.html" class="btn-secondary" style="font-size: 12px; padding: 6px 14px;">Feedback</a>
+            <a href="feedback.html" class="btn-secondary" style="font-size: 12px; padding: 6px 14px;">Feedback</a>
           </div>
         </div>
 
@@ -1044,10 +1199,10 @@
           <h5>Client Access</h5>
           <ul>
             <li><a href="javascript:void(0)" onclick="openClientAuthModal('login')" style="color: #B45309; font-weight: 700;">Client Sign In ↗</a></li>
-            <li><a href="/dashboard.html" target="_blank" style="color: #059669; font-weight: 700;">Client Dashboard ↗</a></li>
+            <li><a href="dashboard.html" target="_blank" style="color: #059669; font-weight: 700;">Client Dashboard ↗</a></li>
             <li><a href="index.html#pricing">Growth Plans &amp; Pricing</a></li>
             <li><a href="index.html#comparison">Market Comparison Matrix</a></li>
-            <li><a href="/index-oss.html">Open Source vs. Pro</a></li>
+            <li><a href="index-oss.html">Open Source vs. Pro</a></li>
             <li><a href="index.html#faq">Frequently Asked Questions</a></li>
           </ul>
         </div>
@@ -1055,21 +1210,21 @@
         <div class="footer-links-col">
           <h5>Machine Protocols</h5>
           <ul>
-            <li><a href="/llms.txt" target="_blank">Machine Manifest (/llms.txt)</a></li>
-            <li><a href="/llms-full.txt" target="_blank">Extended Manifest (/llms-full.txt)</a></li>
-            <li><a href="/ai-sitemap.xml" target="_blank">AI Sitemap XML</a></li>
-            <li><a href="/ai-entities.json" target="_blank">Entity Knowledge Graph</a></li>
-            <li><a href="/rag-index.json" target="_blank">RAG Vector Index</a></li>
+            <li><a href="llms.txt" target="_blank">Machine Manifest (/llms.txt)</a></li>
+            <li><a href="llms-full.txt" target="_blank">Extended Manifest (/llms-full.txt)</a></li>
+            <li><a href="ai-sitemap.xml" target="_blank">AI Sitemap XML</a></li>
+            <li><a href="ai-entities.json" target="_blank">Entity Knowledge Graph</a></li>
+            <li><a href="rag-index.json" target="_blank">RAG Vector Index</a></li>
           </ul>
         </div>
 
         <div class="footer-links-col">
           <h5>Legal &amp; Trust</h5>
           <ul>
-            <li><a href="/terms.html">Terms of Service</a></li>
-            <li><a href="/privacy.html">Privacy Policy</a></li>
-            <li><a href="/ai-disclosure.txt" target="_blank">AI Disclosure Manifest</a></li>
-            <li><a href="/training-data-policy.txt" target="_blank">Training Data Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="ai-disclosure.txt" target="_blank">AI Disclosure Manifest</a></li>
+            <li><a href="training-data-policy.txt" target="_blank">Training Data Policy</a></li>
             <li><a href="mailto:sameer@answerindex.xyz" style="color: var(--text-primary); font-weight: 600;">✉️ sameer@answerindex.xyz</a></li>
             <li><a href="https://github.com/justmailsameer-prog/answerindex/blob/main/LICENSE" target="_blank">MIT Open Source License</a></li>
           </ul>
@@ -1083,9 +1238,9 @@
         </div>
         <div style="display: flex; gap: 16px; align-items: center;">
           <span class="badge-pill-emerald" style="font-size: 11px;">● Autonomous Engine Active · Narwhal UI</span>
-          <a href="/terms.html" style="color: var(--text-muted); text-decoration: none;">Terms</a>
-          <a href="/privacy.html" style="color: var(--text-muted); text-decoration: none;">Privacy</a>
-          <a href="/ai-disclosure.txt" style="color: var(--text-muted); text-decoration: none;">AI Disclosure</a>
+          <a href="terms.html" style="color: var(--text-muted); text-decoration: none;">Terms</a>
+          <a href="privacy.html" style="color: var(--text-muted); text-decoration: none;">Privacy</a>
+          <a href="ai-disclosure.txt" style="color: var(--text-muted); text-decoration: none;">AI Disclosure</a>
         </div>
       </div>
     </footer>

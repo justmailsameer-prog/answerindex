@@ -3,1810 +3,1289 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Answer Index Pro — Autonomous Client Dashboard</title>
-  <meta name="robots" content="noindex, nofollow" />
-  <link rel="canonical" href="https://answerindex.xyz/dashboard" />
+  <title>About Answer Index - What We Do & How We Drive Sales (V5 Narwhal)</title>
+  <meta name="description" content="Answer Index gets your brand cited as the #1 recommendation when prospective buyers ask ChatGPT, Perplexity, and Google AI for solutions. Discover how our autonomous daily growth engine drives revenue." />
+
+  <!-- Canonical & Crawl Directives -->
+  <link rel="canonical" href="https://answerindex.xyz/about.html" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico?v=20261030">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png?v=20261030">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/AnswerIndex_Logo_Icon.png?v=20261030">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 
-  <!-- Google Fonts: Plus Jakarta Sans + JetBrains Mono -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/client-portal.css?v=20261103_v3" />
-  <link rel="stylesheet" href="assets/site-nav.css" />
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono (Narwhal Theme) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Client Portal Auth CSS & JS -->
+  <link rel="stylesheet" href="assets/client-portal.css?v=20261103_v4">
+  <script src="assets/client-portal.js?v=20261103_v4"></script>
 
   <style>
     :root {
-      /* Warm Editorial Cream Color Palette matching the landing page */
-      --bg-page: #f5f4f0;
-      --bg-card: #ffffff;
-      --bg-card-subtle: #faf9f6;
-      --border-color: #e2dfd5;
-      --border-hover: #c8c5b9;
+      /* Narwhal Light Mode Theme Colors */
+      --bg-canvas: #F8F8F6;
+      --bg-card: #FFFFFF;
+      --bg-card-subtle: #FDFDFD;
+      --border-subtle: #E5E6DE;
+      --border-hover: #D1D2C7;
+      --border-active: #B8B9AD;
 
-      --c-cobalt: #3a57fc;
-      --c-cobalt-hover: #2944e8;
-      --c-cobalt-tint: rgba(58, 87, 252, 0.08);
+      --text-primary: #1C1D21;
+      --text-secondary: #5A5D66;
+      --text-muted: #8E929E;
 
-      --c-lime: #a7c75d;
-      --c-lime-dark: #3f5518;
-      --c-lime-tint: rgba(167, 199, 93, 0.14);
+      --honey-primary: #F9BC38;
+      --honey-hover: #F8B31F;
+      --honey-light: #FEF9EE;
+      --honey-border: #FDE68A;
 
-      --c-amber: #d97706;
-      --c-amber-tint: rgba(217, 119, 6, 0.1);
+      --emerald-bg: #ECFDF5;
+      --emerald-text: #059669;
+      --sky-bg: #F0F9FF;
+      --sky-text: #0284C7;
 
-      --c-text-main: #181818;
-      --c-text-muted: #555555;
-      --c-text-dim: #777777;
+      --radius-pill: 9999px;
+      --radius-card: 16px;
+      --radius-inner: 10px;
 
-      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
-      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
-      --shadow-md: 0 8px 25px rgba(0, 0, 0, 0.06);
+      --shadow-card: 0 4px 20px -2px rgba(28, 29, 33, 0.04), 0 2px 6px -1px rgba(28, 29, 33, 0.02);
+      --shadow-hover: 0 12px 28px -4px rgba(28, 29, 33, 0.08), 0 4px 10px -2px rgba(28, 29, 33, 0.03);
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-    }
-
-    body {
-      background-color: var(--bg-page);
-      color: var(--c-text-main);
-      font-family: var(--font-sans);
-      min-height: 100vh;
-      line-height: 1.5;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Top Navigation Bar */
-    .navbar {
-      background-color: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border-color);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      padding: 0.85rem 1.5rem;
-      box-shadow: var(--shadow-sm);
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      line-height: 1.5;
+      position: relative;
+      min-height: 100vh;
     }
 
-    .nav-container {
-      max-width: 1380px;
+    /* Narwhal Subtle Background Grid */
+    .bg-grid { display: none !important; }
+
+    .app-container {
+      position: relative;
+      z-index: 1;
+      max-width: 1140px;
       margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.5rem;
+      padding: 24px 24px 80px;
     }
 
-    .brand-group {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .logo-img {
-      width: 34px;
-      height: 34px;
-      border-radius: 8px;
-    }
-
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .brand-name {
-      font-weight: 800;
-      font-size: 1.15rem;
-      letter-spacing: -0.02em;
-      color: #111111;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .pro-badge {
-      background: linear-gradient(135deg, var(--c-cobalt), #6366f1);
-      color: #fff;
-      font-size: 0.68rem;
-      font-weight: 700;
-      padding: 0.15rem 0.45rem;
-      border-radius: 4px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .cadence-badge {
-      font-size: 0.75rem;
-      color: var(--c-lime-dark);
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-family: var(--font-mono);
+    /* Common Buttons */
+    .btn-honey-primary {
+      background: var(--honey-primary);
+      color: #1C1D21;
+      border: 1px solid var(--honey-border);
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-weight: 600;
-    }
-
-    .pulse-dot {
-      width: 7px;
-      height: 7px;
-      background-color: #22c55e;
-      border-radius: 50%;
-      box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
-      animation: pulse 2s infinite ease-in-out;
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.3); opacity: 0.5; }
-    }
-
-    .nav-actions {
-      display: flex;
+      font-size: 13.5px;
+      padding: 9px 18px;
+      border-radius: var(--radius-pill);
+      display: inline-flex;
       align-items: center;
-      gap: 1rem;
+      gap: 7px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(249, 188, 56, 0.35);
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      white-space: nowrap;
     }
-
-    .project-pill {
-      background-color: var(--bg-page);
-      border: 1px solid var(--border-color);
-      padding: 0.45rem 0.85rem;
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-size: 0.82rem;
-      font-family: var(--font-mono);
-      color: var(--c-text-muted);
-    }
-
-    .project-pill strong {
-      color: #111111;
-    }
-
-    .plan-tag {
-      background-color: var(--c-lime-tint);
-      border: 1px solid rgba(167, 199, 93, 0.5);
-      color: var(--c-lime-dark);
-      font-size: 0.75rem;
-      padding: 0.35rem 0.75rem;
-      border-radius: 6px;
-      font-weight: 700;
+    .btn-honey-primary:hover {
+      background: var(--honey-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(249, 188, 56, 0.45);
+      color: #1C1D21;
     }
 
     .btn-secondary {
-      background-color: #ffffff;
-      border: 1px solid var(--border-color);
-      color: var(--c-text-main);
-      padding: 0.45rem 0.9rem;
-      border-radius: 8px;
-      font-size: 0.82rem;
+      background: var(--bg-card);
+      color: var(--text-primary);
+      border: 1px solid var(--border-subtle);
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-weight: 600;
+      font-size: 13.5px;
+      padding: 9px 18px;
+      border-radius: var(--radius-pill);
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
       cursor: pointer;
       text-decoration: none;
-      transition: all 0.2s;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+      transition: all 0.2s ease;
+      white-space: nowrap;
     }
-
     .btn-secondary:hover {
+      background: #FFFFFF;
       border-color: var(--border-hover);
-      background-color: var(--bg-card-subtle);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
 
-    /* Main Container */
-    .dashboard-container {
-      max-width: 1380px;
-      margin: 0 auto;
-      padding: 2.25rem 1.5rem 4rem;
-    }
-
-    /* KPI Grid */
-    .kpi-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.25rem;
-      margin-bottom: 2rem;
-    }
-
-    .kpi-card {
-      background-color: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: 16px;
-      padding: 1.4rem;
-      position: relative;
-      overflow: hidden;
-      box-shadow: var(--shadow-sm);
-      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-    }
-
-    .kpi-card:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-      border-color: var(--border-hover);
-    }
-
-    .kpi-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: var(--card-accent, var(--c-cobalt));
-    }
-
-    .kpi-header {
+    /* Sticky Pill Header */
+    header {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-pill);
+      padding: 10px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 0.6rem;
+      margin-bottom: 32px;
+      position: sticky;
+      top: 16px;
+      z-index: 100;
+      box-shadow: 0 4px 20px -2px rgba(28, 29, 33, 0.04);
     }
 
-    .kpi-title {
-      font-size: 0.8rem;
+    .brand-group {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 3px;
+      text-decoration: none;
+      color: inherit;
+      line-height: 1;
+    }
+
+    .logo-badge {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }
+    .logo-badge:hover {
+      transform: scale(1.06);
+    }
+    .logo-badge img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 10px rgba(249, 188, 56, 0.25));
+    }
+
+    .brand-title h1 {
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      line-height: 1.2;
+    }
+
+    .brand-title p {
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .header-ctas {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hamburger-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-pill);
+      padding: 8px 12px;
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+    .hamburger-bar {
+      width: 18px;
+      height: 2px;
+      background: var(--text-primary);
+      border-radius: 2px;
+    }
+
+    /* Drawer Menu Overlay */
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(28, 29, 33, 0.4);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .drawer-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .drawer-panel {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      bottom: auto;
+      width: calc(100% - 40px);
+      max-width: 380px;
+      max-height: calc(100vh - 40px);
+      background: #FFFFFF;
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.16);
+      transform: translateX(calc(100% + 30px));
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      padding: 20px 22px;
+      overflow-y: auto;
+    }
+    @media (max-width: 640px) {
+      .drawer-panel {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        width: auto;
+        max-width: 100%;
+        max-height: calc(100vh - 20px);
+        padding: 16px 18px;
+        border-radius: 16px;
+      }
+    }
+    .drawer-overlay.open .drawer-panel {
+      transform: translateX(0);
+    }
+    .drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-subtle);
+      font-weight: 800;
+      font-size: 15px;
+    }
+    .drawer-close-btn {
+      background: var(--bg-canvas);
+      border: 1px solid var(--border-subtle);
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .drawer-group {
+      margin-top: 20px;
+    }
+    .drawer-group h4 {
+      font-size: 11px;
       font-weight: 700;
+      color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      color: var(--c-text-dim);
+      margin-bottom: 8px;
+      font-family: 'JetBrains Mono', monospace;
     }
-
-    .kpi-badge {
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 0.15rem 0.5rem;
-      border-radius: 4px;
-      font-family: var(--font-mono);
-    }
-
-    .kpi-value {
-      font-size: 2.1rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      color: #111111;
+    .drawer-group ul {
+      list-style: none;
       display: flex;
-      align-items: baseline;
-      gap: 0.4rem;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .drawer-group a {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      padding: 6px 10px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+    }
+    .drawer-group a:hover {
+      background: var(--honey-light);
+      color: var(--text-primary);
     }
 
-    .kpi-subtext {
-      font-size: 0.8rem;
-      color: var(--c-text-muted);
-      margin-top: 0.35rem;
+    /* Unified Capsules & Badges (Matching Instant Analytical Diagnostic Theme) */
+    .badge-pill-featured {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background-color: var(--honey-light);
+      border: 1px solid var(--honey-border);
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 16px;
     }
 
-    /* Content Layout (Main + Sidebar) */
-    .layout-grid {
+    /* About Hero Banner */
+    .about-hero {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card);
+      padding: 56px 48px 44px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow-card);
+    }
+    .about-hero h2 {
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.18;
+      margin-bottom: 16px;
+      color: var(--text-primary);
+    }
+    .about-hero p.lead {
+      font-size: 17px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 860px;
+      margin-bottom: 28px;
+    }
+
+    /* 3-Point At-A-Glance Callout */
+    .at-a-glance-box {
+      background: var(--honey-light);
+      border: 1px solid var(--honey-border);
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin-top: 24px;
+    }
+    .at-a-glance-header {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: #B45309;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .at-a-glance-grid {
       display: grid;
-      grid-template-columns: 1fr 380px;
-      gap: 1.75rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .glance-item {
+      background: #FFFFFF;
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 16px;
+    }
+    .glance-item .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: var(--honey-light);
+      border: 1px solid var(--honey-border);
+      padding: 2px 7px;
+      border-radius: var(--radius-pill);
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+    .glance-item p {
+      font-size: 13.5px;
+      color: var(--text-primary);
+      line-height: 1.5;
     }
 
-    @media (max-width: 1080px) {
-      .layout-grid {
-        grid-template-columns: 1fr;
+    /* 3 Deep Dive Pillar Cards */
+    .pillar-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-bottom: 36px;
+    }
+    .about-pillar-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card);
+      padding: 36px;
+      box-shadow: var(--shadow-card);
+    }
+    .about-pillar-card h3 {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin: 8px 0 14px;
+      color: var(--text-primary);
+    }
+    .about-pillar-card p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+    .highlight-card {
+      background: var(--bg-canvas);
+      border-left: 4px solid var(--honey-primary);
+      border-radius: 8px;
+      padding: 14px 18px;
+      font-size: 14px;
+      color: var(--text-primary);
+      margin-top: 14px;
+    }
+
+    /* Search Shift Comparison Matrix */
+    .comp-container {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card);
+      padding: 36px;
+      margin-bottom: 36px;
+      box-shadow: var(--shadow-card);
+    }
+    .comp-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .comp-box-col {
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .comp-box-col.old {
+      background: var(--bg-canvas);
+    }
+    .comp-box-col.new {
+      background: var(--honey-light);
+      border-color: var(--honey-border);
+    }
+    .comp-box-col h4 {
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .comp-box-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .comp-box-col li {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      display: flex;
+      gap: 8px;
+    }
+
+    /* Founder Note */
+    .founder-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card);
+      padding: 36px;
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      margin-bottom: 36px;
+      box-shadow: var(--shadow-card);
+    }
+    .founder-avatar {
+      font-size: 48px;
+      width: 72px;
+      height: 72px;
+      background: var(--honey-light);
+      border: 1px solid var(--honey-border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* CTA Banner */
+    .cta-card {
+      background: var(--honey-light);
+      border: 1px solid var(--honey-border);
+      border-radius: var(--radius-card);
+      padding: 44px;
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .cta-card h3 {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .cta-card p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 24px;
+    }
+
+    /* Narwhal Footer */
+    .narwhal-footer {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card);
+      padding: 48px 40px 32px;
+      box-shadow: var(--shadow-card);
+    }
+    .footer-grid-5 {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr;
+      gap: 28px;
+      margin-bottom: 36px;
+    }
+    .footer-brand p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .footer-links-col h5 {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 14px;
+      letter-spacing: -0.01em;
+    }
+    .footer-links-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .footer-links-col a {
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .footer-links-col a:hover {
+      color: var(--text-primary);
+    }
+    .footer-bottom-bar {
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    @media (max-width: 768px) {
+      .at-a-glance-grid { grid-template-columns: 1fr; }
+      .comp-grid-2 { grid-template-columns: 1fr; }
+      .footer-grid-5 { grid-template-columns: 1fr; }
+      .founder-panel { flex-direction: column; text-align: center; }
+      .about-hero { padding: 36px 20px 32px; }
+      .about-hero h2 { font-size: 28px; }
+    }
+  
+    /* =========================================================================
+       MOBILE-FIRST RESPONSIVE OPTIMIZATIONS (doctrine: touch-first, 44px min targets)
+       ========================================================================= */
+    @media (max-width: 640px) {
+      /* App Container & Header */
+      .app-container {
+        padding: 12px 12px 48px !important;
+      }
+      header {
+        padding: 10px 14px !important;
+        border-radius: 16px !important;
+        margin-bottom: 24px !important;
+      }
+      .brand-group {
+        gap: 10px !important;
+      }
+      .logo-badge {
+        width: 40px !important;
+        height: 40px !important;
+      }
+      .logo-badge img {
+        width: 40px !important;
+        height: 40px !important;
+      }
+      .brand-title h1 {
+        font-size: 15px !important;
+      }
+      .brand-title p {
+        display: none !important; /* Hide subline on small mobile to give CTAs room */
+      }
+      .header-ctas {
+        gap: 8px !important;
+      }
+      .header-ctas .btn-honey-primary {
+        display: none !important; /* Inspect domain button accessible right in hero on mobile */
+      }
+      .header-ctas .btn-secondary {
+        padding: 8px 14px !important;
+        font-size: 12.5px !important;
+        min-height: 40px !important;
+      }
+      .hamburger-btn {
+        width: 42px !important;
+        height: 42px !important;
+        padding: 9px !important;
+      }
+
+      /* Hero Content & Heading */
+      .hero-content h2 {
+        font-size: 32px !important;
+        line-height: 1.15 !important;
+        letter-spacing: -0.03em !important;
+        margin-bottom: 14px !important;
+      }
+      .hero-content p.hero-subtitle {
+        font-size: 14.5px !important;
+        line-height: 1.55 !important;
+        margin-bottom: 24px !important;
+      }
+      .hero-banner {
+        padding: 24px 14px !important;
+        border-radius: 18px !important;
+      }
+
+      /* Audit Form */
+      .audit-box-wrap {
+        padding: 20px 14px !important;
+        border-radius: 14px !important;
+      }
+      .audit-box-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 8px !important;
+      }
+      .audit-box-header h3 {
+        font-size: 14px !important;
+      }
+      .audit-input-form {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+      }
+      .audit-input-form input {
+        min-height: 48px !important; /* iOS touch target standard */
+        font-size: 15px !important; /* Prevents auto-zoom on iOS */
+      }
+      .audit-input-form button {
+        min-height: 48px !important;
+        width: 100% !important;
+        justify-content: center !important;
+        font-size: 14px !important;
+      }
+      .audit-samples {
+        flex-wrap: wrap !important;
+      }
+      .sample-pill {
+        min-height: 36px !important;
+        padding: 6px 12px !important;
+      }
+
+      /* Engine verification strip */
+      .engine-strip {
+        padding: 10px 14px !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+        align-items: flex-start !important;
+      }
+      .engine-logos {
+        width: 100% !important;
+        justify-content: space-between !important;
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+      }
+
+      /* Sections & Cards */
+      .section-headline {
+        margin-bottom: 20px !important;
+      }
+      .section-headline h3 {
+        font-size: 22px !important;
+      }
+      .spotlight-card {
+        padding: 22px 16px !important;
+        border-radius: 16px !important;
+      }
+      .metrics-rail {
+        grid-template-columns: 1fr !important;
+      }
+      .pipeline-stepper {
+        grid-template-columns: 1fr !important;
+      }
+      .dispatch-split {
+        padding: 20px 16px !important;
+      }
+      .flow-grid-4 {
+        grid-template-columns: 1fr !important;
+      }
+      .truth-grid {
+        grid-template-columns: 1fr !important;
+      }
+      .pricing-grid-3 {
+        grid-template-columns: 1fr !important;
+      }
+      .pricing-card {
+        padding: 24px 18px !important;
+      }
+      .pricing-card button {
+        min-height: 48px !important;
+        width: 100% !important;
+      }
+
+      /* Drawer Menu on Mobile */
+      .drawer-panel {
+        max-width: 100vw !important;
+        padding: 24px 20px !important;
+      }
+      .drawer-header {
+        margin-bottom: 24px !important;
+      }
+      .drawer-close-btn {
+        width: 44px !important;
+        height: 44px !important;
+      }
+      .drawer-group a {
+        min-height: 44px !important;
+        display: flex !important;
+        align-items: center !important;
+        font-size: 15px !important;
+      }
+
+      /* Footer */
+      .footer-grid-5 {
+        grid-template-columns: 1fr !important;
+        gap: 28px !important;
+      }
+      .footer-bottom-bar {
+        flex-direction: column !important;
+        gap: 14px !important;
+        text-align: center !important;
+        align-items: center !important;
+      }
+
+      /* Client Auth Modal on Small Screens */
+      .auth-modal-card {
+        padding: 22px 16px !important;
+        margin: 12px !important;
+        max-height: 94vh !important;
+      }
+      .auth-modal-close {
+        width: 44px !important;
+        height: 44px !important;
       }
     }
 
-    /* Section Panels */
-    .panel {
-      background-color: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: 18px;
-      padding: 1.75rem;
-      margin-bottom: 1.75rem;
-      box-shadow: var(--shadow-sm);
+  
+    /* Header Sign In Button (#f24f1e Accent) */
+    .btn-header-signin {
+      background-color: #f24f1e;
+      color: #FFFFFF;
+      border: 1px solid #f24f1e;
+      border-radius: var(--radius-pill);
+      padding: 8px 18px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 3px 12px rgba(242, 79, 30, 0.28);
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
     }
-
-    .panel-header {
+    .btn-header-signin:hover {
+      background-color: #d94214;
+      border-color: #d94214;
+      transform: translateY(-1px);
+      box-shadow: 0 5px 16px rgba(242, 79, 30, 0.4);
+    }
+    .brand-logo-img {
+      height: 44px;
+      width: auto;
+      max-width: 175px;
+      object-fit: contain;
+    }
+    .brand-tagline {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      line-height: 1;
+      display: block;
+      margin: 0;
+      white-space: nowrap;
+      align-self: flex-end;
+      text-align: right;
+    }
+    .brand-title p.brand-tagline {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      line-height: 1;
+      margin: 0;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      align-self: flex-end;
+      text-align: right;
+    }
+    .drawer-accordion {
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--bg-canvas);
+      margin-top: 12px;
+      transition: all 0.2s ease;
+    }
+    .drawer-accordion[open] {
+      border-color: rgba(242, 79, 30, 0.35);
+      background: #FFFFFF;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+    }
+    .drawer-accordion-summary {
+      padding: 12px 14px;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text-primary);
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 1.4rem;
-      border-bottom: 1px solid var(--border-color);
-      padding-bottom: 1rem;
+      user-select: none;
+      list-style: none;
     }
-
-    .panel-title {
-      font-size: 1.25rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      color: #111111;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
+    .drawer-accordion-summary::-webkit-details-marker {
+      display: none;
     }
-
-    .panel-subtitle {
-      font-size: 0.82rem;
-      color: var(--c-text-muted);
-      margin-top: 0.2rem;
+    .drawer-accordion-summary .chevron-icon {
+      transition: transform 0.25s ease;
+      color: var(--text-muted);
     }
-
-    .filter-pills {
-      display: flex;
-      gap: 0.5rem;
+    .drawer-accordion[open] .chevron-icon {
+      transform: rotate(180deg);
+      color: #f24f1e;
     }
-
-    .filter-btn {
-      background-color: var(--bg-page);
-      border: 1px solid var(--border-color);
-      color: var(--c-text-muted);
-      padding: 0.35rem 0.75rem;
-      border-radius: 6px;
-      font-size: 0.78rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .filter-btn.active, .filter-btn:hover {
-      background-color: var(--c-cobalt);
-      color: #ffffff;
-      border-color: var(--c-cobalt);
-    }
-
-    /* Daily Job Cards */
-    .jobs-list {
+    .drawer-accordion .drawer-sublink-list {
+      padding: 6px 14px 12px 14px;
+      border-top: 1px solid var(--border-subtle);
       display: flex;
       flex-direction: column;
-      gap: 1.25rem;
+      gap: 8px;
+      margin: 0;
+      border-left: none;
     }
-
-    .job-card {
-      background-color: #ffffff;
-      border: 1.5px solid var(--border-color);
-      border-radius: 14px;
-      padding: 1.4rem;
-      transition: all 0.25s ease;
-      position: relative;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .job-card:hover {
-      border-color: var(--border-hover);
-      box-shadow: var(--shadow-md);
-      transform: translateY(-1px);
-    }
-
-    .job-card.pending {
-      border-left: 5px solid var(--c-amber);
-    }
-
-    .job-card.merged {
-      border-left: 5px solid #22c55e;
-    }
-
-    .job-meta-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-bottom: 0.75rem;
-      flex-wrap: wrap;
-    }
-
-    .meta-left {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .job-type-pill {
-      font-size: 0.72rem;
-      font-weight: 800;
-      padding: 0.2rem 0.55rem;
-      border-radius: 4px;
-      font-family: var(--font-mono);
-      text-transform: uppercase;
-    }
-
-    .type-job1 {
-      background-color: var(--c-cobalt-tint);
-      color: var(--c-cobalt);
-      border: 1px solid rgba(58, 87, 252, 0.25);
-    }
-
-    .type-job2 {
-      background-color: var(--c-lime-tint);
-      color: var(--c-lime-dark);
-      border: 1px solid rgba(167, 199, 93, 0.4);
-    }
-
-    .date-tag {
-      font-size: 0.8rem;
-      color: var(--c-text-dim);
-      font-family: var(--font-mono);
-      font-weight: 600;
-    }
-
-    .score-badge {
-      background-color: rgba(34, 197, 94, 0.08);
-      border: 1px solid rgba(34, 197, 94, 0.3);
-      color: #15803d;
-      font-size: 0.74rem;
-      font-weight: 800;
-      padding: 0.2rem 0.55rem;
-      border-radius: 4px;
-      font-family: var(--font-mono);
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-
-    .job-title {
-      font-size: 1.15rem;
-      font-weight: 800;
-      color: #111111;
-      margin-bottom: 0.5rem;
-      line-height: 1.4;
-    }
-
-    .job-details-row {
-      display: flex;
-      align-items: center;
-      gap: 1.25rem;
-      font-size: 0.82rem;
-      color: var(--c-text-muted);
-      margin-bottom: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .detail-item {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-family: var(--font-mono);
-    }
-
-    .detail-item strong {
-      color: #222222;
-    }
-
-    /* Zero Click Answer Snippet Box (Editorial Cream Contrast) */
-    .snippet-box {
-      background-color: #faf9f5;
-      border: 1.5px dashed var(--border-color);
-      border-radius: 10px;
-      padding: 1rem;
-      margin-bottom: 1.1rem;
-    }
-
-    .snippet-label {
-      font-size: 0.72rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--c-cobalt);
-      margin-bottom: 0.4rem;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-family: var(--font-mono);
-    }
-
-    .snippet-content {
-      font-size: 0.88rem;
-      color: #2b2b2b;
-      line-height: 1.55;
-    }
-
-    /* Actions Row */
-    .job-actions {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      border-top: 1px solid var(--border-color);
-      padding-top: 0.9rem;
-      flex-wrap: wrap;
-    }
-
-    .diff-summary {
-      font-size: 0.8rem;
-      color: var(--c-text-dim);
-      font-family: var(--font-mono);
-      font-weight: 600;
-    }
-
-    .action-buttons {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .btn-github {
-      background-color: #ffffff;
-      border: 1px solid var(--border-color);
-      color: #222222;
-      padding: 0.45rem 0.85rem;
-      border-radius: 8px;
-      font-size: 0.8rem;
-      font-weight: 700;
+    .drawer-accordion .drawer-sublink-list a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
       text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      transition: all 0.2s;
-    }
-
-    .btn-github:hover {
-      background-color: var(--bg-page);
-      border-color: var(--border-hover);
-    }
-
-    .btn-approve {
-      background: linear-gradient(135deg, #16a34a, #15803d);
-      color: #ffffff;
-      border: none;
-      padding: 0.5rem 1.15rem;
-      border-radius: 8px;
-      font-size: 0.82rem;
-      font-weight: 800;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 0.45rem;
-      transition: transform 0.15s, opacity 0.2s, box-shadow 0.2s;
-      box-shadow: 0 4px 12px rgba(22, 163, 74, 0.25);
-    }
-
-    .btn-approve:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 6px 16px rgba(22, 163, 74, 0.35);
-    }
-
-    .btn-approve:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-
-    .btn-merged {
-      background-color: rgba(34, 197, 94, 0.1);
-      border: 1px solid rgba(34, 197, 94, 0.35);
-      color: #15803d;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      font-size: 0.82rem;
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      gap: 0.45rem;
-      cursor: default;
-    }
-
-    /* Multi-Platform Delivery & Preview Styles */
-    .btn-action-preview {
-      background-color: #ffffff;
-      border: 1px solid var(--border-color);
-      color: #1e293b;
-      padding: 0.45rem 0.85rem;
-      border-radius: 8px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      transition: all 0.2s;
-    }
-
-    .btn-action-preview:hover {
-      background-color: var(--bg-page);
-      border-color: var(--c-cobalt);
-      color: var(--c-cobalt);
-    }
-
-    .btn-action-copy {
-      background-color: rgba(58, 87, 252, 0.08);
-      border: 1px solid rgba(58, 87, 252, 0.3);
-      color: var(--c-cobalt);
-      padding: 0.45rem 0.85rem;
-      border-radius: 8px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      transition: all 0.2s;
-    }
-
-    .btn-action-copy:hover {
-      background-color: rgba(58, 87, 252, 0.18);
-      border-color: var(--c-cobalt);
-      transform: translateY(-1px);
-    }
-
-    .btn-cms-open {
-      background-color: #ffffff;
-      border: 1px solid var(--border-color);
-      color: #333333;
-      padding: 0.45rem 0.85rem;
-      border-radius: 8px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      transition: all 0.2s;
-    }
-
-    .btn-cms-open:hover {
-      border-color: var(--border-hover);
-      background-color: var(--bg-page);
-    }
-
-    .platform-indicator-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      background: #ffffff;
-      border: 1.5px solid var(--border-color);
-      padding: 0.4rem 0.85rem;
-      border-radius: 20px;
-      font-size: 0.82rem;
-      font-weight: 800;
-      color: #111;
-      box-shadow: var(--shadow-sm);
-    }
-
-    /* Sidebar Telemetry Widgets */
-    .engine-card {
-      background-color: #faf9f6;
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 1rem;
-      margin-bottom: 0.85rem;
+      padding: 4px 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      transition: transform 0.2s, border-color 0.2s;
+      transition: color 0.15s ease;
     }
-
-    .engine-card:hover {
-      transform: translateX(3px);
-      border-color: var(--border-hover);
+    .drawer-accordion .drawer-sublink-list a:hover {
+      color: #f24f1e;
     }
-
-    .engine-info {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .engine-icon {
-      width: 34px;
-      height: 34px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      background-color: #ffffff;
-      border: 1px solid var(--border-color);
-    }
-
-    .engine-name {
-      font-weight: 700;
-      font-size: 0.92rem;
-      color: #111111;
-    }
-
-    .engine-status {
-      font-size: 0.75rem;
-      color: var(--c-text-muted);
-    }
-
-    .engine-rate {
-      font-size: 1.15rem;
-      font-weight: 800;
-      font-family: var(--font-mono);
-      color: var(--c-lime-dark);
-    }
-
-    /* Dispatch Controls Box */
-    .dispatch-box {
-      background: linear-gradient(135deg, rgba(58, 87, 252, 0.06), rgba(167, 199, 93, 0.08));
-      border: 1.5px solid rgba(58, 87, 252, 0.25);
-      border-radius: 14px;
-      padding: 1.35rem;
-      margin-top: 1.5rem;
-    }
-
-    .dispatch-box h4 {
-      font-size: 0.95rem;
-      font-weight: 800;
-      margin-bottom: 0.4rem;
-      color: #111111;
-    }
-
-    .dispatch-box p {
-      font-size: 0.82rem;
-      color: var(--c-text-muted);
-      margin-bottom: 1rem;
-    }
-
-    .btn-dispatch {
-      width: 100%;
-      background: linear-gradient(135deg, var(--c-cobalt), #4f46e5);
-      color: #ffffff;
-      border: none;
-      padding: 0.7rem 1rem;
-      border-radius: 8px;
-      font-size: 0.85rem;
-      font-weight: 800;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      transition: all 0.2s;
-      box-shadow: 0 4px 14px rgba(58, 87, 252, 0.25);
-    }
-
-    .btn-dispatch:hover {
-      background: linear-gradient(135deg, var(--c-cobalt-hover), #4338ca);
-      transform: translateY(-1px);
-    }
-
-    /* Toast Notifications */
-    .toast {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      background-color: #181818;
-      color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      padding: 1rem 1.4rem;
-      border-radius: 10px;
-      font-size: 0.88rem;
-      font-weight: 600;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-      transform: translateY(100px);
-      opacity: 0;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      z-index: 999;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .toast.show {
-      transform: translateY(0);
-      opacity: 1;
-    }
+        
   </style>
-  <link rel="stylesheet" href="assets/client-portal.css?v=20261103_v3" />
 </head>
 <body>
-
-  <!-- Top Navigation (Warm Editorial Cream Aesthetic) -->
-  <nav class="navbar">
-    <div class="nav-container">
-      <a href="pro.html" class="brand-group">
-        <img src="assets/AnswerIndex_Logo.png" alt="Answer Index Logo" class="logo-img" />
-        <div class="brand-text">
-          <div class="brand-name">
-            Answer Index <span class="pro-badge" id="easterEggProBadge" onclick="handleProBadgeEasterEggClick(event)" title="Answer Index PRO">PRO</span>
-          </div>
-          <div class="cadence-badge">
-            <span class="pulse-dot"></span> Autonomous Loop Active · Custom Scheduled Dispatch
-          </div>
-        </div>
+  <div class="app-container">
+    <!-- Top Sticky Pill Header -->
+    <header>
+      <a href="/" class="brand-group" aria-label="Answer Index Home">
+        <img src="assets/AnswerIndex_Logo.png" alt="Answer Index Logo" class="brand-logo-img" width="220" height="44" onerror="this.onerror=null; this.src='/assets/AnswerIndex_Logo.png';">
+        <span class="brand-tagline" id="easterEggTagline" onclick="handleProBadgeEasterEggClick(event)" style="cursor: pointer;" title="Be the Answer AI Recommends">Be the Answer AI Recommends</span>
       </a>
 
-      <div class="nav-actions">
-        <!-- Platform Selector Indicator -->
-        <div class="platform-indicator-pill" id="platformBadge" title="Connected Platform">
-          <span id="platformIcon">🐙</span>
-          <span id="platformName">GitHub</span>
+      <!-- Right Side Actions: Sign In (#f24f1e) + Inspect Domain + Hamburger Menu -->
+      <div class="header-ctas">
+        <button type="button" onclick="openClientAuthModal('login')" class="btn-header-signin">Sign In</button>
+        <a href="/#audit-tool" class="btn-honey-primary">Inspect Domain ↗</a>
+        <button type="button" class="hamburger-btn" onclick="toggleDrawer(true)" aria-label="Open Navigation Menu">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Slide-Out Hamburger Drawer Menu -->
+    <div id="drawerMenu" class="drawer-overlay" onclick="handleOverlayClick(event)">
+      <div class="drawer-panel">
+        <div class="drawer-header">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #f24f1e;">Navigation</span>
+          </div>
+          <button type="button" class="drawer-close-btn" onclick="toggleDrawer(false)" aria-label="Close Navigation Menu">✕</button>
         </div>
 
-        <div class="project-pill" id="projectPill">
-          <span>Target:</span> <strong id="projectDomain">nordicnesting.com</strong>
-          <span style="color: rgba(0,0,0,0.15)">|</span>
-          <span id="projectBranch">main</span>
+        <div class="drawer-nav-sections">
+          <!-- Primary Direct Links -->
+          <div class="drawer-group">
+            <h4 style="font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Primary Actions</h4>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; padding: 0; margin: 0;">
+              <li>
+                <a href="/#audit-tool" onclick="toggleDrawer(false)" style="display: flex; align-items: center; justify-content: space-between; font-size: 15px; font-weight: 700; color: var(--text-primary); text-decoration: none; padding: 6px 0;">
+                  <span style="display: flex; align-items: center; gap: 8px;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f24f1e" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    Start Free AI Citation Audit
+                  </span>
+                  <span class="tag" style="background: rgba(242, 79, 30, 0.1); color: #f24f1e; border: 1px solid rgba(242, 79, 30, 0.25); font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 999px;">Live Probe</span>
+                </a>
+              </li>
+              <li>
+                <a href="/#daily-loop" onclick="toggleDrawer(false)" style="display: flex; align-items: center; justify-content: space-between; font-size: 15px; font-weight: 700; color: var(--text-primary); text-decoration: none; padding: 6px 0;">
+                  <span>The Daily 2-Job Pipeline</span>
+                  <span class="tag" style="background: var(--honey-light); color: #B45309; border: 1px solid var(--honey-border); font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 999px;">Daily Agent Run</span>
+                </a>
+              </li>
+              <li>
+                <a href="/#pricing" onclick="toggleDrawer(false)" style="display: flex; align-items: center; justify-content: space-between; font-size: 15px; font-weight: 700; color: var(--text-primary); text-decoration: none; padding: 6px 0;">
+                  <span>Growth Plans &amp; Pricing</span>
+                  <span class="tag" style="background: var(--honey-light); color: #B45309; border: 1px solid var(--honey-border); font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 999px;">From $199</span>
+                </a>
+              </li>
+              <li>
+                <a href="/dashboard.html" target="_blank" style="display: flex; align-items: center; justify-content: space-between; font-size: 15px; font-weight: 700; color: #059669; text-decoration: none; padding: 6px 0;">
+                  <span>Client Dashboard ↗</span>
+                  <span class="tag" style="background: var(--emerald-bg); color: var(--emerald-text); border: 1px solid rgba(16, 185, 129, 0.3); font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 999px;">Queue</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Collapsible Submenu 1: Architecture & Safe Execution -->
+          <details class="drawer-accordion">
+            <summary class="drawer-accordion-summary">
+              <span>Platform &amp; Architecture</span>
+              <svg class="chevron-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </summary>
+            <div class="drawer-sublink-list">
+              <a href="/#summary" onclick="toggleDrawer(false)">The New Search Paradigm</a>
+              <a href="/#how-it-works" onclick="toggleDrawer(false)">Safe Staging Flow (CMS &amp; PR)</a>
+              <a href="/#brand-truth" onclick="toggleDrawer(false)">Brand Truth Wiki (D1 Grounding)</a>
+              <a href="/#comparison" onclick="toggleDrawer(false)">Agency &amp; Tool Comparison</a>
+              <a href="/how-it-works.html">Full Technical Architecture ↗</a>
+            </div>
+          </details>
+
+          <!-- Collapsible Submenu 2: Company & Support -->
+          <details class="drawer-accordion">
+            <summary class="drawer-accordion-summary">
+              <span>Company &amp; Resources</span>
+              <svg class="chevron-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </summary>
+            <div class="drawer-sublink-list">
+              <a href="/about.html">About Answer Index</a>
+              <a href="/#faq" onclick="toggleDrawer(false)">Frequently Asked Questions</a>
+              <a href="/feedback.html">Direct Feedback Channel</a>
+              <a href="mailto:sameer@answerindex.xyz">Founder &amp; Support Contact</a>
+            </div>
+          </details>
         </div>
 
-        <!-- Dummy Data Tag -->
-        <span class="demo-badge" id="demoBadge" style="background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.35); color: #b45309; font-size: 0.72rem; font-weight: 800; padding: 0.3rem 0.65rem; border-radius: 20px; font-family: var(--font-mono); display: inline-flex; align-items: center; gap: 0.35rem;" title="Simulated sample brand for demonstration">
-          ⚠️ Sample Brand · Dummy Data
-        </span>
-
-        <div class="plan-tag" id="planTag">Pro Autonomous · $499/mo</div>
-
-        <button onclick="openTruthWikiModal()" class="btn-secondary" style="background: rgba(167,199,93,0.15); border-color: rgba(63,85,24,0.3); color: var(--c-lime-dark); font-weight:700;">
-          📖 Brand Truth Wiki
-        </button>
-        <button onclick="openClientAuthModal('register')" class="btn-secondary" style="background: rgba(58,87,252,0.08); border-color: rgba(58,87,252,0.3); color: var(--c-cobalt); font-weight:700;">
-          ➕ Connect Site
-        </button>
-        <button onclick="openClientAuthModal('login')" class="btn-secondary">
-          🔄 Switch Client
-        </button>
-        <a href="pro.html#audit-tool" class="btn-secondary">🔍 Free Audit</a>
+        <div class="drawer-cta-bottom">
+          <button type="button" onclick="toggleDrawer(false); openClientAuthModal('login');" class="btn-drawer-signin" style="width: 100%; justify-content: center; cursor: pointer; background: #f24f1e; color: #ffffff; border: 1px solid #f24f1e; border-radius: var(--radius-pill); padding: 12px; font-weight: 700; font-size: 14.5px; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 14px rgba(242, 79, 30, 0.35);">Sign In to Account →</button>
+          <a href="mailto:sameer@answerindex.xyz" class="btn-secondary" style="width: 100%; justify-content: center; font-size: 12.5px; text-decoration: none;">✉️ sameer@answerindex.xyz</a>
+        </div>
       </div>
     </div>
-  </nav>
 
-  <!-- Demo Brand / Simulated Data Notice Ribbon -->
-  <div id="demoNoticeBanner" style="background: linear-gradient(90deg, #fffbeb, #fef3c7); border-bottom: 1px solid #fde68a; padding: 0.45rem 1.5rem; font-size: 0.8rem; color: #92400e; display: flex; align-items: center; justify-content: center; gap: 0.6rem; font-family: var(--font-sans); box-shadow: inset 0 -1px 0 rgba(0,0,0,0.03);">
-    <span style="background: #f59e0b; color: #ffffff; font-size: 0.68rem; font-weight: 800; padding: 0.15rem 0.5rem; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.04em;">Sample Brand Data</span>
-    <span>You are currently viewing simulated daily jobs &amp; telemetry for a dummy brand (<strong>Nordic Nesting</strong>). Real live data streams in automatically once your site is connected.</span>
-    <button onclick="openClientAuthModal('register')" style="background: #92400e; color: #fff; border: none; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.72rem; font-weight: 700; cursor: pointer; margin-left: 0.4rem;">Connect Your Site →</button>
-  </div>
-
-  <!-- Ground-Truth Anti-Hallucination Wiki Modal -->
-  <div id="truthWikiModal" class="auth-modal-overlay" onclick="handleTruthOverlayClick(event)">
-    <div class="auth-modal-card" style="max-width: 820px;">
-      <button class="auth-modal-close" onclick="closeTruthWikiModal()" aria-label="Close modal">✕</button>
-      <div class="auth-header" style="text-align: left; margin-bottom: 1.25rem;">
-        <div class="auth-badge" style="background: rgba(34,197,94,0.15); color: #4ade80; border: 1px solid rgba(34,197,94,0.3);">🛡️ Ground-Truth Anti-Hallucination Engine</div>
-        <h2 class="auth-title" id="truthModalTitle" style="font-size: 1.35rem; margin-top: 0.35rem; color:#fff;">Brand Ground-Truth Wiki</h2>
-        <p class="auth-subtitle" style="margin: 0; max-width: 100%; color:#94a3b8;">
-          Verified facts, official specifications, canonical pricing, and disallowed claims enforced by our edge engine to eliminate AI hallucinations.
+    <!-- Main Content -->
+    <main>
+      <!-- Hero Banner -->
+      <section class="about-hero">
+        <div class="badge-pill-featured">
+          <span>💡 EXECUTIVE CLARITY · IN PLAIN ENGLISH</span>
+        </div>
+        <h2>What is Answer Index &amp; How Does It Drive More Sales?</h2>
+        <p class="lead">
+          The search landscape has permanently shifted: high-intent buyers no longer browse 10 blue links on Google. They ask ChatGPT, Perplexity, and Claude for verified solutions. <strong>Answer Index makes sure your product is the authoritative answer they receive.</strong>
         </p>
-      </div>
 
-      <div style="margin-bottom: 1rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-          <label style="font-size: 0.82rem; font-weight: 700; color: #cbd5e1;">Ground-Truth Knowledge Base (Markdown):</label>
-          <span id="truthLastUpdated" style="font-size: 0.75rem; color: #94a3b8; font-family: var(--font-mono);">Last updated: Just now</span>
-        </div>
-        <textarea id="truthDocTextarea" rows="14" style="width: 100%; padding: 1rem; background: #080d1a; border: 1.5px solid rgba(255,255,255,0.15); border-radius: 10px; color: #f8fafc; font-family: var(--font-mono); font-size: 0.85rem; line-height: 1.6; resize: vertical; box-sizing: border-box;" placeholder="Enter verified company facts, official pricing, founding date, verified materials, and disallowed claims..."></textarea>
-      </div>
-
-      <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
-        <div style="font-size: 0.78rem; color: #94a3b8;">
-          ✦ Every generated AEO piece, comparison guide, and schema patch is verified against these rules.
-        </div>
-        <div style="display: flex; gap: 0.75rem;">
-          <button type="button" class="btn-secondary" onclick="closeTruthWikiModal()" style="padding: 0.65rem 1.1rem; color: #cbd5e1; background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.15);">
-            Cancel
-          </button>
-          <button type="button" class="btn-approve" id="btnSaveTruth" onclick="saveTruthDocument()" style="padding: 0.65rem 1.35rem;">
-            💾 Save Verified Facts
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Content Preview Modal for Staged AEO Answers & Schema (WordPress, Shopify, Magento, Web Portal) -->
-  <div id="contentPreviewModal" class="auth-modal-overlay" onclick="handlePreviewOverlayClick(event)">
-    <div class="auth-modal-card" style="max-width: 780px;">
-      <button class="auth-modal-close" onclick="closePreviewModal()" aria-label="Close modal">✕</button>
-      <div class="auth-header" style="text-align: left; margin-bottom: 1.25rem;">
-        <div class="auth-badge" id="previewChannelBadge">🌐 Staged WordPress Draft</div>
-        <h2 class="auth-title" id="previewTitle" style="font-size: 1.35rem; margin-top: 0.35rem; color:#fff;">Job Title</h2>
-        <p class="auth-subtitle" id="previewSubtitle" style="margin: 0; max-width: 100%; color:#94a3b8;">Target Keyword &amp; Invariants</p>
-      </div>
-
-      <!-- Preview Tabs: Rendered Rich Content vs Raw Code/Schema -->
-      <div class="auth-tabs" style="margin-bottom: 1rem;">
-        <button type="button" class="auth-tab-btn active" id="tabPreviewRendered" onclick="switchPreviewTab('rendered')">
-          👁️ Formatted Article &amp; Schema Preview
-        </button>
-        <button type="button" class="auth-tab-btn" id="tabPreviewCode" onclick="switchPreviewTab('code')">
-          📋 Raw HTML / Schema Block
-        </button>
-      </div>
-
-      <!-- Tab 1: Rendered View -->
-      <div id="previewRenderedView" style="background: #ffffff; color: #181818; padding: 1.5rem; border-radius: 12px; max-height: 48vh; overflow-y: auto; border: 1px solid var(--border-color); font-size: 0.95rem; line-height: 1.6;">
-      </div>
-
-      <!-- Tab 2: Code View -->
-      <div id="previewCodeView" style="display: none;">
-        <pre id="previewCodeContent" style="background: #080d1a; color: #38bdf8; padding: 1.25rem; border-radius: 12px; max-height: 48vh; overflow-y: auto; font-family: var(--font-mono); font-size: 0.82rem; white-space: pre-wrap; word-break: break-all; border: 1px solid rgba(255,255,255,0.1);"></pre>
-      </div>
-
-      <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 1.25rem; gap: 1rem; flex-wrap: wrap;">
-        <button type="button" class="btn-action-copy" id="btnModalCopy" onclick="copyCurrentModalContent()" style="padding: 0.65rem 1.25rem; font-size: 0.88rem;">
-          📋 Copy Full Content to Clipboard
-        </button>
-        <div style="display: flex; gap: 0.75rem;">
-          <a id="btnModalCmsLink" href="#" target="_blank" class="btn-secondary" style="display: none; padding: 0.65rem 1.1rem; text-decoration: none;">
-            Open in CMS ↗
-          </a>
-          <button type="button" class="btn-approve" id="btnModalApprove" style="padding: 0.65rem 1.25rem;">
-            ✓ 1-Click Publish
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Dashboard Container -->
-  <main class="dashboard-container">
-    <h1 style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;">Answer Index Pro Client Dashboard</h1>
-
-    <!-- KPI / Velocity Row -->
-    <section class="kpi-grid">
-      <div class="kpi-card" style="--card-accent: var(--c-cobalt);">
-        <div class="kpi-header">
-          <span class="kpi-title">Daily Dispatch Queue</span>
-          <span class="kpi-badge" style="background: var(--c-cobalt-tint); color: var(--c-cobalt);">2 / Day</span>
-        </div>
-        <div class="kpi-value" id="kpiQueueCount">
-          2 <span style="font-size: 1rem; color: var(--c-amber); font-weight: 700;">Pending Approval</span>
-        </div>
-        <div class="kpi-subtext">Job 1 (AEO Asset) + Job 2 (Tech Refactor) ready for merge</div>
-      </div>
-
-      <div class="kpi-card" style="--card-accent: #22c55e;">
-        <div class="kpi-header">
-          <span class="kpi-title">Schema Ingestion Score</span>
-          <span class="kpi-badge" style="background: rgba(34,197,94,0.1); color: #15803d;">Zero Error</span>
-        </div>
-        <div class="kpi-value" id="kpiSchemaScore">
-          100% <span style="font-size: 1rem; color: #15803d; font-weight: 700;">Valid JSON-LD</span>
-        </div>
-        <div class="kpi-subtext">Verified canonical @graph for ChatGPT & Perplexity bots</div>
-      </div>
-
-      <div class="kpi-card" style="--card-accent: #6366f1;">
-        <div class="kpi-header">
-          <span class="kpi-title">AI Citation Velocity</span>
-          <span class="kpi-badge" style="background: rgba(99,102,241,0.1); color: #4f46e5;">Telemetry</span>
-        </div>
-        <div class="kpi-value" id="kpiCitationRate">
-          78.4% <span style="font-size: 1rem; color: #15803d; font-weight: 700;">+4.2%</span>
-        </div>
-        <div class="kpi-subtext">Across Perplexity, ChatGPT Search, and Claude 3.7</div>
-      </div>
-
-      <div class="kpi-card" style="--card-accent: var(--c-amber);">
-        <div class="kpi-header">
-          <span class="kpi-title">Cumulative Delivery</span>
-          <span class="kpi-badge" style="background: var(--c-amber-tint); color: var(--c-amber);">30-Day Cadence</span>
-        </div>
-        <div class="kpi-value" id="kpiTotalPrs">
-          48 / 48 <span style="font-size: 1rem; color: var(--c-text-muted); font-weight: 600;">PRs</span>
-        </div>
-        <div class="kpi-subtext">45 Indexed Zero-Click Answer Snippets live at edge</div>
-      </div>
-    </section>
-
-    <!-- Main Content Layout -->
-    <div class="layout-grid">
-
-      <!-- Left Column: The Daily Dispatch Queue -->
-      <section class="panel">
-        <div class="panel-header">
-          <div>
-            <h2 class="panel-title">
-              ⚡ Daily Autonomous Dispatch Queue
-            </h2>
-            <p class="panel-subtitle">Review, inspect schema diffs, and approve daily AEO and technical SEO pull requests.</p>
+        <!-- At a Glance 3-Point Callout -->
+        <div class="at-a-glance-box">
+          <div class="at-a-glance-header">
+            ⚡ AT A GLANCE · 3 CORE QUESTIONS ANSWERED IN ONE MINUTE
           </div>
-          <div class="filter-pills">
-            <button class="filter-btn active" onclick="filterJobs('all')">All</button>
-            <button class="filter-btn" onclick="filterJobs('pending')">Pending</button>
-            <button class="filter-btn" onclick="filterJobs('approved')">Approved</button>
-          </div>
-        </div>
-
-        <!-- Jobs List Container (Dynamically rendered via /api/jobs) -->
-        <div class="jobs-list" id="jobsList">
-          <div style="text-align: center; padding: 3rem; color: var(--c-text-dim);">
-            Loading live dispatch queue from Cloudflare D1...
+          <div class="at-a-glance-grid">
+            <div class="glance-item">
+              <span class="tag">01 · WHAT IT IS</span>
+              <p><strong>An autonomous AI optimization agent</strong> that establishes your brand as the #1 verified recommendation across conversational search engines.</p>
+            </div>
+            <div class="glance-item">
+              <span class="tag">02 · WHAT IT DOES</span>
+              <p><strong>Through automated daily agent runs</strong>, it delivers 2 concrete updates: 1 new direct-answer asset and 1 technical SEO/Schema code patch staged for your 1-click review.</p>
+            </div>
+            <div class="glance-item">
+              <span class="tag">03 · HOW IT DRIVES SALES</span>
+              <p><strong>Intercepts ready-to-buy customers.</strong> When buyers ask AI <em>"What is the best tool for [problem]?"</em>, the AI explicitly cites your brand and hyperlinks straight to your checkout.</p>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- Right Column: AI Engine Telemetry & Manual Dispatch -->
-      <aside>
-        <!-- Citation Engine Velocity Breakdown -->
-        <div class="panel">
-          <div class="panel-header" style="margin-bottom: 1rem; padding-bottom: 0.75rem;">
-            <div>
-              <h3 style="font-size: 1rem; font-weight: 800; color: #111;">AI Engine Citation Velocity</h3>
-              <p class="panel-subtitle">Live benchmark recognition by engine</p>
-            </div>
-            <button class="filter-btn" onclick="refreshCitations()" style="padding: 0.2rem 0.5rem;">↻ Refresh</button>
+      <!-- The 3 Deep Dive Pillars -->
+      <section class="pillar-stack">
+        <!-- Pillar 1 -->
+        <article class="about-pillar-card">
+          <span class="badge-pill-featured">01 · IN ONE SENTENCE</span>
+          <h3>What is Answer Index?</h3>
+          <p>
+            <strong>Answer Index is an autonomous edge-native growth engine</strong> that optimizes your website so artificial intelligence engines (ChatGPT Search, Perplexity, Claude, Gemini, and Google AI Overviews) recognize your company as the authoritative, recommended solution in your market.
+          </p>
+          <div class="highlight-card">
+            💬 <strong>Plain English:</strong> If traditional SEO is about ranking for keywords on Google, <strong>Answer Index is about getting ChatGPT and Perplexity to recommend your product when high-intent buyers ask what to buy.</strong>
+          </div>
+        </article>
+
+        <!-- Pillar 2 -->
+        <article class="about-pillar-card">
+          <span class="badge-pill-featured">02 · THE MECHANICS</span>
+          <h3>What Does It Actually Do?</h3>
+          <p>
+            AI crawlers do not read websites like human searchers; they search for dense declarative answers, verified Schema.org graphs, anti-hallucination ground truth, and machine manifests like <code>/llms.txt</code>.
+          </p>
+          <p>
+            Through automated daily agent runs, Answer Index diagnoses what questions buyers are asking AI bots about your industry, and delivers two reviewable deliverables:
+          </p>
+          <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: var(--text-secondary); font-size: 14.5px; display: flex; flex-direction: column; gap: 6px;">
+            <li><strong>Deliverable 1 (New Answer Piece):</strong> Creates one net-new authoritative direct-answer page targeting an uncovered commercial search prompt.</li>
+            <li><strong>Deliverable 2 (Technical Refactor):</strong> Rewrites and optimizes an existing page, injecting JSON-LD schema, anti-hallucination ground truth statements, and latency optimizations.</li>
+          </ul>
+          <div class="highlight-card">
+            🛡️ <strong>Zero Risk / 100% Human-in-the-Loop:</strong> Nothing deploys to your site automatically. You inspect the code diff and zero-click answer excerpt, then click <strong>"1-Click Approve"</strong> on your dashboard or merge on GitHub.
+          </div>
+        </article>
+
+        <!-- Pillar 3 -->
+        <article class="about-pillar-card">
+          <span class="badge-pill-featured">03 · REVENUE IMPACT</span>
+          <h3>How Does It Increase Sales?</h3>
+          <p>
+            Traditional search queries send casual visitors who browse or read articles. In contrast, <strong>people using Perplexity or ChatGPT Search are asking direct buying queries</strong>:
+          </p>
+          <ul style="margin-left: 1.5rem; margin-bottom: 1.25rem; color: var(--text-primary); font-style: italic; display: flex; flex-direction: column; gap: 6px;">
+            <li>"What is the highest-rated headless commerce engine for 2026?"</li>
+            <li>"Who offers the most reliable AEO tool for high-growth SaaS?"</li>
+            <li>"What is the most affordable, trustworthy alternative to [Competitor]?"</li>
+          </ul>
+          <p>
+            When an AI bot answers these queries, it only cites <strong>1 to 3 verified sources</strong>. If your website is not grounded with Answer Index protocols, the AI cites your competitors.
+          </p>
+          <div class="highlight-card">
+            💰 <strong>The Bottom Line:</strong> Answer Index ensures that when ready-to-buy customers ask AI for the top solution, <strong>the AI names your brand, quotes your value proposition, and hyperlinks directly to your checkout.</strong>
+          </div>
+        </article>
+      </section>
+
+      <!-- Traditional SEO vs. Answer Index Comparison -->
+      <section class="comp-container">
+        <div style="text-align: center; max-width: 700px; margin: 0 auto 24px;">
+          <h3 style="font-size: 28px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px;">The Search Landscape Has Permanently Shifted</h3>
+          <p style="font-size: 15px; color: var(--text-secondary);">Why relying solely on traditional SEO is costing brands over 50% of new inbound customers:</p>
+        </div>
+
+        <div class="comp-grid-2">
+          <div class="comp-box-col old">
+            <h4 style="color: #64748B;">✕ The Old Way (Traditional SEO)</h4>
+            <ul>
+              <li>Pays agencies $3,000–$5,000/mo to write 2,000-word keyword-stuffed blog posts.</li>
+              <li>Optimizes solely for Google's blue link search results.</li>
+              <li>Leaves your brand invisible inside ChatGPT, Perplexity, and Claude.</li>
+              <li>Requires weeks of manual writing, editing, and developer coordination.</li>
+              <li>High bounce rates from casual searchers who don't want to read long essays.</li>
+            </ul>
           </div>
 
-          <div id="citationList">
-            <div class="engine-card">
-              <div class="engine-info">
-                <div class="engine-icon" style="color: #0d9488;">✦</div>
-                <div>
-                  <div class="engine-name">Perplexity AI</div>
-                  <div class="engine-status">Rank #1 Citation · 0.18s parse</div>
-                </div>
-              </div>
-              <div class="engine-rate">82.1%</div>
-            </div>
-
-            <div class="engine-card">
-              <div class="engine-info">
-                <div class="engine-icon" style="color: #10a37f;">⚡</div>
-                <div>
-                  <div class="engine-name">ChatGPT Search</div>
-                  <div class="engine-status">Direct zero-click snippet</div>
-                </div>
-              </div>
-              <div class="engine-rate">74.5%</div>
-            </div>
-
-            <div class="engine-card">
-              <div class="engine-info">
-                <div class="engine-icon" style="color: #d97706;">✱</div>
-                <div>
-                  <div class="engine-name">Claude 3.7</div>
-                  <div class="engine-status">Authoritative source anchor</div>
-                </div>
-              </div>
-              <div class="engine-rate">79.3%</div>
-            </div>
-
-            <div class="engine-card">
-              <div class="engine-info">
-                <div class="engine-icon" style="color: #2563eb;">◆</div>
-                <div>
-                  <div class="engine-name">Google Gemini</div>
-                  <div class="engine-status">AI Overview grounded entity</div>
-                </div>
-              </div>
-              <div class="engine-rate">76.0%</div>
-            </div>
+          <div class="comp-box-col new">
+            <h4 style="color: #B45309;">✓ The Answer Index Pro Way</h4>
+            <ul>
+              <li>Starts at $199/mo with zero retainers or manual agency coordination.</li>
+              <li>Optimizes simultaneously for ChatGPT, Perplexity, Claude, Gemini, and Google AI.</li>
+              <li>Delivers exact machine-readable answers and schema code patches daily.</li>
+              <li>Human-in-the-loop: 1-click approvals with zero risk to production code.</li>
+              <li>Directly captures high-intent buyers ready to purchase based on AI recommendations.</li>
+            </ul>
           </div>
+        </div>
+      </section>
 
-          <!-- Dispatch Controls Box -->
-          <div class="dispatch-box">
-            <h4>Trigger On-Demand Cadence</h4>
-            <p>Need an urgent AEO answer piece or emergency schema patch before your scheduled dispatch? Run a live cadence cycle.</p>
-            <button class="btn-dispatch" id="btnManualDispatch" onclick="triggerManualDispatch()">
-              🚀 Dispatch Today's 2-Job Cycle
-            </button>
+      <!-- Founder Note -->
+      <section class="founder-panel">
+        <div class="founder-avatar">👨‍💻</div>
+        <div>
+          <h3 style="font-size: 20px; font-weight: 800; color: var(--text-primary); margin-bottom: 8px;">A Word from the Founder</h3>
+          <p style="font-size: 15px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 12px;">
+            "I built Answer Index because modern search changed under our feet. Today, your prospective clients don't want to read 10 articles; they want a straight answer from an AI assistant they trust. If that assistant doesn't know who you are, you don't exist. Answer Index solves that forever with zero manual effort."
+          </p>
+          <div style="font-weight: 700; color: var(--text-primary);">Sameer Sharma</div>
+          <div style="font-size: 13px; color: var(--text-muted);">Founder &amp; Architect · <a href="mailto:sameer@answerindex.xyz" style="color: #B45309; text-decoration: none;">sameer@answerindex.xyz</a></div>
+        </div>
+      </section>
+
+      <!-- High-Converting CTA Banner -->
+      <section class="cta-card">
+        <h3>Ready to Make AI Recommend Your Brand?</h3>
+        <p>Deploy the daily autonomous pipeline. Get your first new AEO answer piece and technical refactor delivered directly to your draft queue tomorrow.</p>
+        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+          <button type="button" onclick="startCheckout('growth')" class="btn-secondary" style="cursor: pointer; padding: 11px 22px;">Start Starter Plan ($199/mo) →</button>
+          <button type="button" onclick="startCheckout('pro_autonomous')" class="btn-honey-primary" style="cursor: pointer; padding: 11px 22px;">Claim Pro Autonomous ($499/mo) →</button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Narwhal Footer -->
+    <footer class="narwhal-footer">
+      <div class="footer-grid-5">
+        <div class="footer-brand">
+          <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 4px; margin-bottom: 14px; width: fit-content;">
+            <img src="assets/AnswerIndex_Logo.png" alt="Answer Index" style="height: 42px; width: auto; max-width: 220px; object-fit: contain; display: block;" onerror="this.onerror=null; this.src='/assets/AnswerIndex_Logo.png';">
+            <span class="footer-tagline" style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 700; color: #f24f1e; letter-spacing: 0.04em; text-transform: uppercase; margin: 4px 0 0; display: block; align-self: flex-end; text-align: right;">Be the Answer AI Recommends</span>
+          </div>
+          <p>
+            The autonomous growth engine built for the post-search generative AI era. Daily dual production shipped directly to your CMS or GitHub as reviewable 1-click drafts.
+          </p>
+          <div style="display: flex; gap: 8px;">
+            <a href="https://github.com/justmailsameer-prog/answerindex" target="_blank" class="btn-secondary" style="font-size: 12px; padding: 6px 14px;">⭐ Star on GitHub</a>
+            <a href="feedback.html" class="btn-secondary" style="font-size: 12px; padding: 6px 14px;">Feedback</a>
           </div>
         </div>
 
-        <!-- Infrastructure & Security Card -->
-        <div class="panel" style="background: #faf9f6;">
-          <h4 style="font-size: 0.9rem; font-weight: 800; margin-bottom: 0.6rem; color: #111;">Edge Verification Safeguards</h4>
-          <ul style="font-size: 0.8rem; color: var(--c-text-muted); list-style: none; display: flex; flex-direction: column; gap: 0.5rem;">
-            <li>🛡️ <strong>Zero-Error Invariants:</strong> All PRs pre-validated against Schema.org validators.</li>
-            <li>🔒 <strong>Human-in-the-Loop:</strong> Nothing deploys until you click Approve or merge on GitHub.</li>
-            <li>⚡ <strong>Cloudflare D1:</strong> Zero cold-start latency edge database sync.</li>
+        <div class="footer-links-col">
+          <h5>Platform</h5>
+          <ul>
+            <li><a href="about.html" style="color: #B45309; font-weight: 700;">About Answer Index</a></li>
+            <li><a href="index.html#daily-loop">Daily 2-Job Pipeline</a></li>
+            <li><a href="index.html#how-it-works">Staging &amp; Approvals</a></li>
+            <li><a href="index.html#brand-truth">Anti-Hallucination Gate</a></li>
+            <li><a href="index.html#audit-tool">Domain Audit Tool</a></li>
           </ul>
         </div>
-      </aside>
 
-    </div>
-  </main>
+        <div class="footer-links-col">
+          <h5>Client Access</h5>
+          <ul>
+            <li><a href="javascript:void(0)" onclick="openClientAuthModal('login')" style="color: #B45309; font-weight: 700;">Client Sign In ↗</a></li>
+            <li><a href="dashboard.html" target="_blank" style="color: #059669; font-weight: 700;">Client Dashboard ↗</a></li>
+            <li><a href="index.html#pricing">Growth Plans &amp; Pricing</a></li>
+            <li><a href="index.html#comparison">Market Comparison Matrix</a></li>
+            <li><a href="index-oss.html">Open Source vs. Pro</a></li>
+            <li><a href="index.html#faq">Frequently Asked Questions</a></li>
+          </ul>
+        </div>
 
-  <!-- Notification Toast -->
-  <div class="toast" id="toast">
-    <span id="toastIcon">🎉</span>
-    <span id="toastMessage">PR approved successfully!</span>
+        <div class="footer-links-col">
+          <h5>Machine Protocols</h5>
+          <ul>
+            <li><a href="llms.txt" target="_blank">Machine Manifest (/llms.txt)</a></li>
+            <li><a href="llms-full.txt" target="_blank">Extended Manifest (/llms-full.txt)</a></li>
+            <li><a href="ai-sitemap.xml" target="_blank">AI Sitemap XML</a></li>
+            <li><a href="ai-entities.json" target="_blank">Entity Knowledge Graph</a></li>
+            <li><a href="rag-index.json" target="_blank">RAG Vector Index</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-col">
+          <h5>Legal &amp; Trust</h5>
+          <ul>
+            <li><a href="terms.html">Terms of Service</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="ai-disclosure.txt" target="_blank">AI Disclosure Manifest</a></li>
+            <li><a href="training-data-policy.txt" target="_blank">Training Data Policy</a></li>
+            <li><a href="mailto:sameer@answerindex.xyz" style="color: var(--text-primary); font-weight: 600;">✉️ sameer@answerindex.xyz</a></li>
+            <li><a href="https://github.com/justmailsameer-prog/answerindex/blob/main/LICENSE" target="_blank">MIT Open Source License</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <div>Copyright © 2026 Sameer Sharma. All rights reserved.</div>
+          <div style="font-size: 12px; color: var(--text-muted, #8E929E);">Crafted with care by <a href="https://www.linkedin.com/in/saameer-sharma/" target="_blank" rel="noopener noreferrer" style="color: #f24f1e; text-decoration: none; font-weight: 600;">Sameer Sharma</a></div>
+        </div>
+        <div style="display: flex; gap: 16px; align-items: center;">
+          <span class="badge-pill-emerald" style="font-size: 11px;">● Autonomous Engine Active · Narwhal UI</span>
+          <a href="terms.html" style="color: var(--text-muted); text-decoration: none;">Terms</a>
+          <a href="privacy.html" style="color: var(--text-muted); text-decoration: none;">Privacy</a>
+          <a href="ai-disclosure.txt" style="color: var(--text-muted); text-decoration: none;">AI Disclosure</a>
+        </div>
+      </div>
+    </footer>
   </div>
 
-  <script src="assets/client-portal.js?v=20261103_v3"></script>
   <script>
-    let currentProject = {
-      id: 'proj_answerindex_core',
-      domain: 'answerindex.xyz',
-      brand_name: 'Answer Index',
-      cms_type: 'github',
-      branch: 'main',
-      plan_tier: 'pro_autonomous'
-    };
-    let allJobs = [];
-    let currentFilter = 'all';
-    let currentPreviewJob = null;
-
-    // 1. Fetch Connected Project Metadata (URL param > LocalStorage > Default)
-    async function loadProject() {
-      try {
-        const urlParams = new URLSearchParams(window.location.search);
-        const emailParam = urlParams.get('email');
-        const projIdParam = urlParams.get('project_id') || urlParams.get('id');
-
-        let queryUrl = '/api/project';
-        if (emailParam) {
-          queryUrl += `?email=${encodeURIComponent(emailParam)}`;
-        } else if (projIdParam) {
-          queryUrl += `?id=${encodeURIComponent(projIdParam)}`;
-        } else {
-          const storedUser = localStorage.getItem('answerindex_user');
-          if (storedUser) {
-            try {
-              const u = JSON.parse(storedUser);
-              if (u && u.email) queryUrl += `?email=${encodeURIComponent(u.email)}`;
-            } catch (e) {}
-          }
-        }
-
-        const res = await fetch(queryUrl);
-        if (res.ok) {
-          const data = await res.json();
-          if (data.success && data.project) {
-            currentProject = data.project;
-            updateProjectUI(currentProject);
-          }
-        }
-      } catch (err) {
-        console.warn('Could not load project metadata:', err);
-      } finally {
-        updateProjectUI(currentProject);
-        await loadJobs();
-      }
-    }
-
-    function updateProjectUI(proj) {
-      if (!proj) return;
-      const domainElem = document.getElementById('projectDomain');
-      const branchElem = document.getElementById('projectBranch');
-      const planTagElem = document.getElementById('planTag');
-      const platformBadge = document.getElementById('platformBadge');
-      const platformIcon = document.getElementById('platformIcon');
-      const platformName = document.getElementById('platformName');
-
-      if (domainElem) domainElem.textContent = proj.domain || 'yoursite.com';
-      if (branchElem) {
-        if (proj.cms_type === 'github') {
-          branchElem.textContent = proj.branch || 'main';
-        } else {
-          branchElem.textContent = (proj.cms_type || 'cms').toUpperCase();
-        }
-      }
-
-      if (planTagElem) {
-        if (proj.plan_tier === 'enterprise') {
-          planTagElem.textContent = 'Enterprise DFY · $1,499/mo';
-          planTagElem.style.background = 'rgba(58,87,252,0.15)';
-          planTagElem.style.color = '#3a57fc';
-          planTagElem.style.borderColor = 'rgba(58,87,252,0.4)';
-        } else if (proj.plan_tier === 'pro_autonomous') {
-          planTagElem.textContent = 'Pro Autonomous · $499/mo';
-          planTagElem.style.background = 'var(--c-lime-tint)';
-          planTagElem.style.color = 'var(--c-lime-dark)';
-          planTagElem.style.borderColor = 'rgba(167, 199, 93, 0.5)';
-        } else {
-          planTagElem.textContent = 'Growth · $199/mo';
-          planTagElem.style.background = 'var(--c-lime-tint)';
-          planTagElem.style.color = 'var(--c-lime-dark)';
-          planTagElem.style.borderColor = 'rgba(167, 199, 93, 0.5)';
-        }
-      }
-
-      // Toggle Demo Banner & Badge visibility
-      const demoNoticeBanner = document.getElementById('demoNoticeBanner');
-      const demoBadge = document.getElementById('demoBadge');
-      const isDemo = !proj.id || proj.id === 'proj_demo_1' || proj.id === 'proj_answerindex_core' || proj.domain === 'nordicnesting.com';
-      if (demoNoticeBanner) demoNoticeBanner.style.display = isDemo ? 'flex' : 'none';
-      if (demoBadge) demoBadge.style.display = isDemo ? 'inline-flex' : 'none';
-
-      // Update Platform Selector Badge
-      if (platformBadge && platformIcon && platformName) {
-        const cms = (proj.cms_type || 'github').toLowerCase();
-        if (cms === 'wordpress') {
-          platformIcon.textContent = '🌐';
-          platformName.textContent = 'WordPress Drafts';
-        } else if (cms === 'shopify') {
-          platformIcon.textContent = '🛍️';
-          platformName.textContent = 'Shopify Store';
-        } else if (cms === 'magento') {
-          platformIcon.textContent = '📦';
-          platformName.textContent = 'Magento Commerce';
-        } else if (cms === 'portal') {
-          platformIcon.textContent = '💻';
-          platformName.textContent = 'Web Portal & Copy';
-        } else {
-          platformIcon.textContent = '🐙';
-          platformName.textContent = 'GitHub PRs';
-        }
-      }
-    }
-
-    // 2. Fetch Daily Jobs from Cloudflare D1
-    async function loadJobs() {
-      try {
-        let url = '/api/jobs';
-        if (currentProject && currentProject.id) {
-          url += `?project_id=${encodeURIComponent(currentProject.id)}`;
-        }
-        const res = await fetch(url);
-        if (!res.ok) throw new Error('Failed to load jobs');
-        const data = await res.json();
-        if (data.success && data.jobs) {
-          allJobs = data.jobs;
-          renderJobs();
-          updateKPIs();
-        }
-      } catch (err) {
-        console.warn('API /api/jobs offline - loading interactive sample queue for demonstration:', err);
-        allJobs = [
-          {
-            id: 'job_sample_01',
-            project_id: currentProject.id || 'proj_preview',
-            date: 'Today',
-            job_type: 'job_1_new_answer',
-            title: 'Authoritative Direct-Answer Anchor Page: "AI Search vs Traditional SEO"',
-            target_keyword: 'ai search vs traditional seo engine optimization',
-            target_url: '/compare/ai-search-vs-traditional-seo.html',
-            pr_url: 'https://github.com/justmailsameer-prog/answerindex/pull/142',
-            pr_number: 142,
-            pr_status: 'pending',
-            schema_score: 98,
-            diff_summary: '+184 lines · FAQPage + TechArticle JSON-LD Schema injected',
-            zero_click_snippet: 'Answer engines prioritize semantic citation authority and JSON-LD structural graphs rather than keyword density algorithms.'
-          },
-          {
-            id: 'job_sample_02',
-            project_id: currentProject.id || 'proj_preview',
-            date: 'Today',
-            job_type: 'job_2_tech_refactor',
-            title: 'Core Web Vitals Refactor: Edge Ingestion TTFB < 45ms',
-            target_keyword: 'technical seo edge optimization speed',
-            target_url: '/index.html',
-            pr_url: 'https://github.com/justmailsameer-prog/answerindex/pull/143',
-            pr_number: 143,
-            pr_status: 'pending',
-            schema_score: 100,
-            diff_summary: '-12 unnecessary assets · inline critical path CSS · D1 worker cache',
-            zero_click_snippet: 'Cloudflare Edge cache rule optimization reduced crawler TTFB to under 45ms across all major AI user agents.'
-          },
-          {
-            id: 'job_sample_03',
-            project_id: currentProject.id || 'proj_preview',
-            date: 'Yesterday',
-            job_type: 'job_1_new_answer',
-            title: 'Direct-Citation Calculator & Interactive Assessment Matrix',
-            target_keyword: 'aeo readiness test and calculator',
-            target_url: '/tools/aeo-readiness-calculator.html',
-            pr_url: 'https://github.com/justmailsameer-prog/answerindex/pull/140',
-            pr_number: 140,
-            pr_status: 'approved',
-            schema_score: 95,
-            diff_summary: '+310 lines · Self-contained JavaScript assessment tool',
-            zero_click_snippet: 'Embeddable single-page tool designed to capture high-intent AEO reference queries.'
-          }
-        ];
-        renderJobs();
-        updateKPIs();
-      }
-    }
-
-    // 3. Render Jobs in Queue with Multi-Platform CMS Adapters
-    function renderJobs() {
-      const container = document.getElementById('jobsList');
-      const filtered = allJobs.filter(job => {
-        if (currentFilter === 'all') return true;
-        if (currentFilter === 'pending') return job.pr_status === 'pending';
-        if (currentFilter === 'approved') return job.pr_status === 'approved' || job.pr_status === 'merged';
-        return true;
-      });
-
-      if (filtered.length === 0) {
-        container.innerHTML = `
-          <div style="text-align: center; padding: 3rem; color: var(--c-text-dim);">
-            No jobs found for the selected filter.
-          </div>
-        `;
-        return;
-      }
-
-      container.innerHTML = filtered.map(job => {
-        const isJob1 = job.job_type === 'job_1_new_answer';
-        const isTool = job.job_type === 'interactive_mini_tool';
-        const isComparison = job.job_type === 'aeo_comparison_guide';
-        const isPR = job.job_type === 'digital_pr_correction';
-        const isPending = job.pr_status === 'pending';
-
-        // Determine delivery channel
-        const cmsType = (currentProject.cms_type || 'github').toLowerCase();
-        let channel = job.delivery_channel;
-        if (!channel || channel === 'github_pr') {
-          if (cmsType === 'wordpress') channel = 'wp_draft';
-          else if (cmsType === 'shopify') channel = 'shopify_draft';
-          else if (cmsType === 'magento') channel = 'magento_block';
-          else if (cmsType === 'portal') channel = 'portal_copy';
-          else channel = 'github_pr';
-        }
-
-        let channelBadge = '🐙 GitHub PR';
-        let channelIcon = '🐙';
-        if (channel === 'wp_draft') {
-          channelBadge = '🌐 WordPress Staged Draft';
-          channelIcon = '🌐';
-        } else if (channel === 'shopify_draft') {
-          channelBadge = '🛍️ Shopify Staged Blog & Metafield';
-          channelIcon = '🛍️';
-        } else if (channel === 'magento_block') {
-          channelBadge = '📦 Magento CMS Block';
-          channelIcon = '📦';
-        } else if (channel === 'portal_copy') {
-          channelBadge = '💻 Web Portal (1-Click Copy)';
-          channelIcon = '💻';
-        }
-
-        let typeLabel = `🛡️ Job 2: Schema & Technical Refactor`;
-        let typeClass = 'type-job2';
-
-        if (isJob1) {
-          typeLabel = `${channelIcon} Job 1: AEO Direct Answer`;
-          typeClass = 'type-job1';
-        } else if (isTool) {
-          typeLabel = `🧮 Interactive Mini-Tool / Calculator`;
-          typeClass = 'type-job1';
-        } else if (isComparison) {
-          typeLabel = `⚖️ AEO Comparison Guide`;
-          typeClass = 'type-job1';
-        } else if (isPR) {
-          typeLabel = `📢 Digital PR Citation Correction`;
-          typeClass = 'type-job2';
-        }
-
-        return `
-          <div class="job-card ${job.pr_status}" id="job-${job.id}">
-            <div class="job-meta-row">
-              <div class="meta-left" style="display:flex; align-items:center; gap:0.4rem; flex-wrap:wrap;">
-                <span class="job-type-pill ${typeClass}">${typeLabel}</span>
-                <span class="date-tag">${job.date}</span>
-                <span style="font-size:0.75rem; background:rgba(0,0,0,0.05); padding:0.15rem 0.5rem; border-radius:12px; font-weight:700;">${channelBadge}</span>
-                ${job.is_truth_verified ? `<span style="font-size:0.75rem; background:rgba(34,197,94,0.12); color:#15803d; border:1px solid rgba(34,197,94,0.3); padding:0.15rem 0.5rem; border-radius:12px; font-weight:700;">✓ Brand Truth Verified</span>` : ''}
-              </div>
-              <div class="score-badge">
-                🛡️ ${job.schema_score}/100 Schema
-              </div>
-            </div>
-
-            <h3 class="job-title">${escapeHtml(job.title)}</h3>
-
-            <div class="job-details-row">
-              <div class="detail-item">
-                <span>Target:</span> <strong>${escapeHtml(job.target_keyword || 'Core Entity')}</strong>
-              </div>
-              <div class="detail-item">
-                <span>URL/Slug:</span> <strong>${escapeHtml(job.target_url || '/')}</strong>
-              </div>
-              ${job.pr_number ? `
-                <div class="detail-item">
-                  <span>PR:</span> <strong>#${job.pr_number}</strong>
-                </div>
-              ` : `
-                <div class="detail-item">
-                  <span>Delivery:</span> <strong>${channelBadge.split(' ')[1] || 'Direct'}</strong>
-                </div>
-              `}
-            </div>
-
-            ${job.zero_click_snippet ? `
-              <div class="snippet-box">
-                <div class="snippet-label">✦ Zero-Click AI Answer Excerpt</div>
-                <div class="snippet-content">${escapeHtml(job.zero_click_snippet)}</div>
-              </div>
-            ` : ''}
-
-            <div class="job-actions">
-              <div class="diff-summary">
-                ${escapeHtml(job.diff_summary || 'Standard AEO optimizations')}
-              </div>
-
-              <div class="action-buttons">
-                <!-- Preview & Copy buttons for CMS & Portal users -->
-                <button type="button" class="btn-action-preview" onclick="openPreviewModal('${job.id}')">
-                  👁️ View Staged Content
-                </button>
-                <button type="button" class="btn-action-copy" onclick="copyJobContent('${job.id}')">
-                  📋 Copy ${channel === 'wp_draft' ? 'Gutenberg Block' : (channel === 'shopify_draft' ? 'Metafields' : (channel === 'magento_block' ? 'XML Block' : 'HTML'))}
-                </button>
-
-                <!-- GitHub PR Link -->
-                ${channel === 'github_pr' && job.pr_url ? `
-                  <a href="${job.pr_url}" target="_blank" rel="noopener noreferrer" class="btn-github">
-                    GitHub PR #${job.pr_number || 'Auto'} ↗
-                  </a>
-                ` : ''}
-
-                <!-- Direct CMS Link if provided -->
-                ${currentProject.cms_url ? `
-                  <a href="${currentProject.cms_url}" target="_blank" class="btn-cms-open">
-                    ${channel === 'wp_draft' ? 'WP Admin ↗' : (channel === 'shopify_draft' ? 'Shopify Admin ↗' : 'CMS Admin ↗')}
-                  </a>
-                ` : ''}
-
-                <!-- 1-Click Action Button -->
-                ${isPending ? `
-                  <button class="btn-approve" onclick="approveJob('${job.id}')" id="btn-approve-${job.id}">
-                    ${channel === 'github_pr' ? '✓ 1-Click Approve & Merge' : (channel === 'wp_draft' ? '✓ 1-Click Publish to WordPress' : (channel === 'shopify_draft' ? '✓ 1-Click Publish to Shopify' : (channel === 'magento_block' ? '✓ 1-Click Push to Magento' : '✓ Mark as Applied')))}
-                  </button>
-                ` : `
-                  <span class="btn-merged">
-                    ${channel === 'github_pr' ? '✓ Merged & Deployed' : (channel === 'wp_draft' ? '✓ Published to WordPress' : (channel === 'shopify_draft' ? '✓ Published to Shopify' : (channel === 'magento_block' ? '✓ Synced to Magento' : '✓ Applied to Site')))}
-                  </span>
-                `}
-              </div>
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
-
-    // 4. Handle 1-Click Approval
-    async function approveJob(jobId) {
-      const btn = document.getElementById(`btn-approve-${jobId}`);
-      if (btn) {
-        btn.disabled = true;
-        btn.textContent = 'Publishing...';
-      }
-
-      try {
-        const res = await fetch('/api/approve-pr', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ job_id: jobId })
-        });
-
-        const data = await res.json();
-        if (data.success) {
-          const job = allJobs.find(j => j.id === jobId);
-          if (job) {
-            job.pr_status = 'approved';
-          }
-          renderJobs();
-          updateKPIs();
-          showToast('🎉 Content published & synced to edge!', '🎉');
-        } else {
-          showToast('❌ Failed: ' + (data.error || 'Server error'), '❌');
-          if (btn) {
-            btn.disabled = false;
-            btn.textContent = '✓ 1-Click Approve';
-          }
-        }
-      } catch (err) {
-        showToast('❌ Network error while publishing', '❌');
-        if (btn) {
-          btn.disabled = false;
-          btn.textContent = '✓ 1-Click Approve';
-        }
-      }
-    }
-
-    // 5. Preview Modal Logic
-    function openPreviewModal(jobId) {
-      const job = allJobs.find(j => j.id === jobId);
-      if (!job) return;
-      currentPreviewJob = job;
-
-      const modal = document.getElementById('contentPreviewModal');
-      const title = document.getElementById('previewTitle');
-      const subtitle = document.getElementById('previewSubtitle');
-      const badge = document.getElementById('previewChannelBadge');
-      const renderedView = document.getElementById('previewRenderedView');
-      const codeContent = document.getElementById('previewCodeContent');
-      const cmsLink = document.getElementById('btnModalCmsLink');
-      const approveBtn = document.getElementById('btnModalApprove');
-
-      title.textContent = job.title;
-      subtitle.innerHTML = `Target Keyword: <strong>${escapeHtml(job.target_keyword || 'Core')}</strong> · URL: <code>${escapeHtml(job.target_url || '/')}</code> · Schema Score: <strong>${job.schema_score}/100</strong>`;
-      
-      const cmsType = (currentProject.cms_type || 'github').toUpperCase();
-      badge.textContent = `Staged for ${cmsType}`;
-
-      const contentToDisplay = job.content_html || `<h2>${escapeHtml(job.title)}</h2><p>${escapeHtml(job.zero_click_snippet)}</p><div style="margin-top:1rem; padding:1rem; background:#f5f4f0; border-radius:8px;"><strong>Schema.org Validated Invariant:</strong> Zero-error FAQPage graph pre-rendered for search bots.</div>`;
-      renderedView.innerHTML = contentToDisplay;
-
-      // Re-execute any inline scripts so interactive mini-tools / calculators function live inside the dashboard
-      const inlineScripts = renderedView.querySelectorAll('script');
-      inlineScripts.forEach(oldScript => {
-        const newScript = document.createElement('script');
-        Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
-        newScript.appendChild(document.createTextNode(oldScript.innerHTML));
-        oldScript.parentNode.replaceChild(newScript, oldScript);
-      });
-
-      codeContent.textContent = contentToDisplay;
-
-      if (currentProject.cms_url) {
-        cmsLink.href = currentProject.cms_url;
-        cmsLink.style.display = 'inline-flex';
+    function toggleDrawer(open) {
+      const drawer = document.getElementById('drawerMenu');
+      if (!drawer) return;
+      if (open) {
+        drawer.classList.add('open');
+        document.body.style.overflow = 'hidden';
       } else {
-        cmsLink.style.display = 'none';
-      }
-
-      if (job.pr_status === 'pending') {
-        approveBtn.style.display = 'inline-flex';
-        approveBtn.textContent = '✓ 1-Click Publish';
-        approveBtn.onclick = () => {
-          approveJob(job.id);
-          closePreviewModal();
-        };
-      } else {
-        approveBtn.style.display = 'none';
-      }
-
-      switchPreviewTab('rendered');
-      modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closePreviewModal() {
-      const modal = document.getElementById('contentPreviewModal');
-      if (modal) {
-        modal.classList.remove('active');
+        drawer.classList.remove('open');
         document.body.style.overflow = '';
       }
     }
 
-    function handlePreviewOverlayClick(e) {
-      if (e.target && e.target.id === 'contentPreviewModal') {
-        closePreviewModal();
+    function handleOverlayClick(event) {
+      if (event.target.id === 'drawerMenu') {
+        toggleDrawer(false);
       }
     }
 
-    // 5.1 Ground-Truth Brand Wiki Modal Methods
-    function openTruthWikiModal() {
-      const modal = document.getElementById('truthWikiModal');
-      const title = document.getElementById('truthModalTitle');
-      const textarea = document.getElementById('truthDocTextarea');
-      const updated = document.getElementById('truthLastUpdated');
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') toggleDrawer(false);
+    });
 
-      if (currentProject) {
-        title.textContent = `${currentProject.brand_name || currentProject.domain} — Ground-Truth Wiki`;
-        textarea.value = currentProject.truth_document || `# ${currentProject.brand_name || currentProject.domain} — Ground-Truth Brand Wiki\n\n## 1. Verified Brand Claims\n- Official brand name and mission.\n\n## 2. Verified Pricing & Features\n- Canonical tiers and specifications.\n\n## 3. Disallowed Claims & Anti-Hallucination Constraints\n- Explicit facts the AI must never fabricate.`;
-        if (currentProject.truth_updated_at) {
-          updated.textContent = 'Last synced: ' + new Date(currentProject.truth_updated_at).toLocaleString();
-        } else {
-          updated.textContent = 'Status: Ready for initial sync';
-        }
-      }
-
-      modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeTruthWikiModal() {
-      const modal = document.getElementById('truthWikiModal');
-      if (modal) {
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-    }
-
-    function handleTruthOverlayClick(e) {
-      if (e.target && e.target.id === 'truthWikiModal') {
-        closeTruthWikiModal();
-      }
-    }
-
-    async function saveTruthDocument() {
-      const btn = document.getElementById('btnSaveTruth');
-      const textarea = document.getElementById('truthDocTextarea');
-      const updated = document.getElementById('truthLastUpdated');
-      if (!currentProject || !currentProject.id) return;
-
-      btn.disabled = true;
-      btn.textContent = 'Saving to D1...';
-
+    async function startCheckout(plan = 'pro_autonomous') {
       try {
-        const res = await fetch('/api/project', {
+        const res = await fetch('/api/create-checkout', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            projectId: currentProject.id,
-            truth_document: textarea.value
-          })
+          body: JSON.stringify({ plan, billing: 'monthly' })
         });
         const data = await res.json();
-        if (data.success) {
-          currentProject.truth_document = textarea.value;
-          currentProject.truth_updated_at = data.updated_at || new Date().toISOString();
-          updated.textContent = 'Last synced: Just now';
-          showToast('🛡️ Brand Ground-Truth facts saved & synced to edge!', '🛡️');
-          setTimeout(closeTruthWikiModal, 800);
+        if (data.success && data.checkout_url) {
+          window.location.href = data.checkout_url;
         } else {
-          showToast('❌ Failed to save: ' + (data.error || 'Server error'), '❌');
+          alert('Checkout initiation error: ' + (data.error || 'Please try again.'));
         }
       } catch (err) {
-        showToast('❌ Network error saving truth document', '❌');
-      } finally {
-        btn.disabled = false;
-        btn.textContent = '💾 Save Verified Facts';
+        window.location.href = '/pricing.html';
       }
     }
-
-    function switchPreviewTab(tab) {
-      const btnRendered = document.getElementById('tabPreviewRendered');
-      const btnCode = document.getElementById('tabPreviewCode');
-      const viewRendered = document.getElementById('previewRenderedView');
-      const viewCode = document.getElementById('previewCodeView');
-
-      if (tab === 'code') {
-        btnRendered.classList.remove('active');
-        btnCode.classList.add('active');
-        viewRendered.style.display = 'none';
-        viewCode.style.display = 'block';
-      } else {
-        btnCode.classList.remove('active');
-        btnRendered.classList.add('active');
-        viewCode.style.display = 'none';
-        viewRendered.style.display = 'block';
-      }
-    }
-
-    // 6. Copy Utilities
-    function copyJobContent(jobId) {
-      const job = allJobs.find(j => j.id === jobId);
-      if (!job) return;
-      const text = job.content_html || job.zero_click_snippet || job.title;
-      navigator.clipboard.writeText(text).then(() => {
-        showToast('📋 Staged content copied to clipboard!', '📋');
-      }).catch(() => {
-        showToast('⚠️ Could not access clipboard', '⚠️');
-      });
-    }
-
-    function copyCurrentModalContent() {
-      if (!currentPreviewJob) return;
-      const text = currentPreviewJob.content_html || currentPreviewJob.zero_click_snippet || currentPreviewJob.title;
-      navigator.clipboard.writeText(text).then(() => {
-        showToast('📋 Staged content copied to clipboard!', '📋');
-      }).catch(() => {
-        showToast('⚠️ Could not access clipboard', '⚠️');
-      });
-    }
-
-    // 7. Update KPI Cards
-    function updateKPIs() {
-      const pendingCount = allJobs.filter(j => j.pr_status === 'pending').length;
-      const approvedCount = allJobs.filter(j => j.pr_status === 'approved' || j.pr_status === 'merged').length;
-
-      const queueCountElem = document.getElementById('kpiQueueCount');
-      if (queueCountElem) {
-        if (pendingCount > 0) {
-          queueCountElem.innerHTML = `${pendingCount} <span style="font-size: 1rem; color: var(--c-amber); font-weight: 700;">Pending Approval</span>`;
-        } else {
-          queueCountElem.innerHTML = `All Clean <span style="font-size: 1rem; color: #15803d; font-weight: 700;">✓ Synced</span>`;
-        }
-      }
-
-      const totalPrsElem = document.getElementById('kpiTotalPrs');
-      if (totalPrsElem) {
-        totalPrsElem.innerHTML = `${approvedCount + 44} / ${allJobs.length + 44} <span style="font-size: 1rem; color: var(--c-text-muted); font-weight: 600;">Assets</span>`;
-      }
-    }
-
-    // 8. Filter Buttons
-    function filterJobs(filter) {
-      currentFilter = filter;
-      document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.textContent.toLowerCase() === filter);
-      });
-      renderJobs();
-    }
-
-    // 9. Manual Dispatch Simulation (Platform Tailored)
-    async function triggerManualDispatch() {
-      const btn = document.getElementById('btnManualDispatch');
-      btn.disabled = true;
-      btn.textContent = '⚡ Running Autonomous Cycle...';
-
-      try {
-        const today = new Date().toISOString().split('T')[0];
-        const cmsType = (currentProject.cms_type || 'github').toLowerCase();
-
-        let title = `AEO Optimization Asset [Manual Cadence ${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}]`;
-        let channel = 'github_pr';
-        let prUrl = 'https://github.com/justmailsameer-prog/answerindex/pull/146';
-        let prNum = 146;
-        let diff = '+185 lines · FAQPage + Article Schema';
-
-        if (cmsType === 'wordpress') {
-          title = `WordPress Draft Post: "Real-Time AEO Guide for ${currentProject.brand_name || currentProject.domain}"`;
-          channel = 'wp_draft';
-          prUrl = null;
-          prNum = null;
-          diff = '+1,400 words · Staged as Gutenberg Draft Block';
-        } else if (cmsType === 'shopify') {
-          title = `Shopify Draft Blog: "Product Q&A & Buying Recommendations"`;
-          channel = 'shopify_draft';
-          prUrl = null;
-          prNum = null;
-          diff = 'Metafield Product Schema + Article Draft';
-        } else if (cmsType === 'magento') {
-          title = `Magento CMS Block: "Authoritative Answers PageBuilder Block"`;
-          channel = 'magento_block';
-          prUrl = null;
-          prNum = null;
-          diff = 'PageBuilder XML + FAQ Microdata';
-        } else if (cmsType === 'portal') {
-          title = `High-Velocity Direct Answer: "Complete Entity Overview"`;
-          channel = 'portal_copy';
-          prUrl = null;
-          prNum = null;
-          diff = '+1,500 words · 1-Click Copy Ready';
-        }
-
-        const res = await fetch('/api/jobs', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            project_id: currentProject.id || 'proj_answerindex_core',
-            date: today,
-            job_type: 'job_1_new_answer',
-            title,
-            target_keyword: `${currentProject.domain} generative search verification`,
-            target_url: `/answers/cadence-${Date.now().toString(36)}.html`,
-            pr_url: prUrl,
-            pr_number: prNum,
-            schema_score: 100,
-            diff_summary: diff,
-            delivery_channel: channel,
-            content_html: `<h2>Direct Answer for ${escapeHtml(currentProject.brand_name || currentProject.domain)}</h2><p>Synthesized authoritative facts structured for Perplexity, ChatGPT Search, and Claude engines.</p>`,
-            zero_click_snippet: `Authoritative verified answer snippet ensuring ${currentProject.brand_name || currentProject.domain} is cited by generative engines.`
-          })
-        });
-
-        const data = await res.json();
-        if (data.success) {
-          showToast('🚀 New Autonomous Job dispatched into Cloudflare D1 queue!');
-          await loadJobs();
-        } else {
-          showToast('❌ Dispatch error: ' + data.error, '❌');
-        }
-      } catch (err) {
-        showToast('❌ Network error dispatching job', '❌');
-      } finally {
-        btn.disabled = false;
-        btn.textContent = '🚀 Dispatch Today\'s 2-Job Cycle';
-      }
-    }
-
-    // 10. Citation Telemetry Refresh
-    async function refreshCitations() {
-      try {
-        const res = await fetch('/api/citations');
-        if (res.ok) {
-          const data = await res.json();
-          if (data.success && data.stats) {
-            document.getElementById('kpiCitationRate').innerHTML = `${data.stats.citation_rate} <span style="font-size: 1rem; color: #15803d; font-weight: 700;">Live</span>`;
-            showToast('📊 Citation velocity telemetry refreshed from D1!');
-          }
-        }
-      } catch (err) {
-        showToast('Could not refresh telemetry', '⚠️');
-      }
-    }
-
-    // 11. Toast Notification Handler
-    function showToast(message, icon = '🎉') {
-      const toast = document.getElementById('toast');
-      const toastIcon = document.getElementById('toastIcon');
-      const toastMsg = document.getElementById('toastMessage');
-      if (!toast) return;
-
-      toastIcon.textContent = icon;
-      toastMsg.textContent = message;
-      toast.classList.add('show');
-      setTimeout(() => {
-        toast.classList.remove('show');
-      }, 4000);
-    }
-
-    function escapeHtml(text) {
-      if (!text) return '';
-      return String(text)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#039;');
-    }
-
-    // Initialize Dashboard on page load
-    loadProject();
   </script>
-  <script src="assets/client-portal.js?v=20261103_v3"></script>
-  <script src="assets/site-nav.js"></script>
 </body>
 </html>

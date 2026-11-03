@@ -3,1212 +3,1289 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Answer Index — Post-Registration Onboarding, 30-Day Growth & Score Trajectory Wireframe</title>
-  
-  <!-- Fonts matching Narwhal Design System -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <title>About Answer Index - What We Do & How We Drive Sales (V5 Narwhal)</title>
+  <meta name="description" content="Answer Index gets your brand cited as the #1 recommendation when prospective buyers ask ChatGPT, Perplexity, and Google AI for solutions. Discover how our autonomous daily growth engine drives revenue." />
+
+  <!-- Canonical & Crawl Directives -->
+  <link rel="canonical" href="https://answerindex.xyz/about.html" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico?v=20261030">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png?v=20261030">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/AnswerIndex_Logo_Icon.png?v=20261030">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono (Narwhal Theme) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Client Portal Auth CSS & JS -->
+  <link rel="stylesheet" href="assets/client-portal.css?v=20261103_v4">
+  <script src="assets/client-portal.js?v=20261103_v4"></script>
 
   <style>
     :root {
+      /* Narwhal Light Mode Theme Colors */
       --bg-canvas: #F8F8F6;
       --bg-card: #FFFFFF;
-      --border-subtle: #ECEBE6;
-      --border-hover: #DFDDD5;
-      
+      --bg-card-subtle: #FDFDFD;
+      --border-subtle: #E5E6DE;
+      --border-hover: #D1D2C7;
+      --border-active: #B8B9AD;
+
       --text-primary: #1C1D21;
-      --text-secondary: #6E717C;
-      --text-muted: #9A9DA8;
-      
-      /* Honey Amber & Accents */
+      --text-secondary: #5A5D66;
+      --text-muted: #8E929E;
+
       --honey-primary: #F9BC38;
-      --honey-hover: #EAA023;
-      --honey-light: #FFF8E7;
-      --honey-border: #F3CA68;
-      
-      --emerald-green: #10B981;
-      --emerald-bg: #E8F8F0;
+      --honey-hover: #F8B31F;
+      --honey-light: #FEF9EE;
+      --honey-border: #FDE68A;
+
+      --emerald-bg: #ECFDF5;
       --emerald-text: #059669;
-      
-      --sky-blue: #3B82F6;
-      --sky-bg: #EFF6FF;
-      --sky-text: #2563EB;
-      
-      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
-      --radius-card: 20px;
-      --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.04);
+      --sky-bg: #F0F9FF;
+      --sky-text: #0284C7;
+
+      --radius-pill: 9999px;
+      --radius-card: 16px;
+      --radius-inner: 10px;
+
+      --shadow-card: 0 4px 20px -2px rgba(28, 29, 33, 0.04), 0 2px 6px -1px rgba(28, 29, 33, 0.02);
+      --shadow-hover: 0 12px 28px -4px rgba(28, 29, 33, 0.08), 0 4px 10px -2px rgba(28, 29, 33, 0.03);
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      -webkit-font-smoothing: antialiased;
     }
 
     body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
       background-color: var(--bg-canvas);
       color: var(--text-primary);
-      font-family: var(--font-sans);
       line-height: 1.5;
-      padding: 28px 20px 80px;
-    }
-
-    .container {
-      max-width: 1220px;
-      margin: 0 auto;
-    }
-
-    /* Top Wireframe Banner */
-    .wireframe-header {
-      background: var(--bg-card);
-      border: 1.5px solid var(--border-subtle);
-      border-radius: var(--radius-card);
-      box-shadow: var(--shadow-card);
-      padding: 24px 30px;
-      margin-bottom: 28px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-
-    .wireframe-badge {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 700;
-      background: var(--honey-light);
-      border: 1px solid var(--honey-border);
-      color: #B45309;
-      padding: 4px 10px;
-      border-radius: 999px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    /* 6-Step Stepper Navigation Bar */
-    .flow-stepper-nav {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 10px;
-      margin-bottom: 28px;
-    }
-
-    @media (max-width: 990px) {
-      .flow-stepper-nav {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-    @media (max-width: 600px) {
-      .flow-stepper-nav {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .step-nav-btn {
-      background: var(--bg-card);
-      border: 1.5px solid var(--border-subtle);
-      border-radius: 14px;
-      padding: 14px 12px;
-      text-align: left;
-      cursor: pointer;
-      transition: all 0.2s ease;
       position: relative;
+      min-height: 100vh;
     }
 
-    .step-nav-btn:hover {
-      border-color: var(--border-hover);
-      transform: translateY(-2px);
+    /* Narwhal Subtle Background Grid */
+    .bg-grid { display: none !important; }
+
+    .app-container {
+      position: relative;
+      z-index: 1;
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 24px 24px 80px;
     }
 
-    .step-nav-btn.active {
-      border-color: #F59E0B;
-      background: #FFFFFF;
-      box-shadow: 0 4px 20px rgba(245, 158, 11, 0.16);
+    /* Common Buttons */
+    .btn-honey-primary {
+      background: var(--honey-primary);
+      color: #1C1D21;
+      border: 1px solid var(--honey-border);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600;
+      font-size: 13.5px;
+      padding: 9px 18px;
+      border-radius: var(--radius-pill);
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(249, 188, 56, 0.35);
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      white-space: nowrap;
+    }
+    .btn-honey-primary:hover {
+      background: var(--honey-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(249, 188, 56, 0.45);
+      color: #1C1D21;
     }
 
-    .step-nav-btn .num {
-      font-family: var(--font-mono);
-      font-size: 10.5px;
-      font-weight: 800;
-      color: #B45309;
-      margin-bottom: 3px;
-    }
-
-    .step-nav-btn .title {
-      font-size: 13px;
-      font-weight: 800;
-      color: var(--text-primary);
-      line-height: 1.25;
-    }
-
-    .step-nav-btn.completed {
-      border-color: var(--emerald-green);
-      background: rgba(16, 185, 129, 0.03);
-    }
-
-    .step-nav-btn.completed .num {
-      color: var(--emerald-text);
-    }
-
-    /* Interactive Viewport Stage */
-    .wireframe-stage {
+    .btn-secondary {
       background: var(--bg-card);
-      border: 1.5px solid var(--border-subtle);
-      border-radius: var(--radius-card);
-      box-shadow: var(--shadow-card);
-      overflow: hidden;
-      margin-bottom: 28px;
+      color: var(--text-primary);
+      border: 1px solid var(--border-subtle);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600;
+      font-size: 13.5px;
+      padding: 9px 18px;
+      border-radius: var(--radius-pill);
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .btn-secondary:hover {
+      background: #FFFFFF;
+      border-color: var(--border-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
 
-    .stage-browser-bar {
-      background: #11141C;
-      padding: 12px 20px;
+    /* Sticky Pill Header */
+    header {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-pill);
+      padding: 10px 18px;
       display: flex;
       align-items: center;
-      gap: 14px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      justify-content: space-between;
+      margin-bottom: 32px;
+      position: sticky;
+      top: 16px;
+      z-index: 100;
+      box-shadow: 0 4px 20px -2px rgba(28, 29, 33, 0.04);
     }
 
-    .browser-dots {
+    .brand-group {
       display: inline-flex;
-      gap: 6px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 3px;
+      text-decoration: none;
+      color: inherit;
+      line-height: 1;
     }
 
-    .browser-dots span {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      display: inline-block;
+    .logo-badge {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }
+    .logo-badge:hover {
+      transform: scale(1.06);
+    }
+    .logo-badge img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 10px rgba(249, 188, 56, 0.25));
     }
 
-    .browser-dots span:nth-child(1) { background: #FF5F56; }
-    .browser-dots span:nth-child(2) { background: #FFBD2E; }
-    .browser-dots span:nth-child(3) { background: #27C93F; }
-
-    .browser-url-pill {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 6px;
-      padding: 4px 14px;
-      font-family: var(--font-mono);
-      font-size: 11.5px;
-      color: #94A3B8;
+    .brand-title h1 {
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
       display: flex;
       align-items: center;
       gap: 8px;
-      flex: 1;
-      max-width: 420px;
+      line-height: 1.2;
     }
 
-    .stage-content {
-      padding: 32px 36px;
-      min-height: 540px;
+    .brand-title p {
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      font-weight: 500;
     }
 
-    @media (max-width: 640px) {
-      .stage-content {
-        padding: 20px 16px;
-      }
+    .header-ctas {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .step-panel {
-      display: none;
-      animation: fadeIn 0.3s ease forwards;
-    }
-
-    .step-panel.active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* UI Simulation Components */
-    .sim-navbar {
+    .hamburger-btn {
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
-      border-radius: 14px;
-      padding: 12px 20px;
+      border-radius: var(--radius-pill);
+      padding: 8px 12px;
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+    .hamburger-bar {
+      width: 18px;
+      height: 2px;
+      background: var(--text-primary);
+      border-radius: 2px;
+    }
+
+    /* Drawer Menu Overlay */
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(28, 29, 33, 0.4);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .drawer-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .drawer-panel {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      bottom: auto;
+      width: calc(100% - 40px);
+      max-width: 380px;
+      max-height: calc(100vh - 40px);
+      background: #FFFFFF;
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.16);
+      transform: translateX(calc(100% + 30px));
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      padding: 20px 22px;
+      overflow-y: auto;
+    }
+    @media (max-width: 640px) {
+      .drawer-panel {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        width: auto;
+        max-width: 100%;
+        max-height: calc(100vh - 20px);
+        padding: 16px 18px;
+        border-radius: 16px;
+      }
+    }
+    .drawer-overlay.open .drawer-panel {
+      transform: translateX(0);
+    }
+    .drawer-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-subtle);
+      font-weight: 800;
+      font-size: 15px;
+    }
+    .drawer-close-btn {
+      background: var(--bg-canvas);
+      border: 1px solid var(--border-subtle);
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .drawer-group {
+      margin-top: 20px;
+    }
+    .drawer-group h4 {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .drawer-group ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .drawer-group a {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      padding: 6px 10px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+    }
+    .drawer-group a:hover {
+      background: var(--honey-light);
+      color: var(--text-primary);
     }
 
-    .sim-banner-guide {
-      background: linear-gradient(135deg, #FFFDF8 0%, #FFF8E7 100%);
-      border: 1.5px solid var(--honey-border);
-      border-radius: 16px;
-      padding: 22px 26px;
+    /* Unified Capsules & Badges (Matching Instant Analytical Diagnostic Theme) */
+    .badge-pill-featured {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background-color: var(--honey-light);
+      border: 1px solid var(--honey-border);
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 16px;
+    }
+
+    /* About Hero Banner */
+    .about-hero {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card);
+      padding: 56px 48px 44px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow-card);
+    }
+    .about-hero h2 {
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.18;
+      margin-bottom: 16px;
+      color: var(--text-primary);
+    }
+    .about-hero p.lead {
+      font-size: 17px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 860px;
       margin-bottom: 28px;
     }
 
-    .stepper-mini-grid {
+    /* 3-Point At-A-Glance Callout */
+    .at-a-glance-box {
+      background: var(--honey-light);
+      border: 1px solid var(--honey-border);
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin-top: 24px;
+    }
+    .at-a-glance-header {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: #B45309;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .at-a-glance-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 16px;
+    }
+    .glance-item {
+      background: #FFFFFF;
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 16px;
+    }
+    .glance-item .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: var(--honey-light);
+      border: 1px solid var(--honey-border);
+      padding: 2px 7px;
+      border-radius: var(--radius-pill);
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+    .glance-item p {
+      font-size: 13.5px;
+      color: var(--text-primary);
+      line-height: 1.5;
+    }
+
+    /* 3 Deep Dive Pillar Cards */
+    .pillar-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-bottom: 36px;
+    }
+    .about-pillar-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card);
+      padding: 36px;
+      box-shadow: var(--shadow-card);
+    }
+    .about-pillar-card h3 {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin: 8px 0 14px;
+      color: var(--text-primary);
+    }
+    .about-pillar-card p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+    .highlight-card {
+      background: var(--bg-canvas);
+      border-left: 4px solid var(--honey-primary);
+      border-radius: 8px;
+      padding: 14px 18px;
+      font-size: 14px;
+      color: var(--text-primary);
       margin-top: 14px;
+    }
+
+    /* Search Shift Comparison Matrix */
+    .comp-container {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card);
+      padding: 36px;
+      margin-bottom: 36px;
+      box-shadow: var(--shadow-card);
+    }
+    .comp-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .comp-box-col {
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .comp-box-col.old {
+      background: var(--bg-canvas);
+    }
+    .comp-box-col.new {
+      background: var(--honey-light);
+      border-color: var(--honey-border);
+    }
+    .comp-box-col h4 {
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .comp-box-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .comp-box-col li {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      display: flex;
+      gap: 8px;
+    }
+
+    /* Founder Note */
+    .founder-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card);
+      padding: 36px;
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      margin-bottom: 36px;
+      box-shadow: var(--shadow-card);
+    }
+    .founder-avatar {
+      font-size: 48px;
+      width: 72px;
+      height: 72px;
+      background: var(--honey-light);
+      border: 1px solid var(--honey-border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* CTA Banner */
+    .cta-card {
+      background: var(--honey-light);
+      border: 1px solid var(--honey-border);
+      border-radius: var(--radius-card);
+      padding: 44px;
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .cta-card h3 {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .cta-card p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 24px;
+    }
+
+    /* Narwhal Footer */
+    .narwhal-footer {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card);
+      padding: 48px 40px 32px;
+      box-shadow: var(--shadow-card);
+    }
+    .footer-grid-5 {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr;
+      gap: 28px;
+      margin-bottom: 36px;
+    }
+    .footer-brand p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .footer-links-col h5 {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 14px;
+      letter-spacing: -0.01em;
+    }
+    .footer-links-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .footer-links-col a {
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .footer-links-col a:hover {
+      color: var(--text-primary);
+    }
+    .footer-bottom-bar {
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
     @media (max-width: 768px) {
-      .stepper-mini-grid {
-        grid-template-columns: 1fr;
+      .at-a-glance-grid { grid-template-columns: 1fr; }
+      .comp-grid-2 { grid-template-columns: 1fr; }
+      .footer-grid-5 { grid-template-columns: 1fr; }
+      .founder-panel { flex-direction: column; text-align: center; }
+      .about-hero { padding: 36px 20px 32px; }
+      .about-hero h2 { font-size: 28px; }
+    }
+  
+    /* =========================================================================
+       MOBILE-FIRST RESPONSIVE OPTIMIZATIONS (doctrine: touch-first, 44px min targets)
+       ========================================================================= */
+    @media (max-width: 640px) {
+      /* App Container & Header */
+      .app-container {
+        padding: 12px 12px 48px !important;
+      }
+      header {
+        padding: 10px 14px !important;
+        border-radius: 16px !important;
+        margin-bottom: 24px !important;
+      }
+      .brand-group {
+        gap: 10px !important;
+      }
+      .logo-badge {
+        width: 40px !important;
+        height: 40px !important;
+      }
+      .logo-badge img {
+        width: 40px !important;
+        height: 40px !important;
+      }
+      .brand-title h1 {
+        font-size: 15px !important;
+      }
+      .brand-title p {
+        display: none !important; /* Hide subline on small mobile to give CTAs room */
+      }
+      .header-ctas {
+        gap: 8px !important;
+      }
+      .header-ctas .btn-honey-primary {
+        display: none !important; /* Inspect domain button accessible right in hero on mobile */
+      }
+      .header-ctas .btn-secondary {
+        padding: 8px 14px !important;
+        font-size: 12.5px !important;
+        min-height: 40px !important;
+      }
+      .hamburger-btn {
+        width: 42px !important;
+        height: 42px !important;
+        padding: 9px !important;
+      }
+
+      /* Hero Content & Heading */
+      .hero-content h2 {
+        font-size: 32px !important;
+        line-height: 1.15 !important;
+        letter-spacing: -0.03em !important;
+        margin-bottom: 14px !important;
+      }
+      .hero-content p.hero-subtitle {
+        font-size: 14.5px !important;
+        line-height: 1.55 !important;
+        margin-bottom: 24px !important;
+      }
+      .hero-banner {
+        padding: 24px 14px !important;
+        border-radius: 18px !important;
+      }
+
+      /* Audit Form */
+      .audit-box-wrap {
+        padding: 20px 14px !important;
+        border-radius: 14px !important;
+      }
+      .audit-box-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 8px !important;
+      }
+      .audit-box-header h3 {
+        font-size: 14px !important;
+      }
+      .audit-input-form {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+      }
+      .audit-input-form input {
+        min-height: 48px !important; /* iOS touch target standard */
+        font-size: 15px !important; /* Prevents auto-zoom on iOS */
+      }
+      .audit-input-form button {
+        min-height: 48px !important;
+        width: 100% !important;
+        justify-content: center !important;
+        font-size: 14px !important;
+      }
+      .audit-samples {
+        flex-wrap: wrap !important;
+      }
+      .sample-pill {
+        min-height: 36px !important;
+        padding: 6px 12px !important;
+      }
+
+      /* Engine verification strip */
+      .engine-strip {
+        padding: 10px 14px !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+        align-items: flex-start !important;
+      }
+      .engine-logos {
+        width: 100% !important;
+        justify-content: space-between !important;
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+      }
+
+      /* Sections & Cards */
+      .section-headline {
+        margin-bottom: 20px !important;
+      }
+      .section-headline h3 {
+        font-size: 22px !important;
+      }
+      .spotlight-card {
+        padding: 22px 16px !important;
+        border-radius: 16px !important;
+      }
+      .metrics-rail {
+        grid-template-columns: 1fr !important;
+      }
+      .pipeline-stepper {
+        grid-template-columns: 1fr !important;
+      }
+      .dispatch-split {
+        padding: 20px 16px !important;
+      }
+      .flow-grid-4 {
+        grid-template-columns: 1fr !important;
+      }
+      .truth-grid {
+        grid-template-columns: 1fr !important;
+      }
+      .pricing-grid-3 {
+        grid-template-columns: 1fr !important;
+      }
+      .pricing-card {
+        padding: 24px 18px !important;
+      }
+      .pricing-card button {
+        min-height: 48px !important;
+        width: 100% !important;
+      }
+
+      /* Drawer Menu on Mobile */
+      .drawer-panel {
+        max-width: 100vw !important;
+        padding: 24px 20px !important;
+      }
+      .drawer-header {
+        margin-bottom: 24px !important;
+      }
+      .drawer-close-btn {
+        width: 44px !important;
+        height: 44px !important;
+      }
+      .drawer-group a {
+        min-height: 44px !important;
+        display: flex !important;
+        align-items: center !important;
+        font-size: 15px !important;
+      }
+
+      /* Footer */
+      .footer-grid-5 {
+        grid-template-columns: 1fr !important;
+        gap: 28px !important;
+      }
+      .footer-bottom-bar {
+        flex-direction: column !important;
+        gap: 14px !important;
+        text-align: center !important;
+        align-items: center !important;
+      }
+
+      /* Client Auth Modal on Small Screens */
+      .auth-modal-card {
+        padding: 22px 16px !important;
+        margin: 12px !important;
+        max-height: 94vh !important;
+      }
+      .auth-modal-close {
+        width: 44px !important;
+        height: 44px !important;
       }
     }
 
-    .stepper-mini-box {
-      background: #FFFFFF;
-      border: 1px solid rgba(243, 202, 104, 0.4);
-      border-radius: 12px;
-      padding: 14px;
-    }
-
-    .stepper-mini-box.current {
-      border: 2px solid #F59E0B;
-      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.15);
-    }
-
-    .sim-job-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: 16px;
-      padding: 22px;
-      margin-bottom: 18px;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02);
-    }
-
-    .sim-pill {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 800;
-      padding: 3px 8px;
-      border-radius: 6px;
-      text-transform: uppercase;
-    }
-
-    .sim-pill-honey {
-      background: #FEF3C7;
-      color: #B45309;
-      border: 1px solid #FDE68A;
-    }
-
-    .sim-pill-emerald {
-      background: #D1FAE5;
-      color: #065F46;
-      border: 1px solid #A7F3D0;
-    }
-
-    .sim-pill-sky {
-      background: #DBEAFE;
-      color: #1E40AF;
-      border: 1px solid #BFDBFE;
-    }
-
-    .btn-sim-primary {
-      background: var(--honey-primary);
-      color: #1E293B;
-      border: none;
-      border-radius: 8px;
-      padding: 10px 18px;
-      font-weight: 800;
-      font-size: 13.5px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: all 0.2s ease;
-    }
-
-    .btn-sim-primary:hover {
-      background: var(--honey-hover);
-      transform: translateY(-1px);
-    }
-
-    .btn-sim-secondary {
-      background: var(--bg-canvas);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-primary);
-      border-radius: 8px;
-      padding: 9px 15px;
-      font-weight: 700;
-      font-size: 13px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: all 0.2s ease;
-    }
-
-    .btn-sim-secondary:hover {
-      background: #FFFFFF;
-      border-color: var(--border-hover);
-    }
-
-    /* -------------------------------------------------------------------------
-       30-DAY CALENDAR & DAILY DELTA GROWTH STYLES
-       ------------------------------------------------------------------------- */
-    .cal-stats-bar {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      margin-bottom: 24px;
-    }
-
-    @media (max-width: 860px) {
-      .cal-stats-bar {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    .cal-stat-card {
-      background: var(--bg-canvas);
-      border: 1px solid var(--border-subtle);
-      border-radius: 12px;
-      padding: 14px 18px;
-    }
-
-    .cal-stat-num {
-      font-family: var(--font-mono);
-      font-size: 22px;
-      font-weight: 800;
-      margin-top: 4px;
-    }
-
-    .progress-track-container {
-      background: var(--bg-canvas);
-      border: 1px solid var(--border-subtle);
-      border-radius: 14px;
-      padding: 18px 22px;
-      margin-bottom: 24px;
-    }
-
-    .progress-bar-rail {
-      height: 10px;
-      background: #E2E8F0;
-      border-radius: 999px;
-      overflow: hidden;
-      margin: 10px 0 6px;
-      display: flex;
-    }
-
-    .progress-bar-done {
-      background: linear-gradient(90deg, #10B981 0%, #059669 100%);
-      width: 6.67%; /* 2 of 30 days */
-      transition: width 0.4s ease;
-    }
-
-    .progress-bar-today {
-      background: #F59E0B;
-      width: 3.33%; /* day 3 */
-    }
-
-    /* Calendar Grid */
-    .wireframe-cal-grid {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 10px;
-      margin-bottom: 24px;
-    }
-
-    @media (max-width: 900px) {
-      .wireframe-cal-grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
-    }
-    @media (max-width: 520px) {
-      .wireframe-cal-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    .cal-day-cell {
-      background: var(--bg-canvas);
-      border: 1.5px solid var(--border-subtle);
-      border-radius: 12px;
-      padding: 12px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      min-height: 96px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .cal-day-cell:hover {
-      border-color: #F59E0B;
-      background: #FFFFFF;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
-    }
-
-    .cal-day-cell.done {
-      border-color: rgba(16, 185, 129, 0.35);
-      background: #F0FDF4;
-    }
-
-    .cal-day-cell.today {
-      border-color: #F59E0B;
-      background: #FFFBEB;
-      box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2);
-    }
-
-    .cal-day-cell.future {
-      opacity: 0.85;
-    }
-
-    .day-num-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 11px;
-      font-family: var(--font-mono);
-      font-weight: 700;
-    }
-
-    .day-score-pill {
-      font-size: 10px;
-      padding: 1px 5px;
-      border-radius: 4px;
-      font-weight: 800;
-    }
-
-    .day-task-summary {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-top: 6px;
-      line-height: 1.35;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-
-    /* Day-to-Day Inspection Detail Drawer */
-    .day-diff-inspector {
-      background: #FFFFFF;
-      border: 1.5px solid #F59E0B;
-      border-radius: 16px;
-      box-shadow: 0 10px 32px rgba(245, 158, 11, 0.12);
-      padding: 24px;
-      margin-top: 24px;
-      animation: fadeIn 0.25s ease;
-    }
-
-    .delta-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      background: #D1FAE5;
-      color: #065F46;
-      border: 1px solid #A7F3D0;
-      font-size: 12px;
-      font-weight: 800;
-      padding: 2px 8px;
-      border-radius: 999px;
-      font-family: var(--font-mono);
-    }
-
-    .trajectory-chart {
-      background: #0F172A;
-      color: #F8FAFC;
-      border-radius: 12px;
-      padding: 18px 24px;
-      margin-bottom: 24px;
-    }
-
-    .chart-bars-wrap {
-      display: flex;
-      align-items: flex-end;
-      gap: 6px;
-      height: 120px;
-      margin-top: 14px;
-      padding-bottom: 6px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .chart-day-col {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-      height: 100%;
-      justify-content: flex-end;
-    }
-
-    .chart-bar-pillar {
-      width: 100%;
-      border-radius: 3px 3px 0 0;
-      transition: all 0.3s ease;
-    }
-
-    .chart-bar-pillar.past {
-      background: #10B981;
-    }
-    .chart-bar-pillar.today-bar {
-      background: #F59E0B;
-    }
-    .chart-bar-pillar.future-bar {
-      background: rgba(255, 255, 255, 0.15);
-      border: 1px dashed rgba(255, 255, 255, 0.3);
-    }
-
-    /* Controls */
-    .wireframe-controls {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .btn-next-step {
-      background: #11141C;
+  
+    /* Header Sign In Button (#f24f1e Accent) */
+    .btn-header-signin {
+      background-color: #f24f1e;
       color: #FFFFFF;
-      border: none;
-      border-radius: 10px;
-      padding: 12px 24px;
-      font-weight: 800;
-      font-size: 14px;
+      border: 1px solid #f24f1e;
+      border-radius: var(--radius-pill);
+      padding: 8px 18px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13.5px;
+      font-weight: 700;
       cursor: pointer;
+      box-shadow: 0 3px 12px rgba(242, 79, 30, 0.28);
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      justify-content: center;
+      text-decoration: none;
+    }
+    .btn-header-signin:hover {
+      background-color: #d94214;
+      border-color: #d94214;
+      transform: translateY(-1px);
+      box-shadow: 0 5px 16px rgba(242, 79, 30, 0.4);
+    }
+    .brand-logo-img {
+      height: 44px;
+      width: auto;
+      max-width: 175px;
+      object-fit: contain;
+    }
+    .brand-tagline {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      line-height: 1;
+      display: block;
+      margin: 0;
+      white-space: nowrap;
+      align-self: flex-end;
+      text-align: right;
+    }
+    .brand-title p.brand-tagline {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      line-height: 1;
+      margin: 0;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      align-self: flex-end;
+      text-align: right;
+    }
+    .drawer-accordion {
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--bg-canvas);
+      margin-top: 12px;
       transition: all 0.2s ease;
     }
-
-    .btn-next-step:hover {
-      background: #000000;
-      transform: translateY(-1px);
+    .drawer-accordion[open] {
+      border-color: rgba(242, 79, 30, 0.35);
+      background: #FFFFFF;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
     }
+    .drawer-accordion-summary {
+      padding: 12px 14px;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text-primary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+      list-style: none;
+    }
+    .drawer-accordion-summary::-webkit-details-marker {
+      display: none;
+    }
+    .drawer-accordion-summary .chevron-icon {
+      transition: transform 0.25s ease;
+      color: var(--text-muted);
+    }
+    .drawer-accordion[open] .chevron-icon {
+      transform: rotate(180deg);
+      color: #f24f1e;
+    }
+    .drawer-accordion .drawer-sublink-list {
+      padding: 6px 14px 12px 14px;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin: 0;
+      border-left: none;
+    }
+    .drawer-accordion .drawer-sublink-list a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      padding: 4px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: color 0.15s ease;
+    }
+    .drawer-accordion .drawer-sublink-list a:hover {
+      color: #f24f1e;
+    }
+        
   </style>
 </head>
 <body>
-
-<div class="container">
-  
-  <!-- Wireframe Header -->
-  <header class="wireframe-header">
-    <div>
-      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
-        <span class="wireframe-badge">Architectural Wireframe Prototype</span>
-        <span style="font-size: 12px; color: var(--text-muted); font-family: var(--font-mono);">v1.2 &middot; 30-Day Growth Engine</span>
-      </div>
-      <h1 style="font-size: 24px; font-weight: 800; letter-spacing: -0.02em;">
-        Answer Index &mdash; Post-Registration, 30-Day Calendar &amp; AEO Score Trajectory
-      </h1>
-      <p style="font-size: 13.5px; color: var(--text-secondary); margin-top: 4px;">
-        Visualizing <strong>2 Days Done &middot; 28 Days Pending</strong> and how daily indexing increases the AEO Score from <strong>68 &rarr; 100</strong>.
-      </p>
-    </div>
-    <div style="display: flex; gap: 10px;">
-      <a href="/dashboard.html" class="btn-sim-secondary" target="_blank" style="text-decoration: none;">
-        Open Live Dashboard &nearr;
+  <div class="app-container">
+    <!-- Top Sticky Pill Header -->
+    <header>
+      <a href="/" class="brand-group" aria-label="Answer Index Home">
+        <img src="assets/AnswerIndex_Logo.png" alt="Answer Index Logo" class="brand-logo-img" width="220" height="44" onerror="this.onerror=null; this.src='/assets/AnswerIndex_Logo.png';">
+        <span class="brand-tagline" id="easterEggTagline" onclick="handleProBadgeEasterEggClick(event)" style="cursor: pointer;" title="Be the Answer AI Recommends">Be the Answer AI Recommends</span>
       </a>
+
+      <!-- Right Side Actions: Sign In (#f24f1e) + Inspect Domain + Hamburger Menu -->
+      <div class="header-ctas">
+        <button type="button" onclick="openClientAuthModal('login')" class="btn-header-signin">Sign In</button>
+        <a href="/#audit-tool" class="btn-honey-primary">Inspect Domain ↗</a>
+        <button type="button" class="hamburger-btn" onclick="toggleDrawer(true)" aria-label="Open Navigation Menu">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Slide-Out Hamburger Drawer Menu -->
+    <div id="drawerMenu" class="drawer-overlay" onclick="handleOverlayClick(event)">
+      <div class="drawer-panel">
+        <div class="drawer-header">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #f24f1e;">Navigation</span>
+          </div>
+          <button type="button" class="drawer-close-btn" onclick="toggleDrawer(false)" aria-label="Close Navigation Menu">✕</button>
+        </div>
+
+        <div class="drawer-nav-sections">
+          <!-- Primary Direct Links -->
+          <div class="drawer-group">
+            <h4 style="font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Primary Actions</h4>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; padding: 0; margin: 0;">
+              <li>
+                <a href="/#audit-tool" onclick="toggleDrawer(false)" style="display: flex; align-items: center; justify-content: space-between; font-size: 15px; font-weight: 700; color: var(--text-primary); text-decoration: none; padding: 6px 0;">
+                  <span style="display: flex; align-items: center; gap: 8px;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f24f1e" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    Start Free AI Citation Audit
+                  </span>
+                  <span class="tag" style="background: rgba(242, 79, 30, 0.1); color: #f24f1e; border: 1px solid rgba(242, 79, 30, 0.25); font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 999px;">Live Probe</span>
+                </a>
+              </li>
+              <li>
+                <a href="/#daily-loop" onclick="toggleDrawer(false)" style="display: flex; align-items: center; justify-content: space-between; font-size: 15px; font-weight: 700; color: var(--text-primary); text-decoration: none; padding: 6px 0;">
+                  <span>The Daily 2-Job Pipeline</span>
+                  <span class="tag" style="background: var(--honey-light); color: #B45309; border: 1px solid var(--honey-border); font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 999px;">Daily Agent Run</span>
+                </a>
+              </li>
+              <li>
+                <a href="/#pricing" onclick="toggleDrawer(false)" style="display: flex; align-items: center; justify-content: space-between; font-size: 15px; font-weight: 700; color: var(--text-primary); text-decoration: none; padding: 6px 0;">
+                  <span>Growth Plans &amp; Pricing</span>
+                  <span class="tag" style="background: var(--honey-light); color: #B45309; border: 1px solid var(--honey-border); font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 999px;">From $199</span>
+                </a>
+              </li>
+              <li>
+                <a href="/dashboard.html" target="_blank" style="display: flex; align-items: center; justify-content: space-between; font-size: 15px; font-weight: 700; color: #059669; text-decoration: none; padding: 6px 0;">
+                  <span>Client Dashboard ↗</span>
+                  <span class="tag" style="background: var(--emerald-bg); color: var(--emerald-text); border: 1px solid rgba(16, 185, 129, 0.3); font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 999px;">Queue</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Collapsible Submenu 1: Architecture & Safe Execution -->
+          <details class="drawer-accordion">
+            <summary class="drawer-accordion-summary">
+              <span>Platform &amp; Architecture</span>
+              <svg class="chevron-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </summary>
+            <div class="drawer-sublink-list">
+              <a href="/#summary" onclick="toggleDrawer(false)">The New Search Paradigm</a>
+              <a href="/#how-it-works" onclick="toggleDrawer(false)">Safe Staging Flow (CMS &amp; PR)</a>
+              <a href="/#brand-truth" onclick="toggleDrawer(false)">Brand Truth Wiki (D1 Grounding)</a>
+              <a href="/#comparison" onclick="toggleDrawer(false)">Agency &amp; Tool Comparison</a>
+              <a href="/how-it-works.html">Full Technical Architecture ↗</a>
+            </div>
+          </details>
+
+          <!-- Collapsible Submenu 2: Company & Support -->
+          <details class="drawer-accordion">
+            <summary class="drawer-accordion-summary">
+              <span>Company &amp; Resources</span>
+              <svg class="chevron-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </summary>
+            <div class="drawer-sublink-list">
+              <a href="/about.html">About Answer Index</a>
+              <a href="/#faq" onclick="toggleDrawer(false)">Frequently Asked Questions</a>
+              <a href="/feedback.html">Direct Feedback Channel</a>
+              <a href="mailto:sameer@answerindex.xyz">Founder &amp; Support Contact</a>
+            </div>
+          </details>
+        </div>
+
+        <div class="drawer-cta-bottom">
+          <button type="button" onclick="toggleDrawer(false); openClientAuthModal('login');" class="btn-drawer-signin" style="width: 100%; justify-content: center; cursor: pointer; background: #f24f1e; color: #ffffff; border: 1px solid #f24f1e; border-radius: var(--radius-pill); padding: 12px; font-weight: 700; font-size: 14.5px; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 14px rgba(242, 79, 30, 0.35);">Sign In to Account →</button>
+          <a href="mailto:sameer@answerindex.xyz" class="btn-secondary" style="width: 100%; justify-content: center; font-size: 12.5px; text-decoration: none;">✉️ sameer@answerindex.xyz</a>
+        </div>
+      </div>
     </div>
-  </header>
 
-  <!-- 6-Step Stepper Navigation -->
-  <nav class="flow-stepper-nav" aria-label="Onboarding Steps">
-    <button type="button" class="step-nav-btn" onclick="switchStep(0)">
-      <div class="num">STAGE 01</div>
-      <div class="title">Persistent Navbar Auth</div>
-    </button>
-    <button type="button" class="step-nav-btn" onclick="switchStep(1)">
-      <div class="num">STAGE 02</div>
-      <div class="title">Onboarding Stepper Banner</div>
-    </button>
-    <button type="button" class="step-nav-btn" onclick="switchStep(2)">
-      <div class="num">STAGE 03</div>
-      <div class="title">Inspect &amp; Copy Asset Diff</div>
-    </button>
-    <button type="button" class="step-nav-btn" onclick="switchStep(3)">
-      <div class="num">STAGE 04</div>
-      <div class="title">Click "Implemented" &amp; Probe</div>
-    </button>
-    <button type="button" class="step-nav-btn active" onclick="switchStep(4)" style="border-color: #F59E0B;">
-      <div class="num" style="color: #B45309;">STAGE 05 &bull; 30-DAY VIEW</div>
-      <div class="title">30-Day Calendar &amp; Score (68&rarr;100)</div>
-    </button>
-    <button type="button" class="step-nav-btn" onclick="switchStep(5)">
-      <div class="num">STAGE 06</div>
-      <div class="title">Founder Admin Registry</div>
-    </button>
-  </nav>
+    <!-- Main Content -->
+    <main>
+      <!-- Hero Banner -->
+      <section class="about-hero">
+        <div class="badge-pill-featured">
+          <span>💡 EXECUTIVE CLARITY · IN PLAIN ENGLISH</span>
+        </div>
+        <h2>What is Answer Index &amp; How Does It Drive More Sales?</h2>
+        <p class="lead">
+          The search landscape has permanently shifted: high-intent buyers no longer browse 10 blue links on Google. They ask ChatGPT, Perplexity, and Claude for verified solutions. <strong>Answer Index makes sure your product is the authoritative answer they receive.</strong>
+        </p>
 
-  <!-- Interactive Stage Simulator -->
-  <div class="wireframe-stage">
-    <div class="stage-browser-bar">
-      <div class="browser-dots" aria-hidden="true">
-        <span></span><span></span><span></span>
-      </div>
-      <div class="browser-url-pill">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-        <span id="wireframeUrl">answerindex.xyz/dashboard#calendar-growth</span>
-      </div>
-      <span style="font-family: var(--font-mono); font-size: 11px; color: #FBBF24; margin-left: auto;">
-        Interactive Prototype
-      </span>
-    </div>
+        <!-- At a Glance 3-Point Callout -->
+        <div class="at-a-glance-box">
+          <div class="at-a-glance-header">
+            ⚡ AT A GLANCE · 3 CORE QUESTIONS ANSWERED IN ONE MINUTE
+          </div>
+          <div class="at-a-glance-grid">
+            <div class="glance-item">
+              <span class="tag">01 · WHAT IT IS</span>
+              <p><strong>An autonomous AI optimization agent</strong> that establishes your brand as the #1 verified recommendation across conversational search engines.</p>
+            </div>
+            <div class="glance-item">
+              <span class="tag">02 · WHAT IT DOES</span>
+              <p><strong>Through automated daily agent runs</strong>, it delivers 2 concrete updates: 1 new direct-answer asset and 1 technical SEO/Schema code patch staged for your 1-click review.</p>
+            </div>
+            <div class="glance-item">
+              <span class="tag">03 · HOW IT DRIVES SALES</span>
+              <p><strong>Intercepts ready-to-buy customers.</strong> When buyers ask AI <em>"What is the best tool for [problem]?"</em>, the AI explicitly cites your brand and hyperlinks straight to your checkout.</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <div class="stage-content">
-
-      <!-- STAGE 1: PERSISTENT NAVBAR -->
-      <div class="step-panel" id="stepPanel0">
-        <div style="margin-bottom: 24px;">
-          <h2 style="font-size: 20px; font-weight: 800; margin-bottom: 6px;">
-            Stage 1: Solving "Session Amnesia" Across the Website
-          </h2>
-          <p style="font-size: 14px; color: var(--text-secondary);">
-            Once a client signs in, they never see "Client Sign In" again. The navbar dynamically renders their active brand workspace.
+      <!-- The 3 Deep Dive Pillars -->
+      <section class="pillar-stack">
+        <!-- Pillar 1 -->
+        <article class="about-pillar-card">
+          <span class="badge-pill-featured">01 · IN ONE SENTENCE</span>
+          <h3>What is Answer Index?</h3>
+          <p>
+            <strong>Answer Index is an autonomous edge-native growth engine</strong> that optimizes your website so artificial intelligence engines (ChatGPT Search, Perplexity, Claude, Gemini, and Google AI Overviews) recognize your company as the authoritative, recommended solution in your market.
           </p>
-        </div>
-
-        <div style="background: var(--bg-canvas); border: 1px dashed var(--border-hover); border-radius: 16px; padding: 24px; margin-bottom: 24px;">
-          <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 12px;">
-            Navbar State (Logged-In User)
+          <div class="highlight-card">
+            💬 <strong>Plain English:</strong> If traditional SEO is about ranking for keywords on Google, <strong>Answer Index is about getting ChatGPT and Perplexity to recommend your product when high-intent buyers ask what to buy.</strong>
           </div>
-          <div class="sim-navbar">
-            <div style="display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 16px;">
-              <span style="background: #F24F1E; color: #FFF; padding: 2px 8px; border-radius: 6px; font-size: 14px;">ai</span>
-              <span>Answer Index</span>
-            </div>
-            
-            <div style="display: flex; align-items: center; gap: 12px;">
-              <a href="javascript:void(0)" onclick="switchStep(1)" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px; background: #11141C; color: #FFFFFF; padding: 8px 16px; border-radius: 999px; font-size: 13px; font-weight: 800;">
-                <span style="width: 8px; height: 8px; border-radius: 50%; background: #10B981; display: inline-block;"></span>
-                <span>Workspace: <strong>nordicnesting.com</strong> &rarr;</span>
-              </a>
-              <button type="button" class="btn-sim-secondary" style="font-size: 12px; padding: 6px 12px;" onclick="alert('Session Cleared: localStorage.removeItem(\'answerindex_user\')')">
-                Log Out
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+        </article>
 
-      <!-- STAGE 2: ONBOARDING BANNER -->
-      <div class="step-panel" id="stepPanel1">
-        <div style="margin-bottom: 20px;">
-          <h2 style="font-size: 20px; font-weight: 800; margin-bottom: 6px;">
-            Stage 2: The 3-Step Guided Onboarding Banner
-          </h2>
-          <p style="font-size: 14px; color: var(--text-secondary);">
-            Banner at top of <code>dashboard.html</code> showing what button to press first.
+        <!-- Pillar 2 -->
+        <article class="about-pillar-card">
+          <span class="badge-pill-featured">02 · THE MECHANICS</span>
+          <h3>What Does It Actually Do?</h3>
+          <p>
+            AI crawlers do not read websites like human searchers; they search for dense declarative answers, verified Schema.org graphs, anti-hallucination ground truth, and machine manifests like <code>/llms.txt</code>.
           </p>
-        </div>
-
-        <div class="sim-banner-guide">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-            <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: #B45309; text-transform: uppercase;">
-              Welcome to Your Growth Workstation
-            </span>
-            <span style="font-size: 12px; font-weight: 700; color: #B45309;">Day 2 of 30 Production Loop</span>
-          </div>
-          <h3 style="font-size: 18px; font-weight: 800; color: #1E293B;">
-            3 Quick Steps to Complete Today's AI Citation Sync:
-          </h3>
-
-          <div class="stepper-mini-grid">
-            <div class="stepper-mini-box">
-              <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: var(--emerald-text); margin-bottom: 4px;">
-                &check; STEP 1: COMPLETED
-              </div>
-              <strong style="font-size: 13.5px; display: block; margin-bottom: 4px;">Brand Ground Truth</strong>
-              <p style="font-size: 12px; color: var(--text-secondary);">
-                Domain crawl verified in D1. Anti-hallucination guardrails active.
-              </p>
-            </div>
-
-            <div class="stepper-mini-box current">
-              <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: #B45309; margin-bottom: 4px;">
-                &bull; STEP 2: ACTION REQUIRED
-              </div>
-              <strong style="font-size: 13.5px; display: block; margin-bottom: 4px;">Inspect Today's 2 Jobs</strong>
-              <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 8px;">
-                Review Job 1 (AEO Answer) &amp; Job 2 (Schema Patch).
-              </p>
-              <button type="button" class="btn-sim-primary" style="font-size: 11.5px; padding: 5px 12px;" onclick="switchStep(2)">
-                Review Job 1 Now &rarr;
-              </button>
-            </div>
-
-            <div class="stepper-mini-box">
-              <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: var(--text-muted); margin-bottom: 4px;">
-                STEP 3: DEPLOYMENT
-              </div>
-              <strong style="font-size: 13.5px; display: block; margin-bottom: 4px;">1-Click Mark Implemented</strong>
-              <p style="font-size: 12px; color: var(--text-secondary);">
-                Push to CMS drafts or copy JSON-LD schema into your site head.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- STAGE 3: INSPECT & COPY -->
-      <div class="step-panel" id="stepPanel2">
-        <div style="margin-bottom: 20px;">
-          <h2 style="font-size: 20px; font-weight: 800; margin-bottom: 6px;">
-            Stage 3: Which Button to Press? Reviewing &amp; Copying Content
-          </h2>
-          <p style="font-size: 14px; color: var(--text-secondary);">
-            Clear actions to review formatted preview or copy JSON-LD code into your CMS head.
+          <p>
+            Through automated daily agent runs, Answer Index diagnoses what questions buyers are asking AI bots about your industry, and delivers two reviewable deliverables:
           </p>
-        </div>
-
-        <div class="sim-job-card" style="border: 1.5px solid #F59E0B;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <span class="sim-pill sim-pill-honey">JOB 01 &middot; AEO ANSWER</span>
-              <span class="sim-pill sim-pill-sky">Day 2 (Today)</span>
-            </div>
-            <span class="sim-pill sim-pill-honey">&bull; Awaiting Your Approval</span>
+          <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: var(--text-secondary); font-size: 14.5px; display: flex; flex-direction: column; gap: 6px;">
+            <li><strong>Deliverable 1 (New Answer Piece):</strong> Creates one net-new authoritative direct-answer page targeting an uncovered commercial search prompt.</li>
+            <li><strong>Deliverable 2 (Technical Refactor):</strong> Rewrites and optimizes an existing page, injecting JSON-LD schema, anti-hallucination ground truth statements, and latency optimizations.</li>
+          </ul>
+          <div class="highlight-card">
+            🛡️ <strong>Zero Risk / 100% Human-in-the-Loop:</strong> Nothing deploys to your site automatically. You inspect the code diff and zero-click answer excerpt, then click <strong>"1-Click Approve"</strong> on your dashboard or merge on GitHub.
           </div>
+        </article>
 
-          <h3 style="font-size: 17px; font-weight: 800; margin-bottom: 6px; color: var(--text-primary);">
-            Scandinavian Ceramic Dinnerware Durability &amp; Dishwasher Safety Guide
-          </h3>
-          <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 14px;">
-            Synthesized to answer high-volume Perplexity and ChatGPT conversational evaluation questions.
+        <!-- Pillar 3 -->
+        <article class="about-pillar-card">
+          <span class="badge-pill-featured">03 · REVENUE IMPACT</span>
+          <h3>How Does It Increase Sales?</h3>
+          <p>
+            Traditional search queries send casual visitors who browse or read articles. In contrast, <strong>people using Perplexity or ChatGPT Search are asking direct buying queries</strong>:
           </p>
-
-          <div style="display: flex; gap: 10px; margin-top: 14px;">
-            <button type="button" class="btn-sim-primary" onclick="alert('Viewing side-by-side formatted preview and schema diff.')">
-              🔍 Inspect Diff &amp; Preview
-            </button>
-            <button type="button" class="btn-sim-secondary" onclick="switchStep(3)">
-              🚀 1-Click Approve &amp; Mark Implemented &rarr;
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- STAGE 4: DETERMINISTIC VERIFICATION -->
-      <div class="step-panel" id="stepPanel3">
-        <div style="margin-bottom: 20px;">
-          <h2 style="font-size: 20px; font-weight: 800; margin-bottom: 6px;">
-            Stage 4: "Is It Implemented? Is It a Success?" (Verification Feedback Loop)
-          </h2>
-          <p style="font-size: 14px; color: var(--text-secondary);">
-            How the client gains absolute confidence that their asset was successfully deployed and recognized by LLM crawlers.
+          <ul style="margin-left: 1.5rem; margin-bottom: 1.25rem; color: var(--text-primary); font-style: italic; display: flex; flex-direction: column; gap: 6px;">
+            <li>"What is the highest-rated headless commerce engine for 2026?"</li>
+            <li>"Who offers the most reliable AEO tool for high-growth SaaS?"</li>
+            <li>"What is the most affordable, trustworthy alternative to [Competitor]?"</li>
+          </ul>
+          <p>
+            When an AI bot answers these queries, it only cites <strong>1 to 3 verified sources</strong>. If your website is not grounded with Answer Index protocols, the AI cites your competitors.
           </p>
+          <div class="highlight-card">
+            💰 <strong>The Bottom Line:</strong> Answer Index ensures that when ready-to-buy customers ask AI for the top solution, <strong>the AI names your brand, quotes your value proposition, and hyperlinks directly to your checkout.</strong>
+          </div>
+        </article>
+      </section>
+
+      <!-- Traditional SEO vs. Answer Index Comparison -->
+      <section class="comp-container">
+        <div style="text-align: center; max-width: 700px; margin: 0 auto 24px;">
+          <h3 style="font-size: 28px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px;">The Search Landscape Has Permanently Shifted</h3>
+          <p style="font-size: 15px; color: var(--text-secondary);">Why relying solely on traditional SEO is costing brands over 50% of new inbound customers:</p>
         </div>
 
-        <div class="sim-job-card" style="border-left: 4px solid var(--emerald-green);">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <span class="sim-pill sim-pill-emerald">&check; JOB 01 APPROVED &middot; MERGED</span>
-            <span class="sim-pill sim-pill-emerald">Status: Active on Knowledge Graph</span>
+        <div class="comp-grid-2">
+          <div class="comp-box-col old">
+            <h4 style="color: #64748B;">✕ The Old Way (Traditional SEO)</h4>
+            <ul>
+              <li>Pays agencies $3,000–$5,000/mo to write 2,000-word keyword-stuffed blog posts.</li>
+              <li>Optimizes solely for Google's blue link search results.</li>
+              <li>Leaves your brand invisible inside ChatGPT, Perplexity, and Claude.</li>
+              <li>Requires weeks of manual writing, editing, and developer coordination.</li>
+              <li>High bounce rates from casual searchers who don't want to read long essays.</li>
+            </ul>
           </div>
 
-          <h3 style="font-size: 17px; font-weight: 800; margin-bottom: 6px;">
-            Scandinavian Ceramic Dinnerware Durability Guide
-          </h3>
-
-          <div style="background: var(--emerald-bg); border: 1.5px solid rgba(16, 185, 129, 0.3); border-radius: 12px; padding: 16px 20px; margin: 16px 0;">
-            <strong style="color: var(--emerald-text); font-size: 14px; display: flex; align-items: center; gap: 6px;">
-              &check; Deterministic Verification Passed
-            </strong>
-            <p style="font-size: 12.5px; color: #065F46; margin-top: 2px;">
-              Edge probe detected valid JSON-LD schema on <code>nordicnesting.com/pages/ceramic-guide</code>. Ingested by GPTBot and PerplexityBot.
-            </p>
-          </div>
-
-          <div style="display: flex; justify-content: flex-end; margin-top: 10px;">
-            <button type="button" class="btn-sim-primary" onclick="switchStep(4)">
-              View 30-Day Score Trajectory (Day 2 of 30) &rarr;
-            </button>
+          <div class="comp-box-col new">
+            <h4 style="color: #B45309;">✓ The Answer Index Pro Way</h4>
+            <ul>
+              <li>Starts at $199/mo with zero retainers or manual agency coordination.</li>
+              <li>Optimizes simultaneously for ChatGPT, Perplexity, Claude, Gemini, and Google AI.</li>
+              <li>Delivers exact machine-readable answers and schema code patches daily.</li>
+              <li>Human-in-the-loop: 1-click approvals with zero risk to production code.</li>
+              <li>Directly captures high-intent buyers ready to purchase based on AI recommendations.</li>
+            </ul>
           </div>
         </div>
-      </div>
+      </section>
 
-      <!-- ===================================================================
-           STAGE 5: 30-DAY CALENDAR VIEW & AEO SCORE TRAJECTORY (68 -> 100)
-           =================================================================== -->
-      <div class="step-panel active" id="stepPanel4">
-        <div style="margin-bottom: 22px;">
-          <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 10px;">
-            <div>
-              <h2 style="font-size: 22px; font-weight: 800; margin-bottom: 4px; color: var(--text-primary);">
-                Stage 5: 30-Day Dispatch Calendar &amp; Daily AEO Score Growth
-              </h2>
-              <p style="font-size: 14px; color: var(--text-secondary);">
-                Showing the client exactly what has been done, what is pending, and the continuous day-over-day score progression from <strong>68 &rarr; 100</strong>.
-              </p>
-            </div>
-            <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); padding: 6px 14px; border-radius: 999px; font-family: var(--font-mono); font-size: 12px; font-weight: 700;">
-              Target: <strong style="color: #B45309;">nordicnesting.com</strong>
-            </div>
-          </div>
-        </div>
-
-        <!-- 4-Stat Overview Bar (2 Days Done, 28 Days Pending) -->
-        <div class="cal-stats-bar">
-          <div class="cal-stat-card" style="border-top: 3px solid var(--emerald-green);">
-            <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: var(--emerald-text); text-transform: uppercase;">
-              &check; Completed Deliverables
-            </div>
-            <div class="cal-stat-num" style="color: var(--emerald-text);">
-              2 Days Done <span style="font-size: 13px; font-weight: 600; color: var(--text-secondary);">(4 Assets Merged)</span>
-            </div>
-          </div>
-
-          <div class="cal-stat-card" style="border-top: 3px solid var(--honey-primary);">
-            <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: #B45309; text-transform: uppercase;">
-              &bull; Action Required
-            </div>
-            <div class="cal-stat-num" style="color: #B45309;">
-              Today (Day 2) <span style="font-size: 13px; font-weight: 600; color: var(--text-secondary);">(Awaiting Sign-Off)</span>
-            </div>
-          </div>
-
-          <div class="cal-stat-card" style="border-top: 3px solid #94A3B8;">
-            <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: var(--text-muted); text-transform: uppercase;">
-              &bull; Autonomous Pipeline
-            </div>
-            <div class="cal-stat-num" style="color: var(--text-primary);">
-              28 Days Pending <span style="font-size: 13px; font-weight: 600; color: var(--text-secondary);">(56 Scheduled Assets)</span>
-            </div>
-          </div>
-
-          <div class="cal-stat-card" style="border-top: 3px solid var(--sky-blue);">
-            <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: var(--sky-text); text-transform: uppercase;">
-              Cumulative AEO Score
-            </div>
-            <div class="cal-stat-num" style="color: var(--sky-text);">
-              68 &rarr; 72 / 100 <span class="delta-badge">+4 pts today</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 30-Day Pipeline Visual Rail -->
-        <div class="progress-track-container">
-          <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12.5px;">
-            <span><strong>30-Day Month Cadence Progress:</strong> 2 of 30 days active</span>
-            <span style="font-family: var(--font-mono); font-weight: 700; color: var(--emerald-text);">6.7% Complete</span>
-          </div>
-          <div class="progress-bar-rail">
-            <div class="progress-bar-done" title="2 Days Merged"></div>
-            <div class="progress-bar-today" title="Day 2 Reviewing"></div>
-          </div>
-          <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); font-family: var(--font-mono);">
-            <span>Day 1 (Baseline: 68)</span>
-            <span>Day 15 (Target: 86)</span>
-            <span>Day 30 (Goal: 100 Perfect AEO Moat)</span>
-          </div>
-        </div>
-
-        <!-- Visual 30-Day Score Trajectory Chart -->
-        <div class="trajectory-chart">
-          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-            <div>
-              <div style="font-family: var(--font-mono); font-size: 11px; color: #94A3B8; text-transform: uppercase;">
-                Projected Day-over-Day AI Citation Trajectory
-              </div>
-              <strong style="font-size: 17px; color: #FFFFFF;">
-                From Baseline Score 68 &rarr; 100 Authority Consensus
-              </strong>
-            </div>
-            <div style="display: flex; gap: 12px; font-size: 11px; font-family: var(--font-mono);">
-              <span style="display: flex; align-items: center; gap: 4px; color: #34D399;">
-                <span style="width: 8px; height: 8px; background: #10B981; border-radius: 2px;"></span> Merged
-              </span>
-              <span style="display: flex; align-items: center; gap: 4px; color: #FBBF24;">
-                <span style="width: 8px; height: 8px; background: #F59E0B; border-radius: 2px;"></span> Today
-              </span>
-              <span style="display: flex; align-items: center; gap: 4px; color: #94A3B8;">
-                <span style="width: 8px; height: 8px; background: rgba(255,255,255,0.2); border-radius: 2px;"></span> Scheduled
-              </span>
-            </div>
-          </div>
-
-          <!-- Micro Bar Chart of the 30 Days -->
-          <div class="chart-bars-wrap" id="chartPillars">
-            <!-- Dynamically generated 30 days of growth pillars -->
-          </div>
-        </div>
-
-        <!-- 30-Day Interactive Calendar Grid -->
-        <div style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
-          <h3 style="font-size: 16px; font-weight: 800;">
-            30-Day Release Grid (Click Any Day to Inspect What Changed)
-          </h3>
-          <span style="font-size: 12px; color: var(--text-secondary);">
-            Click days to compare growth deltas
-          </span>
-        </div>
-
-        <div class="wireframe-cal-grid" id="wireframeCalGrid">
-          <!-- Populated by JavaScript with real 30-day topics & score jumps -->
-        </div>
-
-        <!-- Detailed Day-to-Day Delta Drawer -->
-        <div class="day-diff-inspector" id="dayDiffInspector">
-          <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
-            <div>
-              <span class="sim-pill sim-pill-emerald" id="drawerDayBadge">DAY 2 &middot; TODAY</span>
-              <h3 id="drawerDayTitle" style="font-size: 18px; font-weight: 800; color: var(--text-primary); margin-top: 4px;">
-                Scandinavian Ceramic Dinnerware Durability &amp; Dishwasher Guide
-              </h3>
-            </div>
-            <div style="text-align: right;">
-              <span style="font-size: 11px; color: var(--text-muted); font-family: var(--font-mono); text-transform: uppercase;">AEO SCORE IMPACT</span>
-              <div style="font-family: var(--font-mono); font-size: 17px; font-weight: 800; color: #10B981;" id="drawerScoreImpact">
-                68 &rarr; 72 (+4 Points)
-              </div>
-            </div>
-          </div>
-
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 14px;">
-            <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 14px;">
-              <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: #B45309; margin-bottom: 4px;">
-                WHAT IMPROVED TODAY:
-              </div>
-              <p style="font-size: 12.5px; color: var(--text-secondary); line-height: 1.5;" id="drawerWhatImproved">
-                Added high-value comparison snippet resolving thermal resilience queries. Ingested by Perplexity AI for "Nordic Nesting ceramic dishwasher safe".
-              </p>
-            </div>
-
-            <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 14px;">
-              <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: var(--sky-text); margin-bottom: 4px;">
-                TECHNICAL SCHEMA DELTA:
-              </div>
-              <p style="font-size: 12.5px; color: var(--text-secondary); line-height: 1.5;" id="drawerTechDelta">
-                Appended <code>TechArticle</code> and <code>FAQPage</code> structured JSON-LD into client site head. Validated by Google Rich Results test.
-              </p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- STAGE 6: ADMIN REGISTRY VIEW -->
-      <div class="step-panel" id="stepPanel5">
-        <div style="margin-bottom: 20px;">
-          <h2 style="font-size: 20px; font-weight: 800; margin-bottom: 6px;">
-            Stage 6: "Where in the Backend Do I See Who Is Registered?"
-          </h2>
-          <p style="font-size: 14px; color: var(--text-secondary);">
-            The centralized Founder Admin Dashboard (<code>/api/admin/clients</code>) gives you instant oversight of every registered user across Cloudflare D1.
-          </p>
-        </div>
-
-        <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 14px; overflow: hidden; margin-bottom: 20px;">
-          <div style="padding: 14px 18px; background: #11141C; color: #FFFFFF; display: flex; justify-content: space-between; align-items: center;">
-            <strong style="font-family: var(--font-mono); font-size: 13px;">Cloudflare D1: Registered Clients Registry</strong>
-            <span class="sim-pill sim-pill-emerald">&bull; 4 Total Users Online</span>
-          </div>
-
-          <table style="width: 100%; border-collapse: collapse; font-size: 13px; text-align: left;">
-            <thead>
-              <tr style="background: var(--bg-canvas); border-bottom: 1px solid var(--border-subtle); font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary);">
-                <th style="padding: 12px 16px;">USER / EMAIL</th>
-                <th style="padding: 12px 16px;">DOMAIN</th>
-                <th style="padding: 12px 16px;">CMS PLATFORM</th>
-                <th style="padding: 12px 16px;">TIER</th>
-                <th style="padding: 12px 16px;">PROGRESS</th>
-                <th style="padding: 12px 16px;">ACTION</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr style="border-bottom: 1px solid var(--border-subtle);">
-                <td style="padding: 12px 16px;"><strong>sameer@brand.com</strong></td>
-                <td style="padding: 12px 16px;"><code>nordicnesting.com</code></td>
-                <td style="padding: 12px 16px;"><span class="sim-pill sim-pill-sky">Shopify</span></td>
-                <td style="padding: 12px 16px;"><span class="sim-pill sim-pill-honey">Enterprise VIP</span></td>
-                <td style="padding: 12px 16px; font-weight: 700; color: #10B981;">2 / 30 Days (Score: 72)</td>
-                <td style="padding: 12px 16px;"><button class="btn-sim-secondary" style="font-size: 11px; padding: 4px 8px;" onclick="switchStep(4)">View 30-Day Grid</button></td>
-              </tr>
-              <tr style="border-bottom: 1px solid var(--border-subtle);">
-                <td style="padding: 12px 16px;"><strong>alex@zenithapp.io</strong></td>
-                <td style="padding: 12px 16px;"><code>zenithapp.io</code></td>
-                <td style="padding: 12px 16px;"><span class="sim-pill sim-pill-emerald">WordPress</span></td>
-                <td style="padding: 12px 16px;"><span class="sim-pill sim-pill-sky">Pro ($499)</span></td>
-                <td style="padding: 12px 16px; font-weight: 700; color: #10B981;">1 / 30 Days (Score: 70)</td>
-                <td style="padding: 12px 16px;"><button class="btn-sim-secondary" style="font-size: 11px; padding: 4px 8px;" onclick="switchStep(4)">View 30-Day Grid</button></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- Bottom Navigation Buttons -->
-  <div class="wireframe-controls">
-    <button type="button" class="btn-sim-secondary" id="btnPrevStep" onclick="prevStep()">
-      &larr; Previous Stage
-    </button>
-    <button type="button" class="btn-next-step" id="btnNextStep" onclick="nextStep()">
-      Next Stage &rarr;
-    </button>
-  </div>
-
-</div>
-
-<script>
-  let currentStepIdx = 4; // Default to Stage 5 to show the 30-Day calendar & growth trajectory
-  const totalSteps = 6;
-  const urls = [
-    "answerindex.xyz/ (Persistent Navbar)",
-    "answerindex.xyz/dashboard (Onboarding Stepper)",
-    "answerindex.xyz/dashboard#queue (Review & Copy)",
-    "answerindex.xyz/dashboard#verified (Live Success)",
-    "answerindex.xyz/dashboard#calendar-growth (30-Day Score 68->100)",
-    "answerindex.xyz/api/admin/clients (Founder Registry)"
-  ];
-
-  // 30 Days of realistic Growth Data (Score jumping from 68 up to 100)
-  const scheduleData = [
-    { day: 1, title: "Baseline Audit & Crawler Directives", score: 68, delta: "+0", status: "done", improved: "Permitted GPTBot and ClaudeBot in robots.txt.", tech: "Deployed llms.txt & clean robots.txt directives." },
-    { day: 2, title: "Ceramic Dinnerware Durability Guide", score: 72, delta: "+4", status: "today", improved: "Extracted high-intent comparison queries from Perplexity.", tech: "Added TechArticle & FAQPage Schema." },
-    { day: 3, title: "Edge TTFB & Cache Optimization", score: 74, delta: "+2", status: "future", improved: "Decreased edge latency for LLM bot crawlers.", tech: "Cloudflare Cache-Control headers tuned to 86400s." },
-    { day: 4, title: "Brand vs Generic Alternatives Guide", score: 76, delta: "+2", status: "future", improved: "Displaced competitor comparison keywords.", tech: "ComparisonTable semantic HTML markup." },
-    { day: 5, title: "Product Care & Maintenance Snippets", score: 77, delta: "+1", status: "future", improved: "Zero-click answer block for Google AI Overviews.", tech: "HowTo Schema Graph integration." },
-    { day: 6, title: "Perplexity Entity Alignment", score: 79, delta: "+2", status: "future", improved: "Synced entity citations with Wikidata & Crunchbase.", tech: "SameAs organization linked data." },
-    { day: 7, title: "Weekly Production Review #1", score: 80, delta: "+1", status: "future", improved: "Client verified 14 net-new knowledge nodes.", tech: "D1 Ground-Truth Wiki auto-propagation." },
-    { day: 8, title: "Zero-Click Answer Passage Asset", score: 81, delta: "+1", status: "future", improved: "Direct answer format recognized by Claude 3.5 Sonnet.", tech: "Semantic <section> passage markup." },
-    { day: 9, title: "FAQ Schema Graph Sync", score: 83, delta: "+2", status: "future", improved: "Consolidated 18 customer service questions into rich FAQ.", tech: "FAQPage JSON-LD graph." },
-    { day: 10, title: "Headless Commerce Data Ingestion", score: 84, delta: "+1", status: "future", improved: "Enabled automated feed extraction for OpenAI Search.", tech: "Product catalog XML feed directives." },
-    { day: 11, title: "Digital PR Citation Correction", score: 85, delta: "+1", status: "future", improved: "Corrected outdated pricing cited by third-party blogs.", tech: "Authoritative Canonical Header anchors." },
-    { day: 12, title: "Core Web Vitals Refactor", score: 86, delta: "+1", status: "future", improved: "Passed Google LCP & INP thresholds for AI overviews.", tech: "Image fetchpriority='high' patches." },
-    { day: 13, title: "Competitor Displacement: Pricing", score: 87, delta: "+1", status: "future", improved: "Ranked #1 for 'Nordic Nesting pricing vs West Elm'.", tech: "PriceSpecification Schema markup." },
-    { day: 14, title: "Weekly Milestone Review #2", score: 88, delta: "+1", status: "future", improved: "20% increase in referral traffic from AI searches.", tech: "Telemetry analytics logging." },
-    { day: 15, title: "Mid-Month Consensus Consolidation", score: 89, delta: "+1", status: "future", improved: "Brand recognized as category authority by ChatGPT.", tech: "Brand truth negative invariant probe." },
-    { day: 16, title: "Interactive Calculator Mini-Tool", score: 91, delta: "+2", status: "future", improved: "Embeddable dinnerware sizing calculator deployed.", tech: "Vanilla JS embed widget." },
-    { day: 17, title: "Authoritative Source Anchor Patch", score: 92, delta: "+1", status: "future", improved: "High-authority external citation backlinks mapped.", tech: "ItemReviewed schema linkage." },
-    { day: 18, title: "Structured Review Ratings Injection", score: 93, delta: "+1", status: "future", improved: "Star ratings appearing in AI search snippets.", tech: "AggregateRating JSON-LD schema." },
-    { day: 19, title: "Local Store Availability Graph", score: 94, delta: "+1", status: "future", improved: "Stock availability recognized by Perplexity local.", tech: "LocalBusiness location markup." },
-    { day: 20, title: "Warranty & Return Policy Snippet", score: 95, delta: "+1", status: "future", improved: "Zero-click return policy answers for buyers.", tech: "MerchantReturnPolicy schema integration." },
-    { day: 21, title: "Weekly Milestone Review #3", score: 95, delta: "+0", status: "future", improved: "Frontier models referencing site as authoritative source.", tech: "Knowledge Graph validation probe." },
-    { day: 22, title: "Sustainability & Material Provenance", score: 96, delta: "+1", status: "future", improved: "Capturing eco-conscious Nordic buyer queries.", tech: "Certification & Material Schema tags." },
-    { day: 23, title: "B2B Wholesale Inquiry Gateway", score: 97, delta: "+1", status: "future", improved: "Wholesale ordering specs indexed by ChatGPT Search.", tech: "B2B Trade Pricing Schema." },
-    { day: 24, title: "Seasonal Holiday Gift Guide", score: 97, delta: "+0", status: "future", improved: "Pre-indexed ahead of seasonal shopping peaks.", tech: "CollectionPage structured markup." },
-    { day: 25, title: "Customer Video Review Transcription", score: 98, delta: "+1", status: "future", improved: "Transcribed user feedback indexed for video AI.", tech: "VideoObject transcript schema." },
-    { day: 26, title: "High-Speed Micro-Data Caching", score: 98, delta: "+0", status: "future", improved: "Sub-50ms schema responses for frontier bots.", tech: "Cloudflare KV edge caching." },
-    { day: 27, title: "Competitor Defense Patch: Materials", score: 99, delta: "+1", status: "future", improved: "Displaced misinformation regarding ceramic glaze safety.", tech: "ClaimReview schema patch." },
-    { day: 28, title: "Weekly Milestone Review #4", score: 99, delta: "+0", status: "future", improved: "Full 56 production assets merged and active.", tech: "Consolidated LLM corpus verification." },
-    { day: 29, title: "Final Graph Consistency Audit", score: 99, delta: "+0", status: "future", improved: "100% entity alignment across all major LLMs.", tech: "Full sitemap.xml & ai-sitemap.xml sync." },
-    { day: 30, title: "100/100 Perfect AEO Authority Moat", score: 100, delta: "+1", status: "future", improved: "Brand is the #1 recommended answer across all AI engines.", tech: "Autonomous 30-Day Cycle Complete." }
-  ];
-
-  function renderCalendar() {
-    const grid = document.getElementById('wireframeCalGrid');
-    const pillars = document.getElementById('chartPillars');
-    if (!grid || !pillars) return;
-
-    grid.innerHTML = '';
-    pillars.innerHTML = '';
-
-    scheduleData.forEach((item) => {
-      // 1. Calendar Cell
-      const cell = document.createElement('div');
-      cell.className = `cal-day-cell ${item.status}`;
-      cell.setAttribute('onclick', `inspectDay(${item.day})`);
-
-      let statusBadge = '<span style="color:#10B981;">&check; Merged</span>';
-      let scoreBadgeClass = 'background:#D1FAE5; color:#065F46;';
-      if (item.day === 2) {
-        statusBadge = '<span style="color:#B45309; font-weight:800;">&bull; Today</span>';
-        scoreBadgeClass = 'background:#FEF3C7; color:#B45309;';
-      } else if (item.day > 2) {
-        statusBadge = '<span style="color:#94A3B8;">Scheduled</span>';
-        scoreBadgeClass = 'background:#E2E8F0; color:#475569;';
-      }
-
-      cell.innerHTML = `
+      <!-- Founder Note -->
+      <section class="founder-panel">
+        <div class="founder-avatar">👨‍💻</div>
         <div>
-          <div class="day-num-row">
-            <span>Day ${item.day}</span>
-            <span class="day-score-pill" style="${scoreBadgeClass}">Score ${item.score}</span>
+          <h3 style="font-size: 20px; font-weight: 800; color: var(--text-primary); margin-bottom: 8px;">A Word from the Founder</h3>
+          <p style="font-size: 15px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 12px;">
+            "I built Answer Index because modern search changed under our feet. Today, your prospective clients don't want to read 10 articles; they want a straight answer from an AI assistant they trust. If that assistant doesn't know who you are, you don't exist. Answer Index solves that forever with zero manual effort."
+          </p>
+          <div style="font-weight: 700; color: var(--text-primary);">Sameer Sharma</div>
+          <div style="font-size: 13px; color: var(--text-muted);">Founder &amp; Architect · <a href="mailto:sameer@answerindex.xyz" style="color: #B45309; text-decoration: none;">sameer@answerindex.xyz</a></div>
+        </div>
+      </section>
+
+      <!-- High-Converting CTA Banner -->
+      <section class="cta-card">
+        <h3>Ready to Make AI Recommend Your Brand?</h3>
+        <p>Deploy the daily autonomous pipeline. Get your first new AEO answer piece and technical refactor delivered directly to your draft queue tomorrow.</p>
+        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+          <button type="button" onclick="startCheckout('growth')" class="btn-secondary" style="cursor: pointer; padding: 11px 22px;">Start Starter Plan ($199/mo) →</button>
+          <button type="button" onclick="startCheckout('pro_autonomous')" class="btn-honey-primary" style="cursor: pointer; padding: 11px 22px;">Claim Pro Autonomous ($499/mo) →</button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Narwhal Footer -->
+    <footer class="narwhal-footer">
+      <div class="footer-grid-5">
+        <div class="footer-brand">
+          <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 4px; margin-bottom: 14px; width: fit-content;">
+            <img src="assets/AnswerIndex_Logo.png" alt="Answer Index" style="height: 42px; width: auto; max-width: 220px; object-fit: contain; display: block;" onerror="this.onerror=null; this.src='/assets/AnswerIndex_Logo.png';">
+            <span class="footer-tagline" style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 700; color: #f24f1e; letter-spacing: 0.04em; text-transform: uppercase; margin: 4px 0 0; display: block; align-self: flex-end; text-align: right;">Be the Answer AI Recommends</span>
           </div>
-          <div class="day-task-summary">${item.title}</div>
+          <p>
+            The autonomous growth engine built for the post-search generative AI era. Daily dual production shipped directly to your CMS or GitHub as reviewable 1-click drafts.
+          </p>
+          <div style="display: flex; gap: 8px;">
+            <a href="https://github.com/justmailsameer-prog/answerindex" target="_blank" class="btn-secondary" style="font-size: 12px; padding: 6px 14px;">⭐ Star on GitHub</a>
+            <a href="feedback.html" class="btn-secondary" style="font-size: 12px; padding: 6px 14px;">Feedback</a>
+          </div>
         </div>
-        <div style="font-size:10px; font-family:var(--font-mono); margin-top:8px;">
-          ${statusBadge}
+
+        <div class="footer-links-col">
+          <h5>Platform</h5>
+          <ul>
+            <li><a href="about.html" style="color: #B45309; font-weight: 700;">About Answer Index</a></li>
+            <li><a href="index.html#daily-loop">Daily 2-Job Pipeline</a></li>
+            <li><a href="index.html#how-it-works">Staging &amp; Approvals</a></li>
+            <li><a href="index.html#brand-truth">Anti-Hallucination Gate</a></li>
+            <li><a href="index.html#audit-tool">Domain Audit Tool</a></li>
+          </ul>
         </div>
-      `;
-      grid.appendChild(cell);
 
-      // 2. Micro Bar Chart Pillar
-      const col = document.createElement('div');
-      col.className = 'chart-day-col';
-      col.title = `Day ${item.day}: Score ${item.score}`;
-      const heightPercent = ((item.score - 60) / 40) * 100; // scale 60 to 100
-      let barClass = 'past';
-      if (item.day === 2) barClass = 'today-bar';
-      if (item.day > 2) barClass = 'future-bar';
+        <div class="footer-links-col">
+          <h5>Client Access</h5>
+          <ul>
+            <li><a href="javascript:void(0)" onclick="openClientAuthModal('login')" style="color: #B45309; font-weight: 700;">Client Sign In ↗</a></li>
+            <li><a href="dashboard.html" target="_blank" style="color: #059669; font-weight: 700;">Client Dashboard ↗</a></li>
+            <li><a href="index.html#pricing">Growth Plans &amp; Pricing</a></li>
+            <li><a href="index.html#comparison">Market Comparison Matrix</a></li>
+            <li><a href="index-oss.html">Open Source vs. Pro</a></li>
+            <li><a href="index.html#faq">Frequently Asked Questions</a></li>
+          </ul>
+        </div>
 
-      col.innerHTML = `
-        <div class="chart-bar-pillar ${barClass}" style="height: ${heightPercent}%;"></div>
-        <span style="font-size: 8px; color: #64748B; font-family: var(--font-mono);">${item.day}</span>
-      `;
-      col.onclick = () => inspectDay(item.day);
-      pillars.appendChild(col);
-    });
-  }
+        <div class="footer-links-col">
+          <h5>Machine Protocols</h5>
+          <ul>
+            <li><a href="llms.txt" target="_blank">Machine Manifest (/llms.txt)</a></li>
+            <li><a href="llms-full.txt" target="_blank">Extended Manifest (/llms-full.txt)</a></li>
+            <li><a href="ai-sitemap.xml" target="_blank">AI Sitemap XML</a></li>
+            <li><a href="ai-entities.json" target="_blank">Entity Knowledge Graph</a></li>
+            <li><a href="rag-index.json" target="_blank">RAG Vector Index</a></li>
+          </ul>
+        </div>
 
-  function inspectDay(dayNum) {
-    const data = scheduleData.find(d => d.day === dayNum);
-    if (!data) return;
+        <div class="footer-links-col">
+          <h5>Legal &amp; Trust</h5>
+          <ul>
+            <li><a href="terms.html">Terms of Service</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="ai-disclosure.txt" target="_blank">AI Disclosure Manifest</a></li>
+            <li><a href="training-data-policy.txt" target="_blank">Training Data Policy</a></li>
+            <li><a href="mailto:sameer@answerindex.xyz" style="color: var(--text-primary); font-weight: 600;">✉️ sameer@answerindex.xyz</a></li>
+            <li><a href="https://github.com/justmailsameer-prog/answerindex/blob/main/LICENSE" target="_blank">MIT Open Source License</a></li>
+          </ul>
+        </div>
+      </div>
 
-    let badgeText = `DAY ${data.day} &middot; ` + (data.day < 2 ? "COMPLETED" : (data.day === 2 ? "TODAY (ACTION REQUIRED)" : "SCHEDULED FOR AUTONOMOUS RUN"));
-    document.getElementById('drawerDayBadge').textContent = badgeText;
-    document.getElementById('drawerDayTitle').textContent = data.title;
-    document.getElementById('drawerScoreImpact').textContent = `${data.score - (parseInt(data.delta) || 0)} \u2192 ${data.score} (${data.delta} Points)`;
-    document.getElementById('drawerWhatImproved').textContent = data.improved;
-    document.getElementById('drawerTechDelta').textContent = data.tech;
+      <div class="footer-bottom-bar">
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <div>Copyright © 2026 Sameer Sharma. All rights reserved.</div>
+          <div style="font-size: 12px; color: var(--text-muted, #8E929E);">Crafted with care by <a href="https://www.linkedin.com/in/saameer-sharma/" target="_blank" rel="noopener noreferrer" style="color: #f24f1e; text-decoration: none; font-weight: 600;">Sameer Sharma</a></div>
+        </div>
+        <div style="display: flex; gap: 16px; align-items: center;">
+          <span class="badge-pill-emerald" style="font-size: 11px;">● Autonomous Engine Active · Narwhal UI</span>
+          <a href="terms.html" style="color: var(--text-muted); text-decoration: none;">Terms</a>
+          <a href="privacy.html" style="color: var(--text-muted); text-decoration: none;">Privacy</a>
+          <a href="ai-disclosure.txt" style="color: var(--text-muted); text-decoration: none;">AI Disclosure</a>
+        </div>
+      </div>
+    </footer>
+  </div>
 
-    // Highlight active cell
-    document.querySelectorAll('.cal-day-cell').forEach((c, idx) => {
-      c.style.borderColor = idx + 1 === dayNum ? '#10B981' : '';
-    });
-  }
-
-  function switchStep(idx) {
-    currentStepIdx = idx;
-    
-    document.querySelectorAll('.step-nav-btn').forEach((btn, i) => {
-      btn.classList.toggle('active', i === idx);
-      if (i < idx) {
-        btn.classList.add('completed');
+  <script>
+    function toggleDrawer(open) {
+      const drawer = document.getElementById('drawerMenu');
+      if (!drawer) return;
+      if (open) {
+        drawer.classList.add('open');
+        document.body.style.overflow = 'hidden';
       } else {
-        btn.classList.remove('completed');
+        drawer.classList.remove('open');
+        document.body.style.overflow = '';
       }
+    }
+
+    function handleOverlayClick(event) {
+      if (event.target.id === 'drawerMenu') {
+        toggleDrawer(false);
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') toggleDrawer(false);
     });
 
-    document.querySelectorAll('.step-panel').forEach((panel, i) => {
-      panel.classList.toggle('active', i === idx);
-    });
-
-    document.getElementById('wireframeUrl').textContent = urls[idx] || "answerindex.xyz/";
-    document.getElementById('btnPrevStep').style.visibility = idx === 0 ? 'hidden' : 'visible';
-    document.getElementById('btnNextStep').innerHTML = idx === totalSteps - 1 ? 'Start Task 1 Implementation &check;' : 'Next Stage &rarr;';
-  }
-
-  function nextStep() {
-    if (currentStepIdx < totalSteps - 1) {
-      switchStep(currentStepIdx + 1);
-    } else {
-      alert("Wireframe walkthrough approved! Proceeding to Step 1 implementation.");
+    async function startCheckout(plan = 'pro_autonomous') {
+      try {
+        const res = await fetch('/api/create-checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ plan, billing: 'monthly' })
+        });
+        const data = await res.json();
+        if (data.success && data.checkout_url) {
+          window.location.href = data.checkout_url;
+        } else {
+          alert('Checkout initiation error: ' + (data.error || 'Please try again.'));
+        }
+      } catch (err) {
+        window.location.href = '/pricing.html';
+      }
     }
-  }
-
-  function prevStep() {
-    if (currentStepIdx > 0) {
-      switchStep(currentStepIdx - 1);
-    }
-  }
-
-  // Initialize
-  renderCalendar();
-  switchStep(4); // Default to Stage 5 so user immediately sees the calendar and growth trajectory
-</script>
-
+  </script>
 </body>
 </html>

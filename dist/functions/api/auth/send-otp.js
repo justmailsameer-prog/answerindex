@@ -128,7 +128,7 @@ export async function onRequestPost({ request, env }) {
         email,
         emailSent,
         // For development / fallback convenience if SMTP API key is not yet bound to Cloudflare Pages
-        devOtp: resendKey ? undefined : otpCode,
+        
         message: emailSent 
           ? `Verification code sent to ${email}. Check your inbox!`
           : `Verification code generated. (Dev Mode OTP: ${otpCode})`

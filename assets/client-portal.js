@@ -64,14 +64,9 @@
               <div id="loginOtpHeaderCard" style="background: #FFF8E7; border: 1.5px solid #F3CA68; border-radius: 12px; padding: 14px; margin-bottom: 14px; text-align: center;">
                 <span style="font-size: 12px; color: #92400E; display: block; font-weight: 600;">Signing in as:</span>
                 <strong id="loginOtpTargetEmail" style="font-size: 14px; color: #1C1D21; word-break: break-all;"></strong>
-                <div id="loginOtpInstantCodeBox" style="margin-top: 10px; padding: 10px 12px; background: #FEF3C7; border: 1.5px dashed #D97706; border-radius: 8px;">
-                  <span style="font-size: 11px; color: #92400E; text-transform: uppercase; font-weight: 800; letter-spacing: 0.05em; display: block;">🔑 Your Verification Code:</span>
-                  <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 6px;">
-                    <span id="loginOtpDisplayCode" style="font-family: monospace; font-size: 24px; font-weight: 800; color: #B45309; letter-spacing: 4px;">------</span>
-                    <button type="button" onclick="autoFillOtpCode()" style="background: #B45309; color: #FFFFFF; border: none; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.2s;">1-Click Fill ⚡</button>
-                  </div>
-                  <span style="font-size: 10.5px; color: #78350F; display: block; margin-top: 5px;">Master Founder Passcode: <strong>88888888</strong></span>
-                </div>
+                <p style="font-size: 12px; color: #6E717C; margin-top: 8px; margin-bottom: 0; line-height: 1.4;">
+                  A 6-digit confirmation code has been dispatched. Enter the code from your inbox below.
+                </p>
               </div>
 
               <div class="form-group">
@@ -908,16 +903,6 @@
   let pendingAuthEmail = '';
   let pendingAuthDomain = '';
 
-  window.currentGeneratedOtp = '';
-
-  window.autoFillOtpCode = function() {
-    const input = document.getElementById('loginOtpCode');
-    if (input) {
-      input.value = window.currentGeneratedOtp || '88888888';
-      input.focus();
-    }
-  };
-
   window.handleRequestLoginOtp = async function (e) {
     if (e && e.preventDefault) e.preventDefault();
     const emailInput = document.getElementById('loginEmail');
@@ -949,28 +934,22 @@
         document.getElementById('loginOtpForm').style.display = 'block';
         document.getElementById('loginOtpTargetEmail').textContent = email;
 
-        const activeCode = data.devOtp || (Math.floor(100000 + Math.random() * 900000).toString());
-        window.currentGeneratedOtp = activeCode;
-        
-        const displayCodeEl = document.getElementById('loginOtpDisplayCode');
-        if (displayCodeEl) {
-          displayCodeEl.textContent = activeCode;
-        }
-
         const otpMsg = document.getElementById('loginOtpMsg');
         if (otpMsg) {
-          otpMsg.className = 'auth-msg success';
           if (data.emailSent) {
-            otpMsg.innerHTML = `✓ Code sent to <strong>${email}</strong>! Or use instant code <strong>${activeCode}</strong> above.`;
+            otpMsg.className = 'auth-msg success';
+            otpMsg.innerHTML = `✓ Verification code sent to <strong>${email}</strong>. Check your inbox and spam folder.`;
+            otpMsg.style.display = 'block';
           } else {
-            otpMsg.innerHTML = `✓ Verification code generated! Click <strong>1-Click Fill</strong> above to sign in instantly.`;
+            otpMsg.className = 'auth-msg error';
+            otpMsg.innerHTML = `⚠️ Email service is being connected. Contact support or use configured credentials.`;
+            otpMsg.style.display = 'block';
           }
-          otpMsg.style.display = 'block';
         }
         
         const codeInput = document.getElementById('loginOtpCode');
         if (codeInput) {
-          codeInput.value = activeCode;
+          codeInput.value = '';
           setTimeout(() => codeInput.focus(), 100);
         }
       } else {
@@ -982,26 +961,9 @@
       console.warn('Network issue in send-otp:', err);
       btn.disabled = false;
       btn.textContent = 'Send Sign-In Code ✉️ →';
-      document.getElementById('loginEmailForm').style.display = 'none';
-      document.getElementById('loginOtpForm').style.display = 'block';
-      document.getElementById('loginOtpTargetEmail').textContent = email;
-      
-      const fallbackCode = '88888888';
-      window.currentGeneratedOtp = fallbackCode;
-      const displayCodeEl = document.getElementById('loginOtpDisplayCode');
-      if (displayCodeEl) displayCodeEl.textContent = fallbackCode;
-      
-      const otpMsg = document.getElementById('loginOtpMsg');
-      if (otpMsg) {
-        otpMsg.className = 'auth-msg success';
-        otpMsg.innerHTML = `Enter master passcode <strong>88888888</strong> to verify.`;
-        otpMsg.style.display = 'block';
-      }
-      const codeInput = document.getElementById('loginOtpCode');
-      if (codeInput) {
-        codeInput.value = fallbackCode;
-        setTimeout(() => codeInput.focus(), 100);
-      }
+      msg.className = 'auth-msg error';
+      msg.textContent = 'Unable to connect to authentication server. Please retry in a moment.';
+      msg.style.display = 'block';
     }
   };
 
