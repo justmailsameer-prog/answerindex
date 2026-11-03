@@ -2100,15 +2100,55 @@
           if (data.success && data.project) {
             currentProject = data.project;
           }
+        } else {
+          // Read local stored project
+          const storedProj = localStorage.getItem('answerindex_project');
+          if (storedProj) {
+            try {
+              const p = JSON.parse(storedProj);
+              if (p && p.domain) currentProject = Object.assign(currentProject, p);
+            } catch (e) {}
+          }
         }
       } catch (err) {
         console.warn('Could not load project metadata from API:', err);
       } finally {
         updateProjectUI(currentProject);
+        await autoCrawlDomainTruth(currentProject.domain);
         await loadJobs();
         buildCalendar();
         restoreGuideBannerState();
       }
+
+    // Live Edge Crawler: Extract real metadata, headings, and mission directly from client website
+    async function autoCrawlDomainTruth(domain) {
+      if (!domain || domain === 'answerindex.xyz') return;
+      if (currentProject.truth_document && !currentProject.truth_document.includes('Ground-Truth Baseline')) {
+        return; // Already populated with real crawl
+      }
+
+      try {
+        const res = await fetch('/api/crawl-domain', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            domain: domain,
+            project_id: currentProject.id
+          })
+        });
+        if (res.ok) {
+          const data = await res.json();
+          if (data.success && data.truthWiki) {
+            currentProject.truth_document = data.truthWiki;
+            if (data.brandName) currentProject.brand_name = data.brandName;
+            updateProjectUI(currentProject);
+          }
+        }
+      } catch (e) {
+        console.warn('Domain crawl error:', e);
+      }
+    }
+
     }
 
     function updateProjectUI(proj) {
@@ -2294,25 +2334,22 @@
           ` : ''}
 
           <div class="job-actions-row">
-            <div style="display:flex; gap:8px;">
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
               <button onclick="openPreviewModal('${job.id}')" class="btn-secondary" style="font-size:12px; padding:6px 14px;">
-                🔍 Inspect Diff &amp; Schema
+                🔍 Inspect Code &amp; Schema
               </button>
               <button onclick="copyJobContent('${job.id}')" class="btn-secondary" style="font-size:12px; padding:6px 12px;">
-                📋 Copy
+                📋 Copy Snippet
               </button>
             </div>
 
-            <div>
-              ${isPending ? `
-                <button id="btn-approve-${job.id}" onclick="approveJob('${job.id}')" class="btn-honey-primary" style="font-size:12px; padding:6px 16px;">
-                  ✓ Approve &amp; Merge Draft →
-                </button>
-              ` : `
-                <span class="badge-pill badge-pill-emerald" style="font-size:11.5px; padding:6px 14px;">
-                  ✓ Live on Edge
-                </span>
-              `}
+            <div style="display:flex; gap:8px; align-items:center;">
+              <button id="btn-probe-${job.id}" onclick="runLiveEdgeProbe('${job.id}', '${escapeHtml(job.target_url || '/')}', '${escapeHtml(job.target_keyword || '')}')" class="btn-honey-primary" style="font-size:12px; padding:6px 14px; font-weight:700;">
+                🔍 Verify on Live Site →
+              </button>
+              <span id="probe-badge-${job.id}" class="badge-pill ${isPending ? 'badge-pill-honey' : 'badge-pill-emerald'}" style="font-size:11px;">
+                ${isPending ? 'Staged' : '✓ Active'}
+              </span>
             </div>
           </div>
         </div>
@@ -2536,6 +2573,63 @@
     }
 
     // 6. Approve Deliverable
+        // 6. Real Live Edge Verification Probe against Client's Actual Website
+    async function runLiveEdgeProbe(jobId, path, keyword) {
+      const btn = document.getElementById(`btn-probe-${jobId}`);
+      const badge = document.getElementById(`probe-badge-${jobId}`);
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = 'Probing Live Site...';
+      }
+
+      showToast(`🌐 Connecting to https://${currentProject.domain}...`);
+
+      try {
+        const res = await fetch('/api/verify-edge', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            domain: currentProject.domain,
+            path: path || '/',
+            job_id: jobId,
+            target_keyword: keyword
+          })
+        });
+
+        const data = await res.json();
+
+        if (data.verified) {
+          if (badge) {
+            badge.className = 'badge-pill badge-pill-emerald';
+            badge.innerHTML = `✅ Verified on Live Site (${data.httpStatus})`;
+          }
+          if (btn) {
+            btn.textContent = '✓ Verified Active';
+            btn.style.background = '#10B981';
+            btn.style.color = '#FFFFFF';
+          }
+          markJobApproved(jobId);
+          showToast(`🎉 Verified! Found ${data.detectedSchemas} JSON-LD block(s) on ${currentProject.domain}.`);
+        } else {
+          if (badge) {
+            badge.className = 'badge-pill badge-pill-honey';
+            badge.innerHTML = `⚠️ Not Detected Yet (${data.httpStatus || 'Unreachable'})`;
+          }
+          if (btn) {
+            btn.disabled = false;
+            btn.textContent = 'Re-Probe Live Site ↻';
+          }
+          showToast(`⚠️ Notice: ${data.message || 'Schema not detected on your live site yet. Please paste the snippet into your <head> and re-probe.'}`);
+        }
+      } catch (err) {
+        if (btn) {
+          btn.disabled = false;
+          btn.textContent = 'Re-Probe Live Site ↻';
+        }
+        showToast('⚠️ Could not complete live probe. Ensure site is public and retry.');
+      }
+    }
+
     async function approveJob(jobId) {
       const btn = document.getElementById(`btn-approve-${jobId}`);
       if (btn) {
