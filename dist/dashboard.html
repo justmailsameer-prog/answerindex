@@ -1602,14 +1602,31 @@
         </div>
 
         <!-- Impact Simulator & Trigger Action -->
-        <div class="impact-simulator-card">
-          <h4>⚡ Trigger Autonomous Agent Run</h4>
-          <p>
-            Need urgent indexing before a major launch? Dispatch an on-demand cycle to stage an additional answer page and schema refactor.
+        <div class="impact-simulator-card" style="border: 1.5px solid var(--honey-border); background: linear-gradient(135deg, #FFFDF8 0%, #FFF8E7 100%);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <h4 style="margin: 0; font-size: 14.5px; font-weight: 800; color: #92400E; display: flex; align-items: center; gap: 6px;">
+              <span>⚡</span> On-Demand Urgent Dispatch
+            </h4>
+            <span class="badge-pill badge-pill-honey" style="font-size: 10.5px;">Bypasses 24h Timer</span>
+          </div>
+
+          <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.55; margin-bottom: 12px;">
+            Answer Index automatically stages 2 reviewable jobs on every <strong>Daily Agent Run</strong>. Use this manual trigger when you have an urgent need:
           </p>
-          <button id="btnManualDispatch" onclick="triggerManualDispatch()" class="btn-honey-primary" style="width: 100%; justify-content: center; font-size: 13.5px; padding: 10px 18px;">
-            ⚡ Trigger On-Demand Agent Run →
+
+          <ul style="font-size: 11.5px; color: #78350F; line-height: 1.5; margin-bottom: 14px; padding-left: 18px; display: flex; flex-direction: column; gap: 4px;">
+            <li><strong>Product or Feature Launch:</strong> Index new pricing or specs into AI search immediately.</li>
+            <li><strong>Competitor Attack:</strong> Deploy an instant comparison guide to protect market share.</li>
+            <li><strong>Skip Waiting:</strong> Produce an extra draft right now without waiting for tomorrow's run.</li>
+          </ul>
+
+          <button id="btnManualDispatch" onclick="triggerManualDispatch()" class="btn-honey-primary" style="width: 100%; justify-content: center; font-size: 13px; padding: 11px 18px; font-weight: 800; box-shadow: 0 4px 14px rgba(249, 188, 56, 0.35);">
+            ⚡ Dispatch Extra Agent Run Now →
           </button>
+
+          <div style="font-size: 10.5px; color: var(--text-muted); text-align: center; margin-top: 8px; display: flex; align-items: center; justify-content: center; gap: 4px;">
+            <span>🛡️</span> Safely stages as a draft &bull; Never writes live without sign-off
+          </div>
         </div>
 
         <!-- Safeguards & Invariants Badge -->
