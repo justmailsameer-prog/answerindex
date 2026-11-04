@@ -1,7 +1,7 @@
 # Answer Index — Product Requirements Document (PRD)
 
-**Document Version:** 5.6.0  
-**Status:** Production Active (v5.6.0 — Enterprise Identity, Google/GitHub OAuth, Live Edge Delivery Engine & Sanitized Authentication Architecture)  
+**Document Version:** 5.6.1  
+**Status:** Production Active (v5.6.1 — Live Google OAuth 2.0 Integration, Edge Identity Resolution & Enterprise D1 Synchronization)  
 **Product Name:** Answer Index (Open Source Core & Commercial Pro Autonomous)  
 **Live Production Portals & Protocols:**
 - **Canonical Production Engine:** [https://answerindex.xyz](https://answerindex.xyz) & [https://www.answerindex.xyz](https://www.answerindex.xyz)
@@ -102,15 +102,18 @@ Answer Index provides a zero-friction, universal delivery mechanism for websites
   3. The updated overall visibility score.
 
 ### 3.3 Authentication & Identity Architecture
-1. **1-Click Native Social OAuth:**
-   - **Google OAuth 2.0:** `/api/auth/oauth/google` &rarr; `accounts.google.com` &rarr; `/api/auth/oauth/callback`
-   - **GitHub OAuth:** `/api/auth/oauth/github` &rarr; `github.com/login/oauth/authorize` &rarr; `/api/auth/oauth/callback`
-   - Fully native on Cloudflare Pages Functions. Upserts verified user identities directly into Cloudflare D1 `users` without external auth vendor fees.
-2. **Passwordless Transactional OTP:**
+1. **Live 1-Click Google OAuth 2.0 Integration (Active in Production):**
+   - **Endpoint & Routing:** `/api/auth/oauth/google` redirects securely to `accounts.google.com` using the live production `client_id` (`816546577081-o0odirhde2b591jcsrjut5r2ko72toih.apps.googleusercontent.com`).
+   - **Authorized Callback:** Returns to `https://answerindex.xyz/api/auth/oauth/callback`, exchanges auth code for Google access token, and fetches verified profile (`email`, `name`, `picture`).
+   - **D1 Identity Synchronization:** Provisions or loads the user record in Cloudflare D1 `users` table, establishes session context in `localStorage`, and forwards user seamlessly to `/dashboard.html`.
+   - **Zero Vendor Overhead:** Direct native implementation using Cloudflare Workers fetch without third-party authentication subscription costs.
+2. **GitHub OAuth 2.0 Ready:**
+   - Pre-configured endpoints (`/api/auth/oauth/github`) and modal buttons matching the same high-security OAuth callback pipeline.
+3. **Passwordless Transactional OTP:**
    - 6-digit cryptographic verification codes stored in D1 `auth_otps` table with 15-minute expirations.
    - **Zero Secret Leaks:** All API responses (`/api/auth/send-otp` and `/api/auth/verify-otp`) and frontend bundles are strictly sanitized; OTP codes are never returned in JSON payloads or displayed on screen.
    - Error handling enforces strict `400 Bad Request` on malformed inputs and `401 Unauthorized` on incorrect codes with high-contrast Narwhal alert banners.
-3. **MakiSend Transactional Email Adapter:**
+4. **MakiSend Transactional Email Adapter:**
    - Architecture prepared for open-source **MakiSend** deployment on Cloudflare Workers + D1 + Queues, dispatching transactional authentication and daily report emails via user's configured SMTP (e.g., Google Workspace/Gmail).
 
 ---
@@ -123,6 +126,7 @@ Answer Index provides a zero-friction, universal delivery mechanism for websites
 | **Database** | Cloudflare D1 (SQLite at the edge) |
 | **Design System** | Narwhal Light Theme (`#F8F8F6` canvas, `#FFFFFF` cards, `#F9BC38` honey amber) |
 | **Frontend Runtime** | Vanilla ES6+ JavaScript, CSS3 Variables, Semantic HTML5 |
+| **Identity & Auth** | Google OAuth 2.0 (Active), GitHub OAuth (Ready), Passwordless OTP |
 | **Quality & Verification** | Python `unittest` QA integration test suite (`tests/test_production_qa.py`) |
 | **Payments Infrastructure** | Dodo Payments (Dual-mode Checkout API & Customer Portal) |
 
@@ -140,13 +144,14 @@ Answer Index provides a zero-friction, universal delivery mechanism for websites
 | **v5.0.0** | Oct 2026 | The Narwhal UI System, mobile-first responsive architecture, clean editorial design. |
 | **v5.1.0** | Oct 2026 | Tableau-Grade Client Workstation, Chronological Release Batches, 30-Day Production Grid. |
 | **v5.5.0** | Nov 2026 | 3-step onboarding guide, 30-day growth score trajectory (68 to 100), Founder admin client registry. |
-| **v5.6.0** | Nov 2026 | **Enterprise Identity, Native OAuth, 1-Line Dynamic Edge Script & Sanitized Auth Architecture (Current Production):**<br>• **Native Google & GitHub OAuth:** Built native OAuth endpoints (`/api/auth/oauth/[provider].js` and `/api/auth/oauth/callback.js`) with D1 user session persistence and instant 1-click login buttons in the modal.<br>• **Strict Authentication Sanitization:** Purged all dev OTP strings and on-screen code displays. Implemented rigid 400/401 HTTP response codes and high-contrast red alert banners.<br>• **1-Line Dynamic Edge Delivery Script:** Built `/client/[domain].js` dynamically serving live JSON-LD schema graphs to client websites.<br>• **Live Edge Verification Probe:** Created `/api/verify-edge` performing truthful HTTP inspection of target sites.<br>• **Domain Discovery Crawler:** Built `/api/crawl-domain` to ingest live website metadata into the Ground-Truth Wiki on onboarding.<br>• **Automated Daily Confirmation Cron:** Built `/api/cron/daily-report` implementing the 30-day repricer-style progression.<br>• **MakiSend Integration Architecture:** Architected open-source MakiSend Cloudflare Worker pipeline for outbound SMTP email delivery.<br>• **End-to-End QA Test Suite:** Engineered automated testing suite (`tests/test_production_qa.py`) validating 8/8 test criteria (100% OK) against live production. |
+| **v5.6.0** | Nov 2026 | **Enterprise Identity, Native OAuth, 1-Line Dynamic Edge Script & Sanitized Auth Architecture:**<br>• Native OAuth scaffolding, dynamic edge script `/client/[domain].js`, truthful verification probe, and sanitized OTP endpoints. |
+| **v5.6.1** | Nov 2026 | **Live Google OAuth 2.0 Credentials Binding & Production Verification (Current Production):**<br>• Bound live `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` into Cloudflare Pages production environment.<br>• Verified HTTP 302 redirect from `/api/auth/oauth/google` to `accounts.google.com` returning HTTP 200 on Google's consent screen.<br>• Verified automated user provisioning and profile synchronization into Cloudflare D1 `users` table upon callback.<br>• Synchronized all dist assets and pushed verified production release to Cloudflare Pages. |
 
 ---
 
 ## 6. Future Roadmap
 
 1. **Merchant KYC Activation:** Complete business profile and payout bank account details in Dodo Payments Dashboard.
-2. **MakiSend Worker Deployment:** Deploy MakiSend repository to Cloudflare account with Gmail/Google Workspace SMTP credentials.
-3. **Google & GitHub OAuth App Setup:** Input `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` and `GITHUB_CLIENT_ID` / `GITHUB_CLIENT_SECRET` into Cloudflare Pages environment variables.
+2. **GitHub OAuth Credentials Setup:** Bind `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET` to enable 1-click GitHub developer login.
+3. **MakiSend Worker Deployment:** Deploy MakiSend repository to Cloudflare account with Gmail/Google Workspace SMTP credentials for outbound OTP emails.
 4. **Bi-Directional GitHub App Webhook Integration:** Reconcile PR merge events with D1 daily job statuses automatically.
