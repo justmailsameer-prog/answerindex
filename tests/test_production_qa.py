@@ -46,16 +46,16 @@ def make_request(path, data=None, method=None, headers=None):
 
 class TestProductionAuthAndEdge(unittest.TestCase):
 
-    def test_01_homepage_loads_with_v5_cache_buster(self):
+    def test_01_homepage_loads_with_v1_cache_buster(self):
         """Verify homepage loads 200 OK and references updated client-portal assets."""
         status, body, headers = make_request("/")
         self.assertEqual(status, 200, f"Expected 200, got {status}")
-        self.assertIn("client-portal.js?v=20261103_v5", body, "v5 cache-buster missing from index.html")
-        self.assertIn("client-portal.css?v=20261103_v5", body, "v5 CSS cache-buster missing from index.html")
+        self.assertIn("client-portal.js?v=20261104_v1", body, "v1 cache-buster missing from index.html")
+        self.assertIn("client-portal.css?v=20261104_v1", body, "v1 CSS cache-buster missing from index.html")
 
     def test_02_client_portal_js_has_no_secret_leaks(self):
         """Verify that client-portal.js has zero leaks of verification codes or founder passcodes."""
-        status, body, headers = make_request("/assets/client-portal.js?v=20261103_v5")
+        status, body, headers = make_request("/assets/client-portal.js?v=20261104_v1")
         self.assertEqual(status, 200)
         self.assertNotIn("loginOtpInstantCodeBox", body, "Found loginOtpInstantCodeBox leak in production JS")
         self.assertNotIn("autoFillOtpCode", body, "Found autoFillOtpCode leak in production JS")
