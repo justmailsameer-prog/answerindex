@@ -1,5 +1,6 @@
 // Cloudflare Pages Function: /api/audit
-// Performs real-time live probing of target domain's web-root protocols and Schema markup.
+// Performs deterministic, evidence-backed live probing of target domain's web-root protocols and Schema markup.
+// Returns an itemized 17-point engineering ledger with raw evidence and transparent scoring.
 
 import { detectTechStack } from '../_shared/tech-detector.js';
 
@@ -14,7 +15,7 @@ export async function onRequestOptions() {
   return new Response(null, { headers: CORS_HEADERS });
 }
 
-async function probeUrl(url, timeoutMs = 3500) {
+async function probeUrl(url, timeoutMs = 4500) {
   try {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
@@ -22,7 +23,7 @@ async function probeUrl(url, timeoutMs = 3500) {
     const res = await fetch(url, {
       method: 'GET',
       headers: {
-        'User-Agent': 'Mozilla/5.0 (compatible; AnswerIndexBot/2.4; +https://answerindex.xyz)'
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36 (compatible; AnswerIndexBot/3.0; +https://answerindex.xyz)'
       },
       redirect: 'follow',
       signal: controller.signal
@@ -30,12 +31,12 @@ async function probeUrl(url, timeoutMs = 3500) {
 
     clearTimeout(timeoutId);
     if (!res.ok) {
-      return { ok: false, status: res.status, text: '', headers: res.headers };
+      return { ok: false, status: res.status, text: '', headers: res.headers, finalUrl: res.url };
     }
     const text = await res.text();
-    return { ok: true, status: res.status, text, headers: res.headers };
+    return { ok: true, status: res.status, text, headers: res.headers, finalUrl: res.url };
   } catch (err) {
-    return { ok: false, error: err.name || 'FETCH_FAILED', text: '', headers: null };
+    return { ok: false, error: err.name || 'FETCH_FAILED', text: '', headers: null, finalUrl: url };
   }
 }
 
@@ -91,93 +92,101 @@ export async function onRequestPost({ request, env }) {
     // Auto-detect Website Architecture & CMS Platform
     const techStack = detectTechStack(homeHtml, homeHeaders, domain);
 
-    // Answer Index Showcase & Internal Reference Domains Benchmark
-    const isCompliantDomain = domain === 'blabr.xyz' || domain === 'answerindex.xyz' || domain === 'answerindex.com' || domain.includes('answerindex') || domain === 'compliyo.xyz';
-
     // 1. Technical SEO & Crawlability Signals
-    const hasSsl = isCompliantDomain || (homeRes.ok && homeRes.status === 200);
-    const hasRobots = isCompliantDomain || (robotsRes.ok && robotsRes.text.length > 15);
+    const hasSsl = homeRes.ok && homeRes.status === 200;
+    const hasRobots = robotsRes.ok && robotsRes.text.length > 15;
     
     // Check if robots.txt blocks AI bots
     const robotsLower = robotsRes.text ? robotsRes.text.toLowerCase() : '';
     const blocksGpt = robotsLower.includes('gptbot') && robotsLower.includes('disallow: /');
     const blocksClaude = robotsLower.includes('claudebot') && robotsLower.includes('disallow: /');
     const blocksPerplexity = robotsLower.includes('perplexitybot') && robotsLower.includes('disallow: /');
-    const allowsAiBots = isCompliantDomain || (!blocksGpt && !blocksClaude && !blocksPerplexity);
+    const allowsAiBots = !blocksGpt && !blocksClaude && !blocksPerplexity;
 
-    const hasSitemap = isCompliantDomain || sitemapRes.ok || sitemapMainRes.ok || (hasRobots && robotsLower.includes('sitemap'));
+    const hasSitemap = sitemapRes.ok || sitemapMainRes.ok || (hasRobots && robotsLower.includes('sitemap'));
     const hasCanonical = homeLower.includes('rel="canonical"') || homeLower.includes("rel='canonical'");
     const hasViewport = homeLower.includes('name="viewport"') || homeLower.includes("name='viewport'");
-    const hasCanonicalAndMobile = isCompliantDomain || (hasCanonical && hasViewport);
+    const hasCanonicalAndMobile = hasCanonical && hasViewport;
 
     // 2. Schema.org & Entity Graph Signals
-    const hasJsonLd = isCompliantDomain || homeLower.includes('application/ld+json');
-    const hasNamedEntity = isCompliantDomain || (hasJsonLd && (
+    const hasJsonLd = homeLower.includes('application/ld+json');
+    const hasNamedEntity = hasJsonLd && (
       homeHtml.includes('Organization') ||
       homeHtml.includes('WebApplication') ||
       homeHtml.includes('SoftwareApplication') ||
       homeHtml.includes('Corporation') ||
       homeHtml.includes('Product') ||
       homeHtml.includes('LocalBusiness')
-    ));
-    const hasGraph = isCompliantDomain || (hasJsonLd && homeHtml.includes('"@graph"'));
-    const hasSameAs = isCompliantDomain || (hasJsonLd && (homeHtml.includes('"sameAs"') || homeHtml.includes("'sameAs'")));
+    );
+    const hasGraph = hasJsonLd && homeHtml.includes('"@graph"');
+    const hasSameAs = hasJsonLd && (homeHtml.includes('"sameAs"') || homeHtml.includes("'sameAs'"));
+
+    // Extract raw types detected for transparency evidence
+    const detectedSchemaTypes = [];
+    ['Organization', 'WebSite', 'SoftwareApplication', 'WebApplication', 'Product', 'FAQPage', 'Article', 'TechArticle'].forEach(t => {
+      if (homeHtml.includes(t)) detectedSchemaTypes.push(t);
+    });
 
     // 3. AEO Zero-Click Answer Signals
-    const hasFaqSchema = isCompliantDomain || homeHtml.includes('FAQPage') || homeHtml.includes('acceptedAnswer') || homeHtml.includes('Question');
-    const hasHeadings = isCompliantDomain || (/<h1[\s>]/i.test(homeHtml) && /<h2[\s>]/i.test(homeHtml));
-    const hasDirectAnswerBlocks = isCompliantDomain || hasFaqSchema || (homeHtml.length > 1200 && /<p[\s>][^<]{80,300}<\/p>/i.test(homeHtml));
-    const hasMetaTags = isCompliantDomain || (/<title[\s>]/i.test(homeHtml) && /name=["']description["']/i.test(homeHtml));
+    const hasFaqSchema = homeHtml.includes('FAQPage') || homeHtml.includes('acceptedAnswer') || homeHtml.includes('Question');
+    const hasHeadings = /<h1[\s>]/i.test(homeHtml) && /<h2[\s>]/i.test(homeHtml);
+    const hasDirectAnswerBlocks = (homeHtml.length > 1200 && /<p[\s>][^<]{80,300}<\/p>/i.test(homeHtml));
+    const hasMetaTags = (/<title[\s>]/i.test(homeHtml) && /name=["']description["']/i.test(homeHtml));
 
     // 4. AI Discovery & Machine Grounding Protocols
-    const hasLlms = isCompliantDomain || (llmsRes.ok && llmsRes.text.length > 25);
-    const hasLlmsFull = isCompliantDomain || (llmsFullRes.ok && llmsFullRes.text.length > 25) || (hasLlms && llmsRes.text.length > 600);
-    const hasAiTxt = isCompliantDomain || (aiTxtRes.ok && aiTxtRes.text.length > 15);
-    const hasEntities = isCompliantDomain || (entitiesRes.ok && entitiesRes.text.length > 25);
+    const hasLlms = llmsRes.ok && llmsRes.text.length > 25;
+    const hasLlmsFull = (llmsFullRes.ok && llmsFullRes.text.length > 25) || (hasLlms && llmsRes.text.length > 1200);
+    const hasAiTxt = aiTxtRes.ok && aiTxtRes.text.length > 15;
+    const hasEntities = entitiesRes.ok && entitiesRes.text.length > 25;
 
-    // Build the 20-Point Deterministic Audit Ledger
+    // Build the 17-Point Reproducible Technical Ledger
     const auditLedger = [
       // Pillar 1: Technical SEO & Crawlability (25 pts max)
       {
         id: 'ssl_status',
         pillar: 'Technical SEO',
-        name: 'HTTPS & SSL Live Response',
+        name: 'HTTPS & TLS Response',
+        urlTested: targetBase,
         maxPoints: 5,
         points: hasSsl ? 5 : 0,
         passed: hasSsl,
-        evidence: hasSsl ? 'HTTP 200 OK via TLS/HTTPS' : 'HTTPS connection failed or redirected non-200'
+        evidence: hasSsl ? `HTTP ${homeRes.status} OK over TLS/HTTPS` : 'HTTPS connection failed or returned non-200 status'
       },
       {
         id: 'robots_txt',
         pillar: 'Technical SEO',
         name: 'Robots.txt Crawl Directive Standard',
+        urlTested: `${targetBase}/robots.txt`,
         maxPoints: 5,
         points: hasRobots ? 5 : 0,
         passed: hasRobots,
-        evidence: hasRobots ? `Found live at /robots.txt (${robotsRes.text.length} bytes)` : 'Missing or empty /robots.txt file'
+        evidence: hasRobots ? `Verified live (/robots.txt, ${robotsRes.text.length} bytes)` : 'Missing or inaccessible /robots.txt file'
       },
       {
         id: 'ai_crawlers',
         pillar: 'Technical SEO',
         name: 'AI Bot Crawl Permissions (GPTBot, ClaudeBot, Perplexity)',
+        urlTested: `${targetBase}/robots.txt`,
         maxPoints: 5,
         points: allowsAiBots ? 5 : 0,
         passed: allowsAiBots,
-        evidence: allowsAiBots ? 'AI crawlers granted unrestricted indexing permission' : 'Robots.txt blocks AI crawlers from indexing ground truth'
+        evidence: allowsAiBots ? 'No blanket disallow directives blocking frontier AI crawlers' : 'Robots.txt disallows GPTBot, ClaudeBot, or PerplexityBot'
       },
       {
         id: 'sitemap_discovery',
         pillar: 'Technical SEO',
-        name: 'XML Sitemap Machine Discoverability',
+        name: 'XML Sitemap Discoverability',
+        urlTested: `${targetBase}/sitemap.xml`,
         maxPoints: 5,
         points: hasSitemap ? 5 : 0,
         passed: hasSitemap,
-        evidence: hasSitemap ? 'XML sitemap verified live or declared in robots.txt' : 'No sitemap.xml or sitemap reference found'
+        evidence: hasSitemap ? 'Verified XML sitemap index declared live' : 'No sitemap.xml detected or linked in robots.txt'
       },
       {
         id: 'canonical_meta',
         pillar: 'Technical SEO',
-        name: 'Canonical URL Tag & Mobile Viewport',
+        name: 'Canonical Tag & Responsive Viewport',
+        urlTested: targetBase,
         maxPoints: 5,
         points: hasCanonicalAndMobile ? 5 : (hasCanonical || hasViewport ? 3 : 0),
         passed: hasCanonicalAndMobile,
@@ -189,53 +198,59 @@ export async function onRequestPost({ request, env }) {
         id: 'schema_jsonld',
         pillar: 'Schema Graph',
         name: 'Schema.org JSON-LD Script Embed',
+        urlTested: targetBase,
         maxPoints: 10,
         points: hasJsonLd ? 10 : 0,
         passed: hasJsonLd,
-        evidence: hasJsonLd ? 'JSON-LD structured data block active in DOM' : 'No application/ld+json script tags detected'
+        evidence: hasJsonLd ? `application/ld+json block active (Found: ${detectedSchemaTypes.join(', ') || 'Schema nodes'})` : 'No application/ld+json script tags detected in HTML'
       },
       {
         id: 'entity_type',
         pillar: 'Schema Graph',
         name: 'Named Entity Type Definition',
+        urlTested: targetBase,
         maxPoints: 5,
         points: hasNamedEntity ? 5 : 0,
         passed: hasNamedEntity,
-        evidence: hasNamedEntity ? 'Explicit Organization / WebApplication / Product entity declared' : 'Generic or missing Schema.org entity classification'
+        evidence: hasNamedEntity ? `Declared entity: ${detectedSchemaTypes.filter(t => ['Organization','SoftwareApplication','WebApplication','Product'].includes(t)).join(', ') || 'Entity node'}` : 'Missing explicit Schema.org Organization or Product classification'
       },
       {
         id: 'graph_node',
         pillar: 'Schema Graph',
         name: 'Connected Knowledge Graph (@graph)',
+        urlTested: targetBase,
         maxPoints: 5,
         points: hasGraph ? 5 : 0,
         passed: hasGraph,
-        evidence: hasGraph ? 'Interlinked @graph node relationships defined' : 'Flat or fragmented Schema without relational @graph'
+        evidence: hasGraph ? 'Interlinked @graph node relationships defined in JSON-LD' : 'Isolated or non-relational Schema without @graph array'
       },
       {
         id: 'sameas_authority',
         pillar: 'Schema Graph',
         name: 'Authority Disambiguation (sameAs Links)',
+        urlTested: targetBase,
         maxPoints: 5,
         points: hasSameAs ? 5 : 0,
         passed: hasSameAs,
-        evidence: hasSameAs ? 'Verified external sameAs links (Wikidata, Crunchbase, official profiles)' : 'Missing external authority disambiguation sameAs links'
+        evidence: hasSameAs ? 'Found external sameAs links to verified authority profiles' : 'Missing sameAs links to Wikidata, Wikipedia, or corporate profiles'
       },
 
       // Pillar 3: AEO & Zero-Click Answer Engine Readiness (25 pts max)
       {
         id: 'faq_schema',
         pillar: 'AEO Answers',
-        name: 'FAQPage or Direct Q&A Schema Graph',
+        name: 'Structured Q&A / FAQ Entity Nodes',
+        urlTested: targetBase,
         maxPoints: 10,
         points: hasFaqSchema ? 10 : 0,
         passed: hasFaqSchema,
-        evidence: hasFaqSchema ? 'FAQPage / acceptedAnswer schema ready for AI quotation' : 'No direct Q&A or FAQPage schema found'
+        evidence: hasFaqSchema ? 'Q&A or FAQPage schema nodes present in DOM' : 'No structured Q&A schema detected (recommended for passage parsing)'
       },
       {
         id: 'direct_answers',
         pillar: 'AEO Answers',
-        name: 'Passage-Level 40–55 Word Answer Blocks',
+        name: 'Concise Declarative Answer Passages',
+        urlTested: targetBase,
         maxPoints: 6,
         points: hasDirectAnswerBlocks ? 6 : 0,
         passed: hasDirectAnswerBlocks,
@@ -245,6 +260,7 @@ export async function onRequestPost({ request, env }) {
         id: 'semantic_headings',
         pillar: 'AEO Answers',
         name: 'Semantic Heading Hierarchy (H1, H2)',
+        urlTested: targetBase,
         maxPoints: 5,
         points: hasHeadings ? 5 : 0,
         passed: hasHeadings,
@@ -254,6 +270,7 @@ export async function onRequestPost({ request, env }) {
         id: 'meta_snippet',
         pillar: 'AEO Answers',
         name: 'Search Engine Meta Title & Description',
+        urlTested: targetBase,
         maxPoints: 4,
         points: hasMetaTags ? 4 : 0,
         passed: hasMetaTags,
@@ -265,37 +282,41 @@ export async function onRequestPost({ request, env }) {
         id: 'llms_txt',
         pillar: 'AI Discovery',
         name: '/llms.txt Standard Specification',
+        urlTested: `${targetBase}/llms.txt`,
         maxPoints: 12,
         points: hasLlms ? 12 : 0,
         passed: hasLlms,
-        evidence: hasLlms ? `Verified live at /llms.txt (${llmsRes.text.length} bytes)` : 'HTTP 404 - Missing /llms.txt standard manifest'
+        evidence: hasLlms ? `Verified live (/llms.txt, ${llmsRes.text.length} bytes)` : 'HTTP 404 - No /llms.txt file published at web-root'
       },
       {
         id: 'llms_full_txt',
         pillar: 'AI Discovery',
         name: '/llms-full.txt Extended Context Manifest',
+        urlTested: `${targetBase}/llms-full.txt`,
         maxPoints: 4,
         points: hasLlmsFull ? 4 : 0,
         passed: hasLlmsFull,
-        evidence: hasLlmsFull ? 'Deep documentation manifest verified live' : 'Missing /llms-full.txt extended context file'
+        evidence: hasLlmsFull ? 'Deep documentation manifest verified live' : 'No /llms-full.txt extended context manifest found'
       },
       {
         id: 'ai_txt',
         pillar: 'AI Discovery',
         name: '/ai.txt Agent Permission Manifest',
+        urlTested: `${targetBase}/ai.txt`,
         maxPoints: 4,
         points: hasAiTxt ? 4 : 0,
         passed: hasAiTxt,
-        evidence: hasAiTxt ? `Verified live at /ai.txt (${aiTxtRes.text.length} bytes)` : 'Missing /ai.txt file'
+        evidence: hasAiTxt ? `Verified live (/ai.txt, ${aiTxtRes.text.length} bytes)` : 'No /ai.txt agent permission manifest found'
       },
       {
         id: 'ai_entities',
         pillar: 'AI Discovery',
         name: '/ai-entities.json Machine Ingestion Index',
+        urlTested: `${targetBase}/ai-entities.json`,
         maxPoints: 5,
         points: hasEntities ? 5 : 0,
         passed: hasEntities,
-        evidence: hasEntities ? `Verified live at /ai-entities.json (${entitiesRes.text.length} bytes)` : 'Missing /ai-entities.json vector index'
+        evidence: hasEntities ? `Verified live (/ai-entities.json, ${entitiesRes.text.length} bytes)` : 'No /ai-entities.json vector index published'
       }
     ];
 
@@ -324,29 +345,29 @@ export async function onRequestPost({ request, env }) {
     const overallScore = techEarned + schemaEarned + aeoEarned + aiEarned;
 
     let grade = 'C+';
-    let status = 'Needs AI Optimization';
+    let status = 'Optimization Opportunities Detected';
     let scoreColor = [245, 158, 11]; // amber
-    let recommendedPlanMonths = 12;
-    let recommendedPlanName = '12-Month Autonomous AI & Search Monopolization Plan';
+    let recommendedPlanMonths = 6;
+    let recommendedPlanName = '3–6 Month AEO & Structured Knowledge Graph Acceleration';
 
     if (overallScore >= 85) {
       grade = overallScore >= 95 ? 'A+' : 'A';
-      status = 'Enterprise AI Search Ready';
+      status = 'Strong Technical & Entity Architecture';
       scoreColor = [16, 185, 129]; // emerald
       recommendedPlanMonths = 3;
-      recommendedPlanName = '1–3 Month AI Citation Defense & Drift Monitoring Plan';
+      recommendedPlanName = '1–3 Month AI Citation Defense & Drift Monitoring';
     } else if (overallScore >= 65) {
       grade = overallScore >= 75 ? 'B+' : 'B';
-      status = 'Moderate AI Visibility (Gaps Detected)';
+      status = 'Moderate AI Search Readiness';
       scoreColor = [59, 130, 246]; // blue
       recommendedPlanMonths = 6;
       recommendedPlanName = '3–6 Month AEO & Structured Knowledge Graph Acceleration';
     } else {
       grade = overallScore >= 50 ? 'C' : 'D+';
-      status = 'High AI Ingestion Risk';
+      status = 'Foundational Technical Gaps Detected';
       scoreColor = [239, 68, 68]; // red
       recommendedPlanMonths = 12;
-      recommendedPlanName = '12-Month Autonomous AI & Search Monopolization Plan';
+      recommendedPlanName = 'Comprehensive 12-Month Autonomous AI Optimization';
     }
 
     // Dynamic Gaps & Strengths based on the ledger
@@ -365,11 +386,10 @@ export async function onRequestPost({ request, env }) {
       });
     }
 
-    // Add verified achievements if high scoring
     if (passedItems.length > 0 && overallScore >= 80) {
       gaps.unshift({
         critical: false,
-        text: `[EXCELLENT] ${passedItems.length} of ${auditLedger.length} technical AI & SEO protocols verified live at web-root.`
+        text: `[VERIFIED] ${passedItems.length} of ${auditLedger.length} technical AI & SEO protocols verified live.`
       });
     }
 
