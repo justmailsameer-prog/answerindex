@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "include": [
+    "/api/*",
+    "/client/*"
+  ],
+  "exclude": [
+    "/assets/*",
+    "/favicon.ico",
+    "/robots.txt",
+    "/sitemap.xml",
+    "/ai-sitemap.xml",
+    "/sitemap.md",
+    "/llms.txt",
+    "/llms-full.txt",
+    "/ai.txt",
+    "/ai-disclosure.txt",
+    "/training-data-policy.txt",
+    "/ai-schema.json",
+    "/ai-entities.json",
+    "/ai-intent.json",
+    "/rag-index.json",
+    "/rag-index.jsonl"
+  ]
+}

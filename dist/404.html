@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found (404) — Answer Index</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/assets/brand-tokens.css">
+  <style>
+    :root {
+      --bg-canvas: #F8F8F6;
+      --bg-card: #FFFFFF;
+      --text-primary: #1C1D21;
+      --text-secondary: #5A5D66;
+      --text-muted: #8E929E;
+      --honey-amber: #F9BC38;
+      --honey-dark: #B45309;
+      --border-subtle: #E5E6DE;
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      display: flex;
+      min-height: 100vh;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .card-404 {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 3rem 2rem;
+      max-width: 520px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    }
+    .badge-code {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--honey-dark);
+      background: rgba(249, 188, 56, 0.15);
+      border: 1px solid rgba(249, 188, 56, 0.35);
+      padding: 0.3rem 0.75rem;
+      border-radius: 8px;
+      margin-bottom: 1.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.75rem;
+      color: var(--text-primary);
+    }
+    p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+    .btn-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--honey-amber);
+      color: #1c1d21;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      padding: 0.8rem 1.6rem;
+      border-radius: 10px;
+      transition: transform 0.15s ease, background-color 0.15s ease;
+    }
+    .btn-home:hover {
+      background: #eab308;
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body>
+  <div class="card-404">
+    <span class="badge-code">Error 404 · Resource Not Found</span>
+    <h1>Page Not Found</h1>
+    <p>The page or manifest you requested does not exist or has been relocated within the Answer Index architecture.</p>
+    <a href="/" class="btn-home">Return to Home →</a>
+  </div>
+</body>
+</html>

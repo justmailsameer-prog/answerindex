@@ -10,7 +10,8 @@ print(f"Syncing from {root_dir} to {dist_dir}...")
 html_files = [
     'index.html', 'pro.html', 'about.html', 'how-it-works.html',
     'pricing.html', 'audit.html', 'dashboard.html', 'privacy.html',
-    'terms.html', 'feedback.html', 'index-oss.html', 'v1.html', 'onboarding-wireframe.html'
+    'terms.html', 'feedback.html', 'index-oss.html', 'v1.html', 'onboarding-wireframe.html',
+    '404.html'
 ]
 for h in html_files:
     src = os.path.join(root_dir, h)
@@ -19,8 +20,9 @@ for h in html_files:
         shutil.copy2(src, dst)
         print(f"  [OK] Copied {h} -> dist/{h}")
 
-# 2. Manifests & Root files
+# 2. Manifests, Configs & Root files
 manifest_files = [
+    '_headers', '_routes.json',
     'favicon.ico',
     'ANSWERINDEX-PRD.md',
     'README.md',
