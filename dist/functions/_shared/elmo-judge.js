@@ -147,7 +147,7 @@ export function evaluateRunLocally({
     passageQuote,
     detectedCompetitors,
     shareOfVoice,
-    judgeModel: 'answerindex-elmo-deterministic-v1'
+    judgeModel: 'answerindex-judge-v1'
   };
 }
 

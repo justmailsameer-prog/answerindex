@@ -81,6 +81,12 @@ export async function onRequestGet({ request, env }) {
           total_benchmarks: total,
           cited_count: citedCount,
           citation_rate: citationRate,
+          ai_radar_metrics: {
+            total_runs: observabilityRuns.length,
+            average_position: avgPosition,
+            average_share_of_voice: avgSov + '%',
+            positive_sentiment_rate: observabilityRuns.length > 0 ? Math.round((positiveCount / observabilityRuns.length) * 100) + '%' : '0%'
+          },
           elmo_metrics: {
             total_runs: observabilityRuns.length,
             average_position: avgPosition,

@@ -1509,7 +1509,7 @@
               📅 30-Day Calendar
             </button>
             <button class="view-tab-btn" id="tabBtnObservability" onclick="switchMainView('observability')">
-              📡 AI Radar &amp; Prompts (Elmo)
+              📡 AI Radar &amp; Buying Prompts
             </button>
           </div>
         </div>
@@ -1581,7 +1581,7 @@
           </div>
         </div>
 
-        <!-- OBSERVABILITY & TRACKED PROMPTS CONTAINER (ELMO HQ INTEGRATION) -->
+        <!-- OBSERVABILITY & TRACKED PROMPTS CONTAINER -->
         <div id="observabilityViewContainer" style="display: none;">
           <!-- Top Row: Add Prompt & Metrics Strip -->
           <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: 14px; padding: 1.25rem 1.4rem; margin-bottom: 1.5rem;">
@@ -1603,19 +1603,19 @@
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
               <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 1rem;">
                 <div style="font-size: 11px; color: var(--text-muted); font-family: var(--font-mono); text-transform: uppercase;">Category Share of Voice</div>
-                <div style="font-size: 1.8rem; font-weight: 800; color: #059669; margin: 4px 0 2px;" id="elmoAvgSov">--%</div>
+                <div style="font-size: 1.8rem; font-weight: 800; color: #059669; margin: 4px 0 2px;" id="aiRadarAvgSov">--%</div>
                 <div style="font-size: 11.5px; color: var(--text-secondary);">Brand mentions vs. category competitors</div>
               </div>
 
               <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 1rem;">
                 <div style="font-size: 11px; color: var(--text-muted); font-family: var(--font-mono); text-transform: uppercase;">Average AI Recommendation Rank</div>
-                <div style="font-size: 1.8rem; font-weight: 800; color: #2563EB; margin: 4px 0 2px;" id="elmoAvgPos">#--</div>
+                <div style="font-size: 1.8rem; font-weight: 800; color: #2563EB; margin: 4px 0 2px;" id="aiRadarAvgPos">#--</div>
                 <div style="font-size: 11.5px; color: var(--text-secondary);">When cited among competing solutions</div>
               </div>
 
               <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 1rem;">
                 <div style="font-size: 11px; color: var(--text-muted); font-family: var(--font-mono); text-transform: uppercase;">Favorable Sentiment Rate</div>
-                <div style="font-size: 1.8rem; font-weight: 800; color: #D97706; margin: 4px 0 2px;" id="elmoSentimentRate">--%</div>
+                <div style="font-size: 1.8rem; font-weight: 800; color: #D97706; margin: 4px 0 2px;" id="aiRadarSentimentRate">--%</div>
                 <div style="font-size: 11.5px; color: var(--text-secondary);">Evaluated by Jev Judge Model</div>
               </div>
             </div>
@@ -1754,7 +1754,7 @@
   </div>
 
   <!-- -------------------------------------------------------------------------
-       MODAL 0: Track New Commercial Prompt (Elmo HQ Observability)
+       MODAL 0: Track New Commercial Prompt (AI Observability Radar)
        ------------------------------------------------------------------------- -->
   <div id="addPromptModal" class="modal-overlay" onclick="handleAddPromptOverlayClick(event)">
     <div class="modal-card" style="max-width: 580px;">
@@ -2606,7 +2606,7 @@
       }
     }
 
-    // --- ELMO HQ OBSERVABILITY & TRACKED PROMPTS LOGIC ---
+    // --- AI OBSERVABILITY RADAR & TRACKED PROMPTS LOGIC ---
     let trackedPrompts = [];
     let observabilityRuns = [];
 
@@ -2626,11 +2626,11 @@
         const cData = await cRes.json();
         if (cData.success) {
           const stats = cData.stats || {};
-          const elmoStats = stats.elmo_metrics || {};
+          const aiStats = stats.ai_radar_metrics || stats.elmo_metrics || {};
 
-          document.getElementById('elmoAvgSov').textContent = elmoStats.average_share_of_voice || '28.5%';
-          document.getElementById('elmoAvgPos').textContent = elmoStats.average_position ? `#${elmoStats.average_position}` : '#1.4';
-          document.getElementById('elmoSentimentRate').textContent = elmoStats.positive_sentiment_rate || '84%';
+          document.getElementById('aiRadarAvgSov').textContent = aiStats.average_share_of_voice || '28.5%';
+          document.getElementById('aiRadarAvgPos').textContent = aiStats.average_position ? `#${aiStats.average_position}` : '#1.4';
+          document.getElementById('aiRadarSentimentRate').textContent = aiStats.positive_sentiment_rate || '84%';
 
           observabilityRuns = cData.observability_runs || [];
           renderObservabilityRuns();
@@ -2719,7 +2719,7 @@
             </div>
 
             <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--text-muted); font-family: var(--font-mono);">
-              <span>Judge: ${escapeHtml(run.judge_model || 'elmo-judge')}</span>
+              <span>Judge: ${escapeHtml(run.judge_model || 'answerindex-judge-v1')}</span>
               <span>${new Date(run.created_at || Date.now()).toLocaleDateString()}</span>
             </div>
           </div>
