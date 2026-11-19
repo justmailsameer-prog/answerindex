@@ -113,7 +113,7 @@ export async function onRequestGet({ request, env }) {
 export async function onRequestPost({ request, env }) {
   try {
     const data = await request.json().catch(() => ({}));
-    const { projectId, truth_document, cms_type, cms_url, brand_name } = data;
+    const { projectId, truth_document, cms_type, cms_url, brand_name, domain } = data;
 
     if (!projectId) {
       return new Response(
@@ -124,6 +124,14 @@ export async function onRequestPost({ request, env }) {
 
     const updates = [];
     const bindings = [];
+
+    if (domain !== undefined) {
+      const cleanDomain = String(domain).trim().toLowerCase().replace(/^https?:\/\//i, '').replace(/\/.*$/, '');
+      if (cleanDomain) {
+        updates.push('domain = ?');
+        bindings.push(cleanDomain);
+      }
+    }
 
     if (truth_document !== undefined) {
       updates.push('truth_document = ?');

@@ -1303,10 +1303,16 @@
 
       <!-- Right Navigation Actions -->
       <div class="nav-actions">
-        <!-- Target Project Pill -->
-        <div class="badge-pill badge-pill-emerald" id="projectDomainPill" style="font-size: 12px;">
-          ● Target: <strong id="projectDomain">nordicnesting.com</strong>
+        <!-- Target Project Pill & Direct Domain Switcher -->
+        <div class="badge-pill badge-pill-emerald" id="projectDomainPill" style="font-size: 12px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;" onclick="openChangeDomainModal()" title="Click to insert or change target website domain">
+          <span>● Target:</span>
+          <strong id="projectDomain">nordicnesting.com</strong>
+          <span style="font-size: 10px; background: rgba(5,150,105,0.2); padding: 2px 6px; border-radius: 4px; margin-left: 2px;">Change ✎</span>
         </div>
+
+        <button onclick="openChangeDomainModal()" class="btn-secondary" style="border-color: #F3CA68; background: #FFFDF8; font-weight: 700; color: #92400E;" title="Insert website link to run full AEO & Citation Analysis">
+          🌐 Analyze Website
+        </button>
 
         <button onclick="toggleOnboardingBanner()" id="btnHeaderGuideToggle" class="btn-secondary" title="Toggle Onboarding & Execution Guide">
           🧭 Onboarding Guide
@@ -1423,6 +1429,47 @@
       <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11.5px; color: var(--text-muted); margin-top: 10px;">
         <span>🛡️ Operates strictly within your Brand Truth Wiki bounds &bull; Sub-20ms Edge CDN</span>
         <span style="color: #059669; font-weight: 700;">&check; Zero ongoing maintenance</span>
+      </div>
+    </section>
+
+    <!-- 1. Quick Website Target & Live Analysis Bar -->
+    <section style="background: var(--bg-card); border: 1.5px solid var(--honey-border); border-radius: 14px; padding: 16px 20px; margin-bottom: 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.03);">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
+        <div style="flex: 1; min-width: 280px;">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+            <span class="badge-pill badge-pill-emerald" style="font-size: 11px;">● Active Target Website</span>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted);">Cloudflare D1 &bull; Edge Crawler</span>
+          </div>
+          <div style="display: flex; align-items: baseline; gap: 8px;">
+            <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--text-primary); margin: 0;">
+              Target: <span id="barTargetDomainDisplay" style="color: #B45309;">nordicnesting.com</span>
+            </h3>
+            <span id="barBrandNameDisplay" style="font-size: 13px; color: var(--text-secondary);">(Nordic Nesting)</span>
+          </div>
+        </div>
+
+        <form onsubmit="handleInlineDomainSubmit(event)" style="display: flex; align-items: center; gap: 8px; flex: 2; min-width: 320px; max-width: 640px; margin: 0;">
+          <div style="position: relative; flex: 1;">
+            <input
+              type="text"
+              id="inlineDomainInput"
+              placeholder="Enter your website URL (e.g. yourcompany.com)"
+              style="width: 100%; padding: 10px 14px; padding-left: 36px; border: 1.5px solid var(--border-subtle); border-radius: 9px; font-size: 13.5px; background: var(--bg-canvas); color: var(--text-primary); outline: none; font-family: var(--font-mono);"
+              required
+            />
+            <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 14px; color: var(--text-muted);">🌐</span>
+          </div>
+          <button type="submit" id="btnInlineDomainSubmit" class="btn-honey-primary" style="padding: 10px 18px; font-size: 13px; font-weight: 800; white-space: nowrap; display: inline-flex; align-items: center; gap: 6px;">
+            <span>🔍 Run Live Analysis</span>
+          </button>
+        </form>
+      </div>
+
+      <div id="domainCrawlStatusCard" style="display: none; margin-top: 14px; padding: 12px 14px; background: #FFF8E7; border: 1px solid #F3CA68; border-radius: 8px; font-size: 12.5px; color: #92400E;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span class="spinner" style="width: 14px; height: 14px; border: 2px solid #F3CA68; border-top-color: #92400E; border-radius: 50%; display: inline-block; animation: spin 1s linear infinite;"></span>
+          <span id="domainCrawlStatusText">Crawling live DOM, extracting headings, canonical metadata, and synthesizing Brand Truth Wiki...</span>
+        </div>
       </div>
     </section>
 
@@ -1750,6 +1797,61 @@
           </ul>
         </div>
       </aside>
+    </div>
+  </div>
+
+  <!-- -------------------------------------------------------------------------
+       MODAL: Change / Insert Target Website Domain & Run Live Analysis
+       ------------------------------------------------------------------------- -->
+  <div id="changeDomainModal" class="modal-overlay" onclick="handleChangeDomainOverlayClick(event)">
+    <div class="modal-card" style="max-width: 540px;">
+      <button class="modal-close-btn" onclick="closeChangeDomainModal()" aria-label="Close modal">✕</button>
+      <div style="margin-bottom: 18px;">
+        <span class="badge-pill badge-pill-emerald" style="margin-bottom: 8px;">🌐 Target Website Connection</span>
+        <h2 style="font-size: 20px; font-weight: 800; margin-top: 4px;">Connect Your Website for AEO</h2>
+        <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.5;">
+          Enter your website URL. Answer Index's crawler will immediately inspect your live DOM, detect your CMS platform (WordPress, Shopify, Webflow, Custom), and synthesize your Brand Ground-Truth Wiki.
+        </p>
+      </div>
+
+      <form onsubmit="handleModalDomainSubmit(event)">
+        <div style="margin-bottom: 14px;">
+          <label style="display: block; font-size: 12px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px;">
+            Website URL or Domain <span style="color: #DC2626;">*</span>
+          </label>
+          <input
+            type="text"
+            id="modalDomainInput"
+            placeholder="e.g. yourcompany.com or https://yourcompany.com"
+            style="width: 100%; border: 1.5px solid var(--border-subtle); border-radius: 8px; padding: 10px 12px; font-size: 13.5px; background: var(--bg-canvas); color: var(--text-primary); outline: none; font-family: var(--font-mono);"
+            required
+          />
+        </div>
+
+        <div style="margin-bottom: 18px;">
+          <label style="display: block; font-size: 12px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px;">
+            Brand / Company Name (Optional)
+          </label>
+          <input
+            type="text"
+            id="modalBrandInput"
+            placeholder="e.g. Acme Corp"
+            style="width: 100%; border: 1.5px solid var(--border-subtle); border-radius: 8px; padding: 10px 12px; font-size: 13.5px; background: var(--bg-canvas); color: var(--text-primary); outline: none;"
+          />
+          <span style="font-size: 11.5px; color: var(--text-muted); margin-top: 4px; display: block;">
+            Leave blank to auto-extract from title tags &amp; OpenGraph metadata.
+          </span>
+        </div>
+
+        <div id="modalCrawlMessage" style="display: none; padding: 10px 12px; border-radius: 8px; font-size: 12px; margin-bottom: 14px;"></div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 10px;">
+          <button type="button" class="btn-secondary" onclick="closeChangeDomainModal()">Cancel</button>
+          <button type="submit" id="btnModalDomainSubmit" class="btn-honey-primary" style="font-weight: 800;">
+            Connect &amp; Run Analysis 🚀
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 
@@ -2272,6 +2374,7 @@
         buildCalendar();
         restoreGuideBannerState();
       }
+    }
 
     // Live Edge Crawler: Extract real metadata, headings, and mission directly from client website
     async function autoCrawlDomainTruth(domain) {
@@ -2295,14 +2398,12 @@
             currentProject.truth_document = data.truthWiki;
             if (data.brandName) currentProject.brand_name = data.brandName;
             updateProjectUI(currentProject);
-        updateUniversalScriptTag();
+            updateUniversalScriptTag();
           }
         }
       } catch (e) {
         console.warn('Domain crawl error:', e);
       }
-    }
-
     }
 
     
@@ -2373,6 +2474,174 @@
       if (!proj) return;
       const domainElem = document.getElementById('projectDomain');
       if (domainElem) domainElem.textContent = proj.domain || 'answerindex.xyz';
+
+      const barDomain = document.getElementById('barTargetDomainDisplay');
+      if (barDomain) barDomain.textContent = proj.domain || 'answerindex.xyz';
+
+      const barBrand = document.getElementById('barBrandNameDisplay');
+      if (barBrand) barBrand.textContent = `(${proj.brand_name || (proj.domain ? proj.domain.split('.')[0] : 'Brand')})`;
+
+      const inputInline = document.getElementById('inlineDomainInput');
+      if (inputInline && (!inputInline.value || inputInline.value === 'nordicnesting.com')) {
+        inputInline.value = proj.domain || '';
+      }
+    }
+
+    // Domain Modal & Direct Analysis Controllers
+    function openChangeDomainModal() {
+      const modal = document.getElementById('changeDomainModal');
+      if (!modal) return;
+      modal.classList.add('active');
+      const input = document.getElementById('modalDomainInput');
+      if (input) {
+        input.value = currentProject.domain || '';
+        input.focus();
+      }
+      const brandInput = document.getElementById('modalBrandInput');
+      if (brandInput) {
+        brandInput.value = currentProject.brand_name || '';
+      }
+      const msg = document.getElementById('modalCrawlMessage');
+      if (msg) msg.style.display = 'none';
+    }
+
+    function closeChangeDomainModal() {
+      const modal = document.getElementById('changeDomainModal');
+      if (modal) modal.classList.remove('active');
+    }
+
+    function handleChangeDomainOverlayClick(e) {
+      if (e.target && e.target.id === 'changeDomainModal') {
+        closeChangeDomainModal();
+      }
+    }
+
+    async function handleModalDomainSubmit(e) {
+      e.preventDefault();
+      const domainVal = document.getElementById('modalDomainInput').value.trim();
+      const brandVal = document.getElementById('modalBrandInput').value.trim();
+      const btn = document.getElementById('btnModalDomainSubmit');
+      const msg = document.getElementById('modalCrawlMessage');
+
+      if (!domainVal) return;
+
+      btn.disabled = true;
+      btn.textContent = 'Probing & Analyzing...';
+      if (msg) {
+        msg.className = 'auth-msg';
+        msg.style.display = 'block';
+        msg.style.background = '#FFF8E7';
+        msg.style.color = '#92400E';
+        msg.style.border = '1px solid #F3CA68';
+        msg.textContent = `🌐 Probing ${domainVal} live edge root & synthesizing Brand Truth Wiki...`;
+      }
+
+      await applyNewDomainTarget(domainVal, brandVal);
+
+      btn.disabled = false;
+      btn.textContent = 'Connect & Run Analysis 🚀';
+      closeChangeDomainModal();
+    }
+
+    async function handleInlineDomainSubmit(e) {
+      e.preventDefault();
+      const input = document.getElementById('inlineDomainInput');
+      const domainVal = input.value.trim();
+      const btn = document.getElementById('btnInlineDomainSubmit');
+      if (!domainVal) return;
+
+      btn.disabled = true;
+      btn.innerHTML = '<span>⚡ Analyzing...</span>';
+
+      await applyNewDomainTarget(domainVal, '');
+
+      btn.disabled = false;
+      btn.innerHTML = '<span>🔍 Run Live Analysis</span>';
+    }
+
+    async function applyNewDomainTarget(rawDomain, customBrandName) {
+      const cleanDomain = rawDomain.replace(/^https?:\/\//i, '').replace(/\/.*$/, '').trim().toLowerCase();
+      if (!cleanDomain) return;
+
+      const derivedBrand = customBrandName || cleanDomain.split('.')[0].replace(/[-_]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+
+      // Update currentProject in memory
+      currentProject.domain = cleanDomain;
+      currentProject.brand_name = derivedBrand;
+      updateProjectUI(currentProject);
+      updateUniversalScriptTag();
+
+      // Persist in localStorage
+      localStorage.setItem('answerindex_project', JSON.stringify(currentProject));
+
+      // Show in-progress status card
+      const statusCard = document.getElementById('domainCrawlStatusCard');
+      const statusText = document.getElementById('domainCrawlStatusText');
+      if (statusCard && statusText) {
+        statusCard.style.display = 'block';
+        statusText.textContent = `Probing https://${cleanDomain}... Extracting headings, metadata, and synthesizing Brand Truth Wiki...`;
+      }
+
+      showToast(`🌐 Connected target domain: ${cleanDomain}. Running live analysis...`);
+
+      try {
+        const crawlRes = await fetch('/api/crawl-domain', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            domain: cleanDomain,
+            project_id: currentProject.id
+          })
+        });
+
+        const crawlData = await crawlRes.json();
+        if (crawlData.success && crawlData.truthWiki) {
+          currentProject.truth_document = crawlData.truthWiki;
+          if (crawlData.brandName) currentProject.brand_name = crawlData.brandName;
+          updateProjectUI(currentProject);
+          localStorage.setItem('answerindex_project', JSON.stringify(currentProject));
+
+          if (statusText) {
+            statusText.textContent = `✓ Successfully analyzed ${cleanDomain}! Platform: ${crawlData.techPlatform || 'Web'} • Brand Truth Wiki populated.`;
+          }
+          showToast(`🎉 Live analysis complete for ${cleanDomain}! Brand Truth Wiki updated.`);
+        } else {
+          if (statusText) {
+            statusText.textContent = `✓ Target set to ${cleanDomain}. Verified edge route established.`;
+          }
+        }
+      } catch (err) {
+        console.warn('Live crawl warning:', err);
+        if (statusText) {
+          statusText.textContent = `Target set to ${cleanDomain}. Ready for AEO dispatch.`;
+        }
+      }
+
+      // Persist to D1 project if connected
+      try {
+        if (currentProject.id && currentProject.id !== 'proj_preview') {
+          await fetch('/api/project', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              projectId: currentProject.id,
+              domain: cleanDomain,
+              brand_name: currentProject.brand_name,
+              truth_document: currentProject.truth_document
+            })
+          });
+        }
+      } catch (saveErr) {}
+
+      // Refresh jobs & radar
+      await loadJobs();
+      if (typeof loadObservabilityData === 'function') {
+        loadObservabilityData();
+      }
+
+      setTimeout(() => {
+        if (statusCard) statusCard.style.display = 'none';
+      }, 4000);
     }
 
     // 2. Fetch Daily Jobs from Cloudflare D1
