@@ -41,10 +41,38 @@ export async function onRequestGet({ request, env }) {
 
     const { results } = await env.DB.prepare(query).bind(...bindings).all();
 
+    // Query recent Elmo Observability AI citation runs if table exists
+    let observabilityRuns = [];
+    try {
+      let obsQuery = `SELECT * FROM ai_citation_runs`;
+      const obsCond = [];
+      const obsBind = [];
+      if (projectId) { obsCond.push(`project_id = ?`); obsBind.push(projectId); }
+      if (engine) { obsCond.push(`engine = ?`); obsBind.push(engine); }
+      if (obsCond.length > 0) obsQuery += ` WHERE ` + obsCond.join(' AND ');
+      obsQuery += ` ORDER BY created_at DESC LIMIT ?`;
+      obsBind.push(limit);
+      const obsRes = await env.DB.prepare(obsQuery).bind(...obsBind).all();
+      observabilityRuns = obsRes.results || [];
+    } catch(e) {}
+
     // Calculate aggregated stats
     const total = results.length;
     const citedCount = results.filter(r => r.cited === 1).length;
     const citationRate = total > 0 ? ((citedCount / total) * 100).toFixed(1) + '%' : '0.0%';
+
+    // Calculate Elmo metrics (SOV, sentiment breakdown, average position)
+    let avgPosition = 0;
+    let avgSov = 0;
+    let positiveCount = 0;
+    if (observabilityRuns.length > 0) {
+      const rankedRuns = observabilityRuns.filter(r => r.brand_position > 0);
+      if (rankedRuns.length > 0) {
+        avgPosition = +(rankedRuns.reduce((acc, r) => acc + r.brand_position, 0) / rankedRuns.length).toFixed(1);
+      }
+      avgSov = +(observabilityRuns.reduce((acc, r) => acc + (r.share_of_voice_score || 0), 0) / observabilityRuns.length).toFixed(1);
+      positiveCount = observabilityRuns.filter(r => r.sentiment === 'positive').length;
+    }
 
     return new Response(
       JSON.stringify({
@@ -52,9 +80,16 @@ export async function onRequestGet({ request, env }) {
         stats: {
           total_benchmarks: total,
           cited_count: citedCount,
-          citation_rate: citationRate
+          citation_rate: citationRate,
+          elmo_metrics: {
+            total_runs: observabilityRuns.length,
+            average_position: avgPosition,
+            average_share_of_voice: avgSov + '%',
+            positive_sentiment_rate: observabilityRuns.length > 0 ? Math.round((positiveCount / observabilityRuns.length) * 100) + '%' : '0%'
+          }
         },
-        benchmarks: results
+        benchmarks: results,
+        observability_runs: observabilityRuns
       }),
       { status: 200, headers: CORS_HEADERS }
     );

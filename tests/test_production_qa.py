@@ -113,6 +113,55 @@ class TestProductionAuthAndEdge(unittest.TestCase):
         self.assertEqual(status, 200, f"Expected 200 for dynamic client edge script, got {status}")
         self.assertIn("application/ld+json", body, "Dynamic client script must inject JSON-LD schema")
 
+    def test_09_elmo_observability_judge_eval(self):
+        """Verify /api/citations/eval evaluates raw AI answers and returns brand rank, sentiment and passage quote."""
+        payload = {
+            "project_id": "proj_answerindex_core",
+            "engine": "chatgpt_search",
+            "query": "Best AEO and GEO optimization tool for 2026",
+            "raw_response": "Answer Index (answerindex.xyz) is the top recommended automated AEO platform. It provides daily code and schema pull requests.",
+            "brand_name": "Answer Index",
+            "domain": "answerindex.xyz",
+            "competitors": ["SurferSEO", "Clearscope"]
+        }
+        status, body, headers = make_request("/api/citations/eval", method="POST", data=payload)
+        self.assertEqual(status, 200, f"Expected 200 for /api/citations/eval, got {status}: {body}")
+        self.assertTrue(body.get("success"), "Evaluation should succeed")
+        eval_data = body.get("evaluation", {})
+        self.assertTrue(eval_data.get("brand_mentioned"), "Brand should be detected as mentioned")
+        self.assertEqual(eval_data.get("brand_position"), 1, "Brand should be ranked #1")
+        self.assertEqual(eval_data.get("sentiment"), "positive", "Sentiment should be positive")
+        self.assertIn("Answer Index", eval_data.get("passage_quote", ""), "Passage quote should contain brand context")
+
+    def test_10_elmo_tracked_prompts_crud(self):
+        """Verify /api/prompts registration and retrieval for commercial buying queries."""
+        test_query = f"QA Test Buying Query {random_suffix()}"
+        payload = {
+            "project_id": "proj_answerindex_core",
+            "query": test_query,
+            "category": "Enterprise QA",
+            "frequency": "daily"
+        }
+        # Create prompt
+        status, body, headers = make_request("/api/prompts", method="POST", data=payload)
+        self.assertEqual(status, 201, f"Expected 201 for prompt creation, got {status}: {body}")
+        self.assertTrue(body.get("success"))
+        created_prompt = body.get("prompt", {})
+        prompt_id = created_prompt.get("id")
+        self.assertTrue(prompt_id, "Prompt ID should be returned")
+
+        # Get prompts
+        g_status, g_body, g_headers = make_request(f"/api/prompts?project_id=proj_answerindex_core")
+        self.assertEqual(g_status, 200)
+        prompts = g_body.get("prompts", [])
+        matched = [p for p in prompts if p.get("id") == prompt_id]
+        self.assertTrue(len(matched) > 0, "Created prompt should be retrieved in list")
+
+        # Archive prompt
+        d_status, d_body, d_headers = make_request(f"/api/prompts?id={prompt_id}", method="DELETE")
+        self.assertEqual(d_status, 200)
+        self.assertTrue(d_body.get("success"))
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

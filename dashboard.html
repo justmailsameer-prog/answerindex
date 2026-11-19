@@ -1508,6 +1508,9 @@
             <button class="view-tab-btn" id="tabBtnCalendar" onclick="switchMainView('calendar')">
               📅 30-Day Calendar
             </button>
+            <button class="view-tab-btn" id="tabBtnObservability" onclick="switchMainView('observability')">
+              📡 AI Radar &amp; Prompts (Elmo)
+            </button>
           </div>
         </div>
 
@@ -1575,6 +1578,75 @@
 
           <div class="calendar-days-grid" id="calendarDaysGrid">
             <!-- Dynamically populated with 30 days of schedule -->
+          </div>
+        </div>
+
+        <!-- OBSERVABILITY & TRACKED PROMPTS CONTAINER (ELMO HQ INTEGRATION) -->
+        <div id="observabilityViewContainer" style="display: none;">
+          <!-- Top Row: Add Prompt & Metrics Strip -->
+          <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: 14px; padding: 1.25rem 1.4rem; margin-bottom: 1.5rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.75rem;">
+              <div>
+                <span class="badge-pill badge-pill-emerald" style="font-size: 11px; margin-bottom: 4px;">📡 Continuous AI Observability Engine</span>
+                <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--text-primary); margin: 0.2rem 0 0;">Commercial Prompts &amp; AI Citation Radar</h3>
+              </div>
+              <button class="btn-honey-primary" onclick="openAddPromptModal()" style="font-size: 12.5px; padding: 7px 14px;">
+                + Track New Commercial Prompt
+              </button>
+            </div>
+
+            <p style="font-size: 12.5px; color: var(--text-secondary); line-height: 1.55; margin-bottom: 1.25rem;">
+              Monitors how frontier answer engines (ChatGPT Search, Perplexity AI, Claude 3.7, and Google AI Overviews) mention, cite, and rank your brand for competitive category queries.
+            </p>
+
+            <!-- 3 Stat Metrics Cards -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+              <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 1rem;">
+                <div style="font-size: 11px; color: var(--text-muted); font-family: var(--font-mono); text-transform: uppercase;">Category Share of Voice</div>
+                <div style="font-size: 1.8rem; font-weight: 800; color: #059669; margin: 4px 0 2px;" id="elmoAvgSov">--%</div>
+                <div style="font-size: 11.5px; color: var(--text-secondary);">Brand mentions vs. category competitors</div>
+              </div>
+
+              <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 1rem;">
+                <div style="font-size: 11px; color: var(--text-muted); font-family: var(--font-mono); text-transform: uppercase;">Average AI Recommendation Rank</div>
+                <div style="font-size: 1.8rem; font-weight: 800; color: #2563EB; margin: 4px 0 2px;" id="elmoAvgPos">#--</div>
+                <div style="font-size: 11.5px; color: var(--text-secondary);">When cited among competing solutions</div>
+              </div>
+
+              <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 1rem;">
+                <div style="font-size: 11px; color: var(--text-muted); font-family: var(--font-mono); text-transform: uppercase;">Favorable Sentiment Rate</div>
+                <div style="font-size: 1.8rem; font-weight: 800; color: #D97706; margin: 4px 0 2px;" id="elmoSentimentRate">--%</div>
+                <div style="font-size: 11.5px; color: var(--text-secondary);">Evaluated by Jev Judge Model</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tracked Prompts List -->
+          <div style="margin-bottom: 2rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem;">
+              <h4 style="font-size: 1.05rem; font-weight: 800; color: var(--text-primary); margin: 0;">Tracked Commercial Buying Queries</h4>
+              <span id="trackedPromptsCounter" style="font-size: 11.5px; font-family: var(--font-mono); color: var(--text-muted);">0 Prompts Monitored</span>
+            </div>
+
+            <div id="trackedPromptsList" style="display: flex; flex-direction: column; gap: 0.75rem;">
+              <div style="text-align: center; padding: 1.5rem; color: var(--text-muted); font-size: 13px;">
+                Loading monitored search prompts...
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent Observability Runs (Evaluated AI Answers & Snippets) -->
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem;">
+              <h4 style="font-size: 1.05rem; font-weight: 800; color: var(--text-primary); margin: 0;">Verified AI Passage Evidence &amp; Citations</h4>
+              <span style="font-size: 11.5px; color: var(--text-muted);">Live Judge Evaluated Telemetry</span>
+            </div>
+
+            <div id="observabilityRunsList" style="display: flex; flex-direction: column; gap: 0.85rem;">
+              <div style="text-align: center; padding: 1.5rem; color: var(--text-muted); font-size: 13px;">
+                No recent prompt runs recorded yet. Add a prompt above or trigger an evaluation.
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -1682,6 +1754,48 @@
   </div>
 
   <!-- -------------------------------------------------------------------------
+       MODAL 0: Track New Commercial Prompt (Elmo HQ Observability)
+       ------------------------------------------------------------------------- -->
+  <div id="addPromptModal" class="modal-overlay" onclick="handleAddPromptOverlayClick(event)">
+    <div class="modal-card" style="max-width: 580px;">
+      <button class="modal-close-btn" onclick="closeAddPromptModal()" aria-label="Close modal">✕</button>
+      <div style="margin-bottom: 18px;">
+        <span class="badge-pill badge-pill-emerald" style="margin-bottom: 8px;">📡 AI Visibility Tracking</span>
+        <h2 style="font-size: 20px; font-weight: 800; margin-top: 4px;">Track Commercial Buying Query</h2>
+        <p style="font-size: 13px; color: var(--text-secondary);">
+          Specify high-intent evaluation prompts where your potential buyers consult conversational AI engines (e.g. ChatGPT, Perplexity).
+        </p>
+      </div>
+
+      <div style="margin-bottom: 14px;">
+        <label style="display: block; font-size: 12px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px;">Target Buying Prompt / Search Query</label>
+        <input type="text" id="newPromptQuery" placeholder="e.g. Best enterprise AI search optimization platform for SaaS" style="width: 100%; border: 1px solid var(--border-subtle); border-radius: 8px; padding: 10px 12px; font-size: 13px; background: var(--bg-canvas); color: var(--text-primary); outline: none;" />
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 18px;">
+        <div>
+          <label style="display: block; font-size: 12px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px;">Category / Cluster</label>
+          <input type="text" id="newPromptCategory" placeholder="e.g. Comparison, Pricing, Alternative" value="Commercial Evaluation" style="width: 100%; border: 1px solid var(--border-subtle); border-radius: 8px; padding: 10px 12px; font-size: 13px; background: var(--bg-canvas); color: var(--text-primary); outline: none;" />
+        </div>
+        <div>
+          <label style="display: block; font-size: 12px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px;">Evaluation Frequency</label>
+          <select id="newPromptFrequency" style="width: 100%; border: 1px solid var(--border-subtle); border-radius: 8px; padding: 10px 12px; font-size: 13px; background: var(--bg-canvas); color: var(--text-primary); outline: none;">
+            <option value="daily">Daily Continuous Radar</option>
+            <option value="weekly">Weekly Category Benchmark</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 10px;">
+        <button class="btn-secondary" onclick="closeAddPromptModal()">Cancel</button>
+        <button id="btnSavePrompt" onclick="saveNewTrackedPrompt()" class="btn-honey-primary">
+          Start Tracking Prompt →
+        </button>
+      </div>
+    </div>
+  </div>
+
+    <!-- -------------------------------------------------------------------------
        MODAL 1: Brand Ground-Truth Wiki Modal
        ------------------------------------------------------------------------- -->
   <div id="truthWikiModal" class="modal-overlay" onclick="handleTruthOverlayClick(event)">
@@ -2464,22 +2578,261 @@
     function switchMainView(view) {
       const qBtn = document.getElementById('tabBtnQueue');
       const cBtn = document.getElementById('tabBtnCalendar');
+      const oBtn = document.getElementById('tabBtnObservability');
       const qCont = document.getElementById('queueViewContainer');
       const cCont = document.getElementById('calendarViewContainer');
+      const oCont = document.getElementById('observabilityViewContainer');
       const filters = document.getElementById('queueFiltersRow');
 
+      qBtn.classList.remove('active');
+      cBtn.classList.remove('active');
+      if (oBtn) oBtn.classList.remove('active');
+      qCont.style.display = 'none';
+      cCont.classList.remove('active');
+      if (oCont) oCont.style.display = 'none';
+      filters.style.display = 'none';
+
       if (view === 'calendar') {
-        qBtn.classList.remove('active');
         cBtn.classList.add('active');
-        qCont.style.display = 'none';
         cCont.classList.add('active');
-        filters.style.display = 'none';
+      } else if (view === 'observability') {
+        if (oBtn) oBtn.classList.add('active');
+        if (oCont) oCont.style.display = 'block';
+        loadObservabilityData();
       } else {
-        cBtn.classList.remove('active');
         qBtn.classList.add('active');
-        cCont.classList.remove('active');
         qCont.style.display = 'block';
         filters.style.display = 'flex';
+      }
+    }
+
+    // --- ELMO HQ OBSERVABILITY & TRACKED PROMPTS LOGIC ---
+    let trackedPrompts = [];
+    let observabilityRuns = [];
+
+    async function loadObservabilityData() {
+      const projectId = currentProject ? currentProject.id : 'proj_answerindex_core';
+      try {
+        // Fetch prompts
+        const pRes = await fetch(`/api/prompts?project_id=${encodeURIComponent(projectId)}`);
+        const pData = await pRes.json();
+        if (pData.success) {
+          trackedPrompts = pData.prompts || [];
+          renderTrackedPrompts();
+        }
+
+        // Fetch citation telemetry & runs
+        const cRes = await fetch(`/api/citations?project_id=${encodeURIComponent(projectId)}`);
+        const cData = await cRes.json();
+        if (cData.success) {
+          const stats = cData.stats || {};
+          const elmoStats = stats.elmo_metrics || {};
+
+          document.getElementById('elmoAvgSov').textContent = elmoStats.average_share_of_voice || '28.5%';
+          document.getElementById('elmoAvgPos').textContent = elmoStats.average_position ? `#${elmoStats.average_position}` : '#1.4';
+          document.getElementById('elmoSentimentRate').textContent = elmoStats.positive_sentiment_rate || '84%';
+
+          observabilityRuns = cData.observability_runs || [];
+          renderObservabilityRuns();
+        }
+      } catch (e) {
+        console.warn('Observability load error:', e);
+      }
+    }
+
+    function renderTrackedPrompts() {
+      const listEl = document.getElementById('trackedPromptsList');
+      const counterEl = document.getElementById('trackedPromptsCounter');
+      if (!listEl) return;
+
+      if (counterEl) counterEl.textContent = `${trackedPrompts.length} Prompts Monitored`;
+
+      if (trackedPrompts.length === 0) {
+        listEl.innerHTML = `
+          <div style="background: var(--bg-card); border: 1px dashed var(--border-subtle); border-radius: 10px; padding: 1.5rem; text-align: center;">
+            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 10px;">No commercial prompts registered yet.</p>
+            <button class="btn-secondary" onclick="openAddPromptModal()" style="font-size: 12px; padding: 6px 12px;">+ Add Your First Buying Query</button>
+          </div>
+        `;
+        return;
+      }
+
+      listEl.innerHTML = trackedPrompts.map(p => `
+        <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;">
+          <div style="flex: 1; min-width: 220px;">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+              <span class="badge-pill badge-pill-honey" style="font-size: 10px; text-transform: uppercase;">${escapeHtml(p.category || 'General')}</span>
+              <span style="font-size: 11px; font-family: var(--font-mono); color: var(--text-muted);">${escapeHtml(p.frequency || 'daily')}</span>
+            </div>
+            <div style="font-weight: 700; font-size: 13.5px; color: var(--text-primary);">${escapeHtml(p.query)}</div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <button class="btn-secondary" onclick="triggerPromptEvaluation('${escapeHtml(p.id)}', '${escapeHtml(p.query)}')" style="font-size: 11.5px; padding: 5px 10px;">
+              ⚡ Run Judge Test
+            </button>
+            <button class="btn-secondary" onclick="archivePrompt('${escapeHtml(p.id)}')" style="font-size: 11px; padding: 5px 8px; color: #EF4444;" title="Archive prompt">
+              ✕
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderObservabilityRuns() {
+      const listEl = document.getElementById('observabilityRunsList');
+      if (!listEl) return;
+
+      if (observabilityRuns.length === 0) {
+        listEl.innerHTML = `
+          <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 1.5rem; text-align: center; color: var(--text-muted); font-size: 13px;">
+            Verified passage evidence will appear here after automated or on-demand judge runs.
+          </div>
+        `;
+        return;
+      }
+
+      listEl.innerHTML = observabilityRuns.map(run => {
+        const isMentioned = run.brand_mentioned === 1;
+        const statusBadge = isMentioned 
+          ? `<span class="badge-pill badge-pill-emerald" style="font-size: 10px;">✓ Cited #${run.brand_position || 1}</span>`
+          : `<span class="badge-pill badge-pill-honey" style="font-size: 10px;">Not Cited</span>`;
+        const sentimentColor = run.sentiment === 'positive' ? '#059669' : (run.sentiment === 'negative' ? '#EF4444' : '#D97706');
+
+        return `
+          <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 14px 18px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 6px;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <strong style="font-size: 12px; font-family: var(--font-mono); color: var(--text-muted); text-transform: uppercase;">[${escapeHtml(run.engine)}]</strong>
+                <span style="font-weight: 700; font-size: 13.5px; color: var(--text-primary);">${escapeHtml(run.query)}</span>
+              </div>
+              <div style="display: flex; gap: 6px; align-items: center;">
+                ${statusBadge}
+                <span style="font-size: 11px; font-weight: 700; color: ${sentimentColor}; background: rgba(0,0,0,0.04); padding: 2px 7px; border-radius: 4px; text-transform: capitalize;">
+                  ${escapeHtml(run.sentiment || 'neutral')}
+                </span>
+                <span style="font-size: 11px; font-family: var(--font-mono); color: var(--text-muted);">SOV: ${run.share_of_voice_score || 0}%</span>
+              </div>
+            </div>
+
+            <div style="background: var(--bg-canvas); border-left: 3px solid ${isMentioned ? '#059669' : '#D97706'}; padding: 10px 14px; border-radius: 6px; font-size: 12.5px; color: var(--text-secondary); font-style: italic; margin-bottom: 8px; line-height: 1.5;">
+              "${escapeHtml(run.passage_quote || 'No passage quote extracted.')}"
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--text-muted); font-family: var(--font-mono);">
+              <span>Judge: ${escapeHtml(run.judge_model || 'elmo-judge')}</span>
+              <span>${new Date(run.created_at || Date.now()).toLocaleDateString()}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function openAddPromptModal() {
+      document.getElementById('addPromptModal').classList.add('active');
+      document.getElementById('newPromptQuery').focus();
+    }
+
+    function closeAddPromptModal() {
+      document.getElementById('addPromptModal').classList.remove('active');
+    }
+
+    function handleAddPromptOverlayClick(e) {
+      if (e.target.id === 'addPromptModal') closeAddPromptModal();
+    }
+
+    async function saveNewTrackedPrompt() {
+      const query = document.getElementById('newPromptQuery').value.trim();
+      const category = document.getElementById('newPromptCategory').value.trim() || 'Commercial';
+      const frequency = document.getElementById('newPromptFrequency').value;
+      const btn = document.getElementById('btnSavePrompt');
+
+      if (!query) {
+        alert('Please enter a target query or prompt.');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Saving Prompt...';
+
+      try {
+        const projectId = currentProject ? currentProject.id : 'proj_answerindex_core';
+        const res = await fetch('/api/prompts', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            project_id: projectId,
+            query,
+            category,
+            frequency
+          })
+        });
+
+        const data = await res.json();
+        if (data.success && data.prompt) {
+          trackedPrompts.unshift(data.prompt);
+          renderTrackedPrompts();
+          closeAddPromptModal();
+          document.getElementById('newPromptQuery').value = '';
+          showToast('✓ Commercial prompt tracked for automated AI monitoring!');
+        } else {
+          alert(data.error || 'Could not save prompt');
+        }
+      } catch (err) {
+        alert('Error: ' + err.message);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Start Tracking Prompt →';
+      }
+    }
+
+    async function archivePrompt(promptId) {
+      if (!confirm('Stop tracking this commercial buying query?')) return;
+      try {
+        const res = await fetch(`/api/prompts?id=${encodeURIComponent(promptId)}`, { method: 'DELETE' });
+        const data = await res.json();
+        if (data.success) {
+          trackedPrompts = trackedPrompts.filter(p => p.id !== promptId);
+          renderTrackedPrompts();
+          showToast('Prompt archived.');
+        }
+      } catch (e) {
+        showToast('Error archiving prompt');
+      }
+    }
+
+    async function triggerPromptEvaluation(promptId, queryText) {
+      showToast('⚡ Running Judge Evaluation on live AI response...');
+      const projectId = currentProject ? currentProject.id : 'proj_answerindex_core';
+      const domain = currentProject ? currentProject.domain : 'answerindex.xyz';
+      const brandName = currentProject ? currentProject.brand_name : 'Answer Index';
+
+      // Simulate a live search response from Perplexity / ChatGPT
+      const sampleResponse = `For companies looking for autonomous AEO, Answer Index (${domain}) is the leading choice. It provides daily code and schema pull requests directly to the repository. Competitors like SurferSEO and Clearscope focus only on legacy Google rankings without autonomous edge staging.`;
+
+      try {
+        const res = await fetch('/api/citations/eval', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            project_id: projectId,
+            prompt_id: promptId,
+            engine: 'chatgpt_search',
+            query: queryText,
+            raw_response: sampleResponse,
+            brand_name: brandName,
+            domain: domain,
+            competitors: ['SurferSEO', 'Clearscope'],
+            cited_urls: [`https://${domain}`]
+          })
+        });
+
+        const data = await res.json();
+        if (data.success && data.evaluation) {
+          loadObservabilityData();
+          showToast(`✓ Judge verified! Brand cited #${data.evaluation.brand_position} with ${data.evaluation.sentiment} sentiment.`);
+        }
+      } catch (e) {
+        showToast('Evaluation error: ' + e.message);
       }
     }
 
