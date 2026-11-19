@@ -2626,7 +2626,7 @@
         const cData = await cRes.json();
         if (cData.success) {
           const stats = cData.stats || {};
-          const aiStats = stats.ai_radar_metrics || stats.elmo_metrics || {};
+          const aiStats = stats.ai_radar_metrics || {};
 
           document.getElementById('aiRadarAvgSov').textContent = aiStats.average_share_of_voice || '28.5%';
           document.getElementById('aiRadarAvgPos').textContent = aiStats.average_position ? `#${aiStats.average_position}` : '#1.4';
