@@ -2354,18 +2354,26 @@
           if (data.success && data.project) {
             currentProject = data.project;
           }
-        } else {
-          // Read local stored project
-          const storedProj = localStorage.getItem('answerindex_project');
-          if (storedProj) {
-            try {
-              const p = JSON.parse(storedProj);
-              if (p && p.domain) currentProject = Object.assign(currentProject, p);
-            } catch (e) {}
-          }
+        }
+        // Always allow saved local project domain to override default demo state if user customized it
+        const storedProj = localStorage.getItem('answerindex_project');
+        if (storedProj) {
+          try {
+            const p = JSON.parse(storedProj);
+            if (p && p.domain && p.domain !== 'nordicnesting.com') {
+              currentProject = Object.assign(currentProject, p);
+            }
+          } catch (e) {}
         }
       } catch (err) {
         console.warn('Could not load project metadata from API:', err);
+        const storedProj = localStorage.getItem('answerindex_project');
+        if (storedProj) {
+          try {
+            const p = JSON.parse(storedProj);
+            if (p && p.domain) currentProject = Object.assign(currentProject, p);
+          } catch (e) {}
+        }
       } finally {
         updateProjectUI(currentProject);
         updateUniversalScriptTag();
