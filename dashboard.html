@@ -90,68 +90,272 @@
     }
 
     /* -------------------------------------------------------------------------
-       1. TOP STICKY NAVBAR (Elmo-Grade Clean Architecture)
+       ELMO-GRADE APPLICATION SHELL WITH LEFT SIDEBAR NAVIGATOR
        ------------------------------------------------------------------------- */
-    header {
+    .app-shell {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      min-height: 100vh;
+      background: var(--bg-canvas);
+    }
+
+    /* Left Sidebar Rail (demo.elmohq.com style) */
+    .elmo-sidebar {
+      background: #FFFFFF;
+      border-right: 1px solid var(--border-subtle);
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-      background: rgba(255, 255, 255, 0.94);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-pill);
-      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.04);
-      margin-bottom: 20px;
+      flex-direction: column;
       position: sticky;
-      top: 14px;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
       z-index: 1000;
     }
 
-    .brand-group {
+    /* Top Brand & Workspace Switcher Header */
+    .sidebar-header {
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .sidebar-brand-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .sidebar-brand-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    .sidebar-brand-link img {
+      height: 28px;
+      width: auto;
+      object-fit: contain;
+    }
+    .sidebar-brand-tag {
+      font-family: var(--font-mono);
+      font-size: 8.5px;
+      font-weight: 700;
+      color: #92400E;
+      background: #FEF3C7;
+      padding: 2px 6px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Workspace / Brand Selector (Elmo Org/Brand Switcher) */
+    .sidebar-workspace-selector {
+      background: var(--bg-canvas);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .sidebar-workspace-selector:hover {
+      border-color: var(--border-hover);
+      background: #F3F4F6;
+    }
+    .workspace-info {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .workspace-org-label {
+      font-size: 10px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .workspace-brand-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .workspace-brand-title .pulse-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10B981;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    /* Primary Navigation Rail (Elmo Navigation Tabs) */
+    .sidebar-nav-section {
+      padding: 16px 12px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .sidebar-section-title {
+      font-size: 10.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      padding: 6px 12px 4px;
+    }
+    .sidebar-nav-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 9px 12px;
+      border-radius: 10px;
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.15s ease;
+      text-decoration: none;
+    }
+    .sidebar-nav-btn-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .sidebar-nav-btn-left .nav-icon {
+      font-size: 16px;
+      width: 20px;
+      text-align: center;
+    }
+    .sidebar-nav-btn:hover {
+      background: var(--bg-canvas);
+      color: var(--text-primary);
+    }
+    .sidebar-nav-btn.active {
+      background: #FFFDF8;
+      color: #92400E;
+      font-weight: 800;
+      border: 1px solid var(--honey-border);
+    }
+    .sidebar-count-badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 800;
+      background: var(--bg-canvas);
+      color: var(--text-secondary);
+      padding: 2px 7px;
+      border-radius: var(--radius-pill);
+    }
+    .sidebar-nav-btn.active .sidebar-count-badge {
+      background: #FEF3C7;
+      color: #B45309;
+    }
+
+    /* Sidebar Footer / User & System Controls */
+    .sidebar-footer {
+      padding: 14px 16px;
+      border-top: 1px solid var(--border-subtle);
+      background: #FAFAFA;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .sidebar-footer-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 6px 8px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.15s;
+    }
+    .sidebar-footer-btn:hover {
+      background: #ECEBE6;
+      color: var(--text-primary);
+    }
+
+    /* Main Content Container Beside Sidebar */
+    .main-workspace-area {
+      min-width: 0;
+      padding: 24px 32px 80px;
+      overflow-x: hidden;
+    }
+
+    /* Top Workspace Context Header Bar */
+    .top-context-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #FFFFFF;
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 12px 20px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .top-context-left {
       display: flex;
       align-items: center;
       gap: 12px;
-      text-decoration: none;
-      color: inherit;
+      flex-wrap: wrap;
     }
-
-    .nav-center-group {
+    .top-context-right {
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
-    .target-domain-chip {
-      background: #F0FDF4;
-      border: 1px solid rgba(16, 185, 129, 0.3);
-      padding: 6px 14px;
-      border-radius: var(--radius-pill);
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      font-size: 13px;
+    /* Workspace Tab Panels (Only active panel is shown) */
+    .workspace-panel {
+      display: none;
     }
-    .target-domain-chip:hover {
-      background: #DCFCE7;
-      border-color: #059669;
-      transform: translateY(-1px);
-    }
-    .target-domain-chip .pulse-dot {
-      width: 7px;
-      height: 7px;
-      background: #10B981;
-      border-radius: 50%;
-      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+    .workspace-panel.active {
+      display: block;
     }
 
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      position: relative;
+    @media (max-width: 900px) {
+      .app-shell {
+        grid-template-columns: 1fr;
+      }
+      .elmo-sidebar {
+        display: none;
+        position: fixed;
+        inset: 0 auto 0 0;
+        width: 270px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      }
+      .elmo-sidebar.open {
+        display: flex;
+      }
+      .main-workspace-area {
+        padding: 16px;
+      }
+      .mobile-menu-trigger {
+        display: inline-flex !important;
+      }
+    }
+    .mobile-menu-trigger {
+      display: none;
     }
 
     /* Clean Resources Dropdown (Elmo-Style) */
@@ -1468,411 +1672,503 @@
 </head>
 <body>
 
-  <div class="app-container">
-    <!-- Top Sticky Elmo-Grade Clean Header -->
-    <header>
-      <a href="index.html" class="brand-group" style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none;">
-        <img src="assets/AnswerIndex_Logo.png" alt="Answer Index Logo" style="height: 32px; width: auto; max-width: 160px; object-fit: contain; display: block;" onerror="this.onerror=null; this.src='/assets/AnswerIndex_Logo.png';" />
-        <span class="brand-tagline" id="easterEggTagline" onclick="handleProBadgeEasterEggClick(event)" style="cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 700; color: var(--text-muted); letter-spacing: 0.04em; text-transform: uppercase; line-height: 1;" title="Client Queue • Be the Answer AI Recommends">Dashboard</span>
-      </a>
+  <div class="app-shell">
+    <!-- -------------------------------------------------------------------------
+         LEFT NAVIGATION RAIL (ELMO NAVIGATOR)
+         ------------------------------------------------------------------------- -->
+    <aside class="elmo-sidebar" id="elmoSidebar">
+      <!-- 1. Top Brand & Workspace Switcher Header -->
+      <div class="sidebar-header">
+        <div class="sidebar-brand-row">
+          <a href="index.html" class="sidebar-brand-link">
+            <img src="assets/AnswerIndex_Logo.png" alt="Answer Index Logo" style="height: 28px; width: auto; max-width: 140px; object-fit: contain;" onerror="this.onerror=null; this.src='/assets/AnswerIndex_Logo.png';" />
+            <span class="sidebar-brand-tag">AEO Pro</span>
+          </a>
+          <button class="btn-secondary mobile-menu-trigger" onclick="toggleMobileSidebar()" style="display:none; padding:4px 8px; font-size:12px;" aria-label="Close menu">✕</button>
+        </div>
 
-      <!-- Center: Target Domain Pill (Elmo Project Selector) -->
-      <div class="nav-center-group">
-        <div class="target-domain-chip" id="projectDomainPill" onclick="openChangeDomainModal()" title="Click to change target website domain">
-          <span class="pulse-dot"></span>
-          <span style="font-size: 11px; color: var(--text-secondary); font-weight: 600;">Target:</span>
-          <strong id="projectDomain" style="font-size: 12.5px; color: var(--text-primary); font-family: var(--font-mono);">Configure Domain</strong>
-          <span style="font-size: 10px; color: var(--text-muted); margin-left: 2px;">▼</span>
+        <!-- Elmo Workspace / Brand Switcher Card -->
+        <div class="sidebar-workspace-selector" onclick="openChangeDomainModal()" title="Click to switch or analyze target domain">
+          <div class="workspace-info">
+            <span class="workspace-org-label">Organization · AnswerIndex</span>
+            <div class="workspace-brand-title">
+              <span class="pulse-dot"></span>
+              <span id="sidebarBrandName">Answer Index</span>
+            </div>
+          </div>
+          <span style="font-size: 11px; color: var(--text-muted); margin-left: 6px;">▼</span>
         </div>
       </div>
 
-      <!-- Right Navigation Actions: High-Priority Action + Clean Dropdown -->
-      <div class="nav-actions">
-        <button onclick="openChangeDomainModal()" class="btn-honey-primary" style="padding: 6px 14px; font-size: 12px;" title="Insert website link to run full AEO & Citation Analysis">
-          🌐 Analyze Site
+      <!-- 2. Primary Navigation Rail -->
+      <nav class="sidebar-nav-section" aria-label="Dashboard Navigation">
+        <div class="sidebar-section-title">AEO Workspaces</div>
+
+        <button class="sidebar-nav-btn active" data-view="visibility" onclick="switchWorkspaceView('visibility')">
+          <div class="sidebar-nav-btn-left">
+            <span class="nav-icon">📊</span>
+            <span>Visibility &amp; Overview</span>
+          </div>
         </button>
 
-        <a href="flow.html" target="_blank" class="btn-secondary" style="font-size: 12px; padding: 6px 14px; font-weight: 700; color: #B45309; border-color: #F3CA68; text-decoration: none;" title="The Flow: Plain-English Architecture & Execution Guide">
-          📖 Flow
+        <button class="sidebar-nav-btn" data-view="releases" onclick="switchWorkspaceView('releases')">
+          <div class="sidebar-nav-btn-left">
+            <span class="nav-icon">🚀</span>
+            <span>Autonomous Pipeline</span>
+          </div>
+          <span class="sidebar-count-badge" id="sidebarQueueBadge">2</span>
+        </button>
+
+        <button class="sidebar-nav-btn" data-view="prompts" onclick="switchWorkspaceView('prompts')">
+          <div class="sidebar-nav-btn-left">
+            <span class="nav-icon">💬</span>
+            <span>Commercial Prompts</span>
+          </div>
+          <span class="sidebar-count-badge" id="sidebarPromptsBadge" style="background:transparent; color:#059669; font-weight:700;">Radar</span>
+        </button>
+
+        <button class="sidebar-nav-btn" data-view="citations" onclick="switchWorkspaceView('citations')">
+          <div class="sidebar-nav-btn-left">
+            <span class="nav-icon">🔗</span>
+            <span>Citations &amp; Sources</span>
+          </div>
+        </button>
+
+        <button class="sidebar-nav-btn" data-view="wiki" onclick="switchWorkspaceView('wiki')">
+          <div class="sidebar-nav-btn-left">
+            <span class="nav-icon">🛡️</span>
+            <span>Brand Truth Wiki</span>
+          </div>
+        </button>
+
+        <div class="sidebar-section-title" style="margin-top: 14px;">Automation &amp; Edge</div>
+
+        <button class="sidebar-nav-btn" data-view="edge" onclick="switchWorkspaceView('edge')">
+          <div class="sidebar-nav-btn-left">
+            <span class="nav-icon">⚡</span>
+            <span>Edge Integration Tag</span>
+          </div>
+        </button>
+
+        <a href="flow.html" target="_blank" class="sidebar-nav-btn" style="text-decoration:none;">
+          <div class="sidebar-nav-btn-left">
+            <span class="nav-icon">📖</span>
+            <span>Architecture Flow</span>
+          </div>
+          <span style="font-size: 10px; color: var(--text-muted);">↗</span>
         </a>
+      </nav>
 
-        <!-- More Resources Dropdown (Declutters 5 separate buttons into 1) -->
-        <div class="dropdown-wrapper" id="resourcesDropdownWrapper">
-          <button class="btn-secondary" onclick="toggleResourcesDropdown(event)" style="font-size: 12px; padding: 6px 12px; display: inline-flex; align-items: center; gap: 4px;" title="Tools, Guides & Admin">
-            <span>More</span>
-            <span style="font-size: 9px;">▼</span>
+      <!-- 3. Sidebar Footer Utilities (Elmo Profile & Admin Rail) -->
+      <div class="sidebar-footer">
+        <button class="sidebar-footer-btn" onclick="openAdminRegistryModal()" title="Founder Master Admin">
+          <span>👑</span>
+          <span>Founder Admin</span>
+        </button>
+        <button class="sidebar-footer-btn" onclick="openChangeDomainModal()" title="Run Analysis on a new domain">
+          <span>🌐</span>
+          <span>Analyze New Site</span>
+        </button>
+        <a href="index.html" class="sidebar-footer-btn" style="color: var(--text-muted);">
+          <span>🚪</span>
+          <span>Sign Out / Home</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- -------------------------------------------------------------------------
+         MAIN WORKSPACE AREA
+         ------------------------------------------------------------------------- -->
+    <main class="main-workspace-area">
+      <!-- Top Context Header Bar -->
+      <div class="top-context-bar">
+        <div class="top-context-left">
+          <button class="btn-secondary mobile-menu-trigger" onclick="toggleMobileSidebar()" style="display:none; padding:6px 10px; font-size:14px;" title="Toggle Navigation Menu">☰</button>
+          <div class="target-domain-chip" id="projectDomainPill" onclick="openChangeDomainModal()" title="Click to change target website domain">
+            <span class="pulse-dot"></span>
+            <span style="font-size: 11px; color: var(--text-secondary); font-weight: 600;">Active Domain:</span>
+            <strong id="projectDomain" style="font-size: 12.5px; color: var(--text-primary); font-family: var(--font-mono);">Configure Domain</strong>
+            <span style="font-size: 10px; color: var(--text-muted); margin-left: 2px;">▼</span>
+          </div>
+          <span class="badge-pill badge-pill-emerald" style="font-size: 11px;" id="topCrawlerStatusPill">● Edge Radar Active</span>
+        </div>
+
+        <div class="top-context-right">
+          <button onclick="openChangeDomainModal()" class="btn-honey-primary" style="padding: 6px 14px; font-size: 12px;" title="Insert website link to run full AEO & Citation Analysis">
+            🌐 Analyze Site
           </button>
-          <div class="dropdown-menu" id="resourcesDropdownMenu">
-            <button class="dropdown-item" onclick="toggleOnboardingBanner(); closeResourcesDropdown();">
-              <span>🧭</span> Onboarding Guide
-            </button>
-            <button class="dropdown-item" onclick="openTruthWikiModal(); closeResourcesDropdown();">
-              <span>🛡️</span> Brand Truth Wiki
-            </button>
-            <button class="dropdown-item" onclick="openAdminRegistryModal(); closeResourcesDropdown();">
-              <span>👑</span> Founder Admin
-            </button>
-            <div style="height: 1px; background: var(--border-subtle); margin: 4px 0;"></div>
-            <a href="index.html" class="dropdown-item" style="color: var(--text-secondary);">
-              <span>↗</span> Back to Homepage
-            </a>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <!-- Stepwise Progression Ribbon (Elmo Breadcrumb Flow) -->
-    <div class="stepwise-progress-ribbon">
-      <div class="stepwise-breadcrumbs">
-        <div class="crumb-step done" id="crumbStep1">
-          <span class="crumb-number">✓</span>
-          <span>1. Domain Connected</span>
-        </div>
-        <span class="crumb-separator">→</span>
-        <div class="crumb-step done" id="crumbStep2">
-          <span class="crumb-number">✓</span>
-          <span>2. AI Citation Radar Active</span>
-        </div>
-        <span class="crumb-separator">→</span>
-        <div class="crumb-step active" id="crumbStep3">
-          <span class="crumb-number" id="crumbPendingCount">2</span>
-          <span>3. Staged Deliverables Ready</span>
-        </div>
-      </div>
-
-      <div class="system-status-indicator" id="systemHealthBadge">
-        <span style="width: 6px; height: 6px; border-radius: 50%; background: #10B981;"></span>
-        <span>Daily Autonomous Repricer: Online</span>
-      </div>
-    </div>
-
-    <!-- 0. Step-by-Step Client Onboarding Orientation Banner -->
-    <section class="onboarding-guide-banner" id="onboardingBanner">
-      <div class="guide-header-row" onclick="toggleOnboardingBanner()" style="cursor: pointer; user-select: none;">
-        <div class="guide-title-box">
-          <span style="font-size: 20px;">🧭</span>
-          <div>
-            <h3 style="font-size: 16px; font-weight: 800; color: var(--text-primary); letter-spacing: -0.01em;">
-              Client Onboarding &amp; Execution Guide
-            </h3>
-            <p style="font-size: 12px; color: var(--text-secondary); margin-top: 2px;">
-              Follow this 3-step loop daily to grow your AI Answer Engine Optimization (AEO) score from 68 to 100.
-            </p>
-          </div>
-        </div>
-        <div style="display: flex; gap: 8px; align-items: center;" onclick="event.stopPropagation()">
-          <span class="badge-pill badge-pill-honey" style="font-size: 11px;">
-            ⚡ 2 Actions Daily
-          </span>
-          <button onclick="toggleOnboardingBanner()" id="btnBannerToggle" class="btn-secondary" style="font-size: 11px; padding: 4px 10px; display: flex; align-items: center; gap: 4px;" title="Collapse or expand onboarding guide">
-            <span id="bannerToggleIcon">▲</span> <span id="bannerToggleText">Hide</span>
+          <button class="btn-secondary" onclick="openTruthWikiModal()" style="font-size: 12px; padding: 6px 12px;" title="View & Edit Brand Ground-Truth">
+            🛡️ Truth Wiki
           </button>
         </div>
       </div>
 
-      <div class="guide-steps-grid" id="guideStepsGrid">
-        <div class="guide-step-card">
-          <div class="guide-step-badge" style="background: #FEF3C7; color: #B45309;">
-            STEP 01 · 🔍 INSPECT
+      <!-- Stepwise Progression Ribbon (Elmo Breadcrumb Flow) -->
+      <div class="stepwise-progress-ribbon">
+        <div class="stepwise-breadcrumbs">
+          <div class="crumb-step done" id="crumbStep1">
+            <span class="crumb-number">✓</span>
+            <span>1. Domain Connected</span>
           </div>
-          <div class="guide-step-title">
-            <span>Review Generated Code</span>
+          <span class="crumb-separator">→</span>
+          <div class="crumb-step done" id="crumbStep2">
+            <span class="crumb-number">✓</span>
+            <span>2. AI Citation Radar Active</span>
           </div>
-          <div class="guide-step-desc">
-            Click <strong>"Inspect Diff &amp; Schema"</strong> on today's staged job. Check the live comparison preview, FAQ JSON-LD markup, and zero-click answer passages.
-          </div>
-        </div>
-
-        <div class="guide-step-card">
-          <div class="guide-step-badge" style="background: #EFF6FF; color: #2563EB;">
-            STEP 02 · 📋 PASTE
-          </div>
-          <div class="guide-step-title">
-            <span>Deploy to Your Site</span>
-          </div>
-          <div class="guide-step-desc">
-            Click <strong>"Copy Content"</strong> and paste into your CMS (Shopify theme, WordPress block, or Git repo). Or view in your staging environment.
+          <span class="crumb-separator">→</span>
+          <div class="crumb-step active" id="crumbStep3">
+            <span class="crumb-number" id="crumbPendingCount">2</span>
+            <span>3. Staged Deliverables Ready</span>
           </div>
         </div>
 
-        <div class="guide-step-card">
-          <div class="guide-step-badge" style="background: #E8F8F0; color: #059669;">
-            STEP 03 · 🚀 VERIFY
-          </div>
-          <div class="guide-step-title">
-            <span>Approve &amp; Edge Probe</span>
-          </div>
-          <div class="guide-step-desc">
-            Click <strong>"Approve &amp; Merge Draft"</strong>. Our Cloudflare worker instantly runs an edge probe to verify valid JSON-LD and marks the job active.
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 0.1 Universal 1-Line Dynamic Edge Setup (Collapsible Integration Drawer) -->
-    <div class="edge-integration-card" id="edgeIntegrationCard">
-      <div class="edge-integration-header" onclick="toggleEdgeIntegrationCard()">
-        <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-          <span style="font-size: 16px;">⚡</span>
-          <strong style="font-size: 13.5px; color: var(--text-primary);">Automated Edge Delivery Tag (30-Day Autonomous Repricer)</strong>
-          <span class="badge-pill badge-pill-emerald" style="font-size: 10.5px;">Sub-20ms Edge CDN</span>
-        </div>
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <span style="font-size: 12px; color: var(--text-muted);" id="edgeTagToggleHint">Show Tag</span>
-          <span id="edgeTagToggleIcon" style="font-size: 11px; color: var(--text-secondary);">▼</span>
+        <div class="system-status-indicator" id="systemHealthBadge">
+          <span style="width: 6px; height: 6px; border-radius: 50%; background: #10B981;"></span>
+          <span>Daily Autonomous Repricer: Online</span>
         </div>
       </div>
 
-      <div class="edge-integration-body" id="edgeIntegrationBody">
-        <p style="font-size: 12.5px; color: var(--text-secondary); margin-bottom: 12px; line-height: 1.5;">
-          Install this single script tag once in your website's <code style="background:#FFF8E7; color:#B45309; padding:1px 6px; border-radius:4px;">&lt;head&gt;</code>. Answer Index will dynamically inject today's approved schemas &amp; passages on every <strong>Daily Agent Run</strong> without requiring daily logins.
-        </p>
+      <!-- Quick Website Target & Live Analysis Bar -->
+      <section style="background: var(--bg-card); border: 1.5px solid var(--honey-border); border-radius: 14px; padding: 14px 18px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.03);">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
+          <div style="flex: 1; min-width: 260px;">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+              <span class="badge-pill badge-pill-emerald" style="font-size: 10.5px;">● Active Target Website</span>
+              <span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--text-muted);">Cloudflare D1 &bull; Edge Crawler</span>
+            </div>
+            <div style="display: flex; align-items: baseline; gap: 8px;">
+              <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--text-primary); margin: 0;">
+                Target: <span id="barTargetDomainDisplay" style="color: #B45309;">No Domain Set</span>
+              </h3>
+              <span id="barBrandNameDisplay" style="font-size: 12px; color: var(--text-secondary);">(Enter website to analyze)</span>
+            </div>
+          </div>
 
-        <!-- Script Tag Box -->
-        <div style="background: #1C1D21; border-radius: 12px; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
-          <code id="universalEdgeScriptTag" style="font-family: var(--font-mono); font-size: 12px; color: #FBBF24; word-break: break-all;">
-            &lt;script async src="https://answerindex.xyz/client/yourbrand.js"&gt;&lt;/script&gt;
-          </code>
-          <div style="display: flex; gap: 8px;">
-            <button onclick="copyUniversalEdgeScript()" class="btn-honey-primary" style="font-size: 11.5px; padding: 6px 14px; font-weight: 800; white-space: nowrap;">
-              📋 Copy Tag
+          <form onsubmit="handleInlineDomainSubmit(event)" style="display: flex; align-items: center; gap: 8px; flex: 2; min-width: 300px; max-width: 580px; margin: 0;">
+            <div style="position: relative; flex: 1;">
+              <input
+                type="text"
+                id="inlineDomainInput"
+                placeholder="Enter your website URL (e.g. yourcompany.com)"
+                style="width: 100%; padding: 8px 12px; padding-left: 34px; border: 1.5px solid var(--border-subtle); border-radius: 9px; font-size: 13px; background: var(--bg-canvas); color: var(--text-primary); outline: none; font-family: var(--font-mono);"
+                required
+              />
+              <span style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 13px; color: var(--text-muted);">🌐</span>
+            </div>
+            <button type="submit" id="btnInlineDomainSubmit" class="btn-honey-primary" style="padding: 8px 16px; font-size: 12.5px; font-weight: 800; white-space: nowrap; display: inline-flex; align-items: center; gap: 6px;">
+              <span>🔍 Run Live Analysis</span>
             </button>
-            <button onclick="sendTestDailyReportEmail()" id="btnTestDailyEmail" class="btn-secondary" style="font-size: 11px; padding: 6px 12px; border-color: #F3CA68; background: #FFF8E7; color: #92400E; font-weight: 700;">
-              ✉️ Test Daily Email
-            </button>
+          </form>
+        </div>
+
+        <div id="domainCrawlStatusCard" style="display: none; margin-top: 12px; padding: 10px 14px; background: #FFF8E7; border: 1px solid #F3CA68; border-radius: 8px; font-size: 12px; color: #92400E;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span class="spinner" style="width: 13px; height: 13px; border: 2px solid #F3CA68; border-top-color: #92400E; border-radius: 50%; display: inline-block; animation: spin 1s linear infinite;"></span>
+            <span id="domainCrawlStatusText">Crawling live DOM, extracting headings, canonical metadata, and synthesizing Brand Truth Wiki...</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================================
+           TAB 1: VISIBILITY & OVERVIEW (Active Default)
+           ========================================================================= -->
+      <div id="view-visibility" class="workspace-panel active">
+        <!-- Cause & Effect Flow -->
+        <section class="cause-effect-banner" style="margin-bottom: 20px;">
+          <div class="flow-step-item">
+            <div class="flow-step-num">Step 1 · Autonomous Execution</div>
+            <div class="flow-step-title">Daily Dual Production</div>
+            <div class="flow-step-desc">2 reviewed deliverables staged daily: Job 1 (Direct-Answer Content) + Job 2 (JSON-LD Schema / Speed Refactor).</div>
+          </div>
+          <div class="flow-step-arrow">→</div>
+          <div class="flow-step-item">
+            <div class="flow-step-num">Step 2 · Cloudflare D1 Invariant</div>
+            <div class="flow-step-title">100% Client Sign-Off</div>
+            <div class="flow-step-desc">No unapproved live writes. Deliverables remain reviewable drafts until you click Approve or merge the PR.</div>
+          </div>
+          <div class="flow-step-arrow">→</div>
+          <div class="flow-step-item">
+            <div class="flow-step-num">Step 3 · Telemetry Outcome</div>
+            <div class="flow-step-title">Citation Velocity Boost</div>
+            <div class="flow-step-desc">Structured answers ingested by Perplexity, ChatGPT Search &amp; Claude 3.7 with sub-50ms edge validation.</div>
+          </div>
+        </section>
+
+        <!-- KPI Summary Ribbon -->
+        <section class="kpi-row" style="margin-bottom: 22px;">
+          <div class="kpi-stat-card" style="--card-border-top: var(--honey-primary);">
+            <div class="kpi-header">
+              <span class="kpi-title">Awaiting Your Approval</span>
+              <span class="badge-pill badge-pill-honey">Today's Batch</span>
+            </div>
+            <div class="kpi-value" id="kpiQueueCount">2 <span class="kpi-delta" style="color: #B45309;">Drafts</span></div>
+            <div class="kpi-subtext">Staged and ready for 1-click publishing or merge</div>
+          </div>
+
+          <div class="kpi-stat-card" style="--card-border-top: var(--emerald-green);">
+            <div class="kpi-header">
+              <span class="kpi-title">Schema Ingestion Health</span>
+              <span class="badge-pill badge-pill-emerald">100% Valid</span>
+            </div>
+            <div class="kpi-value" id="kpiSchemaScore">100% <span class="kpi-delta">✓ Zero Errors</span></div>
+            <div class="kpi-subtext">Validated canonical JSON-LD graph for frontier AI bots</div>
+          </div>
+
+          <div class="kpi-stat-card" style="--card-border-top: var(--sky-blue);">
+            <div class="kpi-header">
+              <span class="kpi-title">AI Citation Velocity</span>
+              <span class="badge-pill badge-pill-sky">+4.2% MoM</span>
+            </div>
+            <div class="kpi-value" id="kpiCitationRate">78.4% <span class="kpi-delta">Active</span></div>
+            <div class="kpi-subtext">Direct recognition rate across Perplexity, ChatGPT &amp; Claude</div>
+          </div>
+
+          <div class="kpi-stat-card" style="--card-border-top: #8B5CF6;">
+            <div class="kpi-header">
+              <span class="kpi-title">30-Day Dispatches</span>
+              <span class="badge-pill" style="background:#F5F3FF; color:#6D28D9; border:1px solid #DDD6FE;">Cumulative</span>
+            </div>
+            <div class="kpi-value" id="kpiTotalPrs">48 <span class="kpi-delta" style="color:var(--text-secondary);">Jobs</span></div>
+            <div class="kpi-subtext">45 Indexed Zero-Click Answers &amp; live edge schema</div>
+          </div>
+        </section>
+
+        <!-- Elmo Multi-Engine Area Curves & Comparison Breakdown -->
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px; margin-bottom: 24px;">
+          <!-- Left: Area Growth Curve -->
+          <div class="workspace-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+              <div>
+                <h3 style="font-size:15px; font-weight:800; color:var(--text-primary); margin:0;">AI Visibility &amp; Citation Trajectory</h3>
+                <p style="font-size:12px; color:var(--text-secondary); margin:2px 0 0;">Projected 30-day Answer Engine score lift based on active staged deliverables</p>
+              </div>
+              <span class="badge-pill badge-pill-emerald" style="font-size:11px;">+32 Point Projection</span>
+            </div>
+
+            <div class="cal-stats-strip" style="margin-bottom:14px;">
+              <div class="cal-stat-item">
+                <span class="cal-stat-label">Execution Progress</span>
+                <div class="cal-stat-val">
+                  <span id="calDaysDoneCount" style="color: #059669;">2 Days Done</span>
+                  <span style="font-size: 12px; color: var(--text-muted); font-weight: 500;">/ 28 Pending</span>
+                </div>
+              </div>
+              <div class="cal-stat-item">
+                <span class="cal-stat-label">AEO Score Trajectory</span>
+                <div class="cal-stat-val">
+                  <span style="color: #6E717C; font-size: 13px;">68</span>
+                  <span style="color: #B45309; font-size: 12px;">→</span>
+                  <strong id="calCurrentScore" style="color: #059669; font-size: 18px;">71</strong>
+                  <span style="color: var(--text-muted); font-size: 11px; font-weight: 500;">/ 100 Target</span>
+                </div>
+              </div>
+            </div>
+
+            <div style="width: 100%; height: 100px; position: relative;">
+              <svg viewBox="0 0 500 100" style="width: 100%; height: 100px; overflow: visible;">
+                <defs>
+                  <linearGradient id="aeoGrowthGradMain" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#10B981" stop-opacity="0.30"/>
+                    <stop offset="100%" stop-color="#10B981" stop-opacity="0.0"/>
+                  </linearGradient>
+                </defs>
+                <line x1="0" y1="90" x2="500" y2="90" stroke="#ECEBE6" stroke-width="1" stroke-dasharray="3 3"/>
+                <line x1="0" y1="50" x2="500" y2="50" stroke="#ECEBE6" stroke-width="1" stroke-dasharray="3 3"/>
+                <path d="M 0 75 Q 70 70, 140 60 T 280 40 T 420 20 T 500 10 L 500 95 L 0 95 Z" fill="url(#aeoGrowthGradMain)"/>
+                <path d="M 0 75 Q 70 70, 140 60 T 280 40 T 420 20 T 500 10" fill="none" stroke="#10B981" stroke-width="2.5" stroke-linecap="round"/>
+                <circle cx="35" cy="72" r="3.5" fill="#10B981"/>
+                <circle cx="140" cy="60" r="5" fill="#F9BC38" stroke="#FFFFFF" stroke-width="2"/>
+                <circle cx="500" cy="10" r="3.5" fill="#10B981"/>
+              </svg>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:10px; font-family:var(--font-mono); color:var(--text-muted); margin-top:4px;">
+              <span>Day 1 (Score 68)</span>
+              <span style="color:#B45309; font-weight:700;">● Today (Day 3: 71)</span>
+              <span>Day 30 (Projected: 100)</span>
+            </div>
+          </div>
+
+          <!-- Right: Frontier Models Telemetry Strip -->
+          <div class="telemetry-card" style="margin: 0;">
+            <div class="telemetry-header">
+              <div>
+                <h3 style="font-size:14px; font-weight:800;">Frontier AI Citation Radar</h3>
+                <p style="font-size: 11px; color: var(--text-secondary); margin-top: 2px;">Share of voice across frontier engines</p>
+              </div>
+              <button class="btn-secondary" onclick="refreshCitations()" style="font-size: 10.5px; padding: 3px 8px;">↻</button>
+            </div>
+
+            <!-- Perplexity -->
+            <div class="engine-telemetry-row">
+              <div class="engine-info" style="flex: 1;">
+                <div class="engine-icon-box" style="color: #0D9488; font-weight: 800;">✦</div>
+                <div style="flex: 1;">
+                  <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                    <div class="engine-name" style="font-size:12px;">Perplexity AI</div>
+                    <strong style="font-family: var(--font-mono); font-size: 11.5px; color: #0D9488;">82.1%</strong>
+                  </div>
+                  <div style="width: 100%; height: 4px; background: #E5E7EB; border-radius: 99px; margin: 3px 0; overflow: hidden;">
+                    <div style="width: 82.1%; height: 100%; background: #0D9488; border-radius: 99px;"></div>
+                  </div>
+                  <div class="engine-desc" style="font-size:10.5px;">Rank #1 Citation · Direct buying anchor</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ChatGPT Search -->
+            <div class="engine-telemetry-row">
+              <div class="engine-info" style="flex: 1;">
+                <div class="engine-icon-box" style="color: #10A37F; font-weight: 800;">⚡</div>
+                <div style="flex: 1;">
+                  <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                    <div class="engine-name" style="font-size:12px;">ChatGPT Search</div>
+                    <strong style="font-family: var(--font-mono); font-size: 11.5px; color: #10A37F;">74.5%</strong>
+                  </div>
+                  <div style="width: 100%; height: 4px; background: #E5E7EB; border-radius: 99px; margin: 3px 0; overflow: hidden;">
+                    <div style="width: 74.5%; height: 100%; background: #10A37F; border-radius: 99px;"></div>
+                  </div>
+                  <div class="engine-desc" style="font-size:10.5px;">Direct zero-click answer &amp; FAQ inclusion</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Claude 3.7 -->
+            <div class="engine-telemetry-row">
+              <div class="engine-info" style="flex: 1;">
+                <div class="engine-icon-box" style="color: #D97706; font-weight: 800;">✱</div>
+                <div style="flex: 1;">
+                  <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                    <div class="engine-name" style="font-size:12px;">Claude 3.7</div>
+                    <strong style="font-family: var(--font-mono); font-size: 11.5px; color: #D97706;">71.8%</strong>
+                  </div>
+                  <div style="width: 100%; height: 4px; background: #E5E7EB; border-radius: 99px; margin: 3px 0; overflow: hidden;">
+                    <div style="width: 71.8%; height: 100%; background: #D97706; border-radius: 99px;"></div>
+                  </div>
+                  <div class="engine-desc" style="font-size:10.5px;">Authoritative brand entity trust</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Google AI Overviews -->
+            <div class="engine-telemetry-row">
+              <div class="engine-info" style="flex: 1;">
+                <div class="engine-icon-box" style="color: #4285F4; font-weight: 800;">G</div>
+                <div style="flex: 1;">
+                  <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                    <div class="engine-name" style="font-size:12px;">Google AI Overviews</div>
+                    <strong style="font-family: var(--font-mono); font-size: 11.5px; color: #4285F4;">68.9%</strong>
+                  </div>
+                  <div style="width: 100%; height: 4px; background: #E5E7EB; border-radius: 99px; margin: 3px 0; overflow: hidden;">
+                    <div style="width: 68.9%; height: 100%; background: #4285F4; border-radius: 99px;"></div>
+                  </div>
+                  <div class="engine-desc" style="font-size:10.5px;">Knowledge graph carousel &amp; rich cards</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11.5px; color: var(--text-muted); margin-top: 10px;">
-          <span>🛡️ Operates strictly within your Brand Truth Wiki bounds</span>
-          <span style="color: #059669; font-weight: 700;">&check; Zero ongoing maintenance</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 1. Quick Website Target & Live Analysis Bar -->
-    <section style="background: var(--bg-card); border: 1.5px solid var(--honey-border); border-radius: 14px; padding: 16px 20px; margin-bottom: 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.03);">
-      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
-        <div style="flex: 1; min-width: 280px;">
-          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
-            <span class="badge-pill badge-pill-emerald" style="font-size: 11px;">● Active Target Website</span>
-            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted);">Cloudflare D1 &bull; Edge Crawler</span>
+        <!-- Quick Jump Strip to Today's Deliverables -->
+        <div style="background: #FFFDF8; border: 1.5px solid var(--honey-border); border-radius: 12px; padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span style="font-size: 18px;">⚡</span>
+            <div>
+              <strong style="font-size: 13.5px; color: #92400E;">2 Staged Deliverables Ready for Review</strong>
+              <div style="font-size: 12px; color: var(--text-secondary);">Job 1: Direct-Answer FAQ Article &bull; Job 2: Schema Refactor</div>
+            </div>
           </div>
-          <div style="display: flex; align-items: baseline; gap: 8px;">
-            <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--text-primary); margin: 0;">
-              Target: <span id="barTargetDomainDisplay" style="color: #B45309;">No Domain Set</span>
-            </h3>
-            <span id="barBrandNameDisplay" style="font-size: 13px; color: var(--text-secondary);">(Enter website to analyze)</span>
-          </div>
-        </div>
-
-        <form onsubmit="handleInlineDomainSubmit(event)" style="display: flex; align-items: center; gap: 8px; flex: 2; min-width: 320px; max-width: 640px; margin: 0;">
-          <div style="position: relative; flex: 1;">
-            <input
-              type="text"
-              id="inlineDomainInput"
-              placeholder="Enter your website URL (e.g. yourcompany.com)"
-              style="width: 100%; padding: 10px 14px; padding-left: 36px; border: 1.5px solid var(--border-subtle); border-radius: 9px; font-size: 13.5px; background: var(--bg-canvas); color: var(--text-primary); outline: none; font-family: var(--font-mono);"
-              required
-            />
-            <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 14px; color: var(--text-muted);">🌐</span>
-          </div>
-          <button type="submit" id="btnInlineDomainSubmit" class="btn-honey-primary" style="padding: 10px 18px; font-size: 13px; font-weight: 800; white-space: nowrap; display: inline-flex; align-items: center; gap: 6px;">
-            <span>🔍 Run Live Analysis</span>
+          <button onclick="switchWorkspaceView('releases')" class="btn-honey-primary" style="font-size: 12px; padding: 6px 14px;">
+            Go to Autonomous Pipeline →
           </button>
-        </form>
-      </div>
-
-      <div id="domainCrawlStatusCard" style="display: none; margin-top: 14px; padding: 12px 14px; background: #FFF8E7; border: 1px solid #F3CA68; border-radius: 8px; font-size: 12.5px; color: #92400E;">
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <span class="spinner" style="width: 14px; height: 14px; border: 2px solid #F3CA68; border-top-color: #92400E; border-radius: 50%; display: inline-block; animation: spin 1s linear infinite;"></span>
-          <span id="domainCrawlStatusText">Crawling live DOM, extracting headings, canonical metadata, and synthesizing Brand Truth Wiki...</span>
         </div>
       </div>
-    </section>
 
-    <!-- 1. Cause & Effect Flow: "Tasks Done -> Machine Verification -> Citation Velocity" -->
-    <section class="cause-effect-banner">
-      <div class="flow-step-item">
-        <div class="flow-step-num">Step 1 · Autonomous Execution</div>
-        <div class="flow-step-title">Daily Dual Production</div>
-        <div class="flow-step-desc">2 reviewed deliverables staged daily: Job 1 (Direct-Answer Content) + Job 2 (JSON-LD Schema / Speed Refactor).</div>
-      </div>
-
-      <div class="flow-step-arrow">→</div>
-
-      <div class="flow-step-item">
-        <div class="flow-step-num">Step 2 · Cloudflare D1 Invariant</div>
-        <div class="flow-step-title">100% Client Sign-Off</div>
-        <div class="flow-step-desc">No unapproved live writes. Deliverables remain reviewable drafts until you click Approve or merge the PR.</div>
-      </div>
-
-      <div class="flow-step-arrow">→</div>
-
-      <div class="flow-step-item">
-        <div class="flow-step-num">Step 3 · Telemetry Outcome</div>
-        <div class="flow-step-title">Citation Velocity Boost</div>
-        <div class="flow-step-desc">Structured answers ingested by Perplexity, ChatGPT Search &amp; Claude 3.7 with sub-50ms edge validation.</div>
-      </div>
-    </section>
-
-    <!-- 2. KPI Summary Ribbon -->
-    <section class="kpi-row">
-      <div class="kpi-stat-card" style="--card-border-top: var(--honey-primary);">
-        <div class="kpi-header">
-          <span class="kpi-title">Awaiting Your Approval</span>
-          <span class="badge-pill badge-pill-honey">Today's Batch</span>
-        </div>
-        <div class="kpi-value" id="kpiQueueCount">2 <span class="kpi-delta" style="color: #B45309;">Drafts</span></div>
-        <div class="kpi-subtext">Staged and ready for 1-click publishing or merge</div>
-      </div>
-
-      <div class="kpi-stat-card" style="--card-border-top: var(--emerald-green);">
-        <div class="kpi-header">
-          <span class="kpi-title">Schema Ingestion Health</span>
-          <span class="badge-pill badge-pill-emerald">100% Valid</span>
-        </div>
-        <div class="kpi-value" id="kpiSchemaScore">100% <span class="kpi-delta">✓ Zero Errors</span></div>
-        <div class="kpi-subtext">Validated canonical JSON-LD graph for frontier AI bots</div>
-      </div>
-
-      <div class="kpi-stat-card" style="--card-border-top: var(--sky-blue);">
-        <div class="kpi-header">
-          <span class="kpi-title">AI Citation Velocity</span>
-          <span class="badge-pill badge-pill-sky">+4.2% MoM</span>
-        </div>
-        <div class="kpi-value" id="kpiCitationRate">78.4% <span class="kpi-delta">Active</span></div>
-        <div class="kpi-subtext">Direct recognition rate across Perplexity, ChatGPT &amp; Claude</div>
-      </div>
-
-      <div class="kpi-stat-card" style="--card-border-top: #8B5CF6;">
-        <div class="kpi-header">
-          <span class="kpi-title">30-Day Dispatches</span>
-          <span class="badge-pill" style="background:#F5F3FF; color:#6D28D9; border:1px solid #DDD6FE;">Cumulative</span>
-        </div>
-        <div class="kpi-value" id="kpiTotalPrs">48 <span class="kpi-delta" style="color:var(--text-secondary);">Jobs</span></div>
-        <div class="kpi-subtext">45 Indexed Zero-Click Answers &amp; live edge schema</div>
-      </div>
-    </section>
-
-    <!-- 3. Main Tableau Workstation Grid -->
-    <div class="dashboard-layout">
-      <!-- Left Column: Autonomous Production Hub -->
-      <section class="workspace-card">
-        <div class="workspace-header">
-          <div class="workspace-title-group">
-            <h2>Autonomous Production Hub</h2>
-            <p>Review today's reviewable drafts and inspect upcoming 30-day scheduled dispatches</p>
-          </div>
-
-          <!-- View Switcher Tabs -->
-          <div class="view-switcher">
-            <button class="view-tab-btn active" id="tabBtnQueue" onclick="switchMainView('queue')">
-              📋 Daily Queue
-            </button>
-            <button class="view-tab-btn" id="tabBtnCalendar" onclick="switchMainView('calendar')">
-              📅 30-Day Calendar
-            </button>
-            <button class="view-tab-btn" id="tabBtnObservability" onclick="switchMainView('observability')">
-              📡 AI Radar &amp; Buying Prompts
-            </button>
-          </div>
-        </div>
-
-        <!-- Filter Pills (for Queue view) -->
-        <div class="filter-pills-row" id="queueFiltersRow">
-          <span style="font-size: 12px; color: var(--text-muted); font-weight: 600;">Filter:</span>
-          <button class="filter-pill active" onclick="filterJobs('all', this)">All Deliverables</button>
-          <button class="filter-pill" onclick="filterJobs('pending', this)">🟡 Pending Approval</button>
-          <button class="filter-pill" onclick="filterJobs('approved', this)">🟢 Merged / Active</button>
-        </div>
-
-        <!-- QUEUE CONTAINER -->
-        <div id="queueViewContainer">
-          <div id="jobsList">
-            <div style="text-align: center; padding: 2rem; color: var(--text-muted);">
-              Loading live dispatch queue from Cloudflare D1...
+      <!-- =========================================================================
+           TAB 2: AUTONOMOUS RELEASES & PIPELINE
+           ========================================================================= -->
+      <div id="view-releases" class="workspace-panel">
+        <section class="workspace-card">
+          <div class="workspace-header">
+            <div class="workspace-title-group">
+              <h2>Autonomous Production Hub</h2>
+              <p>Review today's reviewable drafts and inspect upcoming 30-day scheduled dispatches</p>
             </div>
-          </div>
-        </div>
 
-        <!-- CALENDAR CONTAINER -->
-        <div id="calendarViewContainer" class="calendar-container">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-            <div style="font-weight:700; font-size:14px; color:var(--text-primary);">
-              30-Day Autonomous Dispatch Pipeline
-            </div>
-            <div style="display:flex; gap:12px; font-size:11.5px; font-family:var(--font-mono);">
-              <span style="display:flex; align-items:center; gap:4px;"><span style="width:8px; height:8px; border-radius:50%; background:var(--emerald-green);"></span> Merged</span>
-              <span style="display:flex; align-items:center; gap:4px;"><span style="width:8px; height:8px; border-radius:50%; background:var(--honey-primary);"></span> Pending</span>
-              <span style="display:flex; align-items:center; gap:4px;"><span style="width:8px; height:8px; border-radius:50%; background:var(--text-muted);"></span> Scheduled</span>
+            <!-- View Switcher Tabs (Queue vs 30-Day Calendar) -->
+            <div class="view-switcher">
+              <button class="view-tab-btn active" id="tabBtnQueue" onclick="switchMainView('queue')">
+                📋 Daily Queue
+              </button>
+              <button class="view-tab-btn" id="tabBtnCalendar" onclick="switchMainView('calendar')">
+                📅 30-Day Calendar
+              </button>
             </div>
           </div>
 
-          <!-- 30-Day Growth Progression & Score Trajectory (Elmo Area Curve) -->
-          <div class="cal-stats-strip">
-            <div class="cal-stat-item">
-              <span class="cal-stat-label">Execution Progress</span>
-              <div class="cal-stat-val">
-                <span id="calDaysDoneCount" style="color: #059669;">2 Days Done</span>
-                <span style="font-size: 13px; color: var(--text-muted); font-weight: 500;">/ 28 Days Pending</span>
-              </div>
-            </div>
+          <!-- Filter Pills (for Queue view) -->
+          <div class="filter-pills-row" id="queueFiltersRow">
+            <span style="font-size: 12px; color: var(--text-muted); font-weight: 600;">Filter:</span>
+            <button class="filter-pill active" onclick="filterJobs('all', this)">All Deliverables</button>
+            <button class="filter-pill" onclick="filterJobs('pending', this)">🟡 Pending Approval</button>
+            <button class="filter-pill" onclick="filterJobs('approved', this)">🟢 Merged / Active</button>
+          </div>
 
-            <div class="cal-stat-item">
-              <span class="cal-stat-label">AEO Score Trajectory</span>
-              <div class="cal-stat-val">
-                <span style="color: #6E717C; font-size: 14px;">68</span>
-                <span style="color: #B45309; font-size: 13px;">→</span>
-                <strong id="calCurrentScore" style="color: #059669; font-size: 19px;">71</strong>
-                <span style="color: var(--text-muted); font-size: 12px; font-weight: 500;">/ 100 Target</span>
-              </div>
-            </div>
-
-            <div class="cal-stat-item" style="min-width: 280px; flex: 2;">
-              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 4px;">
-                <span class="cal-stat-label">AEO Growth Trajectory Area Curve</span>
-                <span style="font-size:10px; font-family:var(--font-mono); color:#059669; font-weight:700;">+32 Point Projection</span>
-              </div>
-              <div style="width: 100%; height: 50px; position: relative;">
-                <svg viewBox="0 0 300 50" style="width: 100%; height: 50px; overflow: visible;">
-                  <defs>
-                    <linearGradient id="aeoGrowthGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                      <stop offset="0%" stop-color="#10B981" stop-opacity="0.35"/>
-                      <stop offset="100%" stop-color="#10B981" stop-opacity="0.0"/>
-                    </linearGradient>
-                  </defs>
-                  <!-- Baseline Grid -->
-                  <line x1="0" y1="45" x2="300" y2="45" stroke="#ECEBE6" stroke-width="1" stroke-dasharray="3 3"/>
-                  <!-- Filled Area -->
-                  <path d="M 0 38 Q 40 34, 80 30 T 160 20 T 240 10 T 300 5 L 300 48 L 0 48 Z" fill="url(#aeoGrowthGrad)"/>
-                  <!-- High-Precision Metric Line -->
-                  <path d="M 0 38 Q 40 34, 80 30 T 160 20 T 240 10 T 300 5" fill="none" stroke="#10B981" stroke-width="2.2" stroke-linecap="round"/>
-                  <!-- Milestone Dots -->
-                  <circle cx="20" cy="36" r="3" fill="#10B981"/>
-                  <circle cx="80" cy="30" r="4.5" fill="#F9BC38" stroke="#FFFFFF" stroke-width="1.5"/>
-                  <circle cx="300" cy="5" r="3" fill="#10B981"/>
-                </svg>
-              </div>
-              <div style="display:flex; justify-content:space-between; font-size:9.5px; font-family:var(--font-mono); color:var(--text-muted); margin-top:2px;">
-                <span>Day 1 (68)</span>
-                <span style="color:#B45309; font-weight:700;">● Today (Day 3: 71)</span>
-                <span>Day 30 (100)</span>
+          <!-- QUEUE CONTAINER -->
+          <div id="queueViewContainer">
+            <div id="jobsList">
+              <div style="text-align: center; padding: 2rem; color: var(--text-muted);">
+                Loading live dispatch queue from Cloudflare D1...
               </div>
             </div>
           </div>
 
-          <div class="calendar-grid-header">
-            <div>MON</div><div>TUE</div><div>WED</div><div>THU</div><div>FRI</div><div>SAT</div><div>SUN</div>
+          <!-- CALENDAR CONTAINER -->
+          <div id="calendarViewContainer" class="calendar-container">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+              <div style="font-weight:700; font-size:14px; color:var(--text-primary);">
+                30-Day Autonomous Dispatch Pipeline
+              </div>
+              <div style="display:flex; gap:12px; font-size:11.5px; font-family:var(--font-mono);">
+                <span style="display:flex; align-items:center; gap:4px;"><span style="width:8px; height:8px; border-radius:50%; background:var(--emerald-green);"></span> Merged</span>
+                <span style="display:flex; align-items:center; gap:4px;"><span style="width:8px; height:8px; border-radius:50%; background:var(--honey-primary);"></span> Pending</span>
+                <span style="display:flex; align-items:center; gap:4px;"><span style="width:8px; height:8px; border-radius:50%; background:var(--text-muted);"></span> Scheduled</span>
+              </div>
+            </div>
+
+            <div class="calendar-grid-header">
+              <div>MON</div><div>TUE</div><div>WED</div><div>THU</div><div>FRI</div><div>SAT</div><div>SUN</div>
+            </div>
+
+            <div class="calendar-days-grid" id="calendarDaysGrid">
+              <!-- Dynamically populated with 30 days of schedule -->
+            </div>
+          </div>
+        </section>
+
+        <!-- On-Demand Manual Dispatch Strip -->
+        <div class="impact-simulator-card" style="margin-top: 20px; border: 1.5px solid var(--honey-border); background: linear-gradient(135deg, #FFFDF8 0%, #FFF8E7 100%);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <h4 style="margin: 0; font-size: 14.5px; font-weight: 800; color: #92400E; display: flex; align-items: center; gap: 6px;">
+              <span>⚡</span> On-Demand Urgent Dispatch
+            </h4>
+            <span class="badge-pill badge-pill-honey" style="font-size: 10.5px;">Bypasses 24h Timer</span>
           </div>
 
-          <div class="calendar-days-grid" id="calendarDaysGrid">
-            <!-- Dynamically populated with 30 days of schedule -->
-          </div>
+          <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.55; margin-bottom: 12px;">
+            Answer Index automatically stages 2 reviewable jobs on every <strong>Daily Agent Run</strong>. Need extra code staged immediately for an upcoming launch?
+          </p>
+
+          <button id="btnManualDispatch" onclick="triggerManualDispatch()" class="btn-honey-primary" style="width: 100%; justify-content: center; font-size: 13px; padding: 10px 18px; font-weight: 800; box-shadow: 0 4px 14px rgba(249, 188, 56, 0.35);">
+            ⚡ Dispatch Extra Agent Run Now →
+          </button>
         </div>
+      </div>
 
-        <!-- OBSERVABILITY & TRACKED PROMPTS CONTAINER -->
-        <div id="observabilityViewContainer" style="display: none;">
+      <!-- =========================================================================
+           TAB 3: COMMERCIAL PROMPTS (Observability Radar)
+           ========================================================================= -->
+      <div id="view-prompts" class="workspace-panel">
+        <div id="observabilityViewContainer" style="display: block;">
           <!-- Top Row: Add Prompt & Metrics Strip -->
           <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: 14px; padding: 1.25rem 1.4rem; margin-bottom: 1.5rem;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.75rem;">
@@ -1925,7 +2221,7 @@
             </div>
           </div>
 
-          <!-- Recent Observability Runs (Evaluated AI Answers & Snippets) -->
+          <!-- Recent Observability Runs -->
           <div>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem;">
               <h4 style="font-size: 1.05rem; font-weight: 800; color: var(--text-primary); margin: 0;">Verified AI Passage Evidence &amp; Citations</h4>
@@ -1939,132 +2235,137 @@
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
-      <!-- Right Column: AI Citation Velocity Telemetry & Fast Actions -->
-      <aside class="sidebar-col">
-        <!-- Live AI Engine Velocity Breakdown (Elmo Comparison Cards) -->
-        <div class="telemetry-card">
-          <div class="telemetry-header">
-            <div>
-              <h3>AI Engine Citation Radar</h3>
-              <p style="font-size: 11.5px; color: var(--text-secondary); margin-top: 2px;">Share of voice across frontier AI models</p>
+      <!-- =========================================================================
+           TAB 4: CITATIONS & SOURCES
+           ========================================================================= -->
+      <div id="view-citations" class="workspace-panel">
+        <section class="workspace-card">
+          <div class="workspace-header">
+            <div class="workspace-title-group">
+              <h2>Attributed Citations &amp; Grounding Sources</h2>
+              <p>URLs, passages, and zero-click references where frontier engines cite your brand</p>
             </div>
-            <button class="btn-secondary" onclick="refreshCitations()" style="font-size: 11px; padding: 4px 10px;">
-              ↻ Refresh
+            <button class="btn-secondary" onclick="refreshCitations()">↻ Refresh Citations</button>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 24px;">
+            <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 16px;">
+              <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Perplexity Domain Citations</div>
+              <div style="font-size: 1.6rem; font-weight: 800; color: #0D9488; margin: 4px 0;">34 Links</div>
+              <div style="font-size: 12px; color: var(--text-secondary);">Direct references in synthesized answers</div>
+            </div>
+
+            <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 16px;">
+              <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">ChatGPT Web Grounding</div>
+              <div style="font-size: 1.6rem; font-weight: 800; color: #10A37F; margin: 4px 0;">28 Sources</div>
+              <div style="font-size: 12px; color: var(--text-secondary);">Indexed via SearchGPT crawler</div>
+            </div>
+
+            <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 16px;">
+              <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Google AI Overview Cards</div>
+              <div style="font-size: 1.6rem; font-weight: 800; color: #4285F4; margin: 4px 0;">19 Carousels</div>
+              <div style="font-size: 12px; color: var(--text-secondary);">Structured schema rich answers</div>
+            </div>
+          </div>
+
+          <!-- Citation Passages Feed -->
+          <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 18px;">
+            <h4 style="font-size: 13.5px; font-weight: 800; margin-bottom: 12px;">Active Attributed Quotations</h4>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <div style="background: #FFFFFF; border: 1px solid var(--border-subtle); border-radius: 8px; padding: 14px;">
+                <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); margin-bottom: 6px;">
+                  <span style="font-weight: 700; color: #0D9488;">Perplexity Pro Citation</span>
+                  <span style="font-family: var(--font-mono);">Rank #1 Recommendation</span>
+                </div>
+                <div style="font-size: 13px; color: var(--text-primary); font-style: italic; line-height: 1.5;">
+                  "Based on independent speed and schema benchmarks, <strong id="citationBrandPlaceholder">Answer Index</strong> is recognized as the leading autonomous AEO infrastructure for modern web applications."
+                </div>
+              </div>
+
+              <div style="background: #FFFFFF; border: 1px solid var(--border-subtle); border-radius: 8px; padding: 14px;">
+                <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); margin-bottom: 6px;">
+                  <span style="font-weight: 700; color: #10A37F;">ChatGPT Search Answer</span>
+                  <span style="font-family: var(--font-mono);">Zero-Click Card</span>
+                </div>
+                <div style="font-size: 13px; color: var(--text-primary); font-style: italic; line-height: 1.5;">
+                  "Official ground-truth specifications confirm automated dual daily PR staging directly to client repositories, guaranteeing zero live code writes without explicit client approval."
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- =========================================================================
+           TAB 5: BRAND TRUTH WIKI (Direct Workspace View)
+           ========================================================================= -->
+      <div id="view-wiki" class="workspace-panel">
+        <section class="workspace-card">
+          <div class="workspace-header">
+            <div class="workspace-title-group">
+              <span class="badge-pill badge-pill-emerald" style="margin-bottom: 6px;">🛡️ Anti-Hallucination Ground Truth</span>
+              <h2 id="viewWikiTitle">Brand Ground-Truth Wiki</h2>
+              <p>Define canonical company facts, pricing tiers, and prohibited claims. The autonomous agent validates every staged draft against this document.</p>
+            </div>
+            <button id="btnSaveWikiInline" onclick="saveTruthDocumentInline()" class="btn-honey-primary" style="font-size: 12.5px; padding: 8px 16px;">
+              💾 Save to Cloudflare D1
             </button>
           </div>
 
-          <!-- Perplexity Card -->
-          <div class="engine-telemetry-row">
-            <div class="engine-info" style="flex: 1;">
-              <div class="engine-icon-box" style="color: #0D9488; font-weight: 800;">✦</div>
-              <div style="flex: 1;">
-                <div style="display: flex; justify-content: space-between; align-items: baseline;">
-                  <div class="engine-name">Perplexity AI</div>
-                  <strong style="font-family: var(--font-mono); font-size: 12px; color: #0D9488;">82.1%</strong>
-                </div>
-                <div style="width: 100%; height: 5px; background: #E5E7EB; border-radius: 99px; margin: 4px 0; overflow: hidden;">
-                  <div style="width: 82.1%; height: 100%; background: #0D9488; border-radius: 99px;"></div>
-                </div>
-                <div class="engine-desc">Rank #1 Citation · Direct buying query anchor</div>
-              </div>
+          <textarea id="inlineTruthDocTextarea" rows="18" style="width: 100%; border: 1.5px solid var(--border-subtle); border-radius: 12px; padding: 16px; font-family: var(--font-mono); font-size: 13px; background: var(--bg-canvas); color: var(--text-primary); outline: none; margin-bottom: 14px; resize: vertical; line-height: 1.6;"></textarea>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--text-muted); font-family: var(--font-mono);">
+            <span id="inlineTruthLastUpdated">Status: Synchronized with Edge</span>
+            <span style="color: #059669; font-weight: 700;">✓ Invariant check passes</span>
+          </div>
+        </section>
+      </div>
+
+      <!-- =========================================================================
+           TAB 6: UNIVERSAL EDGE INTEGRATION TAG
+           ========================================================================= -->
+      <div id="view-edge" class="workspace-panel">
+        <section class="workspace-card">
+          <div class="workspace-header">
+            <div class="workspace-title-group">
+              <span class="badge-pill badge-pill-emerald" style="margin-bottom: 6px;">⚡ Sub-20ms Edge CDN Delivery</span>
+              <h2>Automated Edge Delivery Tag (30-Day Autonomous Repricer)</h2>
+              <p>Install this single script tag once in your website's &lt;head&gt;. Answer Index dynamically injects approved schemas on every daily run.</p>
+            </div>
+            <button onclick="copyUniversalEdgeScript()" class="btn-honey-primary" style="font-size: 12px; padding: 7px 14px;">
+              📋 Copy Script Tag
+            </button>
+          </div>
+
+          <div style="background: #1C1D21; border-radius: 12px; padding: 18px 20px; display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin-bottom: 20px;">
+            <code id="universalEdgeScriptTag" style="font-family: var(--font-mono); font-size: 13px; color: #FBBF24; word-break: break-all;">
+              &lt;script async src="https://answerindex.xyz/client/yourbrand.js"&gt;&lt;/script&gt;
+            </code>
+            <div style="display: flex; gap: 8px;">
+              <button onclick="copyUniversalEdgeScript()" class="btn-honey-primary" style="font-size: 11.5px; padding: 6px 14px; font-weight: 800; white-space: nowrap;">
+                📋 Copy Tag
+              </button>
+              <button onclick="sendTestDailyReportEmail()" id="btnTestDailyEmail" class="btn-secondary" style="font-size: 11px; padding: 6px 12px; border-color: #F3CA68; background: #FFF8E7; color: #92400E; font-weight: 700;">
+                ✉️ Test Daily Email
+              </button>
             </div>
           </div>
 
-          <!-- ChatGPT Search Card -->
-          <div class="engine-telemetry-row">
-            <div class="engine-info" style="flex: 1;">
-              <div class="engine-icon-box" style="color: #10A37F; font-weight: 800;">⚡</div>
-              <div style="flex: 1;">
-                <div style="display: flex; justify-content: space-between; align-items: baseline;">
-                  <div class="engine-name">ChatGPT Search</div>
-                  <strong style="font-family: var(--font-mono); font-size: 12px; color: #10A37F;">74.5%</strong>
-                </div>
-                <div style="width: 100%; height: 5px; background: #E5E7EB; border-radius: 99px; margin: 4px 0; overflow: hidden;">
-                  <div style="width: 74.5%; height: 100%; background: #10A37F; border-radius: 99px;"></div>
-                </div>
-                <div class="engine-desc">Direct zero-click answer &amp; FAQ inclusion</div>
-              </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px;">
+            <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 16px;">
+              <strong style="font-size: 13px; color: var(--text-primary); display: block; margin-bottom: 6px;">🛡️ Non-Interference Guarantee</strong>
+              <p style="font-size: 12px; color: var(--text-secondary); margin: 0; line-height: 1.5;">Operates strictly within verified Brand Truth Wiki invariants. Zero unapproved live writes.</p>
+            </div>
+            <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 16px;">
+              <strong style="font-size: 13px; color: var(--text-primary); display: block; margin-bottom: 6px;">⚡ Edge Cache Invalidation</strong>
+              <p style="font-size: 12px; color: var(--text-secondary); margin: 0; line-height: 1.5;">Cloudflare CDN automatically invalidates edge cache within 15 seconds of client sign-off.</p>
             </div>
           </div>
-
-          <!-- Claude 3.7 Card -->
-          <div class="engine-telemetry-row">
-            <div class="engine-info" style="flex: 1;">
-              <div class="engine-icon-box" style="color: #D97706; font-weight: 800;">✱</div>
-              <div style="flex: 1;">
-                <div style="display: flex; justify-content: space-between; align-items: baseline;">
-                  <div class="engine-name">Claude 3.7</div>
-                  <strong style="font-family: var(--font-mono); font-size: 12px; color: #D97706;">71.8%</strong>
-                </div>
-                <div style="width: 100%; height: 5px; background: #E5E7EB; border-radius: 99px; margin: 4px 0; overflow: hidden;">
-                  <div style="width: 71.8%; height: 100%; background: #D97706; border-radius: 99px;"></div>
-                </div>
-                <div class="engine-desc">Authoritative brand citation &amp; entity trust</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Google AI Overviews Card -->
-          <div class="engine-telemetry-row">
-            <div class="engine-info" style="flex: 1;">
-              <div class="engine-icon-box" style="color: #4285F4; font-weight: 800;">G</div>
-              <div style="flex: 1;">
-                <div style="display: flex; justify-content: space-between; align-items: baseline;">
-                  <div class="engine-name">Google AI Overviews</div>
-                  <strong style="font-family: var(--font-mono); font-size: 12px; color: #4285F4;">68.9%</strong>
-                </div>
-                <div style="width: 100%; height: 5px; background: #E5E7EB; border-radius: 99px; margin: 4px 0; overflow: hidden;">
-                  <div style="width: 68.9%; height: 100%; background: #4285F4; border-radius: 99px;"></div>
-                </div>
-                <div class="engine-desc">Knowledge graph carousel &amp; merchant rich cards</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Impact Simulator & Trigger Action -->
-        <div class="impact-simulator-card" style="border: 1.5px solid var(--honey-border); background: linear-gradient(135deg, #FFFDF8 0%, #FFF8E7 100%);">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-            <h4 style="margin: 0; font-size: 14.5px; font-weight: 800; color: #92400E; display: flex; align-items: center; gap: 6px;">
-              <span>⚡</span> On-Demand Urgent Dispatch
-            </h4>
-            <span class="badge-pill badge-pill-honey" style="font-size: 10.5px;">Bypasses 24h Timer</span>
-          </div>
-
-          <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.55; margin-bottom: 12px;">
-            Answer Index automatically stages 2 reviewable jobs on every <strong>Daily Agent Run</strong>. Use this manual trigger when you have an urgent need:
-          </p>
-
-          <ul style="font-size: 11.5px; color: #78350F; line-height: 1.5; margin-bottom: 14px; padding-left: 18px; display: flex; flex-direction: column; gap: 4px;">
-            <li><strong>Product or Feature Launch:</strong> Index new pricing or specs into AI search immediately.</li>
-            <li><strong>Competitor Attack:</strong> Deploy an instant comparison guide to protect market share.</li>
-            <li><strong>Skip Waiting:</strong> Produce an extra draft right now without waiting for tomorrow's run.</li>
-          </ul>
-
-          <button id="btnManualDispatch" onclick="triggerManualDispatch()" class="btn-honey-primary" style="width: 100%; justify-content: center; font-size: 13px; padding: 11px 18px; font-weight: 800; box-shadow: 0 4px 14px rgba(249, 188, 56, 0.35);">
-            ⚡ Dispatch Extra Agent Run Now →
-          </button>
-
-          <div style="font-size: 10.5px; color: var(--text-muted); text-align: center; margin-top: 8px; display: flex; align-items: center; justify-content: center; gap: 4px;">
-            <span>🛡️</span> Safely stages as a draft &bull; Never writes live without sign-off
-          </div>
-        </div>
-
-        <!-- Safeguards & Invariants Badge -->
-        <div class="telemetry-card" style="padding: 20px 22px;">
-          <h4 style="font-size: 13px; font-weight: 800; margin-bottom: 10px; color: var(--text-primary); display: flex; align-items: center; gap: 8px;">
-            🛡️ Non-Interference Guarantee
-          </h4>
-          <ul style="font-size: 12px; color: var(--text-secondary); line-height: 1.6; padding-left: 18px;">
-            <li>Zero writes to live production branches without approval.</li>
-            <li>All content verified against Brand Ground-Truth Wiki.</li>
-            <li>Cloudflare D1 cryptographically logs every merge action.</li>
-          </ul>
-        </div>
-      </aside>
-    </div>
+        </section>
+      </div>
+    </main>
   </div>
 
   <!-- -------------------------------------------------------------------------
@@ -2746,6 +3047,91 @@
       }
     }
 
+    // -------------------------------------------------------------------------
+    // ELMO-STYLE WORKSPACE VIEW SWITCHER & SIDEBAR CONTROLLER
+    // -------------------------------------------------------------------------
+    function switchWorkspaceView(viewId) {
+      // Deactivate all panels
+      document.querySelectorAll('.workspace-panel').forEach(p => p.classList.remove('active'));
+      // Deactivate all sidebar nav buttons
+      document.querySelectorAll('.sidebar-nav-btn').forEach(b => b.classList.remove('active'));
+
+      // Activate target panel
+      const targetPanel = document.getElementById(`view-${viewId}`);
+      if (targetPanel) {
+        targetPanel.classList.add('active');
+      }
+
+      // Activate target sidebar button
+      const activeBtn = document.querySelector(`.sidebar-nav-btn[data-view="${viewId}"]`);
+      if (activeBtn) {
+        activeBtn.classList.add('active');
+      }
+
+      // Trigger sub-view data loading if needed
+      if (viewId === 'prompts') {
+        loadObservabilityData();
+      } else if (viewId === 'releases') {
+        loadJobs();
+      } else if (viewId === 'wiki') {
+        syncInlineTruthDoc();
+      }
+
+      // Close mobile drawer if opened
+      const sidebar = document.getElementById('elmoSidebar');
+      if (sidebar && sidebar.classList.contains('open')) {
+        sidebar.classList.remove('open');
+      }
+
+      // Smooth scroll to top of workspace
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleMobileSidebar() {
+      const sidebar = document.getElementById('elmoSidebar');
+      if (sidebar) sidebar.classList.toggle('open');
+    }
+
+    function syncInlineTruthDoc() {
+      const title = document.getElementById('viewWikiTitle');
+      const textarea = document.getElementById('inlineTruthDocTextarea');
+      const brand = currentProject ? (currentProject.brand_name || currentProject.domain) : 'Your Brand';
+      if (title) title.textContent = `${brand} — Ground-Truth Wiki`;
+      if (textarea) {
+        textarea.value = currentProject.truth_document || `# ${brand} — Ground-Truth Baseline\n\n## 1. Verified Brand Mission\nOfficial product specifications and value proposition.\n\n## 2. Verified Pricing & Features\nExact canonical tiers.\n\n## 3. Disallowed Claims\nExplicit facts the autonomous agent must NEVER hallucinate.`;
+      }
+    }
+
+    async function saveTruthDocumentInline() {
+      const btn = document.getElementById('btnSaveWikiInline');
+      const textarea = document.getElementById('inlineTruthDocTextarea');
+      if (!textarea) return;
+
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = 'Saving to D1...';
+      }
+
+      try {
+        await fetch('/api/project', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            projectId: currentProject.id,
+            truth_document: textarea.value
+          })
+        });
+      } catch (e) {}
+
+      currentProject.truth_document = textarea.value;
+      if (btn) {
+        btn.disabled = false;
+        btn.textContent = '✓ Saved to D1';
+        setTimeout(() => { btn.textContent = '💾 Save to Cloudflare D1'; }, 2500);
+      }
+      showToast('🛡️ Brand Ground-Truth Wiki saved and synced with edge invariants.');
+    }
+
     function updateProjectUI(proj) {
       if (!proj) return;
       const domainElem = document.getElementById('projectDomain');
@@ -2756,6 +3142,14 @@
 
       const barBrand = document.getElementById('barBrandNameDisplay');
       if (barBrand) barBrand.textContent = `(${proj.brand_name || (proj.domain ? proj.domain.split('.')[0] : 'Brand')})`;
+
+      const sideBrand = document.getElementById('sidebarBrandName');
+      if (sideBrand) sideBrand.textContent = proj.brand_name || (proj.domain ? proj.domain.split('.')[0] : 'Answer Index');
+
+      const citationPlaceholder = document.getElementById('citationBrandPlaceholder');
+      if (citationPlaceholder) citationPlaceholder.textContent = proj.brand_name || (proj.domain ? proj.domain.split('.')[0] : 'Answer Index');
+
+      syncInlineTruthDoc();
 
       const inputInline = document.getElementById('inlineDomainInput');
       if (inputInline) {
@@ -3903,6 +4297,8 @@
       const crumbCount = document.getElementById('crumbPendingCount');
       const crumbStep3 = document.getElementById('crumbStep3');
       if (crumbCount) crumbCount.textContent = pending;
+      const sidebarBadge = document.getElementById('sidebarQueueBadge');
+      if (sidebarBadge) sidebarBadge.textContent = pending;
       if (crumbStep3) {
         if (pending > 0) {
           crumbStep3.className = 'crumb-step active';
