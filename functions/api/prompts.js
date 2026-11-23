@@ -1,5 +1,5 @@
 // Cloudflare Pages Function: /api/prompts
-// Manages tracked commercial queries for AEO/GEO observability (Elmo-style tracking)
+// Manages tracked commercial queries for AEO/GEO observability (Continuous AEO tracking)
 
 const CORS_HEADERS = {
   'Access-Control-Allow-Origin': '*',

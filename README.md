@@ -90,7 +90,7 @@ AnswerIndex delivers a unified, production-grade engine spanning root indexation
 - 🛠️ **Deep Technical & Schema SEO:** Advanced modular suite for Schema.org JSON-LD graph generation, XML sitemaps, Core Web Vitals, and crawl hygiene.
 - 🔌 **Native Model Context Protocol (MCP) Server:** Connect AnswerIndex directly into AI coding environments like Cursor, Claude Code, Windsurf, or VS Code over stdio.
 - 💻 **Universal Automation:** Portable CLI and modular script runners for seamless integration into CI/CD pipelines or local terminal workflows.
-- 📊 **Complete AEO Analytics & Observability Suite (Elmo Parity):** Self-hostable, 100% free analytics suite covering AI Visibility, Share of Voice donut charts, Sentiment rings, raw LLM Responses, Query Fan-Out, and Opportunities.
+- 📊 **Complete AEO Analytics & Observability Suite (Native AEO Suite):** Self-hostable, 100% free analytics suite covering AI Visibility, Share of Voice donut charts, Sentiment rings, raw LLM Responses, Query Fan-Out, and Opportunities.
 - 📋 **Right-Hand Prompt Detail Drawer:** Slide-over inspection drawer for every prompt showing over-time mention rates, web searches, citations, and verbatim answers with 1-click schema staging.
 - ⚡ **1-Line Universal Edge Integration Tag:** Drop-in script tag mimicking the official Google Tag Manager 3-step model with sub-20ms dynamic JSON-LD injection at the edge.
 
@@ -99,9 +99,9 @@ AnswerIndex delivers a unified, production-grade engine spanning root indexation
 
 ---
 
-## 📊 AEO Analytics Dashboard & Observability Suite (Elmo Parity)
+## 📊 AEO Analytics Dashboard & Observability Suite (Native AEO Suite)
 
-AnswerIndex includes a complete, self-hostable Answer Engine Optimization (AEO) and Generative Engine Optimization (GEO) dashboard inspired by the open-source `elmohq/elmo` platform—operating **100% free with zero subscription fees**:
+AnswerIndex includes a complete, self-hostable Answer Engine Optimization (AEO) and Generative Engine Optimization (GEO) dashboard operating **100% free with zero subscription fees**:
 
 ```
 ┌──────────────────────────────────────┬────────────────────────────────────────────────────────────────────────┐
@@ -260,7 +260,7 @@ npm install
 
 Start the complete client analytics dashboard locally:
 ```bash
-# Runs the full Elmo-parity AEO dashboard with zero API fees
+# Runs the full AnswerIndex AEO dashboard with zero API fees
 npm run dev
 ```
 

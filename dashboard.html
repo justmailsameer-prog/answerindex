@@ -90,7 +90,7 @@
     }
 
     /* -------------------------------------------------------------------------
-       ELMO-GRADE APPLICATION SHELL WITH LEFT SIDEBAR NAVIGATOR
+       AEO ENTERPRISE APPLICATION SHELL WITH LEFT SIDEBAR NAVIGATOR
        ------------------------------------------------------------------------- */
     .app-shell {
       display: grid;
@@ -99,8 +99,8 @@
       background: var(--bg-canvas);
     }
 
-    /* Left Sidebar Rail (demo.elmohq.com style) */
-    .elmo-sidebar {
+    /* Left Sidebar Rail (AEO Navigator) */
+    .aeo-sidebar {
       background: #FFFFFF;
       border-right: 1px solid var(--border-subtle);
       display: flex;
@@ -148,7 +148,7 @@
       letter-spacing: 0.05em;
     }
 
-    /* Workspace / Brand Selector (Elmo Org/Brand Switcher) */
+    /* Workspace / Brand Selector (Organization & Brand Switcher) */
     .sidebar-workspace-selector {
       background: var(--bg-canvas);
       border: 1px solid var(--border-subtle);
@@ -196,7 +196,7 @@
       flex-shrink: 0;
     }
 
-    /* Primary Navigation Rail (Elmo Navigation Tabs) */
+    /* Primary Navigation Rail (AEO Navigation Rail) */
     .sidebar-nav-section {
       padding: 16px 12px;
       flex: 1;
@@ -337,14 +337,14 @@
       .app-shell {
         grid-template-columns: 1fr;
       }
-      .elmo-sidebar {
+      .aeo-sidebar {
         display: none;
         position: fixed;
         inset: 0 auto 0 0;
         width: 270px;
         box-shadow: 0 10px 40px rgba(0,0,0,0.2);
       }
-      .elmo-sidebar.open {
+      .aeo-sidebar.open {
         display: flex;
       }
       .main-workspace-area {
@@ -358,7 +358,7 @@
       display: none;
     }
 
-    /* Clean Resources Dropdown (Elmo-Style) */
+    /* Clean Resources Dropdown (Clean Pro Style) */
     .dropdown-wrapper {
       position: relative;
     }
@@ -581,7 +581,7 @@
       padding-top: 16px;
     }
 
-    /* Cause & Effect Banner - Refined Elmo Style */
+    /* Cause & Effect Banner - Refined Enterprise Style */
     .cause-effect-banner {
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
@@ -1669,8 +1669,8 @@
     }
 
   
-    /* Elmo Feature Parity Styling */
-    .elmo-filter-group {
+    /* AEO Advanced Analytics Styling */
+    .aeo-filter-group {
       display: inline-flex;
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
@@ -1678,7 +1678,7 @@
       padding: 2px;
       gap: 2px;
     }
-    .elmo-filter-btn {
+    .aeo-filter-btn {
       background: none;
       border: none;
       font-size: 11.5px;
@@ -1689,11 +1689,11 @@
       cursor: pointer;
       transition: all 0.15s ease;
     }
-    .elmo-filter-btn:hover {
+    .aeo-filter-btn:hover {
       color: var(--text-primary);
       background: var(--bg-canvas);
     }
-    .elmo-filter-btn.active {
+    .aeo-filter-btn.active {
       background: #FFFFFF;
       color: var(--text-primary);
       box-shadow: 0 1px 3px rgba(0,0,0,0.08);
@@ -1729,7 +1729,7 @@
     }
 
     /* Prompt Chart Card */
-    .elmo-prompt-card {
+    .aeo-prompt-card {
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
       border-radius: 12px;
@@ -1739,7 +1739,7 @@
       gap: 12px;
       transition: border-color 0.15s ease, box-shadow 0.15s ease;
     }
-    .elmo-prompt-card:hover {
+    .aeo-prompt-card:hover {
       border-color: var(--border-hover);
       box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     }
@@ -1750,9 +1750,9 @@
 
   <div class="app-shell">
     <!-- -------------------------------------------------------------------------
-         LEFT NAVIGATION RAIL (ELMO NAVIGATOR)
+         LEFT NAVIGATION RAIL (AEO NAVIGATOR)
          ------------------------------------------------------------------------- -->
-    <aside class="elmo-sidebar" id="elmoSidebar">
+    <aside class="aeo-sidebar" id="aeoSidebar">
       <!-- 1. Top Brand & Workspace Switcher Header -->
       <div class="sidebar-header">
         <div class="sidebar-brand-row">
@@ -1763,7 +1763,7 @@
           <button class="btn-secondary mobile-menu-trigger" onclick="toggleMobileSidebar()" style="display:none; padding:4px 8px; font-size:12px;" aria-label="Close menu">✕</button>
         </div>
 
-        <!-- Elmo Workspace / Brand Switcher Card -->
+        <!-- Workspace / Brand Switcher Card -->
         <div class="sidebar-workspace-selector" onclick="openChangeDomainModal()" title="Click to switch or analyze target domain">
           <div class="workspace-info">
             <span class="workspace-org-label">Organization · AnswerIndex</span>
@@ -1776,7 +1776,7 @@
         </div>
       </div>
 
-      <!-- 2. Primary Navigation Rail (Elmo Parity Architecture) -->
+      <!-- 2. Primary Navigation Rail (AnswerIndex Intelligence Architecture) -->
       <nav class="sidebar-nav-section" aria-label="Dashboard Navigation">
         <div class="sidebar-section-title">AEO Analytics &amp; Intelligence</div>
 
@@ -1900,7 +1900,7 @@
         </a>
       </nav>
 
-      <!-- 3. Sidebar Footer Utilities (Elmo Profile & Admin Rail) -->
+      <!-- 3. Sidebar Footer Utilities (Profile & Admin Rail) -->
       <div class="sidebar-footer">
         <button class="sidebar-footer-btn" onclick="openAdminRegistryModal()" title="Founder Master Admin">
           <span>👑</span>
@@ -2045,7 +2045,7 @@
       </section>
 
       <!-- =========================================================================
-           TAB 1: OVERVIEW (Elmo Parity - Active Default)
+           TAB 1: OVERVIEW (Active Default)
            ========================================================================= -->
       <div id="view-overview" class="workspace-panel active">
         <!-- Cause & Effect Flow -->
@@ -2108,7 +2108,7 @@
           </div>
         </section>
 
-        <!-- Elmo Multi-Engine Area Curves & Comparison Breakdown -->
+        <!-- Multi-Engine Area Curves & Comparison Breakdown -->
         <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px; margin-bottom: 24px;">
           <!-- Left: Area Growth Curve -->
           <div class="workspace-card">
@@ -2263,7 +2263,7 @@
            ========================================================================= -->
       
       <!-- =========================================================================
-           TAB: VISIBILITY (Elmo Parity - Time-Series Mention Rates & Prompt Cards)
+           TAB: VISIBILITY (Time-Series Mention Rates & Prompt Cards)
            ========================================================================= -->
       <div id="view-visibility" class="workspace-panel">
         <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: 14px; padding: 1.5rem; margin-bottom: 1.5rem;">
@@ -2280,19 +2280,19 @@
             </div>
             <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
               <!-- Model Filter -->
-              <div class="elmo-filter-group" id="visModelFilter">
-                <button class="elmo-filter-btn active" onclick="setVisFilter('model', 'all', this)">All Models</button>
-                <button class="elmo-filter-btn" onclick="setVisFilter('model', 'ChatGPT', this)">ChatGPT</button>
-                <button class="elmo-filter-btn" onclick="setVisFilter('model', 'Perplexity', this)">Perplexity</button>
-                <button class="elmo-filter-btn" onclick="setVisFilter('model', 'Claude', this)">Claude</button>
-                <button class="elmo-filter-btn" onclick="setVisFilter('model', 'Gemini', this)">Gemini</button>
+              <div class="aeo-filter-group" id="visModelFilter">
+                <button class="aeo-filter-btn active" onclick="setVisFilter('model', 'all', this)">All Models</button>
+                <button class="aeo-filter-btn" onclick="setVisFilter('model', 'ChatGPT', this)">ChatGPT</button>
+                <button class="aeo-filter-btn" onclick="setVisFilter('model', 'Perplexity', this)">Perplexity</button>
+                <button class="aeo-filter-btn" onclick="setVisFilter('model', 'Claude', this)">Claude</button>
+                <button class="aeo-filter-btn" onclick="setVisFilter('model', 'Gemini', this)">Gemini</button>
               </div>
               <!-- Lookback Filter -->
-              <div class="elmo-filter-group" id="visLookbackFilter">
-                <button class="elmo-filter-btn" onclick="setVisFilter('lookback', '7d', this)">7d</button>
-                <button class="elmo-filter-btn" onclick="setVisFilter('lookback', '14d', this)">14d</button>
-                <button class="elmo-filter-btn active" onclick="setVisFilter('lookback', '30d', this)">30d</button>
-                <button class="elmo-filter-btn" onclick="setVisFilter('lookback', '90d', this)">90d</button>
+              <div class="aeo-filter-group" id="visLookbackFilter">
+                <button class="aeo-filter-btn" onclick="setVisFilter('lookback', '7d', this)">7d</button>
+                <button class="aeo-filter-btn" onclick="setVisFilter('lookback', '14d', this)">14d</button>
+                <button class="aeo-filter-btn active" onclick="setVisFilter('lookback', '30d', this)">30d</button>
+                <button class="aeo-filter-btn" onclick="setVisFilter('lookback', '90d', this)">90d</button>
               </div>
             </div>
           </div>
@@ -2330,7 +2330,7 @@
       </div>
 
       <!-- =========================================================================
-           TAB: SHARE OF VOICE (Elmo Parity - Competitor Mentions & Donut Chart)
+           TAB: SHARE OF VOICE (Competitor Mentions & Donut Chart)
            ========================================================================= -->
       <div id="view-share-of-voice" class="workspace-panel">
         <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: 14px; padding: 1.5rem; margin-bottom: 1.5rem;">
@@ -2407,7 +2407,7 @@
       </div>
 
       <!-- =========================================================================
-           TAB: SENTIMENT ANALYSIS (Elmo Parity - Scoring & Passage Highlights)
+           TAB: SENTIMENT ANALYSIS (Scoring & Passage Highlights)
            ========================================================================= -->
       <div id="view-sentiment" class="workspace-panel">
         <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: 14px; padding: 1.5rem; margin-bottom: 1.5rem;">
@@ -2464,7 +2464,7 @@
       </div>
 
       <!-- =========================================================================
-           TAB: RESPONSES FEED (Elmo Parity - Full Verbatim Answers & Rank)
+           TAB: RESPONSES FEED (Full Verbatim Answers & Rank)
            ========================================================================= -->
       <div id="view-responses" class="workspace-panel">
         <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: 14px; padding: 1.5rem; margin-bottom: 1.5rem;">
@@ -2479,12 +2479,12 @@
               </p>
             </div>
             <!-- Engine Switcher -->
-            <div class="elmo-filter-group" id="respEngineFilter">
-              <button class="elmo-filter-btn active" onclick="setResponseEngineFilter('all', this)">All Engines</button>
-              <button class="elmo-filter-btn" onclick="setResponseEngineFilter('ChatGPT', this)">ChatGPT</button>
-              <button class="elmo-filter-btn" onclick="setResponseEngineFilter('Perplexity', this)">Perplexity</button>
-              <button class="elmo-filter-btn" onclick="setResponseEngineFilter('Claude', this)">Claude</button>
-              <button class="elmo-filter-btn" onclick="setResponseEngineFilter('Gemini', this)">Gemini</button>
+            <div class="aeo-filter-group" id="respEngineFilter">
+              <button class="aeo-filter-btn active" onclick="setResponseEngineFilter('all', this)">All Engines</button>
+              <button class="aeo-filter-btn" onclick="setResponseEngineFilter('ChatGPT', this)">ChatGPT</button>
+              <button class="aeo-filter-btn" onclick="setResponseEngineFilter('Perplexity', this)">Perplexity</button>
+              <button class="aeo-filter-btn" onclick="setResponseEngineFilter('Claude', this)">Claude</button>
+              <button class="aeo-filter-btn" onclick="setResponseEngineFilter('Gemini', this)">Gemini</button>
             </div>
           </div>
 
@@ -2496,7 +2496,7 @@
       </div>
 
       <!-- =========================================================================
-           TAB: QUERY FAN-OUT (Elmo Parity - Background Searches & Word Changes)
+           TAB: QUERY FAN-OUT (Background Searches & Word Changes)
            ========================================================================= -->
       <div id="view-query-fan-out" class="workspace-panel">
         <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: 14px; padding: 1.5rem; margin-bottom: 1.5rem;">
@@ -2560,7 +2560,7 @@
       </div>
 
       <!-- =========================================================================
-           TAB: OPPORTUNITIES (Elmo Parity - AI Generated Actionable Tasks)
+           TAB: OPPORTUNITIES (AI Generated Actionable Tasks)
            ========================================================================= -->
       <div id="view-opportunities" class="workspace-panel">
         <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: 14px; padding: 1.5rem; margin-bottom: 1.5rem;">
@@ -2585,7 +2585,7 @@
       </div>
 
       <!-- =========================================================================
-           SETTINGS TABS (Elmo Settings Parity: Brand, Competitors, Prompts, LLMs)
+           SETTINGS TABS (Brand, Competitors, Prompts, LLMs)
            ========================================================================= -->
       <!-- Settings: Brand -->
       <div id="view-settings-brand" class="workspace-panel">
@@ -4116,7 +4116,7 @@
     }
 
 
-        // ELMO-STYLE WORKSPACE VIEW SWITCHER & SIDEBAR CONTROLLER
+        // WORKSPACE VIEW SWITCHER & SIDEBAR CONTROLLER
     // -------------------------------------------------------------------------
     function switchWorkspaceView(viewId) {
       // Deactivate all panels
@@ -4146,7 +4146,7 @@
       }
 
       // Close mobile drawer if opened
-      const sidebar = document.getElementById('elmoSidebar');
+      const sidebar = document.getElementById('aeoSidebar');
       if (sidebar && sidebar.classList.contains('open')) {
         sidebar.classList.remove('open');
       }
@@ -4156,7 +4156,7 @@
     }
 
     function toggleMobileSidebar() {
-      const sidebar = document.getElementById('elmoSidebar');
+      const sidebar = document.getElementById('aeoSidebar');
       if (sidebar) sidebar.classList.toggle('open');
     }
 
@@ -5437,7 +5437,7 @@
 
     
     // =========================================================================
-    // ELMO FEATURE PARITY: STATE & RENDERING ENGINES (100% Free AI Tier)
+    // AEO ANALYTICS: STATE & RENDERING ENGINES (100% Free AI Tier)
     // =========================================================================
     let currentVisFilter = { model: 'all', lookback: '30d' };
     let currentRespFilter = { engine: 'all' };
@@ -5537,7 +5537,7 @@
       }
 
       // Close mobile drawer if opened
-      const sidebar = document.getElementById('elmoSidebar');
+      const sidebar = document.getElementById('aeoSidebar');
       if (sidebar && sidebar.classList.contains('open')) {
         sidebar.classList.remove('open');
       }
@@ -5550,9 +5550,9 @@
     // -------------------------------------------------------------------------
     function setVisFilter(type, val, btn) {
       currentVisFilter[type] = val;
-      const group = btn.closest('.elmo-filter-group');
+      const group = btn.closest('.aeo-filter-group');
       if (group) {
-        group.querySelectorAll('.elmo-filter-btn').forEach(b => b.classList.remove('active'));
+        group.querySelectorAll('.aeo-filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
       }
       renderVisibilityView();
@@ -5590,7 +5590,7 @@
         const pointsStr = sparklinePoints.map(pt => `${pt[0]},${pt[1]}`).join(' ');
 
         return `
-          <div class="elmo-prompt-card">
+          <div class="aeo-prompt-card">
             <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap;">
               <div style="flex: 1; min-width: 220px;">
                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
@@ -5791,9 +5791,9 @@
     // -------------------------------------------------------------------------
     function setResponseEngineFilter(engine, btn) {
       currentRespFilter.engine = engine;
-      const group = btn.closest('.elmo-filter-group');
+      const group = btn.closest('.aeo-filter-group');
       if (group) {
-        group.querySelectorAll('.elmo-filter-btn').forEach(b => b.classList.remove('active'));
+        group.querySelectorAll('.aeo-filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
       }
       renderResponsesFeed();
@@ -6209,7 +6209,7 @@ function escapeHtml(str) {
   <script src="assets/client-portal.js?v=20261104_v1"></script>
 
   <!-- =========================================================================
-       ELMO PARITY: RIGHT-HAND SIDE PROMPT DETAIL DRAWER (#promptDetailDrawer)
+       RIGHT-HAND SIDE PROMPT DETAIL DRAWER (#promptDetailDrawer)
        Displays: 1. Mentions & Rank | 2. Web Queries | 3. Citations | 4. LLM Responses
        ========================================================================= -->
   <div id="promptDetailDrawerBackdrop" onclick="closePromptDetailDrawer()" style="display:none; position:fixed; inset:0; background:rgba(15,23,42,0.45); backdrop-filter:blur(3px); z-index:9998; transition:opacity 0.25s ease;"></div>
@@ -6229,7 +6229,7 @@ function escapeHtml(str) {
       <button onclick="closePromptDetailDrawer()" style="background: none; border: 1px solid var(--border-subtle); border-radius: 6px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text-secondary); font-size: 16px;" aria-label="Close drawer">✕</button>
     </div>
 
-    <!-- 4 Drawer Tabs (Elmo: Mentions, Web Queries, Citations, Responses) -->
+    <!-- 4 Drawer Tabs (Mentions, Web Queries, Citations, Responses) -->
     <div style="display: flex; border-bottom: 1px solid var(--border-subtle); background: var(--bg-canvas); padding: 0 16px; overflow-x: auto;">
       <button class="drawer-tab-btn active" data-dtab="mentions" onclick="switchDrawerTab('mentions')">Mentions &amp; Rank</button>
       <button class="drawer-tab-btn" data-dtab="queries" onclick="switchDrawerTab('queries')">Web Queries</button>
