@@ -1803,28 +1803,62 @@
         </div>
       </div>
 
-      <!-- Stepwise Progression Ribbon (Elmo Breadcrumb Flow) -->
+      <!-- Stepwise Progression Ribbon (Domain -> Connect Website -> Automated Staging) -->
       <div class="stepwise-progress-ribbon">
         <div class="stepwise-breadcrumbs">
           <div class="crumb-step done" id="crumbStep1">
-            <span class="crumb-number">✓</span>
-            <span>1. Domain Connected</span>
+            <span class="crumb-number" id="crumbStep1Num">✓</span>
+            <span id="crumbStep1Text">1. Target Domain Analyzed</span>
           </div>
           <span class="crumb-separator">→</span>
-          <div class="crumb-step done" id="crumbStep2">
-            <span class="crumb-number">✓</span>
-            <span>2. AI Citation Radar Active</span>
+          <div class="crumb-step" id="crumbStep2">
+            <span class="crumb-number" id="crumbStep2Num">2</span>
+            <span id="crumbStep2Text">2. Website Connection (Tag or Git)</span>
           </div>
           <span class="crumb-separator">→</span>
-          <div class="crumb-step active" id="crumbStep3">
-            <span class="crumb-number" id="crumbPendingCount">2</span>
-            <span>3. Staged Deliverables Ready</span>
+          <div class="crumb-step" id="crumbStep3">
+            <span class="crumb-number" id="crumbPendingCount">0</span>
+            <span id="crumbStep3Text">3. Automated Publishing Active</span>
           </div>
         </div>
 
-        <div class="system-status-indicator" id="systemHealthBadge">
-          <span style="width: 6px; height: 6px; border-radius: 50%; background: #10B981;"></span>
-          <span>Daily Autonomous Repricer: Online</span>
+        <div class="system-status-indicator" id="systemHealthBadge" onclick="openConnectWebsiteModal()" style="cursor: pointer;" title="Click to view or verify website integration status">
+          <span id="systemHealthDot" style="width: 7px; height: 7px; border-radius: 50%; background: #EF4444; display: inline-block;"></span>
+          <span id="systemHealthText">Website Not Connected · Connect Tag</span>
+        </div>
+      </div>
+
+      <!-- Prominent Website Connection Action Banner (Shown when website is not connected) -->
+      <div id="websiteConnectionBanner" style="display: none; background: #FFFDF8; border: 1.5px solid var(--honey-border); border-radius: 14px; padding: 18px 22px; margin-bottom: 22px; box-shadow: 0 4px 18px rgba(249, 188, 56, 0.12);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap;">
+          <div style="display: flex; gap: 14px; align-items: flex-start; flex: 2; min-width: 290px;">
+            <div style="width: 40px; height: 40px; border-radius: 10px; background: #FEF3C7; color: #B45309; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0;">
+              ⚡
+            </div>
+            <div>
+              <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 4px;">
+                <span class="badge-pill" style="background: #FEE2E2; color: #DC2626; border: 1px solid #FECACA; font-size: 10.5px; font-weight: 800;">
+                  ⚠️ Setup Incomplete: Not Connected
+                </span>
+                <span style="font-size: 12px; font-weight: 700; color: var(--text-primary);" id="bannerTargetDomainTitle">Target Website</span>
+              </div>
+              <h3 style="font-size: 15px; font-weight: 800; color: #92400E; margin: 0 0 4px 0;">
+                Connect Your Website to Enable Automated AEO Implementation
+              </h3>
+              <p style="font-size: 12.5px; color: var(--text-secondary); margin: 0; line-height: 1.5;">
+                Answer Index has diagnosed your website and staged initial code drafts. However, <strong>Answer Index does not have access to your live site</strong> until you install the 1-Line Edge Script Tag or connect your Git/CMS repository.
+              </p>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+            <button onclick="openConnectWebsiteModal()" class="btn-honey-primary" style="font-size: 12.5px; padding: 9px 18px; font-weight: 800; white-space: nowrap;">
+              ⚡ Connect Website Now (60s) →
+            </button>
+            <button onclick="copyUniversalEdgeScript()" class="btn-secondary" style="font-size: 12px; padding: 9px 14px; white-space: nowrap;">
+              📋 Copy 1-Line Tag
+            </button>
+          </div>
         </div>
       </div>
 
@@ -2657,6 +2691,93 @@
     </div>
   </div>
 
+  <!-- -------------------------------------------------------------------------
+       MODAL: Connect Website Setup Guide (1-Line Tag vs Git / CMS)
+       ------------------------------------------------------------------------- -->
+  <div id="connectWebsiteModal" class="modal-overlay" onclick="handleConnectModalBackdrop(event)">
+    <div class="modal-card" style="max-width: 660px; width: 95%;">
+      <button class="modal-close-btn" onclick="closeConnectWebsiteModal()" aria-label="Close modal">✕</button>
+
+      <div style="margin-bottom: 20px; border-bottom: 1px solid var(--border-subtle); padding-bottom: 14px;">
+        <span class="badge-pill badge-pill-honey" style="margin-bottom: 6px;">⚡ Direct Implementation Pipeline</span>
+        <h2 style="font-size: 21px; font-weight: 800; color: var(--text-primary); margin: 4px 0 6px 0;">
+          Connect <span id="connectModalDomainTitle" style="color: #B45309;">Your Website</span> to AnswerIndex
+        </h2>
+        <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.5; margin: 0;">
+          AnswerIndex needs authorization to deploy approved zero-click answer passages and JSON-LD schemas to your live website. Choose your preferred integration method below:
+        </p>
+      </div>
+
+      <!-- Integration Option 1: 1-Line Edge Script (Recommended) -->
+      <div style="background: var(--bg-card); border: 2px solid var(--honey-border); border-radius: 14px; padding: 18px 20px; margin-bottom: 16px; box-shadow: 0 2px 10px rgba(0,0,0,0.03);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 18px;">⚡</span>
+            <strong style="font-size: 14px; color: var(--text-primary);">Option 1: 1-Line Universal Edge Tag (Recommended)</strong>
+          </div>
+          <span class="badge-pill badge-pill-emerald" style="font-size: 10px;">Fastest · Sub-20ms Edge</span>
+        </div>
+        <p style="font-size: 12.5px; color: var(--text-secondary); line-height: 1.5; margin: 0 0 12px 0;">
+          Works with <strong>WordPress, Shopify, Webflow, React, Next.js, or any custom CMS</strong>. Paste this single script tag once inside your site's <code style="background:#FFF8E7; color:#B45309; padding:1px 5px; border-radius:4px;">&lt;head&gt;</code>. Approved schemas are then dynamically injected on every daily run.
+        </p>
+
+        <div style="background: #1C1D21; border-radius: 10px; padding: 12px 14px; display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-bottom: 10px;">
+          <code id="modalEdgeScriptSnippet" style="font-family: var(--font-mono); font-size: 12px; color: #FBBF24; word-break: break-all;">
+            &lt;script async src="https://answerindex.xyz/client/yourbrand.js"&gt;&lt;/script&gt;
+          </code>
+          <button onclick="copyModalEdgeScript()" class="btn-honey-primary" style="font-size: 11px; padding: 6px 12px; font-weight: 800; white-space: nowrap;">
+            📋 Copy Tag
+          </button>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+          <span style="font-size: 11.5px; color: var(--text-muted);">
+            🛡️ Zero writes to codebase &bull; Validated strictly against Brand Truth Wiki
+          </span>
+          <button id="btnVerifyTagFromModal" onclick="verifyWebsiteConnectionNow()" class="btn-secondary" style="font-size: 11.5px; padding: 6px 14px; font-weight: 700; color: #059669; border-color: #A7F3D0; background: #ECFDF5;">
+            🔍 Probe Live Site &amp; Verify →
+          </button>
+        </div>
+      </div>
+
+      <!-- Integration Option 2: CMS or GitHub Pull Requests -->
+      <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: 14px; padding: 16px 20px; margin-bottom: 18px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 18px;">🐙</span>
+            <strong style="font-size: 13.5px; color: var(--text-primary);">Option 2: Git Repository or CMS Webhook</strong>
+          </div>
+          <span class="badge-pill" style="font-size: 10px;">Enterprise</span>
+        </div>
+        <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.5; margin: 0 0 10px 0;">
+          For engineering teams that require Git code reviews. AnswerIndex stages automated pull requests directly to your GitHub repository (e.g., <code style="font-family:var(--font-mono); font-size:11px;">answerindex-aeo-day-1</code>) without publishing until approved by an engineer.
+        </p>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <button onclick="showToast('🐙 GitHub App integration link copied. Install to authorize staging PRs.');" class="btn-secondary" style="font-size: 11.5px; padding: 6px 12px;">
+            Connect GitHub App
+          </button>
+          <button onclick="showToast('🛍️ Shopify App bridge available under Settings > Custom Apps.');" class="btn-secondary" style="font-size: 11.5px; padding: 6px 12px;">
+            Shopify App Store
+          </button>
+          <button onclick="showToast('📝 WordPress plugin available: Download answerindex-aeo.zip.');" class="btn-secondary" style="font-size: 11.5px; padding: 6px 12px;">
+            WordPress Plugin
+          </button>
+        </div>
+      </div>
+
+      <div id="modalConnectionStatusResult" style="display: none; padding: 12px 14px; border-radius: 8px; font-size: 12.5px; margin-bottom: 14px;"></div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-subtle); padding-top: 12px;">
+        <span style="font-size: 11.5px; color: var(--text-muted);">
+          Questions? Check <a href="flow.html" target="_blank" style="color: #B45309; text-decoration: underline;">The Flow Architecture Guide</a>
+        </span>
+        <button onclick="closeConnectWebsiteModal()" class="btn-secondary" style="font-size: 12px; padding: 6px 16px;">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Toast Notification -->
   <div id="toast" class="toast-msg"></div>
 
@@ -2946,6 +3067,7 @@
         updateProjectUI(currentProject);
         updateUniversalScriptTag();
         await autoCrawlDomainTruth(currentProject.domain);
+        await checkWebsiteConnection(currentProject.domain);
         await loadJobs();
         buildCalendar();
         restoreGuideBannerState();
@@ -3048,7 +3170,213 @@
     }
 
     // -------------------------------------------------------------------------
-    // ELMO-STYLE WORKSPACE VIEW SWITCHER & SIDEBAR CONTROLLER
+    // -------------------------------------------------------------------------
+    // LIVE WEBSITE CONNECTION STATE & PROBE CONTROLLER
+    // -------------------------------------------------------------------------
+    let isWebsiteConnected = false;
+
+    async function checkWebsiteConnection(domain) {
+      const cleanHost = (domain || (currentProject && currentProject.domain) || '').replace(/^https?:\/\//i, '').replace(/\/.*$/, '').trim();
+      if (!cleanHost || cleanHost === 'answerindex.xyz') {
+        setWebsiteConnectionState(true, 'Native Master Domain');
+        return;
+      }
+
+      // Check localStorage cached state first for speed
+      const cacheKey = `answerindex_connected_${cleanHost}`;
+      const cached = localStorage.getItem(cacheKey);
+      if (cached === 'true') {
+        setWebsiteConnectionState(true, 'Cached Connected');
+      } else {
+        setWebsiteConnectionState(false, 'Checking...');
+      }
+
+      try {
+        const res = await fetch('/api/verify-edge', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            domain: cleanHost,
+            path: '/'
+          })
+        });
+
+        const data = await res.json();
+        if (data.verified || data.hasEdgeTag) {
+          localStorage.setItem(cacheKey, 'true');
+          setWebsiteConnectionState(true, data.message || 'Connected via Edge Tag');
+        } else {
+          localStorage.setItem(cacheKey, 'false');
+          setWebsiteConnectionState(false, data.message || 'Tag not installed yet');
+        }
+      } catch (e) {
+        console.warn('Connection check error:', e);
+      }
+    }
+
+    function setWebsiteConnectionState(connected, note) {
+      isWebsiteConnected = connected;
+
+      // 1. Top Context Bar Badge
+      const topPill = document.getElementById('topCrawlerStatusPill');
+      if (topPill) {
+        if (connected) {
+          topPill.className = 'badge-pill badge-pill-emerald';
+          topPill.innerHTML = '● Live Edge Connected';
+          topPill.title = 'AnswerIndex Edge Tag is active on website HTML';
+        } else {
+          topPill.className = 'badge-pill';
+          topPill.style.background = '#FEE2E2';
+          topPill.style.color = '#DC2626';
+          topPill.style.border = '1px solid #FECACA';
+          topPill.innerHTML = '⚠️ Website Not Connected';
+          topPill.title = 'Click to connect 1-Line Tag or Git repository';
+          topPill.style.cursor = 'pointer';
+          topPill.onclick = openConnectWebsiteModal;
+        }
+      }
+
+      // 2. Stepwise Breadcrumbs
+      const crumbStep2 = document.getElementById('crumbStep2');
+      const crumbStep2Num = document.getElementById('crumbStep2Num');
+      const crumbStep2Text = document.getElementById('crumbStep2Text');
+      const crumbStep3 = document.getElementById('crumbStep3');
+      const systemDot = document.getElementById('systemHealthDot');
+      const systemText = document.getElementById('systemHealthText');
+
+      if (connected) {
+        if (crumbStep2) crumbStep2.className = 'crumb-step done';
+        if (crumbStep2Num) crumbStep2Num.textContent = '✓';
+        if (crumbStep2Text) crumbStep2Text.textContent = '2. Website Connected';
+        if (crumbStep3) crumbStep3.className = 'crumb-step active';
+        if (systemDot) systemDot.style.background = '#10B981';
+        if (systemText) systemText.textContent = 'Daily Autonomous Repricer: Online';
+      } else {
+        if (crumbStep2) crumbStep2.className = 'crumb-step active';
+        if (crumbStep2Num) crumbStep2Num.textContent = '2';
+        if (crumbStep2Text) crumbStep2Text.textContent = '2. Connection Pending (Tag)';
+        if (crumbStep3) crumbStep3.className = 'crumb-step';
+        if (systemDot) systemDot.style.background = '#EF4444';
+        if (systemText) systemText.textContent = 'Setup Incomplete: Connect Website';
+      }
+
+      // 3. Quick Connection Action Banner
+      const banner = document.getElementById('websiteConnectionBanner');
+      const bannerDomain = document.getElementById('bannerTargetDomainTitle');
+      if (banner) {
+        banner.style.display = connected ? 'none' : 'block';
+        if (bannerDomain && currentProject) {
+          bannerDomain.textContent = currentProject.domain || 'Target Domain';
+        }
+      }
+
+      // 4. Update Modal Domain title & Snippet
+      const modalDomain = document.getElementById('connectModalDomainTitle');
+      const modalSnippet = document.getElementById('modalEdgeScriptSnippet');
+      if (currentProject) {
+        const cleanSlug = (currentProject.domain || 'yourbrand.com').replace(/^https?:\/\//i, '').split('.')[0];
+        if (modalDomain) modalDomain.textContent = currentProject.domain || 'Your Website';
+        if (modalSnippet) modalSnippet.textContent = `<script async src="https://answerindex.xyz/client/${cleanSlug}.js"><\/script>`;
+      }
+    }
+
+    function openConnectWebsiteModal() {
+      const modal = document.getElementById('connectWebsiteModal');
+      if (!modal) return;
+      if (currentProject) {
+        const cleanSlug = (currentProject.domain || 'yourbrand.com').replace(/^https?:\/\//i, '').split('.')[0];
+        const modalDomain = document.getElementById('connectModalDomainTitle');
+        const modalSnippet = document.getElementById('modalEdgeScriptSnippet');
+        if (modalDomain) modalDomain.textContent = currentProject.domain;
+        if (modalSnippet) modalSnippet.textContent = `<script async src="https://answerindex.xyz/client/${cleanSlug}.js"><\/script>`;
+      }
+      modal.classList.add('active');
+    }
+
+    function closeConnectWebsiteModal() {
+      const modal = document.getElementById('connectWebsiteModal');
+      if (modal) modal.classList.remove('active');
+    }
+
+    function handleConnectModalBackdrop(e) {
+      if (e.target && e.target.id === 'connectWebsiteModal') closeConnectWebsiteModal();
+    }
+
+    function copyModalEdgeScript() {
+      copyUniversalEdgeScript();
+    }
+
+    async function verifyWebsiteConnectionNow() {
+      const btn = document.getElementById('btnVerifyTagFromModal');
+      const resultBox = document.getElementById('modalConnectionStatusResult');
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = 'Probing Live DOM...';
+      }
+      if (resultBox) {
+        resultBox.style.display = 'block';
+        resultBox.style.background = '#FFF8E7';
+        resultBox.style.border = '1px solid #F3CA68';
+        resultBox.style.color = '#92400E';
+        resultBox.textContent = `Connecting to https://${currentProject.domain}... Checking for <script src="https://answerindex.xyz/client/..."> tag in HTML.`;
+      }
+
+      try {
+        const res = await fetch('/api/verify-edge', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            domain: currentProject.domain,
+            path: '/'
+          })
+        });
+
+        const data = await res.json();
+        if (data.verified || data.hasEdgeTag) {
+          const cacheKey = `answerindex_connected_${currentProject.domain.replace(/^https?:\/\//i, '').replace(/\/.*$/, '')}`;
+          localStorage.setItem(cacheKey, 'true');
+          setWebsiteConnectionState(true, data.message);
+          if (resultBox) {
+            resultBox.style.background = '#ECFDF5';
+            resultBox.style.border = '1px solid #A7F3D0';
+            resultBox.style.color = '#065F46';
+            resultBox.textContent = `🎉 Success! Found AnswerIndex Edge Tag active on https://${currentProject.domain} (HTTP 200, TTFB ${data.ttfbMs}ms). Automated daily publishing is now UNLOCKED!`;
+          }
+          if (btn) {
+            btn.textContent = '✓ Tag Verified Active';
+            btn.style.background = '#10B981';
+            btn.style.color = '#FFFFFF';
+          }
+          showToast(`🎉 Verified connection for ${currentProject.domain}! Daily publishing unlocked.`);
+        } else {
+          setWebsiteConnectionState(false, data.message);
+          if (resultBox) {
+            resultBox.style.background = '#FEF2F2';
+            resultBox.style.border = '1px solid #FECACA';
+            resultBox.style.color = '#991B1B';
+            resultBox.textContent = `⚠️ Tag Not Found Yet. Target page responded with HTTP ${data.httpStatus || 200}, but the AnswerIndex script tag was not detected in HTML. Please paste the script into your <head> and retry.`;
+          }
+          if (btn) {
+            btn.disabled = false;
+            btn.textContent = 'Retry Verification Probe ↻';
+          }
+        }
+      } catch (err) {
+        if (resultBox) {
+          resultBox.style.background = '#FEF2F2';
+          resultBox.style.border = '1px solid #FECACA';
+          resultBox.style.color = '#991B1B';
+          resultBox.textContent = `⚠️ Connection error: Could not reach https://${currentProject.domain}. Verify site is public and accessible.`;
+        }
+        if (btn) {
+          btn.disabled = false;
+          btn.textContent = 'Retry Verification Probe ↻';
+        }
+      }
+    }
+
+
+        // ELMO-STYLE WORKSPACE VIEW SWITCHER & SIDEBAR CONTROLLER
     // -------------------------------------------------------------------------
     function switchWorkspaceView(viewId) {
       // Deactivate all panels
@@ -3302,6 +3630,9 @@
           });
         }
       } catch (saveErr) {}
+
+      // Check live connection state
+      await checkWebsiteConnection(cleanDomain);
 
       // Refresh jobs & radar
       await loadJobs();
