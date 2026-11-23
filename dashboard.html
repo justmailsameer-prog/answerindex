@@ -1422,7 +1422,7 @@
       <!-- Script Tag Box -->
       <div style="background: #1C1D21; border-radius: 12px; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
         <code id="universalEdgeScriptTag" style="font-family: var(--font-mono); font-size: 12px; color: #FBBF24; word-break: break-all;">
-          &lt;script async src="https://answerindex.xyz/client/vibelyze.js"&gt;&lt;/script&gt;
+          &lt;script async src="https://answerindex.xyz/client/yourbrand.js"&gt;&lt;/script&gt;
         </code>
         <button onclick="copyUniversalEdgeScript()" class="btn-honey-primary" style="font-size: 11.5px; padding: 6px 14px; font-weight: 800; white-space: nowrap;">
           📋 Copy 1-Line Tag
@@ -2424,12 +2424,12 @@
     function updateUniversalScriptTag() {
       const tagEl = document.getElementById('universalEdgeScriptTag');
       if (!tagEl || !currentProject) return;
-      const cleanSlug = (currentProject.domain || 'vibelyze.pages.dev').replace(/^https?:\/\//i, '').split('.')[0];
+      const cleanSlug = (currentProject.domain || 'yourbrand.com').replace(/^https?:\/\//i, '').split('.')[0];
       tagEl.textContent = `<script async src="https://answerindex.xyz/client/${cleanSlug}.js"><\/script>`;
     }
 
     function copyUniversalEdgeScript() {
-      const cleanSlug = (currentProject.domain || 'vibelyze.pages.dev').replace(/^https?:\/\//i, '').split('.')[0];
+      const cleanSlug = (currentProject.domain || 'yourbrand.com').replace(/^https?:\/\//i, '').split('.')[0];
       const code = `<script async src="https://answerindex.xyz/client/${cleanSlug}.js"><\/script>`;
       navigator.clipboard.writeText(code).then(() => {
         showToast('📋 Copied 1-Line Edge Tag! Paste into your site <head>.');
@@ -2443,11 +2443,12 @@
         btn.textContent = 'Dispatching Report...';
       }
 
-      showToast(`✉️ Generating Day 3 Executive Email Report for ${currentProject.domain}...`);
+      const domain = currentProject ? currentProject.domain : 'yourbrand.com';
+      showToast(`✉️ Generating Day 3 Executive Email Report for ${domain}...`);
 
       try {
         const storedUser = localStorage.getItem('answerindex_user');
-        let userEmail = 'founder@vibelyze.pages.dev';
+        let userEmail = 'founder@' + (domain || 'client.com');
         if (storedUser) {
           try {
             const u = JSON.parse(storedUser);

@@ -167,6 +167,41 @@ class TestProductionAuthAndEdge(unittest.TestCase):
         d_body = json.loads(d_body_raw)
         self.assertTrue(d_body.get("success"))
 
+    def test_11_dashboard_dynamic_domain_delta_and_brand_hygiene(self):
+        """Verify dashboard.html dynamically computes deltas for target domain (blabr.xyz) and contains zero leaked demo names."""
+        with open("dashboard.html", "r", encoding="utf-8") as f:
+            content = f.read()
+
+        # 1. Zero forbidden mock brand leaks
+        for forbidden in ["nordic", "nordicnesting", "vibelyze"]:
+            self.assertNotIn(forbidden, content.lower(), f"Forbidden demo brand '{forbidden}' leaked in dashboard.html")
+
+        # 2. Presence of dynamic delta generation engine
+        self.assertIn("getCalendarDeltaForDomain", content, "Dynamic domain delta engine must be present")
+        self.assertIn("universalEdgeScriptTag", content, "Universal edge script tag element must be present")
+
+        # 3. Verify HTML default values do not claim hardcoded domain
+        self.assertNotIn('<strong id="projectDomain">nordicnesting.com</strong>', content)
+        self.assertNotIn('Target: <span id="barTargetDomainDisplay" style="color: #B45309;">nordicnesting.com</span>', content)
+
+    def test_12_cross_page_internal_links_integrity(self):
+        """Verify all internal HTML links across production pages resolve cleanly on disk."""
+        import glob
+        import re
+        html_files = [f for f in glob.glob("*.html") if not f.endswith(".backup.html")]
+        broken = []
+        for fn in html_files:
+            with open(fn, "r", encoding="utf-8") as f:
+                c = f.read()
+            links = re.findall(r'(?:href|src)=["\']([^"\'#][^"\']*)["\']', c)
+            for link in links:
+                if link.startswith(("http://", "https://", "mailto:", "javascript:", "tel:", "data:")):
+                    continue
+                clean = link.split("?")[0].split("#")[0].lstrip("/")
+                if clean and not glob.glob(clean) and not clean.startswith(("api/", "client/")):
+                    broken.append((fn, link))
+        self.assertEqual(len(broken), 0, f"Found broken internal references: {broken}")
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
