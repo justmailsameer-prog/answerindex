@@ -1949,16 +1949,16 @@
               <div class="cal-stat-item">
                 <span class="cal-stat-label">Execution Progress</span>
                 <div class="cal-stat-val">
-                  <span id="calDaysDoneCount" style="color: #059669;">2 Days Done</span>
-                  <span style="font-size: 12px; color: var(--text-muted); font-weight: 500;">/ 28 Pending</span>
+                  <span id="calDaysDoneCount" style="color: #059669;">0 Days Merged</span>
+                  <span id="calDaysPendingCount" style="font-size: 12px; color: var(--text-muted); font-weight: 500;">/ 30 Scheduled</span>
                 </div>
               </div>
               <div class="cal-stat-item">
                 <span class="cal-stat-label">AEO Score Trajectory</span>
                 <div class="cal-stat-val">
-                  <span style="color: #6E717C; font-size: 13px;">68</span>
+                  <span id="calScoreBaseline" style="color: #6E717C; font-size: 13px;">68</span>
                   <span style="color: #B45309; font-size: 12px;">→</span>
-                  <strong id="calCurrentScore" style="color: #059669; font-size: 18px;">71</strong>
+                  <strong id="calCurrentScore" style="color: #059669; font-size: 18px;">68</strong>
                   <span style="color: var(--text-muted); font-size: 11px; font-weight: 500;">/ 100 Target</span>
                 </div>
               </div>
@@ -1982,8 +1982,8 @@
               </svg>
             </div>
             <div style="display:flex; justify-content:space-between; font-size:10px; font-family:var(--font-mono); color:var(--text-muted); margin-top:4px;">
-              <span>Day 1 (Score 68)</span>
-              <span style="color:#B45309; font-weight:700;">● Today (Day 3: 71)</span>
+              <span id="calBaselineMarker">Day 1 (Score 68)</span>
+              <span id="calActiveDayMarker" style="color:#B45309; font-weight:700;">● Today (Day 1: 68)</span>
               <span>Day 30 (Projected: 100)</span>
             </div>
           </div>
@@ -3319,11 +3319,13 @@
       const host = (domain || 'yourbrand.com').replace(/^https?:\/\//i, '').replace(/\/.*$/, '').trim();
       const brand = (brandName || host.split('.')[0] || 'Your Brand').replace(/[-_]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
 
+      // Newly connected target domain begins on Day 1: Today (Pending Sign-Off)
       return [
         {
           id: 'job_dynamic_01',
           project_id: currentProject ? currentProject.id : 'proj_preview',
-          date: 'Today (Day 3)',
+          date: 'Today (Day 1)',
+          day_num: 1,
           job_type: 'job_1_new_answer',
           title: `Authoritative FAQ & Direct Answer Matrix: "${brand} Commercial Solutions & Capabilities"`,
           target_keyword: `${brand.toLowerCase()} review pricing capabilities`,
@@ -3338,51 +3340,21 @@
         {
           id: 'job_dynamic_02',
           project_id: currentProject ? currentProject.id : 'proj_preview',
-          date: 'Today (Day 3)',
+          date: 'Today (Day 1)',
+          day_num: 1,
           job_type: 'job_2_tech_refactor',
-          title: `Technical Schema Graph: Canonical Organization & WebSite JSON-LD for ${host}`,
-          target_keyword: `${brand.toLowerCase()} technical schema knowledge graph`,
-          target_url: '/index.html',
+          title: `Crawler Directives, /llms.txt & Canonical Knowledge Graph for ${host}`,
+          target_keyword: `${brand.toLowerCase()} frontier ai crawler allow directives`,
+          target_url: '/robots.txt',
           pr_url: `https://github.com/justmailsameer-prog/answerindex/pull/153`,
           pr_number: 153,
           pr_status: 'pending',
           schema_score: 100,
-          diff_summary: '-8 lines, +54 lines · Connected Organization @graph and /llms.txt manifest',
-          zero_click_snippet: `Injected canonical @graph metadata on https://${host} establishing unified brand entity recognition across generative AI crawl bots.`
-        },
-        {
-          id: 'job_dynamic_03',
-          project_id: currentProject ? currentProject.id : 'proj_preview',
-          date: 'Yesterday (Day 2)',
-          job_type: 'job_1_new_answer',
-          title: `Competitor Displacement Guide: "${brand} vs Alternatives in 2026"`,
-          target_keyword: `${brand.toLowerCase()} vs alternatives comparison`,
-          target_url: `/compare/${host.split('.')[0]}-alternatives.html`,
-          pr_url: `https://github.com/justmailsameer-prog/answerindex/pull/150`,
-          pr_number: 150,
-          pr_status: 'approved',
-          schema_score: 98,
-          diff_summary: '+240 lines · Structured feature matrix + FAQ Microdata',
-          zero_click_snippet: `High-conviction factual comparison engineered to secure #1 recommendation position for bottom-of-funnel commercial evaluation prompts.`
-        },
-        {
-          id: 'job_dynamic_04',
-          project_id: currentProject ? currentProject.id : 'proj_preview',
-          date: 'Yesterday (Day 2)',
-          job_type: 'job_2_tech_refactor',
-          title: `Crawler Directives & /llms.txt Edge Synchronization for ${host}`,
-          target_keyword: 'frontier ai crawler allow directives',
-          target_url: '/robots.txt',
-          pr_url: `https://github.com/justmailsameer-prog/answerindex/pull/151`,
-          pr_number: 151,
-          pr_status: 'approved',
-          schema_score: 100,
           diff_summary: 'Synchronized robots.txt allow rules for GPTBot, ClaudeBot, and PerplexityBot',
-          zero_click_snippet: `Crawler access verified at edge root. Sub-40ms response latency confirmed across OpenAI and Anthropic IP ranges.`
+          zero_click_snippet: `Crawler access verified at edge root. Sub-40ms response latency confirmed across OpenAI, Anthropic, and Perplexity bot ranges.`
         }
       ];
     }
-
     async function loadJobs() {
       try {
         let url = '/api/jobs';
@@ -3808,26 +3780,26 @@
       if (day === 1) {
         return {
           scoreBefore: 68,
-          scoreAfter: 69,
-          lift: '+1 Point',
-          citationProb: '52.0%',
-          citationDelta: '▲ +14.0%',
+          scoreAfter: 70,
+          lift: '+2 Points (Pending Review)',
+          citationProb: '58.0%',
+          citationDelta: '▲ Staged for approval',
           improvements: [
-            `Unblocked GPTBot, ClaudeBot & PerplexityBot in robots.txt for https://${cleanHost}.`,
+            `Awaiting your approval: Unblock GPTBot, ClaudeBot & PerplexityBot in robots.txt for https://${cleanHost}.`,
             `Registered edge crawler verification ping across OpenAI, Anthropic, and Perplexity servers.`,
-            `Initial ${brand} entity disambiguation established across frontier AI knowledge bases.`
+            `Initial ${brand} canonical entity disambiguation established across frontier AI knowledge bases.`
           ],
           code: `User-agent: GPTBot\nAllow: /\n\nUser-agent: ClaudeBot\nAllow: /\n\nUser-agent: PerplexityBot\nAllow: /\n\nSitemap: https://${cleanHost}/ai-sitemap.xml`
         };
       } else if (day === 2) {
         return {
-          scoreBefore: 69,
-          scoreAfter: 71,
+          scoreBefore: 70,
+          scoreAfter: 72,
           lift: '+2 Points',
           citationProb: '68.4%',
-          citationDelta: '▲ +26.4%',
+          citationDelta: '▲ Next Release',
           improvements: [
-            `Injected Organization & Brand Knowledge Graph JSON-LD schema on https://${cleanHost}.`,
+            `Scheduled Day 2: Injected Organization & Brand Knowledge Graph JSON-LD schema on https://${cleanHost}.`,
             `Perplexity answer confidence increased from 42% to 68% for ${brand} commercial queries.`,
             `Frontier models now extract official ${brand} founder, verified headquarters, and official site URL.`
           ],
@@ -3863,10 +3835,49 @@
       }
     }
 
+    function getCurrentExecutionDay() {
+      // If we have jobs loaded, derive current day from approved/merged job history
+      if (!allJobs || allJobs.length === 0) return 1;
+
+      // Group completed days from approved jobs
+      const approvedJobs = allJobs.filter(j => j.pr_status === 'approved' || j.pr_status === 'merged');
+      if (approvedJobs.length === 0) return 1;
+
+      // Determine highest completed day number
+      let maxApprovedDay = 0;
+      approvedJobs.forEach(j => {
+        if (j.day_num) {
+          maxApprovedDay = Math.max(maxApprovedDay, j.day_num);
+        } else if (j.date) {
+          const match = j.date.match(/Day\s*(\d+)/i);
+          if (match) maxApprovedDay = Math.max(maxApprovedDay, parseInt(match[1], 10));
+        }
+      });
+
+      // Active day is either maxApprovedDay (if pending jobs on that day) or maxApprovedDay + 1
+      const pendingJobs = allJobs.filter(j => j.pr_status === 'pending');
+      if (pendingJobs.length > 0) {
+        let maxPendingDay = 1;
+        pendingJobs.forEach(j => {
+          if (j.day_num) maxPendingDay = Math.max(maxPendingDay, j.day_num);
+          else if (j.date) {
+            const match = j.date.match(/Day\s*(\d+)/i);
+            if (match) maxPendingDay = Math.max(maxPendingDay, parseInt(match[1], 10));
+          }
+        });
+        return Math.max(maxPendingDay, maxApprovedDay + 1);
+      }
+
+      return Math.min(30, maxApprovedDay + 1);
+    }
+
     function buildCalendar() {
       const container = document.getElementById('calendarDaysGrid');
       const chartContainer = document.getElementById('calTrajectoryChart');
       if (!container) return;
+
+      const currentDay = getCurrentExecutionDay();
+      const completedDaysCount = Math.max(0, currentDay - 1);
 
       const topics = [
         'Robots.txt Frontier AI Crawler Allow-Rules',
@@ -3885,12 +3896,32 @@
         'Entity Moat Reinforcement'
       ];
 
-      // Simulated score trajectory progression from 68 to 100
+      // Dynamic score trajectory progression starting at baseline 68 up to 100
       const scoreProgression = [
-        69, 71, 73, 74, 76, 77, 78, 80, 81, 82,
-        84, 85, 86, 87, 89, 90, 91, 92, 93, 94,
+        68, 70, 72, 73, 75, 76, 78, 79, 81, 82,
+        84, 85, 86, 88, 89, 90, 91, 92, 93, 94,
         95, 96, 97, 98, 98, 99, 99, 100, 100, 100
       ];
+
+      const currentScore = scoreProgression[Math.min(scoreProgression.length - 1, completedDaysCount)];
+
+      // Update execution progress strip
+      const daysDoneEl = document.getElementById('calDaysDoneCount');
+      if (daysDoneEl) {
+        daysDoneEl.textContent = `${completedDaysCount} ${completedDaysCount === 1 ? 'Day' : 'Days'} Merged`;
+      }
+      const daysPendingEl = document.getElementById('calDaysPendingCount');
+      if (daysPendingEl) {
+        daysPendingEl.textContent = `/ ${30 - completedDaysCount} Scheduled`;
+      }
+      const currentScoreEl = document.getElementById('calCurrentScore');
+      if (currentScoreEl) {
+        currentScoreEl.textContent = currentScore;
+      }
+      const activeDayMarker = document.getElementById('calActiveDayMarker');
+      if (activeDayMarker) {
+        activeDayMarker.textContent = `● Today (Day ${currentDay}: Score ${currentScore})`;
+      }
 
       const days = [];
       const bars = [];
@@ -3901,11 +3932,11 @@
         let statusText = 'Scheduled';
         let badgeClass = 'badge-pill';
 
-        if (i <= 2) {
+        if (i < currentDay) {
           status = 'past';
           statusText = '✓ Merged';
           badgeClass = 'badge-pill-emerald';
-        } else if (i === 3) {
+        } else if (i === currentDay) {
           status = 'today';
           statusText = '● Today (Review)';
           badgeClass = 'badge-pill-honey';
@@ -3920,7 +3951,7 @@
             </div>
             <div style="display:flex; justify-content:space-between; align-items:center; margin: 4px 0;">
               <span class="cal-day-score">AEO: ${score}/100</span>
-              ${i <= 3 ? `<span style="font-size:10.5px; color:#B45309; text-decoration:underline;">Inspect Delta →</span>` : ''}
+              ${i <= currentDay ? `<span style="font-size:10.5px; color:#B45309; text-decoration:underline;">Inspect Delta →</span>` : ''}
             </div>
             <div style="font-size:11.5px; color:var(--text-secondary); line-height:1.35; -webkit-line-clamp:2; display:-webkit-box; -webkit-box-orient:vertical; overflow:hidden;">
               ${topics[(i - 1) % topics.length]}
@@ -3931,8 +3962,8 @@
         // Micro Bar Chart
         const barHeightPct = Math.max(15, Math.round(((score - 65) / 35) * 100));
         let barClass = '';
-        if (i <= 2) barClass = 'done';
-        else if (i === 3) barClass = 'today';
+        if (i < currentDay) barClass = 'done';
+        else if (i === currentDay) barClass = 'today';
 
         bars.push(`
           <div class="cal-trajectory-bar ${barClass}" style="height:${barHeightPct}%;" onclick="handleDayClick(${i})" title="Day ${i}: AEO Score ${score}/100 (${statusText})"></div>
@@ -3942,12 +3973,12 @@
       container.innerHTML = days.join('');
       if (chartContainer) chartContainer.innerHTML = bars.join('');
     }
-
     function handleDayClick(day) {
-      if (day <= 3) {
+      const currentDay = getCurrentExecutionDay();
+      if (day <= currentDay) {
         openDayDeltaDrawer(day);
       } else {
-        showToast(`📅 Day ${day} is scheduled for autonomous morning release.`);
+        showToast(`📅 Day ${day} is scheduled for upcoming autonomous morning release.`);
       }
     }
 
@@ -3955,6 +3986,7 @@
       const modal = document.getElementById('dayDeltaDrawerModal');
       if (!modal) return;
 
+      const currentDay = getCurrentExecutionDay();
       const domain = currentProject ? currentProject.domain : '';
       const brand = currentProject ? currentProject.brand_name : '';
       const delta = getCalendarDeltaForDomain(day, domain, brand);
@@ -3968,15 +4000,24 @@
       const listEl = document.getElementById('deltaImprovementsList');
       const codeEl = document.getElementById('deltaCodeContent');
 
-      if (day <= 2) {
+      if (day < currentDay) {
         badge.className = 'badge-pill badge-pill-emerald';
         badge.textContent = `✓ Day ${day} Completed`;
-      } else {
+      } else if (day === currentDay) {
         badge.className = 'badge-pill badge-pill-honey';
         badge.textContent = `● Day ${day} Today (Pending Sign-Off)`;
+      } else {
+        badge.className = 'badge-pill';
+        badge.textContent = `📅 Day ${day} Scheduled`;
       }
 
-      if (dateEl) dateEl.textContent = `Oct ${26 + day}, 2026 · Stage Verified`;
+      // Compute dynamic calendar date relative to today
+      const now = new Date();
+      const offsetDays = day - currentDay;
+      const targetDate = new Date(now.getTime() + offsetDays * 86400000);
+      const dateStr = targetDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+      if (dateEl) dateEl.textContent = `${dateStr} · ${day <= currentDay ? 'Stage Verified' : 'Scheduled'}`;
       if (titleEl) titleEl.textContent = `Day ${day} Growth & Technical Schema Delta`;
       if (liftEl) liftEl.textContent = delta.lift;
       if (spanEl) spanEl.textContent = `(${delta.scoreBefore} → ${delta.scoreAfter} / 100)`;
@@ -3995,7 +4036,6 @@
 
       modal.classList.add('active');
     }
-
     function closeDayDeltaDrawer() {
       const modal = document.getElementById('dayDeltaDrawerModal');
       if (modal) modal.classList.remove('active');
@@ -4099,8 +4139,8 @@
       renderJobs();
       updateKPIs();
       buildCalendar();
-        restoreGuideBannerState();
-      showToast('🎉 Success! Verification probe passed (HTTP 200). AEO score updated.');
+      restoreGuideBannerState();
+      showToast('🎉 Success! Verification probe passed (HTTP 200). AEO score and 30-day calendar updated.');
     }
 
     // 7. Preview Modal
