@@ -2373,17 +2373,36 @@
             </button>
           </div>
 
-          <div style="background: #1C1D21; border-radius: 12px; padding: 18px 20px; display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin-bottom: 20px;">
-            <code id="universalEdgeScriptTag" style="font-family: var(--font-mono); font-size: 13px; color: #FBBF24; word-break: break-all;">
-              &lt;script async src="https://answerindex.xyz/client/yourbrand.js"&gt;&lt;/script&gt;
-            </code>
-            <div style="display: flex; gap: 8px;">
-              <button onclick="copyUniversalEdgeScript()" class="btn-honey-primary" style="font-size: 11.5px; padding: 6px 14px; font-weight: 800; white-space: nowrap;">
-                📋 Copy Tag
-              </button>
-              <button onclick="sendTestDailyReportEmail()" id="btnTestDailyEmail" class="btn-secondary" style="font-size: 11px; padding: 6px 12px; border-color: #F3CA68; background: #FFF8E7; color: #92400E; font-weight: 700;">
-                ✉️ Test Daily Email
-              </button>
+          <!-- Step 1 & 2 Instructions in view-edge -->
+          <div style="background: #FFFDF8; border: 1.5px solid var(--honey-border); border-radius: 12px; padding: 16px 20px; margin-bottom: 18px;">
+            <div style="font-size: 13.5px; font-weight: 800; color: #92400E; margin-bottom: 6px;">
+              Simple 3-Step Setup (Meta Pixel &amp; Google Tag Style)
+            </div>
+            <p style="font-size: 12.5px; color: var(--text-secondary); margin: 0 0 12px 0;">
+              Copy the tag code below, paste it right before the closing <code style="background:#FFF8E7; color:#B45309; padding:1px 5px; border-radius:4px;">&lt;/head&gt;</code> tag in your CMS (WordPress, Shopify, Webflow, or Next.js), and click <strong>Test Connection</strong>.
+            </p>
+
+            <div style="background: #1C1D21; border-radius: 10px; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin-bottom: 12px;">
+              <code id="universalEdgeScriptTag" style="font-family: var(--font-mono); font-size: 12.5px; color: #FBBF24; word-break: break-all;">
+                &lt;script async src="https://answerindex.xyz/client/yourbrand.js"&gt;&lt;/script&gt;
+              </code>
+              <div style="display: flex; gap: 8px;">
+                <button onclick="copyUniversalEdgeScript()" class="btn-honey-primary" style="font-size: 11.5px; padding: 7px 14px; font-weight: 800; white-space: nowrap;">
+                  📋 Copy Tag Code
+                </button>
+                <button onclick="verifyWebsiteConnectionNow()" class="btn-secondary" style="font-size: 11px; padding: 7px 12px; border-color: #A7F3D0; background: #ECFDF5; color: #065F46; font-weight: 700;">
+                  🔍 Test Live Edge Connection
+                </button>
+              </div>
+            </div>
+
+            <!-- Platform Helper Accordion Strip -->
+            <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center; font-size: 12px;">
+              <strong style="color: var(--text-primary);">Quick Platform Guide:</strong>
+              <button type="button" class="btn-platform-tab active" onclick="switchPlatformHelp('wordpress', this)" style="padding: 3px 8px; font-size: 11px; border-radius: 4px; border: 1px solid var(--border-subtle); background: #FFFFFF; cursor: pointer; font-weight: 700;">WordPress</button>
+              <button type="button" class="btn-platform-tab" onclick="switchPlatformHelp('shopify', this)" style="padding: 3px 8px; font-size: 11px; border-radius: 4px; border: 1px solid var(--border-subtle); background: transparent; cursor: pointer;">Shopify</button>
+              <button type="button" class="btn-platform-tab" onclick="switchPlatformHelp('webflow', this)" style="padding: 3px 8px; font-size: 11px; border-radius: 4px; border: 1px solid var(--border-subtle); background: transparent; cursor: pointer;">Webflow</button>
+              <button type="button" class="btn-platform-tab" onclick="switchPlatformHelp('gtm', this)" style="padding: 3px 8px; font-size: 11px; border-radius: 4px; border: 1px solid var(--border-subtle); background: transparent; cursor: pointer;">Google Tag Manager</button>
             </div>
           </div>
 
@@ -2708,35 +2727,92 @@
         </p>
       </div>
 
-      <!-- Integration Option 1: 1-Line Edge Script (Recommended) -->
-      <div style="background: var(--bg-card); border: 2px solid var(--honey-border); border-radius: 14px; padding: 18px 20px; margin-bottom: 16px; box-shadow: 0 2px 10px rgba(0,0,0,0.03);">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+      <!-- Integration Option 1: 1-Line Edge Script (Recommended - Meta / Google Tag Style) -->
+      <div style="background: var(--bg-card); border: 2px solid var(--honey-border); border-radius: 14px; padding: 22px 24px; margin-bottom: 18px; box-shadow: 0 4px 18px rgba(249, 188, 56, 0.08);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; flex-wrap: wrap; gap: 8px;">
           <div style="display: flex; align-items: center; gap: 8px;">
-            <span style="font-size: 18px;">⚡</span>
-            <strong style="font-size: 14px; color: var(--text-primary);">Option 1: 1-Line Universal Edge Tag (Recommended)</strong>
+            <span style="font-size: 20px;">⚡</span>
+            <strong style="font-size: 15px; color: var(--text-primary);">Option 1: 1-Line Universal Script Tag (Recommended)</strong>
           </div>
-          <span class="badge-pill badge-pill-emerald" style="font-size: 10px;">Fastest · Sub-20ms Edge</span>
+          <span class="badge-pill badge-pill-emerald" style="font-size: 11px;">⚡ Takes Under 60 Seconds</span>
         </div>
-        <p style="font-size: 12.5px; color: var(--text-secondary); line-height: 1.5; margin: 0 0 12px 0;">
-          Works with <strong>WordPress, Shopify, Webflow, React, Next.js, or any custom CMS</strong>. Paste this single script tag once inside your site's <code style="background:#FFF8E7; color:#B45309; padding:1px 5px; border-radius:4px;">&lt;head&gt;</code>. Approved schemas are then dynamically injected on every daily run.
+        
+        <p style="font-size: 12.5px; color: var(--text-secondary); margin: 0 0 16px 0; line-height: 1.5;">
+          Just like installing the <strong>Meta Pixel (Facebook)</strong> or <strong>Google Analytics Tag</strong>, you only need to copy this single line of code and paste it once onto your website.
         </p>
 
-        <div style="background: #1C1D21; border-radius: 10px; padding: 12px 14px; display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-bottom: 10px;">
-          <code id="modalEdgeScriptSnippet" style="font-family: var(--font-mono); font-size: 12px; color: #FBBF24; word-break: break-all;">
-            &lt;script async src="https://answerindex.xyz/client/yourbrand.js"&gt;&lt;/script&gt;
-          </code>
-          <button onclick="copyModalEdgeScript()" class="btn-honey-primary" style="font-size: 11px; padding: 6px 12px; font-weight: 800; white-space: nowrap;">
-            📋 Copy Tag
-          </button>
+        <!-- Step 1: Copy Code -->
+        <div style="margin-bottom: 16px;">
+          <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 6px;">
+            <span style="background: #FEF3C7; color: #B45309; width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; font-family: var(--font-mono);">1</span>
+            <strong style="font-size: 13px; color: var(--text-primary);">Copy this 1-line script tag:</strong>
+          </div>
+
+          <div style="background: #1C1D21; border-radius: 10px; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
+            <code id="modalEdgeScriptSnippet" style="font-family: var(--font-mono); font-size: 12.5px; color: #FBBF24; word-break: break-all;">
+              &lt;script async src="https://answerindex.xyz/client/yourbrand.js"&gt;&lt;/script&gt;
+            </code>
+            <button onclick="copyModalEdgeScript()" class="btn-honey-primary" style="font-size: 11.5px; padding: 7px 16px; font-weight: 800; white-space: nowrap;">
+              📋 Copy Tag Code
+            </button>
+          </div>
         </div>
 
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
-          <span style="font-size: 11.5px; color: var(--text-muted);">
-            🛡️ Zero writes to codebase &bull; Validated strictly against Brand Truth Wiki
-          </span>
-          <button id="btnVerifyTagFromModal" onclick="verifyWebsiteConnectionNow()" class="btn-secondary" style="font-size: 11.5px; padding: 6px 14px; font-weight: 700; color: #059669; border-color: #A7F3D0; background: #ECFDF5;">
-            🔍 Probe Live Site &amp; Verify →
-          </button>
+        <!-- Step 2: Where to Paste -->
+        <div style="margin-bottom: 16px;">
+          <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 6px;">
+            <span style="background: #FEF3C7; color: #B45309; width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; font-family: var(--font-mono);">2</span>
+            <strong style="font-size: 13px; color: var(--text-primary);">Paste it into your website's header:</strong>
+          </div>
+          <p style="font-size: 12.5px; color: var(--text-secondary); margin: 0 0 10px 0; line-height: 1.5;">
+            Paste the code right above the closing <code style="background:#FFF8E7; color:#B45309; padding:2px 6px; border-radius:4px; font-weight:700;">&lt;/head&gt;</code> tag of your website or theme template.
+          </p>
+
+          <!-- Simple Visual HTML snippet demonstrating where to place -->
+          <div style="background: #F8F9FA; border: 1px solid var(--border-subtle); border-radius: 8px; padding: 10px 14px; font-family: var(--font-mono); font-size: 11.5px; color: var(--text-secondary); margin-bottom: 12px;">
+            <div style="color: #9CA3AF;">&lt;!DOCTYPE html&gt;</div>
+            <div style="color: #9CA3AF;">&lt;head&gt;</div>
+            <div style="color: #9CA3AF; padding-left: 14px;">&lt;title&gt;My Website&lt;/title&gt;</div>
+            <div style="background: #FEF3C7; color: #92400E; padding: 4px 8px; border-radius: 4px; margin: 4px 0 4px 14px; font-weight: 700; border-left: 3px solid #F59E0B;">
+              👉 &lt;script async src="https://answerindex.xyz/client/...js"&gt;&lt;/script&gt;  <span style="color: #059669; font-weight: 600;">&lt;!-- Paste here --&gt;</span>
+            </div>
+            <div style="color: #9CA3AF;">&lt;/head&gt;</div>
+          </div>
+
+          <!-- Platform-specific 1-click tab buttons -->
+          <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 12px 14px;">
+            <div style="font-size: 11.5px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">
+              Where is the header in your platform? Choose yours:
+            </div>
+            <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px;">
+              <button type="button" class="btn-platform-tab active" onclick="switchPlatformHelp('wordpress', this)" style="padding: 4px 10px; font-size: 11px; border-radius: 6px; border: 1px solid var(--border-subtle); background: #FFFFFF; cursor: pointer; font-weight: 700;">WordPress</button>
+              <button type="button" class="btn-platform-tab" onclick="switchPlatformHelp('shopify', this)" style="padding: 4px 10px; font-size: 11px; border-radius: 6px; border: 1px solid var(--border-subtle); background: transparent; cursor: pointer; font-weight: 600;">Shopify</button>
+              <button type="button" class="btn-platform-tab" onclick="switchPlatformHelp('webflow', this)" style="padding: 4px 10px; font-size: 11px; border-radius: 6px; border: 1px solid var(--border-subtle); background: transparent; cursor: pointer; font-weight: 600;">Webflow</button>
+              <button type="button" class="btn-platform-tab" onclick="switchPlatformHelp('gtm', this)" style="padding: 4px 10px; font-size: 11px; border-radius: 6px; border: 1px solid var(--border-subtle); background: transparent; cursor: pointer; font-weight: 600;">Google Tag Manager</button>
+              <button type="button" class="btn-platform-tab" onclick="switchPlatformHelp('react', this)" style="padding: 4px 10px; font-size: 11px; border-radius: 6px; border: 1px solid var(--border-subtle); background: transparent; cursor: pointer; font-weight: 600;">React / Next.js</button>
+            </div>
+
+            <!-- Instructions body -->
+            <div id="platformHelpText" style="font-size: 12px; color: var(--text-secondary); line-height: 1.5; background: #FFFFFF; border: 1px solid var(--border-subtle); border-radius: 8px; padding: 10px 12px;">
+              <strong>WordPress:</strong> Go to <em>Plugins → Add New</em> → Install <strong>"WPCode"</strong> (Insert Headers and Footers). Click <em>Code Snippets → Header &amp; Footer</em>, paste the tag into the <strong>Header</strong> box, and click Save.
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3: Test and Verify -->
+        <div>
+          <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 6px;">
+            <span style="background: #FEF3C7; color: #B45309; width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; font-family: var(--font-mono);">3</span>
+            <strong style="font-size: 13px; color: var(--text-primary);">Verify your installation:</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; background: #ECFDF5; border: 1px solid #A7F3D0; border-radius: 8px; padding: 10px 14px;">
+            <span style="font-size: 12px; color: #065F46;">
+              Click below once you've saved your page. We'll automatically ping your live site to confirm it's working.
+            </span>
+            <button id="btnVerifyTagFromModal" onclick="verifyWebsiteConnectionNow()" class="btn-honey-primary" style="font-size: 12px; padding: 7px 16px; font-weight: 800; white-space: nowrap;">
+              🔍 Test Connection Now →
+            </button>
+          </div>
         </div>
       </div>
 
@@ -3170,6 +3246,31 @@
     }
 
     // -------------------------------------------------------------------------
+    // Platform-Specific Installation Guide Switcher
+    function switchPlatformHelp(platform, btn) {
+      document.querySelectorAll('.btn-platform-tab').forEach(b => {
+        b.style.background = 'transparent';
+        b.style.fontWeight = '600';
+      });
+      if (btn) {
+        btn.style.background = '#FFFFFF';
+        btn.style.fontWeight = '700';
+      }
+
+      const helpEl = document.getElementById('platformHelpText');
+      if (!helpEl) return;
+
+      const guides = {
+        wordpress: '<strong>WordPress:</strong> Go to <em>Plugins → Add New</em> → Search and install <strong>"WPCode"</strong> (Insert Headers and Footers). In the left sidebar, click <em>Code Snippets → Header &amp; Footer</em>, paste the tag code into the <strong>Header</strong> box, and click <strong>Save Changes</strong>.',
+        shopify: '<strong>Shopify:</strong> In your Shopify Admin, click <em>Online Store → Themes</em>. Next to your active theme, click <strong>"..." (three dots) → Edit code</strong>. Under <em>Layout</em>, click <code style="font-family:var(--font-mono); background:#FEF3C7; padding:1px 4px; border-radius:3px;">theme.liquid</code>. Find the <code style="font-family:var(--font-mono);">&lt;/head&gt;</code> line, paste the script tag right above it, and click <strong>Save</strong>.',
+        webflow: '<strong>Webflow:</strong> Open Project Settings. Click the <strong>Custom Code</strong> tab. Under <strong>"Head Code"</strong>, paste the script tag into the text box and click <strong>Save Changes</strong>, then <strong>Publish</strong> to your domains.',
+        gtm: '<strong>Google Tag Manager:</strong> In your GTM Workspace, click <em>Tags → New → Tag Configuration → Custom HTML</em>. Paste the script tag into the HTML box. Under <em>Triggering</em>, select <strong>"All Pages"</strong>. Click <strong>Save</strong>, then click <strong>Submit</strong> and Publish.',
+        react: '<strong>React / Next.js:</strong> In Next.js App Router, open <code style="font-family:var(--font-mono); background:#FEF3C7; padding:1px 4px; border-radius:3px;">app/layout.tsx</code> (or <code style="font-family:var(--font-mono);">pages/_document.tsx</code> in Pages Router). Paste <code style="font-family:var(--font-mono);">&lt;Script async src="..." /&gt;</code> inside the <code style="font-family:var(--font-mono);">&lt;head&gt;</code> tag and deploy.'
+      };
+
+      helpEl.innerHTML = guides[platform] || guides.wordpress;
+    }
+
     // -------------------------------------------------------------------------
     // LIVE WEBSITE CONNECTION STATE & PROBE CONTROLLER
     // -------------------------------------------------------------------------
