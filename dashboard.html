@@ -90,66 +90,183 @@
     }
 
     /* -------------------------------------------------------------------------
-       1. TOP STICKY NAVBAR (Narwhal Exact Match)
+       1. TOP STICKY NAVBAR (Elmo-Grade Clean Architecture)
        ------------------------------------------------------------------------- */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 12px 24px;
-      background: var(--bg-card);
+      padding: 10px 20px;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(12px);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-pill);
-      box-shadow: var(--shadow-sm);
-      margin-bottom: 28px;
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.04);
+      margin-bottom: 20px;
       position: sticky;
-      top: 16px;
-      z-index: 100;
+      top: 14px;
+      z-index: 1000;
     }
 
     .brand-group {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
       text-decoration: none;
       color: inherit;
     }
 
-    .logo-badge {
-      width: 48px;
-      height: 48px;
+    .nav-center-group {
       display: flex;
       align-items: center;
-      justify-content: center;
-    }
-    .logo-badge img {
-      width: 48px;
-      height: 48px;
-      object-fit: contain;
-      filter: drop-shadow(0 2px 6px rgba(249, 188, 56, 0.3));
+      gap: 10px;
     }
 
-    .brand-title h1 {
-      font-size: 17px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      color: var(--text-primary);
-      display: flex;
+    .target-domain-chip {
+      background: #F0FDF4;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      display: inline-flex;
       align-items: center;
       gap: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 13px;
     }
-
-    .brand-title p {
-      font-size: 11px;
-      color: var(--text-secondary);
-      font-weight: 600;
-      letter-spacing: 0.02em;
+    .target-domain-chip:hover {
+      background: #DCFCE7;
+      border-color: #059669;
+      transform: translateY(-1px);
+    }
+    .target-domain-chip .pulse-dot {
+      width: 7px;
+      height: 7px;
+      background: #10B981;
+      border-radius: 50%;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
     }
 
     .nav-actions {
       display: flex;
       align-items: center;
+      gap: 8px;
+      position: relative;
+    }
+
+    /* Clean Resources Dropdown (Elmo-Style) */
+    .dropdown-wrapper {
+      position: relative;
+    }
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      background: #FFFFFF;
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      box-shadow: 0 14px 34px -4px rgba(0, 0, 0, 0.12), 0 4px 12px -2px rgba(0, 0, 0, 0.04);
+      padding: 6px;
+      min-width: 210px;
+      display: none;
+      flex-direction: column;
+      gap: 2px;
+      z-index: 1001;
+    }
+    .dropdown-wrapper.open .dropdown-menu {
+      display: flex;
+    }
+    .dropdown-item {
+      display: flex;
+      align-items: center;
       gap: 10px;
+      padding: 9px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      text-decoration: none;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+      transition: background 0.15s ease;
+    }
+    .dropdown-item:hover {
+      background: var(--bg-canvas);
+      color: #B45309;
+    }
+
+    /* Stepwise Breadcrumb Progress Ribbon (Stage 1 -> 2 -> 3) */
+    .stepwise-progress-ribbon {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 10px 20px;
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: var(--shadow-sm);
+      flex-wrap: wrap;
+    }
+    .stepwise-breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .crumb-step {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+    .crumb-step.active {
+      color: #B45309;
+    }
+    .crumb-step.done {
+      color: #059669;
+    }
+    .crumb-number {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-family: var(--font-mono);
+      background: var(--border-subtle);
+      color: var(--text-secondary);
+    }
+    .crumb-step.active .crumb-number {
+      background: #FEF3C7;
+      color: #B45309;
+      border: 1px solid #F3CA68;
+    }
+    .crumb-step.done .crumb-number {
+      background: #E8F8F0;
+      color: #059669;
+    }
+    .crumb-separator {
+      color: var(--border-hover);
+      font-size: 13px;
+    }
+    .system-status-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #059669;
+      background: #E8F8F0;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
     }
 
     .badge-pill {
@@ -227,9 +344,40 @@
       box-shadow: 0 6px 18px rgba(249, 188, 56, 0.45);
     }
 
-    /* -------------------------------------------------------------------------
-       2. TABLEAU-GRADE COGNITIVE FLOW & SUMMARY CARDS
-       ------------------------------------------------------------------------- */
+    /* Collapsible Edge Integration Card */
+    .edge-integration-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card);
+      margin-bottom: 22px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .edge-integration-header {
+      padding: 14px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      background: #FFFFFF;
+      transition: background 0.15s ease;
+    }
+    .edge-integration-header:hover {
+      background: var(--bg-card-subtle);
+    }
+    .edge-integration-body {
+      padding: 0 22px 18px 22px;
+      display: none;
+      border-top: 1px solid var(--border-subtle);
+      background: var(--bg-card-subtle);
+    }
+    .edge-integration-card.open .edge-integration-body {
+      display: block;
+      padding-top: 16px;
+    }
+
+    /* Cause & Effect Banner - Refined Elmo Style */
     .cause-effect-banner {
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
@@ -484,7 +632,7 @@
 
     /* Deliverable Item Cards */
     .job-card {
-      background: var(--bg-card-subtle);
+      background: #FFFFFF;
       border: 1px solid var(--border-subtle);
       border-radius: 16px;
       padding: 20px 22px;
@@ -494,10 +642,37 @@
     }
     .job-card:hover {
       border-color: var(--border-hover);
-      box-shadow: var(--shadow-sm);
-      background: #FFFFFF;
+      box-shadow: 0 6px 20px -2px rgba(0, 0, 0, 0.06);
     }
     .job-card.pending {
+      border-left: 4px solid var(--honey-primary);
+      background: #FFFDF8;
+    }
+    .job-card.approved {
+      border-left: 4px solid var(--emerald-green);
+    }
+
+    .job-action-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+    }
+    .job-action-badge.action-required {
+      background: #FEF3C7;
+      color: #B45309;
+      border: 1px solid #F3CA68;
+    }
+    .job-action-badge.completed {
+      background: #E8F8F0;
+      color: #059669;
+      border: 1px solid rgba(16, 185, 129, 0.2);
+    }
       border-left: 4px solid var(--honey-primary);
     }
     .job-card.merged, .job-card.approved {
@@ -1294,46 +1469,82 @@
 <body>
 
   <div class="app-container">
-    <!-- Top Sticky Narwhal Header -->
+    <!-- Top Sticky Elmo-Grade Clean Header -->
     <header>
-      <a href="index.html" class="brand-group" style="display: inline-flex; flex-direction: column; align-items: flex-start; gap: 3px; text-decoration: none;">
-        <img src="assets/AnswerIndex_Logo.png" alt="Answer Index Logo" style="height: 38px; width: auto; max-width: 195px; object-fit: contain; display: block;" onerror="this.onerror=null; this.src='/assets/AnswerIndex_Logo.png';" />
-        <span class="brand-tagline" id="easterEggTagline" onclick="handleProBadgeEasterEggClick(event)" style="cursor: pointer; font-family: \'JetBrains Mono\', monospace; font-size: 9.5px; font-weight: 700; color: var(--text-secondary); letter-spacing: 0.04em; text-transform: uppercase; line-height: 1; align-self: flex-end; text-align: right;" title="Client Queue • Be the Answer AI Recommends">Client Queue • Be the Answer AI Recommends</span>
+      <a href="index.html" class="brand-group" style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none;">
+        <img src="assets/AnswerIndex_Logo.png" alt="Answer Index Logo" style="height: 32px; width: auto; max-width: 160px; object-fit: contain; display: block;" onerror="this.onerror=null; this.src='/assets/AnswerIndex_Logo.png';" />
+        <span class="brand-tagline" id="easterEggTagline" onclick="handleProBadgeEasterEggClick(event)" style="cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 700; color: var(--text-muted); letter-spacing: 0.04em; text-transform: uppercase; line-height: 1;" title="Client Queue • Be the Answer AI Recommends">Dashboard</span>
       </a>
 
-      <!-- Right Navigation Actions -->
-      <div class="nav-actions">
-        <!-- Target Project Pill & Direct Domain Switcher -->
-        <div class="badge-pill badge-pill-emerald" id="projectDomainPill" style="font-size: 12px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;" onclick="openChangeDomainModal()" title="Click to insert or change target website domain">
-          <span>● Target:</span>
-          <strong id="projectDomain">Configure Target Domain</strong>
-          <span style="font-size: 10px; background: rgba(5,150,105,0.2); padding: 2px 6px; border-radius: 4px; margin-left: 2px;">Change ✎</span>
+      <!-- Center: Target Domain Pill (Elmo Project Selector) -->
+      <div class="nav-center-group">
+        <div class="target-domain-chip" id="projectDomainPill" onclick="openChangeDomainModal()" title="Click to change target website domain">
+          <span class="pulse-dot"></span>
+          <span style="font-size: 11px; color: var(--text-secondary); font-weight: 600;">Target:</span>
+          <strong id="projectDomain" style="font-size: 12.5px; color: var(--text-primary); font-family: var(--font-mono);">Configure Domain</strong>
+          <span style="font-size: 10px; color: var(--text-muted); margin-left: 2px;">▼</span>
         </div>
+      </div>
 
-        <button onclick="openChangeDomainModal()" class="btn-secondary" style="border-color: #F3CA68; background: #FFFDF8; font-weight: 700; color: #92400E;" title="Insert website link to run full AEO & Citation Analysis">
-          🌐 Analyze Website
+      <!-- Right Navigation Actions: High-Priority Action + Clean Dropdown -->
+      <div class="nav-actions">
+        <button onclick="openChangeDomainModal()" class="btn-honey-primary" style="padding: 6px 14px; font-size: 12px;" title="Insert website link to run full AEO & Citation Analysis">
+          🌐 Analyze Site
         </button>
 
-        <a href="flow.html" target="_blank" class="btn-secondary" style="font-weight: 700; color: #B45309; border-color: #F3CA68; text-decoration: none;" title="The Flow: Plain-English Architecture & Execution Guide">
-          📖 Flow Guide ↗
+        <a href="flow.html" target="_blank" class="btn-secondary" style="font-size: 12px; padding: 6px 14px; font-weight: 700; color: #B45309; border-color: #F3CA68; text-decoration: none;" title="The Flow: Plain-English Architecture & Execution Guide">
+          📖 Flow
         </a>
-        <button onclick="toggleOnboardingBanner()" id="btnHeaderGuideToggle" class="btn-secondary" title="Toggle Onboarding & Execution Guide">
-          🧭 Onboarding Guide
-        </button>
 
-        <button onclick="openTruthWikiModal()" class="btn-secondary" title="View or edit ground truth facts">
-          📖 Brand Truth Wiki
-        </button>
-
-        <button onclick="openAdminRegistryModal()" class="btn-secondary" title="Founder Master Admin: View registered clients in Cloudflare D1" style="border-color: #F3CA68; background: #FFF8E7; color: #92400E; font-weight: 700;">
-          👑 Admin
-        </button>
-
-        <a href="index.html" class="btn-secondary" style="color: var(--text-secondary);">
-          Back to Site ↗
-        </a>
+        <!-- More Resources Dropdown (Declutters 5 separate buttons into 1) -->
+        <div class="dropdown-wrapper" id="resourcesDropdownWrapper">
+          <button class="btn-secondary" onclick="toggleResourcesDropdown(event)" style="font-size: 12px; padding: 6px 12px; display: inline-flex; align-items: center; gap: 4px;" title="Tools, Guides & Admin">
+            <span>More</span>
+            <span style="font-size: 9px;">▼</span>
+          </button>
+          <div class="dropdown-menu" id="resourcesDropdownMenu">
+            <button class="dropdown-item" onclick="toggleOnboardingBanner(); closeResourcesDropdown();">
+              <span>🧭</span> Onboarding Guide
+            </button>
+            <button class="dropdown-item" onclick="openTruthWikiModal(); closeResourcesDropdown();">
+              <span>🛡️</span> Brand Truth Wiki
+            </button>
+            <button class="dropdown-item" onclick="openAdminRegistryModal(); closeResourcesDropdown();">
+              <span>👑</span> Founder Admin
+            </button>
+            <div style="height: 1px; background: var(--border-subtle); margin: 4px 0;"></div>
+            <a href="index.html" class="dropdown-item" style="color: var(--text-secondary);">
+              <span>↗</span> Back to Homepage
+            </a>
+          </div>
+        </div>
       </div>
     </header>
+
+    <!-- Stepwise Progression Ribbon (Elmo Breadcrumb Flow) -->
+    <div class="stepwise-progress-ribbon">
+      <div class="stepwise-breadcrumbs">
+        <div class="crumb-step done" id="crumbStep1">
+          <span class="crumb-number">✓</span>
+          <span>1. Domain Connected</span>
+        </div>
+        <span class="crumb-separator">→</span>
+        <div class="crumb-step done" id="crumbStep2">
+          <span class="crumb-number">✓</span>
+          <span>2. AI Citation Radar Active</span>
+        </div>
+        <span class="crumb-separator">→</span>
+        <div class="crumb-step active" id="crumbStep3">
+          <span class="crumb-number" id="crumbPendingCount">2</span>
+          <span>3. Staged Deliverables Ready</span>
+        </div>
+      </div>
+
+      <div class="system-status-indicator" id="systemHealthBadge">
+        <span style="width: 6px; height: 6px; border-radius: 50%; background: #10B981;"></span>
+        <span>Daily Autonomous Repricer: Online</span>
+      </div>
+    </div>
 
     <!-- 0. Step-by-Step Client Onboarding Orientation Banner -->
     <section class="onboarding-guide-banner" id="onboardingBanner">
@@ -1398,42 +1609,46 @@
       </div>
     </section>
 
-    <!-- 0.1 Universal 1-Line Dynamic Edge Setup (Zero Daily Client Login Required) -->
-    <section class="onboarding-guide-banner" style="background: linear-gradient(135deg, #FFFFFF 0%, #FFFDF8 100%); border-color: #F3CA68; margin-bottom: 24px;">
-      <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 14px; margin-bottom: 14px;">
-        <div>
-          <div style="display: flex; align-items: center; gap: 8px;">
-            <span class="badge-pill badge-pill-honey">⚡ 1-Line Universal Edge Setup</span>
-            <span class="badge-pill badge-pill-emerald">● 30-Day Autonomous Repricer Model</span>
+    <!-- 0.1 Universal 1-Line Dynamic Edge Setup (Collapsible Integration Drawer) -->
+    <div class="edge-integration-card" id="edgeIntegrationCard">
+      <div class="edge-integration-header" onclick="toggleEdgeIntegrationCard()">
+        <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+          <span style="font-size: 16px;">⚡</span>
+          <strong style="font-size: 13.5px; color: var(--text-primary);">Automated Edge Delivery Tag (30-Day Autonomous Repricer)</strong>
+          <span class="badge-pill badge-pill-emerald" style="font-size: 10.5px;">Sub-20ms Edge CDN</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 12px; color: var(--text-muted);" id="edgeTagToggleHint">Show Tag</span>
+          <span id="edgeTagToggleIcon" style="font-size: 11px; color: var(--text-secondary);">▼</span>
+        </div>
+      </div>
+
+      <div class="edge-integration-body" id="edgeIntegrationBody">
+        <p style="font-size: 12.5px; color: var(--text-secondary); margin-bottom: 12px; line-height: 1.5;">
+          Install this single script tag once in your website's <code style="background:#FFF8E7; color:#B45309; padding:1px 6px; border-radius:4px;">&lt;head&gt;</code>. Answer Index will dynamically inject today's approved schemas &amp; passages on every <strong>Daily Agent Run</strong> without requiring daily logins.
+        </p>
+
+        <!-- Script Tag Box -->
+        <div style="background: #1C1D21; border-radius: 12px; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
+          <code id="universalEdgeScriptTag" style="font-family: var(--font-mono); font-size: 12px; color: #FBBF24; word-break: break-all;">
+            &lt;script async src="https://answerindex.xyz/client/yourbrand.js"&gt;&lt;/script&gt;
+          </code>
+          <div style="display: flex; gap: 8px;">
+            <button onclick="copyUniversalEdgeScript()" class="btn-honey-primary" style="font-size: 11.5px; padding: 6px 14px; font-weight: 800; white-space: nowrap;">
+              📋 Copy Tag
+            </button>
+            <button onclick="sendTestDailyReportEmail()" id="btnTestDailyEmail" class="btn-secondary" style="font-size: 11px; padding: 6px 12px; border-color: #F3CA68; background: #FFF8E7; color: #92400E; font-weight: 700;">
+              ✉️ Test Daily Email
+            </button>
           </div>
-          <h3 style="font-size: 17px; font-weight: 800; color: #1C1D21; margin-top: 6px;">
-            Enable 30-Day Automated Edge Delivery
-          </h3>
-          <p style="font-size: 12.5px; color: var(--text-secondary); margin-top: 2px; max-width: 780px;">
-            Install this single script tag once in your website's <code style="background:#FFF8E7; color:#B45309; padding:1px 6px; border-radius:4px;">&lt;head&gt;</code>. Like an automated Amazon repricer, Answer Index will dynamically inject today's approved schemas &amp; passages on every <strong>Daily Agent Run</strong> without requiring you to log in. You receive a daily confirmation email showing your rising AEO score.
-          </p>
         </div>
 
-        <button onclick="sendTestDailyReportEmail()" id="btnTestDailyEmail" class="btn-secondary" style="font-size: 11.5px; padding: 6px 12px; border-color: #F3CA68; background: #FFF8E7; color: #92400E; font-weight: 700;">
-          ✉️ Send Daily Confirmation Email Now
-        </button>
+        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11.5px; color: var(--text-muted); margin-top: 10px;">
+          <span>🛡️ Operates strictly within your Brand Truth Wiki bounds</span>
+          <span style="color: #059669; font-weight: 700;">&check; Zero ongoing maintenance</span>
+        </div>
       </div>
-
-      <!-- Script Tag Box -->
-      <div style="background: #1C1D21; border-radius: 12px; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
-        <code id="universalEdgeScriptTag" style="font-family: var(--font-mono); font-size: 12px; color: #FBBF24; word-break: break-all;">
-          &lt;script async src="https://answerindex.xyz/client/yourbrand.js"&gt;&lt;/script&gt;
-        </code>
-        <button onclick="copyUniversalEdgeScript()" class="btn-honey-primary" style="font-size: 11.5px; padding: 6px 14px; font-weight: 800; white-space: nowrap;">
-          📋 Copy 1-Line Tag
-        </button>
-      </div>
-
-      <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11.5px; color: var(--text-muted); margin-top: 10px;">
-        <span>🛡️ Operates strictly within your Brand Truth Wiki bounds &bull; Sub-20ms Edge CDN</span>
-        <span style="color: #059669; font-weight: 700;">&check; Zero ongoing maintenance</span>
-      </div>
-    </section>
+    </div>
 
     <!-- 1. Quick Website Target & Live Analysis Bar -->
     <section style="background: var(--bg-card); border: 1.5px solid var(--honey-border); border-radius: 14px; padding: 16px 20px; margin-bottom: 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.03);">
@@ -1594,7 +1809,7 @@
             </div>
           </div>
 
-          <!-- 30-Day Growth Progression & Score Trajectory -->
+          <!-- 30-Day Growth Progression & Score Trajectory (Elmo Area Curve) -->
           <div class="cal-stats-strip">
             <div class="cal-stat-item">
               <span class="cal-stat-label">Execution Progress</span>
@@ -1614,10 +1829,35 @@
               </div>
             </div>
 
-            <div class="cal-stat-item">
-              <span class="cal-stat-label">Daily Trajectory Curve (Day 1 - 30)</span>
-              <div class="cal-trajectory-chart" id="calTrajectoryChart">
-                <!-- 30 micro bars injected via JS -->
+            <div class="cal-stat-item" style="min-width: 280px; flex: 2;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 4px;">
+                <span class="cal-stat-label">AEO Growth Trajectory Area Curve</span>
+                <span style="font-size:10px; font-family:var(--font-mono); color:#059669; font-weight:700;">+32 Point Projection</span>
+              </div>
+              <div style="width: 100%; height: 50px; position: relative;">
+                <svg viewBox="0 0 300 50" style="width: 100%; height: 50px; overflow: visible;">
+                  <defs>
+                    <linearGradient id="aeoGrowthGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stop-color="#10B981" stop-opacity="0.35"/>
+                      <stop offset="100%" stop-color="#10B981" stop-opacity="0.0"/>
+                    </linearGradient>
+                  </defs>
+                  <!-- Baseline Grid -->
+                  <line x1="0" y1="45" x2="300" y2="45" stroke="#ECEBE6" stroke-width="1" stroke-dasharray="3 3"/>
+                  <!-- Filled Area -->
+                  <path d="M 0 38 Q 40 34, 80 30 T 160 20 T 240 10 T 300 5 L 300 48 L 0 48 Z" fill="url(#aeoGrowthGrad)"/>
+                  <!-- High-Precision Metric Line -->
+                  <path d="M 0 38 Q 40 34, 80 30 T 160 20 T 240 10 T 300 5" fill="none" stroke="#10B981" stroke-width="2.2" stroke-linecap="round"/>
+                  <!-- Milestone Dots -->
+                  <circle cx="20" cy="36" r="3" fill="#10B981"/>
+                  <circle cx="80" cy="30" r="4.5" fill="#F9BC38" stroke="#FFFFFF" stroke-width="1.5"/>
+                  <circle cx="300" cy="5" r="3" fill="#10B981"/>
+                </svg>
+              </div>
+              <div style="display:flex; justify-content:space-between; font-size:9.5px; font-family:var(--font-mono); color:var(--text-muted); margin-top:2px;">
+                <span>Day 1 (68)</span>
+                <span style="color:#B45309; font-weight:700;">● Today (Day 3: 71)</span>
+                <span>Day 30 (100)</span>
               </div>
             </div>
           </div>
@@ -1703,60 +1943,84 @@
 
       <!-- Right Column: AI Citation Velocity Telemetry & Fast Actions -->
       <aside class="sidebar-col">
-        <!-- Live AI Engine Velocity Breakdown -->
+        <!-- Live AI Engine Velocity Breakdown (Elmo Comparison Cards) -->
         <div class="telemetry-card">
           <div class="telemetry-header">
             <div>
-              <h3>AI Engine Citation Velocity</h3>
-              <p style="font-size: 11.5px; color: var(--text-secondary); margin-top: 2px;">Live benchmark recognition rates</p>
+              <h3>AI Engine Citation Radar</h3>
+              <p style="font-size: 11.5px; color: var(--text-secondary); margin-top: 2px;">Share of voice across frontier AI models</p>
             </div>
             <button class="btn-secondary" onclick="refreshCitations()" style="font-size: 11px; padding: 4px 10px;">
               ↻ Refresh
             </button>
           </div>
 
+          <!-- Perplexity Card -->
           <div class="engine-telemetry-row">
-            <div class="engine-info">
-              <div class="engine-icon-box" style="color: #0D9488;">✦</div>
-              <div>
-                <div class="engine-name">Perplexity AI</div>
-                <div class="engine-desc">Rank #1 Citation · 0.18s parse</div>
+            <div class="engine-info" style="flex: 1;">
+              <div class="engine-icon-box" style="color: #0D9488; font-weight: 800;">✦</div>
+              <div style="flex: 1;">
+                <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                  <div class="engine-name">Perplexity AI</div>
+                  <strong style="font-family: var(--font-mono); font-size: 12px; color: #0D9488;">82.1%</strong>
+                </div>
+                <div style="width: 100%; height: 5px; background: #E5E7EB; border-radius: 99px; margin: 4px 0; overflow: hidden;">
+                  <div style="width: 82.1%; height: 100%; background: #0D9488; border-radius: 99px;"></div>
+                </div>
+                <div class="engine-desc">Rank #1 Citation · Direct buying query anchor</div>
               </div>
             </div>
-            <div class="engine-score-pill">82.1%</div>
           </div>
 
+          <!-- ChatGPT Search Card -->
           <div class="engine-telemetry-row">
-            <div class="engine-info">
-              <div class="engine-icon-box" style="color: #10A37F;">⚡</div>
-              <div>
-                <div class="engine-name">ChatGPT Search</div>
-                <div class="engine-desc">Direct zero-click answer</div>
+            <div class="engine-info" style="flex: 1;">
+              <div class="engine-icon-box" style="color: #10A37F; font-weight: 800;">⚡</div>
+              <div style="flex: 1;">
+                <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                  <div class="engine-name">ChatGPT Search</div>
+                  <strong style="font-family: var(--font-mono); font-size: 12px; color: #10A37F;">74.5%</strong>
+                </div>
+                <div style="width: 100%; height: 5px; background: #E5E7EB; border-radius: 99px; margin: 4px 0; overflow: hidden;">
+                  <div style="width: 74.5%; height: 100%; background: #10A37F; border-radius: 99px;"></div>
+                </div>
+                <div class="engine-desc">Direct zero-click answer &amp; FAQ inclusion</div>
               </div>
             </div>
-            <div class="engine-score-pill">74.5%</div>
           </div>
 
+          <!-- Claude 3.7 Card -->
           <div class="engine-telemetry-row">
-            <div class="engine-info">
-              <div class="engine-icon-box" style="color: #D97706;">✱</div>
-              <div>
-                <div class="engine-name">Claude 3.7</div>
-                <div class="engine-desc">Authoritative source anchor</div>
+            <div class="engine-info" style="flex: 1;">
+              <div class="engine-icon-box" style="color: #D97706; font-weight: 800;">✱</div>
+              <div style="flex: 1;">
+                <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                  <div class="engine-name">Claude 3.7</div>
+                  <strong style="font-family: var(--font-mono); font-size: 12px; color: #D97706;">71.8%</strong>
+                </div>
+                <div style="width: 100%; height: 5px; background: #E5E7EB; border-radius: 99px; margin: 4px 0; overflow: hidden;">
+                  <div style="width: 71.8%; height: 100%; background: #D97706; border-radius: 99px;"></div>
+                </div>
+                <div class="engine-desc">Authoritative brand citation &amp; entity trust</div>
               </div>
             </div>
-            <div class="engine-score-pill">71.8%</div>
           </div>
 
+          <!-- Google AI Overviews Card -->
           <div class="engine-telemetry-row">
-            <div class="engine-info">
-              <div class="engine-icon-box" style="color: #4285F4;">G</div>
-              <div>
-                <div class="engine-name">Google AI Overviews</div>
-                <div class="engine-desc">Knowledge graph carousel</div>
+            <div class="engine-info" style="flex: 1;">
+              <div class="engine-icon-box" style="color: #4285F4; font-weight: 800;">G</div>
+              <div style="flex: 1;">
+                <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                  <div class="engine-name">Google AI Overviews</div>
+                  <strong style="font-family: var(--font-mono); font-size: 12px; color: #4285F4;">68.9%</strong>
+                </div>
+                <div style="width: 100%; height: 5px; background: #E5E7EB; border-radius: 99px; margin: 4px 0; overflow: hidden;">
+                  <div style="width: 68.9%; height: 100%; background: #4285F4; border-radius: 99px;"></div>
+                </div>
+                <div class="engine-desc">Knowledge graph carousel &amp; merchant rich cards</div>
               </div>
             </div>
-            <div class="engine-score-pill">68.9%</div>
           </div>
         </div>
 
@@ -2809,7 +3073,7 @@
             <div class="job-badge-group">
               <span class="job-type-pill ${typeClass}">${typeLabel}</span>
               <span class="badge-pill" style="background:var(--bg-canvas); color:var(--text-secondary); font-size:11px;">${escapeHtml(job.date || 'Today')}</span>
-              ${isPending ? `<span class="badge-pill badge-pill-honey">Awaiting Sign-Off</span>` : `<span class="badge-pill badge-pill-emerald">✓ Merged &amp; Ingested</span>`}
+              ${isPending ? `<span class="job-action-badge action-required">⚡ Action Required: Sign-Off</span>` : `<span class="job-action-badge completed">✓ Autonomous: Merged</span>`}
             </div>
             <div class="badge-pill badge-pill-emerald" style="font-size: 11px;">
               🛡️ ${job.schema_score || 100}/100 Schema Valid
@@ -3593,6 +3857,37 @@
       }, 1200);
     }
 
+    // Dropdown control
+    function toggleResourcesDropdown(e) {
+      if (e) e.stopPropagation();
+      const wrapper = document.getElementById('resourcesDropdownWrapper');
+      if (wrapper) wrapper.classList.toggle('open');
+    }
+
+    function closeResourcesDropdown() {
+      const wrapper = document.getElementById('resourcesDropdownWrapper');
+      if (wrapper) wrapper.classList.remove('open');
+    }
+
+    document.addEventListener('click', (e) => {
+      const wrapper = document.getElementById('resourcesDropdownWrapper');
+      if (wrapper && !wrapper.contains(e.target)) {
+        wrapper.classList.remove('open');
+      }
+    });
+
+    function toggleEdgeIntegrationCard() {
+      const card = document.getElementById('edgeIntegrationCard');
+      const hint = document.getElementById('edgeTagToggleHint');
+      const icon = document.getElementById('edgeTagToggleIcon');
+      if (card) {
+        card.classList.toggle('open');
+        const isOpen = card.classList.contains('open');
+        if (hint) hint.textContent = isOpen ? 'Hide Tag' : 'Show Tag';
+        if (icon) icon.textContent = isOpen ? '▲' : '▼';
+      }
+    }
+
     // 10. Refresh Telemetry
     function refreshCitations() {
       showToast('📊 AI engine telemetry refreshed from live edge benchmarks.');
@@ -3603,6 +3898,17 @@
       const countEl = document.getElementById('kpiQueueCount');
       if (countEl) {
         countEl.innerHTML = `${pending} <span class="kpi-delta" style="color: ${pending > 0 ? '#B45309' : '#059669'};">${pending > 0 ? 'Pending Sign-Off' : '✓ All Clean'}</span>`;
+      }
+      // Update breadcrumb step 3 indicator
+      const crumbCount = document.getElementById('crumbPendingCount');
+      const crumbStep3 = document.getElementById('crumbStep3');
+      if (crumbCount) crumbCount.textContent = pending;
+      if (crumbStep3) {
+        if (pending > 0) {
+          crumbStep3.className = 'crumb-step active';
+        } else {
+          crumbStep3.className = 'crumb-step done';
+        }
       }
     }
 
