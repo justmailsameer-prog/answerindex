@@ -1,20 +1,21 @@
 {
   "name": "answerindex",
-  "version": "3.2.0",
-  "description": "Make your content indexable as authoritative answers across Search & AI Engines (AEO, GEO & SEO).",
+  "version": "3.3.0",
+  "description": "Open-Source Answer Engine Optimization (AEO), Generative Engine Optimization (GEO) & Technical SEO Suite.",
   "main": "test-aeo-models.mjs",
   "bin": {
     "answerindex": "./bin/answerindex.mjs"
   },
   "type": "module",
   "scripts": {
-    "build": "python scripts/sync-dist.py",
+    "audit": "node bin/answerindex.mjs audit",
     "ready": "node bin/answerindex.mjs ready",
+    "edge-tag": "node bin/answerindex.mjs edge-tag",
+    "fanout": "node bin/answerindex.mjs fanout",
     "mcp": "node bin/answerindex.mjs mcp",
     "benchmark": "node test-aeo-models.mjs",
-    "aeo": "node ./node_modules/aeo-platform/bin/aeo-tracker.js",
-    "seo": "node bin/answerindex.mjs seo",
-    "seo:py": "python ./seo-toolkit/seo.py"
+    "dev": "npx wrangler pages dev . --d1=DB",
+    "test": "python -m pytest tests/test_production_qa.py -v"
   },
   "keywords": [
     "aeo",
@@ -28,15 +29,13 @@
     "gemini",
     "claude",
     "llm-optimization",
-    "search-engine-optimization",
     "schema-markup",
     "json-ld",
     "ai-citations",
-    "benchmark"
+    "mcp-server",
+    "model-context-protocol",
+    "query-fan-out"
   ],
   "author": "Sameer Sharma",
-  "license": "MIT",
-  "dependencies": {
-    "aeo-platform": "^1.16.1"
-  }
+  "license": "MIT"
 }

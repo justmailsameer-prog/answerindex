@@ -29,7 +29,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Release-v1.3.0-blue.svg" alt="Release: v1.3.0" />
+  <img src="https://img.shields.io/badge/Release-v3.3.0-blue.svg" alt="Release: v1.3.0" />
   <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License: MIT" />
   <img src="https://img.shields.io/badge/AEO-Answer%20Engine%20Optimization-06B6D4.svg" alt="AEO" />
   <img src="https://img.shields.io/badge/GEO-Generative%20Engine%20Optimization-8B5CF6.svg" alt="GEO" />
@@ -173,14 +173,43 @@ Available tools in MCP:
 
 ---
 
-## Quick Start
+## Quick Start (100% Free Open-Source CLI & NPX)
 
-### 1. Installation
+You can run AnswerIndex instantly with zero installation via `npx`, or clone the repository for local self-hosting.
+
+### Instant Commands via NPX (Zero Setup Required)
+
+```bash
+# 1. Run the 17-point AEO & Schema audit on any website domain
+npx answerindex audit yourbrand.com
+
+# 2. Generate the complete 26-file AI Readiness kit (robots.txt, llms.txt, schema JSON-LD)
+npx answerindex ready yourbrand.com "Your Brand Name"
+
+# 3. Generate your 1-line Universal Edge Script Tag (WordPress, Shopify, Webflow, Next.js)
+npx answerindex edge-tag yourbrand.com
+
+# 4. Predict AI search query fan-out & sub-queries for buyer prompts
+npx answerindex fanout "best project management software for startups"
+
+# 5. Launch Model Context Protocol (MCP) server for Cursor, Windsurf, or Claude Code
+npx answerindex mcp
+```
+
+---
+
+### Local Installation & Self-Hosting
 
 ```bash
 git clone https://github.com/justmailsameer-prog/answerindex.git
 cd answerindex
 npm install
+```
+
+Start the complete client analytics dashboard locally:
+```bash
+# Runs the full Elmo-parity AEO dashboard with zero API fees
+npm run dev
 ```
 
 ### 2. Configure Environment
