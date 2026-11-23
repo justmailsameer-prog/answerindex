@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How Answer Index Works — The Closed-Loop Flow</title>
+  <meta name="description" content="A simple, step-by-step guide explaining how Answer Index monitors your brand across ChatGPT, Claude, and Perplexity, stages daily answer fixes, and proves your citation rank." />
+
+  <link rel="canonical" href="https://answerindex.xyz/flow.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --bg-canvas: #F8F8F6;
+      --bg-card: #FFFFFF;
+      --bg-sidebar: #FFFFFF;
+      --border-subtle: #E8E8E4;
+      --border-hover: #D1D1CB;
+
+      --text-primary: #1C1D21;
+      --text-secondary: #585A66;
+      --text-muted: #8E909E;
+
+      --honey-primary: #F9BC38;
+      --honey-light: #FFF8E7;
+      --honey-border: #F3CA68;
+      --honey-dark: #92400E;
+
+      --emerald: #059669;
+      --emerald-bg: rgba(5, 150, 105, 0.08);
+      --blue: #2563EB;
+      --blue-bg: rgba(37, 99, 235, 0.08);
+
+      --sidebar-width: 280px;
+      --header-height: 64px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Sticky Header */
+    header.flow-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--header-height);
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .brand-logo {
+      height: 34px;
+      width: auto;
+      display: block;
+    }
+
+    .flow-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+      background: var(--honey-light);
+      color: var(--honey-dark);
+      border: 1px solid var(--honey-border);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-header {
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 7px 14px;
+      border-radius: 8px;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-ghost {
+      color: var(--text-secondary);
+    }
+    .btn-ghost:hover {
+      color: var(--text-primary);
+      background: rgba(0, 0, 0, 0.04);
+    }
+
+    .btn-action {
+      background: var(--honey-primary);
+      color: #000;
+      font-weight: 700;
+    }
+    .btn-action:hover {
+      background: #f5b121;
+    }
+
+    /* Flow Layout Container */
+    .flow-container {
+      display: flex;
+      max-width: 1340px;
+      margin: 0 auto;
+      min-height: calc(100vh - var(--header-height));
+    }
+
+    /* Left Sidebar Navigation */
+    aside.flow-sidebar {
+      width: var(--sidebar-width);
+      flex-shrink: 0;
+      position: sticky;
+      top: var(--header-height);
+      height: calc(100vh - var(--header-height));
+      overflow-y: auto;
+      padding: 1.5rem 1rem 3rem;
+      border-right: 1px solid var(--border-subtle);
+      background: var(--bg-sidebar);
+    }
+
+    .sidebar-category {
+      font-size: 11px;
+      font-family: var(--font-mono);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      margin: 1.5rem 0 0.5rem 0.5rem;
+    }
+    .sidebar-category:first-child { margin-top: 0; }
+
+    .sidebar-link {
+      display: block;
+      padding: 6px 12px;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      border-radius: 6px;
+      transition: all 0.15s ease;
+      margin-bottom: 2px;
+    }
+    .sidebar-link:hover {
+      color: var(--text-primary);
+      background: rgba(0, 0, 0, 0.04);
+    }
+    .sidebar-link.active {
+      color: var(--text-primary);
+      font-weight: 700;
+      background: var(--honey-light);
+      border-left: 3px solid var(--honey-primary);
+      border-radius: 0 6px 6px 0;
+    }
+
+    /* Main Content Area */
+    main.flow-content {
+      flex: 1;
+      padding: 2.5rem 3rem 5rem;
+      max-width: 860px;
+    }
+
+    .breadcrumb {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    h1.flow-title {
+      font-size: 2.3rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 0.8rem;
+      color: var(--text-primary);
+    }
+
+    p.flow-lead {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .flow-section {
+      margin-bottom: 3.5rem;
+      scroll-margin-top: calc(var(--header-height) + 1.5rem);
+    }
+
+    .flow-section h2 {
+      font-size: 1.55rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.9rem;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .flow-section h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin: 1.6rem 0 0.6rem;
+      color: var(--text-primary);
+    }
+
+    .flow-section p {
+      font-size: 14.5px;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+      line-height: 1.65;
+    }
+
+    .flow-section ul, .flow-section ol {
+      margin: 0.8rem 0 1.2rem 1.4rem;
+      color: var(--text-secondary);
+      font-size: 14.5px;
+    }
+
+    .flow-section li {
+      margin-bottom: 0.5rem;
+      line-height: 1.55;
+    }
+
+    /* Step Cards / Feature Grids */
+    .flow-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin: 1.4rem 0;
+    }
+
+    .flow-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 1.3rem;
+      transition: all 0.2s ease;
+    }
+    .flow-card:hover {
+      border-color: var(--honey-border);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    }
+
+    .flow-card-icon {
+      font-size: 22px;
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+
+    .flow-card h4 {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .flow-card p {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 0;
+    }
+
+    /* Callout Alert Boxes */
+    .callout {
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      margin: 1.4rem 0;
+      font-size: 14px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      line-height: 1.55;
+    }
+
+    .callout-info {
+      background: var(--honey-light);
+      border: 1px solid var(--honey-border);
+      color: var(--honey-dark);
+    }
+
+    .callout-success {
+      background: var(--emerald-bg);
+      border: 1px solid rgba(5, 150, 105, 0.25);
+      color: #065F46;
+    }
+
+    /* Code Snippets */
+    .code-block {
+      background: #1C1D21;
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      margin: 1.2rem 0;
+      position: relative;
+    }
+
+    .code-block pre {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: #FBBF24;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    .btn-copy-code {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #E5E7EB;
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: var(--font-mono);
+    }
+    .btn-copy-code:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Interactive Comparison Pill Table */
+    .simple-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.4rem 0;
+      background: var(--bg-card);
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      font-size: 13.5px;
+    }
+
+    .simple-table th, .simple-table td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .simple-table th {
+      background: #F3F4F6;
+      font-weight: 700;
+      color: var(--text-primary);
+      font-size: 12.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .simple-table tr:last-child td { border-bottom: none; }
+
+    /* Next / Previous Footer Navigation */
+    .flow-nav-footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 3.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .flow-nav-card {
+      flex: 1;
+      padding: 1.2rem;
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      background: var(--bg-card);
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.15s ease;
+    }
+    .flow-nav-card:hover {
+      border-color: var(--honey-border);
+      background: var(--honey-light);
+    }
+    .flow-nav-label {
+      font-size: 11px;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .flow-nav-title {
+      font-size: 14.5px;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    /* Mobile Responsive */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    @media (max-width: 900px) {
+      aside.flow-sidebar {
+        display: none;
+        position: fixed;
+        left: 0;
+        top: var(--header-height);
+        width: 260px;
+        z-index: 99;
+        box-shadow: 4px 0 20px rgba(0,0,0,0.1);
+      }
+      aside.flow-sidebar.mobile-open {
+        display: block;
+      }
+      main.flow-content {
+        padding: 2rem 1.25rem 4rem;
+      }
+      .mobile-menu-btn {
+        display: inline-block;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Header -->
+  <header class="flow-header">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button class="mobile-menu-btn" onclick="toggleMobileSidebar()" aria-label="Toggle navigation sidebar">☰</button>
+      <a href="index.html" class="brand-group">
+        <img src="assets/AnswerIndex_Logo.png" alt="Answer Index Logo" class="brand-logo" onerror="this.onerror=null; this.src='/assets/AnswerIndex_Logo.png';" />
+        <span class="flow-badge">Flow &amp; Architecture</span>
+      </a>
+    </div>
+
+    <div class="header-nav">
+      <a href="index.html" class="btn-header btn-ghost">← Main Site</a>
+      <a href="dashboard.html" class="btn-header btn-action">Workstation ↗</a>
+    </div>
+  </header>
+
+  <div class="flow-container">
+    <!-- Left Sidebar -->
+    <aside class="flow-sidebar" id="flowSidebar">
+      <div class="sidebar-category">Overview</div>
+      <a href="#what-is-answerindex" class="sidebar-link active">What is Answer Index?</a>
+      <a href="#why-aeo-matters" class="sidebar-link">Why AEO Matters in 2026</a>
+      <a href="#the-closed-loop" class="sidebar-link">The Closed-Loop Model</a>
+
+      <div class="sidebar-category">The 3-Step Flow</div>
+      <a href="#step-1-radar" class="sidebar-link">Step 1: AI Visibility Radar</a>
+      <a href="#step-2-automate" class="sidebar-link">Step 2: Dual Daily Staging</a>
+      <a href="#step-3-judge" class="sidebar-link">Step 3: Answer Index Judge</a>
+
+      <div class="sidebar-category">Implementation</div>
+      <a href="#quickstart" class="sidebar-link">60-Second Quickstart</a>
+      <a href="#edge-tag" class="sidebar-link">1-Line Universal Edge Tag</a>
+      <a href="#brand-truth" class="sidebar-link">Brand Ground-Truth Wiki</a>
+      <a href="#cms-integrations" class="sidebar-link">CMS &amp; Git Connections</a>
+
+      <div class="sidebar-category">Reference</div>
+      <a href="#seo-vs-aeo" class="sidebar-link">SEO vs. AEO Comparison</a>
+      <a href="#audit-protocol" class="sidebar-link">17-Point Audit Protocol</a>
+      <a href="#faq" class="sidebar-link">Frequently Asked Questions</a>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flow-content">
+      <div class="breadcrumb">Answer Index &gt; Flow &amp; Architecture &gt; Introduction</div>
+      <h1 class="flow-title">How Answer Index Works</h1>
+      <p class="flow-lead">
+        Answer Index is an autonomous Answer Engine Optimization (AEO) platform. It monitors how ChatGPT, Perplexity, and Claude mention your brand, automatically stages the code and answer fixes to get you cited, and proves your rank.
+      </p>
+
+      <!-- Section 1: What is Answer Index -->
+      <section class="flow-section" id="what-is-answerindex">
+        <h2>What is Answer Index?</h2>
+        <p>
+          Unlike traditional SEO tools that only measure Google keywords and backlink counts, Answer Index is built specifically for <strong>conversational answer engines</strong>. 
+        </p>
+        <p>
+          When prospective buyers ask conversational AI engines questions like <em>"What is the best customer support tool for e-commerce?"</em>, the AI doesn't return 10 blue links. It synthesizes a single, direct recommendation. Answer Index is the closed-loop system designed to make your brand that primary recommended answer.
+        </p>
+
+        <div class="flow-grid-2">
+          <div class="flow-card">
+            <span class="flow-card-icon">📡</span>
+            <h4>Continuous AI Radar</h4>
+            <p>Monitors commercial evaluation prompts across ChatGPT Search, Perplexity AI, and Claude to track your Share of Voice (SOV) and competitor mentions.</p>
+          </div>
+          <div class="flow-card">
+            <span class="flow-card-icon">⚡</span>
+            <h4>Autonomous Delivery</h4>
+            <p>Every business morning, stages 2 reviewed assets: 1 direct-answer content piece and 1 technical schema graph refactor directly for 1-click review.</p>
+          </div>
+          <div class="flow-card">
+            <span class="flow-card-icon">⚖️</span>
+            <h4>Built-in Judge</h4>
+            <p>An edge-based evaluator periodically re-prompts answer engines to confirm citation lift, audit sentiment, and verify #1 rank placement.</p>
+          </div>
+          <div class="flow-card">
+            <span class="flow-card-icon">🛡️</span>
+            <h4>Anti-Hallucination Wiki</h4>
+            <p>Enforces strict factual brand bounds so the autonomous engine never invents pricing, unreleased features, or prohibited claims.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: Why AEO Matters -->
+      <section class="flow-section" id="why-aeo-matters">
+        <h2>Why AEO Matters in 2026</h2>
+        <p>
+          The internet's discovery architecture has shifted permanently. Millions of high-intent enterprise buyers and consumers have stopped scrolling through Google search results:
+        </p>
+        <ul>
+          <li><strong>Zero-Click Decisions:</strong> AI engines answer questions directly in the chat interface. If your site isn't cited in the generated answer, you receive zero traffic and zero consideration.</li>
+          <li><strong>Entity Graphs over Keyword Density:</strong> AI models don't care about keyword frequency. They parse structured Schema.org JSON-LD graphs, canonical sameAs links, and direct 40–55 word factual answers.</li>
+          <li><strong>Competitor Displacement:</strong> When buyers prompt an AI engine to compare solutions, competitors who optimize for AEO are cited as the superior alternative by default.</li>
+        </ul>
+
+        <div class="callout callout-info">
+          <div>💡</div>
+          <div>
+            <strong>Key Insight:</strong> Traditional SEO solves for <em>search indexers</em>. AEO solves for <em>synthesizers and reasoning models</em>. Answer Index bridges the gap so your website speaks both languages fluently.
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3: The Closed Loop -->
+      <section class="flow-section" id="the-closed-loop">
+        <h2>The Closed-Loop Model</h2>
+        <p>
+          Most AEO software on the market suffers from one of two fatal flaws:
+        </p>
+        <ol>
+          <li><strong>Observation-Only:</strong> They show you a dashboard of where you aren't cited, but leave you to write the content, configure the schemas, and deploy the code manually.</li>
+          <li><strong>Unverified AI Copy:</strong> They generate generic blog posts that get ignored by AI crawlers because they lack structural grounding and machine-readable markup.</li>
+        </ol>
+        <p>
+          Answer Index operates as an unbroken, continuous 3-stage loop:
+        </p>
+
+        <div class="flow-grid-2">
+          <div class="flow-card" style="border-top: 3px solid #B45309;">
+            <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: #B45309; margin-bottom: 6px;">STAGE 01</div>
+            <h4>OBSERVE (Radar)</h4>
+            <p>Identifies high-intent commercial prompts where competitors are recommended over your brand.</p>
+          </div>
+          <div class="flow-card" style="border-top: 3px solid #059669;">
+            <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: #059669; margin-bottom: 6px;">STAGE 02</div>
+            <h4>REMEDIATE (Automate)</h4>
+            <p>Synthesizes zero-click answers and JSON-LD schema graphs, staging them as 1-click review drafts.</p>
+          </div>
+          <div class="flow-card" style="border-top: 3px solid #2563EB;">
+            <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: #2563EB; margin-bottom: 6px;">STAGE 03</div>
+            <h4>PROVE (Judge)</h4>
+            <p>Re-evaluates the live answer engine response to verify #1 rank recommendation and extract citation proof.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 4: Step 1 Radar -->
+      <section class="flow-section" id="step-1-radar">
+        <h2>Step 1: AI Visibility Radar</h2>
+        <p>
+          The Radar tracks high-intent buying prompts relevant to your business across the leading conversational AI engines:
+        </p>
+        <ul>
+          <li><strong>ChatGPT Search</strong> (OpenAI GPT-4o / O3)</li>
+          <li><strong>Perplexity AI</strong> (Sonar / Pro Search)</li>
+          <li><strong>Claude 3.7 Sonnet</strong> (Anthropic)</li>
+          <li><strong>Google AI Overviews &amp; Gemini</strong></li>
+        </ul>
+        <p>
+          For every tracked query, the Radar records:
+        </p>
+        <ul>
+          <li><strong>Share of Voice (SOV):</strong> The percentage of queries where your brand is cited compared to competitors.</li>
+          <li><strong>Recommendation Rank:</strong> Whether your brand is suggested as the #1 choice, a runner-up, or completely omitted.</li>
+          <li><strong>Sentiment Analysis:</strong> Whether the model describes your product favorably, objectively, or points out drawbacks.</li>
+        </ul>
+      </section>
+
+      <!-- Section 5: Step 2 Automate -->
+      <section class="flow-section" id="step-2-automate">
+        <h2>Step 2: Dual Daily Staging Cadence</h2>
+        <p>
+          Every business morning at 6:00 AM, Answer Index's autonomous engine stages <strong>2 reviewed deliverables</strong> in your dashboard:
+        </p>
+        <div class="flow-grid-2">
+          <div class="flow-card">
+            <h4>Job 1: High-Intent AEO Answer Asset</h4>
+            <p>A complete direct-answer guide featuring concise 40–55 word factual answers, natural question headings, and structured comparison markdown designed for instant AI extraction.</p>
+          </div>
+          <div class="flow-card">
+            <h4>Job 2: Technical Schema &amp; Speed Refactor</h4>
+            <p>Unified Schema.org JSON-LD graph code (`Organization`, `FAQPage`, `TechArticle`) paired with crawler TTFB and edge latency optimizations.</p>
+          </div>
+        </div>
+        <div class="callout callout-success">
+          <div>🛡️</div>
+          <div>
+            <strong>100% Client Sign-Off Invariant:</strong> Answer Index NEVER publishes unreviewed code or content to your live website. All deliverables are staged as drafts until you click "Approve" or merge the pull request.
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 6: Step 3 Judge -->
+      <section class="flow-section" id="step-3-judge">
+        <h2>Step 3: Answer Index Judge</h2>
+        <p>
+          Once an approved deliverable is deployed to your site, the <strong>Answer Index Judge</strong> closes the loop:
+        </p>
+        <ul>
+          <li>It queries the target AI models with the exact commercial evaluation prompts.</li>
+          <li>It scans the response text for your brand name, domain, and canonical URLs.</li>
+          <li>It verifies whether your brand secured the <strong>#1 Recommendation Rank</strong>.</li>
+          <li>It extracts and quotes the <em>exact passage</em> where the AI recommended your product, providing verifiable proof for your team.</li>
+        </ul>
+      </section>
+
+      <!-- Section 7: Quickstart -->
+      <section class="flow-section" id="quickstart">
+        <h2>60-Second Quickstart</h2>
+        <p>Getting your website onboarded into the Answer Index pipeline takes under one minute:</p>
+        <ol>
+          <li>Open the <a href="dashboard.html" style="color: #B45309; font-weight: 700;">Client Workstation</a>.</li>
+          <li>In the top <strong>Active Target Website</strong> bar, enter your website URL (e.g. <code>yourcompany.com</code>).</li>
+          <li>Click <strong>🔍 Run Live Analysis</strong>.</li>
+        </ol>
+        <p>
+          Our edge crawler will immediately inspect your live DOM, detect your platform (Shopify, WordPress, Webflow, or Custom), extract your brand headings, and generate your custom <strong>Brand Ground-Truth Wiki</strong>.
+        </p>
+      </section>
+
+      <!-- Section 8: 1-Line Edge Tag -->
+      <section class="flow-section" id="edge-tag">
+        <h2>1-Line Universal Edge Tag</h2>
+        <p>
+          If you don't use Git or prefer not to connect CMS API tokens, you can enable 100% automated edge delivery by adding a single line of script to your site's <code>&lt;head&gt;</code>:
+        </p>
+
+        <div class="code-block">
+          <button class="btn-copy-code" onclick="copyTagCode()">Copy Tag</button>
+          <pre id="edgeTagCode">&lt;script async src="https://answerindex.xyz/client/yourdomain.js"&gt;&lt;/script&gt;</pre>
+        </div>
+
+        <p>
+          <strong>How it works:</strong> On every daily agent run, when you approve a schema refactor or answer asset, Answer Index's Cloudflare Worker dynamically compiles the approved JSON-LD graphs and delivers them through this script tag with sub-20ms edge latency and zero layout shift.
+        </p>
+      </section>
+
+      <!-- Section 9: Brand Truth Wiki -->
+      <section class="flow-section" id="brand-truth">
+        <h2>Brand Ground-Truth Wiki</h2>
+        <p>
+          AI models hallucinate when they lack authoritative grounding facts. Answer Index eliminates this risk through your <strong>Brand Ground-Truth Wiki</strong>:
+        </p>
+        <ul>
+          <li><strong>Verified Brand Mission:</strong> Official specifications, primary product value propositions, and verified founder identity.</li>
+          <li><strong>Verified Pricing &amp; Features:</strong> Exact canonical tiers and guarantees.</li>
+          <li><strong>Disallowed Claims (Invariants):</strong> Explicit rules detailing what the autonomous pipeline is strictly forbidden to claim (e.g. false competitor comparisons or unreleased features).</li>
+        </ul>
+        <p>
+          Every daily deliverable is cryptographically checked against this baseline before presentation.
+        </p>
+      </section>
+
+      <!-- Section 10: Comparison Table -->
+      <section class="flow-section" id="seo-vs-aeo">
+        <h2>SEO vs. AEO Comparison</h2>
+        <table class="simple-table">
+          <thead>
+            <tr>
+              <th>Dimension</th>
+              <th>Traditional SEO</th>
+              <th>Answer Index (AEO)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Primary Target</strong></td>
+              <td>Google search crawler (10 blue links)</td>
+              <td>Conversational AI synthesizers (ChatGPT, Perplexity, Claude)</td>
+            </tr>
+            <tr>
+              <td><strong>Metric of Success</strong></td>
+              <td>Keyword rankings &amp; organic click count</td>
+              <td>Share of Voice (SOV), #1 Recommendation Rank &amp; Citations</td>
+            </tr>
+            <tr>
+              <td><strong>Optimization Mechanism</strong></td>
+              <td>Keyword density &amp; backlink volume</td>
+              <td>Schema.org JSON-LD graphs &amp; direct 40–55 word factual answers</td>
+            </tr>
+            <tr>
+              <td><strong>Execution Model</strong></td>
+              <td>Manual recommendations in PDF audit decks</td>
+              <td>Autonomous daily code &amp; content pull requests staged for 1-click review</td>
+            </tr>
+            <tr>
+              <td><strong>Verification</strong></td>
+              <td>Rank tracker estimates</td>
+              <td>Built-in Judge evaluating live AI answers with passage quote proof</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Section 11: CMS & Git Connections -->
+      <section class="flow-section" id="cms-integrations">
+        <h2>CMS &amp; Git Connections</h2>
+        <p>
+          Answer Index connects seamlessly to both developer-first git repositories and marketer-friendly headless or traditional CMS platforms. Zero code lock-in and zero blind publishing.
+        </p>
+
+        <div class="steps-grid" style="margin-top: 1.5rem;">
+          <div class="step-card">
+            <div class="step-num">🛍️ Non-Technical / CMS</div>
+            <h3 style="font-size: 1.05rem; font-weight: 800; margin-bottom: 8px;">Shopify, WordPress, Webflow</h3>
+            <p style="font-size: 13.5px; color: var(--text-secondary); line-height: 1.55;">
+              Connect via authenticated REST or GraphQL API tokens. Morning answer pieces and schema updates arrive directly in your draft queue for 1-click publishing.
+            </p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num">🐙 Developer / CI/CD</div>
+            <h3 style="font-size: 1.05rem; font-weight: 800; margin-bottom: 8px;">GitHub &amp; GitLab PRs</h3>
+            <p style="font-size: 13.5px; color: var(--text-secondary); line-height: 1.55;">
+              Connect via GitHub App or Personal Access Token. Updates arrive on isolated branches (<code>answerindex/daily-YYYY-MM-DD</code>) with automated diff checks.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 12: 17-Point Audit Protocol -->
+      <section class="flow-section" id="audit-protocol">
+        <h2>17-Point AEO Diagnostic Protocol</h2>
+        <p>
+          Our live diagnostic engine probes the 4 critical layers required for AI answer engines to index, understand, and recommend your website:
+        </p>
+        <ul style="margin-top: 1rem; padding-left: 1.25rem; display: flex; flex-direction: column; gap: 8px; font-size: 14.5px; color: var(--text-secondary);">
+          <li><strong>Layer 1: AI Crawler Directives:</strong> Evaluates robots.txt permissions for GPTBot, ClaudeBot, PerplexityBot, and Google-Extended.</li>
+          <li><strong>Layer 2: Schema.org Entity Graph:</strong> Verifies interconnected JSON-LD <code>@graph</code> nodes for Organization, Product, FAQPage, and <code>sameAs</code> authority citations.</li>
+          <li><strong>Layer 3: Zero-Click Direct Answer Extracts:</strong> Checks for declarative 40–55 word factual answers placed immediately under high-intent query headings.</li>
+          <li><strong>Layer 4: Machine Manifests:</strong> Inspects and validates machine-readable <code>/llms.txt</code>, <code>/ai-entities.json</code>, and <code>/ai-sitemap.xml</code> endpoints.</li>
+        </ul>
+      </section>
+
+      <!-- Section 13: FAQ -->
+      <section class="flow-section" id="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div style="display: flex; flex-direction: column; gap: 16px; margin-top: 1.25rem;">
+          <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 18px 20px;">
+            <strong style="color: var(--text-primary); font-size: 15px; display: block; margin-bottom: 6px;">Can Answer Index publish changes to my site without my approval?</strong>
+            <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin: 0;">
+              Never. We operate on a strict human-in-the-loop philosophy. Every deliverable is staged as a reviewable draft in your CMS or as a GitHub Pull Request. Nothing goes live until you inspect and approve it.
+            </p>
+          </div>
+
+          <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 18px 20px;">
+            <strong style="color: var(--text-primary); font-size: 15px; display: block; margin-bottom: 6px;">How does Answer Index avoid hallucinations?</strong>
+            <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin: 0;">
+              Every generated asset is strictly verified against your Brand Truth Wiki hosted on Cloudflare D1. Invariant rules forbid claiming unreleased features, false pricing, or unverified claims.
+            </p>
+          </div>
+
+          <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 18px 20px;">
+            <strong style="color: var(--text-primary); font-size: 15px; display: block; margin-bottom: 6px;">How quickly do AI citation results appear?</strong>
+            <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin: 0;">
+              Perplexity and ChatGPT Search re-crawl high-authority entities continuously. Most clients observe citation pickup within 7 to 14 days following the publication of our staged answer passages and schema nodes.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Next & Previous Navigation Footer -->
+      <div class="flow-nav-footer">
+        <a href="index.html" class="flow-nav-card">
+          <div class="flow-nav-label">Previous</div>
+          <div class="flow-nav-title">← Home Page</div>
+        </a>
+        <a href="dashboard.html" class="flow-nav-card" style="text-align: right;">
+          <div class="flow-nav-label">Next Step</div>
+          <div class="flow-nav-title">Launch Client Workstation →</div>
+        </a>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Copy code snippet helper
+    function copyTagCode() {
+      const code = document.getElementById('edgeTagCode').textContent;
+      navigator.clipboard.writeText(code).then(() => {
+        alert('Copied 1-line script tag to clipboard!');
+      });
+    }
+
+    // Mobile sidebar toggle
+    function toggleMobileSidebar() {
+      const sidebar = document.getElementById('flowSidebar');
+      if (sidebar) sidebar.classList.toggle('mobile-open');
+    }
+
+    // Active sidebar link tracking on scroll
+    window.addEventListener('DOMContentLoaded', () => {
+      const links = document.querySelectorAll('.sidebar-link');
+      const sections = document.querySelectorAll('.flow-section');
+
+      function updateActiveLink() {
+        let currentSectionId = '';
+        sections.forEach(sec => {
+          const rect = sec.getBoundingClientRect();
+          if (rect.top <= 120 && rect.bottom >= 120) {
+            currentSectionId = sec.id;
+          }
+        });
+
+        if (currentSectionId) {
+          links.forEach(l => {
+            if (l.getAttribute('href') === `#${currentSectionId}`) {
+              l.classList.add('active');
+            } else {
+              l.classList.remove('active');
+            }
+          });
+        }
+      }
+
+      window.addEventListener('scroll', updateActiveLink, { passive: true });
+    });
+  </script>
+</body>
+</html>
