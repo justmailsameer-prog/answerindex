@@ -202,6 +202,21 @@ class TestProductionAuthAndEdge(unittest.TestCase):
                     broken.append((fn, link))
         self.assertEqual(len(broken), 0, f"Found broken internal references: {broken}")
 
+    def test_13_remote_database_and_live_api_payloads_contain_no_prototype_data(self):
+        """Layer 2 & 3: Query live API /api/jobs and verify JSON payloads contain zero leaked prototype data."""
+        status, body_raw, headers = make_request("/api/jobs")
+        self.assertEqual(status, 200, f"Expected 200 for /api/jobs, got {status}")
+        data = json.loads(body_raw)
+        self.assertTrue(data.get("success"), "API should return success: true")
+        jobs = data.get("jobs", [])
+        self.assertGreater(len(jobs), 0, "Jobs should be returned from live database")
+
+        forbidden_terms = ["nordic", "nordic style", "wool rug", "west elm", "vibelyze"]
+        for j in jobs:
+            text_dump = json.dumps(j).lower()
+            for term in ["nordic", "west elm", "wool rug"]:
+                self.assertNotIn(term, text_dump, f"Forbidden prototype keyword '{term}' found in live DB job {j.get('id')}")
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
