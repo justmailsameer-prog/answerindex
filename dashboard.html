@@ -2727,96 +2727,119 @@
         </p>
       </div>
 
-      <!-- Integration Option 1: 1-Line Edge Script (Recommended - Meta / Google Tag Style) -->
+      <!-- Integration Option 1: Google Tag Manager Modal Paradigm -->
       <div style="background: var(--bg-card); border: 2px solid var(--honey-border); border-radius: 14px; padding: 22px 24px; margin-bottom: 18px; box-shadow: 0 4px 18px rgba(249, 188, 56, 0.08);">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; flex-wrap: wrap; gap: 8px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
           <div style="display: flex; align-items: center; gap: 8px;">
             <span style="font-size: 20px;">⚡</span>
-            <strong style="font-size: 15px; color: var(--text-primary);">Option 1: 1-Line Universal Script Tag (Recommended)</strong>
+            <strong style="font-size: 15px; color: var(--text-primary);">Install the AnswerIndex Tag</strong>
           </div>
-          <span class="badge-pill badge-pill-emerald" style="font-size: 11px;">⚡ Takes Under 60 Seconds</span>
+          <span class="badge-pill badge-pill-emerald" style="font-size: 11px;">Fastest Method · Sub-20ms Edge</span>
         </div>
-        
+
         <p style="font-size: 12.5px; color: var(--text-secondary); margin: 0 0 16px 0; line-height: 1.5;">
-          Just like installing the <strong>Meta Pixel (Facebook)</strong> or <strong>Google Analytics Tag</strong>, you only need to copy this single line of code and paste it once onto your website.
+          Follow these steps to install the tag on your website. Choose whether to install through your website builder / CMS platform, or paste the code snippet manually.
         </p>
 
-        <!-- Step 1: Copy Code -->
-        <div style="margin-bottom: 16px;">
-          <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 6px;">
-            <span style="background: #FEF3C7; color: #B45309; width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; font-family: var(--font-mono);">1</span>
-            <strong style="font-size: 13px; color: var(--text-primary);">Copy this 1-line script tag:</strong>
+        <!-- Method Selector Tabs (Like Google Tag Manager's "Install with CMS" vs "Install Manually") -->
+        <div style="display: flex; gap: 4px; background: var(--bg-canvas); padding: 4px; border-radius: 10px; margin-bottom: 16px; border: 1px solid var(--border-subtle);">
+          <button type="button" id="tabBtnManualInstall" onclick="switchInstallMethodTab('manual')" style="flex: 1; padding: 8px 12px; font-size: 12.5px; font-weight: 700; border-radius: 7px; border: none; background: #FFFFFF; color: var(--text-primary); cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.06); transition: all 0.15s;">
+            📋 Install Manually (Code Snippet)
+          </button>
+          <button type="button" id="tabBtnCmsInstall" onclick="switchInstallMethodTab('cms')" style="flex: 1; padding: 8px 12px; font-size: 12.5px; font-weight: 600; border-radius: 7px; border: none; background: transparent; color: var(--text-secondary); cursor: pointer; transition: all 0.15s;">
+            🛍️ Select Your Platform / CMS
+          </button>
+        </div>
+
+        <!-- TAB CONTENT A: Install Manually (Google Tag Manager standard instructions) -->
+        <div id="installTabManual" style="display: block;">
+          <!-- Step 1: Copy Code -->
+          <div style="margin-bottom: 16px;">
+            <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 6px;">
+              <span style="background: #FEF3C7; color: #B45309; width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; font-family: var(--font-mono);">1</span>
+              <strong style="font-size: 13px; color: var(--text-primary);">Copy the code snippet below:</strong>
+            </div>
+
+            <div style="background: #1C1D21; border-radius: 10px; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
+              <code id="modalEdgeScriptSnippet" style="font-family: var(--font-mono); font-size: 12.5px; color: #FBBF24; word-break: break-all;">
+                &lt;script async src="https://answerindex.xyz/client/yourbrand.js"&gt;&lt;/script&gt;
+              </code>
+              <button onclick="copyModalEdgeScript()" class="btn-honey-primary" style="font-size: 11.5px; padding: 7px 16px; font-weight: 800; white-space: nowrap;">
+                📋 Copy Code Snippet
+              </button>
+            </div>
           </div>
 
-          <div style="background: #1C1D21; border-radius: 10px; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
-            <code id="modalEdgeScriptSnippet" style="font-family: var(--font-mono); font-size: 12.5px; color: #FBBF24; word-break: break-all;">
-              &lt;script async src="https://answerindex.xyz/client/yourbrand.js"&gt;&lt;/script&gt;
-            </code>
-            <button onclick="copyModalEdgeScript()" class="btn-honey-primary" style="font-size: 11.5px; padding: 7px 16px; font-weight: 800; white-space: nowrap;">
-              📋 Copy Tag Code
-            </button>
+          <!-- Step 2: Paste in <head> -->
+          <div style="margin-bottom: 16px;">
+            <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 6px;">
+              <span style="background: #FEF3C7; color: #B45309; width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; font-family: var(--font-mono);">2</span>
+              <strong style="font-size: 13px; color: var(--text-primary);">Paste it as high in the <code style="font-family:var(--font-mono); background:#FFF8E7; color:#B45309; padding:1px 5px; border-radius:4px;">&lt;head&gt;</code> tag as possible:</strong>
+            </div>
+            <p style="font-size: 12px; color: var(--text-secondary); margin: 0 0 8px 0; line-height: 1.5;">
+              In the sample HTML code below, paste the AnswerIndex snippet immediately after the opening <code style="background:#FFF8E7; color:#B45309; padding:1px 5px; border-radius:4px; font-weight:700;">&lt;head&gt;</code> tag:
+            </p>
+
+            <!-- GTM-Standard Sample HTML Box -->
+            <div style="background: #F8F9FA; border: 1px solid var(--border-subtle); border-radius: 8px; padding: 12px 14px; font-family: var(--font-mono); font-size: 11.5px; color: #4B5563; line-height: 1.6;">
+              <div style="color: #9CA3AF;">&lt;!DOCTYPE html&gt;</div>
+              <div style="color: #9CA3AF;">&lt;html lang="en"&gt;</div>
+              <div style="color: #9CA3AF;">&lt;head&gt;</div>
+              <div style="color: #059669; padding-left: 14px; font-weight: 600;">&lt;!-- Answer Index AEO Tag --&gt;</div>
+              <div style="background: #FEF3C7; color: #92400E; padding: 4px 8px; border-radius: 4px; margin: 2px 0 2px 14px; font-weight: 700; border-left: 3px solid #F59E0B;">
+                &lt;script async src="https://answerindex.xyz/client/...js"&gt;&lt;/script&gt;
+              </div>
+              <div style="color: #059669; padding-left: 14px; font-weight: 600;">&lt;!-- End Answer Index Tag --&gt;</div>
+              <div style="color: #9CA3AF; padding-left: 14px;">&lt;title&gt;My Webpage&lt;/title&gt;</div>
+              <div style="color: #9CA3AF;">&lt;/head&gt;</div>
+              <div style="color: #9CA3AF;">&lt;body&gt; ... &lt;/body&gt;</div>
+              <div style="color: #9CA3AF;">&lt;/html&gt;</div>
+            </div>
           </div>
         </div>
 
-        <!-- Step 2: Where to Paste -->
-        <div style="margin-bottom: 16px;">
-          <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 6px;">
-            <span style="background: #FEF3C7; color: #B45309; width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; font-family: var(--font-mono);">2</span>
-            <strong style="font-size: 13px; color: var(--text-primary);">Paste it into your website's header:</strong>
+        <!-- TAB CONTENT B: Install with Website Builder or CMS (WordPress, Shopify, Webflow, etc.) -->
+        <div id="installTabCms" style="display: none; margin-bottom: 16px;">
+          <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 10px;">
+            If your site is built on a website builder or CMS, you do not need to edit raw HTML templates on every page. Select your platform for exact click-by-click instructions:
           </div>
-          <p style="font-size: 12.5px; color: var(--text-secondary); margin: 0 0 10px 0; line-height: 1.5;">
-            Paste the code right above the closing <code style="background:#FFF8E7; color:#B45309; padding:2px 6px; border-radius:4px; font-weight:700;">&lt;/head&gt;</code> tag of your website or theme template.
-          </p>
-
-          <!-- Simple Visual HTML snippet demonstrating where to place -->
-          <div style="background: #F8F9FA; border: 1px solid var(--border-subtle); border-radius: 8px; padding: 10px 14px; font-family: var(--font-mono); font-size: 11.5px; color: var(--text-secondary); margin-bottom: 12px;">
-            <div style="color: #9CA3AF;">&lt;!DOCTYPE html&gt;</div>
-            <div style="color: #9CA3AF;">&lt;head&gt;</div>
-            <div style="color: #9CA3AF; padding-left: 14px;">&lt;title&gt;My Website&lt;/title&gt;</div>
-            <div style="background: #FEF3C7; color: #92400E; padding: 4px 8px; border-radius: 4px; margin: 4px 0 4px 14px; font-weight: 700; border-left: 3px solid #F59E0B;">
-              👉 &lt;script async src="https://answerindex.xyz/client/...js"&gt;&lt;/script&gt;  <span style="color: #059669; font-weight: 600;">&lt;!-- Paste here --&gt;</span>
-            </div>
-            <div style="color: #9CA3AF;">&lt;/head&gt;</div>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px;">
+            <button type="button" class="btn-platform-tab active" onclick="switchPlatformHelp('wordpress', this)" style="padding: 5px 12px; font-size: 11.5px; border-radius: 6px; border: 1px solid var(--border-subtle); background: #FFFFFF; cursor: pointer; font-weight: 700;">WordPress</button>
+            <button type="button" class="btn-platform-tab" onclick="switchPlatformHelp('shopify', this)" style="padding: 5px 12px; font-size: 11.5px; border-radius: 6px; border: 1px solid var(--border-subtle); background: transparent; cursor: pointer; font-weight: 600;">Shopify</button>
+            <button type="button" class="btn-platform-tab" onclick="switchPlatformHelp('webflow', this)" style="padding: 5px 12px; font-size: 11.5px; border-radius: 6px; border: 1px solid var(--border-subtle); background: transparent; cursor: pointer; font-weight: 600;">Webflow</button>
+            <button type="button" class="btn-platform-tab" onclick="switchPlatformHelp('gtm', this)" style="padding: 5px 12px; font-size: 11.5px; border-radius: 6px; border: 1px solid var(--border-subtle); background: transparent; cursor: pointer; font-weight: 600;">Google Tag Manager</button>
+            <button type="button" class="btn-platform-tab" onclick="switchPlatformHelp('react', this)" style="padding: 5px 12px; font-size: 11.5px; border-radius: 6px; border: 1px solid var(--border-subtle); background: transparent; cursor: pointer; font-weight: 600;">React / Next.js</button>
           </div>
 
-          <!-- Platform-specific 1-click tab buttons -->
-          <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 12px 14px;">
-            <div style="font-size: 11.5px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">
-              Where is the header in your platform? Choose yours:
-            </div>
-            <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px;">
-              <button type="button" class="btn-platform-tab active" onclick="switchPlatformHelp('wordpress', this)" style="padding: 4px 10px; font-size: 11px; border-radius: 6px; border: 1px solid var(--border-subtle); background: #FFFFFF; cursor: pointer; font-weight: 700;">WordPress</button>
-              <button type="button" class="btn-platform-tab" onclick="switchPlatformHelp('shopify', this)" style="padding: 4px 10px; font-size: 11px; border-radius: 6px; border: 1px solid var(--border-subtle); background: transparent; cursor: pointer; font-weight: 600;">Shopify</button>
-              <button type="button" class="btn-platform-tab" onclick="switchPlatformHelp('webflow', this)" style="padding: 4px 10px; font-size: 11px; border-radius: 6px; border: 1px solid var(--border-subtle); background: transparent; cursor: pointer; font-weight: 600;">Webflow</button>
-              <button type="button" class="btn-platform-tab" onclick="switchPlatformHelp('gtm', this)" style="padding: 4px 10px; font-size: 11px; border-radius: 6px; border: 1px solid var(--border-subtle); background: transparent; cursor: pointer; font-weight: 600;">Google Tag Manager</button>
-              <button type="button" class="btn-platform-tab" onclick="switchPlatformHelp('react', this)" style="padding: 4px 10px; font-size: 11px; border-radius: 6px; border: 1px solid var(--border-subtle); background: transparent; cursor: pointer; font-weight: 600;">React / Next.js</button>
-            </div>
-
-            <!-- Instructions body -->
-            <div id="platformHelpText" style="font-size: 12px; color: var(--text-secondary); line-height: 1.5; background: #FFFFFF; border: 1px solid var(--border-subtle); border-radius: 8px; padding: 10px 12px;">
-              <strong>WordPress:</strong> Go to <em>Plugins → Add New</em> → Install <strong>"WPCode"</strong> (Insert Headers and Footers). Click <em>Code Snippets → Header &amp; Footer</em>, paste the tag into the <strong>Header</strong> box, and click Save.
-            </div>
+          <div id="platformHelpText" style="font-size: 12.5px; color: var(--text-secondary); line-height: 1.55; background: #FFFFFF; border: 1px solid var(--border-subtle); border-radius: 8px; padding: 12px 14px;">
+            <strong>WordPress:</strong> Go to <em>Plugins → Add New</em> → Install <strong>"WPCode"</strong> (Insert Headers and Footers). Click <em>Code Snippets → Header &amp; Footer</em>, paste the tag into the <strong>Header</strong> box, and click Save.
           </div>
         </div>
 
-        <!-- Step 3: Test and Verify -->
-        <div>
-          <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 6px;">
+        <!-- Step 3: Test your website (Like GTM's "Test your website by entering your website's link") -->
+        <div style="border-top: 1px solid var(--border-subtle); padding-top: 14px; margin-top: 14px;">
+          <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 8px;">
             <span style="background: #FEF3C7; color: #B45309; width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; font-family: var(--font-mono);">3</span>
-            <strong style="font-size: 13px; color: var(--text-primary);">Verify your installation:</strong>
+            <strong style="font-size: 13px; color: var(--text-primary);">Test your website installation:</strong>
           </div>
-          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; background: #ECFDF5; border: 1px solid #A7F3D0; border-radius: 8px; padding: 10px 14px;">
-            <span style="font-size: 12px; color: #065F46;">
-              Click below once you've saved your page. We'll automatically ping your live site to confirm it's working.
-            </span>
-            <button id="btnVerifyTagFromModal" onclick="verifyWebsiteConnectionNow()" class="btn-honey-primary" style="font-size: 12px; padding: 7px 16px; font-weight: 800; white-space: nowrap;">
-              🔍 Test Connection Now →
+          
+          <div style="background: #ECFDF5; border: 1px solid #A7F3D0; border-radius: 10px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <div>
+              <div style="font-size: 12.5px; font-weight: 700; color: #065F46;">
+                Ready to verify? Click Test to ping your live site.
+              </div>
+              <div style="font-size: 11.5px; color: #047857; margin-top: 2px;">
+                Our crawler performs a live edge probe to confirm the script tag is detected.
+              </div>
+            </div>
+            <button id="btnVerifyTagFromModal" onclick="verifyWebsiteConnectionNow()" class="btn-honey-primary" style="font-size: 12.5px; padding: 8px 18px; font-weight: 800; white-space: nowrap;">
+              🔍 Test Website Now →
             </button>
           </div>
         </div>
       </div>
 
-      <!-- Integration Option 2: CMS or GitHub Pull Requests -->
+            <!-- Integration Option 2: CMS or GitHub Pull Requests -->
       <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: 14px; padding: 16px 20px; margin-bottom: 18px;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
           <div style="display: flex; align-items: center; gap: 8px;">
@@ -3246,6 +3269,46 @@
     }
 
     // -------------------------------------------------------------------------
+    // Google Tag Manager Style "Install with CMS" vs "Install Manually" Tab Switcher
+    function switchInstallMethodTab(method) {
+      const manualTab = document.getElementById('installTabManual');
+      const cmsTab = document.getElementById('installTabCms');
+      const btnManual = document.getElementById('tabBtnManualInstall');
+      const btnCms = document.getElementById('tabBtnCmsInstall');
+
+      if (method === 'cms') {
+        if (manualTab) manualTab.style.display = 'none';
+        if (cmsTab) cmsTab.style.display = 'block';
+        if (btnManual) {
+          btnManual.style.background = 'transparent';
+          btnManual.style.fontWeight = '600';
+          btnManual.style.color = 'var(--text-secondary)';
+          btnManual.style.boxShadow = 'none';
+        }
+        if (btnCms) {
+          btnCms.style.background = '#FFFFFF';
+          btnCms.style.fontWeight = '700';
+          btnCms.style.color = 'var(--text-primary)';
+          btnCms.style.boxShadow = '0 1px 3px rgba(0,0,0,0.06)';
+        }
+      } else {
+        if (manualTab) manualTab.style.display = 'block';
+        if (cmsTab) cmsTab.style.display = 'none';
+        if (btnManual) {
+          btnManual.style.background = '#FFFFFF';
+          btnManual.style.fontWeight = '700';
+          btnManual.style.color = 'var(--text-primary)';
+          btnManual.style.boxShadow = '0 1px 3px rgba(0,0,0,0.06)';
+        }
+        if (btnCms) {
+          btnCms.style.background = 'transparent';
+          btnCms.style.fontWeight = '600';
+          btnCms.style.color = 'var(--text-secondary)';
+          btnCms.style.boxShadow = 'none';
+        }
+      }
+    }
+
     // Platform-Specific Installation Guide Switcher
     function switchPlatformHelp(platform, btn) {
       document.querySelectorAll('.btn-platform-tab').forEach(b => {
