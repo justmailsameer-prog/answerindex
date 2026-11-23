@@ -41,7 +41,7 @@ export async function onRequestGet({ request, env }) {
 
     const { results } = await env.DB.prepare(query).bind(...bindings).all();
 
-    // Query recent Elmo Observability AI citation runs if table exists
+    // Query recent AI citation runs if table exists
     let observabilityRuns = [];
     try {
       let obsQuery = `SELECT * FROM ai_citation_runs`;
@@ -61,7 +61,7 @@ export async function onRequestGet({ request, env }) {
     const citedCount = results.filter(r => r.cited === 1).length;
     const citationRate = total > 0 ? ((citedCount / total) * 100).toFixed(1) + '%' : '0.0%';
 
-    // Calculate Elmo metrics (SOV, sentiment breakdown, average position)
+    // Calculate AEO radar metrics (SOV, sentiment breakdown, average position)
     let avgPosition = 0;
     let avgSov = 0;
     let positiveCount = 0;
@@ -87,7 +87,7 @@ export async function onRequestGet({ request, env }) {
             average_share_of_voice: avgSov + '%',
             positive_sentiment_rate: observabilityRuns.length > 0 ? Math.round((positiveCount / observabilityRuns.length) * 100) + '%' : '0%'
           },
-          elmo_metrics: {
+          radar_metrics: {
             total_runs: observabilityRuns.length,
             average_position: avgPosition,
             average_share_of_voice: avgSov + '%',

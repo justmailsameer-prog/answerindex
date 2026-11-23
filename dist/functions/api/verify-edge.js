@@ -61,7 +61,7 @@ export async function onRequestPost({ request, env }) {
       );
     }
 
-    // 1. Inspect live HTML for JSON-LD schemas
+    // 1. Inspect live HTML for JSON-LD schemas and AnswerIndex Edge Delivery script
     const jsonLdBlocks = [];
     const scriptRegex = /<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
     let match;
@@ -75,6 +75,9 @@ export async function onRequestPost({ request, env }) {
       }
     }
 
+    // Check if AnswerIndex edge script tag is installed
+    const hasEdgeTag = /answerindex\.xyz\/client\/[a-zA-Z0-9_\-\.]+\.js/i.test(pageHtml) || /src=["'][^"']*client\/[a-zA-Z0-9_\-\.]+\.js["']/i.test(pageHtml);
+
     // 2. Verification checks
     const hasSchema = jsonLdBlocks.length > 0;
     const hasTargetKeyword = targetKeyword ? pageHtml.toLowerCase().includes(targetKeyword) : true;
@@ -84,12 +87,15 @@ export async function onRequestPost({ request, env }) {
     let verificationNote = '';
 
     if (httpStatus === 200) {
-      if (hasSchema) {
+      if (hasEdgeTag) {
+        isVerified = true;
+        verificationNote = `AnswerIndex 1-Line Edge Tag is connected live in website HTML! Sub-20ms dynamic AEO delivery active.`;
+      } else if (hasSchema) {
         isVerified = true;
         verificationNote = `Found ${jsonLdBlocks.length} valid JSON-LD schema block(s) live in HTML.`;
       } else {
         isVerified = false;
-        verificationNote = `Target page responded with HTTP 200, but no <script type="application/ld+json"> was found in HTML.`;
+        verificationNote = `Target page responded with HTTP 200, but neither AnswerIndex Edge Tag nor required Schema was found in HTML.`;
       }
     } else {
       isVerified = false;
@@ -119,6 +125,8 @@ export async function onRequestPost({ request, env }) {
         targetUrl,
         detectedSchemas: jsonLdBlocks.length,
         hasTargetKeyword,
+        hasEdgeTag,
+        isTagConnected: hasEdgeTag,
         message: verificationNote,
         timestamp: new Date().toISOString()
       }),

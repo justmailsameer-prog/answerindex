@@ -1,7 +1,7 @@
 // Cloudflare Pages Function: /api/citations/eval
-// Evaluates raw AI engine text through the Elmo Judge and logs observability metrics to D1
+// Evaluates raw AI engine text through the AEO Judge Engine and logs observability metrics to D1
 
-import { evaluateWithJudge } from '../../_shared/elmo-judge.js';
+import { evaluateWithJudge } from '../../_shared/ai-judge.js';
 
 const CORS_HEADERS = {
   'Access-Control-Allow-Origin': '*',
