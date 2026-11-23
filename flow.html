@@ -663,20 +663,88 @@
         </p>
       </section>
 
-      <!-- Section 8: 1-Line Edge Tag -->
+      <!-- Section 8: 1-Line Edge Tag (Non-Technical 3-Step Setup) -->
       <section class="flow-section" id="edge-tag">
-        <h2>1-Line Universal Edge Tag</h2>
+        <h2>1-Line Universal Script Tag (Meta Pixel / Google Tag Model)</h2>
         <p>
-          If you don't use Git or prefer not to connect CMS API tokens, you can enable 100% automated edge delivery by adding a single line of script to your site's <code>&lt;head&gt;</code>:
+          Connecting your website to Answer Index requires zero coding. Exactly like installing the <strong>Meta Pixel (Facebook)</strong> or <strong>Google Analytics Tag</strong>, you only need to copy one line of code and paste it once into your website's header.
         </p>
 
-        <div class="code-block">
-          <button class="btn-copy-code" onclick="copyTagCode()">Copy Tag</button>
-          <pre id="edgeTagCode">&lt;script async src="https://answerindex.xyz/client/yourdomain.js"&gt;&lt;/script&gt;</pre>
+        <!-- 3-Step Non-Technical Implementation Flow -->
+        <div style="background: #FFFFFF; border: 2px solid var(--honey-border, #F3CA68); border-radius: 14px; padding: 22px 24px; margin: 20px 0; box-shadow: 0 4px 18px rgba(249, 188, 56, 0.08);">
+          
+          <!-- Step 1 -->
+          <div style="margin-bottom: 20px;">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+              <span style="background: #FEF3C7; color: #B45309; width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; font-family: monospace;">1</span>
+              <strong style="font-size: 15px; color: var(--text-primary);">Step 1: Copy this 1-line script tag</strong>
+            </div>
+            <p style="font-size: 13px; color: var(--text-secondary); margin: 0 0 10px 0; line-height: 1.5;">
+              This lightweight script connects your website to Answer Index's sub-20ms Cloudflare Edge CDN.
+            </p>
+
+            <div class="code-block" style="margin: 0;">
+              <button class="btn-copy-code" onclick="copyTagCode()">📋 Copy Tag Code</button>
+              <pre id="edgeTagCode">&lt;script async src="https://answerindex.xyz/client/yourdomain.js"&gt;&lt;/script&gt;</pre>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div style="margin-bottom: 20px;">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+              <span style="background: #FEF3C7; color: #B45309; width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; font-family: monospace;">2</span>
+              <strong style="font-size: 15px; color: var(--text-primary);">Step 2: Paste it into your website's header</strong>
+            </div>
+            <p style="font-size: 13px; color: var(--text-secondary); margin: 0 0 10px 0; line-height: 1.5;">
+              Paste the code right above the closing <code style="background:#FFF8E7; color:#B45309; padding:2px 6px; border-radius:4px; font-weight:700;">&lt;/head&gt;</code> tag of your website or theme template.
+            </p>
+
+            <!-- Visual Diagram -->
+            <div style="background: #F8F9FA; border: 1px solid var(--border-subtle, #ECEBE6); border-radius: 8px; padding: 12px 16px; font-family: monospace; font-size: 12px; color: #4B5563; margin-bottom: 14px;">
+              <div style="color: #9CA3AF;">&lt;!DOCTYPE html&gt;</div>
+              <div style="color: #9CA3AF;">&lt;head&gt;</div>
+              <div style="color: #9CA3AF; padding-left: 16px;">&lt;title&gt;My Website&lt;/title&gt;</div>
+              <div style="background: #FEF3C7; color: #92400E; padding: 6px 10px; border-radius: 4px; margin: 4px 0 4px 16px; font-weight: 700; border-left: 3px solid #F59E0B;">
+                👉 &lt;script async src="https://answerindex.xyz/client/yourdomain.js"&gt;&lt;/script&gt;  <span style="color: #059669; font-weight: 600;">&lt;!-- Paste here --&gt;</span>
+              </div>
+              <div style="color: #9CA3AF;">&lt;/head&gt;</div>
+            </div>
+
+            <!-- Platform-Specific Instructions -->
+            <div style="background: #FAFAFA; border: 1px solid var(--border-subtle, #ECEBE6); border-radius: 10px; padding: 14px 16px;">
+              <div style="font-size: 12.5px; font-weight: 700; color: var(--text-primary); margin-bottom: 10px;">
+                Where to paste in popular platforms:
+              </div>
+              <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px;">
+                <button type="button" class="btn-flow-platform active" onclick="switchFlowPlatform('wordpress', this)" style="padding: 5px 12px; font-size: 11.5px; border-radius: 6px; border: 1px solid #D1D5DB; background: #FFFFFF; cursor: pointer; font-weight: 700;">WordPress</button>
+                <button type="button" class="btn-flow-platform" onclick="switchFlowPlatform('shopify', this)" style="padding: 5px 12px; font-size: 11.5px; border-radius: 6px; border: 1px solid #D1D5DB; background: transparent; cursor: pointer; font-weight: 600;">Shopify</button>
+                <button type="button" class="btn-flow-platform" onclick="switchFlowPlatform('webflow', this)" style="padding: 5px 12px; font-size: 11.5px; border-radius: 6px; border: 1px solid #D1D5DB; background: transparent; cursor: pointer; font-weight: 600;">Webflow</button>
+                <button type="button" class="btn-flow-platform" onclick="switchFlowPlatform('gtm', this)" style="padding: 5px 12px; font-size: 11.5px; border-radius: 6px; border: 1px solid #D1D5DB; background: transparent; cursor: pointer; font-weight: 600;">Google Tag Manager</button>
+                <button type="button" class="btn-flow-platform" onclick="switchFlowPlatform('react', this)" style="padding: 5px 12px; font-size: 11.5px; border-radius: 6px; border: 1px solid #D1D5DB; background: transparent; cursor: pointer; font-weight: 600;">React / Next.js</button>
+              </div>
+
+              <div id="flowPlatformGuideText" style="font-size: 12.5px; color: var(--text-secondary); line-height: 1.55; background: #FFFFFF; border: 1px solid var(--border-subtle, #ECEBE6); border-radius: 8px; padding: 12px 14px;">
+                <strong>WordPress:</strong> Go to <em>Plugins → Add New</em> → Install <strong>"WPCode"</strong> (Insert Headers and Footers). Click <em>Code Snippets → Header &amp; Footer</em>, paste the script into the <strong>Header</strong> box, and click Save.
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+              <span style="background: #FEF3C7; color: #B45309; width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; font-family: monospace;">3</span>
+              <strong style="font-size: 15px; color: var(--text-primary);">Step 3: Verification &amp; Automated Delivery</strong>
+            </div>
+            <div style="background: #ECFDF5; border: 1px solid #A7F3D0; border-radius: 8px; padding: 12px 16px;">
+              <p style="font-size: 12.5px; color: #065F46; margin: 0; line-height: 1.5;">
+                Once saved on your site, Answer Index's verification crawler will detect the tag via an edge HTTP probe. From then on, every time you click <strong>Approve</strong> in your dashboard, approved zero-click answer passages and FAQPage schemas are dynamically served without ever needing to touch your website code again.
+              </p>
+            </div>
+          </div>
         </div>
 
         <p>
-          <strong>How it works:</strong> On every daily agent run, when you approve a schema refactor or answer asset, Answer Index's Cloudflare Worker dynamically compiles the approved JSON-LD graphs and delivers them through this script tag with sub-20ms edge latency and zero layout shift.
+          <strong>Security Guarantee:</strong> This script operates strictly within your verified <strong>Brand Ground-Truth Wiki</strong> bounds. It delivers read-only canonical Schema.org markup and answer microdata with sub-20ms edge latency and zero layout shift.
         </p>
       </section>
 
@@ -820,6 +888,30 @@
 
   <script>
     // Copy code snippet helper
+    function switchFlowPlatform(platform, btn) {
+      document.querySelectorAll('.btn-flow-platform').forEach(b => {
+        b.style.background = 'transparent';
+        b.style.fontWeight = '600';
+      });
+      if (btn) {
+        btn.style.background = '#FFFFFF';
+        btn.style.fontWeight = '700';
+      }
+
+      const guideEl = document.getElementById('flowPlatformGuideText');
+      if (!guideEl) return;
+
+      const guides = {
+        wordpress: '<strong>WordPress:</strong> Go to <em>Plugins → Add New</em> → Search and install <strong>"WPCode"</strong> (Insert Headers and Footers). In the left sidebar, click <em>Code Snippets → Header &amp; Footer</em>, paste the tag code into the <strong>Header</strong> box, and click <strong>Save Changes</strong>.',
+        shopify: '<strong>Shopify:</strong> In your Shopify Admin, click <em>Online Store → Themes</em>. Next to your active theme, click <strong>"..." (three dots) → Edit code</strong>. Under <em>Layout</em>, click <code style="font-family:monospace; background:#FEF3C7; padding:1px 4px; border-radius:3px;">theme.liquid</code>. Find the <code style="font-family:monospace;">&lt;/head&gt;</code> line, paste the script tag right above it, and click <strong>Save</strong>.',
+        webflow: '<strong>Webflow:</strong> Open Project Settings. Click the <strong>Custom Code</strong> tab. Under <strong>"Head Code"</strong>, paste the script tag into the text box and click <strong>Save Changes</strong>, then <strong>Publish</strong> to your domains.',
+        gtm: '<strong>Google Tag Manager:</strong> In your GTM Workspace, click <em>Tags → New → Tag Configuration → Custom HTML</em>. Paste the script tag into the HTML box. Under <em>Triggering</em>, select <strong>"All Pages"</strong>. Click <strong>Save</strong>, then click <strong>Submit</strong> and Publish.',
+        react: '<strong>React / Next.js:</strong> In Next.js App Router, open <code style="font-family:monospace; background:#FEF3C7; padding:1px 4px; border-radius:3px;">app/layout.tsx</code> (or <code style="font-family:monospace;">pages/_document.tsx</code> in Pages Router). Paste <code style="font-family:monospace;">&lt;Script async src="..." /&gt;</code> inside the <code style="font-family:monospace;">&lt;head&gt;</code> tag and deploy.'
+      };
+
+      guideEl.innerHTML = guides[platform] || guides.wordpress;
+    }
+
     function copyTagCode() {
       const code = document.getElementById('edgeTagCode').textContent;
       navigator.clipboard.writeText(code).then(() => {
