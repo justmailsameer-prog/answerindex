@@ -90,8 +90,60 @@ AnswerIndex delivers a unified, production-grade engine spanning root indexation
 - 🛠️ **Deep Technical & Schema SEO:** Advanced modular suite for Schema.org JSON-LD graph generation, XML sitemaps, Core Web Vitals, and crawl hygiene.
 - 🔌 **Native Model Context Protocol (MCP) Server:** Connect AnswerIndex directly into AI coding environments like Cursor, Claude Code, Windsurf, or VS Code over stdio.
 - 💻 **Universal Automation:** Portable CLI and modular script runners for seamless integration into CI/CD pipelines or local terminal workflows.
+- 📊 **Complete AEO Analytics & Observability Suite (Elmo Parity):** Self-hostable, 100% free analytics suite covering AI Visibility, Share of Voice donut charts, Sentiment rings, raw LLM Responses, Query Fan-Out, and Opportunities.
+- 📋 **Right-Hand Prompt Detail Drawer:** Slide-over inspection drawer for every prompt showing over-time mention rates, web searches, citations, and verbatim answers with 1-click schema staging.
+- ⚡ **1-Line Universal Edge Integration Tag:** Drop-in script tag mimicking the official Google Tag Manager 3-step model with sub-20ms dynamic JSON-LD injection at the edge.
 
 ---
+
+
+---
+
+## 📊 AEO Analytics Dashboard & Observability Suite (Elmo Parity)
+
+AnswerIndex includes a complete, self-hostable Answer Engine Optimization (AEO) and Generative Engine Optimization (GEO) dashboard inspired by the open-source `elmohq/elmo` platform—operating **100% free with zero subscription fees**:
+
+```
+┌──────────────────────────────────────┬────────────────────────────────────────────────────────────────────────┐
+│ Workspace View                       │ Architectural Purpose & Telemetry Delivered                            │
+├──────────────────────────────────────┼────────────────────────────────────────────────────────────────────────┤
+│ 1. Overview                          │ Executive KPI ribbon (Awaiting Approval, Overall Visibility, Grounding │
+│                                      │ Sources, 30d Gain), Autonomous Production link, and Cause & Effect.   │
+├──────────────────────────────────────┼────────────────────────────────────────────────────────────────────────┤
+│ 2. Visibility                        │ Time-series mention rate sparklines per prompt, interactive 7d/14d/    │
+│                                      │ 30d/90d lookback filter, multi-model switcher, and "View Details ▾".   │
+├──────────────────────────────────────┼────────────────────────────────────────────────────────────────────────┤
+│ 3. Share of Voice                    │ Interactive SVG Donut Chart + Category Competitor Leaderboard Table    │
+│                                      │ with Mentions, Market Share %, Prompt Breadth, Avg. Rank, and Deltas.  │
+├──────────────────────────────────────┼────────────────────────────────────────────────────────────────────────┤
+│ 4. Sentiment Analysis                │ 3-tier scoring (0–100), Ring Chart (% Positive, % Neutral, % Mixed),   │
+│                                      │ competitor sentiment gap (+16 pts), and verbatim passage quotes.       │
+├──────────────────────────────────────┼────────────────────────────────────────────────────────────────────────┤
+│ 5. Raw Responses Feed                │ Complete AI output streams logged across ChatGPT Search, Perplexity,   │
+│                                      │ Claude 3.7, and Gemini with brand ranking badge and highlighted text.  │
+├──────────────────────────────────────┼────────────────────────────────────────────────────────────────────────┤
+│ 6. Query Fan-Out                     │ Maps background web searches and sub-queries triggered by search-      │
+│                                      │ augmented models + query word evolution (Added vs. Dropped keywords).  │
+├──────────────────────────────────────┼────────────────────────────────────────────────────────────────────────┤
+│ 7. Citations & Flow                  │ Channel Mix Heatmap (Own Domain, Reddit, YouTube, Review Sites) +      │
+│                                      │ verified citations and active quotation feeds.                         │
+├──────────────────────────────────────┼────────────────────────────────────────────────────────────────────────┤
+│ 8. Opportunities Engine              │ Prioritized action cards (High Impact, Quick Win, Strategic) with      │
+│                                      │ direct "Stage Schema Patch" action connecting to the Production Hub.   │
+├──────────────────────────────────────┼────────────────────────────────────────────────────────────────────────┤
+│ 9. Right-Hand Prompt Detail Drawer   │ Slide-over drawer (`#promptDetailDrawer`) with 4 deep inspection tabs: │
+│    (#promptDetailDrawer)             │ 1. Mentions & Rank | 2. Web Queries | 3. Citations | 4. LLM Responses  │
+├──────────────────────────────────────┼────────────────────────────────────────────────────────────────────────┤
+│ 10. Autonomous Production Hub        │ 30-Day dual production calendar (Direct-Answer Content + Schema Refac) │
+│                                      │ with dynamic Day 1 (Review) progression and zero unapproved writes.    │
+└──────────────────────────────────────┴────────────────────────────────────────────────────────────────────────┘
+```
+
+Run the dashboard locally with:
+```bash
+npm run dev
+# Or open dashboard.html in your browser
+```
 
 ## The 26-File AnswerIndex Architecture
 
