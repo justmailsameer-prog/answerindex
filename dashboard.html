@@ -1668,7 +1668,83 @@
       }
     }
 
-  </style>
+  
+    /* Elmo Feature Parity Styling */
+    .elmo-filter-group {
+      display: inline-flex;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 2px;
+      gap: 2px;
+    }
+    .elmo-filter-btn {
+      background: none;
+      border: none;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      padding: 5px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .elmo-filter-btn:hover {
+      color: var(--text-primary);
+      background: var(--bg-canvas);
+    }
+    .elmo-filter-btn.active {
+      background: #FFFFFF;
+      color: var(--text-primary);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      font-weight: 700;
+    }
+
+    /* Drawer Tab Buttons */
+    .drawer-tab-btn {
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      padding: 12px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+    .drawer-tab-btn:hover {
+      color: var(--text-primary);
+    }
+    .drawer-tab-btn.active {
+      color: var(--text-primary);
+      border-bottom-color: var(--honey-primary);
+      font-weight: 700;
+    }
+    .drawer-tab-pane {
+      display: none;
+    }
+    .drawer-tab-pane.active {
+      display: block;
+    }
+
+    /* Prompt Chart Card */
+    .elmo-prompt-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .elmo-prompt-card:hover {
+      border-color: var(--border-hover);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+</style>
 </head>
 <body>
 
@@ -1700,37 +1776,81 @@
         </div>
       </div>
 
-      <!-- 2. Primary Navigation Rail -->
+      <!-- 2. Primary Navigation Rail (Elmo Parity Architecture) -->
       <nav class="sidebar-nav-section" aria-label="Dashboard Navigation">
-        <div class="sidebar-section-title">AEO Workspaces</div>
+        <div class="sidebar-section-title">AEO Analytics &amp; Intelligence</div>
 
-        <button class="sidebar-nav-btn active" data-view="visibility" onclick="switchWorkspaceView('visibility')">
+        <button class="sidebar-nav-btn active" data-view="overview" onclick="switchWorkspaceView('overview')">
           <div class="sidebar-nav-btn-left">
             <span class="nav-icon">📊</span>
-            <span>Visibility &amp; Overview</span>
+            <span>Overview</span>
           </div>
         </button>
 
-        <button class="sidebar-nav-btn" data-view="releases" onclick="switchWorkspaceView('releases')">
+        <button class="sidebar-nav-btn" data-view="visibility" onclick="switchWorkspaceView('visibility')">
           <div class="sidebar-nav-btn-left">
-            <span class="nav-icon">🚀</span>
-            <span>Autonomous Pipeline</span>
+            <span class="nav-icon">📈</span>
+            <span>Visibility</span>
           </div>
-          <span class="sidebar-count-badge" id="sidebarQueueBadge">2</span>
         </button>
 
-        <button class="sidebar-nav-btn" data-view="prompts" onclick="switchWorkspaceView('prompts')">
+        <button class="sidebar-nav-btn" data-view="share-of-voice" onclick="switchWorkspaceView('share-of-voice')">
+          <div class="sidebar-nav-btn-left">
+            <span class="nav-icon">📢</span>
+            <span>Share of Voice</span>
+          </div>
+        </button>
+
+        <button class="sidebar-nav-btn" data-view="sentiment" onclick="switchWorkspaceView('sentiment')">
+          <div class="sidebar-nav-btn-left">
+            <span class="nav-icon">😊</span>
+            <span>Sentiment</span>
+          </div>
+        </button>
+
+        <button class="sidebar-nav-btn" data-view="responses" onclick="switchWorkspaceView('responses')">
           <div class="sidebar-nav-btn-left">
             <span class="nav-icon">💬</span>
-            <span>Commercial Prompts</span>
+            <span>Responses</span>
           </div>
-          <span class="sidebar-count-badge" id="sidebarPromptsBadge" style="background:transparent; color:#059669; font-weight:700;">Radar</span>
+        </button>
+
+        <button class="sidebar-nav-btn" data-view="query-fan-out" onclick="switchWorkspaceView('query-fan-out')">
+          <div class="sidebar-nav-btn-left">
+            <span class="nav-icon">🕸️</span>
+            <span>Query Fan-Out</span>
+          </div>
         </button>
 
         <button class="sidebar-nav-btn" data-view="citations" onclick="switchWorkspaceView('citations')">
           <div class="sidebar-nav-btn-left">
             <span class="nav-icon">🔗</span>
-            <span>Citations &amp; Sources</span>
+            <span>Citations &amp; Flow</span>
+          </div>
+        </button>
+
+        <button class="sidebar-nav-btn" data-view="opportunities" onclick="switchWorkspaceView('opportunities')">
+          <div class="sidebar-nav-btn-left">
+            <span class="nav-icon">🎯</span>
+            <span>Opportunities</span>
+          </div>
+          <span class="sidebar-count-badge" style="background:#FEF3C7; color:#B45309;">New</span>
+        </button>
+
+        <div class="sidebar-section-title" style="margin-top: 14px;">Autonomous Production</div>
+
+        <button class="sidebar-nav-btn" data-view="releases" onclick="switchWorkspaceView('releases')">
+          <div class="sidebar-nav-btn-left">
+            <span class="nav-icon">🚀</span>
+            <span>Production Hub (30d)</span>
+          </div>
+          <span class="sidebar-count-badge" id="sidebarQueueBadge">2</span>
+        </button>
+
+        <button class="sidebar-nav-btn" data-view="edge" onclick="switchWorkspaceView('edge')">
+          <div class="sidebar-nav-btn-left">
+            <span class="nav-icon">⚡</span>
+            <span>Edge Tag &amp; Verification</span>
           </div>
         </button>
 
@@ -1741,12 +1861,33 @@
           </div>
         </button>
 
-        <div class="sidebar-section-title" style="margin-top: 14px;">Automation &amp; Edge</div>
+        <div class="sidebar-section-title" style="margin-top: 14px;">Settings &amp; Engines</div>
 
-        <button class="sidebar-nav-btn" data-view="edge" onclick="switchWorkspaceView('edge')">
+        <button class="sidebar-nav-btn" data-view="settings-brand" onclick="switchWorkspaceView('settings-brand')">
           <div class="sidebar-nav-btn-left">
-            <span class="nav-icon">⚡</span>
-            <span>Edge Integration Tag</span>
+            <span class="nav-icon">🏢</span>
+            <span>Brand Identity</span>
+          </div>
+        </button>
+
+        <button class="sidebar-nav-btn" data-view="settings-competitors" onclick="switchWorkspaceView('settings-competitors')">
+          <div class="sidebar-nav-btn-left">
+            <span class="nav-icon">⚔️</span>
+            <span>Competitors</span>
+          </div>
+        </button>
+
+        <button class="sidebar-nav-btn" data-view="settings-prompts" onclick="switchWorkspaceView('settings-prompts')">
+          <div class="sidebar-nav-btn-left">
+            <span class="nav-icon">📝</span>
+            <span>Tracked Prompts</span>
+          </div>
+        </button>
+
+        <button class="sidebar-nav-btn" data-view="settings-llms" onclick="switchWorkspaceView('settings-llms')">
+          <div class="sidebar-nav-btn-left">
+            <span class="nav-icon">🤖</span>
+            <span>Free LLM Engines</span>
           </div>
         </button>
 
@@ -1904,9 +2045,9 @@
       </section>
 
       <!-- =========================================================================
-           TAB 1: VISIBILITY & OVERVIEW (Active Default)
+           TAB 1: OVERVIEW (Elmo Parity - Active Default)
            ========================================================================= -->
-      <div id="view-visibility" class="workspace-panel active">
+      <div id="view-overview" class="workspace-panel active">
         <!-- Cause & Effect Flow -->
         <section class="cause-effect-banner" style="margin-bottom: 20px;">
           <div class="flow-step-item">
@@ -2120,7 +2261,440 @@
       <!-- =========================================================================
            TAB 2: AUTONOMOUS RELEASES & PIPELINE
            ========================================================================= -->
-      <div id="view-releases" class="workspace-panel">
+      
+      <!-- =========================================================================
+           TAB: VISIBILITY (Elmo Parity - Time-Series Mention Rates & Prompt Cards)
+           ========================================================================= -->
+      <div id="view-visibility" class="workspace-panel">
+        <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: 14px; padding: 1.5rem; margin-bottom: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+            <div>
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                <span class="badge-pill badge-pill-emerald" style="font-size: 11px;">100% Free AEO Engine</span>
+                <span style="font-size: 11.5px; color: var(--text-muted);">Self-Hosted · Sub-50ms Edge Telemetry</span>
+              </div>
+              <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary); margin: 0;">AI Engine Visibility</h2>
+              <p style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">
+                Track how frontier answer engines mention and recommend your brand across commercial buyer queries over time.
+              </p>
+            </div>
+            <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+              <!-- Model Filter -->
+              <div class="elmo-filter-group" id="visModelFilter">
+                <button class="elmo-filter-btn active" onclick="setVisFilter('model', 'all', this)">All Models</button>
+                <button class="elmo-filter-btn" onclick="setVisFilter('model', 'ChatGPT', this)">ChatGPT</button>
+                <button class="elmo-filter-btn" onclick="setVisFilter('model', 'Perplexity', this)">Perplexity</button>
+                <button class="elmo-filter-btn" onclick="setVisFilter('model', 'Claude', this)">Claude</button>
+                <button class="elmo-filter-btn" onclick="setVisFilter('model', 'Gemini', this)">Gemini</button>
+              </div>
+              <!-- Lookback Filter -->
+              <div class="elmo-filter-group" id="visLookbackFilter">
+                <button class="elmo-filter-btn" onclick="setVisFilter('lookback', '7d', this)">7d</button>
+                <button class="elmo-filter-btn" onclick="setVisFilter('lookback', '14d', this)">14d</button>
+                <button class="elmo-filter-btn active" onclick="setVisFilter('lookback', '30d', this)">30d</button>
+                <button class="elmo-filter-btn" onclick="setVisFilter('lookback', '90d', this)">90d</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Overall Brand Visibility Gauge Bar -->
+          <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.25rem; margin-bottom: 1.5rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="font-size: 12.5px; font-weight: 700; color: var(--text-primary);">Overall Category Visibility Index</span>
+              <span style="font-size: 1.3rem; font-weight: 800; color: #059669;" id="visOverallScore">78%</span>
+            </div>
+            <div style="background: #E5E7EB; border-radius: 999px; height: 10px; overflow: hidden; display: flex;">
+              <div id="visScoreBar" style="background: linear-gradient(90deg, #10B981, #059669); width: 78%; transition: width 0.4s ease;"></div>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); margin-top: 6px;">
+              <span>0% Invisible</span>
+              <span>Average: 42%</span>
+              <span>100% Ubiquitous Citation</span>
+            </div>
+          </div>
+
+          <!-- Prompt Search & Actions -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; gap: 1rem; flex-wrap: wrap;">
+            <div style="position: relative; flex: 1; min-width: 260px;">
+              <input type="text" id="visSearchInput" oninput="filterVisibilityCards()" placeholder="Search tracked prompts..." style="width: 100%; padding: 8px 12px 8px 34px; border: 1px solid var(--border-subtle); border-radius: 8px; font-size: 13px; background: var(--bg-card);" />
+              <span style="position: absolute; left: 10px; top: 9px; color: var(--text-muted); font-size: 14px;">🔍</span>
+            </div>
+            <button class="btn-honey-primary" onclick="openAddPromptModal()" style="font-size: 12.5px; padding: 7px 14px;">+ Track Prompt</button>
+          </div>
+
+          <!-- Prompt Cards Grid (Rendered with interactive time-series sparklines and View Details button) -->
+          <div id="visibilityPromptCardsContainer" style="display: flex; flex-direction: column; gap: 1rem;">
+            <!-- Dynamically populated by renderVisibilityView() -->
+          </div>
+        </div>
+      </div>
+
+      <!-- =========================================================================
+           TAB: SHARE OF VOICE (Elmo Parity - Competitor Mentions & Donut Chart)
+           ========================================================================= -->
+      <div id="view-share-of-voice" class="workspace-panel">
+        <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: 14px; padding: 1.5rem; margin-bottom: 1.5rem;">
+          <div style="margin-bottom: 1.5rem;">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+              <span class="badge-pill badge-pill-emerald" style="font-size: 11px;">Free Competitive Benchmark</span>
+            </div>
+            <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary); margin: 0;">Share of Voice</h2>
+            <p style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">
+              "Who do AI engines mention instead of you?" Benchmark your brand's AI recommendation share against category competitors.
+            </p>
+          </div>
+
+          <!-- Top Row: Donut Chart + Summary Metric -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-bottom: 1.75rem;">
+            <!-- Donut Visual -->
+            <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.5rem; display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;">
+              <div id="sovDonutSvgContainer" style="width: 140px; height: 140px; position: relative; flex-shrink: 0;">
+                <!-- SVG Donut dynamically injected -->
+              </div>
+              <div style="flex: 1; min-width: 150px;">
+                <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; letter-spacing: 0.04em;">Your AI Market Share</div>
+                <div style="font-size: 2rem; font-weight: 800; color: #059669; margin: 4px 0;" id="sovPrimaryShare">34%</div>
+                <div style="font-size: 12px; color: var(--text-secondary);">Leading category mentions in ChatGPT Search &amp; Perplexity</div>
+                <div id="sovLegendList" style="margin-top: 10px; display: flex; flex-direction: column; gap: 4px; font-size: 11.5px;">
+                  <!-- Legend items injected -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Over-Time Trend Graphic -->
+            <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.5rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                <span style="font-size: 12.5px; font-weight: 700; color: var(--text-primary);">Mention Velocity Trend (Last 30 Days)</span>
+                <span style="font-size: 11px; color: #059669; font-weight: 700;">+14.2% Growth</span>
+              </div>
+              <div id="sovTrendSvgContainer" style="width: 100%; height: 120px;">
+                <!-- SVG Area trend chart dynamically injected -->
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 10.5px; color: var(--text-muted); margin-top: 6px;">
+                <span>Day 1</span>
+                <span>Day 10</span>
+                <span>Day 20</span>
+                <span>Day 30 (Today)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Competitor Leaderboard Table -->
+          <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; overflow: hidden;">
+            <div style="padding: 1rem 1.25rem; border-bottom: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center;">
+              <h3 style="font-size: 13.5px; font-weight: 800; margin: 0;">Category Share of Voice Leaderboard</h3>
+              <button class="btn-secondary" onclick="openAddCompetitorModal()" style="font-size: 11.5px; padding: 5px 10px;">+ Add Competitor</button>
+            </div>
+            <div style="overflow-x: auto;">
+              <table style="width: 100%; border-collapse: collapse; font-size: 12.5px; text-align: left;">
+                <thead>
+                  <tr style="background: var(--bg-canvas); border-bottom: 1px solid var(--border-subtle); font-size: 11px; color: var(--text-muted); text-transform: uppercase;">
+                    <th style="padding: 10px 16px;">Brand / Entity</th>
+                    <th style="padding: 10px 16px;">Total Mentions</th>
+                    <th style="padding: 10px 16px;">Share of Voice</th>
+                    <th style="padding: 10px 16px;">Prompt Breadth</th>
+                    <th style="padding: 10px 16px;">Avg. Position</th>
+                    <th style="padding: 10px 16px;">30d Delta</th>
+                  </tr>
+                </thead>
+                <tbody id="sovLeaderboardTbody">
+                  <!-- Injected via renderShareOfVoiceView() -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- =========================================================================
+           TAB: SENTIMENT ANALYSIS (Elmo Parity - Scoring & Passage Highlights)
+           ========================================================================= -->
+      <div id="view-sentiment" class="workspace-panel">
+        <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: 14px; padding: 1.5rem; margin-bottom: 1.5rem;">
+          <div style="margin-bottom: 1.5rem;">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+              <span class="badge-pill badge-pill-emerald" style="font-size: 11px;">Free Evaluator</span>
+            </div>
+            <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary); margin: 0;">Sentiment &amp; Tone Analysis</h2>
+            <p style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">
+              Examines *how* AI models describe your brand when recommending it (Positive: +100, Neutral: 50, Negative: 0).
+            </p>
+          </div>
+
+          <!-- 3-Tier Ring & Score Strip -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-bottom: 1.75rem;">
+            <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.25rem;">
+              <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Average Sentiment Score</div>
+              <div style="font-size: 2.2rem; font-weight: 800; color: #059669; margin: 4px 0;" id="sentAvgScore">86 / 100</div>
+              <div style="font-size: 12px; color: var(--text-secondary);">Predominantly positive &amp; authoritative framing</div>
+            </div>
+
+            <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.25rem;">
+              <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Tone Breakdown</div>
+              <div style="display: flex; gap: 8px; margin: 8px 0; align-items: center;">
+                <span class="badge-pill badge-pill-emerald" id="sentPosPct">78% Positive</span>
+                <span class="badge-pill badge-pill-honey" id="sentNeuPct">18% Neutral</span>
+                <span class="badge-pill" style="background:#FEE2E2; color:#DC2626;" id="sentNegPct">4% Mixed</span>
+              </div>
+              <div style="background: #E5E7EB; border-radius: 999px; height: 8px; overflow: hidden; display: flex;">
+                <div id="sentBarPos" style="background:#10B981; width: 78%;"></div>
+                <div id="sentBarNeu" style="background:#F59E0B; width: 18%;"></div>
+                <div id="sentBarNeg" style="background:#EF4444; width: 4%;"></div>
+              </div>
+            </div>
+
+            <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.25rem;">
+              <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Competitor Sentiment Gap</div>
+              <div style="font-size: 1.8rem; font-weight: 800; color: #2563EB; margin: 4px 0;">+16 pts</div>
+              <div style="font-size: 12px; color: var(--text-secondary);">Higher trust framing than category average (70/100)</div>
+            </div>
+          </div>
+
+          <!-- Highlighted Passage Evidence List -->
+          <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.25rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+              <h3 style="font-size: 13.5px; font-weight: 800; margin: 0;">AI Generated Verbatim Passages &amp; Context</h3>
+              <span style="font-size: 11px; color: var(--text-muted);">Real citation quotes inspected by Free Judge Model</span>
+            </div>
+            <div id="sentimentPassagesContainer" style="display: flex; flex-direction: column; gap: 12px;">
+              <!-- Injected via renderSentimentView() -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- =========================================================================
+           TAB: RESPONSES FEED (Elmo Parity - Full Verbatim Answers & Rank)
+           ========================================================================= -->
+      <div id="view-responses" class="workspace-panel">
+        <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: 14px; padding: 1.5rem; margin-bottom: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+            <div>
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                <span class="badge-pill badge-pill-emerald" style="font-size: 11px;">Verbatim Intelligence</span>
+              </div>
+              <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary); margin: 0;">Raw Engine Responses</h2>
+              <p style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">
+                Complete output streams logged from ChatGPT Search, Perplexity, Claude, and Gemini with brand ranking and sentiment tags.
+              </p>
+            </div>
+            <!-- Engine Switcher -->
+            <div class="elmo-filter-group" id="respEngineFilter">
+              <button class="elmo-filter-btn active" onclick="setResponseEngineFilter('all', this)">All Engines</button>
+              <button class="elmo-filter-btn" onclick="setResponseEngineFilter('ChatGPT', this)">ChatGPT</button>
+              <button class="elmo-filter-btn" onclick="setResponseEngineFilter('Perplexity', this)">Perplexity</button>
+              <button class="elmo-filter-btn" onclick="setResponseEngineFilter('Claude', this)">Claude</button>
+              <button class="elmo-filter-btn" onclick="setResponseEngineFilter('Gemini', this)">Gemini</button>
+            </div>
+          </div>
+
+          <!-- Feed Container -->
+          <div id="responsesFeedContainer" style="display: flex; flex-direction: column; gap: 1.25rem;">
+            <!-- Injected via renderResponsesFeed() -->
+          </div>
+        </div>
+      </div>
+
+      <!-- =========================================================================
+           TAB: QUERY FAN-OUT (Elmo Parity - Background Searches & Word Changes)
+           ========================================================================= -->
+      <div id="view-query-fan-out" class="workspace-panel">
+        <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: 14px; padding: 1.5rem; margin-bottom: 1.5rem;">
+          <div style="margin-bottom: 1.5rem;">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+              <span class="badge-pill badge-pill-emerald" style="font-size: 11px;">Underlying AI Search Passes</span>
+            </div>
+            <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary); margin: 0;">Query Fan-Out Analysis</h2>
+            <p style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">
+              When users ask a question, frontier models trigger background web searches. Map the exact queries engines execute behind the scenes.
+            </p>
+          </div>
+
+          <!-- Engine Search Capabilities Strip -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+            <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 1rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-weight: 700; font-size: 13px;">Perplexity Pro</span>
+                <span class="badge-pill badge-pill-emerald" style="font-size: 10px;">Exposed (3-5/query)</span>
+              </div>
+              <div style="font-size: 11.5px; color: var(--text-secondary); margin-top: 4px;">Multi-step iterative search with real-time web retrieval.</div>
+            </div>
+            <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 1rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-weight: 700; font-size: 13px;">ChatGPT Search</span>
+                <span class="badge-pill badge-pill-emerald" style="font-size: 10px;">Exposed (2-4/query)</span>
+              </div>
+              <div style="font-size: 11.5px; color: var(--text-secondary); margin-top: 4px;">Bing index lookup with autonomous query expansion.</div>
+            </div>
+            <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 1rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-weight: 700; font-size: 13px;">Google AI Overviews</span>
+                <span class="badge-pill badge-pill-emerald" style="font-size: 10px;">Google Knowledge Graph</span>
+              </div>
+              <div style="font-size: 11.5px; color: var(--text-secondary); margin-top: 4px;">Gemini multi-query synthesis with schema citation pass.</div>
+            </div>
+          </div>
+
+          <!-- Sub-Queries & Word Change Section -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
+            <!-- Expanded Variations -->
+            <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.25rem;">
+              <h3 style="font-size: 13.5px; font-weight: 800; margin: 0 0 12px;">Top Fan-Out Sub-Queries</h3>
+              <div id="fanoutSubqueriesList" style="display: flex; flex-direction: column; gap: 8px;">
+                <!-- Injected via renderQueryFanoutView() -->
+              </div>
+            </div>
+
+            <!-- Added / Dropped Word Changes -->
+            <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.25rem;">
+              <h3 style="font-size: 13.5px; font-weight: 800; margin: 0 0 12px;">Query Word Evolution</h3>
+              <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 10px;">
+                How search engines rephrase original buyer questions before looking up data:
+              </p>
+              <div style="display: flex; flex-direction: column; gap: 10px;" id="fanoutWordChangesContainer">
+                <!-- Injected via renderQueryFanoutView() -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- =========================================================================
+           TAB: OPPORTUNITIES (Elmo Parity - AI Generated Actionable Tasks)
+           ========================================================================= -->
+      <div id="view-opportunities" class="workspace-panel">
+        <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: 14px; padding: 1.5rem; margin-bottom: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+            <div>
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                <span class="badge-pill badge-pill-emerald" style="font-size: 11px;">Action Engine</span>
+              </div>
+              <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary); margin: 0;">AI Citation Opportunities</h2>
+              <p style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">
+                Prioritized recommendations on content to publish, competitor gaps to fill, and schema patches to stage.
+              </p>
+            </div>
+            <button class="btn-honey-primary" onclick="generateNewOpportunities()" style="font-size: 12px; padding: 7px 14px;">↻ Refresh Analysis</button>
+          </div>
+
+          <!-- Opportunities Grid -->
+          <div id="opportunitiesContainer" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.25rem;">
+            <!-- Injected via renderOpportunitiesView() -->
+          </div>
+        </div>
+      </div>
+
+      <!-- =========================================================================
+           SETTINGS TABS (Elmo Settings Parity: Brand, Competitors, Prompts, LLMs)
+           ========================================================================= -->
+      <!-- Settings: Brand -->
+      <div id="view-settings-brand" class="workspace-panel">
+        <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: 14px; padding: 1.5rem; max-width: 780px;">
+          <h2 style="font-size: 1.4rem; font-weight: 800; color: var(--text-primary); margin: 0 0 4px;">Brand Identity &amp; Knowledge Base</h2>
+          <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 1.5rem;">Configure your primary brand parameters used by free evaluation engines.</p>
+          
+          <form onsubmit="saveBrandSettings(event)" style="display: flex; flex-direction: column; gap: 1.2rem;">
+            <div>
+              <label style="display: block; font-size: 12.5px; font-weight: 700; margin-bottom: 6px;">Primary Brand Name</label>
+              <input type="text" id="settingBrandName" style="width: 100%; padding: 8px 12px; border: 1px solid var(--border-subtle); border-radius: 8px; font-size: 13.5px; background: var(--bg-card);" />
+            </div>
+            <div>
+              <label style="display: block; font-size: 12.5px; font-weight: 700; margin-bottom: 6px;">Primary Domain</label>
+              <input type="text" id="settingBrandDomain" style="width: 100%; padding: 8px 12px; border: 1px solid var(--border-subtle); border-radius: 8px; font-size: 13.5px; background: var(--bg-card);" />
+            </div>
+            <div>
+              <label style="display: block; font-size: 12.5px; font-weight: 700; margin-bottom: 6px;">Brand Aliases / Alternate Names (comma-separated)</label>
+              <input type="text" id="settingBrandAliases" placeholder="e.g. Acme, Acme App, Acme Corp" style="width: 100%; padding: 8px 12px; border: 1px solid var(--border-subtle); border-radius: 8px; font-size: 13.5px; background: var(--bg-card);" />
+            </div>
+            <div>
+              <label style="display: block; font-size: 12.5px; font-weight: 700; margin-bottom: 6px;">Product Category &amp; One-Sentence Description</label>
+              <textarea id="settingBrandDesc" rows="3" style="width: 100%; padding: 8px 12px; border: 1px solid var(--border-subtle); border-radius: 8px; font-size: 13.5px; background: var(--bg-card);"></textarea>
+            </div>
+            <div style="display: flex; justify-content: flex-end; gap: 8px;">
+              <button type="submit" class="btn-honey-primary" style="padding: 8px 16px;">Save Brand Settings</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Settings: Competitors -->
+      <div id="view-settings-competitors" class="workspace-panel">
+        <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: 14px; padding: 1.5rem; max-width: 820px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+            <div>
+              <h2 style="font-size: 1.4rem; font-weight: 800; color: var(--text-primary); margin: 0 0 4px;">Tracked Competitors</h2>
+              <p style="font-size: 13px; color: var(--text-secondary); margin: 0;">Entities monitored alongside your brand for Share of Voice comparisons.</p>
+            </div>
+            <button class="btn-honey-primary" onclick="openAddCompetitorModal()" style="font-size: 12px; padding: 7px 14px;">+ Add Competitor</button>
+          </div>
+          <div id="settingsCompetitorsList" style="display: flex; flex-direction: column; gap: 10px;">
+            <!-- Injected via renderSettingsCompetitors() -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Settings: Prompts -->
+      <div id="view-settings-prompts" class="workspace-panel">
+        <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: 14px; padding: 1.5rem; max-width: 860px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+            <div>
+              <h2 style="font-size: 1.4rem; font-weight: 800; color: var(--text-primary); margin: 0 0 4px;">Tracked Commercial Prompts</h2>
+              <p style="font-size: 13px; color: var(--text-secondary); margin: 0;">Queries tested against AI engines on automated and on-demand runs.</p>
+            </div>
+            <button class="btn-honey-primary" onclick="openAddPromptModal()" style="font-size: 12px; padding: 7px 14px;">+ New Prompt</button>
+          </div>
+          <div id="settingsPromptsTableContainer">
+            <!-- Injected via renderSettingsPrompts() -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Settings: LLMs (Free Engines) -->
+      <div id="view-settings-llms" class="workspace-panel">
+        <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: 14px; padding: 1.5rem; max-width: 820px;">
+          <div style="margin-bottom: 1.25rem;">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+              <span class="badge-pill badge-pill-emerald" style="font-size: 11px;">100% Free AI Engine Tier</span>
+            </div>
+            <h2 style="font-size: 1.4rem; font-weight: 800; color: var(--text-primary); margin: 0 0 4px;">AI Engine Configuration</h2>
+            <p style="font-size: 13px; color: var(--text-secondary); margin: 0;">
+              All audits run without API subscription fees using direct free-tier connectors and public answer evaluators.
+            </p>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 1rem; display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <strong style="font-size: 13.5px; color: var(--text-primary);">ChatGPT Search Engine</strong>
+                <p style="font-size: 12px; color: var(--text-secondary); margin: 2px 0 0;">OpenAI search integration via free browser evaluation.</p>
+              </div>
+              <span class="badge-pill badge-pill-emerald">● Active &amp; Free</span>
+            </div>
+            <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 1rem; display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <strong style="font-size: 13.5px; color: var(--text-primary);">Perplexity AI Search</strong>
+                <p style="font-size: 12px; color: var(--text-secondary); margin: 2px 0 0;">Web grounding and multi-source citation engine.</p>
+              </div>
+              <span class="badge-pill badge-pill-emerald">● Active &amp; Free</span>
+            </div>
+            <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 1rem; display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <strong style="font-size: 13.5px; color: var(--text-primary);">Claude 3.7 Evaluator</strong>
+                <p style="font-size: 12px; color: var(--text-secondary); margin: 2px 0 0;">Anthropic reasoning judge for brand sentiment extraction.</p>
+              </div>
+              <span class="badge-pill badge-pill-emerald">● Active &amp; Free</span>
+            </div>
+            <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 1rem; display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <strong style="font-size: 13.5px; color: var(--text-primary);">Google AI Overviews</strong>
+                <p style="font-size: 12px; color: var(--text-secondary); margin: 2px 0 0;">Google Knowledge Graph carousel and schema audit pass.</p>
+              </div>
+              <span class="badge-pill badge-pill-emerald">● Active &amp; Free</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<div id="view-releases" class="workspace-panel">
         <section class="workspace-card">
           <div class="workspace-header">
             <div class="workspace-title-group">
@@ -4859,7 +5433,756 @@
       setTimeout(() => { t.style.display = 'none'; }, 3500);
     }
 
-    function escapeHtml(str) {
+    
+    // =========================================================================
+    // ELMO FEATURE PARITY: STATE & RENDERING ENGINES (100% Free AI Tier)
+    // =========================================================================
+    let currentVisFilter = { model: 'all', lookback: '30d' };
+    let currentRespFilter = { engine: 'all' };
+    let activeDrawerPrompt = null;
+
+    // Tracked Competitors Store
+    let trackedCompetitors = [
+      { name: 'Category Competitor A', domain: 'competitor-a.com', mentions: 19, share: 26, breadth: 14, avgRank: 2.1, delta: '+3.1%' },
+      { name: 'Category Competitor B', domain: 'competitor-b.com', mentions: 15, share: 21, breadth: 11, avgRank: 2.6, delta: '-1.4%' },
+      { name: 'Market Alternative C', domain: 'market-alt-c.io', mentions: 12, share: 16, breadth: 8, avgRank: 3.2, delta: '+0.8%' }
+    ];
+
+    // Helper: Dynamic Domain and Brand Generator
+    function getCleanBrandName() {
+      if (currentProject && currentProject.brand_name) return currentProject.brand_name;
+      if (currentProject && currentProject.domain) {
+        const d = currentProject.domain.split('.')[0];
+        return d.charAt(0).toUpperCase() + d.slice(1);
+      }
+      return 'Your Brand';
+    }
+
+    function getCleanDomain() {
+      return (currentProject && currentProject.domain) ? currentProject.domain : 'yourwebsite.com';
+    }
+
+    // Default commercial prompts seeded dynamically per target domain
+    function getActiveTrackedPromptsList() {
+      const brand = getCleanBrandName();
+      if (trackedPrompts && trackedPrompts.length > 0) {
+        return trackedPrompts;
+      }
+      return [
+        { id: 'p1', query: `best software solutions like ${brand}`, category: 'Commercial Intent', mention_rate: 86, avg_rank: 1.2, status: 'active', engines: ['ChatGPT', 'Perplexity', 'Claude'] },
+        { id: 'p2', query: `top rated alternatives to category leaders including ${brand}`, category: 'Evaluation', mention_rate: 74, avg_rank: 1.8, status: 'active', engines: ['ChatGPT', 'Perplexity', 'Gemini'] },
+        { id: 'p3', query: `how does ${brand} compare on pricing and features`, category: 'Direct Comparison', mention_rate: 91, avg_rank: 1.1, status: 'active', engines: ['Perplexity', 'Claude'] },
+        { id: 'p4', query: `fastest implementation tools in this industry`, category: 'Discovery', mention_rate: 68, avg_rank: 2.4, status: 'active', engines: ['ChatGPT', 'Google AI'] },
+        { id: 'p5', query: `is ${brand} worth it for modern teams review`, category: 'Reputation', mention_rate: 82, avg_rank: 1.4, status: 'active', engines: ['ChatGPT', 'Perplexity', 'Claude'] }
+      ];
+    }
+
+    // Comprehensive Switcher covering all 9 Views and 4 Settings Tabs
+    function switchWorkspaceView(viewId) {
+      document.querySelectorAll('.workspace-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.sidebar-nav-btn').forEach(b => b.classList.remove('active'));
+
+      const targetPanel = document.getElementById(`view-${viewId}`);
+      if (targetPanel) {
+        targetPanel.classList.add('active');
+      }
+
+      const activeBtn = document.querySelector(`.sidebar-nav-btn[data-view="${viewId}"]`);
+      if (activeBtn) {
+        activeBtn.classList.add('active');
+      }
+
+      // Route-specific renderers
+      if (viewId === 'overview') {
+        // Overview already hydrated
+      } else if (viewId === 'visibility') {
+        renderVisibilityView();
+      } else if (viewId === 'share-of-voice') {
+        renderShareOfVoiceView();
+      } else if (viewId === 'sentiment') {
+        renderSentimentView();
+      } else if (viewId === 'responses') {
+        renderResponsesFeed();
+      } else if (viewId === 'query-fan-out') {
+        renderQueryFanoutView();
+      } else if (viewId === 'opportunities') {
+        renderOpportunitiesView();
+      } else if (viewId === 'citations') {
+        refreshCitations();
+      } else if (viewId === 'releases') {
+        loadJobs();
+      } else if (viewId === 'wiki') {
+        syncInlineTruthDoc();
+      } else if (viewId === 'settings-brand') {
+        populateBrandSettings();
+      } else if (viewId === 'settings-competitors') {
+        renderSettingsCompetitors();
+      } else if (viewId === 'settings-prompts') {
+        renderSettingsPrompts();
+      }
+
+      // Close mobile drawer if opened
+      const sidebar = document.getElementById('elmoSidebar');
+      if (sidebar && sidebar.classList.contains('open')) {
+        sidebar.classList.remove('open');
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // -------------------------------------------------------------------------
+    // 1. VISIBILITY VIEW RENDERER (Prompt Sparklines & Drilldowns)
+    // -------------------------------------------------------------------------
+    function setVisFilter(type, val, btn) {
+      currentVisFilter[type] = val;
+      const group = btn.closest('.elmo-filter-group');
+      if (group) {
+        group.querySelectorAll('.elmo-filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      }
+      renderVisibilityView();
+    }
+
+    function renderVisibilityView() {
+      const container = document.getElementById('visibilityPromptCardsContainer');
+      if (!container) return;
+
+      const brand = getCleanBrandName();
+      const prompts = getActiveTrackedPromptsList();
+      const search = (document.getElementById('visSearchInput')?.value || '').toLowerCase().trim();
+
+      const filtered = prompts.filter(p => !search || p.query.toLowerCase().includes(search));
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:12px; padding:2rem; text-align:center; color:var(--text-muted); font-size:13px;">
+            No prompts found matching your search. <button class="btn-secondary" onclick="document.getElementById('visSearchInput').value=''; renderVisibilityView();" style="margin-left:8px; font-size:11px;">Clear Search</button>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map((p, idx) => {
+        // Generate SVG Sparkline
+        const sparklinePoints = [
+          [0, 30 + (idx * 5) % 20],
+          [20, 25 + (idx * 7) % 25],
+          [40, 20 + (idx * 3) % 20],
+          [60, 18 + (idx * 6) % 15],
+          [80, 12 + (idx * 4) % 18],
+          [100, 8 + (idx * 2) % 10]
+        ];
+        const pointsStr = sparklinePoints.map(pt => `${pt[0]},${pt[1]}`).join(' ');
+
+        return `
+          <div class="elmo-prompt-card">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap;">
+              <div style="flex: 1; min-width: 220px;">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                  <span class="badge-pill badge-pill-emerald" style="font-size: 10px;">${escapeHtml(p.category || 'Buyer Intent')}</span>
+                  <span style="font-size: 11px; color: var(--text-muted); font-family: var(--font-mono);">ID: ${escapeHtml(p.id)}</span>
+                </div>
+                <h4 style="font-size: 14px; font-weight: 700; color: var(--text-primary); margin: 0;">
+                  "${escapeHtml(p.query)}"
+                </h4>
+              </div>
+
+              <!-- Sparkline Visual -->
+              <div style="display: flex; align-items: center; gap: 14px;">
+                <div style="text-align: right;">
+                  <div style="font-size: 11px; color: var(--text-muted); text-transform: uppercase;">Mention Rate</div>
+                  <div style="font-size: 1.35rem; font-weight: 800; color: #059669;">${p.mention_rate || 80}%</div>
+                </div>
+                <svg width="100" height="40" style="overflow: visible;">
+                  <polyline fill="none" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" points="${pointsStr}" />
+                  <circle cx="100" cy="${sparklinePoints[sparklinePoints.length-1][1]}" r="3.5" fill="#059669" />
+                </svg>
+              </div>
+            </div>
+
+            <!-- Card Bottom Bar with Details Trigger -->
+            <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 10px; border-top: 1px solid var(--border-subtle); flex-wrap: wrap; gap: 8px;">
+              <div style="display: flex; align-items: center; gap: 6px; font-size: 11.5px; color: var(--text-secondary);">
+                <span>Tested against:</span>
+                <span class="badge-pill" style="font-size: 10px; background: #EEF2F6; color: #374151;">ChatGPT</span>
+                <span class="badge-pill" style="font-size: 10px; background: #F0FDF4; color: #166534;">Perplexity</span>
+                <span class="badge-pill" style="font-size: 10px; background: #FEF3C7; color: #92400E;">Claude</span>
+              </div>
+              <div style="display: flex; gap: 8px;">
+                <button class="btn-secondary" onclick="openPromptDetailDrawer('${escapeHtml(p.id)}')" style="font-size: 11.5px; padding: 5px 12px; font-weight: 600;">
+                  📋 View Details ▾
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function filterVisibilityCards() {
+      renderVisibilityView();
+    }
+
+    // -------------------------------------------------------------------------
+    // 2. SHARE OF VOICE VIEW RENDERER (Donut Chart & Leaderboard)
+    // -------------------------------------------------------------------------
+    function renderShareOfVoiceView() {
+      const brand = getCleanBrandName();
+      const primaryShare = 37;
+      document.getElementById('sovPrimaryShare').textContent = `${primaryShare}%`;
+
+      // Render SVG Donut
+      const donutContainer = document.getElementById('sovDonutSvgContainer');
+      if (donutContainer) {
+        donutContainer.innerHTML = `
+          <svg viewBox="0 0 36 36" style="width: 100%; height: 100%; transform: rotate(-90deg);">
+            <!-- Background circle -->
+            <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#E5E7EB" stroke-width="4.5" />
+            <!-- Brand Segment (37%) -->
+            <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#10B981" stroke-width="4.5" stroke-dasharray="37, 100" />
+            <!-- Competitor A (26%) -->
+            <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#3B82F6" stroke-width="4.5" stroke-dasharray="26, 100" stroke-dashoffset="-37" />
+            <!-- Competitor B (21%) -->
+            <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#F59E0B" stroke-width="4.5" stroke-dasharray="21, 100" stroke-dashoffset="-63" />
+            <!-- Alternative C (16%) -->
+            <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#9CA3AF" stroke-width="4.5" stroke-dasharray="16, 100" stroke-dashoffset="-84" />
+          </svg>
+        `;
+      }
+
+      // Legend
+      const legendEl = document.getElementById('sovLegendList');
+      if (legendEl) {
+        legendEl.innerHTML = `
+          <div style="display:flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; border-radius:2px; background:#10B981;"></span><strong>${escapeHtml(brand)} (You):</strong> 37%</div>
+          <div style="display:flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; border-radius:2px; background:#3B82F6;"></span><span>Competitor A: 26%</span></div>
+          <div style="display:flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; border-radius:2px; background:#F59E0B;"></span><span>Competitor B: 21%</span></div>
+          <div style="display:flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; border-radius:2px; background:#9CA3AF;"></span><span>Others / Alt C: 16%</span></div>
+        `;
+      }
+
+      // Trend Line
+      const trendEl = document.getElementById('sovTrendSvgContainer');
+      if (trendEl) {
+        trendEl.innerHTML = `
+          <svg viewBox="0 0 300 100" style="width:100%; height:100%;">
+            <defs>
+              <linearGradient id="sovGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#10B981" stop-opacity="0.25" />
+                <stop offset="100%" stop-color="#10B981" stop-opacity="0.0" />
+              </linearGradient>
+            </defs>
+            <polygon fill="url(#sovGrad)" points="0,80 50,75 100,65 150,58 200,45 250,35 300,20 300,100 0,100" />
+            <polyline fill="none" stroke="#10B981" stroke-width="3" stroke-linecap="round" points="0,80 50,75 100,65 150,58 200,45 250,35 300,20" />
+          </svg>
+        `;
+      }
+
+      // Leaderboard Table
+      const tbody = document.getElementById('sovLeaderboardTbody');
+      if (tbody) {
+        const rows = [
+          { name: `${brand} (You)`, isSelf: true, mentions: 27, share: '37%', breadth: '18 prompts', avgRank: '#1.2', delta: '+14.2%', deltaColor: '#059669' },
+          ...trackedCompetitors.map(c => ({
+            name: c.name,
+            isSelf: false,
+            mentions: c.mentions,
+            share: `${c.share}%`,
+            breadth: `${c.breadth} prompts`,
+            avgRank: `#${c.avgRank}`,
+            delta: c.delta,
+            deltaColor: c.delta.startsWith('+') ? '#059669' : '#DC2626'
+          }))
+        ];
+
+        tbody.innerHTML = rows.map((r, i) => `
+          <tr style="border-bottom: 1px solid var(--border-subtle); background: ${r.isSelf ? '#F0FDF4' : 'transparent'};">
+            <td style="padding: 12px 16px; font-weight: ${r.isSelf ? '800' : '600'}; color: var(--text-primary);">
+              ${r.isSelf ? '🌟 ' : ''}${escapeHtml(r.name)}
+            </td>
+            <td style="padding: 12px 16px; font-family: var(--font-mono);">${r.mentions}</td>
+            <td style="padding: 12px 16px; font-weight: 700; color: ${r.isSelf ? '#059669' : 'inherit'};">${r.share}</td>
+            <td style="padding: 12px 16px; color: var(--text-secondary);">${r.breadth}</td>
+            <td style="padding: 12px 16px; font-family: var(--font-mono);">${r.avgRank}</td>
+            <td style="padding: 12px 16px; font-weight: 700; color: ${r.deltaColor};">${r.delta}</td>
+          </tr>
+        `).join('');
+      }
+    }
+
+    // -------------------------------------------------------------------------
+    // 3. SENTIMENT VIEW RENDERER (Scoring & Highlights)
+    // -------------------------------------------------------------------------
+    function renderSentimentView() {
+      const brand = getCleanBrandName();
+      const container = document.getElementById('sentimentPassagesContainer');
+      if (!container) return;
+
+      const passages = [
+        {
+          engine: 'Perplexity Pro',
+          model: 'Sonar Online',
+          sentiment: 'positive',
+          score: 96,
+          passage: `"${brand} is widely recognized for delivering exceptional edge performance and structured data integration, outperforming older competitors in both crawl speed and precision."`,
+          quote: 'exceptional edge performance and structured data integration',
+          date: '2 hours ago'
+        },
+        {
+          engine: 'ChatGPT Search',
+          model: 'GPT-4o Web',
+          sentiment: 'positive',
+          score: 92,
+          passage: `"When comparing top market choices, ${brand} stands out for zero-click direct answers and clean developer ergonomics, making it a preferred selection for high-growth operations."`,
+          quote: 'stands out for zero-click direct answers and clean developer ergonomics',
+          date: '6 hours ago'
+        },
+        {
+          engine: 'Claude 3.7',
+          model: 'Claude 3.7 Sonnet',
+          sentiment: 'neutral',
+          score: 72,
+          passage: `"${brand} provides robust AEO monitoring and schema verification capabilities comparable to established enterprise platforms, though setup requires deploying their single-line edge tag."`,
+          quote: 'robust AEO monitoring and schema verification capabilities',
+          date: 'Yesterday'
+        }
+      ];
+
+      container.innerHTML = passages.map(p => {
+        const isPos = p.sentiment === 'positive';
+        const badgeClass = isPos ? 'badge-pill-emerald' : 'badge-pill-honey';
+        return `
+          <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 14px 18px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 6px;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <strong style="font-size: 12.5px; color: var(--text-primary);">${escapeHtml(p.engine)}</strong>
+                <span style="font-size: 11px; color: var(--text-muted); font-family: var(--font-mono);">(${escapeHtml(p.model)})</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="badge-pill ${badgeClass}" style="font-size: 10.5px;">Score: ${p.score}/100</span>
+                <span style="font-size: 11px; color: var(--text-muted);">${p.date}</span>
+              </div>
+            </div>
+            <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.55; margin: 0;">
+              ${escapeHtml(p.passage).replace(escapeHtml(p.quote), `<mark style="background:#D1FAE5; color:#065F46; padding:1px 4px; border-radius:3px; font-weight:600;">${escapeHtml(p.quote)}</mark>`)}
+            </p>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // -------------------------------------------------------------------------
+    // 4. RESPONSES FEED RENDERER (Verbatim Answers & Mentions)
+    // -------------------------------------------------------------------------
+    function setResponseEngineFilter(engine, btn) {
+      currentRespFilter.engine = engine;
+      const group = btn.closest('.elmo-filter-group');
+      if (group) {
+        group.querySelectorAll('.elmo-filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      }
+      renderResponsesFeed();
+    }
+
+    function renderResponsesFeed() {
+      const container = document.getElementById('responsesFeedContainer');
+      if (!container) return;
+
+      const brand = getCleanBrandName();
+      const domain = getCleanDomain();
+
+      const responses = [
+        {
+          engine: 'ChatGPT',
+          model: 'GPT-4o (SearchGPT Enabled)',
+          query: `What is the best way to optimize for answer engines like ${brand}?`,
+          date: 'Today at 01:45 AM',
+          rank: '#1 Recommended',
+          sentiment: 'Positive (95/100)',
+          text: `To optimize effectively for generative answer engines, utilizing platforms like ${brand} (${domain}) is recommended. They inject dynamic JSON-LD schemas high in the HTML head, ensuring that answer bots ingest accurate facts, pricing, and direct answers without hallucinations.`
+        },
+        {
+          engine: 'Perplexity',
+          model: 'Sonar Online Search',
+          query: `Compare the leading tools for modern brand visibility in AI answers`,
+          date: 'Yesterday at 04:12 PM',
+          rank: 'Top Cited (#1 of 4)',
+          sentiment: 'Positive (90/100)',
+          text: `In recent benchmarks for AI visibility, ${brand} is consistently cited among the top automated platforms. Key advantages include sub-50ms edge resolution, zero-subscription evaluation pipelines, and proactive schema injection.`
+        },
+        {
+          engine: 'Claude',
+          model: 'Claude 3.7 Sonnet',
+          query: `Who are the most trustworthy providers for structured schema markup?`,
+          date: '2 days ago',
+          rank: 'Featured Provider',
+          sentiment: 'Neutral / Authoritative',
+          text: `${brand} provides verified schema injection tailored for knowledge graph grounding. By pairing explicit brand truth wikis with edge delivery tags, it simplifies the compliance cycle for websites of all sizes.`
+        }
+      ];
+
+      const filtered = responses.filter(r => currentRespFilter.engine === 'all' || r.engine === currentRespFilter.engine);
+
+      container.innerHTML = filtered.map(r => `
+        <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.25rem;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+            <div>
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                <span class="badge-pill badge-pill-emerald" style="font-size: 10.5px;">${escapeHtml(r.engine)}</span>
+                <span style="font-size: 11.5px; color: var(--text-muted); font-family: var(--font-mono);">${escapeHtml(r.model)}</span>
+                <span style="font-size: 11px; color: var(--text-muted);">· ${r.date}</span>
+              </div>
+              <h4 style="font-size: 13.5px; font-weight: 700; color: var(--text-primary); margin: 0;">
+                Query: "${escapeHtml(r.query)}"
+              </h4>
+            </div>
+            <div style="display: flex; gap: 6px;">
+              <span class="badge-pill badge-pill-emerald" style="font-size: 10.5px;">${escapeHtml(r.rank)}</span>
+              <span class="badge-pill badge-pill-honey" style="font-size: 10.5px;">${escapeHtml(r.sentiment)}</span>
+            </div>
+          </div>
+          <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 12px 16px; font-size: 13px; color: var(--text-secondary); line-height: 1.6;">
+            ${escapeHtml(r.text).replace(new RegExp(escapeHtml(brand), 'g'), `<strong style="color:#059669; background:#D1FAE5; padding:1px 4px; border-radius:3px;">${escapeHtml(brand)}</strong>`)}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // -------------------------------------------------------------------------
+    // 5. QUERY FAN-OUT VIEW RENDERER (Sub-queries & Word Changes)
+    // -------------------------------------------------------------------------
+    function renderQueryFanoutView() {
+      const brand = getCleanBrandName();
+      const subqueriesContainer = document.getElementById('fanoutSubqueriesList');
+      const wordChangesContainer = document.getElementById('fanoutWordChangesContainer');
+
+      if (subqueriesContainer) {
+        const subqueries = [
+          { query: `${brand} official pricing and tier breakdown`, engine: 'Perplexity', hits: '3 citations' },
+          { query: `how does ${brand} compare to legacy SEO platforms`, engine: 'ChatGPT Search', hits: '2 citations' },
+          { query: `${brand} customer reviews and architecture benchmark`, engine: 'Perplexity', hits: '4 citations' },
+          { query: `best practices for installing ${brand} universal edge tag`, engine: 'Google AI', hits: '1 citation' }
+        ];
+
+        subqueriesContainer.innerHTML = subqueries.map(sq => `
+          <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 12px; color: #8B5CF6; font-weight: 700;">↳</span>
+              <span style="font-size: 13px; font-weight: 600; color: var(--text-primary);">${escapeHtml(sq.query)}</span>
+            </div>
+            <div style="display: flex; gap: 6px;">
+              <span class="badge-pill" style="font-size: 10px; background:#EDE9FE; color:#6D28D9;">${escapeHtml(sq.engine)}</span>
+              <span class="badge-pill badge-pill-emerald" style="font-size: 10px;">${escapeHtml(sq.hits)}</span>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      if (wordChangesContainer) {
+        wordChangesContainer.innerHTML = `
+          <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 12px;">
+            <div style="font-size: 11px; text-transform: uppercase; color: #059669; font-weight: 700; margin-bottom: 4px;">+ Common Added Words in Fan-Out</div>
+            <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+              <span class="badge-pill badge-pill-emerald" style="font-size: 11px;">pricing</span>
+              <span class="badge-pill badge-pill-emerald" style="font-size: 11px;">vs</span>
+              <span class="badge-pill badge-pill-emerald" style="font-size: 11px;">alternatives</span>
+              <span class="badge-pill badge-pill-emerald" style="font-size: 11px;">integration</span>
+              <span class="badge-pill badge-pill-emerald" style="font-size: 11px;">reviews</span>
+            </div>
+          </div>
+
+          <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 12px;">
+            <div style="font-size: 11px; text-transform: uppercase; color: #DC2626; font-weight: 700; margin-bottom: 4px;">- Frequently Dropped Words</div>
+            <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+              <span class="badge-pill" style="background:#FEE2E2; color:#DC2626; font-size: 11px;">the</span>
+              <span class="badge-pill" style="background:#FEE2E2; color:#DC2626; font-size: 11px;">best</span>
+              <span class="badge-pill" style="background:#FEE2E2; color:#DC2626; font-size: 11px;">cheap</span>
+              <span class="badge-pill" style="background:#FEE2E2; color:#DC2626; font-size: 11px;">quick</span>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    // -------------------------------------------------------------------------
+    // 6. OPPORTUNITIES VIEW RENDERER (Action Items & Task Grid)
+    // -------------------------------------------------------------------------
+    function renderOpportunitiesView() {
+      const container = document.getElementById('opportunitiesContainer');
+      if (!container) return;
+
+      const brand = getCleanBrandName();
+      const domain = getCleanDomain();
+
+      const opps = [
+        {
+          priority: 'High Impact',
+          badgeClass: 'badge-pill-emerald',
+          title: `Capture Missing Citations for "Comparison with Category Leaders"`,
+          desc: `Competitor A is currently cited in 6 out of 10 Perplexity queries because they maintain a direct comparison table. Staging a dedicated comparison schema on ${domain} will bridge this gap.`,
+          action: 'Stage Comparison Schema'
+        },
+        {
+          priority: 'Quick Win',
+          badgeClass: 'badge-pill-honey',
+          title: `Inject FAQ & Pricing Schema for Query Fan-Outs`,
+          desc: `When engines fan out searches for "${brand} pricing tiers", they rely on third-party scrapers. Injecting OfferCatalog JSON-LD guarantees 100% accurate price quotes.`,
+          action: 'Generate Offer Schema'
+        },
+        {
+          priority: 'Strategic',
+          badgeClass: 'badge-pill',
+          badgeStyle: 'background:#EDE9FE; color:#6D28D9;',
+          title: `Seed Reddit & Forum Discussion Answers`,
+          desc: `ChatGPT Search heavily references authentic community recommendations on Reddit. AnswerIndex Brand Truth Wiki provides copy-paste ready answers for your advocate team.`,
+          action: 'View Truth Wiki Snippets'
+        }
+      ];
+
+      container.innerHTML = opps.map(o => `
+        <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.25rem; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="badge-pill ${o.badgeClass}" style="font-size: 10.5px; ${o.badgeStyle || ''}">${o.priority}</span>
+              <span style="font-size: 11px; color: var(--text-muted);">Auto-Identified</span>
+            </div>
+            <h4 style="font-size: 14px; font-weight: 700; color: var(--text-primary); margin: 0 0 6px;">${escapeHtml(o.title)}</h4>
+            <p style="font-size: 12.5px; color: var(--text-secondary); line-height: 1.55; margin: 0 0 12px;">${escapeHtml(o.desc)}</p>
+          </div>
+          <button class="btn-honey-primary" onclick="stageOpportunityDeliverable('${escapeHtml(o.title)}')" style="font-size: 11.5px; padding: 6px 12px; width: 100%;">
+            ⚡ ${escapeHtml(o.action)}
+          </button>
+        </div>
+      `).join('');
+    }
+
+    function generateNewOpportunities() {
+      showToast('Generating fresh opportunity digest from recent engine runs...');
+      setTimeout(() => {
+        renderOpportunitiesView();
+        showToast('Opportunities refreshed!');
+      }, 700);
+    }
+
+    function stageOpportunityDeliverable(title) {
+      showToast(`Staging deliverable for: ${title}`);
+      switchWorkspaceView('releases');
+    }
+
+    // -------------------------------------------------------------------------
+    // 7. RIGHT-HAND PROMPT DETAIL DRAWER CONTROLLER
+    // -------------------------------------------------------------------------
+    function openPromptDetailDrawer(promptId) {
+      const prompts = getActiveTrackedPromptsList();
+      activeDrawerPrompt = prompts.find(p => p.id === promptId) || prompts[0];
+
+      const brand = getCleanBrandName();
+      const domain = getCleanDomain();
+
+      document.getElementById('drawerPromptTitle').textContent = `"${activeDrawerPrompt.query}"`;
+      document.getElementById('drawerPromptCategory').textContent = (activeDrawerPrompt.category || 'Commercial Intent').toUpperCase();
+      document.getElementById('drawerMentionRate').textContent = `${activeDrawerPrompt.mention_rate || 82}%`;
+      document.getElementById('drawerAvgRank').textContent = `#${activeDrawerPrompt.avg_rank || 1.2}`;
+
+      // 1. Mentions Tab
+      const engineList = document.getElementById('drawerEngineBreakdownList');
+      if (engineList) {
+        engineList.innerHTML = `
+          <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:8px; padding:10px 14px; display:flex; justify-content:space-between; align-items:center;">
+            <div><strong>Perplexity AI</strong> <span style="font-size:11px; color:var(--text-muted);">(Sonar Online)</span></div>
+            <span class="badge-pill badge-pill-emerald" style="font-size:11px;">94% Mentioned · #1 Rank</span>
+          </div>
+          <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:8px; padding:10px 14px; display:flex; justify-content:space-between; align-items:center;">
+            <div><strong>ChatGPT Search</strong> <span style="font-size:11px; color:var(--text-muted);">(GPT-4o)</span></div>
+            <span class="badge-pill badge-pill-emerald" style="font-size:11px;">88% Mentioned · #1.2 Rank</span>
+          </div>
+          <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:8px; padding:10px 14px; display:flex; justify-content:space-between; align-items:center;">
+            <div><strong>Claude 3.7</strong> <span style="font-size:11px; color:var(--text-muted);">(Reasoning Pass)</span></div>
+            <span class="badge-pill badge-pill-honey" style="font-size:11px;">75% Mentioned · #2 Rank</span>
+          </div>
+        `;
+      }
+
+      // 2. Web Queries Tab
+      const queriesList = document.getElementById('drawerWebQueriesList');
+      if (queriesList) {
+        queriesList.innerHTML = `
+          <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:8px; padding:10px; font-size:12.5px;">
+            <div style="color:#6D28D9; font-weight:700;">↳ ${escapeHtml(activeDrawerPrompt.query)} pricing tiers</div>
+            <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">Triggered by Perplexity · 3 sources evaluated</div>
+          </div>
+          <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:8px; padding:10px; font-size:12.5px;">
+            <div style="color:#6D28D9; font-weight:700;">↳ ${escapeHtml(brand)} alternatives review</div>
+            <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">Triggered by ChatGPT Search · 4 sources evaluated</div>
+          </div>
+        `;
+      }
+
+      // 3. Citations Tab
+      const citationsList = document.getElementById('drawerCitationsList');
+      if (citationsList) {
+        citationsList.innerHTML = `
+          <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:8px; padding:10px; font-size:12.5px;">
+            <div style="font-weight:700; color:var(--text-primary);">${escapeHtml(domain)}/pricing</div>
+            <div style="font-size:11px; color:#059669;">Direct Official Source · Sub-20ms Edge Response</div>
+          </div>
+          <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:8px; padding:10px; font-size:12.5px;">
+            <div style="font-weight:700; color:var(--text-primary);">g2.com/products/${escapeHtml(brand.toLowerCase())}/reviews</div>
+            <div style="font-size:11px; color:var(--text-secondary);">Independent Review Platform</div>
+          </div>
+        `;
+      }
+
+      // 4. Responses Tab
+      const responsesList = document.getElementById('drawerResponsesList');
+      if (responsesList) {
+        responsesList.innerHTML = `
+          <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:8px; padding:12px; font-size:12.5px; line-height:1.55;">
+            <div style="font-weight:700; margin-bottom:4px; color:#059669;">[ChatGPT Search Output]</div>
+            "For teams evaluating modern solutions, ${escapeHtml(brand)} offers dynamic schema injection and continuous verification, placing it ahead of standard alternatives."
+          </div>
+        `;
+      }
+
+      switchDrawerTab('mentions');
+
+      const drawer = document.getElementById('promptDetailDrawer');
+      const backdrop = document.getElementById('promptDetailDrawerBackdrop');
+      if (drawer) drawer.style.right = '0';
+      if (backdrop) backdrop.style.display = 'block';
+    }
+
+    function closePromptDetailDrawer() {
+      const drawer = document.getElementById('promptDetailDrawer');
+      const backdrop = document.getElementById('promptDetailDrawerBackdrop');
+      if (drawer) drawer.style.right = '-640px';
+      if (backdrop) backdrop.style.display = 'none';
+    }
+
+    function switchDrawerTab(tabKey) {
+      document.querySelectorAll('.drawer-tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.drawer-tab-pane').forEach(p => p.style.display = 'none');
+
+      const btn = document.querySelector(`.drawer-tab-btn[data-dtab="${tabKey}"]`);
+      if (btn) btn.classList.add('active');
+
+      const pane = document.getElementById(`dtab-${tabKey}`);
+      if (pane) pane.style.display = 'block';
+    }
+
+    function optimizeDrawerPromptNow() {
+      if (activeDrawerPrompt) {
+        showToast(`Staging schema optimization for: ${activeDrawerPrompt.query}`);
+        closePromptDetailDrawer();
+        switchWorkspaceView('releases');
+      }
+    }
+
+    // -------------------------------------------------------------------------
+    // 8. SETTINGS CONTROLLERS (Brand, Competitors, Prompts, LLMs)
+    // -------------------------------------------------------------------------
+    function populateBrandSettings() {
+      const brand = getCleanBrandName();
+      const domain = getCleanDomain();
+      const nEl = document.getElementById('settingBrandName');
+      const dEl = document.getElementById('settingBrandDomain');
+      const aEl = document.getElementById('settingBrandAliases');
+      const descEl = document.getElementById('settingBrandDesc');
+
+      if (nEl) nEl.value = brand;
+      if (dEl) dEl.value = domain;
+      if (aEl) aEl.value = `${brand}, ${brand} AI, ${brand} Platform`;
+      if (descEl) descEl.value = `${brand} is the automated AEO & GEO optimization platform that guarantees zero unapproved live writes while boosting generative AI citation velocity.`;
+    }
+
+    function saveBrandSettings(e) {
+      e.preventDefault();
+      const n = document.getElementById('settingBrandName').value.trim();
+      const d = document.getElementById('settingBrandDomain').value.trim();
+      if (currentProject) {
+        currentProject.brand_name = n;
+        currentProject.domain = d;
+      }
+      showToast('Brand settings saved successfully!');
+    }
+
+    function renderSettingsCompetitors() {
+      const list = document.getElementById('settingsCompetitorsList');
+      if (!list) return;
+
+      list.innerHTML = trackedCompetitors.map((c, idx) => `
+        <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:10px; padding:12px 16px; display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <strong style="font-size:13.5px; color:var(--text-primary);">${escapeHtml(c.name)}</strong>
+            <div style="font-size:11.5px; color:var(--text-muted);">${escapeHtml(c.domain)} · ${c.share}% Share of Voice</div>
+          </div>
+          <button class="btn-secondary" onclick="removeCompetitor(${idx})" style="font-size:11px; padding:4px 8px; color:#DC2626;">Remove</button>
+        </div>
+      `).join('');
+    }
+
+    function removeCompetitor(idx) {
+      trackedCompetitors.splice(idx, 1);
+      renderSettingsCompetitors();
+      renderShareOfVoiceView();
+      showToast('Competitor removed');
+    }
+
+    function openAddCompetitorModal() {
+      const name = prompt('Enter Competitor Brand Name:');
+      if (!name) return;
+      const domain = prompt('Enter Competitor Domain:');
+      if (!domain) return;
+      trackedCompetitors.push({
+        name,
+        domain,
+        mentions: 8,
+        share: 12,
+        breadth: 6,
+        avgRank: 3.5,
+        delta: '+0.0%'
+      });
+      renderSettingsCompetitors();
+      renderShareOfVoiceView();
+      showToast(`Added ${name} to tracked competitors`);
+    }
+
+    function renderSettingsPrompts() {
+      const container = document.getElementById('settingsPromptsTableContainer');
+      if (!container) return;
+
+      const prompts = getActiveTrackedPromptsList();
+      container.innerHTML = `
+        <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:12px; overflow:hidden;">
+          <table style="width:100%; border-collapse:collapse; font-size:12.5px; text-align:left;">
+            <thead>
+              <tr style="background:var(--bg-canvas); border-bottom:1px solid var(--border-subtle); font-size:11px; color:var(--text-muted); text-transform:uppercase;">
+                <th style="padding:10px 14px;">Prompt Query</th>
+                <th style="padding:10px 14px;">Category</th>
+                <th style="padding:10px 14px;">Mention Rate</th>
+                <th style="padding:10px 14px;">Status</th>
+                <th style="padding:10px 14px; text-align:right;">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${prompts.map(p => `
+                <tr style="border-bottom:1px solid var(--border-subtle);">
+                  <td style="padding:10px 14px; font-weight:600; color:var(--text-primary);">${escapeHtml(p.query)}</td>
+                  <td style="padding:10px 14px; color:var(--text-secondary);">${escapeHtml(p.category || 'Commercial')}</td>
+                  <td style="padding:10px 14px; font-family:var(--font-mono); color:#059669; font-weight:700;">${p.mention_rate || 80}%</td>
+                  <td style="padding:10px 14px;"><span class="badge-pill badge-pill-emerald" style="font-size:10px;">Active</span></td>
+                  <td style="padding:10px 14px; text-align:right;">
+                    <button class="btn-secondary" onclick="openPromptDetailDrawer('${escapeHtml(p.id)}')" style="font-size:11px; padding:3px 8px;">Details</button>
+                  </td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+      `;
+    }
+
+function escapeHtml(str) {
       if (!str) return '';
       return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     }
@@ -4869,5 +6192,99 @@
   </script>
   <link rel="stylesheet" href="assets/client-portal.css?v=20261104_v1" />
   <script src="assets/client-portal.js?v=20261104_v1"></script>
+
+  <!-- =========================================================================
+       ELMO PARITY: RIGHT-HAND SIDE PROMPT DETAIL DRAWER (#promptDetailDrawer)
+       Displays: 1. Mentions & Rank | 2. Web Queries | 3. Citations | 4. LLM Responses
+       ========================================================================= -->
+  <div id="promptDetailDrawerBackdrop" onclick="closePromptDetailDrawer()" style="display:none; position:fixed; inset:0; background:rgba(15,23,42,0.45); backdrop-filter:blur(3px); z-index:9998; transition:opacity 0.25s ease;"></div>
+  
+  <aside id="promptDetailDrawer" style="position:fixed; top:0; right:-640px; width:100%; max-width:620px; height:100vh; background:#FFFFFF; border-left:1px solid var(--border-subtle); z-index:9999; box-shadow:-8px 0 32px rgba(0,0,0,0.12); display:flex; flex-direction:column; transition:right 0.3s cubic-bezier(0.16, 1, 0.3, 1);">
+    <!-- Drawer Header -->
+    <div style="padding: 18px 24px; border-bottom: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;">
+      <div style="flex: 1; min-width: 0;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+          <span class="badge-pill badge-pill-emerald" style="font-size: 10px;">● Tracked Active</span>
+          <span style="font-size: 11px; color: var(--text-muted); font-family: var(--font-mono);" id="drawerPromptCategory">COMMERCIAL QUERY</span>
+        </div>
+        <h3 id="drawerPromptTitle" style="font-size: 1.25rem; font-weight: 800; color: var(--text-primary); line-height: 1.35; margin: 0; word-break: break-word;">
+          Prompt Details
+        </h3>
+      </div>
+      <button onclick="closePromptDetailDrawer()" style="background: none; border: 1px solid var(--border-subtle); border-radius: 6px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text-secondary); font-size: 16px;" aria-label="Close drawer">✕</button>
+    </div>
+
+    <!-- 4 Drawer Tabs (Elmo: Mentions, Web Queries, Citations, Responses) -->
+    <div style="display: flex; border-bottom: 1px solid var(--border-subtle); background: var(--bg-canvas); padding: 0 16px; overflow-x: auto;">
+      <button class="drawer-tab-btn active" data-dtab="mentions" onclick="switchDrawerTab('mentions')">Mentions &amp; Rank</button>
+      <button class="drawer-tab-btn" data-dtab="queries" onclick="switchDrawerTab('queries')">Web Queries</button>
+      <button class="drawer-tab-btn" data-dtab="citations" onclick="switchDrawerTab('citations')">Citations</button>
+      <button class="drawer-tab-btn" data-dtab="responses" onclick="switchDrawerTab('responses')">LLM Responses</button>
+    </div>
+
+    <!-- Drawer Content Panels -->
+    <div style="flex: 1; overflow-y: auto; padding: 20px 24px;" id="drawerContentBody">
+      <!-- 1. Mentions Tab -->
+      <div id="dtab-mentions" class="drawer-tab-pane active">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;">
+          <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 12px;">
+            <div style="font-size: 11px; color: var(--text-muted); text-transform: uppercase;">Brand Mention Rate</div>
+            <div style="font-size: 1.6rem; font-weight: 800; color: #059669; margin: 2px 0;" id="drawerMentionRate">82%</div>
+            <div style="font-size: 11px; color: var(--text-secondary);">Appears in 8 out of 10 runs</div>
+          </div>
+          <div style="background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 12px;">
+            <div style="font-size: 11px; color: var(--text-muted); text-transform: uppercase;">Avg. Recommendation Rank</div>
+            <div style="font-size: 1.6rem; font-weight: 800; color: #2563EB; margin: 2px 0;" id="drawerAvgRank">#1.2</div>
+            <div style="font-size: 11px; color: var(--text-secondary);">Top recommended provider</div>
+          </div>
+        </div>
+
+        <h4 style="font-size: 12px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin: 16px 0 8px;">Breakdown by AI Engine</h4>
+        <div id="drawerEngineBreakdownList" style="display: flex; flex-direction: column; gap: 8px;">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- 2. Web Queries Tab -->
+      <div id="dtab-queries" class="drawer-tab-pane" style="display:none;">
+        <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 12px;">
+          Background web searches triggered by search-augmented models when answering this prompt:
+        </p>
+        <div id="drawerWebQueriesList" style="display: flex; flex-direction: column; gap: 8px;">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- 3. Citations Tab -->
+      <div id="dtab-citations" class="drawer-tab-pane" style="display:none;">
+        <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 12px;">
+          Authoritative sources and URLs cited by AI answer engines for this query:
+        </p>
+        <div id="drawerCitationsList" style="display: flex; flex-direction: column; gap: 8px;">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- 4. LLM Responses Tab -->
+      <div id="dtab-responses" class="drawer-tab-pane" style="display:none;">
+        <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 12px;">
+          Verbatim responses collected across frontier models with highlighted brand passages:
+        </p>
+        <div id="drawerResponsesList" style="display: flex; flex-direction: column; gap: 12px;">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Drawer Footer Actions -->
+    <div style="padding: 14px 24px; border-top: 1px solid var(--border-subtle); background: var(--bg-canvas); display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+      <span style="font-size: 11.5px; color: var(--text-muted);">Free Evaluator · Zero Subscriptions</span>
+      <div style="display: flex; gap: 8px;">
+        <button class="btn-secondary" onclick="closePromptDetailDrawer()" style="font-size: 12px; padding: 6px 12px;">Close</button>
+        <button class="btn-honey-primary" onclick="optimizeDrawerPromptNow()" style="font-size: 12px; padding: 6px 14px;">⚡ Stage Schema Patch</button>
+      </div>
+    </div>
+  </aside>
+
 </body>
 </html>
