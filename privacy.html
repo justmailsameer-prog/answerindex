@@ -1116,10 +1116,15 @@
 
     async function startCheckout(plan = 'pro_autonomous') {
       try {
+        let customerEmail = null, customerName = null;
+        try {
+          const u = JSON.parse(localStorage.getItem('answerindex_user') || 'null');
+          if (u && u.email) { customerEmail = u.email; customerName = u.name || null; }
+        } catch (e) {}
         const res = await fetch('/api/create-checkout', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ plan, billing: 'monthly' })
+          body: JSON.stringify({ plan, billing: 'monthly', email: customerEmail, name: customerName })
         });
         const data = await res.json();
         if (data.success && data.checkout_url) {

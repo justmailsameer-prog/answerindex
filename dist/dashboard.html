@@ -2610,7 +2610,8 @@
               <label style="display: block; font-size: 12.5px; font-weight: 700; margin-bottom: 6px;">Product Category &amp; One-Sentence Description</label>
               <textarea id="settingBrandDesc" rows="3" style="width: 100%; padding: 8px 12px; border: 1px solid var(--border-subtle); border-radius: 8px; font-size: 13.5px; background: var(--bg-card);"></textarea>
             </div>
-            <div style="display: flex; justify-content: flex-end; gap: 8px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap;">
+              <button type="button" class="btn-secondary" onclick="openBillingPortal()" style="padding: 8px 14px; font-size: 12.5px;">💳 Manage Billing &amp; Subscription</button>
               <button type="submit" class="btn-honey-primary" style="padding: 8px 16px;">Save Brand Settings</button>
             </div>
           </form>
@@ -3696,6 +3697,17 @@
         const urlParams = new URLSearchParams(window.location.search);
         const emailParam = urlParams.get('email');
         const projIdParam = urlParams.get('project_id') || urlParams.get('id');
+        const checkoutStatus = urlParams.get('checkout');
+        if (checkoutStatus === 'success') {
+          const planParam = urlParams.get('plan') || 'subscription';
+          setTimeout(() => showToast(`✅ Payment received! Syncing your ${planParam.replace(/_/g, ' ')} status...`), 350);
+          try {
+            urlParams.delete('checkout');
+            urlParams.delete('plan');
+            const qs = urlParams.toString();
+            window.history.replaceState({}, '', window.location.pathname + (qs ? `?${qs}` : ''));
+          } catch (e) {}
+        }
 
         let queryUrl = '/api/project';
         if (emailParam) {
@@ -6195,6 +6207,36 @@
           </table>
         </div>
       `;
+    }
+
+    async function openBillingPortal() {
+      let email = currentProject && currentProject.owner_email ? currentProject.owner_email : null;
+      if (!email) {
+        try {
+          const u = JSON.parse(localStorage.getItem('answerindex_user') || 'null');
+          if (u && u.email) email = u.email;
+        } catch (e) {}
+      }
+      if (!email) {
+        showToast('Please sign in with your subscriber email to manage billing.');
+        return;
+      }
+      showToast('Connecting to Dodo Payments Customer Portal...');
+      try {
+        const res = await fetch('/api/customer-portal', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email })
+        });
+        const data = await res.json();
+        if (data.success && data.portal_url) {
+          window.open(data.portal_url, '_blank', 'noopener,noreferrer');
+        } else {
+          showToast(data.error || 'No active billing profile found yet.');
+        }
+      } catch (e) {
+        showToast('Network error opening billing portal.');
+      }
     }
 
 function escapeHtml(str) {
